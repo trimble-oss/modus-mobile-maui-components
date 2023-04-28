@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.MainPage">
 
     <ScrollView>
@@ -9,31 +10,71 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            <StackLayout Padding="10">
+                <Label Text="Without Icons"/>
+                <local:CustomButton 
+                    x:Name="button"
+                    Title = "XSmall"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                    Size="XSmall"
+                  />
+                <local:CustomButton 
+                    x:Name="button2"
+                    Title = "Small"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                    Size="Small"
+                  />
+                <local:CustomButton 
+                    x:Name="button3"
+                    Title = "Default"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                    Size="Default"
+                  />
+                <local:CustomButton 
+                    x:Name="button4"
+                    Title = "Large"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                    Size="Large"
+                  />
+                <Label Text="With Icons"/>
+                <local:CustomButton 
+                    x:Name="ibutton"
+                    Title = "XSmall"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    CommandParameter="Button5"
+                    Size="XSmall"
+                  />
+                <local:CustomButton 
+                    x:Name="ibutton2"
+                    Title = "Small"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    CommandParameter="Button5"
+                    Size="Small"
+                  />
+                <local:CustomButton 
+                    x:Name="ibutton3"
+                    Title = "Default"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    CommandParameter="Button5"
+                    Size="Default"
+                  />
+                <local:CustomButton 
+                    x:Name="ibutton4"
+                    Title = "Large"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    CommandParameter="Button5"
+                    Size="Large"
+                  />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            </StackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

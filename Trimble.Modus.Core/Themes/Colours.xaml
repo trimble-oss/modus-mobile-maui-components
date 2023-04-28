@@ -6,6 +6,6 @@
   <Color x:Key="Trimble Blue">#0063a3</Color>
   <Color x:Key="Trimble Blue Dark">#004f83</Color>
   <Color x:Key="Trimble Yellow">#fbad26</Color>
-   <Color x:Key="Trimble Gray">#252a2e</Color>
+  <Color x:Key="Trimble Gray">#252a2e</Color>
     
 </ResourceDictionary>
