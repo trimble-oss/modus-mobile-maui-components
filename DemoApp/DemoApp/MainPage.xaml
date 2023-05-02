@@ -11,37 +11,42 @@
             VerticalOptions="Center">
 
             <StackLayout Padding="10">
-                <Label Text="Without Icons"/>
-                <local:CustomButton 
+
+            
+                    <Label Text="Without Icons"/>
+                    <local:CustomButton 
                     x:Name="button"
                     Title = "XSmall"
+            
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
-                    Size="XSmall"
+                 
                   />
-                <local:CustomButton 
+                    <local:CustomButton 
                     x:Name="button2"
                     Title = "Small"
                     Command="{Binding MyCommand}"
+                 
                     CommandParameter="Button5"
                     Size="Small"
                   />
-                <local:CustomButton 
+                    <local:CustomButton 
                     x:Name="button3"
                     Title = "Default"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
+                    
                     Size="Default"
                   />
-                <local:CustomButton 
+                    <local:CustomButton 
                     x:Name="button4"
                     Title = "Large"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                     Size="Large"
                   />
-                <Label Text="With Icons"/>
-                <local:CustomButton 
+                    <Label Text="With Icons"/>
+                    <local:CustomButton 
                     x:Name="ibutton"
                     Title = "XSmall"
                     Command="{Binding MyCommand}"
@@ -49,15 +54,16 @@
                     CommandParameter="Button5"
                     Size="XSmall"
                   />
-                <local:CustomButton 
+                    <local:CustomButton 
                     x:Name="ibutton2"
                     Title = "Small"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
+                 
                     CommandParameter="Button5"
                     Size="Small"
                   />
-                <local:CustomButton 
+                    <local:CustomButton 
                     x:Name="ibutton3"
                     Title = "Default"
                     Command="{Binding MyCommand}"
@@ -65,16 +71,78 @@
                     CommandParameter="Button5"
                     Size="Default"
                   />
-                <local:CustomButton 
+                    <local:CustomButton 
                     x:Name="ibutton4"
                     Title = "Large"
+                    
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
+                    CommandParameter="Button5"
+                   
+                  />
+
+                    <Label Text="Floating Buttons"/>
+
+                    <local:CustomButton 
+                    x:Name="fltbutton2"
+                
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    Size="XSmall"
+                  />
+
+                    <local:CustomButton 
+                    x:Name="fltbutton"
+                    Title = "XSmall"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    Size="XSmall"
+                  />
+                    <Label Text="Disabled Buttons"/>
+                    <local:CustomButton 
+                    x:Name="button413"
+                    Title = "Large"
+                    IsDisabled="True"
+                    Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                     Size="Large"
                   />
 
-            </StackLayout>
+                    <local:CustomButton 
+                    x:Name="ibutton12"
+                    Title = "Large"
+                    IsDisabled="True"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    CommandParameter="Button5"
+                    Size="Large"
+                    />
+                    <local:CustomButton 
+                    x:Name="disbutton"
+                
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    IsDisabled="True"
+                    Size="XSmall"
+                  />
+
+                    <local:CustomButton 
+                    x:Name="disbutton2"
+                    Title = "XSmall"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    IsDisabled="False"
+                    Size="XSmall"
+                  />
+                </StackLayout>
 
         </VerticalStackLayout>
     </ScrollView>

@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Core.Themes.Colours">
 
-  <Color x:Key="Trimble Blue">#0063a3</Color>
-  <Color x:Key="Trimble Blue Dark">#004f83</Color>
-  <Color x:Key="Trimble Yellow">#fbad26</Color>
-  <Color x:Key="Trimble Gray">#252a2e</Color>
-    
+    <Color x:Key="TrimbleBlue">#0063a3</Color>
+    <Color x:Key="TrimbleBlueDark">#004f83</Color>
+    <Color x:Key="TrimbleYellow">#fbad26</Color>
+    <Color x:Key="TrimbleGray">#252a2e</Color>
+
 </ResourceDictionary>

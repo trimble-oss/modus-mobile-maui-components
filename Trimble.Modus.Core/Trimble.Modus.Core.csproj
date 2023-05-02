@@ -18,9 +18,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Themes\Colours.xaml">
+	  <MauiXaml Update="Colours.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Themes\Colours - Copy.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Themes\" />
 	</ItemGroup>
 
 </Project>
