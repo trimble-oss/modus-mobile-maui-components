@@ -117,7 +117,7 @@ namespace Trimble.Modus.Components
                 Padding = 0,
 
                 Content = stackLayout,
-                BackgroundColor = Color.FromArgb("#0063a3"),
+                BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"],
                 HorizontalOptions = LayoutOptions.Start,
                 StrokeShape = new Rectangle
                 {
@@ -184,11 +184,11 @@ namespace Trimble.Modus.Components
         private void OnTapped(object sender, EventArgs e)
         {
             Command?.Execute(CommandParameter);
-            frame.BackgroundColor = Color.FromArgb("#0E416C");
+            frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlueDark"];
 
             this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
-                frame.BackgroundColor = Color.FromArgb("#0063a3");
+                frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 return false;
             });
         }
@@ -336,7 +336,7 @@ namespace Trimble.Modus.Components
             else
             {
 
-                button.frame.BackgroundColor = Color.FromArgb("#0063a3");
+                button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 button._titleLabel.TextColor = Colors.White;
                 button._iconImage.Opacity = 1;
                 button.GestureRecognizers.Add(button._tapGestureRecognizer);
@@ -350,31 +350,5 @@ namespace Trimble.Modus.Components
             var button = (CustomButton)bindable;
             button.UpdateButtonStyle();
         }
-
-
-     
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-
-            if (width > 0 && height > 0)
-            {
-                
-                var handler = this.Handler as IViewHandler;
-
-                
-                var measuredSize = handler?.GetDesiredSize(double.PositiveInfinity, double.PositiveInfinity);
-
-                
-                if (measuredSize != null)
-                {
-                    this.WidthRequest = frame.Width;
-                    this.HeightRequest = frame.Height;
-                }
-            }
-        }
-
-
-
     }
 }

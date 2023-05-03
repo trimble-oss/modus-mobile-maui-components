@@ -1,10 +1,11 @@
-namespace Trimble.Modus.Core.Themes;
-
-public partial class Colours : ResourceDictionary
+namespace Trimble.Modus.Components
 {
-	public Colours()
+	public partial class Colours : ResourceDictionary
 	{
-		InitializeComponent();
-      
-    }
+		public Colours()
+		{
+			InitializeComponent();
+
+		}
+	}
 }

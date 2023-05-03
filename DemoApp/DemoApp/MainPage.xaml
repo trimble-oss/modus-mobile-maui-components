@@ -5,10 +5,7 @@
              x:Class="DemoApp.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+        <VerticalStackLayout>
 
             <StackLayout Padding="10">
 
