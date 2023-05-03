@@ -25,7 +25,7 @@
                     <local:CustomButton 
                     x:Name="button"
                     Title = "XSmall"
-            
+                    Radius="50"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                  
@@ -95,7 +95,7 @@
 
                     <local:CustomButton 
                     x:Name="fltbutton2"
-                
+                    Radius="50"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
                     IsFloatingButton="True"

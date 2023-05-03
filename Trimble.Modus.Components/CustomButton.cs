@@ -45,9 +45,12 @@ namespace Trimble.Modus.Components
        
         public static readonly BindableProperty TextColorProperty = 
             BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(CustomButton), defaultValue: Colors.White, propertyChanged: onTextColorChanged);
+       
+        public static readonly BindableProperty ButtonRadiusProperty =
+            BindableProperty.Create(nameof(Radius), typeof(int), typeof(CustomButton), 4, propertyChanged: onButtonRadiusChanged);
 
         public new static readonly BindableProperty ControlTemplateProperty =
-          BindableProperty.Create(nameof(ControlTemplate), typeof(ControlTemplate), typeof(CustomButton),propertyChanged: onControlTemplateSet);
+         BindableProperty.Create(nameof(ControlTemplate), typeof(ControlTemplate), typeof(CustomButton), propertyChanged: onControlTemplateSet);
 
         private static void onControlTemplateSet(BindableObject bindable, object oldValue, object newValue)
         {
@@ -117,6 +120,12 @@ namespace Trimble.Modus.Components
         {
             get => (ControlTemplate)GetValue(ControlTemplateProperty);
             set => SetValue(ControlTemplateProperty, value);
+        }
+
+        public int Radius
+        {
+            get { return (int)GetValue(ButtonRadiusProperty); }
+            set { SetValue(ButtonRadiusProperty, value); }
         }
 
 
@@ -232,17 +241,13 @@ namespace Trimble.Modus.Components
 
             if (IsFloatingButton)
             {
-                frame.StrokeShape = new Rectangle
-                {
-                    RadiusX = 50,
-                    RadiusY = 50
-                };
                 frame.Shadow = new Shadow
                 {
                     Radius = 50,
                     Opacity = 100
 
                 };
+                frame.ZIndex = 1;
                 setFloatingButton(this);
                 Content = frame;
             }
@@ -375,6 +380,13 @@ namespace Trimble.Modus.Components
                 button._titleLabel.TextColor = Colors.White;
                 button._iconImage.Opacity = 1;
                 button.GestureRecognizers.Add(button._tapGestureRecognizer);
+            }
+        }
+        private static void onButtonRadiusChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is CustomButton customButton)
+            {
+                customButton.frame.StrokeShape = new Rectangle { RadiusX = (int)newValue, RadiusY = (int)newValue };
             }
         }
 
