@@ -14,8 +14,7 @@ namespace Trimble.Modus.Components
         private bool isTextSet = false;
         private Border frame;
         private StackLayout stackLayout;
-
-
+        private bool sizeSet = false;
         public static readonly BindableProperty TitleProperty =
             BindableProperty.Create(nameof(Title), typeof(string), typeof(CustomButton), propertyChanged: OnTitleChanged);
 
@@ -38,20 +37,21 @@ namespace Trimble.Modus.Components
         public static readonly BindableProperty IsDisabledProperty =
             BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(CustomButton), false, propertyChanged: OnIsDisabledChanged);
 
-        public static readonly BindableProperty TemplateProperty =
-            BindableProperty.Create(nameof(Template), typeof(ControlTemplate), typeof(CustomButton));
+        public new static readonly BindableProperty BackgroundColorProperty = 
+            BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(CustomButton), (Color)BaseComponent.colorsDictionary()["TrimbleBlue"],propertyChanged:onBackgroundColorChanged);
 
-      
-        public ControlTemplate Template
-        {
-            get => (ControlTemplate)GetValue(ControlTemplateProperty);
-            set => SetValue(ControlTemplateProperty, value);
-        }
+        public static readonly BindableProperty BorderColorProperty =
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(CustomButton), (Color)BaseComponent.colorsDictionary()["TrimbleBlue"], propertyChanged: onBorderColorChanged);
+       
+        public static readonly BindableProperty TextColorProperty = 
+            BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(CustomButton), defaultValue: Colors.White, propertyChanged: onTextColorChanged);
 
-        public bool IsDisabled
+        public new static readonly BindableProperty ControlTemplateProperty =
+          BindableProperty.Create(nameof(ControlTemplate), typeof(ControlTemplate), typeof(CustomButton),propertyChanged: onControlTemplateSet);
+
+        private static void onControlTemplateSet(BindableObject bindable, object oldValue, object newValue)
         {
-            get { return (bool)GetValue(IsDisabledProperty); }
-            set { SetValue(IsDisabledProperty, value); }
+            Console.WriteLine("SET");
         }
 
         public bool IsFloatingButton
@@ -87,6 +87,38 @@ namespace Trimble.Modus.Components
             get => GetValue(CommandParameterProperty);
             set => SetValue(CommandParameterProperty, value);
         }
+
+        public Color TextColor
+        {
+            get { return (Color)GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
+        }
+
+        public Color BorderColor
+        {
+            get { return (Color)GetValue(BorderColorProperty); }
+            set { SetValue(BorderColorProperty, value); }
+        }
+
+        public bool IsDisabled
+        {
+            get { return (bool)GetValue(IsDisabledProperty); }
+            set { SetValue(IsDisabledProperty, value); }
+        }
+
+
+        public new Color BackgroundColor
+        {
+            get { return (Color)GetValue(BackgroundColorProperty); }
+            set { SetValue(BackgroundColorProperty, value); }
+        }
+
+        public new ControlTemplate ControlTemplate
+        {
+            get => (ControlTemplate)GetValue(ControlTemplateProperty);
+            set => SetValue(ControlTemplateProperty, value);
+        }
+
 
         public CustomButton()
         {
@@ -237,7 +269,10 @@ namespace Trimble.Modus.Components
                 {
 
                     customButton.imageSet = true;
-
+                    if (!customButton.sizeSet)
+                    {
+                        customButton.setDefault(customButton);
+                    }
 
                 }
                 else
@@ -316,7 +351,7 @@ namespace Trimble.Modus.Components
                         break;
 
                 }
-
+                customButton.sizeSet = true;
             }
         }
 
@@ -343,12 +378,29 @@ namespace Trimble.Modus.Components
             }
         }
 
-
-
         private static void OnIsFloatingButtonChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var button = (CustomButton)bindable;
             button.UpdateButtonStyle();
+        }
+        private static void onBorderColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is CustomButton customButton)
+            {
+                customButton.frame.Stroke = (Color)newValue;
+            }
+        }
+        private static void onTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is CustomButton customButton)
+            {
+                customButton._titleLabel.TextColor = (Color)newValue;
+            }
+        }
+        private static void onBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is CustomButton customButton)
+                customButton.frame.BackgroundColor = (Color)newValue;
         }
     }
 }
