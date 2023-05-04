@@ -4,11 +4,11 @@
              xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.MainPage">
     <ContentPage.Resources>
-        <Style x:Key="Gold" TargetType="local:CustomButton">
+        <Style x:Key="Gold" TargetType="local:TMButton">
             <Setter Property="BackgroundColor" Value="Gold" />
-           
+            <Setter Property="TextColor" Value="Green"/>
         </Style>
-        <Style x:Key="Red" TargetType="local:CustomButton">
+        <Style x:Key="Red" TargetType="local:TMButton">
             <Setter Property="BackgroundColor" Value="Red" />
 
         </Style>
@@ -22,7 +22,7 @@
 
             
                     <Label Text="Without Icons"/>
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="button"
                     Title = "XSmall"
                     Radius="50"
@@ -30,7 +30,7 @@
                     CommandParameter="Button5"
                  
                   />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="button2"
                     Title = "Small"
                     Command="{Binding MyCommand}"
@@ -40,7 +40,7 @@
                     CommandParameter="Button5"
                     Size="Small"
                   />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="button3"
                     Title = "Default"
                     Command="{Binding MyCommand}"
@@ -48,7 +48,7 @@
                     
                     Size="Default"
                   />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="button4"
                     Title = "Large"
                     Command="{Binding MyCommand}"
@@ -56,7 +56,7 @@
                     Size="Large"
                   />
                     <Label Text="With Icons"/>
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="ibutton"
                     Title = "XSmall"
                     Command="{Binding MyCommand}"
@@ -64,7 +64,7 @@
                     CommandParameter="Button5"
                     Size="XSmall"
                   />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="ibutton2"
                     Title = "Small"
                     Command="{Binding MyCommand}"
@@ -73,7 +73,7 @@
                     CommandParameter="Button5"
                     Size="Small"
                   />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="ibutton3"
                     Title = "Default"
                     Command="{Binding MyCommand}"
@@ -81,7 +81,7 @@
                     CommandParameter="Button5"
                     Size="Default"
                   />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="ibutton4"
                     Title = "Large"
                     
@@ -93,7 +93,7 @@
 
                     <Label Text="Floating Buttons"/>
 
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="fltbutton2"
                     Radius="50"
                     Command="{Binding MyCommand}"
@@ -103,7 +103,7 @@
                     Size="XSmall"
                   />
 
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="fltbutton"
                     Title = "XSmall"
                     Command="{Binding MyCommand}"
@@ -113,7 +113,7 @@
                     Size="XSmall"
                   />
                     <Label Text="Disabled Buttons"/>
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="button413"
                     Title = "Large"
                     IsDisabled="True"
@@ -122,7 +122,7 @@
                     Size="Large"
                   />
 
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="ibutton12"
                     Title = "Large"
                     IsDisabled="True"
@@ -131,7 +131,7 @@
                     CommandParameter="Button5"
                     Size="Large"
                     />
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="disbutton"
                 
                     Command="{Binding MyCommand}"
@@ -142,7 +142,7 @@
                     Size="XSmall"
                   />
 
-                    <local:CustomButton 
+                    <local:TMButton 
                     x:Name="disbutton2"
                     Title = "XSmall"
                     Command="{Binding MyCommand}"
@@ -153,9 +153,13 @@
                     Size="XSmall"
                   />
 
-              
-                <local:CustomButton  Style="{StaticResource Gold}"   Title="Hello" IconSource="icon.png" />
-                <local:CustomButton  Style="{StaticResource Red}"  Title="Hello" IconSource="icon.png" />
+
+                <local:TMButton  
+                    Style="{StaticResource Gold}"  
+                    Title="Hello" 
+                    IconSource="icon.png" 
+               />
+                <local:TMButton  Style="{StaticResource Red}"  Title="Hello" IconSource="icon.png" />
 
             </StackLayout>
 
