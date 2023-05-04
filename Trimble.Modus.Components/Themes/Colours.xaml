@@ -8,5 +8,9 @@
     <Color x:Key="TrimbleYellow">#fbad26</Color>
     <Color x:Key="TrimbleGray">#252a2e</Color>
     <Color x:Key="TrimbleDisabledColor">#CEDEEB</Color>
+    <Color x:Key="Black">#353a40</Color>
+    <Color x:Key="GrayPlaceholder">#90939f</Color>
+    <Color x:Key="FocusBlue">#019aeb</Color>
+    <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
 
 </ResourceDictionary>

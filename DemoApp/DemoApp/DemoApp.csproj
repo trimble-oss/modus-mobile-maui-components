@@ -56,4 +56,22 @@
 	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="TMInputPage.xaml.cs">
+	    <DependentUpon>TMInputPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="TMButtonPage.xaml.cs">
+	    <DependentUpon>TMButtonPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="TMButtonPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TMInputPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
