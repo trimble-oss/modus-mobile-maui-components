@@ -402,10 +402,5 @@ namespace Trimble.Modus.Components
                 tmButton.frame.BackgroundColor = (Color)newValue;
         }
 
-        protected override void OnParentChanged()
-        {
-            base.OnParentChanged();
-        }
-
     }
 }
