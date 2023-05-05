@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trimble.Modus.Core", "Trimble.Modus.Core\Trimble.Modus.Core.csproj", "{7C43D62B-D633-47F4-9B77-ACD0F7D3EDC2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trimble.Modus.Components", "Trimble.Modus.Components\Trimble.Modus.Components.csproj", "{0E3A5CB2-B54F-4029-9612-E17357E3CA79}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp", "DemoApp\DemoApp\DemoApp.csproj", "{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7C43D62B-D633-47F4-9B77-ACD0F7D3EDC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C43D62B-D633-47F4-9B77-ACD0F7D3EDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C43D62B-D633-47F4-9B77-ACD0F7D3EDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C43D62B-D633-47F4-9B77-ACD0F7D3EDC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0E3A5CB2-B54F-4029-9612-E17357E3CA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E3A5CB2-B54F-4029-9612-E17357E3CA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3A5CB2-B54F-4029-9612-E17357E3CA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
