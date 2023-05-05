@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Trimble.Modus.Components
+namespace Trimble.Modus.Components.Enums
 {
-    public enum ButtonSize
+    public enum Size
     {
         Empty,
         XSmall,

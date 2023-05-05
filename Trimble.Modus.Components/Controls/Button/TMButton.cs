@@ -1,17 +1,20 @@
 ﻿
 using Microsoft.Maui.Controls.Shapes;
-
+using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
 
     public class TMButton : ContentView
-    {
+    {   
+        private const int _iconWidth = 24 , _iconHeight = 24;
+        private const int _borderRadius = 4;
         private readonly Label _titleLabel;
         private readonly Image _iconImage;
         private readonly TapGestureRecognizer _tapGestureRecognizer;
         private bool imageSet = false;
         private bool isTextSet = false;
+        public event EventHandler _clicked;
         private Border frame;
         private StackLayout stackLayout;
         private bool sizeSet = false;
@@ -28,7 +31,7 @@ namespace Trimble.Modus.Components
             BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TMButton), null);
 
         public static readonly BindableProperty SizeProperty =
-            BindableProperty.Create(nameof(Size), typeof(ButtonSize), typeof(TMButton), propertyChanged: OnSizeChanged);
+            BindableProperty.Create(nameof(Size), typeof(Enums.Size), typeof(TMButton), propertyChanged: OnSizeChanged);
 
         public static readonly BindableProperty IsFloatingButtonProperty =
             BindableProperty.Create(nameof(IsFloatingButton), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsFloatingButtonChanged);
@@ -46,17 +49,26 @@ namespace Trimble.Modus.Components
             BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMButton), defaultValue: Colors.White, propertyChanged: onTextColorChanged);
        
         public static readonly BindableProperty ButtonRadiusProperty =
-            BindableProperty.Create(nameof(Radius), typeof(int), typeof(TMButton), 4, propertyChanged: onButtonRadiusChanged);
+            BindableProperty.Create(nameof(Radius), typeof(int), typeof(TMButton), _borderRadius, propertyChanged: onButtonRadiusChanged);
 
-    
+        public static readonly BindableProperty ClickedEventProperty =
+            BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMButton));
+
+        public event EventHandler Clicked
+        {
+            add { _clicked += value; }
+            remove { _clicked -= value; }
+        }
+
+
         public bool IsFloatingButton
         {
             get { return (bool)GetValue(IsFloatingButtonProperty); }
             set { SetValue(IsFloatingButtonProperty, value); }
         }
-        public ButtonSize Size
+        public Enums.Size Size
         {
-            get => (ButtonSize)GetValue(SizeProperty);
+            get => (Enums.Size)GetValue(SizeProperty);
             set => SetValue(SizeProperty, value);
         }
         public string Title
@@ -126,8 +138,8 @@ namespace Trimble.Modus.Components
 
             _iconImage = new Image
             {
-                WidthRequest = 24,
-                HeightRequest = 24,
+                WidthRequest = _iconWidth,
+                HeightRequest = _iconHeight,
 
             };
             HorizontalOptions = LayoutOptions.Start;
@@ -153,21 +165,15 @@ namespace Trimble.Modus.Components
                     RadiusY = 4
                 }
             };
-
-
-
             Content = frame;
-            
-
             GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer());
-            _tapGestureRecognizer.Tapped += OnTapped;
-
-
-        }
+            _tapGestureRecognizer.Tapped += OnTapped; 
+ }
+        
 
         private void setDefault(TMButton tmButton)
         {
-            tmButton._titleLabel.FontSize = 16;
+            tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
             if (tmButton.imageSet)
             {
                 tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
@@ -182,7 +188,7 @@ namespace Trimble.Modus.Components
         }
         private void setFloatingButton(TMButton tmButton)
         {
-            tmButton._titleLabel.FontSize = 16;
+            tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
             if (tmButton.imageSet && !tmButton.isTextSet)
             {
 
@@ -210,6 +216,7 @@ namespace Trimble.Modus.Components
         private void OnTapped(object sender, EventArgs e)
         {
             Command?.Execute(CommandParameter);
+            _clicked?.Invoke(this, e);
             frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlueDark"];
         
             this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
@@ -222,6 +229,7 @@ namespace Trimble.Modus.Components
                 return false;
             });
         }
+    
         private void UpdateButtonStyle()
         {
 
@@ -271,8 +279,7 @@ namespace Trimble.Modus.Components
                 }
                 else
                 {
-
-                    tmButton.imageSet = false;
+                        tmButton.imageSet = false;
                 }
             }
         }
@@ -281,30 +288,27 @@ namespace Trimble.Modus.Components
         {
             if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
             {
-                var size = (ButtonSize)newValue;
-                Console.WriteLine($"Size OnSize: {size}");
-
+                var size = (Enums.Size)newValue;
+                
                 switch (size)
                 {
-                    case ButtonSize.XSmall:
-                        tmButton._titleLabel.FontSize = 12;
+                    case Enums.Size.XSmall:
+                        tmButton._titleLabel.FontSize = (double)Enums.FontSize.XSmall;
                         if (tmButton.imageSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 12, 8);
                             tmButton._iconImage.Margin = new Thickness(8, 8, 8, 8);
                             tmButton._iconImage.IsVisible = true;
-
                         }
                         else
                         {
                             tmButton._titleLabel.Padding = new Thickness(12, 8, 12, 8);
                             tmButton._iconImage.IsVisible = false;
-
                         }
 
                         break;
-                    case ButtonSize.Small:
-                        tmButton._titleLabel.FontSize = 14;
+                    case Enums.Size.Small:
+                        tmButton._titleLabel.FontSize = (double)Enums.FontSize.Small;
                         if (tmButton.imageSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 16, 8);
@@ -323,10 +327,9 @@ namespace Trimble.Modus.Components
 
 
                         break;
-
-                    case ButtonSize.Default:
-                    case ButtonSize.Large:
-                        tmButton._titleLabel.FontSize = 16;
+                    case Enums.Size.Default:
+                    case Enums.Size.Large:
+                        tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
                         if (tmButton.imageSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
@@ -339,9 +342,6 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.IsVisible = false;
 
                         }
-
-
-
                         break;
 
                 }
@@ -355,11 +355,9 @@ namespace Trimble.Modus.Components
 
             if ((bool)newValue)
             {
-                button.frame.BackgroundColor = Color.FromArgb("CEDEEB");
+                button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleDisabledColor"];
 
                 button._iconImage.Opacity = 0.5;
-                button.GestureRecognizers.Clear();
-
                 button.GestureRecognizers.Clear();
             }
             else
@@ -403,5 +401,11 @@ namespace Trimble.Modus.Components
             if (bindable is TMButton tmButton)
                 tmButton.frame.BackgroundColor = (Color)newValue;
         }
+
+        protected override void OnParentChanged()
+        {
+            base.OnParentChanged();
+        }
+
     }
 }

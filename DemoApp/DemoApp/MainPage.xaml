@@ -26,6 +26,7 @@
                     x:Name="button"
                     Title = "XSmall"
                     Radius="50"
+                    Clicked="button_Clicked"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                  
