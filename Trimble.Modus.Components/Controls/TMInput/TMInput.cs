@@ -29,9 +29,14 @@ namespace Trimble.Modus.Components
         private readonly Label _helperLabel;
 
         /// <summary>
-        /// Displays success / error icon based on validation
+        /// Displays success icon based on validation
         /// </summary>
-        private readonly Image _validationIcon;
+        private readonly Image _successIcon;
+
+        /// <summary>
+        /// Displays error icon based on validation
+        /// </summary>
+        private readonly Image _errorIcon;
 
         /// <summary>
         /// Display the validation text
@@ -242,7 +247,6 @@ namespace Trimble.Modus.Components
             BindableProperty.Create("RightIconCommandParameter", typeof(object), typeof(TMInput), null, BindingMode.OneWay, null);
 
         #endregion
-
 
         #region Public properties
         /// <summary>
@@ -634,7 +638,8 @@ namespace Trimble.Modus.Components
             _titleLabel = new Label { Padding = new Thickness(0, 0, 0, 4) };
             _originalTitleHeight = _titleLabel.HeightRequest;
             _helperIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.helper_icon.png")  , VerticalOptions = LayoutOptions.Center };
-            _validationIcon = new Image { VerticalOptions = LayoutOptions.Center, WidthRequest = 24, HeightRequest = 24 };
+            _successIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png"), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
+            _errorIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png") ,VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
             _helperLabel = new Label() { Margin = new Thickness(5, 0, 0, 0) , FontSize = (double)Enums.FontSize.Small, VerticalOptions=LayoutOptions.Center};
             _validationLabel = new Label() { Margin = new Thickness(5, 0, 0, 0) , FontSize = (double)Enums.FontSize.Small, VerticalOptions=LayoutOptions.Center};
             _helperText = new StackLayout
@@ -652,7 +657,8 @@ namespace Trimble.Modus.Components
                 Orientation = StackOrientation.Horizontal,
                 IsVisible = false,
                 Children =
-                {   _validationIcon,
+                {   _successIcon,
+                    _errorIcon,
                     _validationLabel
                 }
             };
@@ -720,12 +726,14 @@ namespace Trimble.Modus.Components
             if (success && _validationLabel.TextColor != Colors.Green)
             {
                 _validationLabel.TextColor = Colors.Green;
-                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
+                _successIcon.WidthRequest = 24;
+                _errorIcon.WidthRequest = 0;
             }
             else if (!success && _validationLabel.TextColor != Colors.Red)
             {
                 _validationLabel.TextColor = Colors.Red;
-                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png");
+                _successIcon.WidthRequest = 0;
+                _errorIcon.WidthRequest = 24;
             }
             
         }
