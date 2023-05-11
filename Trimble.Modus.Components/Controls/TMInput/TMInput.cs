@@ -2,6 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
+using System;
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 
@@ -499,31 +500,29 @@ namespace Trimble.Modus.Components
         /// <param name="newValue">New value</param>
         private static void OnInputTextChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var tMinput = (TMInput)bindable;
-            if(tMinput.InputValidation != null)
+            var tmInput = (TMInput)bindable;
+            Tuple<bool, string> result = null;
+
+            if (!string.IsNullOrEmpty((string)newValue) && 
+                (result = tmInput.InputValidation?.Invoke(tmInput))!= null && 
+                !string.IsNullOrEmpty(result.Item2) )
             {
-                if (!string.IsNullOrEmpty((string)newValue))
+                tmInput._validationLabel.Text = result.Item2;
+
+                tmInput.SetValidationTextStyle(result.Item1);
+                if (!tmInput._validationContainer.IsVisible)
                 {
-                    var result = tMinput.InputValidation?.Invoke(tMinput);
-
-                    tMinput._validationLabel.Text = result.Item2;
-
-                    tMinput.SetValidationTextStyle(result.Item1);
-                    tMinput.OnHelperTextChanged(string.Empty);
-
-                    tMinput._validationContainer.IsVisible = true;
-                    tMinput._validationContainer.HeightRequest = 25;
-                }
-                else
-                {
-                    tMinput.OnHelperTextChanged(tMinput.HelperText);
-
-                    tMinput._validationContainer.IsVisible = false;
-                    tMinput._validationContainer.HeightRequest = 0;
+                    tmInput.OnHelperTextChanged(string.Empty);
+                    tmInput._validationContainer.IsVisible = true;
+                    tmInput._validationContainer.HeightRequest = 25;
                 }
             }
+            else
+            {
+                tmInput.HideValidationText();
+            }
             
-            tMinput.TextChanged?.Invoke(tMinput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
 
         /// <summary>
@@ -635,7 +634,7 @@ namespace Trimble.Modus.Components
             _titleLabel = new Label { Padding = new Thickness(0, 0, 0, 4) };
             _originalTitleHeight = _titleLabel.HeightRequest;
             _helperIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.helper_icon.png")  , VerticalOptions = LayoutOptions.Center };
-            _validationIcon = new Image { VerticalOptions = LayoutOptions.Center };
+            _validationIcon = new Image { VerticalOptions = LayoutOptions.Center, WidthRequest = 24, HeightRequest = 24 };
             _helperLabel = new Label() { Margin = new Thickness(5, 0, 0, 0) , FontSize = (double)Enums.FontSize.Small, VerticalOptions=LayoutOptions.Center};
             _validationLabel = new Label() { Margin = new Thickness(5, 0, 0, 0) , FontSize = (double)Enums.FontSize.Small, VerticalOptions=LayoutOptions.Center};
             _helperText = new StackLayout
@@ -718,10 +717,17 @@ namespace Trimble.Modus.Components
         /// <param name="success"></param>
         private void SetValidationTextStyle(bool success)
         {
-            _validationLabel.TextColor = success ? Colors.Green : Colors.Red;
-            _validationIcon.Source = success ?
-                                     ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png") :
-                                     ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png");
+            if (success && _validationLabel.TextColor != Colors.Green)
+            {
+                _validationLabel.TextColor = Colors.Green;
+                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
+            }
+            else if (!success && _validationLabel.TextColor != Colors.Red)
+            {
+                _validationLabel.TextColor = Colors.Red;
+                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png");
+            }
+            
         }
 
         /// <summary>
@@ -764,12 +770,14 @@ namespace Trimble.Modus.Components
                 _border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 _border.StrokeThickness = 2;
                 Focused?.Invoke(this, e);
+                ShowValidationText();
             }
             else
             {
                 _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
                 _border.StrokeThickness = 1;
                 Unfocused?.Invoke(this, e);
+                HideValidationText();
             }
         }
 
@@ -856,6 +864,31 @@ namespace Trimble.Modus.Components
             {
                 _border.Opacity = 0.4;
             }
+        }
+
+        /// <summary>
+        /// Show the validation text and hide helper text
+        /// </summary>
+        private void ShowValidationText()
+        {
+            if (!string.IsNullOrEmpty(Text))
+            {
+                OnHelperTextChanged(string.Empty);
+
+                _validationContainer.IsVisible = true;
+                _validationContainer.HeightRequest = 25;
+            }
+        }
+
+        /// <summary>
+        /// Hides the validation text and displays helper text if its available
+        /// </summary>
+        private void HideValidationText()
+        {
+            OnHelperTextChanged(HelperText);
+
+            _validationContainer.IsVisible = false;
+            _validationContainer.HeightRequest = 0;
         }
 
         /// <summary>
