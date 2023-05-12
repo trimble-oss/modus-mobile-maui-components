@@ -18,11 +18,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Images\input_error_icon.png" />
-	  <None Remove="Images\input_valid_icon.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <EmbeddedResource Include="Images\helper_icon.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
