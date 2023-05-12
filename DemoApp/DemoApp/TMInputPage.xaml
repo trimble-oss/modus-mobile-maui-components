@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DemoApp.TMInputPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="Input">
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout Padding="10" Spacing="15">
+                <Modus:TMInput 
+                    x:Name="modusInput" 
+                    TitleText="Text Input" 
+                    Placeholder="Text Input" />
+
+
+                <Modus:TMInput 
+                    x:Name="validationInput" 
+                    TitleText="Success/Error Input" 
+                    HelperText="Helper Text" 
+                    Placeholder="Text Input" 
+                    InputValidation="CustomValidateInput" />
+
+                <Modus:TMInput 
+                    TitleText="Filled" 
+                    Placeholder="Text Input" 
+                    Text="Filled" />
+                
+                <Modus:TMInput 
+                    HelperText="Helper Text" 
+                    TitleText="Helper Text" 
+                    Placeholder="Text Input" />
+                
+                <Modus:TMInput 
+                    IsEnabled="False" 
+                    TitleText="Disabled" 
+                    Placeholder="Text Input" />
+                
+                <Modus:TMInput 
+                    IsReadOnly="True" 
+                    TitleText="Read only" 
+                    Placeholder="Text Input" />
+                
+                <Modus:TMInput 
+                    IsEnabled="False" 
+                    IsReadOnly="True" 
+                    TitleText="ReadOnly and Disabled" 
+                    Placeholder="Text Input" />
+                
+                <Modus:TMInput 
+                    TitleText="Left Icon" 
+                    LeftIconSource="search_icon.png" 
+                    Placeholder="Text Input" />
+                
+                <Modus:TMInput 
+                    TitleText="Right Icon" 
+                    Placeholder="Text Input" 
+                    RightIconSource="password_eye.png" />
+
+                <Modus:TMInput 
+                    TitleText="Both Icon" 
+                    LeftIconSource="search_icon.png" 
+                    Placeholder="Text Input" 
+                    RightIconSource="password_eye.png" />
+                
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
