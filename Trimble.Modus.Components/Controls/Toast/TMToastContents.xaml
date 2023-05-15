@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:color="clr-namespace:Trimble.Modus.Components"   
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+             x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
+             Title="MyPopupPage" BackgroundColor="#80000000" CloseWhenBackgroundIsClicked="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <color:Colours />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="End" Padding="0,0,0,10">
+
+        <Border WidthRequest="300" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" >
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="4"  />
+                
+            </Border.StrokeShape>
+
+            <Grid BackgroundColor="{StaticResource TrimbleBlue}" Padding="10">
+                    <Grid.RowDefinitions>
+                        
+                        <RowDefinition Height="Auto"/>
+                 
+                    </Grid.RowDefinitions>
+
+                <Image x:Name="leftIcon" Source="{Binding LeftIcon}" Grid.Row="1" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+
+                <Label Grid.Row="1" Text="{Binding Message}"
+           TextColor="White" FontSize="16" FontFamily="OpenSans"
+           HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+           x:Name="messageLabel"/>
+
+                    <Button x:Name="RightIcon" Grid.Row="1"
+            Text="Close"
+            BackgroundColor="{StaticResource TrimbleBlue}" TextColor="White" FontSize="16"
+            HorizontalOptions="End" 
+            Clicked="CloseButton_Clicked"/>
+                </Grid>
+
+
+                </Border>
+    </VerticalStackLayout>
+
+
+
+</mopups:PopupPage>
