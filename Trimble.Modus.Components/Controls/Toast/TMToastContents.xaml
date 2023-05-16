@@ -5,7 +5,7 @@
              xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
              xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
              x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
-             Title="MyPopupPage" BackgroundColor="#80000000" CloseWhenBackgroundIsClicked="False">
+             Title="MyPopupPage" BackgroundColor="Transparent" CloseWhenBackgroundIsClicked="False" BackgroundInputTransparent="True">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,35 +16,19 @@
 
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="End" Padding="0,0,0,10">
 
-        <Border WidthRequest="300" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" >
+        <Border  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" >
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="4"  />
-                
             </Border.StrokeShape>
-
-            <Grid BackgroundColor="{StaticResource TrimbleBlue}" Padding="10">
-                    <Grid.RowDefinitions>
-                        
-                        <RowDefinition Height="Auto"/>
-                 
-                    </Grid.RowDefinitions>
-
-                <Image x:Name="leftIcon" Source="{Binding LeftIcon}" Grid.Row="1" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-
-                <Label Grid.Row="1" Text="{Binding Message}"
-           TextColor="White" FontSize="16" FontFamily="OpenSans"
-           HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-           x:Name="messageLabel"/>
-
-                    <Button x:Name="RightIcon" Grid.Row="1"
-            Text="Close"
-            BackgroundColor="{StaticResource TrimbleBlue}" TextColor="White" FontSize="16"
-            HorizontalOptions="End" 
-            Clicked="CloseButton_Clicked"/>
-                </Grid>
+            <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{StaticResource TrimbleBlue}" HorizontalOptions="StartAndExpand" Orientation="Horizontal" >
+                <Image x:Name="leftIconImage" Margin="16,8,8,8" Source="{Binding LeftIconSource}"  WidthRequest="16" HeightRequest="16" HorizontalOptions="Start"  VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Message}" FontSize="16" TextColor="White"  VerticalOptions="Center"  Padding="0,16,0,16"/>
+              
+            </StackLayout>
 
 
-                </Border>
+
+        </Border>
     </VerticalStackLayout>
 
 

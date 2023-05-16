@@ -9,18 +9,31 @@ public partial class TMToastPage : ContentPage
 {
 	public TMToastPage()
 	{
-        Button button = new Button();
-        button.Clicked += Button_Clicked;
+        Button withImage = new Button();
+        Button withoutImage = new Button();
+        withImage.Text = "With Image";
+        withImage.Margin = new Thickness(5);
+        withImage.Clicked += Button_Clicked;
+        withoutImage.Text = "Without Image";
+        withoutImage.Margin = new Thickness(5);
+        withoutImage.Clicked += Button2_Clicked;
         Content = new StackLayout
         {
-            BackgroundColor = Colors.Brown,
             Children =
         {
-            new Label { Text = "Hello, World!" },
-            button  
+            withImage,
+            withoutImage
         }
         };
     }
+
+    private void Button2_Clicked(object sender, EventArgs e)
+    {
+
+        var toast = new TMToast();
+        toast.Show("icon.png", "ToastMessage", ImageSource.FromFile("icon.png"));
+    }
+
     private void Button_Clicked(object sender, EventArgs e)
 
     {

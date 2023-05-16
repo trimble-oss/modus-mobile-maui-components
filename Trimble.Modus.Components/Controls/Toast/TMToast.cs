@@ -9,6 +9,8 @@ namespace Trimble.Modus.Components.Controls.Toast
 {
     public class TMToast
     {
+
+
         public TMToast() {
 
          
@@ -16,11 +18,11 @@ namespace Trimble.Modus.Components.Controls.Toast
         }
         public void Show(ImageSource leftIconSource, string message, string rightIconText)
         {
-           MopupService.Instance.PushAsync(new TMToastContents( new Image { Source = leftIconSource } , message, rightIconText));
+           MopupService.Instance.PushAsync(new TMToastContents( leftIconSource  , message, rightIconText));
         }
-        public void Show(ImageSource leftIconSource, string message, Image rightIcon)
+        public void Show(ImageSource leftIconSource, string message, ImageSource rightIconSource)
         {
-            MopupService.Instance.PushAsync(new TMToastContents(new Image { Source = leftIconSource }, message, rightIcon));
+            MopupService.Instance.PushAsync(new TMToastContents(leftIconSource , message, rightIconSource));
         }
     }
 }
