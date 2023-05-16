@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Trimble.Modus.Components.Overlay.Hosting;
 using Trimble.Modus.Components;
 
 namespace DemoApp;
@@ -10,6 +11,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .ConfigurePopups()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
