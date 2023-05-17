@@ -92,6 +92,8 @@ namespace Trimble.Modus.Components
         /// Size of the leading and trailing icon.
         /// </summary>
         internal const int ICONSIZE = 25;
+        
+        private const double disabledOpacity = 0.4;
 
         #endregion
 
@@ -516,9 +518,21 @@ namespace Trimble.Modus.Components
                 tmInput.SetValidationTextStyle(result.Item1);
                 if (!tmInput._validationContainer.IsVisible)
                 {
-                    tmInput.OnHelperTextChanged(string.Empty);
-                    tmInput._validationContainer.IsVisible = true;
-                    tmInput._validationContainer.HeightRequest = 25;
+                    var result = tMinput.InputValidation?.Invoke(tMinput);
+                    tMinput._validationLabel.Text = result.Item2;
+                    tMinput._validationContainer.Padding = new Thickness(0, 5, 0, 0);
+                    tMinput.SetValidationTextStyle(result.Item1);
+                    tMinput.OnHelperTextChanged(string.Empty);
+
+                    tMinput._validationContainer.IsVisible = true;
+                    tMinput._validationContainer.HeightRequest = 25;
+                }
+                else
+                {
+                    tMinput.OnHelperTextChanged(tMinput.HelperText);
+                    tMinput._border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
+                    tMinput._validationContainer.IsVisible = false;
+                    tMinput._validationContainer.HeightRequest = 0;
                 }
             }
             else
@@ -526,7 +540,26 @@ namespace Trimble.Modus.Components
                 tmInput.HideValidationText();
             }
             
-            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+            tMinput.TextChanged?.Invoke(tMinput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+        }
+
+        private void SetValidationTextStyle(bool success)
+        {
+            _validationLabel.TextColor = success? Colors.Green : Colors.Red;
+      
+            if (success )
+            {  
+                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
+                _border.Stroke = Colors.Green;
+
+            }
+            else
+            {
+               
+                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png");
+                _border.Stroke = Colors.Red;
+            }
+
         }
 
         /// <summary>
@@ -549,6 +582,13 @@ namespace Trimble.Modus.Components
         private static void OnReadOnlyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             (bindable as TMInput).OnReadOnlyPropertyChanged((bool)newValue);
+            if (bindable is TMInput tmInput)
+            {
+                if ((bool)newValue)
+                {
+                    tmInput._helperText.Opacity = disabledOpacity;
+                }
+            }
         }
 
         /// <summary>
@@ -646,6 +686,7 @@ namespace Trimble.Modus.Components
             {   
                 Orientation = StackOrientation.Horizontal,
                 IsVisible = false,
+                Padding = new Thickness(0,5,0,0),
                 Children =
                 {
                     _helperIcon,
@@ -870,7 +911,7 @@ namespace Trimble.Modus.Components
             }
             else
             {
-                _border.Opacity = 0.4;
+                _border.Opacity = disabledOpacity;
             }
         }
 
