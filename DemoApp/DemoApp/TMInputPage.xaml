@@ -9,15 +9,24 @@
                 <Modus:TMInput 
                     x:Name="modusInput" 
                     TitleText="Text Input" 
-                    Placeholder="Text Input" />
-
+                    Placeholder="Input "
+                    HelperText="New Helper text"
+                    RightIconSource="password_eye.png"
+                    Keyboard="Default"/>
 
                 <Modus:TMInput 
                     x:Name="validationInput" 
                     TitleText="Success/Error Input" 
                     HelperText="Helper Text" 
                     Placeholder="Text Input" 
-                    InputValidation="CustomValidateInput" />
+                    InputValidation="CustomValidateInput"/>
+
+                <Modus:TMInput 
+                    TitleText="Right Icon" 
+                    Placeholder="Text Input" 
+                    RightIconSource="password_eye.png" 
+                    RightIconCommand="{Binding ShowPasswordCommand}"
+                    IsPassword="{Binding ShowPassword}"/>
 
                 <Modus:TMInput 
                     TitleText="Filled" 
@@ -48,16 +57,11 @@
                     HelperText="Helper Text"
                     TitleText="ReadOnly and Disabled" 
                     Placeholder="Text Input" />
-                
+
                 <Modus:TMInput 
                     TitleText="Left Icon" 
                     LeftIconSource="s_icon.png" 
                     Placeholder="Text Input" />
-                
-                <Modus:TMInput 
-                    TitleText="Right Icon" 
-                    Placeholder="Text Input" 
-                    RightIconSource="password_eye.png" />
 
                 <Modus:TMInput 
                     TitleText="Both Icon" 

@@ -138,7 +138,7 @@ namespace Trimble.Modus.Components
         /// Indetifies the IsPassword property, this property is used to hide the text entered into dots.
         /// </summary>
         public static readonly BindableProperty IsPasswordProperty =
-            BindableProperty.Create("IsPassword", typeof(bool), typeof(TMInput), false, BindingMode.Default, null);
+            BindableProperty.Create("IsPassword", typeof(bool), typeof(TMInput), false, BindingMode.TwoWay, null);
 
         /// <summary>
         /// Gets or sets the type of keyboard is used when the entry is focused.
