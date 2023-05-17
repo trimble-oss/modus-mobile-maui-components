@@ -518,21 +518,20 @@ namespace Trimble.Modus.Components
                 tmInput.SetValidationTextStyle(result.Item1);
                 if (!tmInput._validationContainer.IsVisible)
                 {
-                    var result = tMinput.InputValidation?.Invoke(tMinput);
-                    tMinput._validationLabel.Text = result.Item2;
-                    tMinput._validationContainer.Padding = new Thickness(0, 5, 0, 0);
-                    tMinput.SetValidationTextStyle(result.Item1);
-                    tMinput.OnHelperTextChanged(string.Empty);
+                    tmInput._validationLabel.Text = result.Item2;
+                    tmInput._validationContainer.Padding = new Thickness(0, 5, 0, 0);
+                    tmInput.SetValidationTextStyle(result.Item1);
+                    tmInput.OnHelperTextChanged(string.Empty);
 
-                    tMinput._validationContainer.IsVisible = true;
-                    tMinput._validationContainer.HeightRequest = 25;
+                    tmInput._validationContainer.IsVisible = true;
+                    tmInput._validationContainer.HeightRequest = 25;
                 }
                 else
                 {
-                    tMinput.OnHelperTextChanged(tMinput.HelperText);
-                    tMinput._border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
-                    tMinput._validationContainer.IsVisible = false;
-                    tMinput._validationContainer.HeightRequest = 0;
+                    tmInput.OnHelperTextChanged(tmInput.HelperText);
+                    tmInput._border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                    tmInput._validationContainer.IsVisible = false;
+                    tmInput._validationContainer.HeightRequest = 0;
                 }
             }
             else
@@ -540,26 +539,7 @@ namespace Trimble.Modus.Components
                 tmInput.HideValidationText();
             }
             
-            tMinput.TextChanged?.Invoke(tMinput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-        }
-
-        private void SetValidationTextStyle(bool success)
-        {
-            _validationLabel.TextColor = success? Colors.Green : Colors.Red;
-      
-            if (success )
-            {  
-                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
-                _border.Stroke = Colors.Green;
-
-            }
-            else
-            {
-               
-                _validationIcon.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png");
-                _border.Stroke = Colors.Red;
-            }
-
+            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
 
         /// <summary>
