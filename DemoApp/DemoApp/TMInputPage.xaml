@@ -9,10 +9,7 @@
                 <Modus:TMInput 
                     x:Name="modusInput" 
                     TitleText="Text Input" 
-                    Placeholder="Input "
-                    HelperText="New Helper text"
-                    RightIconSource="password_eye.png"
-                    Keyboard="Default"/>
+                    Placeholder="Input" />
 
                 <Modus:TMInput 
                     x:Name="validationInput" 
