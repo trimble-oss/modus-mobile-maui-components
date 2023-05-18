@@ -800,11 +800,11 @@ namespace Trimble.Modus.Components
                 ShowValidationText();
             }
             else
-            {
-                _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
+            {  
                 _border.StrokeThickness = 1;
                 Unfocused?.Invoke(this, e);
                 HideValidationText();
+                _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
             }
         }
 
