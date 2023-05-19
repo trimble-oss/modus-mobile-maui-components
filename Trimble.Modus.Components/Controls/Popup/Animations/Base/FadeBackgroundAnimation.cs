@@ -1,8 +1,8 @@
-﻿using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Animations.Base;
+namespace Trimble.Modus.Components.Popup.Animations.Base;
 
-public abstract class FadeBackgroundAnimation : BaseAnimation
+internal abstract class FadeBackgroundAnimation : BaseAnimation
 {
     private Color? _backgroundColor;
 

@@ -1,9 +1,9 @@
-﻿using Trimble.Modus.Components.Overlay.Events;
-using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Events;
+using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Interfaces;
+namespace Trimble.Modus.Components.Popup.Interfaces;
 
-public interface IPopupNavigation
+internal interface IPopupNavigation
 {
     event EventHandler<PopupNavigationEventArgs> Pushing;
 

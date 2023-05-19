@@ -1,9 +1,9 @@
-﻿using Trimble.Modus.Components.Overlay.Animations.Base;
-using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Animations.Base;
+using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Animations;
+namespace Trimble.Modus.Components.Popup.Animations;
 
-public class FadeAnimation : BaseAnimation
+internal class FadeAnimation : BaseAnimation
 {
     private double _defaultOpacity;
 

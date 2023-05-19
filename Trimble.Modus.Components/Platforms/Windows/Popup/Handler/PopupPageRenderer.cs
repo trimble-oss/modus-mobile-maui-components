@@ -2,13 +2,13 @@
 using Windows.UI.ViewManagement;
 using Rect = Windows.Foundation.Rect;
 using Size = Windows.Foundation.Size;
-using Trimble.Modus.Components.Overlay.Pages;
+using Trimble.Modus.Components.Popup.Pages;
 using WinPopup = global::Microsoft.UI.Xaml.Controls.Primitives.Popup;
 using Microsoft.UI.Xaml.Input;
 
 namespace Trimble.Modus.Components.Platforms.Windows
 {
-    public class PopupPageRenderer : ContentPanel
+    internal class PopupPageRenderer : ContentPanel
     {
         private Rect _keyboardBounds;
         private readonly PopupPageHandler handler;

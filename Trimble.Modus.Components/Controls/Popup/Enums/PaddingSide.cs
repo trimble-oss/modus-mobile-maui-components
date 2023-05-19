@@ -1,7 +1,7 @@
-﻿namespace Trimble.Modus.Components.Overlay.Enums;
+﻿namespace Trimble.Modus.Components.Popup.Enums;
 
 [Flags]
-public enum PaddingSide
+internal enum PaddingSide
 {
     Left = 1,
     Top = 2,

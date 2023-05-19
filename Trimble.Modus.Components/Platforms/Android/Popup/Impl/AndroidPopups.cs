@@ -1,12 +1,12 @@
 ﻿using Android.Views;
 using Android.Widget;
-using Trimble.Modus.Components.Overlay.Interfaces;
-using Trimble.Modus.Components.Overlay.Pages;
-using Trimble.Modus.Components.Overlay.Services;
+using Trimble.Modus.Components.Popup.Interfaces;
+using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Droid.Implementation;
 
-public class AndroidPopups : IPopupPlatform
+internal class AndroidPopups : IPopupPlatform
 {
     private static FrameLayout? DecoreView => Platform.CurrentActivity?.Window?.DecorView as FrameLayout;
 

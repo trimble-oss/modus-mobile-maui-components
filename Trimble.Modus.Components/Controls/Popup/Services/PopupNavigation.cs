@@ -1,10 +1,10 @@
-﻿using Trimble.Modus.Components.Overlay.Events;
-using Trimble.Modus.Components.Overlay.Interfaces;
-using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Events;
+using Trimble.Modus.Components.Popup.Interfaces;
+using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Services;
+namespace Trimble.Modus.Components.Popup.Services;
 
-public class PopupNavigation : IPopupNavigation
+internal class PopupNavigation : IPopupNavigation
 {
     private readonly object _locker = new();
 
@@ -34,6 +34,8 @@ public class PopupNavigation : IPopupNavigation
             return new Trimble.Modus.Components.Droid.Implementation.AndroidPopups();
 #elif IOS
             return new Trimble.Modus.Components.iOS.Implementation.iOSPopups();
+#elif MACCATALYST
+            return new Trimble.Modus.Components.MacCatalyst.Implementation.MacOSMopups();
 #elif WINDOWS
             return new Trimble.Modus.Components.Windows.Implementation.PopupPlatformWindows();
 #endif

@@ -1,8 +1,8 @@
-﻿using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Events;
+namespace Trimble.Modus.Components.Popup.Events;
 
-public class PopupNavigationEventArgs : EventArgs
+internal class PopupNavigationEventArgs : EventArgs
 {
     public PopupPage Page { get; }
 

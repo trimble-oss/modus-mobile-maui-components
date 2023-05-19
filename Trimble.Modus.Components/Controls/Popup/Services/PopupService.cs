@@ -1,8 +1,8 @@
-﻿using Trimble.Modus.Components.Overlay.Interfaces;
+﻿using Trimble.Modus.Components.Popup.Interfaces;
 
-namespace Trimble.Modus.Components.Overlay.Services;
+namespace Trimble.Modus.Components.Popup.Services;
 
-public static class PopupService
+internal static class PopupService
 {
     static IPopupNavigation? _customNavigation;
     static readonly Lazy<IPopupNavigation> implementation = new(() => CreatePopupNavigation(), System.Threading.LazyThreadSafetyMode.PublicationOnly);

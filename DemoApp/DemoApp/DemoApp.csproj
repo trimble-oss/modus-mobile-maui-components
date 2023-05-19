@@ -66,9 +66,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="PopupText.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="TMButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

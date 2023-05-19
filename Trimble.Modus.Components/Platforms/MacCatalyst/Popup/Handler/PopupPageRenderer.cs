@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 using UIKit;
 
-namespace Trimble.Modus.Components.Platforms.iOS
+namespace Trimble.Modus.Components.Platforms.MacCatalyst
 {
     internal class PopupPageRenderer : UIViewController
     {

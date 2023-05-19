@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Handlers;
 
-namespace Trimble.Modus.Components.Platforms.iOS
+namespace Trimble.Modus.Components.Platforms.MacCatalyst
 {
     internal class PopupPageHandler : PageHandler
     {

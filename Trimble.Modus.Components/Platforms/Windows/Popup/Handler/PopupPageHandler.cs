@@ -3,7 +3,7 @@ using Microsoft.Maui.Platform;
 
 namespace Trimble.Modus.Components.Platforms.Windows
 {
-    public class PopupPageHandler : PageHandler
+    internal class PopupPageHandler : PageHandler
     {
         public PopupPageHandler()
         {

@@ -1,14 +1,15 @@
 ﻿using CoreGraphics;
 
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 
 using Trimble.Modus.Components.Popup.Interfaces;
 using Trimble.Modus.Components.Popup.Pages;
-using Trimble.Modus.Components.Platforms.iOS;
+using Trimble.Modus.Components.Platforms.MacCatalyst;
 
 using UIKit; 
-namespace Trimble.Modus.Components.iOS.Implementation;
+namespace Trimble.Modus.Components.MacCatalyst.Implementation;
 
-internal class iOSPopups : IPopupPlatform
+internal class MacOSMopups : IPopupPlatform
 {
     // It's necessary because GC in Xamarin.iOS 13 removes all UIWindow if there are not any references to them. See #459
     private readonly List<UIWindow> _windows = new List<UIWindow>();
@@ -124,9 +125,9 @@ internal class iOSPopups : IPopupPlatform
 
     private static void DisposeModelAndChildrenHandlers(VisualElement view)
     {
-        foreach (Element child in view.GetVisualTreeDescendants())
+        foreach (VisualElement child in view.GetVisualTreeDescendants())
         {
-            IElementHandler handler = child.Handler;
+            IViewHandler handler = child.Handler;
             child?.Handler?.DisconnectHandler();
             (handler?.PlatformView as UIView)?.RemoveFromSuperview();
             (handler?.PlatformView as UIView)?.Dispose();

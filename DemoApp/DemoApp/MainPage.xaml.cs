@@ -1,6 +1,4 @@
-﻿using Trimble.Modus.Components.Overlay.Services;
-
-namespace DemoApp;
+﻿namespace DemoApp;
 
 public partial class MainPage : ContentPage
 {

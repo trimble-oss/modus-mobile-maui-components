@@ -1,9 +1,9 @@
-﻿using Trimble.Modus.Components.Overlay.Enums;
-using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Enums;
+using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Animations;
+namespace Trimble.Modus.Components.Popup.Animations;
 
-public class ScaleAnimation : FadeAnimation
+internal class ScaleAnimation : FadeAnimation
 {
     private double _defaultScale;
     private double _defaultOpacity;

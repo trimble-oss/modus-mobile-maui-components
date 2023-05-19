@@ -1,14 +1,14 @@
 ﻿
 using System;
 using Microsoft.Maui.Platform;
-using Trimble.Modus.Components.Overlay.Interfaces;
-using Trimble.Modus.Components.Overlay.Pages;
+using Trimble.Modus.Components.Popup.Interfaces;
+using Trimble.Modus.Components.Popup.Pages;
 using Trimble.Modus.Components.Platforms.Windows;
-using Trimble.Modus.Components.Overlay.Services;
+using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Windows.Implementation
 {
-    class PopupPlatformWindows : IPopupPlatform
+    internal class PopupPlatformWindows : IPopupPlatform
     {
         private IPopupNavigation PopupNavigationInstance => PopupService.Instance;
 

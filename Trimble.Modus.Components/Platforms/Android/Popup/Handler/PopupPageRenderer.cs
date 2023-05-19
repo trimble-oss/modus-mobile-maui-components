@@ -14,13 +14,13 @@ using AndroidGraphics = Android.Graphics; //Weird conflict with Microsoft namesp
 using AndroidView = Android.Views;
 
 using Trimble.Modus.Components.Droid.Gestures;
-using Trimble.Modus.Components.Overlay.Pages;
+using Trimble.Modus.Components.Popup.Pages;
 using Android.OS;
 using Rect = Microsoft.Maui.Graphics.Rect;
 
 namespace Trimble.Modus.Components.Platforms.Android.Renderers;
 
-public class PopupPageRenderer : ContentViewGroup
+internal class PopupPageRenderer : ContentViewGroup
 {
     public PopupPageHandler PopupHandler;
 

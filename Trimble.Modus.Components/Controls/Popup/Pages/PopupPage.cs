@@ -1,13 +1,13 @@
 ﻿using System.Windows.Input;
 
-using Trimble.Modus.Components.Overlay.Animations;
-using Trimble.Modus.Components.Overlay.Animations.Base;
-using Trimble.Modus.Components.Overlay.Enums;
-using Trimble.Modus.Components.Overlay.Services;
+using Trimble.Modus.Components.Popup.Animations;
+using Trimble.Modus.Components.Popup.Animations.Base;
+using Trimble.Modus.Components.Popup.Enums;
+using Trimble.Modus.Components.Popup.Services;
 
-namespace Trimble.Modus.Components.Overlay.Pages;
+namespace Trimble.Modus.Components.Popup.Pages;
 
-public partial class PopupPage : ContentPage
+internal partial class PopupPage : ContentPage
 {
     public event EventHandler? BackgroundClicked;
 

@@ -4,7 +4,7 @@ using Trimble.Modus.Components.Popup.Pages;
 
 using UIKit;
 
-namespace Trimble.Modus.Components.Platforms.iOS
+namespace Trimble.Modus.Components.Platforms.MacCatalyst
 {
     internal class PopupWindow : UIWindow
     {
@@ -34,16 +34,17 @@ namespace Trimble.Modus.Components.Platforms.iOS
             if (formsElement.InputTransparent)
                 return null!;
 
-            if ((formsElement.BackgroundInputTransparent || formsElement.CloseWhenBackgroundIsClicked ) && renderer?.PlatformView == hitTestResult)
+            if ((formsElement.BackgroundInputTransparent || formsElement.CloseWhenBackgroundIsClicked) && renderer?.PlatformView == hitTestResult)
             {
-                formsElement.SendBackgroundClick();
+                if(uievent?.ButtonMask != 0)
+                    formsElement.SendBackgroundClick();
                 if (formsElement.BackgroundInputTransparent)
                 {
                     return null!; //fires off other handlers? If hit test returns null, it seems that other elements will process the click instead
                 }
             }
             return hitTestResult;
-                
+
         }
     }
 }

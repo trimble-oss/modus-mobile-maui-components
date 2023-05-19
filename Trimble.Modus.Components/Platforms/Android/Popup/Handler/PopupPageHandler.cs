@@ -2,9 +2,9 @@
 using Microsoft.Maui.Platform;
 using Trimble.Modus.Components.Platforms.Android.Renderers;
 
-namespace Trimble.Modus.Components.Overlay.Pages;
+namespace Trimble.Modus.Components.Popup.Pages;
 
-public class PopupPageHandler : PageHandler
+internal class PopupPageHandler : PageHandler
 {
     public bool _disposed;
 

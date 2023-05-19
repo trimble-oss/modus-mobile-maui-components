@@ -1,8 +1,8 @@
-﻿using Trimble.Modus.Components.Overlay.Pages;
+﻿using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Interfaces;
+namespace Trimble.Modus.Components.Popup.Interfaces;
 
-public interface IPopupPlatform
+internal interface IPopupPlatform
 {
     Task AddAsync(PopupPage page);
 

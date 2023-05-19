@@ -2,11 +2,11 @@
 using System.Globalization;
 using System.Reflection;
 
-using Trimble.Modus.Components.Overlay.Pages;
+using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Overlay.Animations.Base;
+namespace Trimble.Modus.Components.Popup.Animations.Base;
 
-public class EasingTypeConverter : TypeConverter
+internal class EasingTypeConverter : TypeConverter
 {
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
     {
@@ -31,7 +31,7 @@ public class EasingTypeConverter : TypeConverter
         throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Easing)}");
     }
 }
-public class UintTypeConverter : TypeConverter
+internal class UintTypeConverter : TypeConverter
 {
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
     {
@@ -45,14 +45,14 @@ public class UintTypeConverter : TypeConverter
         }
     }
 }
-public interface IPopupAnimation
+internal interface IPopupAnimation
 {
     void Preparing(View content, PopupPage page);
     void Disposing(View content, PopupPage page);
     Task Appearing(View content, PopupPage page);
     Task Disappearing(View content, PopupPage page);
 }
-public abstract class BaseAnimation : IPopupAnimation
+internal abstract class BaseAnimation : IPopupAnimation
 {
     private const uint DefaultDuration = 200;
 
