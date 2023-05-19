@@ -160,7 +160,8 @@
                 <FlexLayout Margin="0,0,0,10">
                     <Modus:TMButton 
                     x:Name="disbutton2"
-                    Title = "XSmall"
+                    Title = "Custom"
+                    Radius="50"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
                     IsFloatingButton="True"
