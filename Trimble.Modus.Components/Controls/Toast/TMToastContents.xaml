@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:color="clr-namespace:Trimble.Modus.Components"   
              xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"     
              xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
              x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
              Title="MyPopupPage" BackgroundColor="Transparent" CloseWhenBackgroundIsClicked="False" BackgroundInputTransparent="True">
@@ -23,11 +24,8 @@
             <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{StaticResource TrimbleBlue}" HorizontalOptions="StartAndExpand" Orientation="Horizontal" >
                 <Image x:Name="leftIconImage" Margin="16,8,8,8" Source="{Binding LeftIconSource}"  WidthRequest="16" HeightRequest="16" HorizontalOptions="Start"  VerticalOptions="CenterAndExpand"/>
                 <Label Text="{Binding Message}" FontSize="16" TextColor="White"  VerticalOptions="Center"  Padding="0,16,0,16"/>
-              
+             
             </StackLayout>
-
-
-
         </Border>
     </VerticalStackLayout>
 

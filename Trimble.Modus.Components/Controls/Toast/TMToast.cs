@@ -16,13 +16,10 @@ namespace Trimble.Modus.Components.Controls.Toast
          
 
         }
-        public void Show(ImageSource leftIconSource, string message, string rightIconText)
+        public void Show (string message, ImageSource leftIconSource = null , string rightIconText = null)
         {
            MopupService.Instance.PushAsync(new TMToastContents( leftIconSource  , message, rightIconText));
         }
-        public void Show(ImageSource leftIconSource, string message, ImageSource rightIconSource)
-        {
-            MopupService.Instance.PushAsync(new TMToastContents(leftIconSource , message, rightIconSource));
-        }
+      
     }
 }
