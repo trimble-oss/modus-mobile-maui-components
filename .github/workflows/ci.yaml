@@ -26,10 +26,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup .NET 6
+      - name: Setup .NET 7
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 7.0.x
           include-prerelease: true
 
       - uses: actions/setup-java@v2
@@ -47,4 +47,4 @@ jobs:
         run: dotnet restore Trimble.Modus.Components.sln
 
       - name: Build MAUI Android
-        run: dotnet build Trimble.Modus.Components.sln -f net6.0 -c Release --no-restore
+        run: dotnet build Trimble.Modus.Components.sln -f net7.0 -c Release --no-restore
