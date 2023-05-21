@@ -44,7 +44,7 @@ jobs:
           dotnet workload install maui-tizen --ignore-failed-sources
 
       - name: Restore Dependencies
-        run: dotnet restore ./dotnet/src/Modus.sln
+        run: dotnet restore Trimble.Modus.Components.sln
 
       - name: Build MAUI Android
-        run: dotnet build ./dotnet/src/Modus.sln -f net6.0 -c Release --no-restore
+        run: dotnet build Trimble.Modus.Components.sln -f net6.0 -c Release --no-restore
