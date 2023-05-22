@@ -52,12 +52,12 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         string value = "Cricket, often hailed as Cricket, often hailed as the gentleman's game, is a popular sport played with zeal and passion across the globe. Originating in England, it has become a global phenomenon captivating millions of fans. The game is played between two team ";
 
-        RightIconText = null;// rightIconText;
+        RightIconText = string.Empty;//rightIconText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
         rightIcon.Radius = 50;
         if (string.IsNullOrEmpty(RightIconText)) {
-        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.vct.png");
+        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
            
             
         }

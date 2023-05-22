@@ -22,6 +22,7 @@
 	  <EmbeddedResource Include="Images\helper_icon.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
+	  <EmbeddedResource Include="Images\white_close_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
