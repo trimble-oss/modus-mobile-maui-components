@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:color="clr-namespace:Trimble.Modus.Components"   
-             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:popup="clr-namespace:Trimble.Modus.Components.Popup.Pages"
              xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"     
-             xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
              x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
              Title="MyPopupPage" BackgroundColor="Transparent" CloseWhenBackgroundIsClicked="False" BackgroundInputTransparent="True">
     <ContentPage.Resources>
@@ -15,20 +14,24 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="End" Padding="0,0,0,10">
 
-        <Border  VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" >
+    <VerticalStackLayout x:Name="toastLayout" HorizontalOptions="Center" VerticalOptions="EndAndExpand" >
+
+        <Border  VerticalOptions="CenterAndExpand"  HorizontalOptions="Fill" BackgroundColor="Transparent"  >
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="4"  />
             </Border.StrokeShape>
-            <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{StaticResource TrimbleBlue}" HorizontalOptions="StartAndExpand" Orientation="Horizontal" >
-                <Image x:Name="leftIconImage" Margin="16,8,8,8" Source="{Binding LeftIconSource}"  WidthRequest="16" HeightRequest="16" HorizontalOptions="Start"  VerticalOptions="CenterAndExpand"/>
-                <Label Text="{Binding Message}" FontSize="16" TextColor="White"  VerticalOptions="Center"  Padding="0,16,0,16"/>
-             
-            </StackLayout>
+           
+                <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{StaticResource TrimbleBlue}" HorizontalOptions="Fill" Orientation="Horizontal">
+                    <Image x:Name="leftIconImage" Margin="16,8,16,8"  Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                <Label x:Name="label" Text="{Binding Message}"  LineBreakMode="WordWrap" MaximumHeightRequest="500" MaxLines="3" FontSize="16" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" Padding="0,8,0,8"/>
+                   
+                </StackLayout>
+            
         </Border>
     </VerticalStackLayout>
 
 
 
-</mopups:PopupPage>
+
+</popup:PopupPage>

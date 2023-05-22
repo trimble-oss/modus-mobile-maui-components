@@ -1,10 +1,8 @@
-using Microsoft.Maui.Media;
-using Mopups.Services;
-using System.Xml.Linq;
+using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Controls.Toast;
 
-public partial class TMToastContents : Mopups.Pages.PopupPage
+public partial class TMToastContents : Popup.Pages.PopupPage
 
 {
     public ImageSource LeftIconSource { get; set; }
@@ -14,106 +12,102 @@ public partial class TMToastContents : Mopups.Pages.PopupPage
 
     public ImageSource RightIconSource { get; set; }
 
+    public double ToastWidthRequest { get; set; }
 
-    public TMToastContents(ImageSource leftIcon, string message, string rightIconText)
+    public double labelWidth;
+
+    PopupNavigation popupNavigation;
+
+    public TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation)
     {
         InitializeComponent();
+        this.popupNavigation = (PopupNavigation) popupNavigation;
         PopupData(leftIcon, message, rightIconText);
         BindingContext = this;
         Close();
     }
+
+
+    public TMToastContents()
+    {
+    }
+
     private void CloseButton_Clicked(object sender, EventArgs e)
     {
-        MopupService.Instance.PopAsync();
+         popupNavigation.RemovePageAsync(this, true);
+       
     }
     public void Close()
     {
         Task.Run(async () => {
             await Task.Delay(5000);
-            await MopupService.Instance.PopAsync();
-        });
+            await popupNavigation.RemovePageAsync(this, true);
+         });
     }
 
     private void PopupData(ImageSource leftIcon, string message, string rightIconText)
     {
-
+       
         LeftIconSource = leftIcon;
-        Message = GetWrappedLabelText(message, 3);
-        RightIconText = rightIconText;
+
+        string value = "Cricket, often hailed as Cricket, often hailed as the gentleman's game, is a popular sport played with zeal and passion across the globe. Originating in England, it has become a global phenomenon captivating millions of fans. The game is played between two team ";
+
+        RightIconText = null;// rightIconText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
-        if(string.IsNullOrEmpty(RightIconText)) {
-        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
-            rightIcon.Radius = 50;
-            rightIcon.HorizontalOptions = LayoutOptions.Center;
+        rightIcon.Radius = 50;
+        if (string.IsNullOrEmpty(RightIconText)) {
+        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.vct.png");
+           
+            
         }
+        rightIcon.VerticalOptions = LayoutOptions.Center;
+        rightIcon.HorizontalOptions = LayoutOptions.End;
         rightIcon.BackgroundColor = this.BackgroundColor;
         rightIcon.Size = Enums.Size.XSmall;
         rightIcon.BorderColor = Colors.Transparent;
         rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);
+
         
-
-        /* if (rightIconSource == null)
-         {
-             Button rightIcon = new Button();
-             rightIcon.Text = rightIconText;
-             rightIcon.Padding = new Thickness(0);
-             rightIcon.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-             rightIcon.TextColor = Colors.White;
-             rightIcon.Margin = new Thickness(8, 0, 16, 0);
-             rightIcon.FontSize = 14;
-             rightIcon.HorizontalOptions = LayoutOptions.End;
-             rightIcon.Clicked += CloseButton_Clicked;
-             contentLayout.Children.Add(rightIcon);
-         }
-         else
-         {
-             ImageButton rightIcon = new ImageButton();
-             rightIcon.Source = rightIconSource;
-             rightIcon.WidthRequest = 16;
-             rightIcon.HeightRequest = 16;
-             rightIcon.Margin = new Thickness(8, 0, 16, 0);
-             rightIcon.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-             rightIcon.HorizontalOptions = LayoutOptions.End;
-             rightIcon.VerticalOptions = LayoutOptions.Center;
-             rightIcon.Clicked += CloseButton_Clicked;
-             contentLayout.Children.Add(rightIcon);
-         }*/
+        setWidth(rightIcon);
+     
+        Message = GetWrappedLabelText(value, labelWidth);
     }
-    string GetWrappedLabelText(string text, int maxLines)
+
+    private void setWidth(TMButton rightIcon)
     {
-        const int maxCharactersPerLine = 20; // Adjust this value according to your needs
-        const string ellipsis = "...";
+        double minimumTabletWidth = 480; 
+        double maximumTabletWidthPercentage = 0.7;
+        double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
+        var idiom = Device.Idiom;
 
-        string[] words = text.Split(' ');
-        int lineCount = 1;
-        int currentLineLength = 0;
-        string wrappedText = string.Empty;
-
-        foreach (string word in words)
+        if (idiom == TargetIdiom.Phone)
         {
-            if (currentLineLength + word.Length > maxCharactersPerLine)
-            {
-                if (lineCount >= maxLines)
-                {
-                    if (lineCount > 1) // Add line break only if more than one line
-                    {
-                        wrappedText += Environment.NewLine;
-                    }
-                    wrappedText += ellipsis;
-                    break;
-                }
-                wrappedText += Environment.NewLine;
-                lineCount++;
-                currentLineLength = 0;
-            }
-
-            wrappedText += word + " ";
-            currentLineLength += word.Length + 1;
+            toastLayout.Padding = new Thickness(16,0,16,10);
+            rightIcon.Size = Enums.Size.XSmall;
+        }
+        else if (idiom == TargetIdiom.Tablet)
+        {
+            toastLayout.Padding = new Thickness(0, 0, 0, 10);
+            toastLayout.MinimumWidthRequest = minimumTabletWidth;
+            toastLayout.MaximumWidthRequest = deviceWidth * maximumTabletWidthPercentage;
+            rightIcon.Size = Enums.Size.Large;
         }
 
-        return wrappedText.TrimEnd();
     }
+    private string GetWrappedLabelText(string text, double labelWidth)
+    {
+        const string ellipsis = "...";
+
+        if (text.Length > 226)
+        {
+            text = text.Substring(0, 226) + ellipsis;
+        }
+     
+        return text;
+    }
+
+
 
 }

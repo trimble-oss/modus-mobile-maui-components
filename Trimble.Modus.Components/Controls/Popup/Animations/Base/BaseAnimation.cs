@@ -45,7 +45,7 @@ internal class UintTypeConverter : TypeConverter
         }
     }
 }
-internal interface IPopupAnimation
+public interface IPopupAnimation
 {
     void Preparing(View content, PopupPage page);
     void Disposing(View content, PopupPage page);

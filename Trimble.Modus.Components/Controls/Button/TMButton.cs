@@ -174,7 +174,7 @@ namespace Trimble.Modus.Components
         private void setDefault(TMButton tmButton)
         {
             tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
-            if (tmButton.imageSet)
+            if (tmButton.imageSet && tmButton.isTextSet)
             {
                 tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
                 tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
@@ -185,6 +185,14 @@ namespace Trimble.Modus.Components
                 tmButton._titleLabel.Padding = new Thickness(24, 16, 24, 16);
                 tmButton._iconImage.IsVisible = false;
             }
+            if (tmButton.imageSet && !tmButton.isTextSet)
+            {
+                tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
+                tmButton._iconImage.IsVisible = true;
+                tmButton._titleLabel.IsVisible = false;
+                tmButton._iconImage.Margin = new Thickness(16);
+            }
+          
         }
         private void setFloatingButton(TMButton tmButton)
         {

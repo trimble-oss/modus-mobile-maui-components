@@ -27,7 +27,7 @@ public partial class TMToastPage : ContentPage
 
     {
         var toast = new TMToast();
-        toast.Show("ToastMessage", "icon.png","Close");
+        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png","Close");
 
     }
 }
