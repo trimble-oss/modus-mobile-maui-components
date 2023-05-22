@@ -7,7 +7,7 @@ using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Popup.Pages;
 
-internal partial class PopupPage : ContentPage
+public partial class PopupPage : ContentPage
 {
     public event EventHandler? BackgroundClicked;
 
@@ -33,7 +33,7 @@ internal partial class PopupPage : ContentPage
 
     public static readonly BindableProperty AnimationProperty = BindableProperty.Create(nameof(Animation), typeof(IPopupAnimation), typeof(PopupPage), new ScaleAnimation());
 
-    public IPopupAnimation Animation
+    internal IPopupAnimation Animation
     {
         get => (IPopupAnimation)GetValue(AnimationProperty);
         set => SetValue(AnimationProperty, value);
@@ -49,7 +49,7 @@ internal partial class PopupPage : ContentPage
 
     public static readonly BindableProperty SystemPaddingSidesProperty = BindableProperty.Create(nameof(SystemPaddingSides), typeof(PaddingSide), typeof(PopupPage), PaddingSide.All);
 
-    public PaddingSide SystemPaddingSides
+    internal PaddingSide SystemPaddingSides
     {
         get => (PaddingSide)GetValue(SystemPaddingSidesProperty);
         set => SetValue(SystemPaddingSidesProperty, value);
@@ -111,7 +111,7 @@ internal partial class PopupPage : ContentPage
         set => SetValue(AndroidTalkbackAccessibilityWorkaroundProperty, value);
     }
 
-    public PopupPage()
+    internal PopupPage()
     {
         //BackgroundColor = Color.FromArgb("#80000000");
     }

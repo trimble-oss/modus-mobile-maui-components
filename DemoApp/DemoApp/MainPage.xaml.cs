@@ -1,4 +1,7 @@
-﻿namespace DemoApp;
+﻿using Trimble.Modus.Components;
+using Trimble.Modus.Components.Popup.Services;
+
+namespace DemoApp;
 
 public partial class MainPage : ContentPage
 {
@@ -8,6 +11,13 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
        
 	}
+
+    private TMModal CreateTMModal()
+    {
+        TMModal tMModal = new TMModal();
+        tMModal.TitleText = "Here's a header";
+        return tMModal;
+    }
 
     private void ButtonClicked(object sender, EventArgs e)
     {
@@ -19,6 +29,9 @@ public partial class MainPage : ContentPage
                 break;
             case "tminput":
                 Navigation.PushAsync(new TMInputPage());
+                break;
+            case "tmmodal":
+                PopupService.Instance.PushAsync(CreateTMModal());
                 break;
             default:
                 Console.WriteLine("Default Case");
