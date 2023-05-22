@@ -18,23 +18,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Images\input_error_icon.png" />
-	  <None Remove="Images\input_valid_icon.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <EmbeddedResource Include="Images\helper_icon.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
 	</ItemGroup>
-
 	<ItemGroup>
-	  <PackageReference Include="Mopups" Version="1.1.1" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Update="Controls\Toast\TMToastContents.xaml.cs">
-	    <DependentUpon>TMToastContents.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Themes\Colours.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>
@@ -42,9 +30,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\Toast\TMToastContents.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Themes\Colours.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
