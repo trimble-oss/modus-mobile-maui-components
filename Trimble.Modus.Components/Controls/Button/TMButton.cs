@@ -7,7 +7,7 @@ namespace Trimble.Modus.Components
 
     public class TMButton : ContentView
     {   
-        private const int _iconWidth = 24 , _iconHeight = 24;
+        internal int _iconWidth = 16 , _iconHeight = 16;
         private const int _borderRadius = 4;
         private readonly Label _titleLabel;
         private readonly Image _iconImage;

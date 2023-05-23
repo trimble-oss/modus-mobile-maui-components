@@ -65,6 +65,8 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon.HorizontalOptions = LayoutOptions.End;
         rightIcon.BackgroundColor = this.BackgroundColor;
         rightIcon.Size = Enums.Size.XSmall;
+        rightIcon._iconWidth = 16;
+        rightIcon._iconHeight = 16;
         rightIcon.BorderColor = Colors.Transparent;
         rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);
