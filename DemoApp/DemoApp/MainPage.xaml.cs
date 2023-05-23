@@ -1,4 +1,6 @@
-﻿namespace DemoApp;
+﻿using Trimble.Modus.Components;
+
+namespace DemoApp;
 
 public partial class MainPage : ContentPage
 {
@@ -19,6 +21,9 @@ public partial class MainPage : ContentPage
                 break;
             case "tminput":
                 Navigation.PushAsync(new TMInputPage());
+                break;
+            case "tmtoast":
+                Navigation.PushAsync(new TMToastPage());
                 break;
             default:
                 Console.WriteLine("Default Case");

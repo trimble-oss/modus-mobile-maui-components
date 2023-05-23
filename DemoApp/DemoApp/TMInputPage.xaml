@@ -10,15 +10,7 @@
                     x:Name="modusInput" 
                     TitleText="Text Input" 
                     Placeholder="Text Input" />
-
-
-                <Modus:TMInput 
-                    x:Name="validationInput" 
-                    TitleText="Success/Error Input" 
-                    HelperText="Helper Text" 
-                    Placeholder="Text Input" 
-                    InputValidation="CustomValidateInput" />
-
+                
                 <Modus:TMInput 
                     TitleText="Filled" 
                     Placeholder="Text Input" 
@@ -54,13 +46,19 @@
                     TitleText="Right Icon" 
                     Placeholder="Text Input" 
                     RightIconSource="password_eye.png" />
-
+                
                 <Modus:TMInput 
                     TitleText="Both Icon" 
                     LeftIconSource="search_icon.png" 
                     Placeholder="Text Input" 
                     RightIconSource="password_eye.png" />
                 
+                <Modus:TMInput 
+                    x:Name="validationInput" 
+                    TitleText="Success/Error Input" 
+                    HelperText="Helper Text" 
+                    Placeholder="Text Input" 
+                    InputValidation="CustomValidateInput" />
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

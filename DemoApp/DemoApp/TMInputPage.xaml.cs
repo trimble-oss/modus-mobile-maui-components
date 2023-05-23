@@ -1,5 +1,4 @@
 using Trimble.Modus.Components;
-using Trimble.Modus.Components.Popup.Events;
 
 namespace DemoApp;
 
@@ -8,7 +7,6 @@ public partial class TMInputPage : ContentPage
 	public TMInputPage()
 	{
 		InitializeComponent();
-        
     }
     private void modusInput_Focused(object sender, EventArgs e)
     {

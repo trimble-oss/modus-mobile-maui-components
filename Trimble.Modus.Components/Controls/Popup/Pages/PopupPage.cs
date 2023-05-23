@@ -7,7 +7,7 @@ using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Popup.Pages;
 
-internal partial class PopupPage : ContentPage
+public class PopupPage : ContentPage
 {
     public event EventHandler? BackgroundClicked;
 
