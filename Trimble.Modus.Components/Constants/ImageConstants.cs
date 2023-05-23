@@ -8,6 +8,7 @@ namespace Trimble.Modus.Components.Contants
 {
     internal static class ImageConstants
     {
-        public const string CloseButtonImage = "Trimble.Modus.Components.Images.close_icon.png";
+        //TODO: Add other images here
+        public const string CloseButtonImage = "Trimble.Modus.Components.Images.modal_close_icon.png";
     }
 }

@@ -19,6 +19,7 @@
 
 	<ItemGroup>
 	  <None Remove="Images\close_icon.png" />
+	  <None Remove="Images\modal_close_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -26,6 +27,7 @@
 	  <EmbeddedResource Include="Images\helper_icon.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
+	  <EmbeddedResource Include="Images\modal_close_icon.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Themes\Colours.xaml.cs">

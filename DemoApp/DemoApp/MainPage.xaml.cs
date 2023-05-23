@@ -14,8 +14,13 @@ public partial class MainPage : ContentPage
 
     private TMModal CreateTMModal()
     {
-        TMModal tMModal = new TMModal();
-        tMModal.TitleText = "Here's a header";
+        TMModal tMModal = new TMModalBuilder()
+            .SetTitleText("Here's a header")
+            .SetPrimaryText("Default")
+            .SetSecondaryText("Default")
+            .SetTertiaryText("Default")
+            .SetTitleIcon(ImageSource.FromFile("placeholder.png"))
+            .Build();
         return tMModal;
     }
 
