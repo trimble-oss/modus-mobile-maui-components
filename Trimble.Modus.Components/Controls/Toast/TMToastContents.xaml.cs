@@ -7,6 +7,7 @@ namespace Trimble.Modus.Components.Controls.Toast;
 public partial class TMToastContents : Popup.Pages.PopupPage
 
 {
+    private const int DELAYTIME = 5000;
     public ImageSource LeftIconSource { get; set; }
     public string Message { get; set; }
 
@@ -23,27 +24,25 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     PopupNavigation popupNavigation;
 
-    public TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme)
+    internal TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme)
     {
         InitializeComponent();
-       
-        setTheme(theme.ToString());
+        SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation) popupNavigation;
         PopupData(leftIcon, message, rightIconText);
         BindingContext = this;
         Close();
     }
 
-    private void setTheme(String theme)
+    private void SetTheme(String toastTheme)
     {
-        ToastTheme = (Color)BaseComponent.colorsDictionary()[theme];
-        if (string.Equals(theme, "ToastBlue"))
+        ToastTheme = (Color)BaseComponent.colorsDictionary()[toastTheme];
+        if (string.Equals(toastTheme, "ToastBlue"))
         {
             TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
 
-
         }
-        if (string.Equals(theme, "ToastBlack"))
+        if (string.Equals(toastTheme, "ToastBlack"))
         {
             TextColor = (Color)BaseComponent.colorsDictionary()["ToastWhite"];
         }
@@ -65,16 +64,14 @@ public partial class TMToastContents : Popup.Pages.PopupPage
     public void Close()
     {
         Task.Run(async () => {
-            await Task.Delay(5000);
+            await Task.Delay(DELAYTIME);
             await popupNavigation.RemovePageAsync(this, true);
          });
     }
 
     private void PopupData(ImageSource leftIcon, string message, string rightIconText)
     {
-       
         LeftIconSource = leftIcon;
-
         RightIconText = rightIconText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
@@ -96,19 +93,14 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon.VerticalOptions = LayoutOptions.Center;
         rightIcon.HorizontalOptions = LayoutOptions.End;
         rightIcon.BackgroundColor = this.BackgroundColor;
-
         rightIcon.Size = Enums.Size.XSmall;
         rightIcon._iconWidth = 16;
         rightIcon._iconHeight = 16;
-
         rightIcon.BorderColor = Colors.Transparent;
         rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);
-
         var idiom = Device.Idiom;
-
         setWidth(rightIcon,idiom);
-     
         Message = GetWrappedLabelText(message,idiom);
     }
 
@@ -117,7 +109,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         double minimumTabletWidth = 480; 
         double maximumTabletWidthPercentage = 0.7;
         double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
-    
         if (idiom == TargetIdiom.Phone)
         {
             toastLayout.Padding = new Thickness(16,0,16,10);
@@ -150,8 +141,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
                 text = text.Substring(0, 206) + ellipsis;
             }
         }
-      
-     
         return text;
     }
 

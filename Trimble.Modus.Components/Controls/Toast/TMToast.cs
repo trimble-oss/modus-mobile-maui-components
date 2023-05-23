@@ -11,7 +11,6 @@ namespace Trimble.Modus.Components.Controls.Toast
 {
     public class TMToast
     {
-
         PopupNavigation popupNavigation;
         public TMToast() {
 

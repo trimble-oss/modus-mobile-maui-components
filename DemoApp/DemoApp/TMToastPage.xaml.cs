@@ -5,12 +5,11 @@ namespace DemoApp;
 
 public partial class TMToastPage : ContentPage
 {
-   private ToastTheme theme;
+    private ToastTheme toastTheme;
 	public TMToastPage()
 	{
       InitializeComponent();
       toastPicker.SelectedItem = ToastTheme.ToastBlue;
-
     }
 
     private void Button_Clicked(object sender, EventArgs e)
@@ -21,8 +20,7 @@ public partial class TMToastPage : ContentPage
         var toast = new TMToast();
         if (toastMessage != null)
         {
-         
-            toast.Show(toastMessage, "lefticon.png", rightIconText, theme);
+            toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme);
         }
         else
         {
@@ -34,9 +32,7 @@ public partial class TMToastPage : ContentPage
     {
         if (toastPicker.SelectedItem is ToastTheme selectedColor)
         {
-         
-            theme = selectedColor;
-         
+            toastTheme = selectedColor;
         }
     }
 }
