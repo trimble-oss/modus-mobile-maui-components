@@ -1,6 +1,3 @@
-
-using Mopups;
-using Mopups.Services;
 using Trimble.Modus.Components.Controls.Toast;
 using Trimble.Modus.Components.Enums;
 
@@ -25,7 +22,7 @@ public partial class TMToastPage : ContentPage
         if (toastMessage != null)
         {
          
-            toast.Show(toastMessage, "icon.png", rightIconText, theme);
+            toast.Show(toastMessage, "lefticon.png", rightIconText, theme);
         }
         else
         {
