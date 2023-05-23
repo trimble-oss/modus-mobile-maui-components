@@ -24,7 +24,8 @@
                     RightIconSource="password_eye.png" 
                     RightIconCommand="{Binding ShowPasswordCommand}"
                     IsPassword="{Binding ShowPassword}"/>
-
+                    Placeholder="Text Input" />
+             
                 <Modus:TMInput 
                     TitleText="Filled" 
                     Placeholder="Text Input" 
@@ -59,13 +60,13 @@
                     TitleText="Left Icon" 
                     LeftIconSource="s_icon.png" 
                     Placeholder="Text Input" />
-
+              
                 <Modus:TMInput 
                     TitleText="Both Icon" 
                     LeftIconSource="user.png" 
                     Placeholder="Text Input" 
                     RightIconSource="cv.png" />
-                
+              
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
