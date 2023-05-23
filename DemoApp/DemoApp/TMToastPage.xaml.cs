@@ -20,12 +20,16 @@ public partial class TMToastPage : ContentPage
         var toast = new TMToast();
         if (toastMessage != null)
         {
-            toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme);
+            toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme,HandleEvent);
         }
         else
         {
             toast.Show("Enter Toast Message",null,null,ToastTheme.ToastRed);
         }
+    }
+    void HandleEvent(object sender, EventArgs e)
+    {
+        Console.WriteLine("Event handled");
     }
 
     private void ToastPicker_SelectedIndexChanged(object sender, EventArgs e)

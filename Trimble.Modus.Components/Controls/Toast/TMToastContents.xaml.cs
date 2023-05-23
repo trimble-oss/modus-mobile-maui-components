@@ -24,12 +24,20 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme)
+    internal TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme,EventHandler eventHandler)
     {
+        if (!string.IsNullOrEmpty(rightIconText))
+        {
+            if (eventHandler == null)
+            {
+                throw new ArgumentException("Event handler must be provided when the optional parameter is set.");
+            }
+            eventHandler(this, EventArgs.Empty);
+        }
         InitializeComponent();
         SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation) popupNavigation;
-        PopupData(leftIcon, message, rightIconText);
+        PopupData(leftIcon, message, rightIconText,eventHandler);
         BindingContext = this;
         Close();
     }
@@ -69,14 +77,16 @@ public partial class TMToastContents : Popup.Pages.PopupPage
          });
     }
 
-    private void PopupData(ImageSource leftIcon, string message, string rightIconText)
+    private void PopupData(ImageSource leftIcon, string message, string rightIconText,EventHandler eventHandler)
     {
         LeftIconSource = leftIcon;
         RightIconText = rightIconText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
         rightIcon.TextColor = TextColor;
+        rightIcon.Clicked += CloseButton_Clicked;
         if (string.IsNullOrEmpty(RightIconText)) {
+            rightIcon.Clicked += eventHandler;
             if(ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
             {
                 rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
@@ -97,7 +107,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon._iconWidth = 16;
         rightIcon._iconHeight = 16;
         rightIcon.BorderColor = Colors.Transparent;
-        rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);
         var idiom = Device.Idiom;
         setWidth(rightIcon,idiom);
