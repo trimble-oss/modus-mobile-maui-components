@@ -14,14 +14,14 @@ public partial class MainPage : ContentPage
 
     private TMModal CreateTMModal()
     {
-        TMModal tMModal = new TMModalBuilder()
-            .SetTitleText("Here's a header")
-            .SetPrimaryText("Default")
-            .SetSecondaryText("Default")
-            .SetTertiaryText("Default")
-            .SetTitleIcon(ImageSource.FromFile("placeholder.png"))
-            .Build();
-        return tMModal;
+        TMModal tmModal = new TMModal("This is a header", ImageSource.FromFile("placeholder.png"));
+        tmModal.AddAction("Default", async (obj, args) =>
+        {
+            await DisplayAlert("Alert", "Modal Closed", "Cancel");
+        });
+        tmModal.AddAction("Default");
+        tmModal.AddAction("Default");
+        return tmModal;
     }
 
     private void ButtonClicked(object sender, EventArgs e)

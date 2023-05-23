@@ -150,43 +150,14 @@ namespace Trimble.Modus.Components
         /// </summary>
         public event EventHandler DestructiveButtonClicked;
 
-        public TMModalBuilder TMModalBuilder;
-
         #endregion
-        public TMModal( string titleText, 
-                        ImageSource titleIconSource = null, 
-                        string primaryText = null, 
-                        string secondaryText = null, 
-                        string tertiaryText = null,
-                        string destructiveText = null,
-                        EventHandler primaryButtonClick = null,
-                        EventHandler secondaryButtonClick = null,
-                        EventHandler tertiaryButtonClick = null,
-                        EventHandler destructiveButtonClick = null
-            ){
+        public TMModal( string titleText, ImageSource titleIconSource = null){
             TitleText = titleText;
             TitleIcon = titleIconSource;
-            PrimaryText = primaryText;
-            SecondaryText = secondaryText;
-            TertiaryText = tertiaryText;
-            DestructiveButtonText = destructiveText;
-            PrimaryButtonClicked = primaryButtonClick;
-            SecondaryButtonClicked = secondaryButtonClick;
-            TertiaryButtonClicked = tertiaryButtonClick;
-            DestructiveButtonClicked = destructiveButtonClick;
 
             ConfigureModal();
 
-            ConstructDestructiveButton();
-            ConstructPrimaryButton();
-            ConstructSecondaryButton();
-            ConstructTertiaryButton();
-
-            _buttonContainer = new StackLayout { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.End, Spacing = 8 };
-            _buttonContainer.Children.Add(_tertiaryButton);
-            _buttonContainer.Children.Add(_secondaryButton);
-            _buttonContainer.Children.Add(_primaryButton);
-            _buttonContainer.Children.Add(_destructiveButton);
+            _buttonContainer = new StackLayout { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.End, Spacing = 8};
 
             _baseContainer.Children.Add(_buttonContainer);
             _baseContainer.SetColumn(_buttonContainer, 0);
@@ -213,11 +184,30 @@ namespace Trimble.Modus.Components
                 Stroke = (Color)BaseComponent.colorsDictionary()["Black"],
                 Shadow = shadow
             };
-            //_border.WidthRequest = desiredWidth;
 
             SetBinding();
             Animation = new ScaleAnimation();
             Content = _border;
+        }
+
+        public void AddAction(string title, EventHandler clickAction = null)
+        {
+            if (string.IsNullOrEmpty(PrimaryText))
+            {
+                ConstructPrimaryButton(title, clickAction);
+            }
+            else if (string.IsNullOrEmpty(SecondaryText))
+            {
+                ConstructSecondaryButton(title, clickAction);
+            }
+            else if (string.IsNullOrEmpty(TertiaryText))
+            {
+                ConstructTertiaryButton(title, clickAction);
+            }
+            else if (string.IsNullOrEmpty(DestructiveButtonText))
+            {
+                ConstructDestructiveButton(title, clickAction);
+            }
         }
 
         #region Private methods
@@ -302,80 +292,97 @@ namespace Trimble.Modus.Components
             _closeButton.Clicked += CloseModal;
         }
 
-        private void ConstructPrimaryButton()
+        private void ConstructPrimaryButton(string primaryText = null ,EventHandler primaryButtonClick = null)
         {
+            PrimaryText = primaryText;
+            PrimaryButtonClicked += primaryButtonClick;
             if (!string.IsNullOrEmpty(PrimaryText))
             {
                 _primaryButton = new TMButton();
+                _primaryButton.Title = PrimaryText;
                 _primaryButton.HorizontalOptions = LayoutOptions.End;
                 _primaryButton.Size = Enums.Size.Small;
                 _primaryButton.Clicked += OnPrimaryButtonClicked;
+                _buttonContainer.Children.Insert(0, _primaryButton);
             }
         }
 
         private void OnPrimaryButtonClicked(object sender, EventArgs e)
         {
-            PrimaryButtonClicked?.Invoke(this, e);
             CloseModal(sender, e);
+            PrimaryButtonClicked?.Invoke(this, e);
         }
 
-        private void ConstructSecondaryButton()
+        private void ConstructSecondaryButton(string secondaryText, EventHandler secondaryButtonClick = null)
         {
+            SecondaryText = secondaryText;
+            SecondaryButtonClicked += secondaryButtonClick;
             if (!string.IsNullOrEmpty(SecondaryText))
             {
                 _secondaryButton = new TMButton();
+                _secondaryButton.Title = SecondaryText;
                 _secondaryButton.BackgroundColor = Colors.White;
                 _secondaryButton.TextColor = Colors.Black;
                 _secondaryButton.HorizontalOptions = LayoutOptions.End;
                 _secondaryButton.Size = Enums.Size.Small;
                 _secondaryButton.Clicked += OnSecondaryButtonClicked;
+                _buttonContainer.Children.Insert(0, _secondaryButton);
             }
         }
 
         private void OnSecondaryButtonClicked(object sender, EventArgs e)
         {
-            SecondaryButtonClicked?.Invoke(this, e);
             CloseModal(sender, e);
+            SecondaryButtonClicked?.Invoke(this, e);
         }
 
-        private void ConstructTertiaryButton()
+        private void ConstructTertiaryButton(string tertiaryText = null, EventHandler tertiaryButtonClick = null)
         {
+            TertiaryText = tertiaryText;
+            TertiaryButtonClicked += tertiaryButtonClick;
             if (!string.IsNullOrEmpty(TertiaryText))
             {
                 _tertiaryButton = new TMButton();
+                _tertiaryButton.Title = TertiaryText;
                 _tertiaryButton.BackgroundColor = Colors.White;
                 _tertiaryButton.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 _tertiaryButton.BorderColor = Colors.Transparent;
                 _tertiaryButton.HorizontalOptions = LayoutOptions.End;
                 _tertiaryButton.Size = Enums.Size.Small;
                 _tertiaryButton.Clicked += OnTertiaryButtonClicked;
+                _buttonContainer.Children.Insert(0, _tertiaryButton);
             }
         }
 
         private void OnTertiaryButtonClicked(object sender, EventArgs e)
         {
-            TertiaryButtonClicked?.Invoke(this, e);
             CloseModal(sender, e);
+            TertiaryButtonClicked?.Invoke(this, e);
         }
 
-        private void ConstructDestructiveButton()
+        private void ConstructDestructiveButton(string destructiveText = null, EventHandler destructiveButtonClick = null)
         {
+            DestructiveButtonText = destructiveText;
+            DestructiveButtonClicked += destructiveButtonClick;
+
             if (!string.IsNullOrEmpty(DestructiveButtonText))
             {
                 _destructiveButton = new TMButton();
+                _destructiveButton.Title = DestructiveButtonText;
                 _destructiveButton.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleButtonRed"];
                 _destructiveButton.TextColor = Colors.White;
                 _destructiveButton.BorderColor = Colors.Transparent;
                 _destructiveButton.HorizontalOptions = LayoutOptions.End;
                 _destructiveButton.Size = Enums.Size.Small;
                 _destructiveButton.Clicked += OnDestructiveButtonClicked;
+                _buttonContainer.Children.Insert(0, _destructiveButton);
             }
         }
 
         private void OnDestructiveButtonClicked(object sender, EventArgs e)
         {
-            DestructiveButtonClicked?.Invoke(this, e);
             CloseModal(sender, e);
+            DestructiveButtonClicked?.Invoke(this, e);
         }
 
         protected override void OnSizeAllocated(double width, double height)
