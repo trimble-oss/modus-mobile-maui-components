@@ -20,7 +20,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     public Color TextColor { get; set; }
 
-    public double labelWidth;
 
     PopupNavigation popupNavigation;
 
@@ -106,19 +105,19 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);
 
-        
-        setWidth(rightIcon);
+        var idiom = Device.Idiom;
+
+        setWidth(rightIcon,idiom);
      
-        Message = GetWrappedLabelText(message, labelWidth);
+        Message = GetWrappedLabelText(message,idiom);
     }
 
-    private void setWidth(TMButton rightIcon)
+    private void setWidth(TMButton rightIcon,TargetIdiom idiom)
     {
         double minimumTabletWidth = 480; 
         double maximumTabletWidthPercentage = 0.7;
         double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
-        var idiom = Device.Idiom;
-
+    
         if (idiom == TargetIdiom.Phone)
         {
             toastLayout.Padding = new Thickness(16,0,16,10);
@@ -129,18 +128,29 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             toastLayout.Padding = new Thickness(0, 0, 0, 10);
             toastLayout.MinimumWidthRequest = minimumTabletWidth;
             toastLayout.MaximumWidthRequest = deviceWidth * maximumTabletWidthPercentage;
+            toastLayout.HorizontalOptions = LayoutOptions.CenterAndExpand;
             rightIcon.Size = Enums.Size.Large;
         }
 
     }
-    private string GetWrappedLabelText(string text, double labelWidth)
+    private string GetWrappedLabelText(string text, TargetIdiom idiom)
     {
         const string ellipsis = "...";
-
-        if (text.Length > 226)
+        if (idiom == TargetIdiom.Phone)
         {
-            text = text.Substring(0, 226) + ellipsis;
+            if (text.Length > 106)
+            {
+                text = text.Substring(0, 106) + ellipsis;
+            }
         }
+        else if (idiom == TargetIdiom.Tablet)
+        {
+            if (text.Length > 206)
+            {
+                text = text.Substring(0, 206) + ellipsis;
+            }
+        }
+      
      
         return text;
     }

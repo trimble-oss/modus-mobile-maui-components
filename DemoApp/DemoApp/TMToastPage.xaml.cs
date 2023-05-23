@@ -2,53 +2,44 @@
 using Mopups;
 using Mopups.Services;
 using Trimble.Modus.Components.Controls.Toast;
+using Trimble.Modus.Components.Enums;
 
 namespace DemoApp;
 
 public partial class TMToastPage : ContentPage
 {
+   private ToastTheme theme;
 	public TMToastPage()
 	{
-        Button green = new Button();
-        Button blue = new Button();
-        Button black = new Button();
-        green.Text = "Green";
-        green.Margin = new Thickness(5);
-        green.Clicked += Green_Clicked;
-        blue.Text = "Blue";
-        blue.Margin = new Thickness(5);
-        blue.Clicked += Blue_Clicked;
-        black.Text = "Black";
-        black.Margin = new Thickness(5);
-        black.Clicked += Black_Clicked;
-        Content = new StackLayout
+      InitializeComponent();
+      toastPicker.SelectedItem = ToastTheme.ToastBlue;
+
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+
+    {
+        string rightIconText = IconText.Text;
+        string toastMessage = Message.Text;
+        var toast = new TMToast();
+        if (toastMessage != null)
         {
-            Children =
-        {
-            green, blue,black,
+         
+            toast.Show(toastMessage, "icon.png", rightIconText, theme);
         }
-        };
+        else
+        {
+            toast.Show("Enter Toast Message",null,null,ToastTheme.ToastRed);
+        }
     }
 
-    private void Green_Clicked(object sender, EventArgs e)
-
+    private void ToastPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var toast = new TMToast();
-        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png","Close",Trimble.Modus.Components.Enums.ToastTheme.ToastGreen);
-
-    }
-    private void Blue_Clicked(object sender, EventArgs e)
-
-    {
-        var toast = new TMToast();
-        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png", "Close", Trimble.Modus.Components.Enums.ToastTheme.ToastBlue);
-
-    }
-    private void Black_Clicked(object sender, EventArgs e)
-
-    {
-        var toast = new TMToast();
-        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png", "Close", Trimble.Modus.Components.Enums.ToastTheme.ToastBlack);
-
+        if (toastPicker.SelectedItem is ToastTheme selectedColor)
+        {
+         
+            theme = selectedColor;
+         
+        }
     }
 }
