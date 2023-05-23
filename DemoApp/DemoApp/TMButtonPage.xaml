@@ -18,11 +18,13 @@
     <ScrollView>
         <VerticalStackLayout>
             <StackLayout Padding="10">
-                <Label Text="Without Icons"/>
+                <Label Text="Without Icons" />
+                <FlexLayout Margin="0,0,0,10" Wrap="Wrap">
                 <Modus:TMButton 
                     x:Name="button"
                     Title = "XSmall"
                     Radius="50"
+                    Padding="10"
                     Clicked="button_Clicked"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
@@ -33,6 +35,7 @@
                     x:Name="button2"
                     Title = "Small"
                     Command="{Binding MyCommand}"
+                    Padding="10"
                     BackgroundColor="Yellow"
                     BorderColor="Brown"
                     TextColor="Black"
@@ -44,7 +47,7 @@
                     Title = "Default"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
-                    
+                    Padding="10"
                     Size="Default"
                   />
                 <Modus:TMButton 
@@ -53,13 +56,18 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                     Size="Large"
+                    Padding="10"
                   />
+                </FlexLayout>
                 <Label Text="With Icons"/>
+                <FlexLayout Margin="0,0,0,10" Wrap="Wrap">
                 <Modus:TMButton 
                     x:Name="ibutton"
                     Title = "XSmall"
                     Command="{Binding MyCommand}"
+                    TextColor="AliceBlue"
                     IconSource="icon.png"
+                    Padding="10"
                     CommandParameter="Button5"
                     Size="XSmall"
                   />
@@ -68,7 +76,7 @@
                     Title = "Small"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
-                 
+                 Padding="10"
                     CommandParameter="Button5"
                     Size="Small"
                   />
@@ -77,26 +85,28 @@
                     Title = "Default"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
+                    Padding="10"
                     CommandParameter="Button5"
                     Size="Default"
                   />
                 <Modus:TMButton 
                     x:Name="ibutton4"
                     Title = "Large"
-                    
+                    Padding="10"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
                     CommandParameter="Button5"
                    
                   />
-
+                </FlexLayout>
                 <Label Text="Floating Buttons"/>
-
+                <FlexLayout Margin="0,0,0,10">
                 <Modus:TMButton 
                     x:Name="fltbutton2"
                     Radius="50"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
+                    Padding="10"
                     IsFloatingButton="True"
                     CommandParameter="Button5"
                     Size="XSmall"
@@ -107,14 +117,18 @@
                     Title = "XSmall"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
+                    Padding="10"
                     IsFloatingButton="True"
                     CommandParameter="Button5"
                     Size="XSmall"
                   />
+                </FlexLayout>
                 <Label Text="Disabled Buttons"/>
+                <FlexLayout Margin="0,0,0,10">
                 <Modus:TMButton 
                     x:Name="button413"
                     Title = "Large"
+                    Padding="10"
                     IsDisabled="True"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
@@ -130,9 +144,10 @@
                     CommandParameter="Button5"
                     Size="Large"
                     />
+                
                 <Modus:TMButton 
                     x:Name="disbutton"
-                
+                    Padding="10"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
                     IsFloatingButton="True"
@@ -140,13 +155,17 @@
                     IsDisabled="True"
                     Size="XSmall"
                   />
-
-                <Modus:TMButton 
+                </FlexLayout>
+                <Label Text="Customised Buttons"/>
+                <FlexLayout Margin="0,0,0,10">
+                    <Modus:TMButton 
                     x:Name="disbutton2"
-                    Title = "XSmall"
+                    Title = "Custom"
+                    Radius="50"
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
                     IsFloatingButton="True"
+                    Padding="10"
                     CommandParameter="Button5"
                     IsDisabled="False"
                     Size="XSmall"
@@ -156,15 +175,17 @@
                 <Modus:TMButton  
                     Style="{StaticResource Gold}"  
                     Title="Hello" 
-                    IconSource="icon.png" 
+                    Padding="10"
+                    IconSource="greenicon.png" 
                    />
 
                 <Modus:TMButton  
                     Style="{StaticResource Red}"  
                     Title="Hello" 
+                    Padding="10"
                     IconSource="icon.png"
                   />
-
+                </FlexLayout>
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

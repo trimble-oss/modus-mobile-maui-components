@@ -12,6 +12,10 @@ namespace Trimble.Modus.Components
     public class TMInput : ContentView, IDisposable
     {
         #region Fields
+        /// <summary>
+        /// Store Focused State
+        /// </summary>
+        private bool _focused;
 
         /// <summary>
         /// Label for the title 
@@ -92,6 +96,10 @@ namespace Trimble.Modus.Components
         /// Size of the leading and trailing icon.
         /// </summary>
         internal const int ICONSIZE = 25;
+        
+        private const double disabledOpacity = 0.4;
+
+        private bool _isTextValidated = false;
 
         #endregion
 
@@ -136,7 +144,7 @@ namespace Trimble.Modus.Components
         /// Indetifies the IsPassword property, this property is used to hide the text entered into dots.
         /// </summary>
         public static readonly BindableProperty IsPasswordProperty =
-            BindableProperty.Create("IsPassword", typeof(bool), typeof(TMInput), false, BindingMode.Default, null);
+            BindableProperty.Create("IsPassword", typeof(bool), typeof(TMInput), false, BindingMode.TwoWay, null);
 
         /// <summary>
         /// Gets or sets the type of keyboard is used when the entry is focused.
@@ -512,11 +520,15 @@ namespace Trimble.Modus.Components
                 !string.IsNullOrEmpty(result.Item2) )
             {
                 tmInput._validationLabel.Text = result.Item2;
-
+                tmInput._isTextValidated = true;
                 tmInput.SetValidationTextStyle(result.Item1);
                 if (!tmInput._validationContainer.IsVisible)
                 {
+                    tmInput._validationLabel.Text = result.Item2;
+                    tmInput._validationContainer.Padding = new Thickness(0, 5, 0, 0);
+                    tmInput.SetValidationTextStyle(result.Item1);
                     tmInput.OnHelperTextChanged(string.Empty);
+
                     tmInput._validationContainer.IsVisible = true;
                     tmInput._validationContainer.HeightRequest = 25;
                 }
@@ -524,9 +536,22 @@ namespace Trimble.Modus.Components
             else
             {
                 tmInput.HideValidationText();
+                tmInput._isTextValidated = false;
+                tmInput.ResetBorder();
             }
             
             tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+        }
+
+        private void ResetBorder()
+        {
+            if (!_focused) { 
+
+                _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
+               }
+            else {
+                _border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+            }
         }
 
         /// <summary>
@@ -549,6 +574,13 @@ namespace Trimble.Modus.Components
         private static void OnReadOnlyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             (bindable as TMInput).OnReadOnlyPropertyChanged((bool)newValue);
+            if (bindable is TMInput tmInput)
+            {
+                if ((bool)newValue)
+                {
+                    tmInput._helperText.Opacity = disabledOpacity;
+                }
+            }
         }
 
         /// <summary>
@@ -646,6 +678,7 @@ namespace Trimble.Modus.Components
             {   
                 Orientation = StackOrientation.Horizontal,
                 IsVisible = false,
+                Padding = new Thickness(0,5,0,0),
                 Children =
                 {
                     _helperIcon,
@@ -723,17 +756,19 @@ namespace Trimble.Modus.Components
         /// <param name="success"></param>
         private void SetValidationTextStyle(bool success)
         {
-            if (success && _validationLabel.TextColor != Colors.Green)
+            if (success )
             {
                 _validationLabel.TextColor = Colors.Green;
                 _successIcon.WidthRequest = 24;
                 _errorIcon.WidthRequest = 0;
+                _border.Stroke = Colors.Green;
             }
-            else if (!success && _validationLabel.TextColor != Colors.Red)
+            else if (!success) 
             {
                 _validationLabel.TextColor = Colors.Red;
                 _successIcon.WidthRequest = 0;
                 _errorIcon.WidthRequest = 24;
+                _border.Stroke = Colors.Red;
             }
             
         }
@@ -775,17 +810,18 @@ namespace Trimble.Modus.Components
         {
             if (sender is Entry entry && entry.IsFocused)
             {
-                _border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                _focused = true;
+                _border.Stroke = _isTextValidated? _validationLabel.TextColor : (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 _border.StrokeThickness = 2;
                 Focused?.Invoke(this, e);
-                ShowValidationText();
             }
             else
             {
-                _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
+                _focused = false;
                 _border.StrokeThickness = 1;
                 Unfocused?.Invoke(this, e);
                 HideValidationText();
+                _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
             }
         }
 
@@ -856,6 +892,8 @@ namespace Trimble.Modus.Components
             {
                 _helperText.IsVisible = false;
                 _helperText.HeightRequest = 0;
+                _validationContainer.IsVisible = false;
+                _validationContainer.HeightRequest = 0;
             }
         }
 
@@ -870,7 +908,7 @@ namespace Trimble.Modus.Components
             }
             else
             {
-                _border.Opacity = 0.4;
+                _border.Opacity = disabledOpacity;
             }
         }
 
@@ -881,11 +919,12 @@ namespace Trimble.Modus.Components
         {
             if (!string.IsNullOrEmpty(Text))
             {
-                OnHelperTextChanged(string.Empty);
+                OnHelperTextChanged(HelperText);
 
                 _validationContainer.IsVisible = true;
                 _validationContainer.HeightRequest = 25;
             }
+          
         }
 
         /// <summary>
@@ -896,6 +935,7 @@ namespace Trimble.Modus.Components
             OnHelperTextChanged(HelperText);
 
             _validationContainer.IsVisible = false;
+           // _border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
             _validationContainer.HeightRequest = 0;
         }
 
