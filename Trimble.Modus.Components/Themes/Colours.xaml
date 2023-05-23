@@ -13,7 +13,7 @@
     <Color x:Key="FocusBlue">#019aeb</Color>
     <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
 
-    //ToastColors
+    <!--ToastColors-->
     <Color x:Key="ToastBlue">#DCEDF9</Color>
     <Color x:Key="ToastWhite">#FFFFFF</Color>
     <Color x:Key="ToastBlack">#252A2E</Color>

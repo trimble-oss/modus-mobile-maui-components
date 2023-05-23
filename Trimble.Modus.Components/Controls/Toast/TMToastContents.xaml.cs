@@ -42,6 +42,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         {
             TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
 
+
         }
         if (string.Equals(theme, "ToastBlack"))
         {
@@ -82,9 +83,18 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon.Title = RightIconText;
         rightIcon.TextColor = TextColor;
         if (string.IsNullOrEmpty(RightIconText)) {
-        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
-           
-            
+            if(ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+            {
+                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+            }
+            else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
+            {
+                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+            }
+            else
+            {
+                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+            }
         }
         rightIcon.VerticalOptions = LayoutOptions.Center;
         rightIcon.HorizontalOptions = LayoutOptions.End;
