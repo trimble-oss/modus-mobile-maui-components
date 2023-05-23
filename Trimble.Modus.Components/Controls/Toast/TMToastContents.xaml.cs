@@ -1,3 +1,5 @@
+using Microsoft.Maui.Platform;
+using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Controls.Toast;
@@ -14,19 +16,42 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     public double ToastWidthRequest { get; set; }
 
+    public Color ToastTheme { get; set; }
+
+    public Color TextColor { get; set; }
+
     public double labelWidth;
 
     PopupNavigation popupNavigation;
 
-    public TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation)
+    public TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme)
     {
         InitializeComponent();
+       
+        setTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation) popupNavigation;
         PopupData(leftIcon, message, rightIconText);
         BindingContext = this;
         Close();
     }
 
+    private void setTheme(String theme)
+    {
+        ToastTheme = (Color)BaseComponent.colorsDictionary()[theme];
+        if (string.Equals(theme, "ToastBlue"))
+        {
+            TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+
+        }
+        if (string.Equals(theme, "ToastBlack"))
+        {
+            TextColor = (Color)BaseComponent.colorsDictionary()["ToastWhite"];
+        }
+        else
+        {
+            TextColor = (Color)BaseComponent.colorsDictionary()["ToastBlack"];
+        }
+    }
 
     public TMToastContents()
     {
@@ -52,19 +77,19 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         string value = "Cricket, often hailed as Cricket, often hailed as the gentleman's game, is a popular sport played with zeal and passion across the globe. Originating in England, it has become a global phenomenon captivating millions of fans. The game is played between two team ";
 
-        RightIconText = string.Empty;//rightIconText;
+        RightIconText = null;//rightIconText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
-        rightIcon.Radius = 50;
+        rightIcon.TextColor = TextColor;
         if (string.IsNullOrEmpty(RightIconText)) {
-        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+        rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
            
             
         }
         rightIcon.VerticalOptions = LayoutOptions.Center;
         rightIcon.HorizontalOptions = LayoutOptions.End;
         rightIcon.BackgroundColor = this.BackgroundColor;
-        rightIcon.Size = Enums.Size.XSmall;
+      //  rightIcon.Size = Enums.Size.Large;
         rightIcon.BorderColor = Colors.Transparent;
         rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);

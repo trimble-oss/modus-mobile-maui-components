@@ -22,9 +22,9 @@
                 <RoundRectangle CornerRadius="4"  />
             </Border.StrokeShape>
            
-                <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{StaticResource TrimbleBlue}" HorizontalOptions="Fill" Orientation="Horizontal">
+                <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{Binding ToastTheme}" HorizontalOptions="Fill" Orientation="Horizontal">
                     <Image x:Name="leftIconImage" Margin="16,8,16,8"  Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                <Label x:Name="label" Text="{Binding Message}"  LineBreakMode="WordWrap" MaximumHeightRequest="500" MaxLines="3" FontSize="16" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" Padding="0,8,0,8"/>
+                <Label x:Name="label" Text="{Binding Message}"  LineBreakMode="WordWrap" MaximumHeightRequest="500" MaxLines="3" FontSize="16" TextColor="{Binding TextColor}" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" Padding="0,8,0,8"/>
                    
                 </StackLayout>
             

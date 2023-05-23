@@ -9,25 +9,46 @@ public partial class TMToastPage : ContentPage
 {
 	public TMToastPage()
 	{
-        Button withImage = new Button();
-        Button withoutImage = new Button();
-        withImage.Text = "Toast";
-        withImage.Margin = new Thickness(5);
-        withImage.Clicked += Button_Clicked;
+        Button green = new Button();
+        Button blue = new Button();
+        Button black = new Button();
+        green.Text = "Green";
+        green.Margin = new Thickness(5);
+        green.Clicked += Green_Clicked;
+        blue.Text = "Blue";
+        blue.Margin = new Thickness(5);
+        blue.Clicked += Blue_Clicked;
+        black.Text = "Black";
+        black.Margin = new Thickness(5);
+        black.Clicked += Black_Clicked;
         Content = new StackLayout
         {
             Children =
         {
-            withImage
+            green, blue,black,
         }
         };
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private void Green_Clicked(object sender, EventArgs e)
 
     {
         var toast = new TMToast();
-        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png","Close");
+        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png","Close",Trimble.Modus.Components.Enums.ToastTheme.ToastGreen);
+
+    }
+    private void Blue_Clicked(object sender, EventArgs e)
+
+    {
+        var toast = new TMToast();
+        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png", "Close", Trimble.Modus.Components.Enums.ToastTheme.ToastBlue);
+
+    }
+    private void Black_Clicked(object sender, EventArgs e)
+
+    {
+        var toast = new TMToast();
+        toast.Show("ToastMessage This is a toast message This is a toast messageThis is a toast messageThis is a toast message", "icon.png", "Close", Trimble.Modus.Components.Enums.ToastTheme.ToastBlack);
 
     }
 }

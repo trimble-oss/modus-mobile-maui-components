@@ -13,4 +13,15 @@
     <Color x:Key="FocusBlue">#019aeb</Color>
     <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
 
+    //ToastColors
+    <Color x:Key="ToastBlue">#DCEDF9</Color>
+    <Color x:Key="ToastWhite">#FFFFFF</Color>
+    <Color x:Key="ToastBlack">#252A2E</Color>
+    <Color x:Key="ToastGrey">#CBCDD6</Color>
+    <Color x:Key="ToastRed">#FBD4D7</Color>
+    <Color x:Key="ToastYellow">#FFF5E4</Color>
+    <Color x:Key="ToastGreen">#E0ECCF</Color>
+    <Color x:Key="ToastTextBlue">#0063A3</Color>
+    
+
 </ResourceDictionary>
