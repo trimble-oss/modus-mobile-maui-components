@@ -18,14 +18,7 @@ public partial class TMToastPage : ContentPage
         string rightIconText = IconText.Text;
         string toastMessage = Message.Text;
         var toast = new TMToast();
-        if  (!string.IsNullOrEmpty(toastMessage))
-        {
-            toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme,HandleEvent);
-        }
-        else
-        {
-            toast.Show("Enter Toast Message",null,null,ToastTheme.ToastRed);
-        }
+        toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme,HandleEvent);
     }
     void HandleEvent()
     {

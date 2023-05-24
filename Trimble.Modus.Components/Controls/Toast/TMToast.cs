@@ -19,6 +19,10 @@ namespace Trimble.Modus.Components.Controls.Toast
         }
         public void Show(string message, ImageSource leftIconSource = null, string actionButtonText = null, ToastTheme theme = 0, Action? action = null)
         {
+            if(string.IsNullOrEmpty(message))
+            {
+                throw new ArgumentNullException(message);
+            }
            popupNavigation.PushAsync(new TMToastContents(message ,leftIconSource,  actionButtonText, popupNavigation,theme,action),false);
         }
       
