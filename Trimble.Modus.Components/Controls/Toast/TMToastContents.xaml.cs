@@ -24,20 +24,13 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme,EventHandler eventHandler)
+    internal TMToastContents(string message, ImageSource leftIcon, string actionButtonText, Object popupNavigation,ToastTheme theme,Action action )
     {
-        if (!string.IsNullOrEmpty(rightIconText))
-        {
-            if (eventHandler == null)
-            {
-                throw new ArgumentException("Event handler must be provided when the optional parameter is set.");
-            }
-            eventHandler(this, EventArgs.Empty);
-        }
+  
         InitializeComponent();
         SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation) popupNavigation;
-        PopupData(leftIcon, message, rightIconText,eventHandler);
+        PopupData(message, leftIcon, actionButtonText, action);
         BindingContext = this;
         Close();
     }
@@ -77,28 +70,32 @@ public partial class TMToastContents : Popup.Pages.PopupPage
          });
     }
 
-    private void PopupData(ImageSource leftIcon, string message, string rightIconText,EventHandler eventHandler)
+    private void PopupData(string message, ImageSource leftIcon , string actionButtonText, Action action)
     {
         LeftIconSource = leftIcon;
-        RightIconText = rightIconText;
+        RightIconText = actionButtonText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
         rightIcon.TextColor = TextColor;
+        if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+        {
+            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+        }
+        else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
+        {
+            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+        }
+        else
+        {
+            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+        }
         rightIcon.Clicked += CloseButton_Clicked;
-        if (string.IsNullOrEmpty(RightIconText)) {
-            rightIcon.Clicked += eventHandler;
-            if(ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
-            {
-                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-            }
-            else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
-            {
-                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
-            }
-            else
-            {
-                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
-            }
+        if (!string.IsNullOrEmpty(RightIconText)) {
+            rightIcon.IconSource = null;
+            rightIcon.Clicked += (sender, args) => {
+                action.Invoke();
+            };
+        
         }
         rightIcon.VerticalOptions = LayoutOptions.Center;
         rightIcon.HorizontalOptions = LayoutOptions.End;

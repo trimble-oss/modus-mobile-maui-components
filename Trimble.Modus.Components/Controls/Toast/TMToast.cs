@@ -17,9 +17,9 @@ namespace Trimble.Modus.Components.Controls.Toast
             popupNavigation  = new PopupNavigation();
         
         }
-        public void Show(string message, ImageSource leftIconSource = null, string rightIconText = null, ToastTheme theme = 0, EventHandler eventHandler = null)
+        public void Show(string message, ImageSource leftIconSource = null, string actionButtonText = null, ToastTheme theme = 0, Action? action = null)
         {
-           popupNavigation.PushAsync(new TMToastContents( leftIconSource  , message, rightIconText,popupNavigation,theme,eventHandler),false);
+           popupNavigation.PushAsync(new TMToastContents(message ,leftIconSource,  actionButtonText, popupNavigation,theme,action),false);
         }
       
     }
