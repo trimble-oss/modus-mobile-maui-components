@@ -12,7 +12,7 @@ public partial class TMToastPage : ContentPage
       toastPicker.SelectedItem = ToastTheme.ToastBlue;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private void OnToastActionTapped(object sender, EventArgs e)
 
     {
         string rightIconText = IconText.Text;

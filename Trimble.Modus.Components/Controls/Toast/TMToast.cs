@@ -21,7 +21,7 @@ namespace Trimble.Modus.Components.Controls.Toast
         {
             if(string.IsNullOrEmpty(message))
             {
-                throw new ArgumentNullException(message);
+                throw new ArgumentNullException("Message is required");
             }
            popupNavigation.PushAsync(new TMToastContents(message ,leftIconSource,  actionButtonText, popupNavigation,theme,action),false);
         }
