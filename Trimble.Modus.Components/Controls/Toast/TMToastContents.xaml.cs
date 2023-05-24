@@ -76,7 +76,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         RightIconText = actionButtonText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
-        rightIcon.TextColor = TextColor;
+       // rightIcon.TextColor = TextColor;
         if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
         {
             rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
@@ -103,7 +103,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon.Size = Enums.Size.XSmall;
         rightIcon._iconWidth = 16;
         rightIcon._iconHeight = 16;
-        rightIcon.BorderColor = Colors.Transparent;
+      //  rightIcon.BorderColor = Colors.Transparent;
         contentLayout.Children.Add(rightIcon);
         var idiom = Device.Idiom;
         setWidth(rightIcon,idiom);

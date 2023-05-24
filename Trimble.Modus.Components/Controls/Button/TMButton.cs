@@ -1,4 +1,5 @@
 ﻿
+
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Enums;
 
@@ -24,6 +25,85 @@ namespace Trimble.Modus.Components
         public static readonly BindableProperty IconSourceProperty =
             BindableProperty.Create(nameof(IconSource), typeof(ImageSource), typeof(TMButton), propertyChanged: OnIconSourceChanged);
 
+        public static readonly BindableProperty ColorProperty =
+            BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(TMButton), propertyChanged: OnColorOrButtonStyleChanged);
+
+        public static readonly BindableProperty ButtonStyleProperty =
+          BindableProperty.Create(nameof(ButtonStyle), typeof(ButtonStyle), typeof(TMButton), propertyChanged: OnColorOrButtonStyleChanged);
+
+
+        private static void OnColorOrButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var button = (TMButton)bindable;
+            if (button.IsProcessingStyleChange)
+            {
+                button.IsProcessingStyleChange = false;
+                return;
+            }
+
+            UpdateButtonAppearance(button);
+        }
+
+        private static void UpdateButtonAppearance(TMButton button)
+        {
+            if (button.ButtonStyle == ButtonStyle.BorderLess)
+            {
+                button.frame.BackgroundColor = Colors.Transparent;
+                button.frame.Stroke = Colors.Transparent;
+                button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+            }
+            else if (button.ButtonStyle == ButtonStyle.Outline)
+            {
+                button.frame.BackgroundColor = Colors.Transparent;
+                button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                if (button.ButtonColor == ButtonColor.Primary)
+                {
+                    button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                    button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                }
+                else if (button.ButtonColor == ButtonColor.Secondary)
+                {
+                    button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
+                    button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
+                }
+            }
+            else 
+            {
+                switch (button.ButtonColor)
+                {
+                    case ButtonColor.Secondary:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
+                        button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        break;
+
+                    case ButtonColor.Tertiary:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TertiaryButton"];
+                        button.frame.Stroke = Colors.Transparent;
+                        break;
+
+                    case ButtonColor.Danger:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["DangerRed"];
+                        button.frame.Stroke = Colors.Transparent;
+                        break;
+
+                    case ButtonColor.Primary:
+                    default:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        break;
+                }
+            }
+        }
+
+        public bool IsProcessingStyleChange
+        {
+            get { return (bool)GetValue(IsProcessingStyleChangeProperty); }
+            set { SetValue(IsProcessingStyleChangeProperty, value); }
+        }
+
+        public static readonly BindableProperty IsProcessingStyleChangeProperty =
+            BindableProperty.Create(nameof(IsProcessingStyleChange), typeof(bool), typeof(TMButton), defaultValue: false);
+
         public static readonly BindableProperty CommandProperty =
             BindableProperty.Create(nameof(Command), typeof(Command), typeof(TMButton), null);
 
@@ -38,18 +118,6 @@ namespace Trimble.Modus.Components
 
         public static readonly BindableProperty IsDisabledProperty =
             BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsDisabledChanged);
-
-        public new static readonly BindableProperty BackgroundColorProperty = 
-            BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMButton), (Color)BaseComponent.colorsDictionary()["TrimbleBlue"],propertyChanged:onBackgroundColorChanged);
-
-        public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(TMButton), (Color)BaseComponent.colorsDictionary()["TrimbleBlue"], propertyChanged: onBorderColorChanged);
-       
-        public static readonly BindableProperty TextColorProperty = 
-            BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMButton), defaultValue: Colors.White, propertyChanged: onTextColorChanged);
-       
-        public static readonly BindableProperty ButtonRadiusProperty =
-            BindableProperty.Create(nameof(Radius), typeof(int), typeof(TMButton), _borderRadius, propertyChanged: onButtonRadiusChanged);
 
         public static readonly BindableProperty ClickedEventProperty =
             BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMButton));
@@ -95,18 +163,6 @@ namespace Trimble.Modus.Components
             set => SetValue(CommandParameterProperty, value);
         }
 
-        public Color TextColor
-        {
-            get { return (Color)GetValue(TextColorProperty); }
-            set { SetValue(TextColorProperty, value); }
-        }
-
-        public Color BorderColor
-        {
-            get { return (Color)GetValue(BorderColorProperty); }
-            set { SetValue(BorderColorProperty, value); }
-        }
-
         public bool IsDisabled
         {
             get { return (bool)GetValue(IsDisabledProperty); }
@@ -120,13 +176,16 @@ namespace Trimble.Modus.Components
             set { SetValue(BackgroundColorProperty, value); }
         }
 
-
-        public int Radius
+        public ButtonColor ButtonColor
         {
-            get { return (int)GetValue(ButtonRadiusProperty); }
-            set { SetValue(ButtonRadiusProperty, value); }
+            get => (ButtonColor)GetValue(ColorProperty);
+            set => SetValue(ColorProperty, value);
         }
-
+        public ButtonStyle ButtonStyle
+        {
+            get => (ButtonStyle)GetValue(ButtonStyleProperty);
+            set => SetValue(ButtonStyleProperty, value);
+        }
 
         public TMButton()
         {
@@ -174,15 +233,17 @@ namespace Trimble.Modus.Components
         private void setDefault(TMButton tmButton)
         {
             tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
+            tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
+          
             if (tmButton.imageSet && tmButton.isTextSet)
             {
-                tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
+                tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
                 tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
                 tmButton._iconImage.IsVisible = true;
             }
             else
             {
-                tmButton._titleLabel.Padding = new Thickness(24, 16, 24, 16);
+                tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
                 tmButton._iconImage.IsVisible = false;
             }
             if (tmButton.imageSet && !tmButton.isTextSet)
@@ -192,63 +253,48 @@ namespace Trimble.Modus.Components
                 tmButton._titleLabel.IsVisible = false;
                 tmButton._iconImage.Margin = new Thickness(16);
             }
-          
+            tmButton.HeightRequest = 48;
+            
+
         }
         private void setFloatingButton(TMButton tmButton)
         {
-            tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
-            if (tmButton.imageSet && !tmButton.isTextSet)
-            {
-
-                tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
-                tmButton._iconImage.IsVisible = true;
-                tmButton._titleLabel.IsVisible = false;
-                tmButton._iconImage.Margin = new Thickness(16);
-
-            }
-            if (tmButton.isTextSet && !tmButton.imageSet)
-            {
-                tmButton._titleLabel.Padding = new Thickness(24, 16, 24, 16);
-                tmButton._iconImage.IsVisible = false;
-                tmButton._titleLabel.IsVisible = true;
-            }
-            if (tmButton.imageSet && tmButton.isTextSet)
-            {
-                tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
-                tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
-                tmButton._iconImage.IsVisible = true;
-            }
-
+            tmButton.frame.StrokeShape = new Rectangle { RadiusX = 50, RadiusY = 50 };
+            tmButton.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+            tmButton._titleLabel.TextColor = Colors.White;
         }
 
         private void OnTapped(object sender, EventArgs e)
         {
             Command?.Execute(CommandParameter);
             _clicked?.Invoke(this, e);
-            frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlueDark"];
+            var col = frame.BackgroundColor;
+            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor);
         
             this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
-                if (BackgroundColor != null)
+                if (col != null)
                 {
-                    frame.BackgroundColor = BackgroundColor;
+                    frame.BackgroundColor = col;
 
                 }
                 return false;
             });
         }
-    
+
+        private Color getOnClickColor(Color backgroundColor)
+        {
+            Color modifiedColor = new Color(backgroundColor.Red, backgroundColor.Green, backgroundColor.Blue, (float)0.5);             
+            return modifiedColor;
+        }
+
         private void UpdateButtonStyle()
         {
-
-            var hasText = isTextSet;
-            var hasIcon = imageSet;
-
             if (IsFloatingButton)
             {
                 frame.Shadow = new Shadow
                 {
-                    Radius = 50,
+                    Radius = 25,
                     Opacity = 100
 
                 };
@@ -302,6 +348,7 @@ namespace Trimble.Modus.Components
                 {
                     case Enums.Size.XSmall:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.XSmall;
+                       
                         if (tmButton.imageSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 12, 8);
@@ -313,10 +360,13 @@ namespace Trimble.Modus.Components
                             tmButton._titleLabel.Padding = new Thickness(12, 8, 12, 8);
                             tmButton._iconImage.IsVisible = false;
                         }
-
+                      //  tmButton.WidthRequest = 32;
+                        tmButton.HeightRequest = 32;
                         break;
                     case Enums.Size.Small:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.Small;
+                      //  tmButton.WidthRequest = 40;
+                        tmButton.HeightRequest = 40;
                         if (tmButton.imageSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 16, 8);
@@ -336,8 +386,25 @@ namespace Trimble.Modus.Components
 
                         break;
                     case Enums.Size.Default:
-                    case Enums.Size.Large:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
+                      
+                        tmButton.HeightRequest = 48;
+                        if (tmButton.imageSet)
+                        {
+                            tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
+                            tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
+                            tmButton._iconImage.IsVisible = true;
+                        }
+                        else
+                        {
+                            tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
+                            tmButton._iconImage.IsVisible = false;
+
+                        }
+                        break;
+                    case Enums.Size.Large:
+                        tmButton._titleLabel.FontSize = (double)Enums.FontSize.Large;
+                        
                         if (tmButton.imageSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
@@ -350,7 +417,10 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.IsVisible = false;
 
                         }
+                       // tmButton.WidthRequest = 56;
+                        tmButton.HeightRequest = 56;
                         break;
+
 
                 }
                 tmButton.sizeSet = true;
@@ -377,37 +447,11 @@ namespace Trimble.Modus.Components
                 button.GestureRecognizers.Add(button._tapGestureRecognizer);
             }
         }
-        private static void onButtonRadiusChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is TMButton tmButton)
-            {
-                tmButton.frame.StrokeShape = new Rectangle { RadiusX = (int)newValue, RadiusY = (int)newValue };
-            }
-        }
 
         private static void OnIsFloatingButtonChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var button = (TMButton)bindable;
             button.UpdateButtonStyle();
-        }
-        private static void onBorderColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is TMButton tmButton)
-            {
-                tmButton.frame.Stroke = (Color)newValue;
-            }
-        }
-        private static void onTextColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is TMButton tmButton)
-            {
-                tmButton._titleLabel.TextColor = (Color)newValue;
-            }
-        }
-        private static void onBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is TMButton tmButton)
-                tmButton.frame.BackgroundColor = (Color)newValue;
         }
 
     }
