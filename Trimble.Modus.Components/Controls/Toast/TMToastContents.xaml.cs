@@ -24,12 +24,13 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(ImageSource leftIcon, string message, string rightIconText,Object popupNavigation,ToastTheme theme)
+    internal TMToastContents(string message, ImageSource leftIcon, string actionButtonText, Object popupNavigation,ToastTheme theme,Action action )
     {
+  
         InitializeComponent();
         SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation) popupNavigation;
-        PopupData(leftIcon, message, rightIconText);
+        PopupData(message, leftIcon, actionButtonText, action);
         BindingContext = this;
         Close();
     }
@@ -69,26 +70,32 @@ public partial class TMToastContents : Popup.Pages.PopupPage
          });
     }
 
-    private void PopupData(ImageSource leftIcon, string message, string rightIconText)
+    private void PopupData(string message, ImageSource leftIcon , string actionButtonText, Action action)
     {
         LeftIconSource = leftIcon;
-        RightIconText = rightIconText;
+        RightIconText = actionButtonText;
         TMButton rightIcon = new TMButton();
         rightIcon.Title = RightIconText;
         rightIcon.TextColor = TextColor;
-        if (string.IsNullOrEmpty(RightIconText)) {
-            if(ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
-            {
-                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-            }
-            else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
-            {
-                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
-            }
-            else
-            {
-                rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
-            }
+        if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+        {
+            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+        }
+        else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
+        {
+            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+        }
+        else
+        {
+            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+        }
+        rightIcon.Clicked += CloseButton_Clicked;
+        if (!string.IsNullOrEmpty(RightIconText)) {
+            rightIcon.IconSource = null;
+            rightIcon.Clicked += (sender, args) => {
+                action.Invoke();
+            };
+        
         }
         rightIcon.VerticalOptions = LayoutOptions.Center;
         rightIcon.HorizontalOptions = LayoutOptions.End;
@@ -97,7 +104,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         rightIcon._iconWidth = 16;
         rightIcon._iconHeight = 16;
         rightIcon.BorderColor = Colors.Transparent;
-        rightIcon.Clicked += CloseButton_Clicked;
         contentLayout.Children.Add(rightIcon);
         var idiom = Device.Idiom;
         setWidth(rightIcon,idiom);
