@@ -297,7 +297,7 @@ namespace Trimble.Modus.Components
             Command?.Execute(CommandParameter);
             _clicked?.Invoke(this, e);
             var col = frame.BackgroundColor;
-            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor);
+            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor, 0.2); 
         
             this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
@@ -309,11 +309,13 @@ namespace Trimble.Modus.Components
                 return false;
             });
         }
-
-        private Color getOnClickColor(Color backgroundColor)
+        private Color getOnClickColor(Color color, double factor)
         {
-            Color modifiedColor = new Color(backgroundColor.Red, backgroundColor.Green, backgroundColor.Blue, (float)0.5);             
-            return modifiedColor;
+            double red = color.Red * (1 - factor);
+            double green = color.Green * (1 - factor);
+            double blue = color.Blue * (1 - factor);
+
+            return Color.FromRgb(red, green, blue);
         }
 
         private void UpdateButtonStyle()
@@ -488,17 +490,17 @@ namespace Trimble.Modus.Components
 
             if ((bool)newValue)
             {
-                button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleDisabledColor"];
+               // button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleDisabledColor"];
 
-                button._iconImage.Opacity = 0.5;
+           
+                button.Opacity = 0.5;
                 button.GestureRecognizers.Clear();
             }
             else
             {
 
-                button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-                button._titleLabel.TextColor = Colors.White;
-                button._iconImage.Opacity = 1;
+                UpdateButtonAppearance(button);
+                button.Opacity = 1;
                 button.GestureRecognizers.Add(button._tapGestureRecognizer);
             }
         }

@@ -1,3 +1,4 @@
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 using Size = Trimble.Modus.Components.Enums.Size;
 
@@ -5,8 +6,23 @@ namespace DemoApp;
 
 public partial class TMButtonPage : ContentPage
 {
-    private string _selectedColor ="Primary";
+    private string _selectedStyle ="Fill";
     private string _selectedSize ="Default";
+    private bool isDiabled;
+
+    public bool IsDisabled
+    {
+        get => isDiabled;
+        set
+        {
+            if (isDiabled != value)
+            {
+                isDiabled = value;
+                ValidateRadioButtons();
+            }
+        }
+    }
+
 
     public TMButtonPage()
 	{
@@ -19,11 +35,11 @@ public partial class TMButtonPage : ContentPage
         Console.WriteLine("Clicked");
      
     }
-    private void Color_Changed(object sender, CheckedChangedEventArgs e)
+    private void Style_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-            _selectedColor = radioButton.Value.ToString();
+            _selectedStyle = radioButton.Value.ToString();
             ValidateRadioButtons();
         }
     }
@@ -39,27 +55,50 @@ public partial class TMButtonPage : ContentPage
 
     private void ValidateRadioButtons()
     {
-        bool isColorSelected = !string.IsNullOrEmpty(_selectedColor);
+        bool isStyleSelected = !string.IsNullOrEmpty(_selectedStyle);
         bool isSizeSelected = !string.IsNullOrEmpty(_selectedSize);
 
-        if (isColorSelected && isSizeSelected)
+        if (isStyleSelected && isSizeSelected)
         {
-            filled.Size = (Size)Enum.Parse(typeof(Size), _selectedSize);
-            filled.ButtonColor = (ButtonColor)Enum.Parse(typeof(ButtonColor), _selectedColor);
-            filledicon.Size = (Size)Enum.Parse(typeof(Size), _selectedSize);
-            filledicon.ButtonColor = (ButtonColor)Enum.Parse(typeof(ButtonColor), _selectedColor);
-            if(filledicon.ButtonColor == ButtonColor.Tertiary)
+            List<TMButton> buttons = new List<TMButton> { button1, button2, button3, button4 ,button1i ,button2i ,button3i ,button4i };
+            List<TMButton> iconbuttons = new List<TMButton> { button1i, button2i, button3i, button4i };
+
+           
+            foreach (TMButton button in buttons)
             {
-                filledicon.IconSource = ImageSource.FromFile("icondark.png");
+              
+                button.Size = (Size)Enum.Parse(typeof(Size), _selectedSize);
+                button.ButtonStyle = (ButtonStyle)Enum.Parse(typeof(ButtonStyle), _selectedStyle);
+                int index = buttons.IndexOf(button);
+                if (index >= buttons.Count - 4)
+                {
+                    if (button.ButtonStyle == ButtonStyle.Outline || button.ButtonStyle == ButtonStyle.BorderLess)
+                    {
+                        button.IconSource = ImageSource.FromFile("icondark.png");
+                    }
+                    else
+                    {
+                        if (!(button.ButtonColor == ButtonColor.Tertiary))
+                        {
+                            button.IconSource = ImageSource.FromFile("icon.png");
+                        }
+                    }
+                }
+
+                if (isDiabled)
+                {
+                    button.IsDisabled = true;
+                }
+                else
+                {
+                    button.IsDisabled = false;
+                }
             }
-            else
-            {
-                filledicon.IconSource = ImageSource.FromFile("icon.png");
-            }
-          
         }
     }
 
-
-
+    private void isDisabled_Toggled(object sender, ToggledEventArgs e)
+    {
+        IsDisabled = e.Value;
+    }
 }
