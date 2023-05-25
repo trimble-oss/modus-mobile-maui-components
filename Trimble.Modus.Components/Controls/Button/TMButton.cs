@@ -74,22 +74,26 @@ namespace Trimble.Modus.Components
                     case ButtonColor.Secondary:
                         button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
                         button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        button._titleLabel.TextColor = Colors.White;
                         break;
 
                     case ButtonColor.Tertiary:
                         button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TertiaryButton"];
                         button.frame.Stroke = Colors.Transparent;
+                        button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"]; 
                         break;
 
                     case ButtonColor.Danger:
                         button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["DangerRed"];
                         button.frame.Stroke = Colors.Transparent;
+                        button._titleLabel.TextColor = Colors.White;
                         break;
 
                     case ButtonColor.Primary:
                     default:
                         button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                         button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        button._titleLabel.TextColor = Colors.White;
                         break;
                 }
             }
@@ -220,8 +224,8 @@ namespace Trimble.Modus.Components
                 HorizontalOptions = LayoutOptions.Start,
                 StrokeShape = new Rectangle
                 {
-                    RadiusX = 4,
-                    RadiusY = 4
+                    RadiusX = _borderRadius,
+                    RadiusY = _borderRadius
                 }
             };
             Content = frame;
@@ -260,8 +264,32 @@ namespace Trimble.Modus.Components
         private void setFloatingButton(TMButton tmButton)
         {
             tmButton.frame.StrokeShape = new Rectangle { RadiusX = 50, RadiusY = 50 };
+            tmButton.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
             tmButton.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
             tmButton._titleLabel.TextColor = Colors.White;
+            tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
+            tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
+
+            if (tmButton.imageSet && tmButton.isTextSet)
+            {
+                tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
+                tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
+                tmButton._iconImage.IsVisible = true;
+            }
+            else
+            {
+                tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
+                tmButton._iconImage.IsVisible = false;
+            }
+            if (tmButton.imageSet && !tmButton.isTextSet)
+            {
+                tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
+                tmButton._iconImage.IsVisible = true;
+                tmButton._titleLabel.IsVisible = false;
+                tmButton._iconImage.Margin = new Thickness(16);
+
+            }
+            tmButton.HeightRequest = 48;
         }
 
         private void OnTapped(object sender, EventArgs e)
@@ -348,8 +376,9 @@ namespace Trimble.Modus.Components
                 {
                     case Enums.Size.XSmall:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.XSmall;
-                       
-                        if (tmButton.imageSet)
+                        tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
+
+                        if (tmButton.imageSet && tmButton.isTextSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 12, 8);
                             tmButton._iconImage.Margin = new Thickness(8, 8, 8, 8);
@@ -360,36 +389,46 @@ namespace Trimble.Modus.Components
                             tmButton._titleLabel.Padding = new Thickness(12, 8, 12, 8);
                             tmButton._iconImage.IsVisible = false;
                         }
-                      //  tmButton.WidthRequest = 32;
+                        if (tmButton.imageSet && !tmButton.isTextSet)
+                        {
+                            tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
+                            tmButton._iconImage.IsVisible = true;
+                            tmButton._titleLabel.IsVisible = false;
+                            tmButton._iconImage.Margin = new Thickness(8);
+                        }
                         tmButton.HeightRequest = 32;
                         break;
                     case Enums.Size.Small:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.Small;
-                      //  tmButton.WidthRequest = 40;
-                        tmButton.HeightRequest = 40;
-                        if (tmButton.imageSet)
+                        tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
+
+                        if (tmButton.imageSet && tmButton.isTextSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 16, 8);
                             tmButton._iconImage.Margin = new Thickness(12, 8, 8, 8);
                             tmButton._iconImage.IsVisible = true;
-
-
                         }
                         else
                         {
                             tmButton._titleLabel.Padding = new Thickness(16, 8, 16, 8);
                             tmButton._iconImage.IsVisible = false;
 
-                            break;
                         }
-
+                        if (tmButton.imageSet && !tmButton.isTextSet)
+                        {
+                            tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
+                            tmButton._iconImage.IsVisible = true;
+                            tmButton._titleLabel.IsVisible = false;
+                            tmButton._iconImage.Margin = new Thickness(8);
+                        }
+                        tmButton.HeightRequest = 40;
 
                         break;
                     case Enums.Size.Default:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
-                      
-                        tmButton.HeightRequest = 48;
-                        if (tmButton.imageSet)
+                        tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
+
+                        if (tmButton.imageSet && tmButton.isTextSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
                             tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
@@ -399,13 +438,22 @@ namespace Trimble.Modus.Components
                         {
                             tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
                             tmButton._iconImage.IsVisible = false;
-
                         }
+                        if (tmButton.imageSet && !tmButton.isTextSet)
+                        {
+                            tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
+                            tmButton._iconImage.IsVisible = true;
+                            tmButton._titleLabel.IsVisible = false;
+                            tmButton._iconImage.Margin = new Thickness(16);
+                        }
+                        tmButton.HeightRequest = 48;
                         break;
+
                     case Enums.Size.Large:
                         tmButton._titleLabel.FontSize = (double)Enums.FontSize.Large;
-                        
-                        if (tmButton.imageSet)
+                        tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
+
+                        if (tmButton.imageSet && tmButton.isTextSet)
                         {
                             tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
                             tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
@@ -417,7 +465,14 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.IsVisible = false;
 
                         }
-                       // tmButton.WidthRequest = 56;
+                        if (tmButton.imageSet && !tmButton.isTextSet)
+                        {
+                            tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
+                            tmButton._iconImage.IsVisible = true;
+                            tmButton._titleLabel.IsVisible = false;
+                            tmButton._iconImage.Margin = new Thickness(16);
+                        }
+
                         tmButton.HeightRequest = 56;
                         break;
 

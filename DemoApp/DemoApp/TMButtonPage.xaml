@@ -9,141 +9,175 @@
         <VerticalStackLayout>
             <StackLayout Padding="10">
                 <Label Text="Filled Buttons"/>
-               
-             
 
-                <Modus:TMButton 
-                    x:Name="button884"
-                    Title = "Default"
-                    ButtonStyle="Outline"
+
+                <StackLayout Orientation="Horizontal">
+                    <Modus:TMButton 
+                    x:Name="filled"
+                    Title = "Filled"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                  />
+                    <Modus:TMButton 
+                    x:Name="filledicon"
+                    Title = "Filled Icon"
+                    IconSource="icon.png"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                  />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton Content="Primary" IsChecked="True"  Value="Primary" GroupName="ButtonColor" CheckedChanged="Color_Changed" />
+                    <RadioButton Content="Secondary" Value="Secondary" GroupName="ButtonColor" CheckedChanged="Color_Changed" />
+                    <RadioButton Content="Tertiary" Value="Tertiary" GroupName="ButtonColor" CheckedChanged="Color_Changed" />
+                    <RadioButton Content="Danger" Value="Danger" GroupName="ButtonColor" CheckedChanged="Color_Changed" />
+                </StackLayout>
+
+
+                <StackLayout Orientation="Horizontal">
+                    <RadioButton Content="XSmall" Value="XSmall" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+                    <RadioButton Content="Small" Value="Small"  GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+                    <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+                    <RadioButton Content="Large" Value="Large" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+                </StackLayout>
+                <Label Text="IconsAlone"/>
+                <StackLayout Orientation="Horizontal">
+                    <Modus:TMButton 
+                    x:Name="iconxs"
                     ButtonColor="Primary"
-                     
-                    Command="{Binding MyCommand}"
-                    CommandParameter="Button5"
-                    Size="Large"
-                  />
-                <Modus:TMButton 
-                    x:Name="ibutton882"
-                   
-                    ButtonColor="Secondary"
-                       
                     Command="{Binding MyCommand}"
                     IconSource="icon.png"
-                
-                    CommandParameter="Button5"
-                    Size="Small"
-                  />
-                 <Label Text="Outlined Buttons"/>
-                <Label Text="BorderLess Buttons"/>
-                <Label Text="Floating Buttons"/>
-                <Label Text="With Icons"/>
-                <Modus:TMButton 
-                    x:Name="ibutton77"
-                    Title = "XSmall"
-                    Command="{Binding MyCommand}"
-                         ButtonStyle="Outline"
-                    ButtonColor="Secondary"
-                    IconSource="icon.png"
-                       IsFloatingButton="True"
-                    Size="Default"
-                    CommandParameter="Button5"
-                  
-                  />
-                <Modus:TMButton 
-                    x:Name="button882"
-                    Title = "Small"
-                    Command="{Binding MyCommand}"
-                    ButtonStyle="BorderLess"
-                   
-                    CommandParameter="Button5"
-                    Size="Small"
-                  />
-                <Modus:TMButton 
-                    x:Name="button883"
-                    Title = "Default"
-                     ButtonStyle="Fill"
-                    Command="{Binding MyCommand}"
+                    Size="XSmall"
                     CommandParameter="Button5"
                     
-                    Size="Default"
                   />
-                <Modus:TMButton 
-                    x:Name="button774"
-                    Title = "Large"
-                        ButtonStyle="Outline"
+                    <Modus:TMButton 
+                    x:Name="icons"
                     ButtonColor="Primary"
                     Command="{Binding MyCommand}"
-                    CommandParameter="Button5"
-                    Size="Large"
-                  />
-                <Modus:TMButton 
-                    x:Name="ibutton22"
-                    Title = "Small"
-                    ButtonColor="Tertiary"
-                         ButtonStyle="Outline"
-                    Command="{Binding MyCommand}"
                     IconSource="icon.png"
-                 
-                    CommandParameter="Button5"
                     Size="Small"
+                    CommandParameter="Button5"
+                    
                   />
-                <Label Text="With Icons"/>
-                <Modus:TMButton 
-                    x:Name="ibutton12"
-                    Title = "XSmall"
+                    <Modus:TMButton 
+                    x:Name="icond"
+                    ButtonColor="Primary"
                     Command="{Binding MyCommand}"
-                         ButtonStyle="Outline"
-                    ButtonColor="Secondary"
                     IconSource="icon.png"
+                    Size="Default"
                     CommandParameter="Button5"
-                    Size="XSmall"
+                    
                   />
-
-
-
-
-
-
-
-
-
-
-
-
-                <Modus:TMButton 
-                    x:Name="button12"
-                    Title = "XSmall"
-                    ButtonColor="Danger"
-                    Clicked="button_Clicked"
+                    <Modus:TMButton 
+                    x:Name="iconl"
+                    ButtonColor="Primary"
                     Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    Size="Large"
                     CommandParameter="Button5"
-                    Size="XSmall"
+                    
                   />
-                <Modus:TMButton 
-                    x:Name="button21212"
-                    Title = "Small"
-                    IsFloatingButton="True"
+                </StackLayout>
+
+                <Label Text="Different Styles"/>
+                <FlexLayout Margin="0,0,10,10" Wrap="Wrap">
+                    <Modus:TMButton 
+                    x:Name="fill"
                     Command="{Binding MyCommand}"
+                    Title="Filled + Icon"
+                    IconSource="icon.png"
                     ButtonStyle="Fill"
-                   
-                    CommandParameter="Button5"
                     Size="Small"
-                  />
-                <Modus:TMButton 
-                    x:Name="button31212"
-                    Title = "Default"
-                     ButtonStyle="Fill"
-                    Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                     
-                    Size="Default"
                   />
-
-
-
-
-
-
+                    <Modus:TMButton 
+                    x:Name="outline"
+                    Command="{Binding MyCommand}"
+                    Title="Outline + Icon"
+                    IconSource="icondark.png"
+                    ButtonStyle="Outline"
+                    Size="Small"
+                    CommandParameter="Button5"
+                    
+                  />
+                    <Modus:TMButton 
+                    x:Name="borderless"
+                    Command="{Binding MyCommand}"
+                    Title="BorderLess + Icon"
+                    IconSource="icondark.png"
+                    ButtonStyle="BorderLess"
+                    Size="Small"
+                    CommandParameter="Button5"
+                    
+                  />
+                
+                <StackLayout Orientation="Horizontal">
+                    <Modus:TMButton 
+                    x:Name="filli"
+                    Command="{Binding MyCommand}"
+                    Title="Filled"
+                    ButtonStyle="Fill"
+  		            
+                    Size="Small"
+                    CommandParameter="Button5"
+                    
+                  />
+                    <Modus:TMButton 
+                    x:Name="outlinei"
+                    Command="{Binding MyCommand}"
+                    Title="Outline"
+                  
+                    ButtonStyle="Outline"
+                    Size="Small"
+                    CommandParameter="Button5"
+                    
+                  />
+                    <Modus:TMButton 
+                    x:Name="borderlessi"
+ 	           
+                    Command="{Binding MyCommand}"
+                    Title="BorderLess"
+                    ButtonStyle="BorderLess"
+                    Size="Small"
+                    CommandParameter="Button5"
+                    
+                  />
+                </StackLayout>
+                </FlexLayout>
+                <Label Text="Floating Buttons"/>
+                <FlexLayout Margin="0,0,10,10" Wrap="Wrap">
+                    <Modus:TMButton 
+                    x:Name="floating"
+                    Command="{Binding MyCommand}"
+                    Title="Text"
+                    IsFloatingButton="True"
+                    Size="XSmall"
+                    CommandParameter="Button5"
+                    
+                  />
+                    <Modus:TMButton 
+                    x:Name="floatingi"
+                    Command="{Binding MyCommand}"
+                    IsFloatingButton="True"
+                    IconSource="icon.png"
+                    Size="Small"
+                    CommandParameter="Button5"
+                    
+                  />
+                    <Modus:TMButton 
+                    x:Name="floatingit"
+                    Command="{Binding MyCommand}"
+                    Title="Text + Icon"
+                    IsFloatingButton="True"
+                    IconSource="icon.png"
+                    Size="XSmall"
+                    CommandParameter="Button5"
+                    
+                  />
+                </FlexLayout>
+                
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

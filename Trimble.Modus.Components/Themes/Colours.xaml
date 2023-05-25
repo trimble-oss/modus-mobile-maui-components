@@ -6,7 +6,7 @@
     <Color x:Key="TrimbleBlue">#0063a3</Color>
     <Color x:Key="TrimbleBlueDark">#004f83</Color>
     <Color x:Key="TrimbleYellow">#fbad26</Color>
-    <Color x:Key="TrimbleGray">#252a2e</Color>
+    <Color x:Key="TrimbleGray">#252a2e</Color> 
     <Color x:Key="TrimbleDisabledColor">#CEDEEB</Color>
     <Color x:Key="Black">#353a40</Color>
     <Color x:Key="DangerRed">#DA212C</Color>
