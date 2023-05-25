@@ -24,7 +24,6 @@
                     RightIconSource="password_eye.png" 
                     RightIconCommand="{Binding ShowPasswordCommand}"
                     IsPassword="{Binding ShowPassword}"/>
-                    Placeholder="Text Input" />
              
                 <Modus:TMInput 
                     TitleText="Filled" 
