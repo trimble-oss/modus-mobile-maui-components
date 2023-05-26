@@ -230,6 +230,7 @@ namespace Trimble.Modus.Components
             };
             Content = frame;
             GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer());
+            _tapGestureRecognizer.NumberOfTapsRequired = 1;
             _tapGestureRecognizer.Tapped += OnTapped; 
  }
         
@@ -298,15 +299,16 @@ namespace Trimble.Modus.Components
             Command?.Execute(CommandParameter);
             _clicked?.Invoke(this, e);
             var col = frame.BackgroundColor;
-            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor); 
-            Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
+            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor);
+
+            this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
             {
                 if (col != null)
                 {
                     frame.BackgroundColor = col;
 
                 }
-                return false; 
+                return false;
             });
         }
         private Color getOnClickColor(Color color)
