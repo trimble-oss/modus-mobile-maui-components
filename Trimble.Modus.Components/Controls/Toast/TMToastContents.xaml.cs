@@ -99,7 +99,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         button.Clicked += CloseButton_Clicked;
         if (string.IsNullOrEmpty(RightIconText)) {
              imageButton.Clicked += (sender, args) => {
-                action.Invoke();
+                action?.Invoke();
             };
 
             if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
@@ -119,7 +119,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         else
         {   
             button.Clicked += (sender, args) => {
-                action.Invoke();
+                action?.Invoke();
             };
             contentLayout.Children.Add(button);
 
@@ -128,11 +128,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         var idiom = Device.Idiom;
         setWidth(idiom);
         Message = GetWrappedLabelText(message,idiom);
-    }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        throw new NotImplementedException();
     }
 
     private void setWidth(TargetIdiom idiom)
