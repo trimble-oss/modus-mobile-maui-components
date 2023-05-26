@@ -74,43 +74,69 @@ public partial class TMToastContents : Popup.Pages.PopupPage
     {
         LeftIconSource = leftIcon;
         RightIconText = actionButtonText;
-        TMButton rightIcon = new TMButton();
-        rightIcon.Title = RightIconText;
-        rightIcon.TextColor = TextColor;
-        if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+
+ 
+        var button = new Button();
+        button.Text = RightIconText;
+        button.TextColor = TextColor;
+        button.Padding = new Thickness(8, 0, 16, 0);
+        button.BackgroundColor = ToastTheme;
+        button.VerticalOptions = LayoutOptions.Center;
+
+
+        var imageButton = new ImageButton
         {
-            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-        }
-        else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
-        {
-            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+            WidthRequest = 16,
+            HeightRequest = 16,
+            Margin = new Thickness(8,0,16,0),
+            VerticalOptions = LayoutOptions.Center,
+            HorizontalOptions = LayoutOptions.Center,
+            };
+
+           
+        
+        imageButton.Clicked += CloseButton_Clicked;
+        button.Clicked += CloseButton_Clicked;
+        if (string.IsNullOrEmpty(RightIconText)) {
+             imageButton.Clicked += (sender, args) => {
+                action.Invoke();
+            };
+
+            if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+            {
+                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+            }
+            else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
+            {
+                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+            }
+            else
+            {
+                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+            }
+            contentLayout.Children.Add(imageButton);
         }
         else
         {
-            rightIcon.IconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
-        }
-        rightIcon.Clicked += CloseButton_Clicked;
-        if (!string.IsNullOrEmpty(RightIconText)) {
-            rightIcon.IconSource = null;
-            rightIcon.Clicked += (sender, args) => {
+            button.Clicked += (sender, args) => {
                 action.Invoke();
             };
-        
+
+            contentLayout.Children.Add(button);
+
         }
-        rightIcon.VerticalOptions = LayoutOptions.Center;
-        rightIcon.HorizontalOptions = LayoutOptions.End;
-        rightIcon.BackgroundColor = this.BackgroundColor;
-        rightIcon.Size = Enums.Size.XSmall;
-        rightIcon._iconWidth = 16;
-        rightIcon._iconHeight = 16;
-        rightIcon.BorderColor = Colors.Transparent;
-        contentLayout.Children.Add(rightIcon);
+     
         var idiom = Device.Idiom;
-        setWidth(rightIcon,idiom);
+        setWidth(idiom);
         Message = GetWrappedLabelText(message,idiom);
     }
 
-    private void setWidth(TMButton rightIcon,TargetIdiom idiom)
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void setWidth(TargetIdiom idiom)
     {
         double minimumTabletWidth = 480; 
         double maximumTabletWidthPercentage = 0.7;
@@ -118,7 +144,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         if (idiom == TargetIdiom.Phone)
         {
             toastLayout.Padding = new Thickness(16,0,16,10);
-            rightIcon.Size = Enums.Size.XSmall;
+        
         }
         else if (idiom == TargetIdiom.Tablet)
         {
@@ -126,7 +152,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             toastLayout.MinimumWidthRequest = minimumTabletWidth;
             toastLayout.MaximumWidthRequest = deviceWidth * maximumTabletWidthPercentage;
             toastLayout.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            rightIcon.Size = Enums.Size.Large;
+      
         }
 
     }
