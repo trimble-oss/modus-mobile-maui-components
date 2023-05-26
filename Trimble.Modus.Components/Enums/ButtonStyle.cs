@@ -2,7 +2,6 @@
 {
     public enum ButtonStyle
     {
-        None,
         BorderLess,
         Fill,
         Outline
