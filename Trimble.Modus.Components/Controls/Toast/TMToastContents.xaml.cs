@@ -117,11 +117,10 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             contentLayout.Children.Add(imageButton);
         }
         else
-        {
+        {   
             button.Clicked += (sender, args) => {
                 action.Invoke();
             };
-
             contentLayout.Children.Add(button);
 
         }

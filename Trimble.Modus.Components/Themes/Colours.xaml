@@ -6,13 +6,24 @@
     <Color x:Key="TrimbleBlue">#0063a3</Color>
     <Color x:Key="TrimbleBlueDark">#004f83</Color>
     <Color x:Key="TrimbleYellow">#fbad26</Color>
-    <Color x:Key="TrimbleGray">#252a2e</Color>
+    <Color x:Key="TrimbleGray">#252a2e</Color> 
     <Color x:Key="TrimbleDisabledColor">#CEDEEB</Color>
     <Color x:Key="Black">#353a40</Color>
+    <Color x:Key="DangerRed">#DA212C</Color>
+    <Color x:Key="SecondaryButton">#6A6E79</Color>
+    <Color x:Key="TertiaryButton">#CBCDD6</Color>
     <Color x:Key="GrayPlaceholder">#90939f</Color>
     <Color x:Key="FocusBlue">#019aeb</Color>
     <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
+    <Color x:Key="DangerRedClicked">#B73538</Color>
+    <Color x:Key="SecondaryButtonClicked">#7D808D</Color>
+    <Color x:Key="TertiaryButtonClicked">#E0E1E9</Color>
+    <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
+    <Color x:Key="BluePale">#DCEDF9</Color>
+    <Color x:Key="NeutralGrey">#E0E1E9</Color>
 
+    
+    
     <!--ToastColors-->
     <Color x:Key="ToastBlue">#DCEDF9</Color>
     <Color x:Key="ToastWhite">#FFFFFF</Color>
