@@ -8,16 +8,16 @@ public partial class TMButtonPage : ContentPage
 {
     private string _selectedStyle ="Fill";
     private string _selectedSize ="Default";
-    private bool isDiabled;
+    private bool _isDiabled;
 
     public bool IsDisabled
     {
-        get => isDiabled;
+        get => _isDiabled;
         set
         {
-            if (isDiabled != value)
+            if (_isDiabled != value)
             {
-                isDiabled = value;
+                _isDiabled = value;
                 ValidateRadioButtons();
             }
         }
@@ -30,11 +30,6 @@ public partial class TMButtonPage : ContentPage
 		InitializeComponent();
     }
 
-    private void button_Clicked(object sender, EventArgs e)
-    {
-        Console.WriteLine("Clicked");
-     
-    }
     private void Style_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
@@ -80,12 +75,12 @@ public partial class TMButtonPage : ContentPage
                     {
                         if (!(button.ButtonColor == ButtonColor.Tertiary))
                         {
-                            button.IconSource = ImageSource.FromFile("icon.png");
+                            button.IconSource = ImageSource.FromFile("gallery_icon.png");
                         }
                     }
                 }
 
-                if (isDiabled)
+                if (_isDiabled)
                 {
                     button.IsDisabled = true;
                 }

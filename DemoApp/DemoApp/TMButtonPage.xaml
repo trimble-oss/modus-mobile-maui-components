@@ -48,7 +48,7 @@
                     x:Name="button1i"
                     Title = "Primary"
                     ButtonColor="Primary"
-                    IconSource="icon.png"
+                    IconSource="gallery_icon.png"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
@@ -56,7 +56,7 @@
                     x:Name="button2i"
                     Title = "Secondary"
                     ButtonColor="Secondary"
-                    IconSource="icon.png"
+                    IconSource="gallery_icon.png"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
@@ -73,7 +73,7 @@
                     <Modus:TMButton 
                     x:Name="button4i"
                     Title = "Danger"
-                    IconSource="icon.png"
+                    IconSource="gallery_icon.png"
                     ButtonColor="Danger" 
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
@@ -97,11 +97,9 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0" Text="IsDisabled"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Switch Grid.Column="1" Grid.Row="0" x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabled_Toggled" />
+                   
+                    <Label Grid.Column="0"  Text="IsDisabled"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Switch Grid.Column="1"  x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabled_Toggled" />
                 </Grid>
             <Label Text="Floating Buttons"></Label>
             <StackLayout Orientation="Horizontal" Spacing="10">
@@ -110,7 +108,7 @@
                     Title = "Floating Button"
                      IsFloatingButton="True"
                     ButtonColor="Primary"
-                    IconSource="icon.png"
+                    IconSource="gallery_icon.png"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
@@ -118,7 +116,7 @@
                     x:Name="floatingi"
                     IsFloatingButton="True"
                     ButtonColor="Primary"
-                    IconSource="icon.png"
+                    IconSource="gallery_icon.png"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />

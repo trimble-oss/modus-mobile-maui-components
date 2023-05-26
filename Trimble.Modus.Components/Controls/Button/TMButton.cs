@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Enums;
 
@@ -55,7 +56,6 @@ namespace Trimble.Modus.Components
             else if (button.ButtonStyle == ButtonStyle.Outline)
             {
                 button.frame.BackgroundColor = Colors.Transparent;
-                button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 if (button.ButtonColor == ButtonColor.Primary)
                 {
                     button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
@@ -292,31 +292,67 @@ namespace Trimble.Modus.Components
             tmButton.HeightRequest = 48;
         }
 
+       
         private void OnTapped(object sender, EventArgs e)
         {
             Command?.Execute(CommandParameter);
             _clicked?.Invoke(this, e);
             var col = frame.BackgroundColor;
-            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor, 0.2); 
-        
-            this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
+            frame.BackgroundColor = getOnClickColor(frame.BackgroundColor); 
+            Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
             {
                 if (col != null)
                 {
                     frame.BackgroundColor = col;
 
                 }
-                return false;
+                return false; 
             });
         }
-        private Color getOnClickColor(Color color, double factor)
+        private Color getOnClickColor(Color color)
         {
-            double red = color.Red * (1 - factor);
-            double green = color.Green * (1 - factor);
-            double blue = color.Blue * (1 - factor);
+            if (ButtonStyle == ButtonStyle.Outline)
+            {
+                if (ButtonColor == ButtonColor.Primary)
+                {
+                    return (Color)BaseComponent.colorsDictionary()["BluePale"];
+                }
+                if (ButtonColor == ButtonColor.Secondary)
+                {
+                    return (Color)BaseComponent.colorsDictionary()["NeutralGrey"];
+                }
 
-            return Color.FromRgb(red, green, blue);
+
+            }
+            if(ButtonStyle == ButtonStyle.BorderLess)
+            {
+                return (Color)BaseComponent.colorsDictionary()["BluePale"];
+            }
+
+            if (color.Equals((Color)BaseComponent.colorsDictionary()["TrimbleBlue"]))
+            {
+                return (Color)BaseComponent.colorsDictionary()["TrimbleBlueClicked"];
+            }
+            else if (color.Equals((Color)BaseComponent.colorsDictionary()["SecondaryButton"]))
+            {
+                return (Color)BaseComponent.colorsDictionary()["SecondaryButtonClicked"];
+            }
+            else if (color.Equals((Color)BaseComponent.colorsDictionary()["TertiaryButton"]))
+            {
+                return (Color)BaseComponent.colorsDictionary()["TertiaryButtonClicked"];
+            }
+            else if (color.Equals((Color)BaseComponent.colorsDictionary()["DangerRed"]))
+            {
+                return (Color)BaseComponent.colorsDictionary()["DangerRedClicked"];
+            }
+            else if (color.Equals(Colors.Transparent))
+            {
+                return (Color)BaseComponent.colorsDictionary()["DangerRedClicked"];
+            }
+
+            return color;
         }
+
 
         private void UpdateButtonStyle()
         {
@@ -324,7 +360,7 @@ namespace Trimble.Modus.Components
             {
                 frame.Shadow = new Shadow
                 {
-                    Radius = 25,
+                    Radius = 15,
                     Opacity = 100
 
                 };
@@ -382,13 +418,13 @@ namespace Trimble.Modus.Components
 
                         if (tmButton.imageSet && tmButton.isTextSet)
                         {
-                            tmButton._titleLabel.Padding = new Thickness(0, 8, 12, 8);
+                            tmButton._titleLabel.Padding = new Thickness(0, 4, 12, 4);
                             tmButton._iconImage.Margin = new Thickness(8, 8, 8, 8);
                             tmButton._iconImage.IsVisible = true;
                         }
                         else
                         {
-                            tmButton._titleLabel.Padding = new Thickness(12, 8, 12, 8);
+                            tmButton._titleLabel.Padding = new Thickness(12, 4, 12, 4);
                             tmButton._iconImage.IsVisible = false;
                         }
                         if (tmButton.imageSet && !tmButton.isTextSet)
@@ -490,9 +526,6 @@ namespace Trimble.Modus.Components
 
             if ((bool)newValue)
             {
-               // button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleDisabledColor"];
-
-           
                 button.Opacity = 0.5;
                 button.GestureRecognizers.Clear();
             }

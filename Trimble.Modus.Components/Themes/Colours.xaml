@@ -15,7 +15,15 @@
     <Color x:Key="GrayPlaceholder">#90939f</Color>
     <Color x:Key="FocusBlue">#019aeb</Color>
     <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
+    <Color x:Key="DangerRedClicked">#B73538</Color>
+    <Color x:Key="SecondaryButtonClicked">#7D808D</Color>
+    <Color x:Key="TertiaryButtonClicked">#E0E1E9</Color>
+    <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
+    <Color x:Key="BluePale">#DCEDF9</Color>
+    <Color x:Key="NeutralGrey">#E0E1E9</Color>
 
+    
+    
     <!--ToastColors-->
     <Color x:Key="ToastBlue">#DCEDF9</Color>
     <Color x:Key="ToastWhite">#FFFFFF</Color>
