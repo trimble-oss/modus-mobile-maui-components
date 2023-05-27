@@ -26,7 +26,7 @@
 
 
         </Picker>
-        <Button x:Name="button" Text="Toast" Margin="5" Clicked="Button_Clicked" />
+        <Button x:Name="button" Text="Toast" Margin="5" Clicked="OnToastActionTapped" />
         
     </StackLayout>
 

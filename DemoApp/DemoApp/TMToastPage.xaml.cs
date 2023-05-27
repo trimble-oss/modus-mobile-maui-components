@@ -12,20 +12,17 @@ public partial class TMToastPage : ContentPage
       toastPicker.SelectedItem = ToastTheme.ToastBlue;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private void OnToastActionTapped(object sender, EventArgs e)
 
     {
         string rightIconText = IconText.Text;
         string toastMessage = Message.Text;
         var toast = new TMToast();
-        if (toastMessage != null)
-        {
-            toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme);
-        }
-        else
-        {
-            toast.Show("Enter Toast Message",null,null,ToastTheme.ToastRed);
-        }
+        toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme,HandleEvent);
+    }
+    void HandleEvent()
+    {
+        Console.WriteLine("Event handled");
     }
 
     private void ToastPicker_SelectedIndexChanged(object sender, EventArgs e)
