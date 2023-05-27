@@ -16,7 +16,8 @@
                     TitleText="Success/Error Input" 
                     HelperText="Helper Text" 
                     Placeholder="Text Input" 
-                    InputValidation="CustomValidateInput"/>
+                    InputValidation="CustomValidateInput"
+                    Focused="modusInput_Focused"/>
 
                 <Modus:TMInput 
                     TitleText="Right Icon" 

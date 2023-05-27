@@ -14,10 +14,12 @@ public partial class MainPage : ContentPage
 
     private TMModal CreateTMModal()
     {
-        TMModal tmModal = new TMModal("This is a header", ImageSource.FromFile("placeholder.png"));
-        tmModal.AddAction("Default", async (obj, args) =>
+        TMInput inputRef = null;
+        TMModal tmModal = new("This is a header", ImageSource.FromFile("placeholder.png"), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, mollit anim id est laborum.");
+        tmModal.FullWidthButton = true;
+        tmModal.AddAction("Default", async () =>
         {
-            await DisplayAlert("Alert", "Modal Closed", "Cancel");
+            await DisplayAlert("Alert", "You have entered "+inputRef?.Text, "Close");
         });
         tmModal.AddAction("Default");
         tmModal.AddAction("Default");

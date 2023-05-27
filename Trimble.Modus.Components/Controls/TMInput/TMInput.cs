@@ -3,6 +3,8 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using System;
+using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 
@@ -101,6 +103,11 @@ namespace Trimble.Modus.Components
 
         private bool _isTextValidated = false;
 
+        /// <summary>
+        /// Tracks whether Dispose has been called
+        /// </summary>
+        private bool disposed = false;
+
         #endregion
 
         #region Bindable Properties
@@ -141,7 +148,7 @@ namespace Trimble.Modus.Components
             BindableProperty.Create("CursorPosition", typeof(int), typeof(TMInput), 0, BindingMode.Default, null, OnCursorPositionPropertyChanged);
 
         /// <summary>
-        /// Indetifies the IsPassword property, this property is used to hide the text entered into dots.
+        /// Identifies the IsPassword property, this property is used to hide the text entered into dots.
         /// </summary>
         public static readonly BindableProperty IsPasswordProperty =
             BindableProperty.Create("IsPassword", typeof(bool), typeof(TMInput), false, BindingMode.TwoWay, null);
@@ -935,17 +942,37 @@ namespace Trimble.Modus.Components
             OnHelperTextChanged(HelperText);
 
             _validationContainer.IsVisible = false;
-           // _border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
             _validationContainer.HeightRequest = 0;
+        }
+
+        /// <summary>
+        /// Called by consumer object to clear the control
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
         /// Unsubscribe from entryfocus event when object is disposed
         /// </summary>
-        public void Dispose()
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
         {
-            _borderlessEntry.Focused -= OnEntryFocusChanged;
-            _borderlessEntry.Unfocused -= OnEntryFocusChanged;
+            // Check to see if Dispose has already been called.
+            if (!disposed)
+            {
+                _borderlessEntry.Focused -= OnEntryFocusChanged;
+                _borderlessEntry.Unfocused -= OnEntryFocusChanged;
+
+                disposed = true;
+            }
+        }
+
+        ~TMInput()
+        {
+            Dispose(disposing: false);
         }
 
     }

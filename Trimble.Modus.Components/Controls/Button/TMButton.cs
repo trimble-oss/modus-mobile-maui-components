@@ -9,13 +9,13 @@ namespace Trimble.Modus.Components
     {   
         internal int _iconWidth = 16 , _iconHeight = 16;
         private const int _borderRadius = 4;
-        private readonly Label _titleLabel;
+        internal readonly Label _titleLabel;
         private readonly Image _iconImage;
         private readonly TapGestureRecognizer _tapGestureRecognizer;
         private bool imageSet = false;
         private bool isTextSet = false;
         public event EventHandler _clicked;
-        private Border frame;
+        internal Border frame;
         private StackLayout stackLayout;
         private bool sizeSet = false;
         public static readonly BindableProperty TitleProperty =
