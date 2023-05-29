@@ -28,6 +28,12 @@
                     Clicked="ButtonClicked" 
                     Margin="10">
                 </Button> 
+                <Button     
+                    AutomationId="tmcheckbox"
+                    Text="CheckBox" 
+                    Clicked="ButtonClicked" 
+                    Margin="10">
+                </Button>
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             x:Class="DemoApp.TMCheckBoxPage"
+             Title="TMCheckBoxPage">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+        <Modus:TMCheckBox x:Name="CheckBox" IsIndeterminate ="False" IsDisabled="False" Text="Checked" Size="Default"></Modus:TMCheckBox>
+        <StackLayout  Orientation="Horizontal">
+            <Label Text="Disabled" VerticalOptions="Center" />
+            <Switch Toggled="Disable_Toggled" />
+        </StackLayout>
+        <StackLayout  Orientation="Horizontal">
+            <Label Text="Indeterminate" VerticalOptions="Center" />
+            <Switch Toggled="Indeterminate_Toggled" />
+        </StackLayout>
+        <Label Text="Size:"></Label>
+        <StackLayout Orientation="Horizontal">
+            <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="BoxSize" CheckedChanged="Size_Changed" />
+            <RadioButton Content="Large" Value="Large" GroupName="BoxSize" CheckedChanged="Size_Changed" />
+        </StackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>
