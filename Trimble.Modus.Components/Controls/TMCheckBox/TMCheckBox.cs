@@ -6,12 +6,14 @@ namespace Trimble.Modus.Components
 {
     public class TMCheckBox : ContentView
     {
+        #region Fields
         private Label _label;
         private Image _checkbox;
         private int _default_width = 24, _default_height = 24, _large_width = 32,  _large_height = 32;
         private int _default_font_size = 14, _large_font_size = 16;
+        #endregion
 
-
+        #region Public Properties
         public bool IsDisabled
         {
             get => (bool)GetValue(IsDisabledProperty);
@@ -37,6 +39,9 @@ namespace Trimble.Modus.Components
             get => (bool)GetValue(IsIndeterminateProperty);
             set => SetValue(IsIndeterminateProperty, value);
         }
+        #endregion
+
+        #region Bindable Properties
 
         public static readonly BindableProperty IsDisabledProperty =
          BindableProperty.Create(
@@ -53,22 +58,6 @@ namespace Trimble.Modus.Components
               typeof(TMCheckBox),
               false,
               propertyChanged: OnIsIndeterminateChanged);
-
-        private static void OnIsIndeterminateChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var customCheckboxView = (TMCheckBox)bindable;
-
-            if (customCheckboxView.IsIndeterminate) { 
-                customCheckboxView.IsChecked = false;
-                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.indeterminate_checkbox.png");
-
-            }
-            else
-            {
-                customCheckboxView.IsChecked = false;
-            }
-
-        }
 
         public static readonly BindableProperty TextProperty =
            BindableProperty.Create(
@@ -93,6 +82,9 @@ namespace Trimble.Modus.Components
                        typeof(TMCheckBox),
                        CheckboxSize.Default,
                        propertyChanged: OnSizeChanged);
+        #endregion
+
+        #region Property changes
 
         private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -112,46 +104,32 @@ namespace Trimble.Modus.Components
             }
         }
 
-        public TMCheckBox()
+
+        private static void OnIsIndeterminateChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            _label = new Label() { FontSize = _default_font_size };
-            _label.VerticalOptions = LayoutOptions.Center;
-            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center ,HeightRequest = _default_height ,WidthRequest = _default_width , Margin = new Thickness(0,0,4,0)};
-        
-            Content = new StackLayout
+            var customCheckboxView = (TMCheckBox)bindable;
+
+            if (customCheckboxView.IsIndeterminate)
             {
-                Orientation = StackOrientation.Horizontal,
-                Children =
-                {
-                    _checkbox,
-                    _label,
-                }
-            };
+                customCheckboxView.IsChecked = false;
+                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.indeterminate_checkbox.png");
 
-            var tapGesture = new TapGestureRecognizer();
-            tapGesture.Tapped += OnTapGestureTapped;
-            GestureRecognizers.Add(tapGesture);
+            }
+            
         }
-
-        private void OnTapGestureTapped(object sender, TappedEventArgs e)
-        {
-            if (!IsDisabled)
-                IsChecked = !IsChecked;
-        }
-
         private static void OnIsDisabledChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var customCheckboxView = (TMCheckBox)bindable;
             customCheckboxView.UpdateDisabledState();
         }
 
-       
+
         private static void OnIsCheckedChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var customCheckboxView = (TMCheckBox)bindable;
             if (customCheckboxView.IsChecked)
             {
-               customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.checked_checkbox.png");
+                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.checked_checkbox.png");
 
             }
             else if (!customCheckboxView.IsChecked)
@@ -166,23 +144,47 @@ namespace Trimble.Modus.Components
             var customCheckboxView = (TMCheckBox)bindable;
             customCheckboxView._label.Text = (string)newValue;
         }
+        #endregion
 
+        public TMCheckBox()
+        {
+            _label = new Label() { FontSize = _default_font_size,VerticalOptions = LayoutOptions.Center };
+            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center ,HeightRequest = _default_height ,WidthRequest = _default_width , Margin = new Thickness(0,0,4,0)};
+            Content = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                Children =
+                {
+                    _checkbox,
+                    _label,
+                }
+            };
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += OnTapGestureTapped;
+            GestureRecognizers.Add(tapGesture);
+        }
+        /// <summary>
+        /// For checked state while tapping
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTapGestureTapped(object sender, TappedEventArgs e)
+        {
+            if (!IsDisabled)
+            {
+                IsChecked = !IsChecked;
+            }
+        
+        }
+        /// <summary>
+        /// Set The Disabled State 
+        /// </summary>
         private void UpdateDisabledState()
         {
-            if (IsDisabled)
-            {
-                _checkbox.IsEnabled = false;
-                _label.IsEnabled = false;
-                Opacity = 0.5;
-               
-            }
-            else
-            {
-                _checkbox.IsEnabled = true;
-                _label.IsEnabled = true;
-                Opacity = 1.0;
-            }
+            _checkbox.IsEnabled = !IsDisabled;
+            _label.IsEnabled = !IsDisabled;
+            Opacity = IsDisabled ? 0.5 : 1;
+            
         }
-
     }
 }

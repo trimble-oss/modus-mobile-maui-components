@@ -9,26 +9,20 @@ public partial class TMCheckBoxPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
     private void Disable_Toggled(object sender, ToggledEventArgs e)
     {
 		CheckBox.IsDisabled = !CheckBox.IsDisabled;
     }
-
     private void Indeterminate_Toggled(object sender, ToggledEventArgs e)
     {
         CheckBox.IsIndeterminate = !CheckBox.IsIndeterminate;
     }
-
     private void Size_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-
             _selectedSize = radioButton.Value.ToString();
-
             CheckBox.Size = (CheckboxSize)Enum.Parse(typeof(CheckboxSize), _selectedSize);
         }
-
     }
 }
