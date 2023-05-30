@@ -6,51 +6,50 @@
              Title="TMModalPage">
     <ScrollView>
         <VerticalStackLayout Spacing="5" Padding="8">
-            <Label Text="Modal Description" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="Modal" FontSize="Medium" FontAttributes="Bold"/>
             <Modus:TMInput x:Name="ModalTitle" TitleText="Modal Title" Placeholder="Enter title here"/>
+            <Label Text="Description" />
             <Editor x:Name="Message" Placeholder="Enter Modal Desciption"  Margin="5" HeightRequest="100" VerticalOptions="FillAndExpand" />
 
             <HorizontalStackLayout Spacing="5">
                 <Label Text="Title Icon" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
                 <CheckBox x:Name="IconCheckBox" VerticalOptions="Center" HorizontalOptions="End"/>
                 <Label Text="Full Width button" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
-                <CheckBox x:Name="FullWidthButtonCheckBox" VerticalOptions="Center" HorizontalOptions="End"/>
+                <CheckBox x:Name="FullWidthButtonCheckBox" VerticalOptions="Center" HorizontalOptions="End" />
             </HorizontalStackLayout>
 
-            <Label Text="Text Input" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
-            <CheckBox x:Name="InputCheckBox" VerticalOptions="Center" HorizontalOptions="End"/>
-            
+            <HorizontalStackLayout>
+                <Label Text="Text Input" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" />
+                <CheckBox x:Name="InputCheckBox" HorizontalOptions="End" VerticalOptions="Center" CheckedChanged="InputCheckboxChanged" />
+            </HorizontalStackLayout>
+
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Grid.ColumnSpan="2" Text="Danger button" FontSize="Medium" FontAttributes="Bold"/>
-                <Modus:TMInput x:Name="DangerButtonTitleEntry" Grid.Column="0" Grid.Row="1" TitleText=" Button Title"/>
-                <Modus:TMButton Grid.Column="1" Grid.Row="1"  Title="Add Danger Button" Size="Small" Margin="0,23,0,0" Clicked="AddDangerButton"/>
-            </Grid>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.ColumnSpan="2" Text="Button" FontSize="Medium" FontAttributes="Bold"/>
-                <Modus:TMInput x:Name="ButtonTitleEntry" Grid.Column="0" Grid.Row="1" TitleText=" Button Title"/>
-                <Modus:TMButton Grid.Column="1" Grid.Row="1"  Title="Add Button" Size="Small" Margin="0,23,0,0" Clicked="AddNewButton"/>
+                <Label Grid.ColumnSpan="2" Text="Buttons" FontSize="Medium" FontAttributes="Bold"/>
+                <Modus:TMInput x:Name="PrimaryButtonTitle" Grid.Column="0" Grid.Row="1" TitleText="Primary Button Title"/>
+                <Modus:TMButton Grid.Column="1" Grid.Row="1"  Title="Add" Size="Small" Margin="0,23,0,0" Clicked="AddPrimaryButton"/>
+
+                <Modus:TMInput x:Name="SecondaryButtonTitle" Grid.Column="0" Grid.Row="2" TitleText="Secondary Button Title"/>
+                <Modus:TMButton Grid.Column="1" Grid.Row="2"  Title="Add" Size="Small" Margin="0,23,0,0" Clicked="AddSecondaryButton"/>
+
+                <Modus:TMInput x:Name="TertiaryButtonTitle" Grid.Column="0" Grid.Row="3" TitleText="Tertiary Button Title"/>
+                <Modus:TMButton Grid.Column="1" Grid.Row="3"  Title="Add" Size="Small" Margin="0,23,0,0" Clicked="AddTertiaryButton"/>
+
+                <Modus:TMInput x:Name="DangerButtonTitleEntry" Grid.Column="0" Grid.Row="4" TitleText="Danger Button Title"/>
+                <Modus:TMButton Grid.Column="1" Grid.Row="4"  Title="Add" Size="Small" Margin="0,23,0,0" Clicked="AddDangerButton"/>
             </Grid>
 
-            <Modus:TMButton Title="Show Modal" Clicked="ShowModalClicked" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Modus:TMButton Title="Show Modal" Clicked="ShowModalClicked" VerticalOptions="Center" Margin="0,10" HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
     

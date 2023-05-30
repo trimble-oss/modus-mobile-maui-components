@@ -34,5 +34,8 @@
     <Color x:Key="ToastGreen">#E0ECCF</Color>
     <Color x:Key="ToastTextBlue">#0063A3</Color>
     
+    <!--Modal-->
+    <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
+
 
 </ResourceDictionary>
