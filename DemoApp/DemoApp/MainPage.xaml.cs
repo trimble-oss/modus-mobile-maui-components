@@ -1,4 +1,5 @@
-﻿using Trimble.Modus.Components;
+﻿using DemoApp.Views;
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace DemoApp;
@@ -21,8 +22,8 @@ public partial class MainPage : ContentPage
         {
             await DisplayAlert("Alert", "You have entered "+inputRef?.Text, "Close");
         });
-        tmModal.AddAction("Default");
-        tmModal.AddAction("Default");
+        tmModal.AddDangerButton("Default");
+        tmModal.AddDangerButton("Danger");
         return tmModal;
     }
 
@@ -38,7 +39,7 @@ public partial class MainPage : ContentPage
                 Navigation.PushAsync(new TMInputPage());
                 break;
             case "tmmodal":
-                PopupService.Instance.PushAsync(CreateTMModal());
+                Navigation.PushAsync(new TMModalPage());
                 break;
             case "tmtoast":
                 Navigation.PushAsync(new TMToastPage());

@@ -369,7 +369,7 @@ namespace Trimble.Modus.Components
         public string Placeholder
         {
             get { return (string)GetValue(PlaceholderProperty); }
-            set { SetValue(KeyboardProperty, value); }
+            set { SetValue(PlaceholderProperty, value); }
         }
 
         /// <summary>

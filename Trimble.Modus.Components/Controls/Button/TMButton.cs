@@ -27,10 +27,10 @@ namespace Trimble.Modus.Components
             BindableProperty.Create(nameof(IconSource), typeof(ImageSource), typeof(TMButton), propertyChanged: OnIconSourceChanged);
 
         public static readonly BindableProperty ColorProperty =
-            BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(TMButton), propertyChanged: OnColorOrButtonStyleChanged);
+            BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(TMButton), ButtonColor.Primary, propertyChanged: OnColorOrButtonStyleChanged);
 
         public static readonly BindableProperty ButtonStyleProperty =
-          BindableProperty.Create(nameof(ButtonStyle), typeof(ButtonStyle), typeof(TMButton), propertyChanged: OnColorOrButtonStyleChanged);
+          BindableProperty.Create(nameof(ButtonStyle), typeof(ButtonStyle), typeof(TMButton), ButtonStyle.Fill, propertyChanged: OnColorOrButtonStyleChanged);
 
 
         private static void OnColorOrButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
