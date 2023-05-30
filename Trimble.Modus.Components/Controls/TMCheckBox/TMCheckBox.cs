@@ -11,9 +11,17 @@ namespace Trimble.Modus.Components
         private Image _checkbox;
         private int _default_width = 24, _default_height = 24, _large_width = 32,  _large_height = 32;
         private int _default_font_size = 14, _large_font_size = 16;
+        private EventHandler _checked;
         #endregion
 
         #region Public Properties
+
+        public event EventHandler IsCheckedChanged
+        {
+            add { _checked += value; }
+            remove { _checked -= value; }
+        }
+
         public bool IsDisabled
         {
             get => (bool)GetValue(IsDisabledProperty);
@@ -174,7 +182,8 @@ namespace Trimble.Modus.Components
             {
                 IsChecked = !IsChecked;
             }
-        
+            _checked?.Invoke(this, e);
+
         }
         /// <summary>
         /// Set The Disabled State 
