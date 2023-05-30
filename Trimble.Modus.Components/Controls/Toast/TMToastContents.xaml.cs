@@ -9,12 +9,12 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
 {
     private const int DELAYTIME = 5000;
+
     public ImageSource LeftIconSource { get; set; }
+
     public string Message { get; set; }
 
     public string RightIconText { get; set; }
-
-    public ImageSource RightIconSource { get; set; }
 
     public double ToastWidthRequest { get; set; }
 
@@ -108,55 +108,38 @@ public partial class TMToastContents : Popup.Pages.PopupPage
     {
       
         RightIconText = actionButtonText;
-
  
-        var button = new Button();
-        button.Text = RightIconText;
-        button.TextColor = TextColor;
-        button.Padding = new Thickness(8, 0, 16, 0);
-        button.BackgroundColor = ToastBackground;
-        button.VerticalOptions = LayoutOptions.Center;
-        button.HorizontalOptions = LayoutOptions.Center;
-        
-        var imageButton = new ImageButton
-        {
-            WidthRequest = 16,
-            HeightRequest = 16,
-            Margin = new Thickness(8,0,16,0),
-            VerticalOptions = LayoutOptions.Center,
-            HorizontalOptions = LayoutOptions.Center,
-            };
+        actionButton.Text = RightIconText;
+        actionButton.TextColor = TextColor;
+        actionButton.BackgroundColor = ToastBackground;
 
-           
-        
-        imageButton.Clicked += CloseButton_Clicked;
-        button.Clicked += CloseButton_Clicked;
         if (string.IsNullOrEmpty(RightIconText)) {
-             imageButton.Clicked += (sender, args) => {
+             closeButton.Clicked += (sender, args) => {
                 action?.Invoke();
             };
 
             if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
             {
-                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
             }
             else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
             {
-                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
             }
             else
             {
-                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
             }
-            contentLayout.Children.Add(imageButton);
+            closeButton.IsVisible = true;
+            actionButton.IsVisible = false;
         }
         else
-        {   
-            button.Clicked += (sender, args) => {
+        {
+            closeButton.IsVisible = false;
+            actionButton.IsVisible = true;
+            actionButton.Clicked += (sender, args) => {
                 action?.Invoke();
             };
-            contentLayout.Children.Add(button);
-
         }
      
         var idiom = Device.Idiom;

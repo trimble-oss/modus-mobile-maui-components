@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:color="clr-namespace:Trimble.Modus.Components"   
@@ -22,11 +22,37 @@
                 <RoundRectangle CornerRadius="4"  />
             </Border.StrokeShape>
 
-            <StackLayout x:Name="contentLayout" VerticalOptions="Center" BackgroundColor="{Binding ToastBackground}" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                    <Image x:Name="leftIconImage" Margin="16,8,16,8"  Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
-                <Label x:Name="label" Text="{Binding Message}"  LineBreakMode="WordWrap" MaximumHeightRequest="500" MaxLines="3" FontSize="16" TextColor="{Binding TextColor}" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" Padding="0,8,0,8"/>
-                   
-                </StackLayout>
+            <StackLayout x:Name="contentLayout"
+                         VerticalOptions="Center"
+                         BackgroundColor="{Binding ToastBackground}"
+                         HorizontalOptions="FillAndExpand"
+                         Orientation="Horizontal"
+                         Spacing="8"
+                         Padding="16,8">
+                <Image x:Name="leftIconImage" Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                <Label x:Name="label"
+                       Text="{Binding Message}"
+                       LineBreakMode="WordWrap"
+                       MaximumHeightRequest="500"
+                       MaxLines="3" FontSize="16"
+                       TextColor="{Binding TextColor}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="actionButton"
+                        Padding="8,0,16,0"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Clicked="CloseButton_Clicked"/>
+                <ImageButton x:Name="closeButton"
+                             MaximumHeightRequest="16"
+                             MaximumWidthRequest="16"
+                             WidthRequest="16"
+                             HeightRequest="16"
+                             Padding="{OnPlatform '0', iOS='16,16,0,16'}"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"
+                             Clicked="CloseButton_Clicked"/>
+            </StackLayout>
             
         </Border>
     </VerticalStackLayout>
