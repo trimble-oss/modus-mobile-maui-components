@@ -22,6 +22,12 @@
                     Clicked="ButtonClicked" 
                     Margin="10">
                 </Button>
+                <Button     
+                    AutomationId="tmtoast" 
+                    Text="Toast" 
+                    Clicked="ButtonClicked" 
+                    Margin="10">
+                </Button> 
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

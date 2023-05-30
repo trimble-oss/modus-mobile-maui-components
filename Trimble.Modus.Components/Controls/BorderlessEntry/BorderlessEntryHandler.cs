@@ -6,7 +6,7 @@ using Microsoft.Maui.Handlers;
 
 namespace Trimble.Modus.Components
 {
-    public partial class BorderlessEntryHandler : EntryHandler
+    internal partial class BorderlessEntryHandler : EntryHandler
     {
         public BorderlessEntryHandler()
         {
