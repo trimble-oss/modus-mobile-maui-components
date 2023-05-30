@@ -8,12 +8,12 @@ namespace Trimble.Modus.Components.Enums
 {
     public enum ToastTheme
     {
-        ToastBlue,
-        ToastWhite,
-        ToastBlack,
-        ToastGrey,
-        ToastRed,
-        ToastYellow,
-        ToastGreen
+        Default,
+        Dark,
+        Primary,
+        Secondary,
+        Danger,
+        Warning,
+        Success
     }
 }

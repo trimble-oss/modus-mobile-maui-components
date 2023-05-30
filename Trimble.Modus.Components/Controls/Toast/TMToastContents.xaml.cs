@@ -1,3 +1,4 @@
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Platform;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
@@ -17,40 +18,78 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     public double ToastWidthRequest { get; set; }
 
-    public Color ToastTheme { get; set; }
+    public Color ToastBackground { get; set; }
 
     public Color TextColor { get; set; }
 
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(string message, ImageSource leftIcon, string actionButtonText, Object popupNavigation,ToastTheme theme,Action action )
+    internal TMToastContents(string message, string actionButtonText, Object popupNavigation,ToastTheme theme,Action action )
     {
   
         InitializeComponent();
         SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation) popupNavigation;
-        PopupData(message, leftIcon, actionButtonText, action);
+        PopupData(message, actionButtonText, action);
         BindingContext = this;
         Close();
     }
 
     private void SetTheme(String toastTheme)
     {
-        ToastTheme = (Color)BaseComponent.colorsDictionary()[toastTheme];
-        if (string.Equals(toastTheme, "ToastBlue"))
+        ToastTheme theme = (ToastTheme)Enum.Parse(typeof(ToastTheme), toastTheme);
+        switch (theme)
         {
-            TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+            case ToastTheme.Default:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
 
+            case ToastTheme.Dark:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["White"];
+                break;
+
+            case ToastTheme.Primary:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+                break;
+
+            case ToastTheme.Secondary:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Danger:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Warning:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Success:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            default:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+                break;
         }
-        if (string.Equals(toastTheme, "ToastBlack"))
-        {
-            TextColor = (Color)BaseComponent.colorsDictionary()["ToastWhite"];
-        }
-        else
-        {
-            TextColor = (Color)BaseComponent.colorsDictionary()["ToastBlack"];
-        }
+      
     }
 
     public TMToastContents()
@@ -70,9 +109,9 @@ public partial class TMToastContents : Popup.Pages.PopupPage
          });
     }
 
-    private void PopupData(string message, ImageSource leftIcon , string actionButtonText, Action action)
+    private void PopupData(string message, string actionButtonText, Action action)
     {
-        LeftIconSource = leftIcon;
+      
         RightIconText = actionButtonText;
 
  
@@ -80,10 +119,10 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         button.Text = RightIconText;
         button.TextColor = TextColor;
         button.Padding = new Thickness(8, 0, 16, 0);
-        button.BackgroundColor = ToastTheme;
+        button.BackgroundColor = ToastBackground;
         button.VerticalOptions = LayoutOptions.Center;
-
-
+        button.HorizontalOptions = LayoutOptions.Center;
+        
         var imageButton = new ImageButton
         {
             WidthRequest = 16,
@@ -102,11 +141,11 @@ public partial class TMToastContents : Popup.Pages.PopupPage
                 action?.Invoke();
             };
 
-            if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+            if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
             {
                 imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
             }
-            else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
+            else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
             {
                 imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
             }

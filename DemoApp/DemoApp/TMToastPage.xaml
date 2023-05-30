@@ -14,13 +14,14 @@
 
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type theme:ToastTheme}">
-                        <theme:ToastTheme>ToastBlue</theme:ToastTheme>
-                        <theme:ToastTheme>ToastWhite</theme:ToastTheme>
-                        <theme:ToastTheme>ToastBlack</theme:ToastTheme>
-                        <theme:ToastTheme>ToastGrey</theme:ToastTheme>
-                        <theme:ToastTheme>ToastRed</theme:ToastTheme>
-                        <theme:ToastTheme>ToastYellow</theme:ToastTheme>
-                        <theme:ToastTheme>ToastGreen</theme:ToastTheme>
+                    <theme:ToastTheme></theme:ToastTheme>
+                        <theme:ToastTheme>Default</theme:ToastTheme>
+                        <theme:ToastTheme>Dark</theme:ToastTheme>
+                        <theme:ToastTheme>Primary</theme:ToastTheme>
+                        <theme:ToastTheme>Secondary</theme:ToastTheme>
+                        <theme:ToastTheme>Danger</theme:ToastTheme>
+                        <theme:ToastTheme>Warning</theme:ToastTheme>
+                        <theme:ToastTheme>Success</theme:ToastTheme>    
                 </x:Array>
             </Picker.ItemsSource>
 

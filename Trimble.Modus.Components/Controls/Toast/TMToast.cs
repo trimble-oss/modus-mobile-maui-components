@@ -17,13 +17,13 @@ namespace Trimble.Modus.Components.Controls.Toast
             popupNavigation  = new PopupNavigation();
         
         }
-        public void Show(string message, ImageSource leftIconSource = null, string actionButtonText = null, ToastTheme theme = 0, Action? action = null)
+        public void Show(string message, string actionButtonText = null, ToastTheme theme = 0, Action? action = null)
         {
             if(string.IsNullOrEmpty(message))
             {
                 throw new ArgumentNullException("Message is required");
             }
-           popupNavigation.PushAsync(new TMToastContents(message ,leftIconSource,  actionButtonText, popupNavigation,theme,action),false);
+           popupNavigation.PushAsync(new TMToastContents(message,  actionButtonText, popupNavigation,theme,action),false);
         }
       
     }
