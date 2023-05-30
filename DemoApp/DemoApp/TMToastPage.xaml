@@ -15,7 +15,6 @@
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type theme:ToastTheme}">
                     <theme:ToastTheme></theme:ToastTheme>
-                        <theme:ToastTheme>Default</theme:ToastTheme>
                         <theme:ToastTheme>Dark</theme:ToastTheme>
                         <theme:ToastTheme>Primary</theme:ToastTheme>
                         <theme:ToastTheme>Secondary</theme:ToastTheme>
