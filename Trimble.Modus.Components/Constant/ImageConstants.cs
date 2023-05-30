@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Trimble.Modus.Components.Contants
+namespace Trimble.Modus.Components.Contant
 {
     internal static class ImageConstants
     {

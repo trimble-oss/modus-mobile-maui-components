@@ -13,20 +13,6 @@ public partial class MainPage : ContentPage
        
 	}
 
-    private TMModal CreateTMModal()
-    {
-        TMInput inputRef = null;
-        TMModal tmModal = new("This is a header", ImageSource.FromFile("placeholder.png"), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, mollit anim id est laborum.");
-        tmModal.FullWidthButton = true;
-        tmModal.AddAction("Default", async () =>
-        {
-            await DisplayAlert("Alert", "You have entered "+inputRef?.Text, "Close");
-        });
-        tmModal.AddDangerButton("Default");
-        tmModal.AddDangerButton("Danger");
-        return tmModal;
-    }
-
     private void ButtonClicked(object sender, EventArgs e)
     {
         Button clickedButton = (Button)sender;

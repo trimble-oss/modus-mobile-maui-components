@@ -3,7 +3,8 @@ using Microsoft.Maui.Controls;
 //using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Layouts;
-using Trimble.Modus.Components.Contants;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Contant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Animations;
 using Trimble.Modus.Components.Popup.Services;
@@ -60,31 +61,7 @@ namespace Trimble.Modus.Components
             BindableProperty.Create(nameof(TitleIcon), typeof(ImageSource), typeof(TMModal), null, BindingMode.TwoWay, propertyChanged: OnTitleIconSourceChanged);
 
         /// <summary>
-        /// Gets or sets the text for the Primary button in the control
-        /// </summary>
-        public static readonly BindableProperty PrimaryTextProperty =
-            BindableProperty.Create(nameof(PrimaryText), typeof(string), typeof(TMModal), null, BindingMode.TwoWay);
-
-        /// <summary>
-        /// Gets or sets the text for the secondary button in the control
-        /// </summary>
-        public static readonly BindableProperty SecondaryTextProperty =
-            BindableProperty.Create(nameof(SecondaryText), typeof(string), typeof(TMModal), null, BindingMode.TwoWay);
-
-        /// <summary>
-        /// Gets or sets the text for the tertiary button in the control
-        /// </summary>
-        public static readonly BindableProperty TertiaryTextProperty =
-            BindableProperty.Create(nameof(TertiaryText), typeof(string), typeof(TMModal), null, BindingMode.TwoWay);
-
-        /// <summary>
-        /// Gets or sets the text for the title label in the control
-        /// </summary>
-        public static readonly BindableProperty DestructiveButtonTextProperty =
-            BindableProperty.Create(nameof(DestructiveButtonText), typeof(string), typeof(TMModal), null, BindingMode.TwoWay);
-
-        /// <summary>
-        /// Gets or sets the button alignment option
+        /// Gets or sets the button width option
         /// </summary>
         public static readonly BindableProperty FullWidthButtonProperty =
             BindableProperty.Create(nameof(FullWidthButton), typeof(bool), typeof(TMModal), false, BindingMode.TwoWay, propertyChanged: OnFullWidthButtonChanged);
@@ -103,7 +80,7 @@ namespace Trimble.Modus.Components
         }
 
         /// <summary>
-        /// Gets or sets title text
+        /// Gets or sets modal body text
         /// </summary>
         public string Message
         {
@@ -121,41 +98,8 @@ namespace Trimble.Modus.Components
         }
 
         /// <summary>
-        /// Gets or sets primary button text
+        /// Gets or sets the full width button option
         /// </summary>
-        public string PrimaryText
-        {
-            get { return (string)GetValue(PrimaryTextProperty); }
-            set { SetValue(PrimaryTextProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets secondary button text
-        /// </summary>
-        public string SecondaryText
-        {
-            get { return (string)GetValue(SecondaryTextProperty); }
-            set { SetValue(SecondaryTextProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets tertiary button text
-        /// </summary>
-        public string TertiaryText
-        {
-            get { return (string)GetValue(TertiaryTextProperty); }
-            set { SetValue(TertiaryTextProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets destructive button text
-        /// </summary>
-        public string DestructiveButtonText
-        {
-            get { return (string)GetValue(DestructiveButtonTextProperty); }
-            set { SetValue(DestructiveButtonTextProperty, value); }
-        }
-
         public bool FullWidthButton 
         { 
             get { return (bool)GetValue(FullWidthButtonProperty); }
@@ -178,66 +122,65 @@ namespace Trimble.Modus.Components
         public event Action TertiaryButtonClicked;
 
         /// <summary>
-        /// Action triggered when Destructive button is clicked
+        /// Action triggered when Danger button is clicked
         /// </summary>
-        public event Action DestructiveButtonClicked;
+        public event Action DangerButtonClicked;
 
         #endregion
 
-        #region Public Methods
+        #region Property Change handler
 
+        /// <summary>
+        /// Triggered when FullWidthButton option is changed
+        /// </summary>
+        /// <param name="bindable">Object</param>
+        /// <param name="oldValue">Old bool value</param>
+        /// <param name="newValue">New bool value</param>
         private static void OnFullWidthButtonChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var modal = (TMModal)bindable;
-            if ((bool)newValue)
-            {
-                modal._buttonContainer.Orientation = StackOrientation.Vertical;
-                modal._buttonContainer.HorizontalOptions = LayoutOptions.FillAndExpand;
 
-                foreach (TMButton button in modal._buttonContainer.Children)
+            if(modal._buttonContainer != null)
+            {
+                if ((bool)newValue)
                 {
-                    button.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    button.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    button._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-                }
-            }
-            else
-            {
-                modal._buttonContainer.Orientation = StackOrientation.Horizontal;
-                modal._buttonContainer.HorizontalOptions = LayoutOptions.End;
+                    modal._buttonContainer.Orientation = StackOrientation.Vertical;
+                    modal._buttonContainer.HorizontalOptions = LayoutOptions.FillAndExpand;
 
-                foreach (TMButton button in modal._buttonContainer.Children)
+                    foreach (TMButton button in modal._buttonContainer.Children)
+                    {
+                        button.HorizontalOptions = LayoutOptions.FillAndExpand;
+                        button.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
+                        button._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                    }
+                }
+                else
                 {
-                    button.HorizontalOptions = LayoutOptions.Start;
-                    button.frame.HorizontalOptions = LayoutOptions.Start;
-                    button._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-                }
-                
-            }
+                    modal._buttonContainer.Orientation = StackOrientation.Horizontal;
+                    modal._buttonContainer.HorizontalOptions = LayoutOptions.End;
 
-            if((bool)oldValue != (bool)newValue)
-            {
-                modal.ReverseButtonOrder(modal._buttonContainer);
+                    foreach (TMButton button in modal._buttonContainer.Children)
+                    {
+                        button.HorizontalOptions = LayoutOptions.Start;
+                        button.frame.HorizontalOptions = LayoutOptions.Start;
+                        button._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                    }
+                }
+
+                if ((bool)oldValue != (bool)newValue)
+                {
+                    modal.ReverseButtonOrder(modal._buttonContainer);
+                }
             }
 
         }
 
-        private void ReverseButtonOrder(StackLayout container)
-        {
-            int childCount = container.Children.Count;
-
-            // Iterate from the last child to the first child
-            for (int i = childCount - 1; i >= 0; i--)
-            {
-                // Remove the child from the original position
-                var child = container.Children[i];
-                container.Children.RemoveAt(i);
-
-                // Add the child back at the end of the StackLayout
-                container.Children.Add(child);
-            }
-        }
-
+        /// <summary>
+        /// Handles when message text is changed to update the size of the modal
+        /// </summary>
+        /// <param name="bindable"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         private static void OnMessagePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var modal = (TMModal)bindable;
@@ -258,7 +201,34 @@ namespace Trimble.Modus.Components
             }
         }
 
-        public TMModal( string titleText, ImageSource titleIconSource = null, string messageText = null, bool fullWidthButton = false ){
+        /// <summary>
+        /// Handle icon source change
+        /// </summary>
+        /// <param name="bindable"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        private static void OnTitleIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            TMModal tMModal = bindable as TMModal;
+            if (tMModal._titleIcon != null && tMModal._titleLabel != null)
+            {
+                if ((ImageSource)newValue == null)
+                {
+                    tMModal._titleIcon.WidthRequest = 0;
+                    tMModal._titleLabel.Padding = new Thickness(0, 0, 8, 0);
+                }
+                else
+                {
+                    tMModal._titleIcon.WidthRequest = 26;
+                    tMModal._titleLabel.Padding = new Thickness(8, 0);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+        public TMModal( string titleText, string messageText = null, ImageSource titleIconSource = null,  bool fullWidthButton = false ){
             Title = titleText;
             TitleIcon = titleIconSource;
             ConfigureModal();
@@ -292,50 +262,92 @@ namespace Trimble.Modus.Components
 
             SetBinding();
             Animation = new ScaleAnimation();
-            BackgroundColor = Color.FromArgb("#80000000");
+            BackgroundColor = (Color)BaseComponent.colorsDictionary()["ModalGraySemiTransparent"];
 
             Content = _border;
         }
 
-        public void AddAction(string title, Action clickAction = null)
+        /// <summary>
+        /// Add Primary button
+        /// </summary>
+        /// <param name="title">Button titke</param>
+        /// <param name="clickAction">Button click action</param>
+        /// <exception cref="ArgumentNullException">Thrown when title is empty</exception>
+        /// <exception cref="InvalidOperationException">Thrown while trying to add more that 3 button</exception>
+        public void AddPrimaryAction(string title, Action clickAction = null)
         {
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentNullException("Title cannot be empty");
+                throw new ArgumentNullException(Constants.ButtonEmptyTitleError);
             }
             if (_buttonContainer.Children.Count >= 3)
             {
-                throw new InvalidOperationException("Cannot add more than 3 buttons");
+                throw new InvalidOperationException(Constants.ButtonLimitError);
             }
-
-            if (string.IsNullOrEmpty(PrimaryText) && !_dangerButtonAdded)
-            {
-                ConstructPrimaryButton(title, clickAction);
-            }
-            else if (string.IsNullOrEmpty(SecondaryText))
-            {
-                ConstructSecondaryButton(title, clickAction);
-            }
-            else if (string.IsNullOrEmpty(TertiaryText))
-            {
-                ConstructTertiaryButton(title, clickAction);
-            }
+            ConstructPrimaryButton(title, clickAction);
         }
 
-        public void AddDangerButton(string title, Action clickAction = null)
+        /// <summary>
+        /// Add Secondary button
+        /// </summary>
+        /// <param name="title">Button titke</param>
+        /// <param name="clickAction">Button click action</param>
+        /// <exception cref="ArgumentNullException">Thrown when title is empty</exception>
+        /// <exception cref="InvalidOperationException">Thrown while trying to add more that 3 button</exception>
+        public void AddSecondaryAction(string title, Action clickAction = null)
         {
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentNullException("Title cannot be empty");
+                throw new ArgumentNullException(Constants.ButtonEmptyTitleError);
             }
             if (_buttonContainer.Children.Count >= 3)
             {
-                throw new InvalidOperationException("Cannot add more than 3 buttons");
+                throw new InvalidOperationException(Constants.ButtonLimitError);
+            }
+            ConstructSecondaryButton(title, clickAction);
+        }
+
+        /// <summary>
+        /// Add Tertiary button
+        /// </summary>
+        /// <param name="title">Button titke</param>
+        /// <param name="clickAction">Button click action</param>
+        /// <exception cref="ArgumentNullException">Thrown when title is empty</exception>
+        /// <exception cref="InvalidOperationException">Thrown while trying to add more that 3 button</exception>
+        public void AddTertiaryAction(string title, Action clickAction = null)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentNullException(Constants.ButtonEmptyTitleError);
+            }
+            if (_buttonContainer.Children.Count >= 3)
+            {
+                throw new InvalidOperationException(Constants.ButtonLimitError);
+            }
+            ConstructTertiaryButton(title, clickAction);
+        }
+
+        /// <summary>
+        /// Add Danger button
+        /// </summary>
+        /// <param name="title">Button titke</param>
+        /// <param name="clickAction">Button click action</param>
+        /// <exception cref="ArgumentNullException">Thrown when title is empty</exception>
+        /// <exception cref="InvalidOperationException">Thrown while trying to add more that 3 button</exception>
+        public void AddDangerAction(string title, Action clickAction = null)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentNullException(Constants.ButtonEmptyTitleError);
+            }
+            if (_buttonContainer.Children.Count >= 3)
+            {
+                throw new InvalidOperationException(Constants.ButtonLimitError);
             }
             if (_dangerButtonAdded)
             {
                 _dangerButton.Title = title;
-                DestructiveButtonClicked = clickAction;
+                DangerButtonClicked = clickAction;
             }
             else
             {
@@ -356,9 +368,22 @@ namespace Trimble.Modus.Components
             _modalBodyContainer.Add(inputControl);
         }
 
+        /// <summary>
+        /// Display the modal
+        /// </summary>
         public void Show()
         {
             PopupService.Instance.PushAsync(this);
+        }
+
+        /// <summary>
+        /// Close modal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void CloseModal(object sender, EventArgs e)
+        {
+            PopupService.Instance.RemovePageAsync(this, true);
         }
 
         #endregion
@@ -368,36 +393,11 @@ namespace Trimble.Modus.Components
         {
             _titleLabel?.SetBinding(Label.TextProperty, new Binding(nameof(Title), BindingMode.TwoWay, source: this));
             _titleIcon?.SetBinding(Image.SourceProperty, new Binding(nameof(TitleIcon), BindingMode.TwoWay, source: this));
-
-            _primaryButton?.SetBinding(TMButton.TitleProperty, new Binding(nameof(PrimaryText), BindingMode.TwoWay, source: this));
-            _secondaryButton?.SetBinding(TMButton.TitleProperty, new Binding(nameof(SecondaryText), BindingMode.TwoWay, source: this));
-            _tertiaryButton?.SetBinding(TMButton.TitleProperty, new Binding(nameof(TertiaryText), BindingMode.TwoWay, source: this));
-            _dangerButton?.SetBinding(TMButton.TitleProperty, new Binding(nameof(DestructiveButtonText), BindingMode.TwoWay, source: this));
         }
 
-        private void CloseModal(object sender, EventArgs e)
-        {
-            PopupService.Instance.RemovePageAsync(this, true);
-        }
-
-        private static void OnTitleIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            TMModal tMModal = bindable as TMModal;
-            if(tMModal._titleIcon != null && tMModal._titleLabel != null)
-            {
-                if ((ImageSource)newValue == null)
-                {
-                    tMModal._titleIcon.WidthRequest = 0;
-                    tMModal._titleLabel.Padding = new Thickness(0, 0, 8, 0);
-                }
-                else
-                {
-                    tMModal._titleIcon.WidthRequest = 26;
-                    tMModal._titleLabel.Padding = new Thickness(8, 0);
-                }
-            }
-        }
-
+        /// <summary>
+        /// Set up the initial UI for modal
+        /// </summary>
         private void ConfigureModal()
         {
 
@@ -442,15 +442,19 @@ namespace Trimble.Modus.Components
             _closeButton.Clicked += CloseModal;
         }
 
+        /// <summary>
+        /// Constructs promary button
+        /// </summary>
+        /// <param name="primaryText"></param>
+        /// <param name="primaryButtonClick"></param>
         private void ConstructPrimaryButton(string primaryText = null ,Action primaryButtonClick = null)
         {
-            PrimaryText = primaryText;
             PrimaryButtonClicked = primaryButtonClick;
-            if (!string.IsNullOrEmpty(PrimaryText))
+            if (!string.IsNullOrEmpty(primaryText))
             {
                 _primaryButton = new TMButton
                 {
-                    Title = PrimaryText,
+                    Title = primaryText,
                     HorizontalOptions = LayoutOptions.End,
                     Size = Enums.Size.Small,
                     ButtonColor = ButtonColor.Primary
@@ -473,21 +477,30 @@ namespace Trimble.Modus.Components
             }
         }
 
+        /// <summary>
+        /// Invoke on click action and closes the modal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnPrimaryButtonClicked(object sender, EventArgs e)
         {
             CloseModal(sender, e);
             PrimaryButtonClicked?.Invoke();
         }
 
+        /// <summary>
+        /// Construct secondary button
+        /// </summary>
+        /// <param name="secondaryText"></param>
+        /// <param name="secondaryButtonClick"></param>
         private void ConstructSecondaryButton(string secondaryText, Action secondaryButtonClick = null)
         {
-            SecondaryText = secondaryText;
             SecondaryButtonClicked = secondaryButtonClick;
-            if (!string.IsNullOrEmpty(SecondaryText))
+            if (!string.IsNullOrEmpty(secondaryText))
             {
                 _secondaryButton = new TMButton
                 {
-                    Title = SecondaryText,
+                    Title = secondaryText,
                     ButtonColor = ButtonColor.Secondary,
                     ButtonStyle = ButtonStyle.Outline,
                     HorizontalOptions = LayoutOptions.End,
@@ -512,21 +525,30 @@ namespace Trimble.Modus.Components
             }
         }
 
+        /// <summary>
+        /// Invoke on click action and closes the modal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSecondaryButtonClicked(object sender, EventArgs e)
         {
             CloseModal(sender, e);
             SecondaryButtonClicked?.Invoke();
         }
 
+        /// <summary>
+        /// Construct tertiary button
+        /// </summary>
+        /// <param name="tertiaryText"></param>
+        /// <param name="tertiaryButtonClick"></param>
         private void ConstructTertiaryButton(string tertiaryText = null, Action tertiaryButtonClick = null)
         {
-            TertiaryText = tertiaryText;
             TertiaryButtonClicked = tertiaryButtonClick;
-            if (!string.IsNullOrEmpty(TertiaryText))
+            if (!string.IsNullOrEmpty(tertiaryText))
             {
                 _tertiaryButton = new TMButton
                 {
-                    Title = TertiaryText,
+                    Title = tertiaryText,
                     ButtonColor = ButtonColor.Tertiary,
                     ButtonStyle = ButtonStyle.BorderLess,
                     HorizontalOptions = LayoutOptions.End,
@@ -550,36 +572,38 @@ namespace Trimble.Modus.Components
             }
         }
 
+        /// <summary>
+        /// Invoke on click action and closes the modal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnTertiaryButtonClicked(object sender, EventArgs e)
         {
             CloseModal(sender, e);
             TertiaryButtonClicked?.Invoke();
         }
 
+        /// <summary>
+        /// Construct danger button
+        /// </summary>
+        /// <param name="destructiveText"></param>
+        /// <param name="destructiveButtonClick"></param>
         private void ConstructDangerButton(string destructiveText = null, Action destructiveButtonClick = null)
         {
-            DestructiveButtonText = destructiveText;
-            DestructiveButtonClicked = destructiveButtonClick;
+            DangerButtonClicked = destructiveButtonClick;
 
-            if (!string.IsNullOrEmpty(DestructiveButtonText))
+            if (!string.IsNullOrEmpty(destructiveText))
             {
                 _dangerButton = new TMButton
                 {
-                    Title = DestructiveButtonText,
+                    Title = destructiveText,
                     ButtonColor = ButtonColor.Danger,
                     HorizontalOptions = LayoutOptions.End,
                     Size = Enums.Size.Small
                 };
                 _dangerButton._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
                 _dangerButton.Clicked += OnDestructiveButtonClicked;
-                if(_buttonContainer.Children.Count > 0)
-                {
-                    foreach(TMButton tmButton in _buttonContainer.Children.Cast<TMButton>())
-                    {
-                        tmButton.ButtonColor = tmButton.ButtonColor == ButtonColor.Primary? ButtonColor.Secondary : ButtonColor.Tertiary;
-                        tmButton.ButtonStyle = tmButton.ButtonColor == ButtonColor.Secondary ? ButtonStyle.Outline : ButtonStyle.BorderLess;
-                    }
-                }
+
                 if (FullWidthButton)
                 {
                     _dangerButton.HorizontalOptions = LayoutOptions.FillAndExpand;
@@ -596,28 +620,50 @@ namespace Trimble.Modus.Components
             }
         }
 
+        /// <summary>
+        /// Invoke on click action and closes the modal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnDestructiveButtonClicked(object sender, EventArgs e)
         {
             CloseModal(sender, e);
-            DestructiveButtonClicked?.Invoke();
+            DangerButtonClicked?.Invoke();
         }
 
+        /// <summary>
+        /// Reverse button order, triggered when FullWidth property is changed
+        /// </summary>
+        /// <param name="container">Button container</param>
+        private void ReverseButtonOrder(StackLayout container)
+        {
+            int childCount = container.Children.Count;
+
+            for (int i = childCount - 1; i >= 0; i--)
+            {
+                var child = container.Children[i];
+                container.Children.RemoveAt(i);
+
+                container.Children.Add(child);
+            }
+        }
+
+        /// <summary>
+        /// Update modal size based on the screen dimension
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
 
-            // Check the width and height to determine the screen orientation
             if (width > height)
             {
-                // Landscape orientation
-                // Perform actions or update UI for landscape orientation
                 _border.WidthRequest = width * 0.5;
 
             }
             else
             {
-                // Portrait orientation
-                // Perform actions or update UI for portrait orientation
                 _border.WidthRequest = width * 0.75;
             }
         }

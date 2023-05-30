@@ -19,5 +19,9 @@ namespace DemoApp.Constant
         public const string ButtonAddedString = "Button has been added";
 
         public const string ModalResetMessage = "Modal has been reset";
+
+        public const string InputText = "Input Text";
+
+        public const string PlaceholderText = "Enter text here";
     }
 }
