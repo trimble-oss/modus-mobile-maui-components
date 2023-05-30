@@ -9,23 +9,16 @@
                 <Modus:TMInput 
                     x:Name="modusInput" 
                     TitleText="Text Input" 
-                    Placeholder="Input" />
+                    Placeholder="Text Input" />
+
 
                 <Modus:TMInput 
                     x:Name="validationInput" 
                     TitleText="Success/Error Input" 
                     HelperText="Helper Text" 
                     Placeholder="Text Input" 
-                    InputValidation="CustomValidateInput"/>
+                    InputValidation="CustomValidateInput" />
 
-                <Modus:TMInput 
-                    TitleText="Right Icon" 
-                    Placeholder="Text Input" 
-                    RightIconSource="password_eye.png" 
-                    RightIconCommand="{Binding ShowPasswordCommand}"
-                    IsPassword="{Binding ShowPassword}"/>
-                    
-             
                 <Modus:TMInput 
                     TitleText="Filled" 
                     Placeholder="Text Input" 
@@ -39,34 +32,35 @@
                 <Modus:TMInput 
                     IsEnabled="False" 
                     TitleText="Disabled" 
-                    Text="Data"
                     Placeholder="Text Input" />
                 
                 <Modus:TMInput 
                     IsReadOnly="True" 
                     TitleText="Read only" 
-                    Placeholder="Text Input"
-                    Text="Data"/>
+                    Placeholder="Text Input" />
                 
                 <Modus:TMInput 
                     IsEnabled="False" 
                     IsReadOnly="True" 
-                    Text="Data"
-                    HelperText="Helper Text"
                     TitleText="ReadOnly and Disabled" 
                     Placeholder="Text Input" />
-
+                
                 <Modus:TMInput 
                     TitleText="Left Icon" 
-                    LeftIconSource="s_icon.png" 
+                    LeftIconSource="search_icon.png" 
                     Placeholder="Text Input" />
-              
+                
+                <Modus:TMInput 
+                    TitleText="Right Icon" 
+                    Placeholder="Text Input" 
+                    RightIconSource="password_eye.png" />
+
                 <Modus:TMInput 
                     TitleText="Both Icon" 
-                    LeftIconSource="user.png" 
+                    LeftIconSource="search_icon.png" 
                     Placeholder="Text Input" 
-                    RightIconSource="cv.png" />
-              
+                    RightIconSource="password_eye.png" />
+                
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>

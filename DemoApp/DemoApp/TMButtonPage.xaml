@@ -4,127 +4,168 @@
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.TMButtonPage"
              Title="Button">
+    <ContentPage.Resources>
+        <Style x:Key="Gold" TargetType="Modus:TMButton">
+            <Setter Property="BackgroundColor" Value="Gold" />
+            <Setter Property="TextColor" Value="Green"/>
+        </Style>
+        <Style x:Key="Red" TargetType="Modus:TMButton">
+            <Setter Property="BackgroundColor" Value="Red" />
 
+        </Style>
+
+    </ContentPage.Resources>
     <ScrollView>
-
-        <StackLayout x:Name="layout" Spacing="20" Padding="10" >
-                <Label Text="Buttons"/>
-
-            <StackLayout Orientation="Horizontal"  Spacing="10">
-                    <Modus:TMButton 
-                    x:Name="button1"
-                    Title = "Primary"
-                    ButtonColor="Primary"
+        <VerticalStackLayout>
+            <StackLayout Padding="10">
+                <Label Text="Without Icons"/>
+                <Modus:TMButton 
+                    x:Name="button"
+                    Title = "XSmall"
+                    Radius="50"
+                    Clicked="button_Clicked"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
+                 
+                        
                   />
-                    <Modus:TMButton 
+                <Modus:TMButton 
                     x:Name="button2"
-                    Title = "Secondary"
-                    ButtonColor="Secondary"
+                    Title = "Small"
                     Command="{Binding MyCommand}"
+                    BackgroundColor="Yellow"
+                    BorderColor="Brown"
+                    TextColor="Black"
                     CommandParameter="Button5"
+                    Size="Small"
                   />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Modus:TMButton 
+                <Modus:TMButton 
                     x:Name="button3"
-                    Title = "Tertiary"
-                    ButtonColor="Tertiary"
+                    Title = "Default"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
+                    
+                    Size="Default"
                   />
-                    <Modus:TMButton 
+                <Modus:TMButton 
                     x:Name="button4"
-                    Title = "Danger"
-                    ButtonColor="Danger" 
+                    Title = "Large"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
+                    Size="Large"
                   />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Modus:TMButton 
-                    x:Name="button1i"
-                    Title = "Primary"
-                    ButtonColor="Primary"
-                    IconSource="gallery_icon.png"
+                <Label Text="With Icons"/>
+                <Modus:TMButton 
+                    x:Name="ibutton"
+                    Title = "XSmall"
                     Command="{Binding MyCommand}"
+                    IconSource="icon.png"
                     CommandParameter="Button5"
+                    Size="XSmall"
                   />
-                    <Modus:TMButton 
-                    x:Name="button2i"
-                    Title = "Secondary"
-                    ButtonColor="Secondary"
-                    IconSource="gallery_icon.png"
+                <Modus:TMButton 
+                    x:Name="ibutton2"
+                    Title = "Small"
                     Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                 
                     CommandParameter="Button5"
+                    Size="Small"
                   />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Modus:TMButton 
-                    x:Name="button3i"
-                    Title = "Tertiary"
-                    ButtonColor="Tertiary"
-                    IconSource="icondark.png"
+                <Modus:TMButton 
+                    x:Name="ibutton3"
+                    Title = "Default"
                     Command="{Binding MyCommand}"
+                    IconSource="icon.png"
                     CommandParameter="Button5"
+                    Size="Default"
                   />
-                    <Modus:TMButton 
-                    x:Name="button4i"
-                    Title = "Danger"
-                    IconSource="gallery_icon.png"
-                    ButtonColor="Danger" 
+                <Modus:TMButton 
+                    x:Name="ibutton4"
+                    Title = "Large"
+                    
                     Command="{Binding MyCommand}"
+                    IconSource="icon.png"
                     CommandParameter="Button5"
-                  />
-                </StackLayout>
-
-
-                <StackLayout Orientation="Horizontal">
-                    <RadioButton Content="XSmall" Value="XSmall" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                    <RadioButton Content="Small" Value="Small"  GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                    <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                    <RadioButton Content="Large" Value="Large" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <RadioButton Content="Fill" IsChecked="True" Value="Fill" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-                    <RadioButton Content="Outline" Value="Outline"  GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-                    <RadioButton Content="BorderLess"  Value="BorderLess" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-                </StackLayout>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
                    
-                    <Label Grid.Column="0"  Text="IsDisabled"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Switch Grid.Column="1"  x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabled_Toggled" />
-                </Grid>
-            <Label Text="Floating Buttons"></Label>
-            <StackLayout Orientation="Horizontal" Spacing="10">
-                <Modus:TMButton 
-                    x:Name="floating"
-                    Title = "Floating Button"
-                     IsFloatingButton="True"
-                    ButtonColor="Primary"
-                    IconSource="gallery_icon.png"
-                    Command="{Binding MyCommand}"
-                    CommandParameter="Button5"
                   />
-                <Modus:TMButton 
-                    x:Name="floatingi"
-                    IsFloatingButton="True"
-                    ButtonColor="Primary"
-                    IconSource="gallery_icon.png"
-                    Command="{Binding MyCommand}"
-                    CommandParameter="Button5"
-                  />
-            </StackLayout>
 
-        </StackLayout>
-        
-         
-      
+                <Label Text="Floating Buttons"/>
+
+                <Modus:TMButton 
+                    x:Name="fltbutton2"
+                    Radius="50"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    Size="XSmall"
+                  />
+
+                <Modus:TMButton 
+                    x:Name="fltbutton"
+                    Title = "XSmall"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    Size="XSmall"
+                  />
+                <Label Text="Disabled Buttons"/>
+                <Modus:TMButton 
+                    x:Name="button413"
+                    Title = "Large"
+                    IsDisabled="True"
+                    Command="{Binding MyCommand}"
+                    CommandParameter="Button5"
+                    Size="Large"
+                  />
+
+                <Modus:TMButton 
+                    x:Name="ibutton12"
+                    Title = "Large"
+                    IsDisabled="True"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    CommandParameter="Button5"
+                    Size="Large"
+                    />
+                <Modus:TMButton 
+                    x:Name="disbutton"
+                
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    IsDisabled="True"
+                    Size="XSmall"
+                  />
+
+                <Modus:TMButton 
+                    x:Name="disbutton2"
+                    Title = "XSmall"
+                    Command="{Binding MyCommand}"
+                    IconSource="icon.png"
+                    IsFloatingButton="True"
+                    CommandParameter="Button5"
+                    IsDisabled="False"
+                    Size="XSmall"
+                  />
+
+
+                <Modus:TMButton  
+                    Style="{StaticResource Gold}"  
+                    Title="Hello" 
+                    IconSource="icon.png" 
+                   />
+
+                <Modus:TMButton  
+                    Style="{StaticResource Red}"  
+                    Title="Hello" 
+                    IconSource="icon.png"
+                  />
+
+            </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

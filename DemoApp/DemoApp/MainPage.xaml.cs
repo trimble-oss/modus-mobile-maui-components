@@ -22,9 +22,6 @@ public partial class MainPage : ContentPage
             case "tminput":
                 Navigation.PushAsync(new TMInputPage());
                 break;
-            case "tmtoast":
-                Navigation.PushAsync(new TMToastPage());
-                break;
             default:
                 Console.WriteLine("Default Case");
                 break;

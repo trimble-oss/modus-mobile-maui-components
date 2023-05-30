@@ -1,19 +1,12 @@
 using Trimble.Modus.Components;
-using System.Text.RegularExpressions;
-using DemoApp.ViewModels;
 
 namespace DemoApp;
 
 public partial class TMInputPage : ContentPage
 {
-    private InputPageViewModel _inputPageViewModel;
 	public TMInputPage()
 	{
-        _inputPageViewModel = new InputPageViewModel();
-
-        InitializeComponent();
-        BindingContext = _inputPageViewModel;
-        
+		InitializeComponent();
     }
     private void modusInput_Focused(object sender, EventArgs e)
     {
@@ -24,17 +17,7 @@ public partial class TMInputPage : ContentPage
     private Tuple<bool, string> CustomValidateInput(object sender)
     {
         var input = sender as TMInput;
-        string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-
-        // Create Regex object
-        Regex regex = new Regex(pattern);
-
-        // Match the input string against the pattern
-        Match match = regex.Match(input.Text);
-
-        // Return true if the input string matches the pattern, otherwise false
-        //return match.Success;
-        if (match.Success)
+        if(input.Text.Length > 3)
         {
             return Tuple.Create(true, "Valid Text");
         }
