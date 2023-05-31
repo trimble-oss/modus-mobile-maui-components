@@ -26,28 +26,27 @@
                          VerticalOptions="Center"
                          BackgroundColor="{Binding ToastBackground}"
                          HorizontalOptions="FillAndExpand"
-                         Orientation="Horizontal"
-                         Spacing="8"
-                         Padding="16,8">
-                <Image x:Name="leftIconImage" Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                         Orientation="Horizontal">
+                <Image x:Name="leftIconImage"  Margin="16,8,16,8" Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
                 <Label x:Name="label"
                        Text="{Binding Message}"
                        LineBreakMode="WordWrap"
                        MaximumHeightRequest="500"
-                       MaxLines="3" FontSize="16"
+                       MaxLines="3" FontSize="14"
                        TextColor="{Binding TextColor}"
                        VerticalOptions="Center"
                        HorizontalOptions="FillAndExpand"/>
                 <Button x:Name="actionButton"
-                        Padding="8,0,16,0"
-                        HorizontalOptions="Center"
+                        HorizontalOptions="End"
                         VerticalOptions="Center"
+                        FontSize="14"
                         Clicked="CloseButton_Clicked"/>
                 <ImageButton x:Name="closeButton"
                              MaximumHeightRequest="16"
                              MaximumWidthRequest="16"
                              WidthRequest="16"
                              HeightRequest="16"
+                             Margin = '8,16,16,16'
                              Padding="{OnPlatform '0', iOS='16,16,0,16'}"
                              HorizontalOptions="End"
                              VerticalOptions="Center"
