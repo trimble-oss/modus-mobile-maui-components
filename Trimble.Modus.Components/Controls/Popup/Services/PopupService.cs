@@ -2,7 +2,7 @@
 
 namespace Trimble.Modus.Components.Popup.Services;
 
-internal static class PopupService
+public static class PopupService
 {
     static IPopupNavigation? _customNavigation;
     static readonly Lazy<IPopupNavigation> implementation = new(() => CreatePopupNavigation(), System.Threading.LazyThreadSafetyMode.PublicationOnly);

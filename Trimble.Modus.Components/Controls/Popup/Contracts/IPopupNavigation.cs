@@ -3,7 +3,7 @@ using Trimble.Modus.Components.Popup.Pages;
 
 namespace Trimble.Modus.Components.Popup.Interfaces;
 
-internal interface IPopupNavigation
+public interface IPopupNavigation
 {
     event EventHandler<PopupNavigationEventArgs> Pushing;
 

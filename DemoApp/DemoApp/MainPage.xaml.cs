@@ -1,4 +1,6 @@
-﻿using Trimble.Modus.Components;
+﻿using DemoApp.Views;
+using Trimble.Modus.Components;
+using Trimble.Modus.Components.Popup.Services;
 
 namespace DemoApp;
 
@@ -21,6 +23,9 @@ public partial class MainPage : ContentPage
                 break;
             case "tminput":
                 Navigation.PushAsync(new TMInputPage());
+                break;
+            case "tmmodal":
+                Navigation.PushAsync(new TMModalPage());
                 break;
             case "tmtoast":
                 Navigation.PushAsync(new TMToastPage());

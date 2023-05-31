@@ -9,6 +9,7 @@
     <Color x:Key="TrimbleGray">#252a2e</Color> 
     <Color x:Key="TrimbleDisabledColor">#CEDEEB</Color>
     <Color x:Key="Black">#353a40</Color>
+    <Color x:Key="White">#FFFFFF</Color>
     <Color x:Key="DangerRed">#DA212C</Color>
     <Color x:Key="SecondaryButton">#6A6E79</Color>
     <Color x:Key="TertiaryButton">#CBCDD6</Color>
@@ -25,14 +26,17 @@
     
     
     <!--ToastColors-->
-    <Color x:Key="ToastBlue">#DCEDF9</Color>
-    <Color x:Key="ToastWhite">#FFFFFF</Color>
-    <Color x:Key="ToastBlack">#252A2E</Color>
-    <Color x:Key="ToastGrey">#CBCDD6</Color>
-    <Color x:Key="ToastRed">#FBD4D7</Color>
-    <Color x:Key="ToastYellow">#FFF5E4</Color>
-    <Color x:Key="ToastGreen">#E0ECCF</Color>
+    <Color x:Key="Primary">#DCEDF9</Color>
+    <Color x:Key="Default">#FFFFFF</Color>
+    <Color x:Key="Dark">#252A2E</Color>
+    <Color x:Key="Secondary">#CBCDD6</Color>
+    <Color x:Key="Danger">#FBD4D7</Color>
+    <Color x:Key="Warning">#FFF5E4</Color>
+    <Color x:Key="Success">#E0ECCF</Color>
     <Color x:Key="ToastTextBlue">#0063A3</Color>
     
+    <!--Modal-->
+    <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
+
 
 </ResourceDictionary>

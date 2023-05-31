@@ -12,19 +12,24 @@ namespace Trimble.Modus.Components.Controls.Toast
     public class TMToast
     {
         PopupNavigation popupNavigation;
-        public TMToast() {
 
-            popupNavigation  = new PopupNavigation();
-        
-        }
-        public void Show(string message, ImageSource leftIconSource = null, string actionButtonText = null, ToastTheme theme = 0, Action? action = null)
+        public TMToast()
         {
-            if(string.IsNullOrEmpty(message))
+            popupNavigation = new PopupNavigation();
+        }
+
+        public void Show(string message, ToastTheme theme = ToastTheme.Default)
+        {
+            Show(message, null, null, theme);
+        }
+
+        public void Show(string message, string actionButtonText = null, Action? action = null, ToastTheme theme = ToastTheme.Default)
+        {
+            if (string.IsNullOrEmpty(message))
             {
                 throw new ArgumentNullException("Message is required");
             }
-           popupNavigation.PushAsync(new TMToastContents(message ,leftIconSource,  actionButtonText, popupNavigation,theme,action),false);
+           popupNavigation.PushAsync(new TMToastContents(message,  actionButtonText, popupNavigation,theme,action),false);
         }
-      
     }
 }
