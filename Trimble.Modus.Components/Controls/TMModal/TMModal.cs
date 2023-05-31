@@ -2,6 +2,7 @@
 using Microsoft.Maui.Controls;
 //using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Layouts;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Contant;
@@ -20,9 +21,9 @@ namespace Trimble.Modus.Components
 
         private readonly StackLayout _buttonContainer;
 
-        private readonly Image _titleIcon = new() { WidthRequest = 0, HeightRequest = 26 };
+        private readonly Image _titleIcon = new() { WidthRequest = 0, HeightRequest = 26, VerticalOptions = LayoutOptions.Center };
 
-        private ImageButton _closeButton;
+        private Image _closeButton;
 
         private readonly Label _titleLabel = new() { HorizontalOptions = LayoutOptions.Start, FontFamily = "OpenSans-Semibold.ttf", FontSize = 16, Padding = new Thickness(0, 0, 8, 0), VerticalOptions = LayoutOptions.Center };
 
@@ -39,6 +40,8 @@ namespace Trimble.Modus.Components
         private TMButton _dangerButton;
 
         private bool _dangerButtonAdded = false;
+
+        private readonly TapGestureRecognizer _closeButtonTapRecognizer = new();
 
         #region Bindable Properties
 
@@ -257,7 +260,8 @@ namespace Trimble.Modus.Components
                 },
                 Stroke = (Color)BaseComponent.colorsDictionary()["Black"],
                 Shadow = shadow,
-                StrokeThickness = 0
+                StrokeThickness = 0,
+                BackgroundColor = Colors.White
             };
 
             SetBinding();
@@ -425,9 +429,9 @@ namespace Trimble.Modus.Components
             _baseContainer.SetColumn(_titleIcon, 0);
             _baseContainer.SetRow(_titleIcon, 0);
 
-            _closeButton = new ImageButton { Source = ImageSource.FromResource(ImageConstants.CloseButtonImage), HeightRequest = 16, WidthRequest = 16, HorizontalOptions = LayoutOptions.End };
+            _closeButton = new Image { Source = ImageSource.FromFile(ImageConstants.CloseButtonImage), HeightRequest = 16, WidthRequest = 16, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center, Margin = new Thickness(2)};
             _baseContainer.Children.Add(_closeButton);
-            _baseContainer.SetColumn(_closeButton, 3);
+            _baseContainer.SetColumn(_closeButton, 2);
             _baseContainer.SetRow(_closeButton, 0);
 
 
@@ -439,7 +443,9 @@ namespace Trimble.Modus.Components
             _baseContainer.Children.Add(_modalBodyContainer);
 
             _baseContainer.RowSpacing = 16;
-            _closeButton.Clicked += CloseModal;
+
+            _closeButtonTapRecognizer.Tapped += CloseModal;
+            _closeButton.GestureRecognizers.Add(_closeButtonTapRecognizer);
         }
 
         /// <summary>

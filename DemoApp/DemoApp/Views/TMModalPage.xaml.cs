@@ -1,6 +1,5 @@
 using Trimble.Modus.Components;
 using Trimble.Modus.Components.Popup.Services;
-using Android.Widget;
 using static System.Net.Mime.MediaTypeNames;
 using Toast = CommunityToolkit.Maui.Alerts.Toast;
 
@@ -30,8 +29,8 @@ public partial class TMModalPage : ContentPage
             {
                 tmModal.AddTextInput((tmInput) =>
                 {
-                    tmInput.TitleText = Constant.Constants.InputText;
-                    tmInput.Placeholder = Constant.Constants.PlaceholderText;
+                    tmInput.TitleText = "Input Text";
+                    tmInput.Placeholder = "Enter text here";
                 });
             }
 
