@@ -9,8 +9,8 @@ namespace Trimble.Modus.Components
         #region Fields
         private Label _label;
         private Image _checkbox;
-        private int _default_width = 24, _default_height = 24, _large_width = 32,  _large_height = 32;
-        private int _default_font_size = 14, _large_font_size = 16;
+        private int _defaultWidth = 24, _defaultHeight = 24, _largeWidth = 32,  _large_height = 32;
+        private int _defaultFontSize = 14, _largeFontSize = 16;
         private EventHandler _checked;
         #endregion
 
@@ -100,15 +100,15 @@ namespace Trimble.Modus.Components
 
             if (customCheckboxView.Size == CheckboxSize.Large)
             {
-                customCheckboxView._label.FontSize = customCheckboxView._large_font_size; 
-                customCheckboxView._checkbox.WidthRequest = customCheckboxView._large_width; 
+                customCheckboxView._label.FontSize = customCheckboxView._largeFontSize; 
+                customCheckboxView._checkbox.WidthRequest = customCheckboxView._largeWidth; 
                 customCheckboxView._checkbox.HeightRequest = customCheckboxView._large_height; 
             }
             else
             {
-                customCheckboxView._label.FontSize = customCheckboxView._default_font_size;
-                customCheckboxView._checkbox.WidthRequest = customCheckboxView._default_width;
-                customCheckboxView._checkbox.HeightRequest = customCheckboxView._default_height;
+                customCheckboxView._label.FontSize = customCheckboxView._defaultFontSize;
+                customCheckboxView._checkbox.WidthRequest = customCheckboxView._defaultWidth;
+                customCheckboxView._checkbox.HeightRequest = customCheckboxView._defaultHeight;
             }
         }
 
@@ -123,7 +123,11 @@ namespace Trimble.Modus.Components
                 customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.indeterminate_checkbox.png");
 
             }
-            
+            else
+            {
+                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png");
+            }
+
         }
         private static void OnIsDisabledChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -140,7 +144,7 @@ namespace Trimble.Modus.Components
                 customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.checked_checkbox.png");
 
             }
-            else if (!customCheckboxView.IsChecked)
+            else 
             {
                 customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png");
             }
@@ -156,8 +160,8 @@ namespace Trimble.Modus.Components
 
         public TMCheckBox()
         {
-            _label = new Label() { FontSize = _default_font_size,VerticalOptions = LayoutOptions.Center };
-            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center ,HeightRequest = _default_height ,WidthRequest = _default_width , Margin = new Thickness(0,0,4,0)};
+            _label = new Label() { FontSize = _defaultFontSize,VerticalOptions = LayoutOptions.Center };
+            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center ,HeightRequest = _defaultHeight ,WidthRequest = _defaultWidth , Margin = new Thickness(0,0,4,0)};
             Content = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,

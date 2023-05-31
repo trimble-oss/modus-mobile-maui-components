@@ -7,6 +7,9 @@ public partial class TMCheckBoxPage : ContentPage
 {
     private string _selectedSize = "Default";
     private IList<TMCheckBox> childCheckboxes;
+    private bool updatingCheckboxes = false;
+
+    public bool ParentChecked { get; set; }
     public TMCheckBoxPage()
 	{
 		InitializeComponent();
@@ -23,7 +26,7 @@ public partial class TMCheckBoxPage : ContentPage
     }
     private void Disable_Toggled(object sender, ToggledEventArgs e)
     {
-        CheckBox.IsDisabled = !ParentCheckBox.IsDisabled;
+        CheckBox.IsDisabled = !CheckBox.IsDisabled;
     }
   
     private void Size_Changed(object sender, CheckedChangedEventArgs e)
@@ -37,33 +40,67 @@ public partial class TMCheckBoxPage : ContentPage
 
     private void UpdateParentCheckboxState()
     {
-        bool anyChildUnchecked = false;
+        if (updatingCheckboxes)
+            return;
+
+        int checkedCount = 0;
+        int uncheckedCount = 0;
 
         foreach (var childCheckbox in childCheckboxes)
         {
-            if (!childCheckbox.IsChecked)
-            {
-                anyChildUnchecked = true;
-                break;
-            }
+            if (childCheckbox.IsChecked)
+                checkedCount++;
+            else
+                uncheckedCount++;
         }
 
-        if (anyChildUnchecked)
+        updatingCheckboxes = true;
+
+        if (checkedCount == childCheckboxes.Count)
+        {
+            ParentCheckBox.IsIndeterminate = false;
+            ParentCheckBox.IsChecked = true;
+        }
+        else if (uncheckedCount == childCheckboxes.Count)
+        {
+
+           ParentCheckBox.IsIndeterminate = false;
+           ParentCheckBox.IsChecked = false;
+          
+
+        }
+        else
         {
             ParentCheckBox.IsChecked = false;
             ParentCheckBox.IsIndeterminate = true;
         }
-        else
-        {
-            ParentCheckBox.IsChecked = true;
-            ParentCheckBox.IsIndeterminate = false;
-        }
+
+        updatingCheckboxes = false;
     }
 
     private void ChildCheckbox_CheckedChanged(object sender, EventArgs e)
     {
-        
+        if (updatingCheckboxes)
+            return;
 
+        var childCheckbox = sender as TMCheckBox;
         UpdateParentCheckboxState();
+
+     
+    }
+
+    private void ParentCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        if (updatingCheckboxes)
+            return;
+
+        updatingCheckboxes = true;
+
+        foreach (var checkbox in childCheckboxes)
+        {
+            checkbox.IsChecked = ParentCheckBox.IsChecked;
+        }
+
+        updatingCheckboxes = false;
     }
 }
