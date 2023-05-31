@@ -33,6 +33,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Images\modus_close_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Themes\Colours.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>

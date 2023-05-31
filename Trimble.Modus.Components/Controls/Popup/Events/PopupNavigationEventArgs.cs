@@ -2,7 +2,7 @@
 
 namespace Trimble.Modus.Components.Popup.Events;
 
-internal class PopupNavigationEventArgs : EventArgs
+public class PopupNavigationEventArgs : EventArgs
 {
     public PopupPage Page { get; }
 

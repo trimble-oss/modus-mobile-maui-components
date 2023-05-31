@@ -29,7 +29,7 @@ namespace Trimble.Modus.Components.Controls.Toast
             {
                 throw new ArgumentNullException("Message is required");
             }
-            popupNavigation.PushAsync(new TMToastContents(message, actionButtonText, popupNavigation, theme, action), false);
+           popupNavigation.PushAsync(new TMToastContents(message ,leftIconSource,  actionButtonText, popupNavigation,theme,action),false);
         }
     }
 }
