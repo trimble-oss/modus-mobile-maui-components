@@ -42,6 +42,7 @@
                     CommandParameter="Button5"
                   />
                 </StackLayout>
+            
 
                 <StackLayout Orientation="Horizontal" Spacing="10">
                     <Modus:TMButton 
@@ -121,7 +122,6 @@
                     CommandParameter="Button5"
                   />
             </StackLayout>
-
         </StackLayout>
         
          

@@ -18,10 +18,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Images\black_close_icon.png" />
-	  <None Remove="Images\blue_close_icon.png" />
+	  <None Remove="Images\modus_close_icon.svg" />
 	</ItemGroup>
-
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Images\black_close_icon.png" />
@@ -30,6 +28,10 @@
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
 	  <EmbeddedResource Include="Images\white_close_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Images\modus_close_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
