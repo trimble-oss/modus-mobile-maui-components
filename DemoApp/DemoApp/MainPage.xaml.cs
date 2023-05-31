@@ -30,6 +30,9 @@ public partial class MainPage : ContentPage
             case "tmtoast":
                 Navigation.PushAsync(new TMToastPage());
                 break;
+            case "tmcheckbox":
+                Navigation.PushAsync(new TMCheckBoxPage());
+                break;
             default:
                 Console.WriteLine("Default Case");
                 break;

@@ -20,10 +20,13 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="Images\black_close_icon.png" />
 	  <EmbeddedResource Include="Images\blue_close_icon.png" />
+	  <EmbeddedResource Include="Images\checked_checkbox.png" />
+	  <EmbeddedResource Include="Images\default_checkbox.png" />
 	  <EmbeddedResource Include="Images\danger.png" />
 	  <EmbeddedResource Include="Images\dark.png" />
 	  <EmbeddedResource Include="Images\default.png" />
 	  <EmbeddedResource Include="Images\helper_icon.png" />
+	  <EmbeddedResource Include="Images\indeterminate_checkbox.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
 	  <EmbeddedResource Include="Images\primary.png" />
