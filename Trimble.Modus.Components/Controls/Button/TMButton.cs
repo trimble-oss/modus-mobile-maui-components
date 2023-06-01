@@ -1,15 +1,12 @@
-﻿
-
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
+﻿using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
 
     public class TMButton : ContentView
-    {   
-        internal int _iconWidth = 16 , _iconHeight = 16;
+    {
+        internal int _iconWidth = 16, _iconHeight = 16;
         private const int _borderRadius = 4;
         internal readonly Label _titleLabel;
         private readonly Image _iconImage;
@@ -32,78 +29,8 @@ namespace Trimble.Modus.Components
         public static readonly BindableProperty ButtonStyleProperty =
           BindableProperty.Create(nameof(ButtonStyle), typeof(ButtonStyle), typeof(TMButton), ButtonStyle.Fill, propertyChanged: OnColorOrButtonStyleChanged);
 
-
-        private static void OnColorOrButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var button = (TMButton)bindable;
-            if (button.IsProcessingStyleChange)
-            {
-                button.IsProcessingStyleChange = false;
-                return;
-            }
-
-            UpdateButtonAppearance(button);
-        }
-
-        private static void UpdateButtonAppearance(TMButton button)
-        {
-            if (button.ButtonStyle == ButtonStyle.BorderLess)
-            {
-                button.frame.BackgroundColor = Colors.Transparent;
-                button.frame.Stroke = Colors.Transparent;
-                button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-            }
-            else if (button.ButtonStyle == ButtonStyle.Outline)
-            {
-                button.frame.BackgroundColor = Colors.Transparent;
-                if (button.ButtonColor == ButtonColor.Primary)
-                {
-                    button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-                    button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-                }
-                else if (button.ButtonColor == ButtonColor.Secondary)
-                {
-                    button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
-                    button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
-                }
-            }
-            else 
-            {
-                switch (button.ButtonColor)
-                {
-                    case ButtonColor.Secondary:
-                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
-                        button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-                        button._titleLabel.TextColor = Colors.White;
-                        break;
-
-                    case ButtonColor.Tertiary:
-                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TertiaryButton"];
-                        button.frame.Stroke = Colors.Transparent;
-                        button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"]; 
-                        break;
-
-                    case ButtonColor.Danger:
-                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["DangerRed"];
-                        button.frame.Stroke = Colors.Transparent;
-                        button._titleLabel.TextColor = Colors.White;
-                        break;
-
-                    case ButtonColor.Primary:
-                    default:
-                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-                        button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
-                        button._titleLabel.TextColor = Colors.White;
-                        break;
-                }
-            }
-        }
-
-        public bool IsProcessingStyleChange
-        {
-            get { return (bool)GetValue(IsProcessingStyleChangeProperty); }
-            set { SetValue(IsProcessingStyleChangeProperty, value); }
-        }
+        public static readonly BindableProperty ImagePositionProperty =
+        BindableProperty.Create(nameof(IconPosition), typeof(ImagePosition), typeof(TMButton), ImagePosition.Left, propertyChanged: OnImagePoistionChanged);
 
         public static readonly BindableProperty IsProcessingStyleChangeProperty =
             BindableProperty.Create(nameof(IsProcessingStyleChange), typeof(bool), typeof(TMButton), defaultValue: false);
@@ -131,7 +58,11 @@ namespace Trimble.Modus.Components
             add { _clicked += value; }
             remove { _clicked -= value; }
         }
-
+        public bool IsProcessingStyleChange
+        {
+            get { return (bool)GetValue(IsProcessingStyleChangeProperty); }
+            set { SetValue(IsProcessingStyleChangeProperty, value); }
+        }
 
         public bool IsFloatingButton
         {
@@ -153,6 +84,11 @@ namespace Trimble.Modus.Components
         {
             get => (ImageSource)GetValue(IconSourceProperty);
             set => SetValue(IconSourceProperty, value);
+        }
+        public ImagePosition IconPosition
+        {
+            get => (ImagePosition)GetValue(ImagePositionProperty);
+            set => SetValue(ImagePositionProperty, value);
         }
 
         public Command Command
@@ -197,7 +133,10 @@ namespace Trimble.Modus.Components
             _titleLabel = new Label
             {
                 TextColor = Colors.White,
+                VerticalOptions = LayoutOptions.Center
             };
+            _titleLabel.SetBinding(Label.TextProperty, new Binding(nameof(Title), source: this));
+
 
             _iconImage = new Image
             {
@@ -205,21 +144,17 @@ namespace Trimble.Modus.Components
                 HeightRequest = _iconHeight,
 
             };
-            HorizontalOptions = LayoutOptions.Start;
-            setDefault(this);
-
-            stackLayout = new StackLayout();
             _iconImage.SetBinding(Image.SourceProperty, new Binding(nameof(IconSource), source: this));
-            _titleLabel.VerticalOptions = LayoutOptions.Center;
-            stackLayout.Orientation = StackOrientation.Horizontal;
-            _titleLabel.SetBinding(Label.TextProperty, new Binding(nameof(Title), source: this));
-            stackLayout.Children.Add(_iconImage);
-            stackLayout.Children.Add(_titleLabel);
+
+            stackLayout = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal,
+                Spacing = 16,
+                Padding = new Thickness(16, 0, 16, 0)
+            };
             frame = new Border
             {
                 Padding = 0,
-
-                Content = stackLayout,
                 BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"],
                 HorizontalOptions = LayoutOptions.Start,
                 StrokeShape = new Rectangle
@@ -228,27 +163,46 @@ namespace Trimble.Modus.Components
                     RadiusY = _borderRadius
                 }
             };
+
+            setDefault(this);
+            SetStackLayout();
+
+            HorizontalOptions = LayoutOptions.Start;
+            GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer() { NumberOfTapsRequired = 1 });
+            _tapGestureRecognizer.Tapped += OnTapped;
+        }
+        private void SetStackLayout()
+        {
+            switch (IconPosition)
+            {
+                case ImagePosition.Left:
+                    stackLayout.Children.Clear();
+                    stackLayout.Children.Add(_iconImage);
+                    stackLayout.Children.Add(_titleLabel);
+                    break;
+                case ImagePosition.Right:
+                    stackLayout.Children.Clear();
+                    stackLayout.Children.Add(_titleLabel);
+                    stackLayout.Children.Add(_iconImage);
+                    break;
+                default:
+                    break;
+            }
+            frame.Content = stackLayout;
             Content = frame;
-            GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer());
-            _tapGestureRecognizer.NumberOfTapsRequired = 1;
-            _tapGestureRecognizer.Tapped += OnTapped; 
- }
-        
+        }
 
         private void setDefault(TMButton tmButton)
         {
             tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
             tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
-          
+
             if (tmButton.imageSet && tmButton.isTextSet)
             {
-                tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
-                tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
                 tmButton._iconImage.IsVisible = true;
             }
             else
             {
-                tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
                 tmButton._iconImage.IsVisible = false;
             }
             if (tmButton.imageSet && !tmButton.isTextSet)
@@ -256,11 +210,8 @@ namespace Trimble.Modus.Components
                 tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
                 tmButton._iconImage.IsVisible = true;
                 tmButton._titleLabel.IsVisible = false;
-                tmButton._iconImage.Margin = new Thickness(16);
             }
             tmButton.HeightRequest = 48;
-            
-
         }
         private void setFloatingButton(TMButton tmButton)
         {
@@ -273,13 +224,10 @@ namespace Trimble.Modus.Components
 
             if (tmButton.imageSet && tmButton.isTextSet)
             {
-                tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
-                tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
                 tmButton._iconImage.IsVisible = true;
             }
             else
             {
-                tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
                 tmButton._iconImage.IsVisible = false;
             }
             if (tmButton.imageSet && !tmButton.isTextSet)
@@ -287,13 +235,11 @@ namespace Trimble.Modus.Components
                 tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
                 tmButton._iconImage.IsVisible = true;
                 tmButton._titleLabel.IsVisible = false;
-                tmButton._iconImage.Margin = new Thickness(16);
-
             }
             tmButton.HeightRequest = 48;
         }
 
-       
+
         private void OnTapped(object sender, EventArgs e)
         {
             Command?.Execute(CommandParameter);
@@ -326,7 +272,7 @@ namespace Trimble.Modus.Components
 
 
             }
-            if(ButtonStyle == ButtonStyle.BorderLess)
+            if (ButtonStyle == ButtonStyle.BorderLess)
             {
                 return (Color)BaseComponent.colorsDictionary()["BluePale"];
             }
@@ -401,7 +347,7 @@ namespace Trimble.Modus.Components
                 }
                 else
                 {
-                        tmButton.imageSet = false;
+                    tmButton.imageSet = false;
                 }
             }
         }
@@ -411,7 +357,7 @@ namespace Trimble.Modus.Components
             if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
             {
                 var size = (Enums.Size)newValue;
-                
+
                 switch (size)
                 {
                     case Enums.Size.XSmall:
@@ -420,13 +366,10 @@ namespace Trimble.Modus.Components
 
                         if (tmButton.imageSet && tmButton.isTextSet)
                         {
-                            tmButton._titleLabel.Padding = new Thickness(0, 4, 12, 4);
-                            tmButton._iconImage.Margin = new Thickness(8, 8, 8, 8);
                             tmButton._iconImage.IsVisible = true;
                         }
                         else
                         {
-                            tmButton._titleLabel.Padding = new Thickness(12, 4, 12, 4);
                             tmButton._iconImage.IsVisible = false;
                         }
                         if (tmButton.imageSet && !tmButton.isTextSet)
@@ -434,7 +377,6 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
                             tmButton._iconImage.IsVisible = true;
                             tmButton._titleLabel.IsVisible = false;
-                            tmButton._iconImage.Margin = new Thickness(8);
                         }
                         tmButton.HeightRequest = 32;
                         break;
@@ -444,13 +386,10 @@ namespace Trimble.Modus.Components
 
                         if (tmButton.imageSet && tmButton.isTextSet)
                         {
-                            tmButton._titleLabel.Padding = new Thickness(0, 8, 16, 8);
-                            tmButton._iconImage.Margin = new Thickness(12, 8, 8, 8);
                             tmButton._iconImage.IsVisible = true;
                         }
                         else
                         {
-                            tmButton._titleLabel.Padding = new Thickness(16, 8, 16, 8);
                             tmButton._iconImage.IsVisible = false;
 
                         }
@@ -459,7 +398,6 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
                             tmButton._iconImage.IsVisible = true;
                             tmButton._titleLabel.IsVisible = false;
-                            tmButton._iconImage.Margin = new Thickness(8);
                         }
                         tmButton.HeightRequest = 40;
 
@@ -470,13 +408,10 @@ namespace Trimble.Modus.Components
 
                         if (tmButton.imageSet && tmButton.isTextSet)
                         {
-                            tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
-                            tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
                             tmButton._iconImage.IsVisible = true;
                         }
                         else
                         {
-                            tmButton._titleLabel.Padding = new Thickness(24, 8, 24, 8);
                             tmButton._iconImage.IsVisible = false;
                         }
                         if (tmButton.imageSet && !tmButton.isTextSet)
@@ -484,7 +419,6 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
                             tmButton._iconImage.IsVisible = true;
                             tmButton._titleLabel.IsVisible = false;
-                            tmButton._iconImage.Margin = new Thickness(16);
                         }
                         tmButton.HeightRequest = 48;
                         break;
@@ -495,13 +429,10 @@ namespace Trimble.Modus.Components
 
                         if (tmButton.imageSet && tmButton.isTextSet)
                         {
-                            tmButton._titleLabel.Padding = new Thickness(0, 16, 24, 16);
-                            tmButton._iconImage.Margin = new Thickness(16, 16, 8, 16);
                             tmButton._iconImage.IsVisible = true;
                         }
                         else
                         {
-                            tmButton._titleLabel.Padding = new Thickness(24, 16, 24, 16);
                             tmButton._iconImage.IsVisible = false;
 
                         }
@@ -510,7 +441,6 @@ namespace Trimble.Modus.Components
                             tmButton._iconImage.HorizontalOptions = LayoutOptions.Center;
                             tmButton._iconImage.IsVisible = true;
                             tmButton._titleLabel.IsVisible = false;
-                            tmButton._iconImage.Margin = new Thickness(16);
                         }
 
                         tmButton.HeightRequest = 56;
@@ -519,6 +449,72 @@ namespace Trimble.Modus.Components
 
                 }
                 tmButton.sizeSet = true;
+            }
+        }
+
+        private static void OnColorOrButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var button = (TMButton)bindable;
+            if (button.IsProcessingStyleChange)
+            {
+                button.IsProcessingStyleChange = false;
+                return;
+            }
+
+            UpdateButtonAppearance(button);
+        }
+
+        private static void UpdateButtonAppearance(TMButton button)
+        {
+            if (button.ButtonStyle == ButtonStyle.BorderLess)
+            {
+                button.frame.BackgroundColor = Colors.Transparent;
+                button.frame.Stroke = Colors.Transparent;
+                button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+            }
+            else if (button.ButtonStyle == ButtonStyle.Outline)
+            {
+                button.frame.BackgroundColor = Colors.Transparent;
+                if (button.ButtonColor == ButtonColor.Primary)
+                {
+                    button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                    button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                }
+                else if (button.ButtonColor == ButtonColor.Secondary)
+                {
+                    button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
+                    button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
+                }
+            }
+            else
+            {
+                switch (button.ButtonColor)
+                {
+                    case ButtonColor.Secondary:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
+                        button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        button._titleLabel.TextColor = Colors.White;
+                        break;
+
+                    case ButtonColor.Tertiary:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TertiaryButton"];
+                        button.frame.Stroke = Colors.Transparent;
+                        button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"];
+                        break;
+
+                    case ButtonColor.Danger:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["DangerRed"];
+                        button.frame.Stroke = Colors.Transparent;
+                        button._titleLabel.TextColor = Colors.White;
+                        break;
+
+                    case ButtonColor.Primary:
+                    default:
+                        button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                        button._titleLabel.TextColor = Colors.White;
+                        break;
+                }
             }
         }
 
@@ -545,6 +541,10 @@ namespace Trimble.Modus.Components
             var button = (TMButton)bindable;
             button.UpdateButtonStyle();
         }
-
+        private static void OnImagePoistionChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var button = (TMButton)bindable;
+            button.SetStackLayout();
+        }
     }
 }
