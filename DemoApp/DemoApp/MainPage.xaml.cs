@@ -29,6 +29,9 @@ public partial class MainPage : ContentPage
                 break;
             case "tmtoast":
                 Navigation.PushAsync(new TMToastPage());
+                break; 
+            case "tmcard":
+                Navigation.PushAsync(new TMCardPage());
                 break;
             default:
                 Console.WriteLine("Default Case");

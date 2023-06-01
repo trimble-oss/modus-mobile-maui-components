@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components.Controls.TMCard;assembly=Trimble.Modus.Components"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             x:Class="DemoApp.Views.TMCardPage"
+             Title="TMCardPage">
+  
+    <VerticalStackLayout >
+
+        <Modus:TMCard >
+            <StackLayout>
+                <Label Text="Hello"/>
+                <Label Text="Hello"/>
+                <Label Text="Hello"/>
+                <Label Text="Hello"/>
+                <Label Text="Hello"/>
+
+            </StackLayout>
+
+        </Modus:TMCard>
+
+    </VerticalStackLayout>
+</ContentPage>

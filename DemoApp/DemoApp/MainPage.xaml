@@ -33,7 +33,13 @@
                     Text="Toast" 
                     Clicked="ButtonClicked" 
                     Margin="10">
-                </Button> 
+                </Button>
+                <Button     
+                    AutomationId="tmcard" 
+                    Text="Card" 
+                    Clicked="ButtonClicked" 
+                    Margin="10">
+                </Button>
             </StackLayout>
         </VerticalStackLayout>
     </ScrollView>
