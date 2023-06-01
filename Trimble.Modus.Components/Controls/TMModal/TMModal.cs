@@ -1,9 +1,5 @@
-
-using Microsoft.Maui.Controls;
 //using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Layouts;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Contant;
 using Trimble.Modus.Components.Enums;
@@ -103,8 +99,8 @@ namespace Trimble.Modus.Components
         /// <summary>
         /// Gets or sets the full width button option
         /// </summary>
-        public bool FullWidthButton 
-        { 
+        public bool FullWidthButton
+        {
             get { return (bool)GetValue(FullWidthButtonProperty); }
             set { SetValue(FullWidthButtonProperty, value); }
         }
@@ -143,7 +139,7 @@ namespace Trimble.Modus.Components
         {
             var modal = (TMModal)bindable;
 
-            if(modal._buttonContainer != null)
+            if (modal._buttonContainer != null)
             {
                 if ((bool)newValue)
                 {
@@ -190,7 +186,7 @@ namespace Trimble.Modus.Components
             var text = (string)newValue;
             if (!string.IsNullOrEmpty(text))
             {
-                if(modal._modalBodyContainer.Children.Count > 0 && modal._modalBodyContainer.Children[0] is Label)
+                if (modal._modalBodyContainer.Children.Count > 0 && modal._modalBodyContainer.Children[0] is Label)
                 {
                     modal._modalBodyContainer.Children.RemoveAt(0);
                 }
@@ -231,7 +227,8 @@ namespace Trimble.Modus.Components
         #endregion
 
         #region Public Methods
-        public TMModal( string titleText, string messageText = null, ImageSource titleIconSource = null,  bool fullWidthButton = false ){
+        public TMModal(string titleText, string messageText = null, ImageSource titleIconSource = null, bool fullWidthButton = false)
+        {
             Title = titleText;
             TitleIcon = titleIconSource;
             ConfigureModal();
@@ -429,13 +426,13 @@ namespace Trimble.Modus.Components
             _baseContainer.SetColumn(_titleIcon, 0);
             _baseContainer.SetRow(_titleIcon, 0);
 
-            _closeButton = new Image { Source = ImageSource.FromFile(ImageConstants.CloseButtonImage), HeightRequest = 16, WidthRequest = 16, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center, Margin = new Thickness(2)};
+            _closeButton = new Image { Source = ImageSource.FromFile(ImageConstants.CloseButtonImage), HeightRequest = 16, WidthRequest = 16, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center, Margin = new Thickness(2) };
             _baseContainer.Children.Add(_closeButton);
             _baseContainer.SetColumn(_closeButton, 2);
             _baseContainer.SetRow(_closeButton, 0);
 
 
-            _modalBodyContainer = new StackLayout { Parent = _baseContainer, Orientation = StackOrientation.Vertical, Spacing = 16};
+            _modalBodyContainer = new StackLayout { Parent = _baseContainer, Orientation = StackOrientation.Vertical, Spacing = 16 };
             _baseContainer.SetColumn(_modalBodyContainer, 0);
             _baseContainer.SetColumnSpan(_modalBodyContainer, 3);
             _baseContainer.SetRow(_modalBodyContainer, 1);
@@ -453,7 +450,7 @@ namespace Trimble.Modus.Components
         /// </summary>
         /// <param name="primaryText"></param>
         /// <param name="primaryButtonClick"></param>
-        private void ConstructPrimaryButton(string primaryText = null ,Action primaryButtonClick = null)
+        private void ConstructPrimaryButton(string primaryText = null, Action primaryButtonClick = null)
         {
             PrimaryButtonClicked = primaryButtonClick;
             if (!string.IsNullOrEmpty(primaryText))

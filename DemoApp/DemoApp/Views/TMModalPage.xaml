@@ -4,54 +4,54 @@
              x:Class="DemoApp.Views.TMModalPage"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="TMModalPage">
-    <ScrollView>
-        <VerticalStackLayout Spacing="5" Padding="8">
-            <Label Text="Modal" FontSize="Medium" FontAttributes="Bold"/>
-            <Modus:TMInput x:Name="ModalTitle" Text="Accept TC?" TitleText="Modal Title" Placeholder="Enter title here"/>
-            <Label Text="Description" />
-            <Editor x:Name="Message"
+  <ScrollView>
+    <VerticalStackLayout Spacing="5" Padding="8">
+      <Label Text="Modal" FontSize="Medium" FontAttributes="Bold"/>
+      <Modus:TMInput x:Name="ModalTitle" Text="Accept TC?" TitleText="Modal Title" Placeholder="Enter title here"/>
+      <Label Text="Description" />
+      <Editor x:Name="Message"
                     Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis."
                     Placeholder="Enter Modal Desciption"
                     Margin="5"
                     HeightRequest="100"
                     VerticalOptions="FillAndExpand" />
 
-            <HorizontalStackLayout Spacing="5">
-                <Label Text="Title Icon" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
-                <CheckBox x:Name="IconCheckBox" VerticalOptions="Center" HorizontalOptions="End"/>
-                <Label Text="Full Width button" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
-                <CheckBox x:Name="FullWidthButtonCheckBox" VerticalOptions="Center" HorizontalOptions="End" />
-            </HorizontalStackLayout>
+      <HorizontalStackLayout Spacing="5">
+        <Label Text="Title Icon" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+        <CheckBox x:Name="IconCheckBox" VerticalOptions="Center" HorizontalOptions="End"/>
+        <Label Text="Full Width button" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+        <CheckBox x:Name="FullWidthButtonCheckBox" VerticalOptions="Center" HorizontalOptions="End" />
+      </HorizontalStackLayout>
 
-            <HorizontalStackLayout>
-                <Label Text="Text Input" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" />
-                <CheckBox x:Name="InputCheckBox" HorizontalOptions="End" VerticalOptions="Center" />
-            </HorizontalStackLayout>
+      <HorizontalStackLayout>
+        <Label Text="Text Input" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center" />
+        <CheckBox x:Name="InputCheckBox" HorizontalOptions="End" VerticalOptions="Center" />
+      </HorizontalStackLayout>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="9*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Grid.ColumnSpan="2" Text="Buttons" FontSize="Medium" FontAttributes="Bold"/>
-                <Modus:TMInput x:Name="PrimaryButtonTitle" Text="Accept" Grid.Column="0" Grid.Row="1" TitleText="Primary Button Title"/>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="9*"/>
+          <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.ColumnSpan="2" Text="Buttons" FontSize="Medium" FontAttributes="Bold"/>
+        <Modus:TMInput x:Name="PrimaryButtonTitle" Text="Accept" Grid.Column="0" Grid.Row="1" TitleText="Primary Button Title"/>
 
-                <Modus:TMInput x:Name="SecondaryButtonTitle" Text="Reject" Grid.Column="0" Grid.Row="2" TitleText="Secondary Button Title"/>
+        <Modus:TMInput x:Name="SecondaryButtonTitle" Text="Reject" Grid.Column="0" Grid.Row="2" TitleText="Secondary Button Title"/>
 
-                <Modus:TMInput x:Name="TertiaryButtonTitle" Grid.Column="0" Grid.Row="3" TitleText="Tertiary Button Title"/>
+        <Modus:TMInput x:Name="TertiaryButtonTitle" Grid.Column="0" Grid.Row="3" TitleText="Tertiary Button Title"/>
 
-                <Modus:TMInput x:Name="DangerButtonTitleEntry" Grid.Column="0" Grid.Row="4" TitleText="Danger Button Title"/>
-            </Grid>
+        <Modus:TMInput x:Name="DangerButtonTitleEntry" Grid.Column="0" Grid.Row="4" TitleText="Danger Button Title"/>
+      </Grid>
 
-            <Modus:TMButton Title="Show Modal" Clicked="ShowModalClicked" VerticalOptions="Center" Margin="0,10" HorizontalOptions="Center"/>
-        </VerticalStackLayout>
-    </ScrollView>
-    
+      <Modus:TMButton Title="Show Modal" Clicked="ShowModalClicked" VerticalOptions="Center" Margin="0,10" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+  </ScrollView>
+
 </ContentPage>

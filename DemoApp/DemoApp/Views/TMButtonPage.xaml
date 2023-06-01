@@ -5,7 +5,7 @@
              x:Class="DemoApp.TMButtonPage"
              Title="Button">
 
-    <ScrollView>
+  <ScrollView>
 
         <StackLayout x:Name="layout"
                      Spacing="20"

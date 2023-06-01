@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="Input">
-    <ScrollView>
-        <VerticalStackLayout>
-            <StackLayout Padding="10" Spacing="15">
-                <Modus:TMInput 
+  <ScrollView>
+    <VerticalStackLayout>
+      <StackLayout Padding="10" Spacing="15">
+        <Modus:TMInput 
                     x:Name="modusInput" 
                     TitleText="Text Input" 
                     Placeholder="Input" />
 
-                <Modus:TMInput 
+        <Modus:TMInput 
                     x:Name="validationInput" 
                     TitleText="Success/Error Input" 
                     HelperText="Helper Text" 
@@ -19,36 +19,36 @@
                     InputValidation="CustomValidateInput"
                     Focused="modusInput_Focused"/>
 
-                <Modus:TMInput 
+        <Modus:TMInput 
                     TitleText="Right Icon" 
                     Placeholder="Text Input" 
                     RightIconSource="password_eye.png" 
                     RightIconCommand="{Binding ShowPasswordCommand}"
                     IsPassword="{Binding ShowPassword}"/>
-             
-                <Modus:TMInput 
+
+        <Modus:TMInput 
                     TitleText="Filled" 
                     Placeholder="Text Input" 
                     Text="Filled" />
-                
-                <Modus:TMInput 
+
+        <Modus:TMInput 
                     HelperText="Helper Text" 
                     TitleText="Helper Text" 
                     Placeholder="Text Input" />
-                
-                <Modus:TMInput 
+
+        <Modus:TMInput 
                     IsEnabled="False" 
                     TitleText="Disabled" 
                     Text="Data"
                     Placeholder="Text Input" />
-                
-                <Modus:TMInput 
+
+        <Modus:TMInput 
                     IsReadOnly="True" 
                     TitleText="Read only" 
                     Placeholder="Text Input"
                     Text="Data"/>
-                
-                <Modus:TMInput 
+
+        <Modus:TMInput 
                     IsEnabled="False" 
                     IsReadOnly="True" 
                     Text="Data"
@@ -56,18 +56,18 @@
                     TitleText="ReadOnly and Disabled" 
                     Placeholder="Text Input" />
 
-                <Modus:TMInput 
+        <Modus:TMInput 
                     TitleText="Left Icon" 
                     LeftIconSource="s_icon.png" 
                     Placeholder="Text Input" />
-              
-                <Modus:TMInput 
+
+        <Modus:TMInput 
                     TitleText="Both Icon" 
                     LeftIconSource="user.png" 
                     Placeholder="Text Input" 
                     RightIconSource="cv.png" />
-              
-            </StackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+
+      </StackLayout>
+    </VerticalStackLayout>
+  </ScrollView>
 </ContentPage>

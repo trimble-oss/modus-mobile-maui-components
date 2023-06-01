@@ -1,12 +1,5 @@
-﻿
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
-using System;
-using System.ComponentModel;
-using System.Reflection.Metadata;
+﻿using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
-using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
@@ -98,7 +91,7 @@ namespace Trimble.Modus.Components
         /// Size of the leading and trailing icon.
         /// </summary>
         internal const int ICONSIZE = 25;
-        
+
         private const double disabledOpacity = 0.4;
 
         private bool _isTextValidated = false;
@@ -299,7 +292,7 @@ namespace Trimble.Modus.Components
             get { return (string)GetValue(HelperTextProperty); }
             set { SetValue(HelperTextProperty, value); }
         }
-        
+
         /// <summary>
         /// Gets or sets the entry text
         /// </summary>
@@ -522,9 +515,9 @@ namespace Trimble.Modus.Components
             var tmInput = (TMInput)bindable;
             Tuple<bool, string> result = null;
 
-            if (!string.IsNullOrEmpty((string)newValue) && 
-                (result = tmInput.InputValidation?.Invoke(tmInput))!= null && 
-                !string.IsNullOrEmpty(result.Item2) )
+            if (!string.IsNullOrEmpty((string)newValue) &&
+                (result = tmInput.InputValidation?.Invoke(tmInput)) != null &&
+                !string.IsNullOrEmpty(result.Item2))
             {
                 tmInput._validationLabel.Text = result.Item2;
                 tmInput._isTextValidated = true;
@@ -545,18 +538,64 @@ namespace Trimble.Modus.Components
                 tmInput.HideValidationText();
                 tmInput._isTextValidated = false;
                 tmInput.ResetBorder();
+
+                /* Unmerged change from project 'Trimble.Modus.Components (net7.0-maccatalyst)'
+                Before:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                After:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                */
+
+                /* Unmerged change from project 'Trimble.Modus.Components (net7.0-android)'
+                Before:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                After:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                */
+
+                /* Unmerged change from project 'Trimble.Modus.Components (net7.0-ios)'
+                Before:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                After:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                */
+
+                /* Unmerged change from project 'Trimble.Modus.Components (net7.0)'
+                Before:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                After:
+                            }
+
+                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+                */
             }
-            
+
             tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
 
         private void ResetBorder()
         {
-            if (!_focused) { 
+            if (!_focused)
+            {
 
                 _border.Stroke = (Color)BaseComponent.colorsDictionary()["Black"];
-               }
-            else {
+            }
+            else
+            {
                 _border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
             }
         }
@@ -623,8 +662,8 @@ namespace Trimble.Modus.Components
         private static void OnLeftIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var tMinput = (TMInput)bindable;
-            double dimensionValue = newValue!= null? ICONSIZE : 0;
-            if(tMinput._leftIcon != null)
+            double dimensionValue = newValue != null ? ICONSIZE : 0;
+            if (tMinput._leftIcon != null)
             {
                 tMinput._leftIcon.Source = (ImageSource)newValue;
                 tMinput._leftIcon.HeightRequest = dimensionValue;
@@ -676,16 +715,16 @@ namespace Trimble.Modus.Components
         {
             _titleLabel = new Label { Padding = new Thickness(0, 0, 0, 4) };
             _originalTitleHeight = _titleLabel.HeightRequest;
-            _helperIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.helper_icon.png")  , VerticalOptions = LayoutOptions.Center };
+            _helperIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.helper_icon.png"), VerticalOptions = LayoutOptions.Center };
             _successIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png"), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
-            _errorIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png") ,VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
-            _helperLabel = new Label() { Margin = new Thickness(5, 0, 0, 0) , FontSize = (double)Enums.FontSize.Small, VerticalOptions=LayoutOptions.Center};
-            _validationLabel = new Label() { Margin = new Thickness(5, 0, 0, 0) , FontSize = (double)Enums.FontSize.Small, VerticalOptions=LayoutOptions.Center};
+            _errorIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png"), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
+            _helperLabel = new Label() { Margin = new Thickness(5, 0, 0, 0), FontSize = (double)Enums.FontSize.Small, VerticalOptions = LayoutOptions.Center };
+            _validationLabel = new Label() { Margin = new Thickness(5, 0, 0, 0), FontSize = (double)Enums.FontSize.Small, VerticalOptions = LayoutOptions.Center };
             _helperText = new StackLayout
-            {   
+            {
                 Orientation = StackOrientation.Horizontal,
                 IsVisible = false,
-                Padding = new Thickness(0,5,0,0),
+                Padding = new Thickness(0, 5, 0, 0),
                 Children =
                 {
                     _helperIcon,
@@ -702,9 +741,9 @@ namespace Trimble.Modus.Components
                     _validationLabel
                 }
             };
-            _leftIcon = new ImageButton { HorizontalOptions = LayoutOptions.Start, HeightRequest=0, WidthRequest=0 };
+            _leftIcon = new ImageButton { HorizontalOptions = LayoutOptions.Start, HeightRequest = 0, WidthRequest = 0 };
             _rightIcon = new ImageButton { HorizontalOptions = LayoutOptions.End, HeightRequest = 0, WidthRequest = 0 };
-            _borderlessEntry = new BorderlessEntry { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Center};
+            _borderlessEntry = new BorderlessEntry { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Center };
 
             _labelContainer = new StackLayout { Orientation = StackOrientation.Vertical, Padding = 0 };
             _labelContainer.Children.Add(_titleLabel);
@@ -763,21 +802,21 @@ namespace Trimble.Modus.Components
         /// <param name="success"></param>
         private void SetValidationTextStyle(bool success)
         {
-            if (success )
+            if (success)
             {
                 _validationLabel.TextColor = Colors.Green;
                 _successIcon.WidthRequest = 24;
                 _errorIcon.WidthRequest = 0;
                 _border.Stroke = Colors.Green;
             }
-            else if (!success) 
+            else if (!success)
             {
                 _validationLabel.TextColor = Colors.Red;
                 _successIcon.WidthRequest = 0;
                 _errorIcon.WidthRequest = 24;
                 _border.Stroke = Colors.Red;
             }
-            
+
         }
 
         /// <summary>
@@ -818,7 +857,7 @@ namespace Trimble.Modus.Components
             if (sender is Entry entry && entry.IsFocused)
             {
                 _focused = true;
-                _border.Stroke = _isTextValidated? _validationLabel.TextColor : (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
+                _border.Stroke = _isTextValidated ? _validationLabel.TextColor : (Color)BaseComponent.colorsDictionary()["TrimbleBlue"];
                 _border.StrokeThickness = 2;
                 Focused?.Invoke(this, e);
             }
@@ -931,7 +970,7 @@ namespace Trimble.Modus.Components
                 _validationContainer.IsVisible = true;
                 _validationContainer.HeightRequest = 25;
             }
-          
+
         }
 
         /// <summary>

@@ -1,12 +1,7 @@
-﻿using CoreGraphics;
-
-using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
-
+﻿using Trimble.Modus.Components.Platforms.MacCatalyst;
 using Trimble.Modus.Components.Popup.Interfaces;
 using Trimble.Modus.Components.Popup.Pages;
-using Trimble.Modus.Components.Platforms.MacCatalyst;
-
-using UIKit; 
+using UIKit;
 namespace Trimble.Modus.Components.MacCatalyst.Implementation;
 
 internal class MacOSMopups : IPopupPlatform
@@ -58,7 +53,7 @@ internal class MacOSMopups : IPopupPlatform
 
         handler.ViewController.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
         handler.ViewController.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-        
+
 
         return window.RootViewController.PresentViewControllerAsync(handler.ViewController, false);
 

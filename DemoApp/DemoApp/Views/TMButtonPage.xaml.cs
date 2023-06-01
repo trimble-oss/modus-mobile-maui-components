@@ -6,8 +6,8 @@ namespace DemoApp;
 
 public partial class TMButtonPage : ContentPage
 {
-    private string _selectedStyle ="Fill";
-    private string _selectedSize ="Default";
+    private string _selectedStyle = "Fill";
+    private string _selectedSize = "Default";
     private bool _isDiabled;
 
     public bool IsDisabled
@@ -25,9 +25,9 @@ public partial class TMButtonPage : ContentPage
 
 
     public TMButtonPage()
-	{
-        
-		InitializeComponent();
+    {
+
+        InitializeComponent();
     }
 
     private void Style_Changed(object sender, CheckedChangedEventArgs e)
@@ -55,13 +55,13 @@ public partial class TMButtonPage : ContentPage
 
         if (isStyleSelected && isSizeSelected)
         {
-            List<TMButton> buttons = new List<TMButton> { button1, button2, button3, button4 ,button1i ,button2i ,button3i ,button4i };
+            List<TMButton> buttons = new List<TMButton> { button1, button2, button3, button4, button1i, button2i, button3i, button4i };
             List<TMButton> iconbuttons = new List<TMButton> { button1i, button2i, button3i, button4i };
 
-           
+
             foreach (TMButton button in buttons)
             {
-              
+
                 button.Size = (Size)Enum.Parse(typeof(Size), _selectedSize);
                 button.ButtonStyle = (ButtonStyle)Enum.Parse(typeof(ButtonStyle), _selectedStyle);
                 int index = buttons.IndexOf(button);

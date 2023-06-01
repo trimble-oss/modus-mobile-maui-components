@@ -34,7 +34,7 @@ namespace Trimble.Modus.Components.Platforms.iOS
             if (formsElement.InputTransparent)
                 return null!;
 
-            if ((formsElement.BackgroundInputTransparent || formsElement.CloseWhenBackgroundIsClicked ) && renderer?.PlatformView == hitTestResult)
+            if ((formsElement.BackgroundInputTransparent || formsElement.CloseWhenBackgroundIsClicked) && renderer?.PlatformView == hitTestResult)
             {
                 formsElement.SendBackgroundClick();
                 if (formsElement.BackgroundInputTransparent)
@@ -43,7 +43,7 @@ namespace Trimble.Modus.Components.Platforms.iOS
                 }
             }
             return hitTestResult;
-                
+
         }
     }
 }

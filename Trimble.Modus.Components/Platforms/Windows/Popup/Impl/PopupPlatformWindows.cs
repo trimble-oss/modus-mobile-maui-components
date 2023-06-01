@@ -1,9 +1,7 @@
-﻿
-using System;
-using Microsoft.Maui.Platform;
+﻿using Microsoft.Maui.Platform;
+using Trimble.Modus.Components.Platforms.Windows;
 using Trimble.Modus.Components.Popup.Interfaces;
 using Trimble.Modus.Components.Popup.Pages;
-using Trimble.Modus.Components.Platforms.Windows;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Windows.Implementation
@@ -69,7 +67,7 @@ namespace Trimble.Modus.Components.Windows.Implementation
 
 
             // https://github.com/microsoft/microsoft-ui-xaml/issues/3389
-            popup.XamlRoot = 
+            popup.XamlRoot =
                 Application.Current.MainPage.Handler.MauiContext.Services.GetService<Microsoft.UI.Xaml.Window>().Content.XamlRoot;
 
             popup.IsOpen = true;
