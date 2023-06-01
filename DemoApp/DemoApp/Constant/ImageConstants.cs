@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DemoApp.Constant
+﻿namespace DemoApp.Constant
 {
     internal static class ImageConstants
     {

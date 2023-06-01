@@ -36,7 +36,7 @@ namespace Trimble.Modus.Components.Platforms.MacCatalyst
 
             if ((formsElement.BackgroundInputTransparent || formsElement.CloseWhenBackgroundIsClicked) && renderer?.PlatformView == hitTestResult)
             {
-                if(uievent?.ButtonMask != 0)
+                if (uievent?.ButtonMask != 0)
                     formsElement.SendBackgroundClick();
                 if (formsElement.BackgroundInputTransparent)
                 {

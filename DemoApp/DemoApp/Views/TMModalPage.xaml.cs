@@ -1,16 +1,14 @@
 using Trimble.Modus.Components;
-using Trimble.Modus.Components.Popup.Services;
-using static System.Net.Mime.MediaTypeNames;
 using Toast = CommunityToolkit.Maui.Alerts.Toast;
 
 namespace DemoApp.Views;
 
 public partial class TMModalPage : ContentPage
 {
-	public TMModalPage()
-	{
+    public TMModalPage()
+    {
         InitializeComponent();
-	}
+    }
 
     /// <summary>
     /// Construct and display the modal

@@ -4,44 +4,44 @@
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.MainPage">
 
-    
 
-    <ScrollView>
-        <VerticalStackLayout>
-            <StackLayout Padding="10">
-                <Label Text="Controls" HorizontalOptions="Center" FontSize="36" FontAttributes="Bold" ></Label>   
-                <Button
+
+  <ScrollView>
+    <VerticalStackLayout>
+      <StackLayout Padding="10">
+        <Label Text="Controls" HorizontalOptions="Center" FontSize="36" FontAttributes="Bold" ></Label>
+        <Button
                     AutomationId="tmbutton" 
                     Text="Button" 
                     Clicked="ButtonClicked" 
                     Margin="10">
-                </Button>
-                <Button     
+        </Button>
+        <Button     
                     AutomationId="tminput" 
                     Text="Input" 
                     Clicked="ButtonClicked" 
                     Margin="10">
-                </Button>
-                <Button
+        </Button>
+        <Button
                     AutomationId="tmmodal" 
                     Text="Modal" 
                     Clicked="ButtonClicked" 
                     Margin="10">
-                </Button>
-                <Button     
+        </Button>
+        <Button     
                     AutomationId="tmtoast" 
                     Text="Toast" 
                     Clicked="ButtonClicked" 
                     Margin="10">
-                </Button> 
-                <Button     
+        </Button>
+        <Button     
                     AutomationId="tmcheckbox"
                     Text="CheckBox" 
                     Clicked="ButtonClicked" 
                     Margin="10">
-                </Button>
-            </StackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+        </Button>
+      </StackLayout>
+    </VerticalStackLayout>
+  </ScrollView>
 
 </ContentPage>

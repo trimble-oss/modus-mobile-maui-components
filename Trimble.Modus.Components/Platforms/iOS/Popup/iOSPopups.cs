@@ -1,11 +1,7 @@
-﻿using CoreGraphics;
-
-
+﻿using Trimble.Modus.Components.Platforms.iOS;
 using Trimble.Modus.Components.Popup.Interfaces;
 using Trimble.Modus.Components.Popup.Pages;
-using Trimble.Modus.Components.Platforms.iOS;
-
-using UIKit; 
+using UIKit;
 namespace Trimble.Modus.Components.iOS.Implementation;
 
 internal class iOSPopups : IPopupPlatform
@@ -57,7 +53,7 @@ internal class iOSPopups : IPopupPlatform
 
         handler.ViewController.ModalPresentationStyle = UIModalPresentationStyle.OverCurrentContext;
         handler.ViewController.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
-        
+
 
         return window.RootViewController.PresentViewControllerAsync(handler.ViewController, false);
 
