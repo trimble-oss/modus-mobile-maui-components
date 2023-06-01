@@ -5,47 +5,47 @@
              x:Class="DemoApp.TMButtonPage"
              Title="Button">
 
-    <ScrollView>
+  <ScrollView>
 
-        <StackLayout x:Name="layout" Spacing="20" Padding="10" >
-                <Label Text="Buttons"/>
+    <StackLayout x:Name="layout" Spacing="20" Padding="10" >
+      <Label Text="Buttons"/>
 
-            <StackLayout Orientation="Horizontal"  Spacing="10">
-                    <Modus:TMButton 
+      <StackLayout Orientation="Horizontal"  Spacing="10">
+        <Modus:TMButton 
                     x:Name="button1"
                     Title = "Primary"
                     ButtonColor="Primary"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                    <Modus:TMButton 
+        <Modus:TMButton 
                     x:Name="button2"
                     Title = "Secondary"
                     ButtonColor="Secondary"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Modus:TMButton 
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" Spacing="10">
+        <Modus:TMButton 
                     x:Name="button3"
                     Title = "Tertiary"
                     ButtonColor="Tertiary"
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                    <Modus:TMButton 
+        <Modus:TMButton 
                     x:Name="button4"
                     Title = "Danger"
                     ButtonColor="Danger" 
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                </StackLayout>
-            
+      </StackLayout>
 
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Modus:TMButton 
+
+      <StackLayout Orientation="Horizontal" Spacing="10">
+        <Modus:TMButton 
                     x:Name="button1i"
                     Title = "Primary"
                     ButtonColor="Primary"
@@ -53,7 +53,7 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                    <Modus:TMButton 
+        <Modus:TMButton 
                     x:Name="button2i"
                     Title = "Secondary"
                     ButtonColor="Secondary"
@@ -61,9 +61,9 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <Modus:TMButton 
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" Spacing="10">
+        <Modus:TMButton 
                     x:Name="button3i"
                     Title = "Tertiary"
                     ButtonColor="Tertiary"
@@ -71,7 +71,7 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                    <Modus:TMButton 
+        <Modus:TMButton 
                     x:Name="button4i"
                     Title = "Danger"
                     IconSource="gallery_icon.png"
@@ -79,32 +79,32 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                </StackLayout>
+      </StackLayout>
 
 
-                <StackLayout Orientation="Horizontal">
-                    <RadioButton Content="XSmall" Value="XSmall" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                    <RadioButton Content="Small" Value="Small"  GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                    <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                    <RadioButton Content="Large" Value="Large" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <RadioButton Content="Fill" IsChecked="True" Value="Fill" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-                    <RadioButton Content="Outline" Value="Outline"  GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-                    <RadioButton Content="BorderLess"  Value="BorderLess" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-                </StackLayout>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                   
-                    <Label Grid.Column="0"  Text="IsDisabled"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Switch Grid.Column="1"  x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabled_Toggled" />
-                </Grid>
-            <Label Text="Floating Buttons"></Label>
-            <StackLayout Orientation="Horizontal" Spacing="10">
-                <Modus:TMButton 
+      <StackLayout Orientation="Horizontal">
+        <RadioButton Content="XSmall" Value="XSmall" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+        <RadioButton Content="Small" Value="Small"  GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+        <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+        <RadioButton Content="Large" Value="Large" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <RadioButton Content="Fill" IsChecked="True" Value="Fill" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
+        <RadioButton Content="Outline" Value="Outline"  GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
+        <RadioButton Content="BorderLess"  Value="BorderLess" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
+      </StackLayout>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0"  Text="IsDisabled"  HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Switch Grid.Column="1"  x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabled_Toggled" />
+      </Grid>
+      <Label Text="Floating Buttons"></Label>
+      <StackLayout Orientation="Horizontal" Spacing="10">
+        <Modus:TMButton 
                     x:Name="floating"
                     Title = "Floating Button"
                      IsFloatingButton="True"
@@ -113,7 +113,7 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-                <Modus:TMButton 
+        <Modus:TMButton 
                     x:Name="floatingi"
                     IsFloatingButton="True"
                     ButtonColor="Primary"
@@ -121,10 +121,10 @@
                     Command="{Binding MyCommand}"
                     CommandParameter="Button5"
                   />
-            </StackLayout>
-        </StackLayout>
-        
-         
-      
-    </ScrollView>
+      </StackLayout>
+    </StackLayout>
+
+
+
+  </ScrollView>
 </ContentPage>

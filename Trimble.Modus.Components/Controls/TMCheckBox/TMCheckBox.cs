@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-using System.Drawing;
-using Trimble.Modus.Components.Enums;
+﻿using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
@@ -9,7 +7,7 @@ namespace Trimble.Modus.Components
         #region Fields
         private Label _label;
         private Image _checkbox;
-        private int _defaultWidth = 24, _defaultHeight = 24, _largeWidth = 32,  _large_height = 32;
+        private int _defaultWidth = 24, _defaultHeight = 24, _largeWidth = 32, _large_height = 32;
         private int _defaultFontSize = 14, _largeFontSize = 16;
         private EventHandler _checked;
         #endregion
@@ -100,9 +98,9 @@ namespace Trimble.Modus.Components
 
             if (customCheckboxView.Size == CheckboxSize.Large)
             {
-                customCheckboxView._label.FontSize = customCheckboxView._largeFontSize; 
-                customCheckboxView._checkbox.WidthRequest = customCheckboxView._largeWidth; 
-                customCheckboxView._checkbox.HeightRequest = customCheckboxView._large_height; 
+                customCheckboxView._label.FontSize = customCheckboxView._largeFontSize;
+                customCheckboxView._checkbox.WidthRequest = customCheckboxView._largeWidth;
+                customCheckboxView._checkbox.HeightRequest = customCheckboxView._large_height;
             }
             else
             {
@@ -144,7 +142,7 @@ namespace Trimble.Modus.Components
                 customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.checked_checkbox.png");
 
             }
-            else 
+            else
             {
                 customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png");
             }
@@ -160,8 +158,8 @@ namespace Trimble.Modus.Components
 
         public TMCheckBox()
         {
-            _label = new Label() { FontSize = _defaultFontSize,VerticalOptions = LayoutOptions.Center };
-            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center ,HeightRequest = _defaultHeight ,WidthRequest = _defaultWidth , Margin = new Thickness(0,0,4,0)};
+            _label = new Label() { FontSize = _defaultFontSize, VerticalOptions = LayoutOptions.Center };
+            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
             Content = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
@@ -197,7 +195,7 @@ namespace Trimble.Modus.Components
             _checkbox.IsEnabled = !IsDisabled;
             _label.IsEnabled = !IsDisabled;
             Opacity = IsDisabled ? 0.5 : 1;
-            
+
         }
     }
 }

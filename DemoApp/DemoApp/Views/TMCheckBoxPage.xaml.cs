@@ -11,8 +11,8 @@ public partial class TMCheckBoxPage : ContentPage
 
     public bool ParentChecked { get; set; }
     public TMCheckBoxPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         childCheckboxes = new List<TMCheckBox>
             {
                 ChildCheckBox1,
@@ -28,7 +28,7 @@ public partial class TMCheckBoxPage : ContentPage
     {
         CheckBox.IsDisabled = !CheckBox.IsDisabled;
     }
-  
+
     private void Size_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
@@ -64,9 +64,9 @@ public partial class TMCheckBoxPage : ContentPage
         else if (uncheckedCount == childCheckboxes.Count)
         {
 
-           ParentCheckBox.IsIndeterminate = false;
-           ParentCheckBox.IsChecked = false;
-          
+            ParentCheckBox.IsIndeterminate = false;
+            ParentCheckBox.IsChecked = false;
+
 
         }
         else
@@ -86,7 +86,7 @@ public partial class TMCheckBoxPage : ContentPage
         var childCheckbox = sender as TMCheckBox;
         UpdateParentCheckboxState();
 
-     
+
     }
 
     private void ParentCheckBox_CheckedChanged(object sender, EventArgs e)

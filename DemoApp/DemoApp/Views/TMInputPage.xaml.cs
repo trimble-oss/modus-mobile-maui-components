@@ -1,19 +1,19 @@
-using Trimble.Modus.Components;
-using System.Text.RegularExpressions;
 using DemoApp.ViewModels;
+using System.Text.RegularExpressions;
+using Trimble.Modus.Components;
 
 namespace DemoApp;
 
 public partial class TMInputPage : ContentPage
 {
     private InputPageViewModel _inputPageViewModel;
-	public TMInputPage()
-	{
+    public TMInputPage()
+    {
         _inputPageViewModel = new InputPageViewModel();
 
         InitializeComponent();
         BindingContext = _inputPageViewModel;
-        
+
     }
     private void modusInput_Focused(object sender, EventArgs e)
     {

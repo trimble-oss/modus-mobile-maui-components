@@ -1,10 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Trimble.Modus.Components.Enums;
+﻿using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Controls.Toast
@@ -29,7 +23,7 @@ namespace Trimble.Modus.Components.Controls.Toast
             {
                 throw new ArgumentNullException("Message is required");
             }
-           popupNavigation.PushAsync(new TMToastContents(message,  actionButtonText, popupNavigation,theme,action),false);
+            popupNavigation.PushAsync(new TMToastContents(message, actionButtonText, popupNavigation, theme, action), false);
         }
     }
 }

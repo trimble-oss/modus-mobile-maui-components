@@ -101,6 +101,6 @@ internal abstract class BaseAnimation : IPopupAnimation
     /// <param name="page"></param>
     protected virtual void ShowPage(Page page)
     {
-        page.Dispatcher.Dispatch(() => page.Opacity = 1 );
+        page.Dispatcher.Dispatch(() => page.Opacity = 1);
     }
 }
