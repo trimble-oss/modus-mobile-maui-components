@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Platform;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
 
@@ -25,12 +23,12 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(string message, string actionButtonText, Object popupNavigation,ToastTheme theme,Action action )
+    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action)
     {
-  
+
         InitializeComponent();
         SetTheme(theme.ToString());
-        this.popupNavigation = (PopupNavigation) popupNavigation;
+        this.popupNavigation = (PopupNavigation)popupNavigation;
         PopupData(message, actionButtonText, action);
         BindingContext = this;
         Close();
@@ -55,36 +53,36 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
             case ToastTheme.Secondary:
                 ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.secondary.png");
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.secondary.png");
                 TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Danger:
                 ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.danger.png");
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.danger.png");
                 TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Warning:
                 ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.warning.png");
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.warning.png");
                 TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Success:
                 ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
                 TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Default:
             default:
                 ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource =  ImageSource.FromResource("Trimble.Modus.Components.Images.default.png");
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.default.png");
                 TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
         }
-      
+
     }
 
     public TMToastContents()
@@ -93,28 +91,31 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     private void CloseButton_Clicked(object sender, EventArgs e)
     {
-         popupNavigation.RemovePageAsync(this, true);
-       
+        popupNavigation.RemovePageAsync(this, true);
+
     }
     public void Close()
     {
-        Task.Run(async () => {
+        Task.Run(async () =>
+        {
             await Task.Delay(DELAYTIME);
             await popupNavigation.RemovePageAsync(this, true);
-         });
+        });
     }
 
     private void PopupData(string message, string actionButtonText, Action action)
     {
-      
+
         RightIconText = actionButtonText;
- 
+
         actionButton.Text = RightIconText;
         actionButton.TextColor = TextColor;
         actionButton.BackgroundColor = ToastBackground;
 
-        if (string.IsNullOrEmpty(RightIconText)) {
-             closeButton.Clicked += (sender, args) => {
+        if (string.IsNullOrEmpty(RightIconText))
+        {
+            closeButton.Clicked += (sender, args) =>
+            {
                 action?.Invoke();
             };
 
@@ -137,25 +138,26 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         {
             closeButton.IsVisible = false;
             actionButton.IsVisible = true;
-            actionButton.Clicked += (sender, args) => {
+            actionButton.Clicked += (sender, args) =>
+            {
                 action?.Invoke();
             };
         }
-     
+
         var idiom = Device.Idiom;
         setWidth(idiom);
-        Message = GetWrappedLabelText(message,idiom);
+        Message = GetWrappedLabelText(message, idiom);
     }
 
     private void setWidth(TargetIdiom idiom)
     {
-        double minimumTabletWidth = 480; 
+        double minimumTabletWidth = 480;
         double maximumTabletWidthPercentage = 0.7;
         double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
         if (idiom == TargetIdiom.Phone)
         {
-            toastLayout.Padding = new Thickness(16,0,16,10);
-        
+            toastLayout.Padding = new Thickness(16, 0, 16, 10);
+
         }
         else if (idiom == TargetIdiom.Tablet)
         {
@@ -163,7 +165,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             toastLayout.MinimumWidthRequest = minimumTabletWidth;
             toastLayout.MaximumWidthRequest = deviceWidth * maximumTabletWidthPercentage;
             toastLayout.HorizontalOptions = LayoutOptions.CenterAndExpand;
-      
+
         }
 
     }

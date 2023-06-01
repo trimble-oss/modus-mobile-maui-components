@@ -57,11 +57,11 @@ namespace Trimble.Modus.Components.Popup.Hosting
                 .ConfigureLifecycleEvents(lifecycle =>
                 {
 #if ANDROID
-                lifecycle.AddAndroid(d =>
-                {
-                    
-                    d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed(backPressHandler));
-                });
+                    lifecycle.AddAndroid(d =>
+                    {
+
+                        d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed(backPressHandler));
+                    });
 #endif
                 })
                 .ConfigureMauiHandlers(handlers =>

@@ -25,8 +25,8 @@ namespace Trimble.Modus.Components
                 entryHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
 #elif WINDOWS
             
-                entryHandler.PlatformView.BorderBrush =null;
-                entryHandler.PlatformView.BorderThickness=new Microsoft.UI.Xaml.Thickness(0);
+                entryHandler.PlatformView.BorderBrush = null;
+                entryHandler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
             }
         }

@@ -1,17 +1,15 @@
 ﻿using DemoApp.Views;
-using Trimble.Modus.Components;
-using Trimble.Modus.Components.Popup.Services;
 
 namespace DemoApp;
 
 public partial class MainPage : ContentPage
 {
 
-	public MainPage()
-	{
-		InitializeComponent();
-       
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+
+    }
 
     private void ButtonClicked(object sender, EventArgs e)
     {
@@ -32,6 +30,9 @@ public partial class MainPage : ContentPage
                 break;
             case "tmcheckbox":
                 Navigation.PushAsync(new TMCheckBoxPage());
+                break;
+            case "tmradiobutton":
+                Navigation.PushAsync(new TMRadioButtonPage());
                 break;
             default:
                 Console.WriteLine("Default Case");

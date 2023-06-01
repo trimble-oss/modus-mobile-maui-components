@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.TMRadioButtonPage"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="TMRadioButtonPage">
+  <VerticalStackLayout Spacing="5"
+                       Margin="10">
+    <Label Text="Radio Group"
+           FontAttributes="Bold"
+           FontSize="20" />
+    <Modus:TMRadioButtonGroup x:Name="RadioGroup"
+                              SelectedIndex="0"
+                              Spacing="5"
+                              Orientation="Vertical">
+      <Modus:TMRadioButton Text="Dog"/>
+      <Modus:TMRadioButton Text="Cat"/>
+      <Modus:TMRadioButton Text="Bird"/>
+    </Modus:TMRadioButtonGroup>
+    <Label Text="Size"
+           FontAttributes="Bold"
+           Padding="0,5"
+           FontSize="20" />
+    <Modus:TMRadioButtonGroup x:Name="SizeGroup"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChanged="OnSelectedRadioButtonChanged"
+                              Orientation="Horizontal">
+      <Modus:TMRadioButton Text="Default" />
+      <Modus:TMRadioButton Text="Large" />
+    </Modus:TMRadioButtonGroup>
+    <StackLayout Orientation="Horizontal">
+      <Label Text="Disable"
+             FontAttributes="Bold"
+             HorizontalOptions="Start"
+             VerticalOptions="Center"
+             FontSize="20" />
+      <Switch Toggled="OnDisableToggled"
+              VerticalOptions="Center" />
+    </StackLayout>
+    <HorizontalStackLayout Margin="0,5">
+      <Label Text="Selected Item "
+             FontAttributes="Bold"
+             FontSize="20" />
+      <Label Text="{Binding SelectedIndex, Source={x:Reference RadioGroup}}" FontSize="20" />
+    </HorizontalStackLayout>
+  </VerticalStackLayout>
+</ContentPage>

@@ -18,6 +18,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Images\radio_selected_icon.svg" />
+	  <None Remove="Images\radio_unselected_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <EmbeddedResource Include="Images\black_close_icon.png" />
 	  <EmbeddedResource Include="Images\blue_close_icon.png" />
 	  <EmbeddedResource Include="Images\checked_checkbox.png" />
@@ -37,6 +42,8 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Images\modus_close_icon.svg" />
+	  <MauiImage Include="Images\radio_selected_icon.svg" />
+	  <MauiImage Include="Images\radio_unselected_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

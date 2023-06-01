@@ -6,10 +6,10 @@ namespace DemoApp;
 public partial class TMToastPage : ContentPage
 {
     private ToastTheme toastTheme;
-	public TMToastPage()
-	{
-      InitializeComponent();
-      toastPicker.SelectedItem = ToastTheme.Default;
+    public TMToastPage()
+    {
+        InitializeComponent();
+        toastPicker.SelectedItem = ToastTheme.Default;
     }
 
     private void OnToastActionTapped(object sender, EventArgs e)

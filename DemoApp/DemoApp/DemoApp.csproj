@@ -69,6 +69,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TMCheckBoxPage.xaml.cs">
+	    <SubType>Code</SubType>
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMInputPage.xaml.cs">
 	    <DependentUpon>TMInputPage.xaml</DependentUpon>
 	  </Compile>
@@ -81,13 +85,16 @@
 	  <MauiXaml Update="Views\TMButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TMCheckBoxPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMInputPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TMCheckBoxPage.xaml">
+	  <MauiXaml Update="Views\TMModalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TMModalPage.xaml">
+	  <MauiXaml Update="Views\TMRadioButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

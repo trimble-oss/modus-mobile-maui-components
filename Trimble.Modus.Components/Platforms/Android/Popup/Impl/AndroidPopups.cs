@@ -97,7 +97,7 @@ internal class AndroidPopups : IPopupPlatform
         {
             if (view is null)
             {
-                return;   
+                return;
             }
 
             // Screen reader
