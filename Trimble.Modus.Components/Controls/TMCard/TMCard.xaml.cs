@@ -65,7 +65,7 @@ public partial class TMCard : ContentView
         var card = (TMCard)bindable;
         if ((bool)newValue)
         {
-            card._border.BackgroundColor = (Color)BaseComponent.colorsDictionary()["ToastBlue"];
+            card._border.BackgroundColor = (Color)BaseComponent.colorsDictionary()["Primary"];
             card._border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlueClicked"];
         }
         else
