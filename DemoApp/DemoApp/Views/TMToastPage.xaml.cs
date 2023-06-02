@@ -6,10 +6,10 @@ namespace DemoApp;
 public partial class TMToastPage : ContentPage
 {
     private ToastTheme toastTheme;
-	public TMToastPage()
-	{
-      InitializeComponent();
-      toastPicker.SelectedItem = ToastTheme.ToastBlue;
+    public TMToastPage()
+    {
+        InitializeComponent();
+        toastPicker.SelectedItem = ToastTheme.Default;
     }
 
     private void OnToastActionTapped(object sender, EventArgs e)
@@ -18,7 +18,7 @@ public partial class TMToastPage : ContentPage
         string rightIconText = IconText.Text;
         string toastMessage = Message.Text;
         var toast = new TMToast();
-        toast.Show(toastMessage, "lefticon.png", rightIconText, toastTheme,HandleEvent);
+        toast.Show(toastMessage, rightIconText, HandleEvent, toastTheme);
     }
     void HandleEvent()
     {

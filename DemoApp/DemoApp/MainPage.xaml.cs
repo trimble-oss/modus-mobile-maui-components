@@ -1,42 +1,57 @@
 ﻿using DemoApp.Views;
-using Trimble.Modus.Components;
-using Trimble.Modus.Components.Popup.Services;
+using System.Collections.ObjectModel;
 
-namespace DemoApp;
 
-public partial class MainPage : ContentPage
+namespace DemoApp
 {
-
-	public MainPage()
-	{
-		InitializeComponent();
-       
-	}
-
-    private void ButtonClicked(object sender, EventArgs e)
+    public partial class MainPage : ContentPage
     {
-        Button clickedButton = (Button)sender;
-        switch (clickedButton.AutomationId)
+        public ObservableCollection<string> ControlNames { get; set; }
+        public MainPage()
         {
-            case "tmbutton":
-                Navigation.PushAsync(new TMButtonPage());
-                break;
-            case "tminput":
-                Navigation.PushAsync(new TMInputPage());
-                break;
-            case "tmmodal":
-                Navigation.PushAsync(new TMModalPage());
-                break;
-            case "tmtoast":
-                Navigation.PushAsync(new TMToastPage());
-                break; 
-            case "tmcard":
-                Navigation.PushAsync(new TMCardPage());
-                break;
-            default:
-                Console.WriteLine("Default Case");
-                break;
+            InitializeComponent();
+            ControlNames = new ObservableCollection<string>
+            {
+                "Button",
+                "Input",
+                "Modal",
+                "Toast",
+                "CheckBox",
+                "Card"
+            };
+            BindingContext = this;
+        }
+        private void ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item is string name)
+            {
+                switch (name)
+                {
+                    case "Button":
+                        Navigation.PushAsync(new TMButtonPage());
+                        break;
+                    case "Input":
+                        Navigation.PushAsync(new TMInputPage());
+                        break;
+                    case "Modal":
+                        Navigation.PushAsync(new TMModalPage());
+                        break;
+                    case "Toast":
+                        Navigation.PushAsync(new TMToastPage());
+                        break;
+                    case "CheckBox":
+                        Navigation.PushAsync(new TMCheckBoxPage());
+                        break;
+                    case "Card":
+                        Navigation.PushAsync(new TMCardPage());
+                        break;
+                    default:
+                        Console.WriteLine("Default Case");
+                        break;
+                }
+            }
+
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }
-

@@ -1,10 +1,10 @@
 ﻿using Microsoft.Maui.Platform;
+using Microsoft.UI.Xaml.Input;
+using Trimble.Modus.Components.Popup.Pages;
 using Windows.UI.ViewManagement;
 using Rect = Windows.Foundation.Rect;
 using Size = Windows.Foundation.Size;
-using Trimble.Modus.Components.Popup.Pages;
 using WinPopup = global::Microsoft.UI.Xaml.Controls.Primitives.Popup;
-using Microsoft.UI.Xaml.Input;
 
 namespace Trimble.Modus.Components.Platforms.Windows
 {

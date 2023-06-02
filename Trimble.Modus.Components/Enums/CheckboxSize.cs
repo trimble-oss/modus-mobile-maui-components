@@ -1,10 +1,7 @@
 ﻿namespace Trimble.Modus.Components.Enums
 {
-    public enum Size
+    public enum CheckboxSize
     {
-        Empty,
-        XSmall,
-        Small,
         Default,
         Large
     }

@@ -1,4 +1,3 @@
-using Microsoft.Maui.Platform;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
 
@@ -8,49 +7,82 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
 {
     private const int DELAYTIME = 5000;
+
     public ImageSource LeftIconSource { get; set; }
+
     public string Message { get; set; }
 
     public string RightIconText { get; set; }
 
-    public ImageSource RightIconSource { get; set; }
-
     public double ToastWidthRequest { get; set; }
 
-    public Color ToastTheme { get; set; }
+    public Color ToastBackground { get; set; }
 
     public Color TextColor { get; set; }
 
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(string message, ImageSource leftIcon, string actionButtonText, Object popupNavigation,ToastTheme theme,Action action )
+    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action)
     {
-  
+
         InitializeComponent();
         SetTheme(theme.ToString());
-        this.popupNavigation = (PopupNavigation) popupNavigation;
-        PopupData(message, leftIcon, actionButtonText, action);
+        this.popupNavigation = (PopupNavigation)popupNavigation;
+        PopupData(message, actionButtonText, action);
         BindingContext = this;
         Close();
     }
 
     private void SetTheme(String toastTheme)
     {
-        ToastTheme = (Color)BaseComponent.colorsDictionary()[toastTheme];
-        if (string.Equals(toastTheme, "ToastBlue"))
+        ToastTheme theme = (ToastTheme)Enum.Parse(typeof(ToastTheme), toastTheme);
+        switch (theme)
         {
-            TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+            case ToastTheme.Dark:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.dark.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["White"];
+                break;
 
+            case ToastTheme.Primary:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.primary.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+                break;
+
+            case ToastTheme.Secondary:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.secondary.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Danger:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.danger.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Warning:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.warning.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Success:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
+
+            case ToastTheme.Default:
+            default:
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.default.png");
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                break;
         }
-        if (string.Equals(toastTheme, "ToastBlack"))
-        {
-            TextColor = (Color)BaseComponent.colorsDictionary()["ToastWhite"];
-        }
-        else
-        {
-            TextColor = (Color)BaseComponent.colorsDictionary()["ToastBlack"];
-        }
+
     }
 
     public TMToastContents()
@@ -59,86 +91,73 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     private void CloseButton_Clicked(object sender, EventArgs e)
     {
-         popupNavigation.RemovePageAsync(this, true);
-       
+        popupNavigation.RemovePageAsync(this, true);
+
     }
     public void Close()
     {
-        Task.Run(async () => {
+        Task.Run(async () =>
+        {
             await Task.Delay(DELAYTIME);
             await popupNavigation.RemovePageAsync(this, true);
-         });
+        });
     }
 
-    private void PopupData(string message, ImageSource leftIcon , string actionButtonText, Action action)
+    private void PopupData(string message, string actionButtonText, Action action)
     {
-        LeftIconSource = leftIcon;
+
         RightIconText = actionButtonText;
 
- 
-        var button = new Button();
-        button.Text = RightIconText;
-        button.TextColor = TextColor;
-        button.Padding = new Thickness(8, 0, 16, 0);
-        button.BackgroundColor = ToastTheme;
-        button.VerticalOptions = LayoutOptions.Center;
+        actionButton.Text = RightIconText;
+        actionButton.TextColor = TextColor;
+        actionButton.BackgroundColor = ToastBackground;
 
-
-        var imageButton = new ImageButton
+        if (string.IsNullOrEmpty(RightIconText))
         {
-            WidthRequest = 16,
-            HeightRequest = 16,
-            Margin = new Thickness(8,0,16,0),
-            VerticalOptions = LayoutOptions.Center,
-            HorizontalOptions = LayoutOptions.Center,
-            };
-
-           
-        
-        imageButton.Clicked += CloseButton_Clicked;
-        button.Clicked += CloseButton_Clicked;
-        if (string.IsNullOrEmpty(RightIconText)) {
-             imageButton.Clicked += (sender, args) => {
+            closeButton.Clicked += (sender, args) =>
+            {
                 action?.Invoke();
             };
 
-            if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlue"]))
+            if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
             {
-                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
             }
-            else if (ToastTheme.Equals((Color)BaseComponent.colorsDictionary()["ToastBlack"]))
+            else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
             {
-                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
             }
             else
             {
-                imageButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
             }
-            contentLayout.Children.Add(imageButton);
+            closeButton.IsVisible = true;
+            actionButton.IsVisible = false;
         }
         else
-        {   
-            button.Clicked += (sender, args) => {
+        {
+            closeButton.IsVisible = false;
+            actionButton.IsVisible = true;
+            actionButton.Clicked += (sender, args) =>
+            {
                 action?.Invoke();
             };
-            contentLayout.Children.Add(button);
-
         }
-     
+
         var idiom = Device.Idiom;
         setWidth(idiom);
-        Message = GetWrappedLabelText(message,idiom);
+        Message = GetWrappedLabelText(message, idiom);
     }
 
     private void setWidth(TargetIdiom idiom)
     {
-        double minimumTabletWidth = 480; 
+        double minimumTabletWidth = 480;
         double maximumTabletWidthPercentage = 0.7;
         double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
         if (idiom == TargetIdiom.Phone)
         {
-            toastLayout.Padding = new Thickness(16,0,16,10);
-        
+            toastLayout.Padding = new Thickness(16, 0, 16, 10);
+
         }
         else if (idiom == TargetIdiom.Tablet)
         {
@@ -146,7 +165,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             toastLayout.MinimumWidthRequest = minimumTabletWidth;
             toastLayout.MaximumWidthRequest = deviceWidth * maximumTabletWidthPercentage;
             toastLayout.HorizontalOptions = LayoutOptions.CenterAndExpand;
-      
+
         }
 
     }

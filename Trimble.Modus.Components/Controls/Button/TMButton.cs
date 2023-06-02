@@ -1,15 +1,12 @@
-﻿
-
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
+﻿using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
 
     public class TMButton : ContentView
-    {   
-        internal int _iconWidth = 16 , _iconHeight = 16;
+    {
+        internal int _iconWidth = 16, _iconHeight = 16;
         private const int _borderRadius = 4;
         internal readonly Label _titleLabel;
         private readonly Image _iconImage;
@@ -67,7 +64,7 @@ namespace Trimble.Modus.Components
                     button.frame.Stroke = (Color)BaseComponent.colorsDictionary()["SecondaryButton"];
                 }
             }
-            else 
+            else
             {
                 switch (button.ButtonColor)
                 {
@@ -80,7 +77,7 @@ namespace Trimble.Modus.Components
                     case ButtonColor.Tertiary:
                         button.frame.BackgroundColor = (Color)BaseComponent.colorsDictionary()["TertiaryButton"];
                         button.frame.Stroke = Colors.Transparent;
-                        button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"]; 
+                        button._titleLabel.TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"];
                         break;
 
                     case ButtonColor.Danger:
@@ -231,15 +228,67 @@ namespace Trimble.Modus.Components
             Content = frame;
             GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer());
             _tapGestureRecognizer.NumberOfTapsRequired = 1;
-            _tapGestureRecognizer.Tapped += OnTapped; 
- }
-        
+            _tapGestureRecognizer.Tapped += OnTapped;
+            /* Unmerged change from project 'Trimble.Modus.Components (net7.0-maccatalyst)'
+            Before:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            After:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            */
+
+            /* Unmerged change from project 'Trimble.Modus.Components (net7.0-android)'
+            Before:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            After:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            */
+
+            /* Unmerged change from project 'Trimble.Modus.Components (net7.0-ios)'
+            Before:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            After:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            */
+
+            /* Unmerged change from project 'Trimble.Modus.Components (net7.0)'
+            Before:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            After:
+             }
+
+
+                    private void setDefault(TMButton tmButton)
+            */
+
+        }
+
 
         private void setDefault(TMButton tmButton)
         {
             tmButton._titleLabel.FontSize = (double)Enums.FontSize.Default;
             tmButton._titleLabel.VerticalOptions = LayoutOptions.Center;
-          
+
             if (tmButton.imageSet && tmButton.isTextSet)
             {
                 tmButton._titleLabel.Padding = new Thickness(0, 8, 24, 8);
@@ -259,7 +308,7 @@ namespace Trimble.Modus.Components
                 tmButton._iconImage.Margin = new Thickness(16);
             }
             tmButton.HeightRequest = 48;
-            
+
 
         }
         private void setFloatingButton(TMButton tmButton)
@@ -293,7 +342,7 @@ namespace Trimble.Modus.Components
             tmButton.HeightRequest = 48;
         }
 
-       
+
         private void OnTapped(object sender, EventArgs e)
         {
             Command?.Execute(CommandParameter);
@@ -326,7 +375,7 @@ namespace Trimble.Modus.Components
 
 
             }
-            if(ButtonStyle == ButtonStyle.BorderLess)
+            if (ButtonStyle == ButtonStyle.BorderLess)
             {
                 return (Color)BaseComponent.colorsDictionary()["BluePale"];
             }
@@ -401,7 +450,7 @@ namespace Trimble.Modus.Components
                 }
                 else
                 {
-                        tmButton.imageSet = false;
+                    tmButton.imageSet = false;
                 }
             }
         }
@@ -411,7 +460,7 @@ namespace Trimble.Modus.Components
             if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
             {
                 var size = (Enums.Size)newValue;
-                
+
                 switch (size)
                 {
                     case Enums.Size.XSmall:
