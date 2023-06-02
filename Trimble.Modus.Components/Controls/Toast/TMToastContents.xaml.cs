@@ -146,7 +146,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         var idiom = Device.Idiom;
         setWidth(idiom);
-        Message = GetWrappedLabelText(message, idiom);
+        Message = message;
     }
 
     private void setWidth(TargetIdiom idiom)
