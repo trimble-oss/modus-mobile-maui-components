@@ -15,9 +15,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"  Text="Selected"  HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Switch Grid.Column="1"  x:Name="isSelected" Toggled="isSelected_Toggled" />
+                <Switch Grid.Column="1"  x:Name="isSelected" Toggled="IsSelectedToggled" />
             </Grid>
-            <Modus:TMCard x:Name="card1" Clicked="card1_Clicked" >
+            <Modus:TMCard x:Name="card1" Clicked="Card1Clicked" >
                 <StackLayout>
                     <!-- Header -->
                     <StackLayout BackgroundColor="Transparent" Padding="0,0,0,10">

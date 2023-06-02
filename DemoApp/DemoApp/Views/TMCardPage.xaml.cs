@@ -19,7 +19,7 @@ public partial class TMCardPage : ContentPage
         Console.WriteLine("Execute " + e);
     }
 
-    private void isSelected_Toggled(object sender, ToggledEventArgs e)
+    private void IsSelectedToggled(object sender, ToggledEventArgs e)
     {
         List<TMCard> cardlist = new List<TMCard>() { card1, card2, card3, card4, card5 };
         foreach (TMCard card in cardlist)
@@ -28,7 +28,7 @@ public partial class TMCardPage : ContentPage
         }
     }
 
-    private void card1_Clicked(object sender, EventArgs e)
+    private void Card1Clicked(object sender, EventArgs e)
     {
         Console.WriteLine("Card1 Clicked");
     }

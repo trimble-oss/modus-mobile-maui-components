@@ -46,7 +46,7 @@ public partial class TMCard : ContentView
 
 
     public static readonly BindableProperty IsSelectedProperty =
-        BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TMCard), defaultValue: false, propertyChanged: isSelectedChanged);
+        BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TMCard), defaultValue: false, propertyChanged: SelectedChanged);
 
     public static readonly BindableProperty ClickedEventProperty =
           BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMCard));
@@ -60,7 +60,7 @@ public partial class TMCard : ContentView
 
     #region Property Changes
 
-    private static void isSelectedChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void SelectedChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var card = (TMCard)bindable;
         if ((bool)newValue)
