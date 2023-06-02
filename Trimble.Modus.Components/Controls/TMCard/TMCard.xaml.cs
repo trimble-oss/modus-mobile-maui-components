@@ -131,15 +131,6 @@ public partial class TMCard : ContentView
             Content = _border;
         }
     }
-
-    protected override void OnChildAdded(Element child)
-    {
-        base.OnChildAdded(child);
-        if (BindingContext == null)
-        {
-            BindingContext = child;
-        }
-    }
     #endregion
 
 }

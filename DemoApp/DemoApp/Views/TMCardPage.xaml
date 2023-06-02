@@ -45,7 +45,7 @@
                 </StackLayout>
             </Modus:TMCard>
 
-            <Modus:TMCard x:Name="card2" Command="{Binding Command1}" CommandParameter="Parameter">
+            <Modus:TMCard x:Name="card2" Command="{Binding Command}" CommandParameter="Parameter">
                 <StackLayout>
                     <!-- Header -->
                     <StackLayout BackgroundColor="Transparent" Padding="0,0,0,10">

@@ -6,14 +6,11 @@ namespace DemoApp.Views;
 
 public partial class TMCardPage : ContentPage
 {
-    public ICommand Command1 => new Command(OnClickedCommand);
-
-
+    public ICommand Command => new Command(OnClickedCommand);
     public TMCardPage()
     {
         InitializeComponent();
         BindingContext = this;
-        card2.Command = (Command)Command1;
     }
 
 
