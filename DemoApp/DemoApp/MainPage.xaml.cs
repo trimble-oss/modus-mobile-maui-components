@@ -16,7 +16,8 @@ namespace DemoApp
                 "Input",
                 "Modal",
                 "Toast",
-                "CheckBox"
+                "CheckBox",
+                "Card"
             };
             BindingContext = this;
         }
@@ -41,13 +42,16 @@ namespace DemoApp
                     case "CheckBox":
                         Navigation.PushAsync(new TMCheckBoxPage());
                         break;
+                    case "Card":
+                        Navigation.PushAsync(new TMCardPage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
                 }
             }
 
-       ((ListView)sender).SelectedItem = null;
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

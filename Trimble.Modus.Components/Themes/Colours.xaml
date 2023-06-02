@@ -22,6 +22,7 @@
     <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
     <Color x:Key="BluePale">#DCEDF9</Color>
     <Color x:Key="NeutralGrey">#E0E1E9</Color>
+    <Color x:Key="CardPressed">#C9CACF</Color>
 
     
     

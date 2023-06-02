@@ -4,14 +4,14 @@
              Title="Controls Page"
              x:Class="DemoApp.MainPage">
 
-            <ListView ItemsSource="{Binding ControlNames}" ItemTapped="ItemTapped">
-              <ListView.ItemTemplate>
-                <DataTemplate>
-                  <ViewCell>
-                        <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" />
-                  </ViewCell>
-                </DataTemplate>
-              </ListView.ItemTemplate>
-            </ListView>
-  
+  <ListView ItemsSource="{Binding ControlNames}" ItemTapped="ItemTapped">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" />
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
 </ContentPage>
