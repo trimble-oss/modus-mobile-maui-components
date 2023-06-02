@@ -79,11 +79,23 @@ public partial class TMCard : ContentView
 
     public TMCard()
     {
+        int radius = 15;
+        Point offset = new Point(-1, 1);
+        if(DeviceInfo.Platform == DevicePlatform.iOS )
+        {
+            radius = 3;
+            offset = new Point(0, 2);
+        }
+        else if( DeviceInfo.Platform == DevicePlatform.WinUI ){
+            radius = 3;
+        }
+        
         _shadow = new Shadow
         {
             Brush = Colors.Black,
-            Radius = 15,
-            Opacity = 50
+            Radius = radius,
+            Opacity = 0.6F,
+            Offset = offset
         };
         _border = new Border
         {
