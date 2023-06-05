@@ -31,7 +31,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         this.popupNavigation = (PopupNavigation)popupNavigation;
         PopupData(message, actionButtonText, action, isDismissable);
         BindingContext = this;
-        Close();
+        CloseAfterDelay();
     }
 
     private void SetTheme(String toastTheme)
@@ -94,7 +94,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         popupNavigation.RemovePageAsync(this, true);
 
     }
-    public void Close()
+    public void CloseAfterDelay()
     {
         Task.Run(async () =>
         {
