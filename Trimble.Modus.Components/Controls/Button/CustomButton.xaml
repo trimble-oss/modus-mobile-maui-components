@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Controls.Button.CustomButton"
+             x:Name="customButton"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Contant"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Border Padding="0"
+          BindingContext="{x:Reference customButton}"
+          x:Name="buttonFrame">
+    <Border.Triggers>
+      <DataTrigger TargetType="Border"
+                   Binding="{Binding IsFloatingButton}"
+                   Value="false">
+        <Setter Property="StrokeShape">
+          <Rectangle RadiusX="4"
+                     RadiusY="4" />
+        </Setter>
+      </DataTrigger>
+      <DataTrigger TargetType="Border"
+                   Binding="{Binding IsFloatingButton}"
+                   Value="true">
+        <Setter Property="StrokeShape">
+          <Rectangle RadiusX="50"
+                     RadiusY="50" />
+        </Setter>
+        <Setter Property="Shadow">
+          <Shadow Radius="15"
+                  Opacity="1" />
+        </Setter>
+        <Setter Property="ZIndex"
+                Value="1" />
+      </DataTrigger>
+    </Border.Triggers>
+    <HorizontalStackLayout Spacing="8"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand">
+      <HorizontalStackLayout.Triggers>
+        <MultiTrigger TargetType="HorizontalStackLayout">
+          <MultiTrigger.Conditions>
+            <BindingCondition Binding="{Binding IsFloatingButton}"
+                              Value="False" />
+            <BindingCondition Binding="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                              Value="False" />
+          </MultiTrigger.Conditions>
+          <Setter Property="Padding"
+                  Value="16,0" />
+        </MultiTrigger>
+
+        <MultiTrigger TargetType="HorizontalStackLayout">
+          <MultiTrigger.Conditions>
+            <BindingCondition Binding="{Binding IsFloatingButton}"
+                              Value="False" />
+            <BindingCondition Binding="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                              Value="true" />
+          </MultiTrigger.Conditions>
+          <Setter Property="Padding"
+                  Value="16,0" />
+        </MultiTrigger>
+        <MultiTrigger TargetType="HorizontalStackLayout">
+          <MultiTrigger.Conditions>
+            <BindingCondition Binding="{Binding IsFloatingButton}"
+                              Value="true" />
+            <BindingCondition Binding="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                              Value="false" />
+          </MultiTrigger.Conditions>
+          <Setter Property="Padding"
+                  Value="16" />
+        </MultiTrigger>
+        <MultiTrigger TargetType="HorizontalStackLayout">
+          <MultiTrigger.Conditions>
+            <BindingCondition Binding="{Binding IsFloatingButton}"
+                              Value="true" />
+            <BindingCondition Binding="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                              Value="true" />
+          </MultiTrigger.Conditions>
+          <Setter Property="Padding"
+                  Value="16,0" />
+        </MultiTrigger>
+      </HorizontalStackLayout.Triggers>
+      <Image Source="{Binding LeftIconSource}"
+             IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+             HeightRequest="16"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             WidthRequest="16" />
+      <Label x:Name="buttonLabel"
+             Text="{Binding Title}"
+             IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+             HeightRequest="48"
+             FontSize="{Binding FontSize}"
+             HorizontalTextAlignment="Center"
+             VerticalTextAlignment="Center" />
+      <Image Source="{Binding RightIconSource}"
+             IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+             HeightRequest="16"
+             WidthRequest="16"
+             VerticalOptions="Center"
+             HorizontalOptions="Center" />
+    </HorizontalStackLayout>
+  </Border>
+</ContentView>
