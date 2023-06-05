@@ -40,7 +40,7 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center"
                         FontSize="14"
-                        Clicked="CloseButton_Clicked"/>
+                        Clicked="CloseButtonClicked"/>
         <ImageButton x:Name="closeButton"
                              MaximumHeightRequest="16"
                              MaximumWidthRequest="16"
@@ -50,7 +50,7 @@
                              Padding="{OnPlatform '0', iOS='16,16,0,16'}"
                              HorizontalOptions="End"
                              VerticalOptions="Center"
-                             Clicked="CloseButton_Clicked"/>
+                             Clicked="CloseButtonClicked"/>
       </StackLayout>
 
     </Border>

@@ -20,16 +20,16 @@ public partial class TMCheckBoxPage : ContentPage
                 ChildCheckBox3
             };
     }
-    private void Indeterminate_Toggled(object sender, ToggledEventArgs e)
+    private void IndeterminateToggled(object sender, ToggledEventArgs e)
     {
         CheckBox.IsIndeterminate = !CheckBox.IsIndeterminate;
     }
-    private void Disable_Toggled(object sender, ToggledEventArgs e)
+    private void DisableToggled(object sender, ToggledEventArgs e)
     {
         CheckBox.IsDisabled = !CheckBox.IsDisabled;
     }
 
-    private void Size_Changed(object sender, CheckedChangedEventArgs e)
+    private void SizeSet(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
@@ -78,7 +78,7 @@ public partial class TMCheckBoxPage : ContentPage
         updatingCheckboxes = false;
     }
 
-    private void ChildCheckbox_CheckedChanged(object sender, EventArgs e)
+    private void ChildCheckboxCheckedChanged(object sender, EventArgs e)
     {
         if (updatingCheckboxes)
             return;
@@ -89,7 +89,7 @@ public partial class TMCheckBoxPage : ContentPage
 
     }
 
-    private void ParentCheckBox_CheckedChanged(object sender, EventArgs e)
+    private void ParentCheckBoxCheckedChanged(object sender, EventArgs e)
     {
         if (updatingCheckboxes)
             return;

@@ -10,7 +10,7 @@
     <Label Text="Right Icon Text" FontSize="Large" FontAttributes="Bold"></Label>
     <Entry x:Name="IconText" Placeholder="Enter Right Icon Text" Margin="5" HorizontalOptions="Start" />
     <Label Text="Theme" FontSize="Large" FontAttributes="Bold"></Label>
-    <Picker  x:Name="toastPicker" Margin="5"   SelectedIndexChanged="ToastPicker_SelectedIndexChanged" HorizontalOptions="Start" WidthRequest="100">
+    <Picker  x:Name="toastPicker" Margin="5"   SelectedIndexChanged="ToastPickerSelectedIndexChanged" HorizontalOptions="Start" WidthRequest="100">
 
       <Picker.ItemsSource>
         <x:Array Type="{x:Type theme:ToastTheme}">
