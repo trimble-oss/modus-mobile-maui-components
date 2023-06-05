@@ -144,22 +144,22 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             };
         }
 
-        var idiom = Device.Idiom;
+        var idiom = DeviceInfo.Current.Idiom;
         setWidth(idiom);
-        Message = GetWrappedLabelText(message, idiom);
+        Message = message;
     }
 
-    private void setWidth(TargetIdiom idiom)
+    private void setWidth(DeviceIdiom idiom)
     {
         double minimumTabletWidth = 480;
         double maximumTabletWidthPercentage = 0.7;
         double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
-        if (idiom == TargetIdiom.Phone)
+        if (idiom == DeviceIdiom.Phone)
         {
             toastLayout.Padding = new Thickness(16, 0, 16, 10);
 
         }
-        else if (idiom == TargetIdiom.Tablet)
+        else if (idiom == DeviceIdiom.Tablet)
         {
             toastLayout.Padding = new Thickness(0, 0, 0, 10);
             toastLayout.MinimumWidthRequest = minimumTabletWidth;
