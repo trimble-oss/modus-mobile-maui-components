@@ -18,7 +18,7 @@ public partial class TMToastPage : ContentPage
         string rightIconText = IconText.Text;
         string toastMessage = Message.Text;
         var toast = new TMToast();
-        toast.Show(toastMessage, rightIconText, HandleEvent, toastTheme);
+        toast.Show(toastMessage, rightIconText, HandleEvent, toastTheme, true);
     }
     void HandleEvent()
     {

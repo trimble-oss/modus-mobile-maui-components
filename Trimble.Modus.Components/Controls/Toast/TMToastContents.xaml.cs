@@ -23,13 +23,13 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     PopupNavigation popupNavigation;
 
-    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action)
+    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action, bool isDismissable)
     {
 
         InitializeComponent();
         SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation)popupNavigation;
-        PopupData(message, actionButtonText, action);
+        PopupData(message, actionButtonText, action, isDismissable);
         BindingContext = this;
         Close();
     }
@@ -103,50 +103,56 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         });
     }
 
-    private void PopupData(string message, string actionButtonText, Action action)
+    private void PopupData(string message, string actionButtonText, Action action, bool isDismissalbe)
     {
-
-        RightIconText = actionButtonText;
-
-        actionButton.Text = RightIconText;
-        actionButton.TextColor = TextColor;
-        actionButton.BackgroundColor = ToastBackground;
-
-        if (string.IsNullOrEmpty(RightIconText))
+        if (isDismissalbe)
         {
-            closeButton.Clicked += (sender, args) =>
+            RightIconText = actionButtonText;
+            actionButton.Text = RightIconText;
+            actionButton.TextColor = TextColor;
+            actionButton.BackgroundColor = ToastBackground;
+            if (string.IsNullOrEmpty(RightIconText))
             {
-                action?.Invoke();
-            };
+                closeButton.Clicked += (sender, args) =>
+                {
+                    action?.Invoke();
+                };
 
-            if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
-            {
-                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-            }
-            else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
-            {
-                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
+                {
+                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+                }
+                else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
+                {
+                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                }
+                else
+                {
+                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                }
+                closeButton.IsVisible = true;
+                actionButton.IsVisible = false;
             }
             else
             {
-                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                closeButton.IsVisible = false;
+                actionButton.IsVisible = true;
+                actionButton.Clicked += (sender, args) =>
+                {
+                    action?.Invoke();
+                };
             }
-            closeButton.IsVisible = true;
-            actionButton.IsVisible = false;
         }
         else
         {
             closeButton.IsVisible = false;
-            actionButton.IsVisible = true;
-            actionButton.Clicked += (sender, args) =>
-            {
-                action?.Invoke();
-            };
+            actionButton.IsVisible = false  ;
+
         }
 
         var idiom = Device.Idiom;
         setWidth(idiom);
-        Message = GetWrappedLabelText(message, idiom);
+        Message = message;
     }
 
     private void setWidth(TargetIdiom idiom)
