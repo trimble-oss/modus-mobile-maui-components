@@ -15,7 +15,7 @@ public partial class TMInputPage : ContentPage
         BindingContext = _inputPageViewModel;
 
     }
-    private void modusInput_Focused(object sender, EventArgs e)
+    private void modusInputFocused(object sender, EventArgs e)
     {
         Console.WriteLine("Container focused");
 
