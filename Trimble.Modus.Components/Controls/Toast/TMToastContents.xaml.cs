@@ -103,15 +103,16 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         });
     }
 
-    private void PopupData(string message, string actionButtonText, Action action, bool isDismissalbe)
+    private void PopupData(string message, string actionButtonText, Action action, bool isDismissable)
     {
-        if (isDismissalbe)
+        RightIconText = actionButtonText;
+        actionButton.Text = RightIconText;
+        actionButton.TextColor = TextColor;
+        actionButton.BackgroundColor = ToastBackground;
+
+        if (string.IsNullOrEmpty(RightIconText))
         {
-            RightIconText = actionButtonText;
-            actionButton.Text = RightIconText;
-            actionButton.TextColor = TextColor;
-            actionButton.BackgroundColor = ToastBackground;
-            if (string.IsNullOrEmpty(RightIconText))
+            if (isDismissable)
             {
                 closeButton.Clicked += (sender, args) =>
                 {
@@ -136,18 +137,17 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             else
             {
                 closeButton.IsVisible = false;
-                actionButton.IsVisible = true;
-                actionButton.Clicked += (sender, args) =>
-                {
-                    action?.Invoke();
-                };
+                actionButton.IsVisible = false;
             }
         }
         else
         {
             closeButton.IsVisible = false;
-            actionButton.IsVisible = false  ;
-
+            actionButton.IsVisible = true;
+            actionButton.Clicked += (sender, args) =>
+            {
+                action?.Invoke();
+            };
         }
 
         var idiom = Device.Idiom;

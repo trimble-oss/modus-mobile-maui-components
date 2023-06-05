@@ -5,15 +5,20 @@ namespace Trimble.Modus.Components.Controls.Toast
 {
     public class TMToast
     {
-        PopupNavigation popupNavigation;
-
-        public TMToast()
+        private PopupNavigation popupNavigation;
+        private string message, actionButtonText = null;
+        private Action? action = null;
+        public ToastTheme theme = ToastTheme.Default;
+        public bool isDismissable = true;
+        public TMToast(string message, string actionButtonText = null, Action? action = null)
         {
             popupNavigation = new PopupNavigation();
+            this.message = message;
+            this.actionButtonText = actionButtonText;
+            this.action = action;
         }
 
-       
-        public void Show(string message, string actionButtonText = null, Action? action = null, ToastTheme theme = ToastTheme.Default, bool isDismissable = false)
+        public void Show()
         {
             if (string.IsNullOrEmpty(message))
             {

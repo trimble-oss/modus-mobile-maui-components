@@ -13,12 +13,14 @@ public partial class TMToastPage : ContentPage
     }
 
     private void OnToastActionTapped(object sender, EventArgs e)
-
     {
         string rightIconText = IconText.Text;
         string toastMessage = Message.Text;
-        var toast = new TMToast();
-        toast.Show(toastMessage, rightIconText, HandleEvent, toastTheme, true);
+        var toast = new TMToast(toastMessage, rightIconText, HandleEvent)
+        {
+            theme = toastTheme,
+        };
+        toast.Show();
     }
     void HandleEvent()
     {
