@@ -25,7 +25,7 @@ public partial class TMToastPage : ContentPage
         Console.WriteLine("Event handled");
     }
 
-    private void ToastPicker_SelectedIndexChanged(object sender, EventArgs e)
+    private void ToastPickerSelectedIndexChanged(object sender, EventArgs e)
     {
         if (toastPicker.SelectedItem is ToastTheme selectedColor)
         {

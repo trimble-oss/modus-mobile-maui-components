@@ -89,7 +89,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
     {
     }
 
-    private void CloseButton_Clicked(object sender, EventArgs e)
+    private void CloseButtonClicked(object sender, EventArgs e)
     {
         popupNavigation.RemovePageAsync(this, true);
 
