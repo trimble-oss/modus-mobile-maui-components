@@ -92,7 +92,10 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     }
 
-    private void CloseButton_Clicked(object sender, EventArgs e)
+
+
+    private void CloseButtonClicked(object sender, EventArgs e)
+
     {
         popupNavigation.RemovePageAsync(this, true);
 
@@ -153,22 +156,22 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             };
         }
 
-        var idiom = Device.Idiom;
+        var idiom = DeviceInfo.Current.Idiom;
         setWidth(idiom);
         Message = message;
     }
 
-    private void setWidth(TargetIdiom idiom)
+    private void setWidth(DeviceIdiom idiom)
     {
         double minimumTabletWidth = 480;
         double maximumTabletWidthPercentage = 0.7;
         double deviceWidth = DeviceDisplay.MainDisplayInfo.Width;
-        if (idiom == TargetIdiom.Phone)
+        if (idiom == DeviceIdiom.Phone)
         {
             toastLayout.Padding = new Thickness(16, 0, 16, 10);
 
         }
-        else if (idiom == TargetIdiom.Tablet)
+        else if (idiom == DeviceIdiom.Tablet)
         {
             toastLayout.Padding = new Thickness(0, 0, 0, 10);
             toastLayout.MinimumWidthRequest = minimumTabletWidth;
@@ -177,26 +180,12 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         }
 
-    }
-    private string GetWrappedLabelText(string text, TargetIdiom idiom)
-    {
-        const string ellipsis = "...";
-        if (idiom == TargetIdiom.Phone)
-        {
-            if (text.Length > 106)
-            {
-                text = text.Substring(0, 106) + ellipsis;
-            }
-        }
-        else if (idiom == TargetIdiom.Tablet)
-        {
-            if (text.Length > 206)
-            {
-                text = text.Substring(0, 206) + ellipsis;
-            }
-        }
-        return text;
-    }
+
+   
+    
+
+
+    }  
     #endregion
 
 }
