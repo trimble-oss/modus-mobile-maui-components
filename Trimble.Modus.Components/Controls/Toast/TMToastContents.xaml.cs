@@ -6,7 +6,14 @@ namespace Trimble.Modus.Components.Controls.Toast;
 public partial class TMToastContents : Popup.Pages.PopupPage
 
 {
+    #region Private Properties
+
     private const int DELAYTIME = 5000;
+
+    private PopupNavigation popupNavigation;
+
+    #endregion
+    #region Public Properties
 
     public ImageSource LeftIconSource { get; set; }
 
@@ -20,20 +27,20 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     public Color TextColor { get; set; }
 
+    #endregion
 
-    PopupNavigation popupNavigation;
-
-    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action)
+    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action, bool isDismissable)
     {
 
         InitializeComponent();
         SetTheme(theme.ToString());
         this.popupNavigation = (PopupNavigation)popupNavigation;
-        PopupData(message, actionButtonText, action);
+        PopupData(message, actionButtonText, action, isDismissable);
         BindingContext = this;
-        Close();
+        CloseAfterDelay();
     }
 
+    #region Private Methods
     private void SetTheme(String toastTheme)
     {
         ToastTheme theme = (ToastTheme)Enum.Parse(typeof(ToastTheme), toastTheme);
@@ -85,16 +92,15 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     }
 
-    public TMToastContents()
-    {
-    }
+
 
     private void CloseButtonClicked(object sender, EventArgs e)
+
     {
         popupNavigation.RemovePageAsync(this, true);
 
     }
-    public void Close()
+    public void CloseAfterDelay()
     {
         Task.Run(async () =>
         {
@@ -103,36 +109,42 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         });
     }
 
-    private void PopupData(string message, string actionButtonText, Action action)
+    private void PopupData(string message, string actionButtonText, Action action, bool isDismissable)
     {
-
         RightIconText = actionButtonText;
-
         actionButton.Text = RightIconText;
         actionButton.TextColor = TextColor;
         actionButton.BackgroundColor = ToastBackground;
 
         if (string.IsNullOrEmpty(RightIconText))
         {
-            closeButton.Clicked += (sender, args) =>
+            if (isDismissable)
             {
-                action?.Invoke();
-            };
+                closeButton.Clicked += (sender, args) =>
+                {
+                    action?.Invoke();
+                };
 
-            if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
-            {
-                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-            }
-            else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
-            {
-                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
+                {
+                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
+                }
+                else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
+                {
+                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                }
+                else
+                {
+                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                }
+                closeButton.IsVisible = true;
+                actionButton.IsVisible = false;
             }
             else
             {
-                closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
+                closeButton.IsVisible = false;
+                actionButton.IsVisible = false;
             }
-            closeButton.IsVisible = true;
-            actionButton.IsVisible = false;
         }
         else
         {
@@ -168,27 +180,12 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         }
 
-    }
-    private string GetWrappedLabelText(string text, TargetIdiom idiom)
-    {
-        const string ellipsis = "...";
-        if (idiom == TargetIdiom.Phone)
-        {
-            if (text.Length > 106)
-            {
-                text = text.Substring(0, 106) + ellipsis;
-            }
-        }
-        else if (idiom == TargetIdiom.Tablet)
-        {
-            if (text.Length > 206)
-            {
-                text = text.Substring(0, 206) + ellipsis;
-            }
-        }
-        return text;
-    }
+
+   
+    
 
 
+    }  
+    #endregion
 
 }
