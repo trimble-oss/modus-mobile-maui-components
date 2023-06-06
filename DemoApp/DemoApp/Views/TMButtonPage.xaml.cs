@@ -7,9 +7,6 @@ namespace DemoApp;
 
 public partial class TMButtonPage : ContentPage
 {
-    private string _selectedStyle = "Fill";
-    private string _selectedSize = "Default";
-    private bool _isDiabled;
     private readonly ButtonPageViewModel _buttonPageViewModel;
 
     public TMButtonPage()
@@ -24,8 +21,8 @@ public partial class TMButtonPage : ContentPage
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-            _selectedStyle = radioButton.Value.ToString();
-            _buttonPageViewModel.SelectedButtonStyle = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<ButtonStyle>(_selectedStyle);
+            var selectedStyle = radioButton.Value.ToString();
+            _buttonPageViewModel.SelectedButtonStyle = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<ButtonStyle>(selectedStyle);
         }
     }
 
@@ -33,13 +30,21 @@ public partial class TMButtonPage : ContentPage
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-            _selectedSize = radioButton.Value.ToString();
-            _buttonPageViewModel.SelectedFontSize = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<Size>(_selectedSize);
+            var selectedSize = radioButton.Value.ToString();
+            _buttonPageViewModel.SelectedFontSize = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<Size>(selectedSize);
         }
     }
 
     private void isDisabled_Toggled(object sender, ToggledEventArgs e)
     {
         _buttonPageViewModel.IsDisabled = e.Value;
+    }
+
+    private void ImagePositionChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (sender is RadioButton radioButton && radioButton.IsChecked)
+        {
+            _buttonPageViewModel.SelectedImageOption = radioButton.Value.ToString();
+        }
     }
 }

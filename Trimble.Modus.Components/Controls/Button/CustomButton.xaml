@@ -13,6 +13,7 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
+          HorizontalOptions="Start"
           BindingContext="{x:Reference customButton}"
           x:Name="buttonFrame">
     <Border.Triggers>
