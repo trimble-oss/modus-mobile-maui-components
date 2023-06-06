@@ -30,7 +30,7 @@ public partial class TMButtonPage : ContentPage
         InitializeComponent();
     }
 
-    private void Style_Changed(object sender, CheckedChangedEventArgs e)
+    private void StyleChanged(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
@@ -39,7 +39,7 @@ public partial class TMButtonPage : ContentPage
         }
     }
 
-    private void Size_Changed(object sender, CheckedChangedEventArgs e)
+    private void SizeChanged(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
@@ -92,7 +92,7 @@ public partial class TMButtonPage : ContentPage
         }
     }
 
-    private void isDisabled_Toggled(object sender, ToggledEventArgs e)
+    private void isDisabledToggled(object sender, ToggledEventArgs e)
     {
         IsDisabled = e.Value;
     }

@@ -1,53 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="Controls Page"
              x:Class="DemoApp.MainPage">
 
-
-
-  <ScrollView>
-    <VerticalStackLayout>
-      <StackLayout Padding="10">
-        <Label Text="Controls" HorizontalOptions="Center" FontSize="36" FontAttributes="Bold" ></Label>
-        <Button
-                    AutomationId="tmbutton" 
-                    Text="Button" 
-                    Clicked="ButtonClicked" 
-                    Margin="10">
-        </Button>
-        <Button     
-                    AutomationId="tminput" 
-                    Text="Input" 
-                    Clicked="ButtonClicked" 
-                    Margin="10">
-        </Button>
-        <Button
-                    AutomationId="tmmodal" 
-                    Text="Modal" 
-                    Clicked="ButtonClicked" 
-                    Margin="10">
-        </Button>
-        <Button     
-                    AutomationId="tmtoast" 
-                    Text="Toast" 
-                    Clicked="ButtonClicked" 
-                    Margin="10">
-        </Button>
-        <Button     
-                    AutomationId="tmcheckbox"
-                    Text="CheckBox" 
-                    Clicked="ButtonClicked" 
-                    Margin="10">
-        </Button>
-        <Button     
-                    AutomationId="tmradiobutton"
-                    Text="RadioButton" 
-                    Clicked="ButtonClicked" 
-                    Margin="10">
-        </Button>
-      </StackLayout>
-    </VerticalStackLayout>
-  </ScrollView>
+  <ListView ItemsSource="{Binding ControlNames}" ItemTapped="ItemTapped">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <Label Text="{Binding}" HorizontalOptions="Center" VerticalOptions="Center" />
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
 
 </ContentPage>

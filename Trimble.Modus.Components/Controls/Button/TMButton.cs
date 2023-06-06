@@ -229,58 +229,6 @@ namespace Trimble.Modus.Components
             GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer());
             _tapGestureRecognizer.NumberOfTapsRequired = 1;
             _tapGestureRecognizer.Tapped += OnTapped;
-            /* Unmerged change from project 'Trimble.Modus.Components (net7.0-maccatalyst)'
-            Before:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            After:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            */
-
-            /* Unmerged change from project 'Trimble.Modus.Components (net7.0-android)'
-            Before:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            After:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            */
-
-            /* Unmerged change from project 'Trimble.Modus.Components (net7.0-ios)'
-            Before:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            After:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            */
-
-            /* Unmerged change from project 'Trimble.Modus.Components (net7.0)'
-            Before:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            After:
-             }
-
-
-                    private void setDefault(TMButton tmButton)
-            */
-
         }
 
 

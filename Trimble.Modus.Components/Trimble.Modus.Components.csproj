@@ -47,6 +47,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
+	    <DependentUpon>asas.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Themes\Colours.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>

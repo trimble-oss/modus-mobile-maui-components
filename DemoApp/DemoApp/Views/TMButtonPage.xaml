@@ -83,15 +83,15 @@
 
 
       <StackLayout Orientation="Horizontal">
-        <RadioButton Content="XSmall" Value="XSmall" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-        <RadioButton Content="Small" Value="Small"  GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-        <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
-        <RadioButton Content="Large" Value="Large" GroupName="ButtonSize" CheckedChanged="Size_Changed" />
+        <RadioButton Content="XSmall" Value="XSmall" GroupName="ButtonSize" CheckedChanged="SizeChanged" />
+        <RadioButton Content="Small" Value="Small"  GroupName="ButtonSize" CheckedChanged="SizeChanged" />
+        <RadioButton Content="Default"  IsChecked="True" Value="Default" GroupName="ButtonSize" CheckedChanged="SizeChanged" />
+        <RadioButton Content="Large" Value="Large" GroupName="ButtonSize" CheckedChanged="SizeChanged" />
       </StackLayout>
       <StackLayout Orientation="Horizontal">
-        <RadioButton Content="Fill" IsChecked="True" Value="Fill" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-        <RadioButton Content="Outline" Value="Outline"  GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
-        <RadioButton Content="BorderLess"  Value="BorderLess" GroupName="ButtonStyle" CheckedChanged="Style_Changed" />
+        <RadioButton Content="Fill" IsChecked="True" Value="Fill" GroupName="ButtonStyle" CheckedChanged="StyleChanged" />
+        <RadioButton Content="Outline" Value="Outline"  GroupName="ButtonStyle" CheckedChanged="StyleChanged" />
+        <RadioButton Content="BorderLess"  Value="BorderLess" GroupName="ButtonStyle" CheckedChanged="StyleChanged" />
       </StackLayout>
       <Grid>
         <Grid.ColumnDefinitions>
@@ -100,7 +100,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0"  Text="IsDisabled"  HorizontalOptions="Center" VerticalOptions="Center"/>
-        <Switch Grid.Column="1"  x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabled_Toggled" />
+        <Switch Grid.Column="1"  x:Name="isDisabled" IsToggled="{Binding IsDisabled}" Toggled="isDisabledToggled" />
       </Grid>
       <Label Text="Floating Buttons"></Label>
       <StackLayout Orientation="Horizontal" Spacing="10">

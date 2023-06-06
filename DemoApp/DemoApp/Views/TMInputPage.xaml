@@ -17,7 +17,7 @@
                     HelperText="Helper Text" 
                     Placeholder="Text Input" 
                     InputValidation="CustomValidateInput"
-                    Focused="modusInput_Focused"/>
+                    Focused="modusInputFocused"/>
 
         <Modus:TMInput 
                     TitleText="Right Icon" 

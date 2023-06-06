@@ -11,7 +11,7 @@
     <Color x:Key="Black">#353a40</Color>
     <Color x:Key="White">#FFFFFF</Color>
     <Color x:Key="DangerRed">#DA212C</Color>
-    <Color x:Key="SecondaryButton">#6A6E79</Color>
+    <Color x:Key="SecondaryButton">#252A2E</Color>
     <Color x:Key="TertiaryButton">#CBCDD6</Color>
     <Color x:Key="GrayPlaceholder">#90939f</Color>
     <Color x:Key="FocusBlue">#019aeb</Color>
@@ -22,6 +22,7 @@
     <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
     <Color x:Key="BluePale">#DCEDF9</Color>
     <Color x:Key="NeutralGrey">#E0E1E9</Color>
+    <Color x:Key="CardPressed">#C9CACF</Color>
 
     
     
