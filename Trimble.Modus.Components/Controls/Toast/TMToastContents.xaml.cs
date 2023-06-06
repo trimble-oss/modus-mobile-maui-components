@@ -168,27 +168,5 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         }
 
-    }
-    private string GetWrappedLabelText(string text, TargetIdiom idiom)
-    {
-        const string ellipsis = "...";
-        if (idiom == TargetIdiom.Phone)
-        {
-            if (text.Length > 106)
-            {
-                text = text.Substring(0, 106) + ellipsis;
-            }
-        }
-        else if (idiom == TargetIdiom.Tablet)
-        {
-            if (text.Length > 206)
-            {
-                text = text.Substring(0, 206) + ellipsis;
-            }
-        }
-        return text;
-    }
-
-
-
+    }  
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
+using Trimble.Modus.Components.Handlers;
 using Trimble.Modus.Components.Popup.Pages;
 
 namespace Trimble.Modus.Components.Hosting
@@ -27,21 +28,7 @@ namespace Trimble.Modus.Components.Hosting
 
 #endif
                 })
-                .ConfigureMauiHandlers(handlers =>
-                {
-                    handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
-
-#if ANDROID
-                    handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
-#endif
-#if IOS
-                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
-#endif
-#if WINDOWS
-                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
-#endif
-                });
-            AllowMultiLineTruncation();
+                .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
 
             return builder;
         }
@@ -52,7 +39,7 @@ namespace Trimble.Modus.Components.Hosting
         /// <param name="builder"></param>
         /// <param name="backPressHandler"></param>
         /// <returns></returns>
-        public static MauiAppBuilder ConfigurePopups(this MauiAppBuilder builder, Action? backPressHandler)
+        public static MauiAppBuilder UseTrimbleModus(this MauiAppBuilder builder, Action? backPressHandler)
         {
             builder
                 .ConfigureLifecycleEvents(lifecycle =>
@@ -65,41 +52,28 @@ namespace Trimble.Modus.Components.Hosting
                     });
 #endif
                 })
-                .ConfigureMauiHandlers(handlers =>
-                {
-                    handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
+                .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
+
+            return builder;
+        }
+
+        private static void SetHandlers(IMauiHandlersCollection handlers)
+        {
+            {
+                handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
+
+                handlers.AddHandler(typeof(Label), typeof(LabelHandler));
+
 #if ANDROID
                     handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
 #endif
-                });
-            return builder;
-        }
-        public static void AllowMultiLineTruncation()
-        {
-            static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
-            {
-#if ANDROID
-                var textView = handler.PlatformView;
-                if (label is Label controlsLabel
-                    && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
-                {
-                    textView.SetMaxLines(controlsLabel.MaxLines);
-                }
-#elif IOS
-                var textView = handler.PlatformView;
-                if (label is Label controlsLabel
-                    && textView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)
-                {
-                    textView.Lines = controlsLabel.MaxLines;
-                }
+#if IOS
+                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
 #endif
-            };
-
-            Label.ControlsLabelMapper.AppendToMapping(
-               nameof(Label.LineBreakMode), UpdateMaxLines);
-
-            Label.ControlsLabelMapper.AppendToMapping(
-              nameof(Label.MaxLines), UpdateMaxLines);
+#if WINDOWS
+                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
+#endif
+            }
         }
     }
 }
