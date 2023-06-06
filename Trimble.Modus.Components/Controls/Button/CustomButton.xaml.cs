@@ -115,6 +115,7 @@ public partial class CustomButton : ContentView
         GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer() { NumberOfTapsRequired = 1 });
         _tapGestureRecognizer.Tapped += OnTapped;
 
+        SetPadding(this);
         CheckButtonStyle(this);
     }
 
@@ -126,31 +127,9 @@ public partial class CustomButton : ContentView
     }
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        var size = AppDataHelper.ParseEnum<Enums.Size>(newValue.ToString());
-        if (bindable is CustomButton customButton && !customButton.IsFloatingButton)
+        if (bindable is CustomButton customButton)
         {
-            switch (size)
-            {
-                case Enums.Size.XSmall:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
-                    customButton.HeightRequest = 32;
-                    break;
-                case Enums.Size.Small:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
-                    customButton.HeightRequest = 40;
-                    break;
-                case Enums.Size.Default:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
-                    customButton.HeightRequest = 48;
-                    break;
-                case Enums.Size.Large:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
-                    customButton.HeightRequest = 56;
-                    break;
-                default:
-                    break;
-
-            }
+            SetPadding(customButton);
         }
     }
     private static void OnButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
@@ -205,6 +184,51 @@ public partial class CustomButton : ContentView
             default:
                 break;
         }
+    }
+
+    private static void SetPadding(CustomButton customButton)
+    {
+        if (!customButton.IsFloatingButton)
+        {
+            switch (customButton.Size)
+            {
+                case Enums.Size.XSmall:
+                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
+                    customButton.buttonStackLayout.Padding = new Thickness( 16,6);
+                    customButton.HeightRequest = 32;
+                    break;
+                case Enums.Size.Small:
+                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
+                    customButton.buttonStackLayout.Padding = new Thickness(16,8);
+                    customButton.HeightRequest = 40;
+                    break;
+                case Enums.Size.Default:
+                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
+                    customButton.buttonStackLayout.Padding = new Thickness(16, 12);
+                    customButton.HeightRequest = 48;
+                    break;
+                case Enums.Size.Large:
+                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
+                    customButton.buttonStackLayout.Padding = new Thickness(16, 12);
+                    customButton.HeightRequest = 56;
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        else
+        {
+            if (customButton.Title != null)
+            {
+                customButton.buttonStackLayout.Padding = new Thickness(16, 0);
+            }
+            else
+            {
+                customButton.buttonStackLayout.Padding = new Thickness(16);
+            }
+        }
+
     }
 
     private static void UpdateFillStyleColors(CustomButton customButton)
