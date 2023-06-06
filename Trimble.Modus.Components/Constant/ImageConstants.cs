@@ -1,4 +1,4 @@
-﻿namespace Trimble.Modus.Components.Contant
+namespace Trimble.Modus.Components.Contant
 {
     internal static class ImageConstants
     {

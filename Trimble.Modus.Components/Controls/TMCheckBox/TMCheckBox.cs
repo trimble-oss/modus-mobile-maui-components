@@ -1,4 +1,4 @@
-﻿using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
