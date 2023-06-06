@@ -6,7 +6,14 @@ namespace Trimble.Modus.Components.Controls.Toast;
 public partial class TMToastContents : Popup.Pages.PopupPage
 
 {
+    #region Private Properties
+
     private const int DELAYTIME = 5000;
+
+    private PopupNavigation popupNavigation;
+
+    #endregion
+    #region Public Properties
 
     public ImageSource LeftIconSource { get; set; }
 
@@ -20,8 +27,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     public Color TextColor { get; set; }
 
-
-    PopupNavigation popupNavigation;
+    #endregion
 
     internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action, bool isDismissable)
     {
@@ -34,6 +40,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         CloseAfterDelay();
     }
 
+    #region Private Methods
     private void SetTheme(String toastTheme)
     {
         ToastTheme theme = (ToastTheme)Enum.Parse(typeof(ToastTheme), toastTheme);
@@ -83,10 +90,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
                 break;
         }
 
-    }
-
-    public TMToastContents()
-    {
     }
 
     private void CloseButton_Clicked(object sender, EventArgs e)
@@ -194,7 +197,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         }
         return text;
     }
-
-
+    #endregion
 
 }
