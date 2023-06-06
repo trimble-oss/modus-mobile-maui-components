@@ -1,7 +1,8 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
+using Trimble.Modus.Components.Handlers;
 using Trimble.Modus.Components.Popup.Pages;
 
-namespace Trimble.Modus.Components.Popup.Hosting
+namespace Trimble.Modus.Components.Hosting
 {
     /// <summary>
     /// Extensions for MauiAppBuilder
@@ -27,20 +28,7 @@ namespace Trimble.Modus.Components.Popup.Hosting
 
 #endif
                 })
-                .ConfigureMauiHandlers(handlers =>
-                {
-                    handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
-
-#if ANDROID
-                    handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
-#endif
-#if IOS
-                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
-#endif
-#if WINDOWS
-                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
-#endif
-                });
+                .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
 
             return builder;
         }
@@ -51,7 +39,7 @@ namespace Trimble.Modus.Components.Popup.Hosting
         /// <param name="builder"></param>
         /// <param name="backPressHandler"></param>
         /// <returns></returns>
-        public static MauiAppBuilder ConfigurePopups(this MauiAppBuilder builder, Action? backPressHandler)
+        public static MauiAppBuilder UseTrimbleModus(this MauiAppBuilder builder, Action? backPressHandler)
         {
             builder
                 .ConfigureLifecycleEvents(lifecycle =>
@@ -64,14 +52,28 @@ namespace Trimble.Modus.Components.Popup.Hosting
                     });
 #endif
                 })
-                .ConfigureMauiHandlers(handlers =>
-                {
-                    handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
+                .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
+
+            return builder;
+        }
+
+        private static void SetHandlers(IMauiHandlersCollection handlers)
+        {
+            {
+                handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
+
+                handlers.AddHandler(typeof(Label), typeof(LabelHandler));
+
 #if ANDROID
                     handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
 #endif
-                });
-            return builder;
+#if IOS
+                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
+#endif
+#if WINDOWS
+                    handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
+#endif
+            }
         }
     }
 }

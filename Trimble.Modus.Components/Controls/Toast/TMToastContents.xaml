@@ -30,7 +30,8 @@
         <Image x:Name="leftIconImage"  Margin="16,8,16,8" Source="{Binding LeftIconSource}" WidthRequest="16" HeightRequest="16" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
         <Label x:Name="label"
                        Text="{Binding Message}"
-                       LineBreakMode="WordWrap"
+                       LineBreakMode="TailTruncation"
+                       Padding="0,8,0,8"
                        MaximumHeightRequest="500"
                        MaxLines="3" FontSize="14"
                        TextColor="{Binding TextColor}"

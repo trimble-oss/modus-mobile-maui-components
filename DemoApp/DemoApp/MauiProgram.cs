@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Trimble.Modus.Components.Popup.Hosting;
+using Trimble.Modus.Components.Hosting;
 
 namespace DemoApp;
 
