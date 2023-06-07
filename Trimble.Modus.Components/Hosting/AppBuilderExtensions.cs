@@ -60,7 +60,7 @@ public static class AppBuilderExtensions
     private static void SetHandlers(IMauiHandlersCollection handlers)
     {
         {
-            handlers.AddHandler(typeof(BorderlessEntry), typeof(BorderlessEntryHandler));
+            handlers.AddHandler(typeof(BorderlessEntry), typeof(EntryHandler));
 
             handlers.AddHandler(typeof(Label), typeof(LabelHandler));
 
