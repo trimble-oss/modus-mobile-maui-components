@@ -1,11 +1,10 @@
-﻿namespace Trimble.Modus.Components.Enums
+﻿namespace Trimble.Modus.Components.Enums;
+
+public enum Size
 {
-    public enum Size
-    {
-        Empty,
-        XSmall,
-        Small,
-        Default,
-        Large
-    }
+    Empty,
+    XSmall,
+    Small,
+    Default,
+    Large
 }

@@ -1,4 +1,3 @@
-//using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Contant;

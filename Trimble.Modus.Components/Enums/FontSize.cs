@@ -1,11 +1,10 @@
-﻿namespace Trimble.Modus.Components.Enums
+﻿namespace Trimble.Modus.Components.Enums;
+
+public enum FontSize
 {
-    public enum FontSize
-    {
-        XSmall = 12,
-        Small = 14,
-        Default = 16,
-        Large = 16
-    }
+    XSmall = 12,
+    Small = 14,
+    Default = 16,
+    Large = 16
 }
 

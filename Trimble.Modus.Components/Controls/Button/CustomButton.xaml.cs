@@ -194,12 +194,12 @@ public partial class CustomButton : ContentView
             {
                 case Enums.Size.XSmall:
                     customButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
-                    customButton.buttonStackLayout.Padding = new Thickness( 16,6);
+                    customButton.buttonStackLayout.Padding = new Thickness(16, 6);
                     customButton.HeightRequest = 32;
                     break;
                 case Enums.Size.Small:
                     customButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
-                    customButton.buttonStackLayout.Padding = new Thickness(16,8);
+                    customButton.buttonStackLayout.Padding = new Thickness(16, 8);
                     customButton.HeightRequest = 40;
                     break;
                 case Enums.Size.Default:
