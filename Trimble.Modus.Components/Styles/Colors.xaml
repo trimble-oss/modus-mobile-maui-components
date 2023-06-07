@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Styles.Colors">
+  <Color x:Key="TrimbleBlue">#0063a3</Color>
+  <Color x:Key="TrimbleBlueDark">#004f83</Color>
+  <Color x:Key="TrimbleYellow">#fbad26</Color>
+  <Color x:Key="TrimbleGray">#252a2e</Color>
+  <Color x:Key="TrimbleDisabledColor">#CEDEEB</Color>
+  <Color x:Key="Black">#353a40</Color>
+  <Color x:Key="White">#FFFFFF</Color>
+  <Color x:Key="DangerRed">#DA212C</Color>
+  <Color x:Key="SecondaryButton">#252A2E</Color>
+  <Color x:Key="TertiaryButton">#CBCDD6</Color>
+  <Color x:Key="GrayPlaceholder">#90939f</Color>
+  <Color x:Key="FocusBlue">#019aeb</Color>
+  <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
+  <Color x:Key="DangerRedClicked">#B73538</Color>
+  <Color x:Key="SecondaryButtonClicked">#7D808D</Color>
+  <Color x:Key="TertiaryButtonClicked">#E0E1E9</Color>
+  <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
+  <Color x:Key="BluePale">#DCEDF9</Color>
+  <Color x:Key="NeutralGrey">#E0E1E9</Color>
+  <Color x:Key="Transparent">transparent</Color>
+
+</ResourceDictionary>
