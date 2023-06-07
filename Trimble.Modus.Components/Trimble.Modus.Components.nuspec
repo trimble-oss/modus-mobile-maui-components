@@ -2,11 +2,12 @@
 <package>
   <metadata>
     <id>Trimble.Modus</id>
-    <version>$version$</version>
+    <version>0.0.1-alpha</version>
     <title>Trimble Modus Components for MAUI</title>
     <authors>Trimble Inc</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
+    <readme>README.md</readme>
     <!-- <icon>icon.png</icon> -->
     <projectUrl>https://github.com/trimble-oss/modus-mobile-components</projectUrl>
     <description>The One Trimble Design System. The Modus design system is part of the evolving
