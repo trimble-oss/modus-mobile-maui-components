@@ -13,6 +13,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
     private PopupNavigation popupNavigation;
 
     #endregion
+
     #region Public Properties
 
     public ImageSource LeftIconSource { get; set; }
@@ -181,11 +182,11 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         }
 
 
-   
-    
 
 
-    }  
+
+
+    }
     #endregion
 
 }

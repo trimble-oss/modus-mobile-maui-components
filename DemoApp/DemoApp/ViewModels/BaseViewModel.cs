@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace DemoApp.ViewModels
 {
-    public class BaseViewModel :INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         /// <summary>
         /// This variables is used to raise the event when the property value is changed

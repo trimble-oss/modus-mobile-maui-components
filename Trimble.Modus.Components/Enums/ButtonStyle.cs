@@ -1,9 +1,8 @@
-﻿namespace Trimble.Modus.Components.Enums
+﻿namespace Trimble.Modus.Components.Enums;
+
+public enum ButtonStyle
 {
-    public enum ButtonStyle
-    {
-        BorderLess,
-        Fill,
-        Outline
-    }
+    BorderLess,
+    Fill,
+    Outline
 }

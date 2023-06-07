@@ -1,22 +1,21 @@
 ﻿using Microsoft.Maui.Handlers;
 
-namespace Trimble.Modus.Components.Platforms.MacCatalyst
+namespace Trimble.Modus.Components.Platforms.MacCatalyst;
+
+internal class PopupPageHandler : PageHandler
 {
-    internal class PopupPageHandler : PageHandler
+    public PopupPageHandler()
     {
-        public PopupPageHandler()
-        {
-            this.SetMauiContext(MauiUIApplicationDelegate.Current.Application.Windows[0].Handler.MauiContext); //Still a hack?
-        }
+        this.SetMauiContext(MauiUIApplicationDelegate.Current.Application.Windows[0].Handler.MauiContext); //Still a hack?
+    }
 
-        protected override Microsoft.Maui.Platform.ContentView CreatePlatformView()
-        {
-            return base.CreatePlatformView();
-        }
+    protected override Microsoft.Maui.Platform.ContentView CreatePlatformView()
+    {
+        return base.CreatePlatformView();
+    }
 
-        protected override void DisconnectHandler(Microsoft.Maui.Platform.ContentView nativeView)
-        {
-            base.DisconnectHandler(nativeView);
-        }
+    protected override void DisconnectHandler(Microsoft.Maui.Platform.ContentView nativeView)
+    {
+        base.DisconnectHandler(nativeView);
     }
 }
