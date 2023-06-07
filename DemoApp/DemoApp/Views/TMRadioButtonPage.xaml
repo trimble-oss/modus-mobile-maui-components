@@ -11,12 +11,20 @@
            FontSize="20" />
     <Modus:TMRadioButtonGroup x:Name="RadioGroup"
                               SelectedIndex="0"
-                              Spacing="5"
-                              Orientation="Vertical">
+                              Orientation="Vertical"
+                              GroupTitle="Group Title"
+                              ItemsSource="{Binding RadioButtons}">
       <Modus:TMRadioButton Text="Dog"/>
       <Modus:TMRadioButton Text="Cat"/>
-      <Modus:TMRadioButton Text="Bird"/>
     </Modus:TMRadioButtonGroup>
+    <Label Text="Add radio button"
+           FontAttributes="Bold"
+           FontSize="20" />
+    <Modus:TMInput x:Name="Input"
+                    TitleText="Enter radio button text"
+                    Placeholder="Add radio button"
+                    ReturnCommand="{Binding AddRadioButtonCommand}"
+                    ReturnCommandParameter="{Binding Source={x:Reference Input}, Path=Text}" />
     <Label Text="Size"
            FontAttributes="Bold"
            Padding="0,5"
@@ -27,6 +35,17 @@
                               Orientation="Horizontal">
       <Modus:TMRadioButton Text="Default" />
       <Modus:TMRadioButton Text="Large" />
+    </Modus:TMRadioButtonGroup>
+    <Label Text="Orientation"
+           FontAttributes="Bold"
+           Padding="0,5"
+           FontSize="20" />
+    <Modus:TMRadioButtonGroup x:Name="OrientationGroup"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChanged="OnOrientationOptionChanged"
+                              Orientation="Horizontal">
+      <Modus:TMRadioButton Text="Vertical" />
+      <Modus:TMRadioButton Text="Horizontal" />
     </Modus:TMRadioButtonGroup>
     <StackLayout Orientation="Horizontal">
       <Label Text="Disable"

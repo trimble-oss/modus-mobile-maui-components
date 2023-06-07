@@ -177,6 +177,7 @@ namespace Trimble.Modus.Components
 
         #endregion
 
+        #region Constructor
         public TMRadioButton()
         {
             _label = new Label()
@@ -204,8 +205,12 @@ namespace Trimble.Modus.Components
             };
             _tapGesture.Tapped += OnTapGestureTapped;
             GestureRecognizers.Add(_tapGesture);
+            Margin = new Thickness(0, 0, 5, 5);
         }
 
+        #endregion
+        
+        #region Private Methods
         /// <summary>
         /// For Selected state while tapping
         /// </summary>
@@ -234,5 +239,6 @@ namespace Trimble.Modus.Components
             _tapGesture.Tapped -= OnTapGestureTapped;
             GestureRecognizers.Clear();
         }
+        #endregion
     }
 }

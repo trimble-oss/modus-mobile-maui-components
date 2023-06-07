@@ -1,3 +1,4 @@
+using Trimble.Modus.Components.Contant;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
@@ -118,12 +119,12 @@ namespace Trimble.Modus.Components
             if (customCheckboxView.IsIndeterminate)
             {
                 customCheckboxView.IsChecked = false;
-                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.indeterminate_checkbox.png");
+                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.IndeterminateCheckBoxButton);
 
             }
             else
             {
-                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png");
+                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton);
             }
 
         }
@@ -139,12 +140,12 @@ namespace Trimble.Modus.Components
             var customCheckboxView = (TMCheckBox)bindable;
             if (customCheckboxView.IsChecked)
             {
-                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.checked_checkbox.png");
+                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.CheckedCheckBoxButton);
 
             }
             else
             {
-                customCheckboxView._checkbox.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png");
+                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton);
             }
 
         }
@@ -159,7 +160,7 @@ namespace Trimble.Modus.Components
         public TMCheckBox()
         {
             _label = new Label() { FontSize = _defaultFontSize, VerticalOptions = LayoutOptions.Center };
-            _checkbox = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.default_checkbox.png"), VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
+            _checkbox = new Image { Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton), VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
             Content = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,

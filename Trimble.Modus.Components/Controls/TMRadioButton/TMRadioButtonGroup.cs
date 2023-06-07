@@ -1,13 +1,40 @@
+using System.Collections;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Trimble.Modus.Components.Collection;
+using Trimble.Modus.Components.Controls.Layouts;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components;
 
 public class TMRadioButtonGroup : StackLayout, IDisposable
 {
-    private readonly List<TMRadioButton> _radioButtons = new();
+    #region Private fields
+    private readonly Label _label = new Label() { IsVisible = false, FontSize = 14, Margin = new Thickness(0, 0, 0, 4), TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"]};
+    private readonly WrapLayout _buttonContainer = new WrapLayout();    
+    private readonly List<TMRadioButton> _radioButtons = new List<TMRadioButton>();
+    #endregion
 
     #region Bindable Properties
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+        nameof(ItemsSource), 
+        typeof(RadioButtonCollection<string>), 
+        typeof(TMRadioButtonGroup), 
+        new RadioButtonCollection<string>(),
+        propertyChanged: OnRadioItemsSourceChanged);
+
+    public static new readonly BindableProperty OrientationProperty = BindableProperty.Create(
+        nameof(Orientation),
+        typeof(StackOrientation),
+        typeof(TMRadioButtonGroup),
+        StackOrientation.Vertical);
+
+    public static readonly BindableProperty GroupTitleProperty = BindableProperty.Create(
+        nameof(GroupTitle),
+        typeof(string),
+        typeof(TMRadioButtonGroup),
+        null,
+        propertyChanged: OnGroupTitleChanged);
 
     public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(
         nameof(IsEnabled),
@@ -15,12 +42,12 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
         typeof(TMRadioButtonGroup),
         true,
         propertyChanged: OnIsEnabledChanged);
-    
+
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(
         nameof(Size),
         typeof(CheckboxSize),
         typeof(TMRadioButtonGroup),
-        CheckboxSize.Default,        
+        CheckboxSize.Default,
         propertyChanged: OnSizeChanged);
 
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
@@ -48,21 +75,39 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     #region Public Properties & events
 
     /// <summary>
-    /// IsEnabled property for the group
+    /// Observable collection of <see cref="TMRadioButton"/> in this Group
     /// </summary>
-    public new bool IsEnabled {
-        get { return (bool)GetValue (IsEnabledProperty); }
-        set { SetValue (IsEnabledProperty, value); } 
+    public RadioButtonCollection<string> ItemsSource
+    {
+        get { return (RadioButtonCollection<string>)GetValue(ItemsSourceProperty); }
+        set { SetValue(ItemsSourceProperty, value); }
     }
 
-        /// <summary>
-        /// Gets or sets a value indicating the size of <see cref="TMRadioButton"/> in this group
-        /// </summary>
-        public CheckboxSize Size
-        {
-            get => (CheckboxSize)GetValue(SizeProperty);
-            set => SetValue(SizeProperty, value);
-        }
+    /// <summary>
+    /// IsEnabled property for the group
+    /// </summary>
+    public new bool IsEnabled
+    {
+        get { return (bool)GetValue(IsEnabledProperty); }
+        set { SetValue(IsEnabledProperty, value); }
+    }
+
+    /// <summary>
+    /// Orientation of the container
+    /// </summary>
+    public new StackOrientation Orientation { 
+        get { return (StackOrientation)GetValue (OrientationProperty); }
+        set { SetValue (OrientationProperty, value); } 
+    }
+
+    /// <summary>
+    /// Gets or sets a value indicating the size of <see cref="TMRadioButton"/> in this group
+    /// </summary>
+    public CheckboxSize Size
+    {
+        get => (CheckboxSize)GetValue(SizeProperty);
+        set => SetValue(SizeProperty, value);
+    }
 
     /// <summary>
     /// Triggered when <see cref="SelectedIndex"/> changes.
@@ -88,8 +133,27 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
         set { SetValue(SelectedRadioButtonChangedCommandProperty, value); }
     }
 
+    /// <summary>
+    /// Gets or sets the title of the group
+    /// </summary>
+    public string GroupTitle { 
+        get => (string)GetValue(GroupTitleProperty); 
+        set => SetValue(GroupTitleProperty, value);
+    }
+
     #endregion
 
+    #region Constructor
+    public TMRadioButtonGroup()
+    {
+        this.Children.Add(_label);
+        this.Children.Add(_buttonContainer);
+        ItemsSource.OnAdded += OnItemsAdded;
+        ItemsSource.OnRemoved += OnItemsRemoved;
+        ItemsSource.OnCleared += OnItemsCleared;
+        _buttonContainer.SetBinding(WrapLayout.OrientationProperty, new Binding(nameof(Orientation), source: this));
+    }
+    #endregion
 
     #region private methods
 
@@ -99,32 +163,83 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     private static void OnIsEnabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
         TMRadioButtonGroup radioButtonGroup = (TMRadioButtonGroup)bindable;
-        if(radioButtonGroup._radioButtons.Count > 1){
+        if (radioButtonGroup._radioButtons.Count > 1)
+        {
             foreach (TMRadioButton radioButton in radioButtonGroup._radioButtons)
             {
                 radioButton.IsEnabled = (bool)newValue;
             }
         }
+        radioButtonGroup._label.Opacity = (bool)newValue ? 1 : 0.5;
     }
 
+    /// <summary>
+    /// Update the title of the group when the <see cref="GroupTitle"/> property changes
+    /// </summary>
+    private static void OnGroupTitleChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        TMRadioButtonGroup radioGroup = (TMRadioButtonGroup)bindable;
+        string text = (string)newValue;
+        radioGroup._label.Text = text;
+        radioGroup._label.IsVisible = !String.IsNullOrEmpty(text);
+    }
+
+    /// <summary>
+    /// Update the size of the radio buttons when the <see cref="Size"/> property changes
+    /// </summary>
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMRadioButtonGroup group && group._radioButtons.Count > 1)
+        TMRadioButtonGroup group = (TMRadioButtonGroup)bindable;
+        if (group._radioButtons.Count > 1)
         {
             foreach (TMRadioButton button in group._radioButtons)
             {
                 button.Size = (CheckboxSize)newValue;
             }
         }
+        group._label.FontSize = (CheckboxSize)newValue == CheckboxSize.Default ? 14 : 16;
     }
 
+    /// <summary>
+    /// Updates the ItemsSource
+    /// </summary>
+    private static void OnRadioItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
+    {        
+        TMRadioButtonGroup group = (TMRadioButtonGroup)bindable;
+        if (group == null)
+        {
+            return;
+        }
+
+        group.PopulateItems();
+    }
+
+    /// <summary>
+    /// Populate radiobuttons in items source in the group
+    /// </summary>
+    private void PopulateItems()
+    {
+        if (ItemsSource == null) return;
+        //RadioItemsSource.Clear();
+        foreach (var item in ItemsSource)
+        {
+            var radioButton = new TMRadioButton()
+            {
+                Text = item
+            };
+            Children.Add(radioButton);
+        }
+        ItemsSource.OnAdded += OnItemsAdded;
+        ItemsSource.OnRemoved += OnItemsRemoved;
+        ItemsSource.OnCleared += OnItemsCleared;
+    }
     /// <summary>
     /// Sets the <see cref="TMRadioButton.IsSelected"/> property of the radio buttons in the group
     /// </summary>
     private void UpdateSelectedStates()
     {
         int index = 0;
-        LoopChildren(Children, index);
+        LoopChildren(_buttonContainer.Children, index);
     }
 
     private void SetDefaultSelectedRadioButton()
@@ -146,10 +261,11 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
 
         if (child is TMRadioButton radioButton)
         {
+            this.Children.Remove(radioButton);
             base.OnChildAdded(child);
             AddRadioButtons(radioButton);
         }
-        else if (child is Layout layout)
+        else if (this.Children.Count > 2 && child is not TMRadioButton)
         {
             throw new ArgumentException($"Only {nameof(TMRadioButton)} can be added to {nameof(TMRadioButtonGroup)}");
         }
@@ -162,6 +278,7 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     private void AddRadioButtons(TMRadioButton radioButton)
     {
         _radioButtons.Add(radioButton);
+        _buttonContainer.Children.Add(radioButton);
         if(_radioButtons.Count == SelectedIndex + 1){
             radioButton.IsSelected = true;
         }
@@ -169,7 +286,6 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
         radioButton.Size = Size;
         radioButton.SelectedChanged += RadioButtonSelectionChanged;
     }
-
 
     /// <summary>
     /// This method is called when a radio button is selected.
@@ -208,7 +324,7 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     {
         int index = 0;
 
-        return FindIndexRecursive(Children, radioButton, index);
+        return FindIndexRecursive(_buttonContainer.Children, radioButton, index);
     }
 
     /// <summary>
@@ -260,6 +376,34 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
                 LoopChildren(childLayout.Children, index);
             }
         }
+    }
+
+    /// <summary>
+    /// Add a new radio button to the group for each item in the list
+    /// </summary>
+    private void OnItemsAdded(object sender, ItemsChangedEventArgs<string> e)
+    {
+        var index = e.Index;
+        var item = this.ItemsSource[index];
+        this.Children.Add(new TMRadioButton() { Text = item });
+    }
+
+    /// <summary>
+    /// Removes the radio button from the group
+    /// </summary>
+    private void OnItemsRemoved(object sender, ItemsChangedEventArgs<string> e)
+    {
+        _radioButtons.RemoveAt(e.Index);
+        _buttonContainer.Children.RemoveAt(e.Index);
+    }
+
+    /// <summary>
+    /// Clears the radio button group
+    /// </summary>
+    private void OnItemsCleared(object sender, EventArgs e)
+    {
+        _radioButtons.Clear();
+        _buttonContainer.Children.Clear();
     }
 
     #endregion
