@@ -10,8 +10,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     private const int DELAYTIME = 5000;
 
-    private PopupNavigation popupNavigation;
-
     #endregion
 
     #region Public Properties
@@ -30,12 +28,10 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     #endregion
 
-    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action, bool isDismissable)
+    internal TMToastContents(string message, string actionButtonText, ToastTheme theme, Action action, bool isDismissable)
     {
-
         InitializeComponent();
         SetTheme(theme.ToString());
-        this.popupNavigation = (PopupNavigation)popupNavigation;
         PopupData(message, actionButtonText, action, isDismissable);
         BindingContext = this;
         CloseAfterDelay();
@@ -92,13 +88,10 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         }
 
     }
-
-
-
     private void CloseButtonClicked(object sender, EventArgs e)
 
     {
-        popupNavigation.RemovePageAsync(this, true);
+        PopupService.Instance.RemovePageAsync(this, true);
 
     }
     public void CloseAfterDelay()
@@ -106,7 +99,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         Task.Run(async () =>
         {
             await Task.Delay(DELAYTIME);
-            await popupNavigation.RemovePageAsync(this, true);
+            await PopupService.Instance.RemovePageAsync(this, true);
         });
     }
 
@@ -180,13 +173,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             toastLayout.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
         }
-
-
-
-
-
-
     }
     #endregion
-
 }

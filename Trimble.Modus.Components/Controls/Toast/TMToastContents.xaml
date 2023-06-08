@@ -16,7 +16,7 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentPage.Resources>
-
+  
 
   <VerticalStackLayout x:Name="toastLayout"
                        HorizontalOptions="Fill"
