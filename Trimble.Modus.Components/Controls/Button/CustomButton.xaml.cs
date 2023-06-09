@@ -43,9 +43,18 @@ public partial class CustomButton : ContentView
 
     public static readonly BindableProperty IsDisabledProperty =
         BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(CustomButton), false, propertyChanged: OnIsDisabledChanged);
+
+    public static readonly BindableProperty IsFullWidthButtonProperty =
+          BindableProperty.Create(nameof(IsFullWidthButton), typeof(bool), typeof(TMButton), false);
+
     #endregion
 
     #region Public Properties
+    public bool IsFullWidthButton
+    {
+        get { return (bool)GetValue(IsFullWidthButtonProperty); }
+        set { SetValue(IsFullWidthButtonProperty, value); }
+    }
     public bool IsFloatingButton
     {
         get { return (bool)GetValue(IsFloatingButtonProperty); }

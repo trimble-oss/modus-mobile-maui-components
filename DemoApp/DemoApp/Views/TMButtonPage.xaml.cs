@@ -47,4 +47,9 @@ public partial class TMButtonPage : ContentPage
             _buttonPageViewModel.SelectedImageOption = radioButton.Value.ToString();
         }
     }
+
+    private void isFullWidth_Toggled(object sender, ToggledEventArgs e)
+    {
+        _buttonPageViewModel.IsFullWidth = e.Value;
+    }
 }

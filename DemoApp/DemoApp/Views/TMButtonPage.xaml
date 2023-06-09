@@ -64,14 +64,17 @@
                                RightIconSource="{Binding RightIconSource}"
                                Command="{Binding MyCommand}"
                                IsDisabled="{Binding IsDisabled}"
+                               IsFullWidthButton="{Binding IsFullWidth}"
                                Size="{Binding SelectedFontSize}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                CommandParameter="Button5" />
         <controls:CustomButton x:Name="secondaryBothIconButton"
                                Title="Secondary"
                                ButtonColor="Secondary"
+                               BackgroundColor="AliceBlue"
                                Size="{Binding SelectedFontSize}"
                                IsDisabled="{Binding IsDisabled}"
+                               IsFullWidthButton="{Binding IsFullWidth}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
@@ -82,6 +85,7 @@
                                ButtonColor="Tertiary"
                                Size="{Binding SelectedFontSize}"
                                IsDisabled="{Binding IsDisabled}"
+                               IsFullWidthButton="{Binding IsFullWidth}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
@@ -93,6 +97,7 @@
                                RightIconSource="{Binding RightIconSource}"
                                Size="{Binding SelectedFontSize}"
                                IsDisabled="{Binding IsDisabled}"
+                               IsFullWidthButton="{Binding IsFullWidth}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                ButtonColor="Danger"
                                Command="{Binding MyCommand}"
@@ -168,8 +173,22 @@
                 x:Name="isDisabled"
                 IsToggled="{Binding IsDisabled}"
                 Toggled="isDisabled_Toggled" />
-      </Grid>
+      </Grid> 
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
+        <Label Grid.Column="0"
+               Text="IsFullWidth"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Switch Grid.Column="1"
+                x:Name="IsFullWidth"
+                IsToggled="{Binding IsFullWidth}"
+                Toggled="isFullWidth_Toggled" />
+      </Grid>
     </StackLayout>
 
 

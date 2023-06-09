@@ -4,12 +4,14 @@
              x:Class="Trimble.Modus.Components.Controls.Button.CustomButton"
              x:Name="customButton"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Contant"
-             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             HorizontalOptions="FillAndExpand">
   <ContentView.Resources>
     <ResourceDictionary>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+      <converters:FloatingButtonBoolConverter x:Key="FloatingButtonBoolConverter"/>
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
@@ -39,11 +41,23 @@
         <Setter Property="ZIndex"
                 Value="1" />
       </DataTrigger>
+
+      <DataTrigger TargetType="Border"
+                   Value="true">
+        <DataTrigger.Binding>
+          <MultiBinding Converter="{StaticResource FloatingButtonBoolConverter}">
+            <Binding Path="IsFullWidthButton"/>
+            <Binding Path="IsFloatingButton"/>
+          </MultiBinding>
+        </DataTrigger.Binding>
+        <Setter Property="HorizontalOptions"
+                Value="Fill"/>
+      </DataTrigger>
     </Border.Triggers>
     <HorizontalStackLayout x:Name="buttonStackLayout"
                            Spacing="8"
                            VerticalOptions="FillAndExpand"
-                           HorizontalOptions="FillAndExpand">
+                           HorizontalOptions="Center">
       <Image Source="{Binding LeftIconSource}"
              IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"
