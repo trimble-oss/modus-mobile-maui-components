@@ -2,25 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMRadioButtonPage"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.modus.Components"
              Title="TMRadioButtonPage">
   <VerticalStackLayout Spacing="5"
                        Margin="10">
     <Label Text="Radio Group"
            FontAttributes="Bold"
            FontSize="20" />
-    <Modus:TMRadioButtonGroup x:Name="RadioGroup"
+    <modus:TMRadioButtonGroup x:Name="RadioGroup"
                               SelectedIndex="0"
                               Orientation="Vertical"
                               GroupTitle="Group Title"
                               ItemsSource="{Binding RadioButtons}">
-      <Modus:TMRadioButton Text="Dog"/>
-      <Modus:TMRadioButton Text="Cat"/>
-    </Modus:TMRadioButtonGroup>
-    <Label Text="Add radio button"
-           FontAttributes="Bold"
-           FontSize="20" />
-    <Modus:TMInput x:Name="Input"
+      <modus:TMRadioButton Text="Dog"/>
+      <modus:TMRadioButton Text="Cat"/>
+    </modus:TMRadioButtonGroup>
+    <modus:TMInput x:Name="Input"
                     TitleText="Enter radio button text"
                     Placeholder="Add radio button"
                     ReturnCommand="{Binding AddRadioButtonCommand}"
@@ -29,24 +26,24 @@
            FontAttributes="Bold"
            Padding="0,5"
            FontSize="20" />
-    <Modus:TMRadioButtonGroup x:Name="SizeGroup"
+    <modus:TMRadioButtonGroup x:Name="SizeGroup"
                               SelectedIndex="0"
                               SelectedRadioButtonChanged="OnSelectedRadioButtonChanged"
                               Orientation="Horizontal">
-      <Modus:TMRadioButton Text="Default" />
-      <Modus:TMRadioButton Text="Large" />
-    </Modus:TMRadioButtonGroup>
+      <modus:TMRadioButton Text="Default" />
+      <modus:TMRadioButton Text="Large" />
+    </modus:TMRadioButtonGroup>
     <Label Text="Orientation"
            FontAttributes="Bold"
            Padding="0,5"
            FontSize="20" />
-    <Modus:TMRadioButtonGroup x:Name="OrientationGroup"
+    <modus:TMRadioButtonGroup x:Name="OrientationGroup"
                               SelectedIndex="0"
                               SelectedRadioButtonChanged="OnOrientationOptionChanged"
                               Orientation="Horizontal">
-      <Modus:TMRadioButton Text="Vertical" />
-      <Modus:TMRadioButton Text="Horizontal" />
-    </Modus:TMRadioButtonGroup>
+      <modus:TMRadioButton Text="Vertical" />
+      <modus:TMRadioButton Text="Horizontal" />
+    </modus:TMRadioButtonGroup>
     <StackLayout Orientation="Horizontal">
       <Label Text="Disable"
              FontAttributes="Bold"

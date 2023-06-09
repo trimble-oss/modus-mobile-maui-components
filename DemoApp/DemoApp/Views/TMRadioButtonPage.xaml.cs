@@ -1,17 +1,15 @@
-using DemoApp.ViewModels;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Trimble.Modus.Components;
-using Trimble.Modus.Components.Collection;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views;
 
 public partial class TMRadioButtonPage : ContentPage
 {
-    private RadioButtonCollection<string> _radioButtons;
+    private ObservableCollection<string> _radioButtons;
 
-    public RadioButtonCollection<string> RadioButtons
+    public ObservableCollection<string> RadioButtons
     {
         get
         {
@@ -23,23 +21,23 @@ public partial class TMRadioButtonPage : ContentPage
             OnPropertyChanged(nameof(RadioButtons));
         }
     }
-	public TMRadioButtonPage()
-	{
-		InitializeComponent();
+    public TMRadioButtonPage()
+    {
+        InitializeComponent();
         BindingContext = this;
-        RadioButtons = new RadioButtonCollection<string>() { "Bird" };
-	}
+        RadioButtons = new ObservableCollection<string>() { "Bird" };
+    }
 
-	private void OnDisableToggled(object sender, ToggledEventArgs e)
-	{
+    private void OnDisableToggled(object sender, ToggledEventArgs e)
+    {
         RadioGroup.IsEnabled = !e.Value;
     }
 
-	/// <summary>
-	/// This method is called when the user taps on the radio button group for size selection.
-	/// </summary>
-	private void OnSelectedRadioButtonChanged(object sender, TMRadioButtonEventArgs e)
-	{
+    /// <summary>
+    /// This method is called when the user taps on the radio button group for size selection.
+    /// </summary>
+    private void OnSelectedRadioButtonChanged(object sender, TMRadioButtonEventArgs e)
+    {
         if (e.RadioButtonIndex == 0)
         {
             RadioGroup.Size = CheckboxSize.Default;
@@ -50,8 +48,8 @@ public partial class TMRadioButtonPage : ContentPage
         }
     }
 
-	private void OnOrientationOptionChanged(object sender, TMRadioButtonEventArgs e)
-	{
+    private void OnOrientationOptionChanged(object sender, TMRadioButtonEventArgs e)
+    {
         if (e.RadioButtonIndex == 0)
         {
             RadioGroup.Orientation = StackOrientation.Vertical;
@@ -65,5 +63,5 @@ public partial class TMRadioButtonPage : ContentPage
     private void AddRadioButton(string text)
     {
         RadioButtons.Add(text);
-    }  
+    }
 }

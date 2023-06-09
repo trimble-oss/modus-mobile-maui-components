@@ -7,43 +7,26 @@ namespace Trimble.Modus.Components.Controls.Layouts;
 /// A layout that arranges views in a wrapping grid.
 /// Ref: https://github.com/mdc-maui/mdc-maui/blob/master/Material.Components.Maui/Components/Layouts/WrapLayout.cs
 /// </summary>
-public partial class WrapLayout : Layout, IItemsLayout
+internal partial class WrapLayout : Layout, IItemsLayout
 {
+ 
+    #region Bindable Properties
+    public static readonly BindableProperty OrientationProperty = BindableProperty.Create( nameof(Orientation), typeof(StackOrientation), typeof(WrapLayout), StackOrientation.Horizontal, propertyChanged: OnPropertyChanged);
 
-    public static readonly BindableProperty OrientationProperty =
-     BindableProperty.Create(
-         nameof(Orientation),
-         typeof(StackOrientation),
-         typeof(WrapLayout),
-         StackOrientation.Horizontal,
-         propertyChanged: OnPropertyChanged);
+    public static readonly BindableProperty SpacingProperty = BindableProperty.Create( nameof(Spacing), typeof(double), typeof(WrapLayout), 0d, propertyChanged: OnSpacingChanged);
 
-    public static readonly BindableProperty SpacingProperty =
-     BindableProperty.Create(
-         nameof(Spacing),
-         typeof(double),
-         typeof(WrapLayout),
-         0d,
-         propertyChanged: OnSpacingChanged);
+    public static readonly BindableProperty HorizontalSpacingProperty = BindableProperty.Create( nameof(HorizontalSpacing), typeof(double), typeof(WrapLayout), 0d, propertyChanged: OnPropertyChanged);
 
-    public static readonly BindableProperty HorizontalSpacingProperty =
-     BindableProperty.Create(
-         nameof(HorizontalSpacing),
-         typeof(double),
-         typeof(WrapLayout),
-         0d,
-         propertyChanged: OnPropertyChanged);
+    public static readonly BindableProperty VerticalSpacingProperty = BindableProperty.Create( nameof(VerticalSpacing), typeof(double), typeof(WrapLayout), 0d, propertyChanged: OnPropertyChanged);
 
-    public static readonly BindableProperty VerticalSpacingProperty =
-     BindableProperty.Create(
-         nameof(VerticalSpacing),
-         typeof(double),
-         typeof(WrapLayout),
-         0d,
-         propertyChanged: OnPropertyChanged);
-
+    #endregion
+    
+    #region  Private Fields
     private bool isOnSpacingChanging;
 
+    #endregion
+
+    #region Public Properties
     public StackOrientation Orientation
     {
         get => (StackOrientation)GetValue(OrientationProperty);
@@ -66,7 +49,9 @@ public partial class WrapLayout : Layout, IItemsLayout
         get => (double)GetValue(VerticalSpacingProperty);
         set => SetValue(VerticalSpacingProperty, value);
     }
+    #endregion
 
+    #region Private methods
     private static void OnSpacingChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var layout = (WrapLayout)bindable;
@@ -85,24 +70,33 @@ public partial class WrapLayout : Layout, IItemsLayout
         if (!layout.isOnSpacingChanging && layout.Handler != null)
             layout.InvalidateMeasure();
     }
+    #endregion
 
+    #region Protected Methods
     protected override ILayoutManager CreateLayoutManager()
     {
         return new WrapLayoutManager(this);
     }
+    #endregion
 }
 
 file class WrapLayoutManager : LayoutManager
 {
+    #region Private Fields
     private readonly WrapLayout layout;
 
     private readonly List<Rect> childrenBounds = new();
 
+    #endregion
+
+    #region Constructors
     public WrapLayoutManager(WrapLayout layout) : base(layout)
     {
         this.layout = layout;
     }
+    #endregion
 
+    #region Public Methods
     public override Size Measure(double widthConstraint, double heightConstraint)
     {
         this.childrenBounds.Clear();
@@ -130,6 +124,18 @@ file class WrapLayoutManager : LayoutManager
         return result;
     }
 
+    public override Size ArrangeChildren(Rect bounds)
+    {
+        if (this.layout.Orientation == StackOrientation.Horizontal)
+            this.HorizontalArrangeChildren();
+        else
+            this.VerticalArrangeChildren();
+
+        return new Size(bounds.Width, bounds.Height);
+    }
+    #endregion
+
+    #region Private Methods
     private SizeRequest HorizontalMeasure(double widthConstraint, double heightConstraint)
     {
         var width = 0d;
@@ -218,16 +224,6 @@ file class WrapLayoutManager : LayoutManager
         }
     }
 
-    public override Size ArrangeChildren(Rect bounds)
-    {
-        if (this.layout.Orientation == StackOrientation.Horizontal)
-            this.HorizontalArrangeChildren();
-        else
-            this.VerticalArrangeChildren();
-
-        return new Size(bounds.Width, bounds.Height);
-    }
-
     private void HorizontalArrangeChildren()
     {
         var index = 0;
@@ -249,4 +245,5 @@ file class WrapLayoutManager : LayoutManager
             index++;
         }
     }
+    #endregion
 }
