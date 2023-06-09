@@ -4,13 +4,32 @@
              xmlns:theme="clr-namespace:Trimble.Modus.Components.Enums;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.TMToastPage"
              Title="ToastPage">
-  <StackLayout HeightRequest="400"  VerticalOptions="Start" Padding="10">
-    <Label Text="Toast Message" FontSize="Large" FontAttributes="Bold"></Label>
-    <Editor x:Name="Message" Text="Data saved successfully!" Placeholder="Enter Toast Message" Margin="5" VerticalOptions="FillAndExpand" />
-    <Label Text="Right Icon Text" FontSize="Large" FontAttributes="Bold"></Label>
-    <Entry x:Name="IconText" Placeholder="Enter Right Icon Text" Margin="5" HorizontalOptions="Start" />
-    <Label Text="Theme" FontSize="Large" FontAttributes="Bold"></Label>
-    <Picker  x:Name="toastPicker" Margin="5"   SelectedIndexChanged="ToastPickerSelectedIndexChanged" HorizontalOptions="Start" WidthRequest="100">
+  <StackLayout HeightRequest="400"
+               VerticalOptions="Start"
+               Padding="10">
+    <Label Text="Toast Message"
+           FontSize="Large"
+           FontAttributes="Bold"></Label>
+    <Editor x:Name="Message"
+            Text="Data saved successfully!"
+            Placeholder="Enter Toast Message"
+            Margin="5"
+            VerticalOptions="FillAndExpand" />
+    <Label Text="Right Icon Text"
+           FontSize="Large"
+           FontAttributes="Bold"></Label>
+    <Entry x:Name="IconText"
+           Placeholder="Enter Right Icon Text"
+           Margin="5"
+           HorizontalOptions="Start" />
+    <Label Text="Theme"
+           FontSize="Large"
+           FontAttributes="Bold"></Label>
+    <Picker  x:Name="toastPicker"
+             Margin="5"
+             SelectedIndexChanged="ToastPickerSelectedIndexChanged"
+             HorizontalOptions="Start"
+             WidthRequest="100">
 
       <Picker.ItemsSource>
         <x:Array Type="{x:Type theme:ToastTheme}">
@@ -26,7 +45,10 @@
 
 
     </Picker>
-    <Button x:Name="button" Text="Toast" Margin="5" Clicked="OnToastActionTapped" />
+    <Button x:Name="button"
+            Text="Toast"
+            Margin="5"
+            Clicked="OnToastActionTapped" />
 
   </StackLayout>
 

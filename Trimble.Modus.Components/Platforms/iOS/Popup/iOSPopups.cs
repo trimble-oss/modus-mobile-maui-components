@@ -2,6 +2,7 @@
 using Trimble.Modus.Components.Popup.Interfaces;
 using Trimble.Modus.Components.Popup.Pages;
 using UIKit;
+
 namespace Trimble.Modus.Components.iOS.Implementation;
 
 internal class iOSPopups : IPopupPlatform

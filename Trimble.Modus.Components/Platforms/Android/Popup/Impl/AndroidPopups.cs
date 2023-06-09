@@ -104,7 +104,7 @@ internal class AndroidPopups : IPopupPlatform
             view.ImportantForAccessibility = showPopup ? ImportantForAccessibility.NoHideDescendants : ImportantForAccessibility.Auto;
 
             // Keyboard navigation
-            ((ViewGroup)view).DescendantFocusability = showPopup ? DescendantFocusability.BlockDescendants : DescendantFocusability.AfterDescendants;
+            ((ViewGroup)view).DescendantFocusability = DescendantFocusability.AfterDescendants;
             view.ClearFocus();
         }
     }

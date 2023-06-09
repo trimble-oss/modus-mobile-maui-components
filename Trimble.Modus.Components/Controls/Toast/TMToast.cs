@@ -6,7 +6,6 @@ namespace Trimble.Modus.Components.Controls.Toast
     public class TMToast
     {
         #region Private Properties
-        private PopupNavigation popupNavigation;
         private string message, actionButtonText = null;
         #endregion
         #region Public Properties
@@ -16,7 +15,6 @@ namespace Trimble.Modus.Components.Controls.Toast
         #endregion
         public TMToast(string message, string actionButtonText = null, Action? action = null)
         {
-            popupNavigation = new PopupNavigation();
             this.message = message;
             this.actionButtonText = actionButtonText;
             this.action = action;
@@ -32,7 +30,7 @@ namespace Trimble.Modus.Components.Controls.Toast
             {
                 throw new ArgumentNullException("Message is required");
             }
-            popupNavigation.PushAsync(new TMToastContents(message, actionButtonText, popupNavigation, theme, action, isDismissable), false);
+            PopupService.Instance.PushAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable), false);
         }
         #endregion
     }
