@@ -2,6 +2,7 @@ using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Contant;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Animations;
 using Trimble.Modus.Components.Popup.Services;
 
@@ -254,7 +255,7 @@ namespace Trimble.Modus.Components
                     RadiusX = 4,
                     RadiusY = 4
                 },
-                Stroke = (Color)BaseComponent.colorsDictionary()["Black"],
+                Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black),
                 Shadow = shadow,
                 StrokeThickness = 0,
                 BackgroundColor = Colors.White
@@ -262,7 +263,7 @@ namespace Trimble.Modus.Components
 
             SetBinding();
             Animation = new ScaleAnimation();
-            BackgroundColor = (Color)BaseComponent.colorsDictionary()["ModalGraySemiTransparent"];
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.ModalGraySemiTransparent);
 
             Content = _border;
         }
