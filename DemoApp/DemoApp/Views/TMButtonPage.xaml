@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
@@ -24,6 +24,7 @@
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
+        
         <controls:CustomButton x:Name="floatingTextWithRightIconButton"
                                Title="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
@@ -59,50 +60,51 @@
                    Spacing="10">
         <controls:CustomButton x:Name="primaryleftIconButton"
                                Title="Primary"
+                               HorizontalOptions="FillAndExpand"
                                ButtonColor="Primary"
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
                                Command="{Binding MyCommand}"
                                IsDisabled="{Binding IsDisabled}"
-                               IsFullWidthButton="{Binding IsFullWidth}"
                                Size="{Binding SelectedFontSize}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                CommandParameter="Button5" />
         <controls:CustomButton x:Name="secondaryBothIconButton"
                                Title="Secondary"
                                ButtonColor="Secondary"
+                               HorizontalOptions="Start"
                                BackgroundColor="AliceBlue"
                                Size="{Binding SelectedFontSize}"
                                IsDisabled="{Binding IsDisabled}"
-                               IsFullWidthButton="{Binding IsFullWidth}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
-        <controls:CustomButton x:Name="tertiaryLeftIconButton"
-                               Title="Tertiary"
-                               ButtonColor="Tertiary"
-                               Size="{Binding SelectedFontSize}"
-                               IsDisabled="{Binding IsDisabled}"
-                               IsFullWidthButton="{Binding IsFullWidth}"
-                               ButtonStyle="{Binding SelectedButtonStyle}"
-                               LeftIconSource="{Binding LeftIconSource}"
-                               RightIconSource="{Binding RightIconSource}"
-                               Command="{Binding MyCommand}"
-                               CommandParameter="Button5" />
-        <controls:CustomButton x:Name="dangerRightIconButton"
-                               Title="Danger"
-                               LeftIconSource="{Binding LeftIconSource}"
-                               RightIconSource="{Binding RightIconSource}"
-                               Size="{Binding SelectedFontSize}"
-                               IsDisabled="{Binding IsDisabled}"
-                               IsFullWidthButton="{Binding IsFullWidth}"
-                               ButtonStyle="{Binding SelectedButtonStyle}"
-                               ButtonColor="Danger"
-                               Command="{Binding MyCommand}"
-                               CommandParameter="Button5" />
-
+        <StackLayout Orientation="Horizontal">
+          <controls:CustomButton x:Name="tertiaryLeftIconButton"
+                                 Title="Tertiary"
+                                 HorizontalOptions="FillAndExpand"
+                                 ButtonColor="Tertiary"
+                                 Size="{Binding SelectedFontSize}"
+                                 IsDisabled="{Binding IsDisabled}"
+                                 ButtonStyle="{Binding SelectedButtonStyle}"
+                                 LeftIconSource="{Binding LeftIconSource}"
+                                 RightIconSource="{Binding RightIconSource}"
+                                 Command="{Binding MyCommand}"
+                                 CommandParameter="Button5" />
+          <controls:CustomButton x:Name="dangerRightIconButton"
+                                 Title="Danger"
+                                 HorizontalOptions="FillAndExpand"
+                                 LeftIconSource="{Binding LeftIconSource}"
+                                 RightIconSource="{Binding RightIconSource}"
+                                 Size="{Binding SelectedFontSize}"
+                                 IsDisabled="{Binding IsDisabled}"
+                                 ButtonStyle="{Binding SelectedButtonStyle}"
+                                 ButtonColor="Danger"
+                                 Command="{Binding MyCommand}"
+                                 CommandParameter="Button5" />
+        </StackLayout>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <RadioButton Content="None"
@@ -173,25 +175,7 @@
                 x:Name="isDisabled"
                 IsToggled="{Binding IsDisabled}"
                 Toggled="isDisabled_Toggled" />
-      </Grid> 
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-
-        <Label Grid.Column="0"
-               Text="IsFullWidth"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <Switch Grid.Column="1"
-                x:Name="IsFullWidth"
-                IsToggled="{Binding IsFullWidth}"
-                Toggled="isFullWidth_Toggled" />
-      </Grid>
+      </Grid>       
     </StackLayout>
-
-
-
   </ScrollView>
 </ContentPage>

@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Controls.Button.CustomButton"
              x:Name="customButton"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Contant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
-             HorizontalOptions="FillAndExpand">
+             HorizontalOptions="Start">
   <ContentView.Resources>
     <ResourceDictionary>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
-      <converters:FloatingButtonBoolConverter x:Key="FloatingButtonBoolConverter"/>
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
-          HorizontalOptions="Start"
+          HorizontalOptions="{Binding Source={x:Reference customButton}, Path=HorizontalOptions}"
           BindingContext="{x:Reference customButton}"
           x:Name="buttonFrame">
     <Border.Triggers>
@@ -40,18 +39,6 @@
         </Setter>
         <Setter Property="ZIndex"
                 Value="1" />
-      </DataTrigger>
-
-      <DataTrigger TargetType="Border"
-                   Value="true">
-        <DataTrigger.Binding>
-          <MultiBinding Converter="{StaticResource FloatingButtonBoolConverter}">
-            <Binding Path="IsFullWidthButton"/>
-            <Binding Path="IsFloatingButton"/>
-          </MultiBinding>
-        </DataTrigger.Binding>
-        <Setter Property="HorizontalOptions"
-                Value="Fill"/>
       </DataTrigger>
     </Border.Triggers>
     <HorizontalStackLayout x:Name="buttonStackLayout"

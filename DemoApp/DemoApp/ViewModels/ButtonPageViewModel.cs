@@ -7,7 +7,7 @@ namespace DemoApp.ViewModels
     {
         private Trimble.Modus.Components.Enums.Size _selectedFontSize;
         private ButtonStyle _selectedButtonStyle;
-        private bool _isDisabled,_isFullWidth;
+        private bool _isDisabled;
         private string _selectedImageOption;
         private string _leftIconSource;
         private string _rightIconSource;
@@ -95,18 +95,7 @@ namespace DemoApp.ViewModels
                 OnPropertyChanged(nameof(IsDisabled));
             }
         }
-        public bool IsFullWidth
-        {
-            get => _isFullWidth;
-            set
-            {
-                if (_isFullWidth != value)
-                {
-                    _isFullWidth = value;
-                }
-                OnPropertyChanged(nameof(IsFullWidth));
-            }
-        }
+
         public ICommand MyCommand { get; set; }
 
         public ButtonPageViewModel()
