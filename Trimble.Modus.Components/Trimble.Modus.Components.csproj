@@ -18,15 +18,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Images\radio_selected_icon.svg" />
+	  <None Remove="Images\radio_unselected_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <EmbeddedResource Include="Images\black_close_icon.png" />
 	  <EmbeddedResource Include="Images\blue_close_icon.png" />
-	  <EmbeddedResource Include="Images\checked_checkbox.png" />
-	  <EmbeddedResource Include="Images\default_checkbox.png" />
 	  <EmbeddedResource Include="Images\danger.png" />
 	  <EmbeddedResource Include="Images\dark.png" />
 	  <EmbeddedResource Include="Images\default.png" />
 	  <EmbeddedResource Include="Images\helper_icon.png" />
-	  <EmbeddedResource Include="Images\indeterminate_checkbox.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
 	  <EmbeddedResource Include="Images\primary.png" />
@@ -36,7 +38,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Images\checked_checkbox.svg" />
+	  <MauiImage Include="Images\default_checkbox.svg" />
+	  <MauiImage Include="Images\indeterminate_checkbox.svg" />
 	  <MauiImage Include="Images\modus_close_icon.svg" />
+	  <MauiImage Include="Images\radio_selected_icon.svg" />
+	  <MauiImage Include="Images\radio_unselected_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
