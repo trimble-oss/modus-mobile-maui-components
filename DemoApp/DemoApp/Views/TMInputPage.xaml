@@ -3,14 +3,22 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:controls="clr-namespace:Trimble.Modus.Components.Controls;assembly=Trimble.Modus.Components"
              Title="Input">
   <ScrollView>
     <VerticalStackLayout>
       <StackLayout Padding="10"
-                   Spacing="15">
-        <Modus:TMInput x:Name="modusInput"
-                       TitleText="Text Input"
-                       Placeholder="Input" />
+                   Spacing="10">
+        <controls:CustomInput  x:Name="modusInput"
+                               Placeholder="Input" />
+        <controls:CustomInput  x:Name="modusInputWithTitle"
+                               TitleText="Text Input"
+                               Placeholder="Input" />
+        <controls:CustomInput x:Name="validationInput1"
+                              TitleText="Success/Error Input"
+                              HelperText="Helper Text"
+                              InputValidation="CustomInputValidation"
+                              Placeholder="Text Input" />
 
         <Modus:TMInput x:Name="validationInput"
                        TitleText="Success/Error Input"

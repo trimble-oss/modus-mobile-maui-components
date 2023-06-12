@@ -1,8 +1,10 @@
-﻿namespace Trimble.Modus.Components.Contant
+﻿namespace Trimble.Modus.Components.Constant;
+
+internal static class ImageConstants
 {
-    internal static class ImageConstants
-    {
-        //TODO: Add other images here
-        public const string CloseButtonImage = "modus_close_icon.png";
-    }
+    //TODO: Add other images here
+    public const string CloseButtonImage = "modus_close_icon.png";
+    public const string HelperImage = "helper_icon.png";
+    public const string TickImage = "input_valid_icon.png";
+    public const string ErrorImage = "input_error_icon.png";
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Controls.CustomInput"
+             x:Name="tmInput"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:controls="clr-namespace:Trimble.Modus.Components">
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Grid x:Name="tmInputContainer"
+        BindingContext="{x:Reference tmInput}"
+        RowDefinitions="auto,auto,auto"
+        RowSpacing="0"
+        Padding="0">
+    <Label x:Name="inputLabel"
+           Grid.Row="0"
+           Padding="0,0,0,5"
+           Text="{Binding TitleText}"
+           VerticalOptions="Center"
+           IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+           HorizontalOptions="Start" />
+    <Border x:Name="inputBorder"
+            VerticalOptions="FillAndExpand"
+            Grid.Row="1">
+      <Border.StrokeShape>
+        <Rectangle RadiusX="4"
+                   RadiusY="4" />
+      </Border.StrokeShape>
+      <Grid ColumnDefinitions="16,auto,*,auto,16"
+            RowDefinitions="auto">
+        <ImageButton x:Name="inputLeftIcon"
+                     WidthRequest="20"
+                     HeightRequest="20"
+                     Source="{Binding LeftIconSource}"
+                     Command="{Binding LeftIconCommand}"
+                     IsEnabled="{Binding IsEnabled}"
+                     CommandParameter="{Binding LeftIconCommandParameter}"
+                     IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+                     Grid.Column="1" />
+        <controls:BorderlessEntry x:Name="inputBorderlessEntry"
+                                  Grid.Column="2"
+                                  Focused="InputBorderlessEntry_Focused"
+                                  Unfocused="InputBorderlessEntry_Unfocused"
+                                  Placeholder="{Binding Placeholder}"
+                                  Text="{Binding Text}"
+                                  IsPassword="{Binding IsPassword}"
+                                  IsReadOnly="{Binding IsReadOnly}"
+                                  TextColor="{Binding TextColor}"
+                                  IsEnabled="{Binding IsEnabled}"
+                                  FontAttributes="{Binding FontAttributes}"
+                                  PlaceholderColor="{Binding PlaceholderColor}"
+                                  CursorPosition="{Binding CursorPosition}"
+                                  MaxLength="{Binding MaxLength}"
+                                  Keyboard="{Binding Keyboard}"
+                                  ReturnType="{Binding ReturnType}"
+                                  ReturnCommand="{Binding ReturnCommand}"
+                                  ReturnCommandParameter="{Binding ReturnCommandParameter}"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="FillAndExpand" />
+        <ImageButton x:Name="inputRightIcon"
+                     WidthRequest="20"
+                     HeightRequest="20"
+                     IsEnabled="{Binding IsEnabled}"
+                     IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+                     Source="{Binding RightIconSource}"
+                     Command="{Binding RightIconCommand}"
+                     CommandParameter="{Binding RightIconCommandParameter}"
+                     Grid.Column="3" />
+      </Grid>
+    </Border>
+    <HorizontalStackLayout  Grid.Row="2"
+                            Spacing="5"
+                            Padding="0,5,0,0"
+                            IsVisible="{Binding HelperText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+      <Image x:Name="inputHelperIcon"
+             WidthRequest="20"
+             HeightRequest="20" />
+      <Label  x:Name="inputHelperLabel"
+              LineBreakMode="WordWrap"
+              Text="{Binding HelperText}"
+              VerticalTextAlignment="Center" />
+    </HorizontalStackLayout>
+  </Grid>
+</ContentView>
