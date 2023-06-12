@@ -335,6 +335,12 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     private void PopulateItems()
     {
         if (ItemsSource == null) return;
+        _radioButtons.RemoveAll(x => x.CreatedFromItemSource);
+        foreach (var child in _buttonContainer.Children.Where(x => x is TMRadioButton radioButton && radioButton.CreatedFromItemSource).ToList())
+        {
+            _buttonContainer.Children.Remove(child);
+        }
+        
         foreach (var item in ItemsSource)
         {
             var radioButton = new TMRadioButton()
@@ -351,7 +357,7 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     private void UpdateSelectedStates()
     {
         int index = 0;
-        LoopChildren(_buttonContainer.Children, index);
+        SelectChildrenAtIndex(_buttonContainer.Children, index);
     }
 
     private void SetDefaultSelectedRadioButton()
@@ -418,8 +424,7 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
                 radioButton.IsSelected = false;
             }
         }
-
-        int index = FindIndex(selectedRadioButton);
+        int index = _radioButtons.IndexOf(selectedRadioButton);
         SelectedIndex = index;
         object value = selectedRadioButton.Value;
         var eventArgs = new TMRadioButtonEventArgs(value, index);
@@ -428,53 +433,12 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     }
 
     /// <summary>
-    /// Finds the index of the selected radio button in the group
-    /// </summary>
-    /// <param name="radioButton">Selected Radio button</param>
-    /// <returns>integer index</returns>
-    private int FindIndex(TMRadioButton radioButton)
-    {
-        int index = 0;
-
-        return FindIndexRecursive(_buttonContainer.Children, radioButton, index);
-    }
-
-    /// <summary>
-    /// Finds the index of the selected radio button in the group
-    /// </summary>
-    /// <param name="children">List of children's in <see cref="TMRadioButtonGroup"/></param>
-    private int FindIndexRecursive(IList<IView> children, TMRadioButton radioButton, int index)
-    {
-        foreach (var child in children)
-        {
-            if (child is TMRadioButton)
-            {
-                if (child == radioButton)
-                {
-                    return index;
-                }
-                index++;
-            }
-            else if (child is Layout childLayout)
-            {
-                int childIndex = FindIndexRecursive(childLayout.Children, radioButton, index);
-                if (childIndex != -1)
-                {
-                    return childIndex;
-                }
-            }
-        }
-
-        return -1;
-    }
-
-    /// <summary>
     /// Loops through all the children of the radio button group
     /// and sets the IsSelected property of the radio buttons in the group
     /// </summary>
     /// <param name="children">List of children's in <see cref="TMRadioButtonGroup"/> </param>
     /// <param name="index">Index of the selected <see cref="TMRadioButton"/></param>
-    private void LoopChildren(IList<IView> children, int index)
+    private void SelectChildrenAtIndex(IList<IView> children, int index)
     {
         foreach (var child in children)
         {
@@ -482,10 +446,6 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
             {
                 radioButton.IsSelected = index == SelectedIndex;
                 index++;
-            }
-            else if (child is Layout childLayout)
-            {
-                LoopChildren(childLayout.Children, index);
             }
         }
     }
