@@ -9,64 +9,67 @@
     <VerticalStackLayout>
       <StackLayout Padding="10"
                    Spacing="10">
-        <controls:CustomInput  x:Name="modusInput"
+        <!--<controls:CustomInput  x:Name="modusInput"
                                Placeholder="Input" />
+        
         <controls:CustomInput  x:Name="modusInputWithTitle"
                                TitleText="Text Input"
                                Placeholder="Input" />
-        <controls:CustomInput x:Name="validationInput1"
+        
+        <controls:CustomInput x:Name="validationInput"
                               TitleText="Success/Error Input"
                               HelperText="Helper Text"
                               InputValidation="CustomInputValidation"
                               Placeholder="Text Input" />
 
-        <Modus:TMInput x:Name="validationInput"
-                       TitleText="Success/Error Input"
-                       HelperText="Helper Text"
-                       Placeholder="Text Input"
-                       InputValidation="CustomValidateInput"
-                       Focused="modusInputFocused" />
+        <controls:CustomInput x:Name="rightIcon"
+                              TitleText="Right Icon"
+                              Placeholder="Text Input"
+                              RightIconSource="password_eye.png"
+                              RightIconCommand="{Binding ShowPasswordCommand}"
+                              IsPassword="{Binding ShowPassword}" />
+        
+        <controls:CustomInput x:Name="leftIcon"
+                              TitleText="Left Icon"
+                              LeftIconSource="s_icon.png"
+                              Placeholder="Text Input" />
+        
+        <controls:CustomInput x:Name="bothIcon"
+                              TitleText="Both Icon"
+                              LeftIconSource="user.png"
+                              Placeholder="Text Input"
+                              RightIconSource="cv.png" />
 
-        <Modus:TMInput TitleText="Right Icon"
-                       Placeholder="Text Input"
-                       RightIconSource="password_eye.png"
-                       RightIconCommand="{Binding ShowPasswordCommand}"
-                       IsPassword="{Binding ShowPassword}" />
+        <controls:CustomInput x:Name="filled"
+                              TitleText="Filled"
+                              Placeholder="Text Input"
+                              Text="Filled" />
 
-        <Modus:TMInput TitleText="Filled"
-                       Placeholder="Text Input"
-                       Text="Filled" />
+        <controls:CustomInput x:Name="helperText"
+                              HelperText="Helper Text"
+                              TitleText="Helper Text"
+                              Placeholder="Text Input" />-->
 
-        <Modus:TMInput HelperText="Helper Text"
-                       TitleText="Helper Text"
-                       Placeholder="Text Input" />
+        <controls:CustomInput x:Name="disabledInput"
+                              IsEnabled="False"
+                              TitleText="Disabled"
+                              Text="Disabled Input"
+                              Placeholder="Text Input" />
 
-        <Modus:TMInput IsEnabled="False"
-                       TitleText="Disabled"
-                       Text="Data"
-                       Placeholder="Text Input" />
-
-        <Modus:TMInput IsReadOnly="True"
-                       TitleText="Read only"
-                       Placeholder="Text Input"
-                       Text="Data" />
-
-        <Modus:TMInput IsEnabled="False"
-                       IsReadOnly="True"
-                       Text="Data"
-                       HelperText="Helper Text"
-                       TitleText="ReadOnly and Disabled"
-                       Placeholder="Text Input" />
-
-        <Modus:TMInput TitleText="Left Icon"
-                       LeftIconSource="s_icon.png"
-                       Placeholder="Text Input" />
-
-        <Modus:TMInput TitleText="Both Icon"
-                       LeftIconSource="user.png"
-                       Placeholder="Text Input"
-                       RightIconSource="cv.png" />
-
+        <controls:CustomInput x:Name="readOnlyInput"
+                              IsReadOnly="True"
+                              TitleText="Read only"
+                              Placeholder="Text Input"
+                              Text="Data" />
+        
+        <controls:CustomInput x:Name="readOnlyAndDisabledInput"
+                              IsEnabled="False"
+                              IsReadOnly="True"
+                              Text="Data"
+                              HelperText="Helper Text"
+                              TitleText="ReadOnly and Disabled"
+                              Placeholder="Text Input" />
+      
       </StackLayout>
     </VerticalStackLayout>
   </ScrollView>

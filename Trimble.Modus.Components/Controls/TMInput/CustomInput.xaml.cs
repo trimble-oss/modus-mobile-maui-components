@@ -137,7 +137,7 @@ public partial class CustomInput : ContentView
     /// Gets or sets value that indicates whether the input control is enabled or not.
     /// </summary>
     public static new readonly BindableProperty IsEnabledProperty =
-        BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomInput), true);
+        BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomInput), true, propertyChanged: OnEnabledPropertyChanged);
 
     /// <summary>
     /// Gets or sets value that indicates whether the input control is readonly or not.
@@ -436,13 +436,14 @@ public partial class CustomInput : ContentView
             if ((bool)newValue)
             {
                 tmInput.inputHelperLabel.Opacity = disabledOpacity;
-                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary("TrimbleReadOnlyGray");
+                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
+                tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
                 tmInput.inputBorder.StrokeThickness = 0;
             }
             else
             {
                 tmInput.inputHelperLabel.Opacity = 1;
-                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary("White");
+                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 tmInput.inputBorder.StrokeThickness = 1;
             }
         }
@@ -541,6 +542,22 @@ public partial class CustomInput : ContentView
         if (sender is BorderlessEntry)
         {
             SetBorderColor(_customInput);
+        }
+    }
+
+    private static void OnEnabledPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is CustomInput customInput)
+        {
+            if ((bool)newValue)
+            {
+                SetBorderColor(customInput);
+            }
+            else
+            {
+                customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                customInput.inputBorder.StrokeThickness = 1;
+            }
         }
     }
 
