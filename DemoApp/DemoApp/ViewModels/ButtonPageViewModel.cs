@@ -11,6 +11,7 @@ namespace DemoApp.ViewModels
         private string _selectedImageOption;
         private string _leftIconSource;
         private string _rightIconSource;
+        private LayoutOptions _isFullWidthAlignment;
 
         public Trimble.Modus.Components.Enums.Size SelectedFontSize
         {
@@ -93,6 +94,15 @@ namespace DemoApp.ViewModels
                     _isDisabled = value;
                 }
                 OnPropertyChanged(nameof(IsDisabled));
+            }
+        }
+        public LayoutOptions IsFullWidthAlignment
+        {
+            get => _isFullWidthAlignment;
+            set
+            {
+                _isFullWidthAlignment = value;
+                OnPropertyChanged(nameof(IsFullWidthAlignment));
             }
         }
 

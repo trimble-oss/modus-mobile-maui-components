@@ -24,7 +24,7 @@
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
-        
+
         <controls:CustomButton x:Name="floatingTextWithRightIconButton"
                                Title="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
@@ -60,7 +60,7 @@
                    Spacing="10">
         <controls:CustomButton x:Name="primaryleftIconButton"
                                Title="Primary"
-                               HorizontalOptions="FillAndExpand"
+                               HorizontalOptions="{Binding IsFullWidthAlignment}"
                                ButtonColor="Primary"
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
@@ -71,9 +71,8 @@
                                CommandParameter="Button5" />
         <controls:CustomButton x:Name="secondaryBothIconButton"
                                Title="Secondary"
+                               HorizontalOptions="{Binding IsFullWidthAlignment}"
                                ButtonColor="Secondary"
-                               HorizontalOptions="Start"
-                               BackgroundColor="AliceBlue"
                                Size="{Binding SelectedFontSize}"
                                IsDisabled="{Binding IsDisabled}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
@@ -84,7 +83,7 @@
         <StackLayout Orientation="Horizontal">
           <controls:CustomButton x:Name="tertiaryLeftIconButton"
                                  Title="Tertiary"
-                                 HorizontalOptions="FillAndExpand"
+                                 HorizontalOptions="{Binding IsFullWidthAlignment}"
                                  ButtonColor="Tertiary"
                                  Size="{Binding SelectedFontSize}"
                                  IsDisabled="{Binding IsDisabled}"
@@ -95,7 +94,7 @@
                                  CommandParameter="Button5" />
           <controls:CustomButton x:Name="dangerRightIconButton"
                                  Title="Danger"
-                                 HorizontalOptions="FillAndExpand"
+                                 HorizontalOptions="{Binding IsFullWidthAlignment}"
                                  LeftIconSource="{Binding LeftIconSource}"
                                  RightIconSource="{Binding RightIconSource}"
                                  Size="{Binding SelectedFontSize}"
@@ -175,7 +174,21 @@
                 x:Name="isDisabled"
                 IsToggled="{Binding IsDisabled}"
                 Toggled="isDisabled_Toggled" />
-      </Grid>       
+      </Grid>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0"
+               Text="IsFullWidth"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Switch Grid.Column="1"
+                x:Name="IsFullWidth"
+                Toggled="isFullWidth_Toggled" />
+      </Grid>
     </StackLayout>
   </ScrollView>
 </ContentPage>
