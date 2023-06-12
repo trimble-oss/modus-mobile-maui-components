@@ -538,50 +538,6 @@ namespace Trimble.Modus.Components
                 tmInput.HideValidationText();
                 tmInput._isTextValidated = false;
                 tmInput.ResetBorder();
-
-                /* Unmerged change from project 'Trimble.Modus.Components (net7.0-maccatalyst)'
-                Before:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                After:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                */
-
-                /* Unmerged change from project 'Trimble.Modus.Components (net7.0-android)'
-                Before:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                After:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                */
-
-                /* Unmerged change from project 'Trimble.Modus.Components (net7.0-ios)'
-                Before:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                After:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                */
-
-                /* Unmerged change from project 'Trimble.Modus.Components (net7.0)'
-                Before:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                After:
-                            }
-
-                            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
-                */
             }
 
             tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
