@@ -2,7 +2,6 @@
 <ContentPage x:Class="DemoApp.TMInputPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              xmlns:controls="clr-namespace:Trimble.Modus.Components.Controls;assembly=Trimble.Modus.Components"
              Title="Input">
   <ScrollView>
@@ -30,55 +29,55 @@
                   Toggled="IsReadOnly_Toggled" />
         </StackLayout>
 
-        <controls:CustomInput  x:Name="modusInput"
-                               Placeholder="Input"
-                               IsEnabled="{Binding IsEnabled}"
-                               IsReadOnly="{Binding IsReadOnly}" />
+        <controls:TMInput  x:Name="modusInput"
+                           Placeholder="Input"
+                           IsEnabled="{Binding IsEnabled}"
+                           IsReadOnly="{Binding IsReadOnly}" />
 
-        <controls:CustomInput  x:Name="modusInputWithTitle"
-                               TitleText="Text Input"
-                               IsEnabled="{Binding IsEnabled}"
-                               IsReadOnly="{Binding IsReadOnly}"
-                               Placeholder="Input" />
+        <controls:TMInput  x:Name="modusInputWithTitle"
+                           TitleText="Text Input"
+                           IsEnabled="{Binding IsEnabled}"
+                           IsReadOnly="{Binding IsReadOnly}"
+                           Placeholder="Input" />
 
-        <controls:CustomInput x:Name="validationInput"
-                              TitleText="Success/Error Input"
-                              HelperText="Helper Text"
-                              IsEnabled="{Binding IsEnabled}"
-                              IsReadOnly="{Binding IsReadOnly}"
-                              InputValidation="CustomInputValidation"
-                              Placeholder="Text Input" />
+        <controls:TMInput x:Name="validationInput"
+                          TitleText="Success/Error Input"
+                          HelperText="Helper Text"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          InputValidation="TMInputValidation"
+                          Placeholder="Text Input" />
 
-        <controls:CustomInput x:Name="filled"
-                              TitleText="Filled"
-                              Placeholder="Text Input"
-                              IsEnabled="{Binding IsEnabled}"
-                              IsReadOnly="{Binding IsReadOnly}"
-                              Text="Filled" />
+        <controls:TMInput x:Name="filled"
+                          TitleText="Filled"
+                          Placeholder="Text Input"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          Text="Filled" />
 
-        <controls:CustomInput x:Name="rightIcon"
-                              TitleText="Right Icon"
-                              Placeholder="Text Input"
-                              RightIconSource="password_eye.png"
-                              IsEnabled="{Binding IsEnabled}"
-                              IsReadOnly="{Binding IsReadOnly}"
-                              RightIconCommand="{Binding ShowPasswordCommand}"
-                              IsPassword="{Binding ShowPassword}" />
+        <controls:TMInput x:Name="rightIcon"
+                          TitleText="Right Icon"
+                          Placeholder="Text Input"
+                          RightIconSource="password_eye.png"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          RightIconCommand="{Binding ShowPasswordCommand}"
+                          IsPassword="{Binding ShowPassword}" />
 
-        <controls:CustomInput x:Name="leftIcon"
-                              TitleText="Left Icon"
-                              LeftIconSource="s_icon.png"
-                              IsEnabled="{Binding IsEnabled}"
-                              IsReadOnly="{Binding IsReadOnly}"
-                              Placeholder="Text Input" />
+        <controls:TMInput x:Name="leftIcon"
+                          TitleText="Left Icon"
+                          LeftIconSource="s_icon.png"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          Placeholder="Text Input" />
 
-        <controls:CustomInput x:Name="bothIcon"
-                              TitleText="Both Icon"
-                              LeftIconSource="user.png"
-                              Placeholder="Text Input"
-                              IsEnabled="{Binding IsEnabled}"
-                              IsReadOnly="{Binding IsReadOnly}"
-                              RightIconSource="cv.png" />
+        <controls:TMInput x:Name="bothIcon"
+                          TitleText="Both Icon"
+                          LeftIconSource="user.png"
+                          Placeholder="Text Input"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          RightIconSource="cv.png" />
 
       </StackLayout>
     </VerticalStackLayout>

@@ -16,9 +16,9 @@ public partial class TMInputPage : ContentPage
 
     }
 
-    private Tuple<bool, string> CustomInputValidation(object sender)
+    private Tuple<bool, string> TMInputValidation(object sender)
     {
-        var input = sender as CustomInput;
+        var input = sender as TMInput;
         string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
 
         // Create Regex object

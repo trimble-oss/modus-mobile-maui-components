@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls;
 
-public partial class CustomInput : ContentView
+public partial class TMInput : ContentView
 {
 
     #region Private Properties
@@ -22,110 +22,110 @@ public partial class CustomInput : ContentView
     /// Identifies the TextProperty bindable property. This property is used to display the property text
     /// </summary>
     public static readonly BindableProperty TextProperty =
-       BindableProperty.Create(nameof(Text), typeof(string), typeof(CustomInput), propertyChanged: OnTextChanged);
+       BindableProperty.Create(nameof(Text), typeof(string), typeof(TMInput), propertyChanged: OnTextChanged);
 
     /// <summary>
     /// Identifies the IsPassword property, this property is used to hide the text entered into dots.
     /// </summary>
     public static readonly BindableProperty IsPasswordProperty =
-        BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(CustomInput), false);
+        BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(TMInput), false);
 
     /// <summary>
     /// Gets or sets the type of keyboard is used when the entry is focused.
     /// </summary>
     public static readonly BindableProperty KeyboardProperty =
-        BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(CustomInput), Keyboard.Default);
+        BindableProperty.Create(nameof(Keyboard), typeof(Keyboard), typeof(TMInput), Keyboard.Default);
 
     /// <summary>
     /// Gets or sets the placeholder text of the text input
     /// </summary>
     public static readonly BindableProperty PlaceholderProperty =
-        BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CustomInput), string.Empty);
+        BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(TMInput), string.Empty);
 
     /// <summary>
     /// Used to set the return command of the entry
     /// </summary>
     public static readonly BindableProperty ReturnCommandProperty =
-        BindableProperty.Create(nameof(ReturnCommand), typeof(ICommand), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(ReturnCommand), typeof(ICommand), typeof(TMInput), null);
 
     /// <summary>
     /// Used to set the properties for the return command
     /// </summary>
     public static readonly BindableProperty ReturnCommandParameterProperty =
-        BindableProperty.Create(nameof(ReturnCommandParameter), typeof(object), typeof(CustomInput), null, BindingMode.OneWay, null);
+        BindableProperty.Create(nameof(ReturnCommandParameter), typeof(object), typeof(TMInput), null, BindingMode.OneWay, null);
 
     /// <summary>
     /// Gets or sets the type of the return button in the keyboard
     /// </summary>
     public static readonly BindableProperty ReturnTypeProperty =
-        BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(CustomInput), ReturnType.Default);
+        BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(TMInput), ReturnType.Default);
 
     /// <summary>
     /// Gets or sets the maximum allowed length of the text entry
     /// </summary>
     public static readonly BindableProperty MaxLengthProperty =
-        BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(CustomInput), int.MaxValue);
+        BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(TMInput), int.MaxValue);
 
     /// <summary>
     /// Gets or sets the text for the title label in the control
     /// </summary>
     public static readonly BindableProperty TitleTextProperty =
-        BindableProperty.Create(nameof(TitleText), typeof(string), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(TitleText), typeof(string), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets the text for helper text label in the control
     /// </summary>
     public static readonly BindableProperty HelperTextProperty =
-        BindableProperty.Create(nameof(HelperText), typeof(string), typeof(CustomInput), null, propertyChanged: OnHelperTextChanged);
+        BindableProperty.Create(nameof(HelperText), typeof(string), typeof(TMInput), null, propertyChanged: OnHelperTextChanged);
 
     /// <summary>
     /// Gets or sets the image source for the left icon in the entry
     /// </summary>
     public static readonly BindableProperty LeftIconSourceProperty =
-        BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets the image source for the right icon in the entry
     /// </summary>
     public static readonly BindableProperty RightIconSourceProperty =
-        BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets the command for left icon
     /// </summary>
     /// 
     public static readonly BindableProperty LeftIconCommandProperty =
-        BindableProperty.Create(nameof(LeftIconCommand), typeof(ICommand), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(LeftIconCommand), typeof(ICommand), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets the command property for left icon
     /// </summary>
     public static readonly BindableProperty LeftIconCommandParameterProperty =
-        BindableProperty.Create(nameof(LeftIconCommandParameter), typeof(object), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(LeftIconCommandParameter), typeof(object), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets the command for right icon
     /// </summary>
     public static readonly BindableProperty RightIconCommandProperty =
-        BindableProperty.Create(nameof(RightIconCommand), typeof(ICommand), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(RightIconCommand), typeof(ICommand), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets the command property for right icon
     /// </summary>
     public static readonly BindableProperty RightIconCommandParameterProperty =
-        BindableProperty.Create(nameof(RightIconCommandParameter), typeof(object), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(RightIconCommandParameter), typeof(object), typeof(TMInput), null);
 
     /// <summary>
     /// Gets or sets value that indicates whether the input control is enabled or not.
     /// </summary>
     public static new readonly BindableProperty IsEnabledProperty =
-        BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CustomInput), true, propertyChanged: OnEnabledPropertyChanged);
+        BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMInput), true, propertyChanged: OnEnabledPropertyChanged);
 
     /// <summary>
     /// Gets or sets value that indicates whether the input control is readonly or not.
     /// </summary>
     public static readonly BindableProperty IsReadOnlyProperty =
-        BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(CustomInput), false, propertyChanged: OnReadOnlyPropertyChanged);
+        BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(TMInput), false, propertyChanged: OnReadOnlyPropertyChanged);
 
     #endregion
 
@@ -310,7 +310,7 @@ public partial class CustomInput : ContentView
 
     #region Constructor
 
-    public CustomInput()
+    public TMInput()
     {
         InitializeComponent();
         SetDefault(this);
@@ -323,12 +323,12 @@ public partial class CustomInput : ContentView
     /// <summary>
     /// Default method to set the deafult values to input
     /// </summary>
-    /// <param name="customInput"></param>
+    /// <param name="tmInput"></param>
 
-    private static void SetDefault(CustomInput customInput)
+    private static void SetDefault(TMInput tmInput)
     {
-        customInput._validationResponse = ValidationResponse.Info;
-        SetBorderColor(customInput);
+        tmInput._validationResponse = ValidationResponse.Info;
+        SetBorderColor(tmInput);
     }
 
     /// <summary>
@@ -339,7 +339,7 @@ public partial class CustomInput : ContentView
     /// <param name="newValue">New value</param>
     private static void OnReadOnlyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is CustomInput tmInput)
+        if (bindable is TMInput tmInput)
         {
             tmInput.UpdateBorderColors(tmInput);
         }
@@ -347,22 +347,22 @@ public partial class CustomInput : ContentView
 
     private static void OnTextChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is CustomInput customInput)
+        if (bindable is TMInput tmInput)
         {
             Tuple<bool, string> result = null;
 
             if (!string.IsNullOrEmpty((string)newValue))
             {
-                result = customInput.InputValidation?.Invoke(customInput);
+                result = tmInput.InputValidation?.Invoke(tmInput);
                 if (result != null && !string.IsNullOrEmpty(result.Item2))
                 {
-                    customInput.inputHelperLabel.Text = result.Item2;
+                    tmInput.inputHelperLabel.Text = result.Item2;
                     var response = result.Item1 ? ValidationResponse.Success : ValidationResponse.Error;
                     // To avoid multiple times updating needs to check old value not equal to current value
-                    if (customInput._validationResponse != response)
+                    if (tmInput._validationResponse != response)
                     {
-                        customInput._validationResponse = response;
-                        SetBorderColor(customInput);
+                        tmInput._validationResponse = response;
+                        SetBorderColor(tmInput);
                     }
 
                 }
@@ -370,48 +370,48 @@ public partial class CustomInput : ContentView
             else
             {
                 // To avoid multiple times updating needs to check old value not equal to current value
-                if (customInput._validationResponse != ValidationResponse.Info)
+                if (tmInput._validationResponse != ValidationResponse.Info)
                 {
-                    customInput._validationResponse = ValidationResponse.Info;
-                    SetBorderColor(customInput);
+                    tmInput._validationResponse = ValidationResponse.Info;
+                    SetBorderColor(tmInput);
                 }
             }
-            customInput.TextChanged?.Invoke(customInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+            tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
     }
 
-    private static void SetBorderColor(CustomInput customInput)
+    private static void SetBorderColor(TMInput tmInput)
     {
-        if (!customInput.inputBorderlessEntry.IsFocused)
+        if (!tmInput.inputBorderlessEntry.IsFocused)
         {
-            customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
-            customInput.inputBorder.StrokeThickness = 1;
+            tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+            tmInput.inputBorder.StrokeThickness = 1;
 
-            if (!string.IsNullOrEmpty(customInput.HelperText))
+            if (!string.IsNullOrEmpty(tmInput.HelperText))
             {
-                customInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
-                customInput.inputHelperLabel.Text = customInput.HelperText;
+                tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
+                tmInput.inputHelperLabel.Text = tmInput.HelperText;
             }
         }
         else
         {
-            switch (customInput._validationResponse)
+            switch (tmInput._validationResponse)
             {
                 case ValidationResponse.Success:
-                    customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
-                    customInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.TickImage);
-                    customInput.inputBorder.StrokeThickness = 1;
+                    tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
+                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.TickImage);
+                    tmInput.inputBorder.StrokeThickness = 1;
                     break;
                 case ValidationResponse.Error:
-                    customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
-                    customInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.ErrorImage);
-                    customInput.inputBorder.StrokeThickness = 1;
+                    tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.ErrorImage);
+                    tmInput.inputBorder.StrokeThickness = 1;
                     break;
                 default:
-                    customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                    customInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
-                    customInput.inputHelperLabel.Text = customInput.HelperText;
-                    customInput.inputBorder.StrokeThickness = 2;
+                    tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
+                    tmInput.inputHelperLabel.Text = tmInput.HelperText;
+                    tmInput.inputBorder.StrokeThickness = 2;
                     break;
             }
         }
@@ -419,9 +419,9 @@ public partial class CustomInput : ContentView
 
     private static void OnHelperTextChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is CustomInput customInput)
+        if (bindable is TMInput tmInput)
         {
-            SetBorderColor(customInput);
+            SetBorderColor(tmInput);
         }
     }
 
@@ -432,36 +432,36 @@ public partial class CustomInput : ContentView
             SetBorderColor(this);
         }
     }
-    private void UpdateBorderColors(CustomInput customInput)
+    private void UpdateBorderColors(TMInput tmInput)
     {
 
-        if (customInput.IsReadOnly)
+        if (tmInput.IsReadOnly)
         {
-            SetReadOnlyStyles(customInput);
+            SetReadOnlyStyles(tmInput);
         }
         else
         {
-            if (customInput.IsEnabled)
+            if (tmInput.IsEnabled)
             {
-                customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = 1;
-                customInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                customInput.inputBorderlessEntry.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                SetBorderColor(customInput);
+                tmInput.inputBorder.Opacity = tmInput.inputLabel.Opacity = tmInput.inputHelperLayout.Opacity = 1;
+                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmInput.inputBorderlessEntry.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                SetBorderColor(tmInput);
             }
             else
             {
-                customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-                customInput.inputBorder.StrokeThickness = 1;
-                customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = disabledOpacity;
+                tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                tmInput.inputBorder.StrokeThickness = 1;
+                tmInput.inputBorder.Opacity = tmInput.inputLabel.Opacity = tmInput.inputHelperLayout.Opacity = disabledOpacity;
             }
         }
     }
-    private static void SetReadOnlyStyles(CustomInput customInput)
+    private static void SetReadOnlyStyles(TMInput tmInput)
     {
-        customInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
-        customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
-        customInput.inputBorder.StrokeThickness = 0;
-        customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = 1;
+        tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
+        tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
+        tmInput.inputBorder.StrokeThickness = 0;
+        tmInput.inputBorder.Opacity = tmInput.inputLabel.Opacity = tmInput.inputHelperLayout.Opacity = 1;
     }
     private void InputBorderlessEntry_Unfocused(object sender, FocusEventArgs e)
     {
@@ -473,9 +473,9 @@ public partial class CustomInput : ContentView
 
     private static void OnEnabledPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is CustomInput customInput)
+        if (bindable is TMInput tmInput)
         {
-            customInput.UpdateBorderColors(customInput);
+            tmInput.UpdateBorderColors(tmInput);
         }
     }
 

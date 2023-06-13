@@ -53,6 +53,9 @@
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
+	    <DependentUpon>TMInput.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Themes\Colours.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>
@@ -63,7 +66,7 @@
 	  <MauiXaml Update="Controls\Button\CustomButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMInput\CustomInput.xaml">
+	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">
