@@ -66,7 +66,6 @@
                                   Text="{Binding Text}"
                                   IsPassword="{Binding IsPassword}"
                                   IsReadOnly="{Binding IsReadOnly}"
-                                  TextColor="{Binding TextColor}"
                                   MaxLength="{Binding MaxLength}"
                                   Keyboard="{Binding Keyboard}"
                                   ReturnType="{Binding ReturnType}"
