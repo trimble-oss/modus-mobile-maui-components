@@ -1,4 +1,4 @@
-namespace Trimble.Modus.Components.Contant
+namespace Trimble.Modus.Components.Constant
 {
     internal static class ImageConstants
     {
@@ -12,14 +12,8 @@ namespace Trimble.Modus.Components.Contant
         public const string IndeterminateCheckBoxButton = "indeterminate_checkbox.png";
         public const string DefaultCheckBoxButton = "default_checkbox.png";
         public const string CheckedCheckBoxButton = "checked_checkbox.png";
+        public const string HelperImage = "helper_icon.png";
+        public const string TickImage = "input_valid_icon.png";
+        public const string ErrorImage = "input_error_icon.png";
     }
-namespace Trimble.Modus.Components.Constant;
-
-internal static class ImageConstants
-{
-    //TODO: Add other images here
-    public const string CloseButtonImage = "modus_close_icon.png";
-    public const string HelperImage = "helper_icon.png";
-    public const string TickImage = "input_valid_icon.png";
-    public const string ErrorImage = "input_error_icon.png";
 }

@@ -32,7 +32,6 @@
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
 	  <MauiImage Include="Images\helper_icon.png" />
-	  <EmbeddedResource Include="Images\indeterminate_checkbox.png" />
 	  <MauiImage Include="Images\input_error_icon.png" />
 	  <MauiImage Include="Images\input_valid_icon.png" />
 	  <EmbeddedResource Include="Images\primary.png" />

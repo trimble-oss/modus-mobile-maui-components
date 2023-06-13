@@ -9,7 +9,7 @@
     <VerticalStackLayout>
       <StackLayout Padding="10"
                    Spacing="10">
-        <!--<controls:CustomInput  x:Name="modusInput"
+        <controls:CustomInput  x:Name="modusInput"
                                Placeholder="Input" />
         
         <controls:CustomInput  x:Name="modusInputWithTitle"
@@ -48,7 +48,7 @@
         <controls:CustomInput x:Name="helperText"
                               HelperText="Helper Text"
                               TitleText="Helper Text"
-                              Placeholder="Text Input" />-->
+                              Placeholder="Text Input" />
 
         <controls:CustomInput x:Name="disabledInput"
                               IsEnabled="False"

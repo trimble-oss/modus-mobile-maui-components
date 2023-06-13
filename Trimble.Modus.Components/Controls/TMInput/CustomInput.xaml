@@ -55,6 +55,8 @@
                                   FontAttributes="{Binding FontAttributes}"
                                   PlaceholderColor="{Binding PlaceholderColor}"
                                   CursorPosition="{Binding CursorPosition}"
+                                  FontSize="{Binding FontSize}"
+                                  FontFamily="{Binding FontFamily}"
                                   MaxLength="{Binding MaxLength}"
                                   Keyboard="{Binding Keyboard}"
                                   ReturnType="{Binding ReturnType}"

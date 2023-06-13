@@ -157,12 +157,6 @@ public partial class CustomInput : ContentView
     public static readonly BindableProperty FontFamilyProperty =
         BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(CustomInput), null, BindingMode.TwoWay, null);
 
-    /// <summary>
-    /// Identifies the cursor position in the text entry
-    /// </summary>
-    public static readonly BindableProperty CursorPositionProperty =
-        BindableProperty.Create(nameof(CursorPosition), typeof(int), typeof(CustomInput), 0, BindingMode.Default, null, OnCursorPositionPropertyChanged);
-
     #endregion
 
     #region Public properties
@@ -190,15 +184,6 @@ public partial class CustomInput : ContentView
     {
         get => (string)GetValue(HelperTextProperty);
         set => SetValue(HelperTextProperty, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the Cursor Position
-    /// </summary>
-    public int CursorPosition
-    {
-        get => (int)GetValue(CursorPositionProperty);
-        set => SetValue(CursorPositionProperty, value);
     }
 
     /// <summary>
@@ -558,22 +543,6 @@ public partial class CustomInput : ContentView
                 customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 customInput.inputBorder.StrokeThickness = 1;
             }
-        }
-    }
-
-    private static void OnCursorPositionPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is CustomInput customInput)
-        {
-            //int cursorPosition = (int)newValue; 
-            //if (customInput.inputBorderlessEntry.Text.Length > cursorPosition)
-            //{
-            //    customInput.inputBorderlessEntry.CursorPosition = cursorPosition;
-            //}
-            //else
-            //{
-            //    customInput.inputBorderlessEntry.CursorPosition = customInput.inputBorderlessEntry.Text.Length - 1;
-            //}
         }
     }
 
