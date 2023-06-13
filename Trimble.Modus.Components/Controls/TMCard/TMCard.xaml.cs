@@ -1,5 +1,7 @@
 using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls.TMCard;
 
@@ -62,8 +64,8 @@ public partial class TMCard : ContentView
         var card = (TMCard)bindable;
         if ((bool)newValue)
         {
-            card._border.BackgroundColor = (Color)BaseComponent.colorsDictionary()["Primary"];
-            card._border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlueClicked"];
+            card._border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
+            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlueClicked);
         }
         else
         {
@@ -121,7 +123,7 @@ public partial class TMCard : ContentView
     {
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, e);
-        _border.BackgroundColor = (Color)BaseComponent.colorsDictionary()["CardPressed"]; ;
+        _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.CardPressed);
         _border.Content.Opacity = 0.3;
         this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
         {
