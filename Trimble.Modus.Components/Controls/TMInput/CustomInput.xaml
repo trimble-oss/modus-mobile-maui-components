@@ -33,8 +33,13 @@
         <Rectangle RadiusX="4"
                    RadiusY="4" />
       </Border.StrokeShape>
-      <Grid ColumnDefinitions="16,auto,*,auto,16"
-            RowDefinitions="auto">
+      <Grid ColumnDefinitions="auto,*,auto"
+            ColumnSpacing="0"
+            RowSpacing="0" RowDefinitions="40">
+        <Grid.Padding>
+          <OnIdiom Default="5,0"
+                   Phone="16,0" />
+        </Grid.Padding>
         <ImageButton x:Name="inputLeftIcon"
                      WidthRequest="20"
                      HeightRequest="20"
@@ -42,7 +47,9 @@
                      Command="{Binding LeftIconCommand}"
                      CommandParameter="{Binding LeftIconCommandParameter}"
                      IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-                     Grid.Column="1">
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Grid.Column="0">
           <ImageButton.IsEnabled>
             <MultiBinding Converter="{StaticResource AllTrueConverter}">
               <Binding Path="IsEnabled" />
@@ -52,7 +59,7 @@
           </ImageButton.IsEnabled>
         </ImageButton>
         <controls:BorderlessEntry x:Name="inputBorderlessEntry"
-                                  Grid.Column="2"
+                                  Grid.Column="1"
                                   Focused="InputBorderlessEntry_Focused"
                                   Unfocused="InputBorderlessEntry_Unfocused"
                                   Placeholder="{Binding Placeholder}"
@@ -82,7 +89,9 @@
                      Source="{Binding RightIconSource}"
                      Command="{Binding RightIconCommand}"
                      CommandParameter="{Binding RightIconCommandParameter}"
-                     Grid.Column="3">
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Grid.Column="2">
           <ImageButton.IsEnabled>
             <MultiBinding Converter="{StaticResource AllTrueConverter}">
               <Binding Path="IsEnabled" />

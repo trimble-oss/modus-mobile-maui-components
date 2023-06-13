@@ -445,6 +445,7 @@ public partial class CustomInput : ContentView
             {
                 customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = 1;
                 customInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                customInput.inputBorderlessEntry.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 SetBorderColor(customInput);
             }
             else
