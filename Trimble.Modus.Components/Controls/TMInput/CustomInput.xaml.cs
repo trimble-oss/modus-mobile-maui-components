@@ -434,24 +434,18 @@ public partial class CustomInput : ContentView
     }
     private void UpdateBorderColors(CustomInput customInput)
     {
-        if (customInput.IsEnabled)
+
+        if (customInput.IsReadOnly)
         {
-            if (customInput.IsReadOnly)
-            {
-                SetReadOnlyStyles(customInput);
-            }
-            else
+            SetReadOnlyStyles(customInput);
+        }
+        else
+        {
+            if (customInput.IsEnabled)
             {
                 customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = 1;
                 customInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 SetBorderColor(customInput);
-            }
-        }
-        else
-        {
-            if (customInput.IsReadOnly)
-            {
-                SetReadOnlyStyles(customInput);
             }
             else
             {
