@@ -31,6 +31,9 @@
 	  <EmbeddedResource Include="Images\helper_icon.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
+	  <MauiImage Include="Images\helper_icon.png" />
+	  <MauiImage Include="Images\input_error_icon.png" />
+	  <MauiImage Include="Images\input_valid_icon.png" />
 	  <EmbeddedResource Include="Images\primary.png" />
 	  <EmbeddedResource Include="Images\secondary.png" />
 	  <EmbeddedResource Include="Images\warning.png" />
@@ -50,6 +53,9 @@
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
+	    <DependentUpon>TMInput.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Themes\Colours.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>
@@ -58,6 +64,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\CustomButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">

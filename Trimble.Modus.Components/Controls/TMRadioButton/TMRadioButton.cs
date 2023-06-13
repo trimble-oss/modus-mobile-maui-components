@@ -1,4 +1,4 @@
-﻿using Trimble.Modus.Components.Contant;
+﻿using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components

@@ -11,9 +11,9 @@
              FontSize="Medium"
              FontAttributes="Bold" />
       <Modus:TMInput x:Name="ModalTitle"
-                     Text="Accept TC?"
-                     TitleText="Modal Title"
-                     Placeholder="Enter title here" />
+                           Text="Accept TC?"
+                           TitleText="Modal Title"
+                           Placeholder="Enter title here" />
       <Label Text="Description" />
       <Editor x:Name="Message"
               Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis."
@@ -65,13 +65,13 @@
                Text="Buttons"
                FontSize="Medium"
                FontAttributes="Bold" />
-        <Modus:TMInput x:Name="PrimaryButtonTitle"
+        <Modus:TMInput  x:Name="PrimaryButtonTitle"
                        Text="Accept"
                        Grid.Column="0"
                        Grid.Row="1"
                        TitleText="Primary Button Title" />
 
-        <Modus:TMInput x:Name="SecondaryButtonTitle"
+        <Modus:TMInput  x:Name="SecondaryButtonTitle"
                        Text="Reject"
                        Grid.Column="0"
                        Grid.Row="2"
