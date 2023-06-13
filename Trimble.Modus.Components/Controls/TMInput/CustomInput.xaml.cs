@@ -13,7 +13,6 @@ public partial class CustomInput : ContentView
     private const double disabledOpacity = 0.4;
 
     private ValidationResponse _validationResponse;
-    private CustomInput _customInput;
 
     #endregion
 
@@ -167,11 +166,10 @@ public partial class CustomInput : ContentView
     /// <param name="sender">Reference to the sender input control</param>
     /// <returns>Tuple of bool and string, bool represent the result of the text validation and string represent the text to be displayed</returns>
     public delegate Tuple<bool, string> InputValidationHandler(object sender);
-
     ///// <summary>
     ///// Public event handler to be invoked when text is changed
     ///// </summary>
-    //public event EventHandler<TextChangedEventArgs> TextChanged;
+    public event EventHandler<TextChangedEventArgs> TextChanged;
 
     /// <summary>
     /// Public event handler to hold the input validation function
@@ -391,7 +389,6 @@ public partial class CustomInput : ContentView
     {
         InitializeComponent();
         SetDefault(this);
-        _customInput = this;
     }
 
     #endregion
@@ -421,7 +418,6 @@ public partial class CustomInput : ContentView
         {
             if ((bool)newValue)
             {
-                tmInput.inputHelperLabel.Opacity = disabledOpacity;
                 tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
                 tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
                 tmInput.inputBorder.StrokeThickness = 0;
@@ -466,7 +462,7 @@ public partial class CustomInput : ContentView
                     SetBorderColor(customInput);
                 }
             }
-            // customInput.TextChanged?.Invoke(customInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
+            customInput.TextChanged?.Invoke(customInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
     }
 
@@ -519,7 +515,7 @@ public partial class CustomInput : ContentView
     {
         if (sender is BorderlessEntry)
         {
-            SetBorderColor(_customInput);
+            SetBorderColor(this);
         }
     }
 
@@ -527,7 +523,7 @@ public partial class CustomInput : ContentView
     {
         if (sender is BorderlessEntry)
         {
-            SetBorderColor(_customInput);
+            SetBorderColor(this);
         }
     }
 
@@ -543,6 +539,8 @@ public partial class CustomInput : ContentView
             {
                 customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 customInput.inputBorder.StrokeThickness = 1;
+                customInput.inputBorder.Opacity = disabledOpacity;
+                customInput.inputHelperLayout.Opacity = disabledOpacity;
             }
         }
     }

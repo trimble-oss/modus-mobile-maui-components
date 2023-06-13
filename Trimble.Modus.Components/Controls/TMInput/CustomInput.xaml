@@ -54,7 +54,6 @@
                                   IsEnabled="{Binding IsEnabled}"
                                   FontAttributes="{Binding FontAttributes}"
                                   PlaceholderColor="{Binding PlaceholderColor}"
-                                  CursorPosition="{Binding CursorPosition}"
                                   FontSize="{Binding FontSize}"
                                   FontFamily="{Binding FontFamily}"
                                   MaxLength="{Binding MaxLength}"
@@ -75,10 +74,11 @@
                      Grid.Column="3" />
       </Grid>
     </Border>
-    <HorizontalStackLayout  Grid.Row="2"
-                            Spacing="5"
-                            Padding="0,5,0,0"
-                            IsVisible="{Binding HelperText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+    <HorizontalStackLayout x:Name="inputHelperLayout"
+                           Grid.Row="2"
+                           Spacing="5"
+                           Padding="0,5,0,0"
+                           IsVisible="{Binding HelperText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
       <Image x:Name="inputHelperIcon"
              WidthRequest="20"
              HeightRequest="20" />
