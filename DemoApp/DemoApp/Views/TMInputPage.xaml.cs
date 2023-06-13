@@ -31,11 +31,11 @@ public partial class TMInputPage : ContentPage
         //return match.Success;
         if (match.Success)
         {
-            return Tuple.Create(true, "Valid Text");
+            return Tuple.Create(true, "Valid Email Address");
         }
         else
         {
-            return Tuple.Create(false, "Invalid Text");
+            return Tuple.Create(false, "Invalid Email Address");
         }
     }
 

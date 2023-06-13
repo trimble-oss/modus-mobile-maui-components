@@ -42,7 +42,7 @@
 
         <controls:TMInput x:Name="validationInput"
                           TitleText="Success/Error Input"
-                          HelperText="Helper Text"
+                          HelperText="Enter a valid email"
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
                           InputValidation="TMInputValidation"
