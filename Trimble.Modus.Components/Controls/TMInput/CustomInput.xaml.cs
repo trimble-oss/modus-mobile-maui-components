@@ -112,6 +112,7 @@ public partial class CustomInput : ContentView
     /// <summary>
     /// Gets or sets the command for left icon
     /// </summary>
+    /// 
     public static readonly BindableProperty LeftIconCommandProperty =
         BindableProperty.Create(nameof(LeftIconCommand), typeof(ICommand), typeof(CustomInput), null);
 
@@ -119,19 +120,19 @@ public partial class CustomInput : ContentView
     /// Gets or sets the command property for left icon
     /// </summary>
     public static readonly BindableProperty LeftIconCommandParameterProperty =
-        BindableProperty.Create(nameof(LeftIconCommandParameterProperty), typeof(object), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(LeftIconCommandParameter), typeof(object), typeof(CustomInput), null);
 
     /// <summary>
     /// Gets or sets the command for right icon
     /// </summary>
     public static readonly BindableProperty RightIconCommandProperty =
-        BindableProperty.Create(nameof(RightIconCommandProperty), typeof(ICommand), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(RightIconCommand), typeof(ICommand), typeof(CustomInput), null);
 
     /// <summary>
     /// Gets or sets the command property for right icon
     /// </summary>
     public static readonly BindableProperty RightIconCommandParameterProperty =
-        BindableProperty.Create(nameof(RightIconCommandParameterProperty), typeof(object), typeof(CustomInput), null);
+        BindableProperty.Create(nameof(RightIconCommandParameter), typeof(object), typeof(CustomInput), null);
 
     /// <summary>
     /// Gets or sets value that indicates whether the input control is enabled or not.
