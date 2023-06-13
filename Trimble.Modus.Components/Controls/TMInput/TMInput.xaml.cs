@@ -3,7 +3,7 @@ using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 
-namespace Trimble.Modus.Components.Controls;
+namespace Trimble.Modus.Components;
 
 public partial class TMInput : ContentView
 {
@@ -395,23 +395,21 @@ public partial class TMInput : ContentView
         }
         else
         {
+            tmInput.inputBorder.StrokeThickness = 2;
             switch (tmInput._validationResponse)
             {
                 case ValidationResponse.Success:
                     tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
                     tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.TickImage);
-                    tmInput.inputBorder.StrokeThickness = 1;
                     break;
                 case ValidationResponse.Error:
                     tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
                     tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.ErrorImage);
-                    tmInput.inputBorder.StrokeThickness = 1;
                     break;
                 default:
                     tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                     tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
                     tmInput.inputHelperLabel.Text = tmInput.HelperText;
-                    tmInput.inputBorder.StrokeThickness = 2;
                     break;
             }
         }

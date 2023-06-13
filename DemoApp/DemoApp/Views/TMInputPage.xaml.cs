@@ -1,6 +1,6 @@
 using DemoApp.ViewModels;
 using System.Text.RegularExpressions;
-using Trimble.Modus.Components.Controls;
+using Trimble.Modus.Components;
 
 namespace DemoApp;
 

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMRadioButtonPage"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.modus.Components"
-             xmlns:control="clr-namespace:Trimble.Modus.Components.Controls;assembly=Trimble.Modus.Components"
              Title="TMRadioButtonPage">
   <VerticalStackLayout Spacing="5"
                        Margin="10">
@@ -18,7 +17,7 @@
       <modus:TMRadioButton Text="Dog" />
       <modus:TMRadioButton Text="Cat" />
     </modus:TMRadioButtonGroup>
-    <control:TMInput x:Name="Input"
+    <modus:TMInput x:Name="Input"
                          TitleText="Enter radio button text"
                          Placeholder="Add radio button"
                          ReturnCommand="{Binding AddRadioButtonCommand}"
