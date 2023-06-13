@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
+using Trimble.Modus.Components.Contant;
 
 namespace Trimble.Modus.Components
 {
@@ -671,9 +672,9 @@ namespace Trimble.Modus.Components
         {
             _titleLabel = new Label { Padding = new Thickness(0, 0, 0, 4) };
             _originalTitleHeight = _titleLabel.HeightRequest;
-            _helperIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.helper_icon.png"), VerticalOptions = LayoutOptions.Center };
-            _successIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png"), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
-            _errorIcon = new Image { Source = ImageSource.FromResource("Trimble.Modus.Components.Images.input_error_icon.png"), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
+            _helperIcon = new Image { Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon), VerticalOptions = LayoutOptions.Center };
+            _successIcon = new Image { Source = ImageSource.FromFile(ImageConstants.Success_icon_outline), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
+            _errorIcon = new Image { Source = ImageSource.FromFile(ImageConstants.Error_icon_outline), VerticalOptions = LayoutOptions.Center, WidthRequest = 0, HeightRequest = 20 };
             _helperLabel = new Label() { Margin = new Thickness(5, 0, 0, 0), FontSize = (double)Enums.FontSize.Small, VerticalOptions = LayoutOptions.Center };
             _validationLabel = new Label() { Margin = new Thickness(5, 0, 0, 0), FontSize = (double)Enums.FontSize.Small, VerticalOptions = LayoutOptions.Center };
             _helperText = new StackLayout

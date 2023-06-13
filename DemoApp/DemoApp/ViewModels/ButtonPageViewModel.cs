@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using DemoApp.Constant;
+using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
@@ -115,16 +116,16 @@ namespace DemoApp.ViewModels
             switch (buttonPageViewModel.SelectedImageOption)
             {
                 case "Left":
-                    buttonPageViewModel.LeftIconSource = "gallery_icon.png";
+                    buttonPageViewModel.LeftIconSource = ImageConstants.GalleryIcon;
                     buttonPageViewModel.RightIconSource = null;
                     break;
                 case "Right":
                     buttonPageViewModel.LeftIconSource = null;
-                    buttonPageViewModel.RightIconSource = "gallery_icon.png";
+                    buttonPageViewModel.RightIconSource = ImageConstants.GalleryIcon;
                     break;
                 case "Both":
-                    buttonPageViewModel.LeftIconSource = "gallery_icon.png";
-                    buttonPageViewModel.RightIconSource = "gallery_icon.png";
+                    buttonPageViewModel.LeftIconSource = ImageConstants.GalleryIcon;
+                    buttonPageViewModel.RightIconSource = ImageConstants.GalleryIcon;
                     break;
                 default:
                 case "None":
