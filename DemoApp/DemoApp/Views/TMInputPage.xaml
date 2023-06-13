@@ -7,69 +7,79 @@
              Title="Input">
   <ScrollView>
     <VerticalStackLayout>
+
       <StackLayout Padding="10"
                    Spacing="10">
+
+        <StackLayout Orientation="Horizontal">
+          <Label Grid.Column="0"
+                 Text="IsEnabled"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch Grid.Column="1"
+                  x:Name="isEnabled"
+                  IsToggled="{Binding IsEnabled}"
+                  Toggled="IsEnabled_Toggled" />
+          <Label Grid.Column="0"
+                 Text="IsReadOnly"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch Grid.Column="1"
+                  x:Name="isReadOnly"
+                  IsToggled="{Binding IsReadOnly}"
+                  Toggled="IsReadOnly_Toggled" />
+        </StackLayout>
+
         <controls:CustomInput  x:Name="modusInput"
-                               Placeholder="Input" />
-        
+                               Placeholder="Input"
+                               IsEnabled="{Binding IsEnabled}"
+                               IsReadOnly="{Binding IsReadOnly}" />
+
         <controls:CustomInput  x:Name="modusInputWithTitle"
                                TitleText="Text Input"
+                               IsEnabled="{Binding IsEnabled}"
+                               IsReadOnly="{Binding IsReadOnly}"
                                Placeholder="Input" />
-        
+
         <controls:CustomInput x:Name="validationInput"
                               TitleText="Success/Error Input"
                               HelperText="Helper Text"
+                              IsEnabled="{Binding IsEnabled}"
+                              IsReadOnly="{Binding IsReadOnly}"
                               InputValidation="CustomInputValidation"
                               Placeholder="Text Input" />
+
+        <controls:CustomInput x:Name="filled"
+                              TitleText="Filled"
+                              Placeholder="Text Input"
+                              IsEnabled="{Binding IsEnabled}"
+                              IsReadOnly="{Binding IsReadOnly}"
+                              Text="Filled" />
 
         <controls:CustomInput x:Name="rightIcon"
                               TitleText="Right Icon"
                               Placeholder="Text Input"
                               RightIconSource="password_eye.png"
+                              IsEnabled="{Binding IsEnabled}"
+                              IsReadOnly="{Binding IsReadOnly}"
                               RightIconCommand="{Binding ShowPasswordCommand}"
                               IsPassword="{Binding ShowPassword}" />
-        
+
         <controls:CustomInput x:Name="leftIcon"
                               TitleText="Left Icon"
                               LeftIconSource="s_icon.png"
+                              IsEnabled="{Binding IsEnabled}"
+                              IsReadOnly="{Binding IsReadOnly}"
                               Placeholder="Text Input" />
-        
+
         <controls:CustomInput x:Name="bothIcon"
                               TitleText="Both Icon"
                               LeftIconSource="user.png"
                               Placeholder="Text Input"
+                              IsEnabled="{Binding IsEnabled}"
+                              IsReadOnly="{Binding IsReadOnly}"
                               RightIconSource="cv.png" />
 
-        <controls:CustomInput x:Name="filled"
-                              TitleText="Filled"
-                              Placeholder="Text Input"
-                              Text="Filled" />
-
-        <controls:CustomInput x:Name="helperText"
-                              HelperText="Helper Text"
-                              TitleText="Helper Text"
-                              Placeholder="Text Input" />
-
-        <controls:CustomInput x:Name="disabledInput"
-                              IsEnabled="False"
-                              TitleText="Disabled"
-                              Text="Disabled Input"
-                              Placeholder="Text Input" />
-
-        <controls:CustomInput x:Name="readOnlyInput"
-                              IsReadOnly="True"
-                              TitleText="Read only"
-                              Placeholder="Text Input"
-                              Text="Data" />
-        
-        <controls:CustomInput x:Name="readOnlyAndDisabledInput"
-                              IsEnabled="False"
-                              IsReadOnly="True"
-                              Text="Data"
-                              HelperText="Helper Text"
-                              TitleText="ReadOnly and Disabled"
-                              Placeholder="Text Input" />
-      
       </StackLayout>
     </VerticalStackLayout>
   </ScrollView>

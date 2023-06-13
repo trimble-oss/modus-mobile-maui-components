@@ -19,7 +19,7 @@ public partial class TMInputPage : ContentPage
     private Tuple<bool, string> CustomInputValidation(object sender)
     {
         var input = sender as CustomInput;
-        string pattern = @"^[a-zA-Z0-9_]*$";
+        string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
 
         // Create Regex object
         Regex regex = new Regex(pattern);
@@ -37,5 +37,15 @@ public partial class TMInputPage : ContentPage
         {
             return Tuple.Create(false, "Invalid Text");
         }
+    }
+
+    private void IsReadOnly_Toggled(object sender, ToggledEventArgs e)
+    {
+        _inputPageViewModel.IsReadOnly = e.Value;
+    }
+
+    private void IsEnabled_Toggled(object sender, ToggledEventArgs e)
+    {
+        _inputPageViewModel.IsEnabled = e.Value;
     }
 }

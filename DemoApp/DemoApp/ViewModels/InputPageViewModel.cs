@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace DemoApp.ViewModels
 {
@@ -9,6 +7,9 @@ namespace DemoApp.ViewModels
         public ICommand ShowPasswordCommand { get; set; }
 
         private bool _showPassword;
+        private bool _isEnabled;
+        private bool _isReadOnly;
+
         public bool ShowPassword
         {
             get
@@ -21,10 +22,43 @@ namespace DemoApp.ViewModels
                 OnPropertyChanged(nameof(ShowPassword));
             }
         }
+
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                if (_isEnabled != value)
+                {
+                    _isEnabled = value;
+                    OnPropertyChanged(nameof(IsEnabled));
+                }
+            }
+        }
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            set
+            {
+                if (_isReadOnly != value)
+                {
+                    _isReadOnly = value;
+                    OnPropertyChanged(nameof(IsReadOnly));
+                }
+            }
+        }
         public InputPageViewModel()
         {
             ShowPasswordCommand = new Command(ChangeShowPasswordState);
             ShowPassword = false;
+            IsEnabled = true;
+            IsReadOnly = false;
         }
 
         private void ChangeShowPasswordState(object obj)

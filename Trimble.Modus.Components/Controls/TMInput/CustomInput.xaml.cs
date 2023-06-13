@@ -341,18 +341,7 @@ public partial class CustomInput : ContentView
     {
         if (bindable is CustomInput tmInput)
         {
-            if ((bool)newValue)
-            {
-                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
-                tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
-                tmInput.inputBorder.StrokeThickness = 0;
-            }
-            else
-            {
-                tmInput.inputHelperLabel.Opacity = 1;
-                tmInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                tmInput.inputBorder.StrokeThickness = 1;
-            }
+            tmInput.UpdateBorderColors(tmInput);
         }
     }
 
@@ -443,7 +432,42 @@ public partial class CustomInput : ContentView
             SetBorderColor(this);
         }
     }
-
+    private void UpdateBorderColors(CustomInput customInput)
+    {
+        if (customInput.IsEnabled)
+        {
+            if (customInput.IsReadOnly)
+            {
+                SetReadOnlyStyles(customInput);
+            }
+            else
+            {
+                customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = 1;
+                customInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                SetBorderColor(customInput);
+            }
+        }
+        else
+        {
+            if (customInput.IsReadOnly)
+            {
+                SetReadOnlyStyles(customInput);
+            }
+            else
+            {
+                customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                customInput.inputBorder.StrokeThickness = 1;
+                customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = disabledOpacity;
+            }
+        }
+    }
+    private static void SetReadOnlyStyles(CustomInput customInput)
+    {
+        customInput.inputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
+        customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
+        customInput.inputBorder.StrokeThickness = 0;
+        customInput.inputBorder.Opacity = customInput.inputLabel.Opacity = customInput.inputHelperLayout.Opacity = 1;
+    }
     private void InputBorderlessEntry_Unfocused(object sender, FocusEventArgs e)
     {
         if (sender is BorderlessEntry)
@@ -456,17 +480,7 @@ public partial class CustomInput : ContentView
     {
         if (bindable is CustomInput customInput)
         {
-            if ((bool)newValue)
-            {
-                SetBorderColor(customInput);
-            }
-            else
-            {
-                customInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-                customInput.inputBorder.StrokeThickness = 1;
-                customInput.inputBorder.Opacity = disabledOpacity;
-                customInput.inputHelperLayout.Opacity = disabledOpacity;
-            }
+            customInput.UpdateBorderColors(customInput);
         }
     }
 

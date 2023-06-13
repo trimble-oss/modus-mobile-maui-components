@@ -10,6 +10,8 @@
     <ResourceDictionary>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+      <converters:AllTrueConverter x:Key="AllTrueConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
   <Grid x:Name="tmInputContainer"
@@ -38,10 +40,17 @@
                      HeightRequest="20"
                      Source="{Binding LeftIconSource}"
                      Command="{Binding LeftIconCommand}"
-                     IsEnabled="{Binding IsEnabled}"
                      CommandParameter="{Binding LeftIconCommandParameter}"
                      IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-                     Grid.Column="1" />
+                     Grid.Column="1">
+          <ImageButton.IsEnabled>
+            <MultiBinding Converter="{StaticResource AllTrueConverter}">
+              <Binding Path="IsEnabled" />
+              <Binding Path="IsReadOnly"
+                       Converter="{StaticResource InverseBoolConverter}" />
+            </MultiBinding>
+          </ImageButton.IsEnabled>
+        </ImageButton>
         <controls:BorderlessEntry x:Name="inputBorderlessEntry"
                                   Grid.Column="2"
                                   Focused="InputBorderlessEntry_Focused"
@@ -51,23 +60,37 @@
                                   IsPassword="{Binding IsPassword}"
                                   IsReadOnly="{Binding IsReadOnly}"
                                   TextColor="{Binding TextColor}"
-                                  IsEnabled="{Binding IsEnabled}"
                                   MaxLength="{Binding MaxLength}"
                                   Keyboard="{Binding Keyboard}"
                                   ReturnType="{Binding ReturnType}"
                                   ReturnCommand="{Binding ReturnCommand}"
                                   ReturnCommandParameter="{Binding ReturnCommandParameter}"
                                   VerticalOptions="Center"
-                                  HorizontalOptions="FillAndExpand" />
+                                  HorizontalOptions="FillAndExpand">
+          <controls:BorderlessEntry.IsEnabled>
+            <MultiBinding Converter="{StaticResource AllTrueConverter}">
+              <Binding Path="IsEnabled" />
+              <Binding Path="IsReadOnly"
+                       Converter="{StaticResource InverseBoolConverter}" />
+            </MultiBinding>
+          </controls:BorderlessEntry.IsEnabled>
+        </controls:BorderlessEntry>
         <ImageButton x:Name="inputRightIcon"
                      WidthRequest="20"
                      HeightRequest="20"
-                     IsEnabled="{Binding IsEnabled}"
                      IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
                      Source="{Binding RightIconSource}"
                      Command="{Binding RightIconCommand}"
                      CommandParameter="{Binding RightIconCommandParameter}"
-                     Grid.Column="3" />
+                     Grid.Column="3">
+          <ImageButton.IsEnabled>
+            <MultiBinding Converter="{StaticResource AllTrueConverter}">
+              <Binding Path="IsEnabled" />
+              <Binding Path="IsReadOnly"
+                       Converter="{StaticResource InverseBoolConverter}" />
+            </MultiBinding>
+          </ImageButton.IsEnabled>
+        </ImageButton>
       </Grid>
     </Border>
     <HorizontalStackLayout x:Name="inputHelperLayout"
