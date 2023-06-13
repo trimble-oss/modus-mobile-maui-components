@@ -25,12 +25,6 @@ public partial class CustomInput : ContentView
        BindableProperty.Create(nameof(Text), typeof(string), typeof(CustomInput), propertyChanged: OnTextChanged);
 
     /// <summary>
-    /// Identifies the TextColor bindable property. This property is used to define the color of the entry text
-    /// </summary>
-    public static readonly BindableProperty TextColorProperty =
-   BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(CustomInput), ResourcesDictionary.ColorsDictionary("Black"));
-
-    /// <summary>
     /// Identifies the IsPassword property, this property is used to hide the text entered into dots.
     /// </summary>
     public static readonly BindableProperty IsPasswordProperty =
@@ -49,12 +43,6 @@ public partial class CustomInput : ContentView
         BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(CustomInput), string.Empty);
 
     /// <summary>
-    /// Gets or sets the color of the placeholder text
-    /// </summary>
-    public static readonly BindableProperty PlaceholderColorProperty =
-        BindableProperty.Create(nameof(Placeholder), typeof(Color), typeof(CustomInput), Colors.DarkGray);
-
-    /// <summary>
     /// Used to set the return command of the entry
     /// </summary>
     public static readonly BindableProperty ReturnCommandProperty =
@@ -71,12 +59,6 @@ public partial class CustomInput : ContentView
     /// </summary>
     public static readonly BindableProperty ReturnTypeProperty =
         BindableProperty.Create(nameof(ReturnType), typeof(ReturnType), typeof(CustomInput), ReturnType.Default);
-
-    /// <summary>
-    /// Gets or sets the FontAttribute property of the entry
-    /// </summary>
-    public static readonly BindableProperty FontAttributesProperty =
-        BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(CustomInput), FontAttributes.None, BindingMode.TwoWay, null);
 
     /// <summary>
     /// Gets or sets the maximum allowed length of the text entry
@@ -145,18 +127,6 @@ public partial class CustomInput : ContentView
     public static readonly BindableProperty IsReadOnlyProperty =
         BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(CustomInput), false, propertyChanged: OnReadOnlyPropertyChanged);
 
-    /// <summary>
-    /// Gets or sets the font size property of the entry
-    /// </summary>
-    public static readonly BindableProperty FontSizeProperty =
-       BindableProperty.Create(nameof(FontSize), typeof(double), typeof(CustomInput), (double)Enums.FontSize.Small);
-
-    /// <summary>
-    /// Gets or sets the font family property of the entry
-    /// </summary>
-    public static readonly BindableProperty FontFamilyProperty =
-        BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(CustomInput), null, BindingMode.TwoWay, null);
-
     #endregion
 
     #region Public properties
@@ -186,24 +156,6 @@ public partial class CustomInput : ContentView
     }
 
     /// <summary>
-    /// Gets or sets the Font Size
-    /// </summary>
-    public double FontSize
-    {
-        get => (double)GetValue(FontSizeProperty);
-        set => SetValue(FontSizeProperty, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the Font Size
-    /// </summary>
-    public string FontFamily
-    {
-        get => (string)GetValue(FontFamilyProperty);
-        set => SetValue(FontFamilyProperty, value);
-    }
-
-    /// <summary>
     /// Gets or sets the helper text
     /// </summary>
     public bool IsPassword
@@ -219,24 +171,6 @@ public partial class CustomInput : ContentView
     {
         get => (string)GetValue(TextProperty);
         set => SetValue(TextProperty, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the text color
-    /// </summary>
-    public Color TextColor
-    {
-        get => (Color)GetValue(TextColorProperty);
-        set => SetValue(TextColorProperty, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the text color
-    /// </summary>
-    public Color PlaceholderColor
-    {
-        get => (Color)GetValue(PlaceholderColorProperty);
-        set => SetValue(PlaceholderColorProperty, value);
     }
 
     /// <summary>
@@ -265,15 +199,15 @@ public partial class CustomInput : ContentView
         get => (Keyboard)GetValue(KeyboardProperty);
         set => SetValue(KeyboardProperty, value);
     }
-
     /// <summary>
     /// Gets or sets the Placeholder value 
     /// </summary>
     public string Placeholder
     {
         get => (string)GetValue(PlaceholderProperty);
-        set => SetValue(PlaceholderColorProperty, value);
+        set => SetValue(PlaceholderProperty, value);
     }
+
     /// <summary>
     /// Gets or sets the Placeholder value 
     /// </summary>
@@ -298,15 +232,6 @@ public partial class CustomInput : ContentView
     public object ReturnCommandParameter
     {
         get => GetValue(ReturnCommandParameterProperty);
-        set => SetValue(ReturnCommandParameterProperty, value);
-    }
-
-    /// <summary>
-    /// Gets or sets the Font attributes
-    /// </summary>
-    public FontAttributes FontAttributes
-    {
-        get => (FontAttributes)GetValue(FontAttributesProperty);
         set => SetValue(ReturnCommandParameterProperty, value);
     }
 
