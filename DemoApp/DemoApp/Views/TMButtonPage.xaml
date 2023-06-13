@@ -60,7 +60,7 @@
                    Spacing="10">
         <controls:CustomButton x:Name="primaryleftIconButton"
                                Title="Primary"
-                               HorizontalOptions="{Binding IsFullWidthAlignment}"
+                               HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Primary"
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
@@ -71,7 +71,7 @@
                                CommandParameter="Button5" />
         <controls:CustomButton x:Name="secondaryBothIconButton"
                                Title="Secondary"
-                               HorizontalOptions="{Binding IsFullWidthAlignment}"
+                               HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Secondary"
                                Size="{Binding SelectedFontSize}"
                                IsDisabled="{Binding IsDisabled}"
@@ -83,7 +83,7 @@
         <StackLayout Orientation="Horizontal">
           <controls:CustomButton x:Name="tertiaryLeftIconButton"
                                  Title="Tertiary"
-                                 HorizontalOptions="{Binding IsFullWidthAlignment}"
+                                 HorizontalOptions="{Binding FullWidthAlignment}"
                                  ButtonColor="Tertiary"
                                  Size="{Binding SelectedFontSize}"
                                  IsDisabled="{Binding IsDisabled}"
@@ -94,7 +94,7 @@
                                  CommandParameter="Button5" />
           <controls:CustomButton x:Name="dangerRightIconButton"
                                  Title="Danger"
-                                 HorizontalOptions="{Binding IsFullWidthAlignment}"
+                                 HorizontalOptions="{Binding FullWidthAlignment}"
                                  LeftIconSource="{Binding LeftIconSource}"
                                  RightIconSource="{Binding RightIconSource}"
                                  Size="{Binding SelectedFontSize}"
@@ -187,7 +187,7 @@
                VerticalOptions="Center" />
         <Switch Grid.Column="1"
                 x:Name="IsFullWidth"
-                Toggled="isFullWidth_Toggled" />
+                Toggled="FullWidthToggled" />
       </Grid>
     </StackLayout>
   </ScrollView>

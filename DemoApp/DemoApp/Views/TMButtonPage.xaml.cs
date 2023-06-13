@@ -12,10 +12,8 @@ public partial class TMButtonPage : ContentPage
     public TMButtonPage()
     {
         _buttonPageViewModel = new ButtonPageViewModel();
-
         InitializeComponent();
         BindingContext = _buttonPageViewModel;
-        _buttonPageViewModel.IsFullWidthAlignment = LayoutOptions.Start;
     }
 
     private void Style_Changed(object sender, CheckedChangedEventArgs e)
@@ -49,15 +47,15 @@ public partial class TMButtonPage : ContentPage
         }
     }
 
-    private void isFullWidth_Toggled(object sender, ToggledEventArgs e)
+    private void FullWidthToggled(object sender, ToggledEventArgs e)
     {
         if (e.Value)
         {
-            _buttonPageViewModel.IsFullWidthAlignment = LayoutOptions.FillAndExpand;
+            _buttonPageViewModel.FullWidthAlignment = LayoutOptions.FillAndExpand;
         }
         else
         {
-            _buttonPageViewModel.IsFullWidthAlignment = LayoutOptions.Start;
+            _buttonPageViewModel.FullWidthAlignment = LayoutOptions.Start;
         }
 
     }
