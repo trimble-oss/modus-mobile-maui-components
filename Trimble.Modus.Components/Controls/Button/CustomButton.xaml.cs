@@ -290,7 +290,7 @@ public partial class CustomButton : ContentView
         }
     }
 
-    private Color getOnClickColor(Color color)
+    private Color GetOnClickColor(Color color)
     {
         if (ButtonStyle == ButtonStyle.Outline)
         {
@@ -338,7 +338,7 @@ public partial class CustomButton : ContentView
 
     public void RaisePressed()
     {
-        buttonFrame.BackgroundColor = getOnClickColor(buttonFrame.BackgroundColor);
+        buttonFrame.BackgroundColor = GetOnClickColor(buttonFrame.BackgroundColor);
     }
     public void RaiseReleased()
     {
