@@ -8,7 +8,6 @@
   <ContentView.Resources>
     <ResourceDictionary>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
-      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
     </ResourceDictionary>
   </ContentView.Resources>

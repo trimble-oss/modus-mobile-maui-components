@@ -14,14 +14,14 @@
                               Orientation="Vertical"
                               GroupTitle="Group Title"
                               ItemsSource="{Binding RadioButtons}">
-      <modus:TMRadioButton Text="Dog"/>
-      <modus:TMRadioButton Text="Cat"/>
+      <modus:TMRadioButton Text="Dog" />
+      <modus:TMRadioButton Text="Cat" />
     </modus:TMRadioButtonGroup>
     <modus:TMInput x:Name="Input"
-                    TitleText="Enter radio button text"
-                    Placeholder="Add radio button"
-                    ReturnCommand="{Binding AddRadioButtonCommand}"
-                    ReturnCommandParameter="{Binding Source={x:Reference Input}, Path=Text}" />
+                         TitleText="Enter radio button text"
+                         Placeholder="Add radio button"
+                         ReturnCommand="{Binding AddRadioButtonCommand}"
+                         ReturnCommandParameter="{Binding Source={x:Reference Input}, Path=Text}" />
     <Label Text="Size"
            FontAttributes="Bold"
            Padding="0,5"
@@ -57,7 +57,8 @@
       <Label Text="Selected Item "
              FontAttributes="Bold"
              FontSize="20" />
-      <Label Text="{Binding SelectedIndex, Source={x:Reference RadioGroup}}" FontSize="20" />
+      <Label Text="{Binding SelectedIndex, Source={x:Reference RadioGroup}}"
+             FontSize="20" />
     </HorizontalStackLayout>
   </VerticalStackLayout>
 </ContentPage>

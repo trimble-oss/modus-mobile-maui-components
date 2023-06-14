@@ -1,5 +1,6 @@
-using Trimble.Modus.Components.Contant;
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Controls.Toast;
@@ -120,11 +121,11 @@ public partial class TMToastContents : Popup.Pages.PopupPage
                     action?.Invoke();
                 };
 
-                if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
+                if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale)))
                 {
                     closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
                 }
-                else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
+                else if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleGray)))
                 {
                     closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
                 }
