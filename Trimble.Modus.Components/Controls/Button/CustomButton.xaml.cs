@@ -1,6 +1,7 @@
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
+using Trimble.Modus.Components.Constant;
 
 namespace Trimble.Modus.Components.Controls.Button;
 
@@ -277,12 +278,12 @@ public partial class CustomButton : ContentView
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Primary:
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
+                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
+                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
                 break;
             case ButtonColor.Secondary:
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("SecondaryButton");
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("SecondaryButton");
+                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButton);
+                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButton);
                 break;
             default:
                 break;

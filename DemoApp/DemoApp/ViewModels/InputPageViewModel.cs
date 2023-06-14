@@ -1,14 +1,15 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace DemoApp.ViewModels
 {
-    public class InputPageViewModel : INotifyPropertyChanged
+    public class InputPageViewModel : BaseViewModel
     {
-        public ICommand ShowPasswordCommand { get; private set; }
+        public ICommand ShowPasswordCommand { get; set; }
 
         private bool _showPassword;
+        private bool _isEnabled;
+        private bool _isReadOnly;
+
         public bool ShowPassword
         {
             get
@@ -22,27 +23,45 @@ namespace DemoApp.ViewModels
             }
         }
 
-        /// <summary>
-        /// This variables is used to raise the event when the property value is changed
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// This method is triggered when any of the property is changed
-        /// </summary>
-        /// <param name="propertyName">Name of the property</param>
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        public bool IsEnabled
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                if (_isEnabled != value)
+                {
+                    _isEnabled = value;
+                    OnPropertyChanged(nameof(IsEnabled));
+                }
+            }
         }
-
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            set
+            {
+                if (_isReadOnly != value)
+                {
+                    _isReadOnly = value;
+                    OnPropertyChanged(nameof(IsReadOnly));
+                }
+            }
+        }
         public InputPageViewModel()
         {
             ShowPasswordCommand = new Command(ChangeShowPasswordState);
-            _showPassword = false;
+            ShowPassword = false;
+            IsEnabled = true;
+            IsReadOnly = false;
         }
 
-        private void ChangeShowPasswordState()
+        private void ChangeShowPasswordState(object obj)
         {
             Console.WriteLine("In Command ");
             if (_showPassword == true)

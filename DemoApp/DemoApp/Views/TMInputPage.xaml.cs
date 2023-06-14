@@ -15,13 +15,8 @@ public partial class TMInputPage : ContentPage
         BindingContext = _inputPageViewModel;
 
     }
-    private void modusInputFocused(object sender, EventArgs e)
-    {
-        Console.WriteLine("Container focused");
 
-    }
-
-    private Tuple<bool, string> CustomValidateInput(object sender)
+    private Tuple<bool, string> TMInputValidation(object sender)
     {
         var input = sender as TMInput;
         string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
@@ -36,11 +31,21 @@ public partial class TMInputPage : ContentPage
         //return match.Success;
         if (match.Success)
         {
-            return Tuple.Create(true, "Valid Text");
+            return Tuple.Create(true, "Valid Email Address");
         }
         else
         {
-            return Tuple.Create(false, "Invalid Text");
+            return Tuple.Create(false, "Invalid Email Address");
         }
+    }
+
+    private void IsReadOnly_Toggled(object sender, ToggledEventArgs e)
+    {
+        _inputPageViewModel.IsReadOnly = e.Value;
+    }
+
+    private void IsEnabled_Toggled(object sender, ToggledEventArgs e)
+    {
+        _inputPageViewModel.IsEnabled = e.Value;
     }
 }

@@ -17,18 +17,26 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Images\radio_selected_icon.svg" />
+	  <None Remove="Images\radio_unselected_icon.svg" />
+	</ItemGroup>
+
 	<ItemGroup>
 	  <EmbeddedResource Include="Images\black_close_icon.png" />
 	  <EmbeddedResource Include="Images\blue_close_icon.png" />
-	  <EmbeddedResource Include="Images\checked_checkbox.png" />
-	  <EmbeddedResource Include="Images\default_checkbox.png" />
 	  <EmbeddedResource Include="Images\danger.png" />
 	  <EmbeddedResource Include="Images\dark.png" />
 	  <EmbeddedResource Include="Images\default.png" />
 	  <EmbeddedResource Include="Images\helper_icon.png" />
-	  <EmbeddedResource Include="Images\indeterminate_checkbox.png" />
 	  <EmbeddedResource Include="Images\input_error_icon.png" />
 	  <EmbeddedResource Include="Images\input_valid_icon.png" />
+	  <MauiImage Include="Images\helper_icon.png" />
+	  <MauiImage Include="Images\input_error_icon.png" />
+	  <MauiImage Include="Images\input_valid_icon.png" />
 	  <EmbeddedResource Include="Images\primary.png" />
 	  <EmbeddedResource Include="Images\secondary.png" />
 	  <EmbeddedResource Include="Images\warning.png" />
@@ -36,12 +44,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Images\checked_checkbox.svg" />
+	  <MauiImage Include="Images\default_checkbox.svg" />
+	  <MauiImage Include="Images\indeterminate_checkbox.svg" />
 	  <MauiImage Include="Images\modus_close_icon.svg" />
+	  <MauiImage Include="Images\radio_selected_icon.svg" />
+	  <MauiImage Include="Images\radio_unselected_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
+	    <DependentUpon>TMInput.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
@@ -54,6 +70,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\CustomButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">

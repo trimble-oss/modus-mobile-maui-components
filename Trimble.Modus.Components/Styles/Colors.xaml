@@ -21,6 +21,17 @@
   <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
   <Color x:Key="BluePale">#DCEDF9</Color>
   <Color x:Key="NeutralGrey">#E0E1E9</Color>
+  <Color x:Key="Green">#1E8A44</Color>
   <Color x:Key="Transparent">transparent</Color>
-
+  <Color x:Key="CardPressed">#C9CACF</Color>
+  
+  
+    <!--ToastColors-->
+  <Color x:Key="DangerToastColor">#FBD4D7</Color>
+  <Color x:Key="WarningToastColor">#FFF5E4</Color>
+  <Color x:Key="SuccessToastColor">#E0ECCF</Color>
+  <Color x:Key="ToastTextBlue">#0063A3</Color>
+  
+  <!--Modal-->
+  <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
 </ResourceDictionary>
