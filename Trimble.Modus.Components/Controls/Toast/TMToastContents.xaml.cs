@@ -120,19 +120,14 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         if (string.IsNullOrEmpty(RightIconText))
         {
+            closeButton.IsVisible = isDismissable;
+            actionButton.IsVisible = false;
             if (isDismissable)
             {
                 closeButton.Clicked += (sender, args) =>
                 {
                     action?.Invoke();
                 };
-                closeButton.IsVisible = true;
-                actionButton.IsVisible = false;
-            }
-            else
-            {
-                closeButton.IsVisible = false;
-                actionButton.IsVisible = false;
             }
         }
         else
