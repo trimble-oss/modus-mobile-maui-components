@@ -11,7 +11,7 @@ public partial class CustomButton : ContentView
 
     private readonly TapGestureRecognizer _tapGestureRecognizer;
     private EventHandler _clicked;
-    private Color tempColor;
+    private Color activeColor;
 
     #endregion
 
@@ -39,7 +39,7 @@ public partial class CustomButton : ContentView
        BindableProperty.Create(nameof(ButtonStyle), typeof(Enums.ButtonStyle), typeof(CustomButton), Enums.ButtonStyle.Fill, propertyChanged: OnButtonStyleChanged);
 
     public static readonly BindableProperty ButtonColorProperty =
-   BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(CustomButton), Enums.ButtonColor.Primary, propertyChanged: OnButtonColorChanged);
+       BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(CustomButton), Enums.ButtonColor.Primary, propertyChanged: OnButtonColorChanged);
 
     public static readonly BindableProperty IsFloatingButtonProperty =
         BindableProperty.Create(nameof(IsFloatingButton), typeof(bool), typeof(CustomButton), false);
@@ -179,7 +179,6 @@ public partial class CustomButton : ContentView
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
-                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
             case Enums.ButtonStyle.Fill:
                 UpdateFillStyleColors(customButton);
@@ -245,7 +244,6 @@ public partial class CustomButton : ContentView
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("SecondaryButton");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("White");
-                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
 
                 break;
 
@@ -253,20 +251,17 @@ public partial class CustomButton : ContentView
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("TertiaryButton");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("TrimbleGray");
-                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
 
             case ButtonColor.Danger:
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("DangerRed");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("White");
-                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
             default:
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("White");
-                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
         }
     }
@@ -274,7 +269,6 @@ public partial class CustomButton : ContentView
     private static void UpdateOutlineStyleColors(CustomButton customButton)
     {
         customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("Transparent");
-        customButton.tempColor = customButton.buttonFrame.BackgroundColor;
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Primary:
@@ -292,43 +286,40 @@ public partial class CustomButton : ContentView
 
     private Color GetOnClickColor(Color color)
     {
-        if (ButtonStyle == ButtonStyle.Outline)
+        switch (ButtonStyle)
         {
-            if (ButtonColor == ButtonColor.Primary)
-            {
-                return (Color)BaseComponent.colorsDictionary()["BluePale"];
-            }
-            if (ButtonColor == ButtonColor.Secondary)
-            {
-                return (Color)BaseComponent.colorsDictionary()["NeutralGrey"];
-            }
+            case ButtonStyle.Outline:
+                switch (ButtonColor)
+                {
+                    case ButtonColor.Primary:
+                        return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
+                    case ButtonColor.Secondary:
+                        return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.NeutralGray);
+                    default:
+                        break;
+                }
+                break;
+            case ButtonStyle.BorderLess:
 
+                    return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
 
-        }
-        if (ButtonStyle == ButtonStyle.BorderLess)
-        {
-            return (Color)BaseComponent.colorsDictionary()["BluePale"];
-        }
-
-        if (color.Equals((Color)BaseComponent.colorsDictionary()["TrimbleBlue"]))
-        {
-            return (Color)BaseComponent.colorsDictionary()["TrimbleBlueClicked"];
-        }
-        else if (color.Equals((Color)BaseComponent.colorsDictionary()["SecondaryButton"]))
-        {
-            return (Color)BaseComponent.colorsDictionary()["SecondaryButtonClicked"];
-        }
-        else if (color.Equals((Color)BaseComponent.colorsDictionary()["TertiaryButton"]))
-        {
-            return (Color)BaseComponent.colorsDictionary()["TertiaryButtonClicked"];
-        }
-        else if (color.Equals((Color)BaseComponent.colorsDictionary()["DangerRed"]))
-        {
-            return (Color)BaseComponent.colorsDictionary()["DangerRedClicked"];
-        }
-        else if (color.Equals(Colors.Transparent))
-        {
-            return (Color)BaseComponent.colorsDictionary()["DangerRedClicked"];
+            case ButtonStyle.Fill:
+                {
+                    switch (ButtonColor)
+                    {
+                        case ButtonColor.Primary:
+                            return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlueClicked);
+                        case ButtonColor.Secondary:
+                            return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButtonClicked);
+                        case ButtonColor.Tertiary:
+                            return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TertiaryButtonClicked);
+                        case ButtonColor.Danger:
+                            return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.DangerRedClicked);
+                        default:
+                            break;
+                    }
+                }
+                break;
         }
 
         return color;
@@ -338,17 +329,27 @@ public partial class CustomButton : ContentView
 
     public void RaisePressed()
     {
-        buttonFrame.BackgroundColor = GetOnClickColor(buttonFrame.BackgroundColor);
+        if (buttonFrame.BackgroundColor != null)
+        {
+            activeColor = buttonFrame.BackgroundColor;
+            buttonFrame.BackgroundColor = GetOnClickColor(buttonFrame.BackgroundColor);
+        }
     }
     public void RaiseReleased()
     {
-        buttonFrame.BackgroundColor = tempColor;
+        if (activeColor != null)
+        {
+            buttonFrame.BackgroundColor = activeColor;
+        }
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, EventArgs.Empty);
     }
     public void RaiseCancel()
     {
-        buttonFrame.BackgroundColor = tempColor;
+        if (activeColor != null)
+        {
+            buttonFrame.BackgroundColor = activeColor;
+        }
     }
 
     #endregion
