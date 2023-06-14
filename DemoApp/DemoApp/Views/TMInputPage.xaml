@@ -59,7 +59,7 @@
         <Modus:TMInput x:Name="rightIcon"
                           TitleText="Right Icon"
                           Placeholder="Text Input"
-                          RightIconSource="password_eye.png"
+                          RightIconSource="{x:Static constants:ImageConstants.PasswordIcon}"
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
                           RightIconCommand="{Binding ShowPasswordCommand}"

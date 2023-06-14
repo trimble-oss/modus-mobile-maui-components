@@ -62,10 +62,11 @@
                      WidthRequest="16"
                      HeightRequest="16"
                      Margin='8,16,16,16'
-                     Padding="{OnPlatform '0', iOS='16,16,0,16'}"
+                     Padding="{OnPlatform '0', iOS='16,16,0,16', WinUI='16'}"
                      HorizontalOptions="End"
                      VerticalOptions="Center"
-                     Clicked="CloseButtonClicked" />
+                     Clicked="CloseButtonClicked"
+                     BackgroundColor="Transparent"/>
       </StackLayout>
 
     </Border>

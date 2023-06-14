@@ -53,7 +53,6 @@
              Text="{Binding Title}"
              IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
              HeightRequest="48"
-             FontSize="{Binding FontSize}"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center" />
       <Image Source="{Binding RightIconSource}"

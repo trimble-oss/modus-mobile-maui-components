@@ -121,13 +121,13 @@ public partial class TMToastContents : Popup.Pages.PopupPage
                     action?.Invoke();
                 };
 
-                if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale)))
+                if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale)))
                 {
                     closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
                 }
-                else if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleGray)))
+                else if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray)))
                 {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
+                    closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
                 }
                 else
                 {
