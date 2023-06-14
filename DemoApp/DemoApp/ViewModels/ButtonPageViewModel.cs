@@ -12,6 +12,7 @@ namespace DemoApp.ViewModels
         private string _selectedImageOption;
         private string _leftIconSource;
         private string _rightIconSource;
+        private LayoutOptions _fullWidthAlignment;
 
         public Trimble.Modus.Components.Enums.Size SelectedFontSize
         {
@@ -96,6 +97,16 @@ namespace DemoApp.ViewModels
                 OnPropertyChanged(nameof(IsDisabled));
             }
         }
+        public LayoutOptions FullWidthAlignment
+        {
+            get => _fullWidthAlignment;
+            set
+            {
+                _fullWidthAlignment = value;
+                OnPropertyChanged(nameof(FullWidthAlignment));
+            }
+        }
+
         public ICommand MyCommand { get; set; }
 
         public ButtonPageViewModel()
@@ -103,6 +114,7 @@ namespace DemoApp.ViewModels
             SelectedFontSize = Trimble.Modus.Components.Enums.Size.Default;
             SelectedButtonStyle = ButtonStyle.Fill;
             SelectedImageOption = "None";
+            FullWidthAlignment = LayoutOptions.Start;
             MyCommand = new Command(OnClicked);
         }
 
