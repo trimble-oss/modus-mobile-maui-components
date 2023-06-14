@@ -10,28 +10,41 @@ public class TMButtoniOSTouchHandler : VisualElementRenderer<CustomButton>
 {
     public TMButtoniOSTouchHandler()
     {
-        UserInteractionEnabled = true;
+        if (Element.IsDisabled)
+        {
+            UserInteractionEnabled = true;
+        }
+        else
+        {
+            UserInteractionEnabled = false;
+        }
     }
 
     public override void TouchesBegan(NSSet touches, UIEvent evt)
     {
         base.TouchesBegan(touches, evt);
-
-        Element?.RaisePressed();
+        if (!Element.IsDisabled)
+        {
+            Element?.RaisePressed();
+        }
     }
 
     public override void TouchesCancelled(NSSet touches, UIEvent evt)
     {
         base.TouchesCancelled(touches, evt);
-
-        Element?.RaiseCancel();
+        if (!Element.IsDisabled)
+        {
+            Element?.RaiseCancel();
+        }
     }
 
     public override void TouchesEnded(NSSet touches, UIEvent evt)
     {
         base.TouchesEnded(touches, evt);
-
-        Element?.RaiseReleased();
+        if (!Element.IsDisabled)
+        {
+            Element?.RaiseReleased();
+        }
     }
 }
 #endif

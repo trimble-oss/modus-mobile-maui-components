@@ -15,23 +15,31 @@ public class TMButtonAndroidTouchHandler : VisualElementRenderer<CustomButton>
 
     private void Control_Touch(object sender, TouchEventArgs e)
     {
-        switch (e.Event.Action)
+        if (!Element.IsDisabled)
         {
-            case MotionEventActions.Down:
-                Element?.RaisePressed();
-                break;
+            switch (e.Event.Action)
+            {
+                case MotionEventActions.Down:
+                    Element?.RaisePressed();
+                    break;
 
-            case MotionEventActions.Up:
-                Element?.RaiseReleased();
-                break;
+                case MotionEventActions.Up:
+                    Element?.RaiseReleased();
+                    break;
 
-            case MotionEventActions.Move:
-                Element?.RaiseCancel();
-                break;  
-            default:
-                break;
+                case MotionEventActions.Move:
+                    Element?.RaiseCancel();
+                    break;
+                default:
+                    break;
+            }
         }
 
+    }
+    protected override void Dispose(bool disposing)
+    {
+        Touch -= Control_Touch;
+        base.Dispose(disposing);
     }
 }
 #endif

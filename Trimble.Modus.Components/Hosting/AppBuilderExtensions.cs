@@ -75,6 +75,7 @@ public static class AppBuilderExtensions
 #endif
 #if WINDOWS
                 handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
+                handlers.AddHandler(typeof(CustomButton), typeof(TMButtonWindowsTouchHandler));
 #endif
         }
     }
