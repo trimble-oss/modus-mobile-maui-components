@@ -9,6 +9,8 @@ public partial class CustomButton : ContentView
     #region Private Properties
 
     private readonly TapGestureRecognizer _tapGestureRecognizer;
+    private EventHandler _clicked;
+    private Color tempColor;
 
     #endregion
 
@@ -43,9 +45,20 @@ public partial class CustomButton : ContentView
 
     public static readonly BindableProperty IsDisabledProperty =
         BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(CustomButton), false, propertyChanged: OnIsDisabledChanged);
+
+    public static readonly BindableProperty ClickedEventProperty =
+            BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(CustomButton));
     #endregion
 
     #region Public Properties
+
+
+    public event EventHandler Clicked
+    {
+        add { _clicked += value; }
+        remove { _clicked -= value; }
+    }
+
     public bool IsFloatingButton
     {
         get { return (bool)GetValue(IsFloatingButtonProperty); }
@@ -111,20 +124,11 @@ public partial class CustomButton : ContentView
     public CustomButton()
     {
         InitializeComponent();
-
-        GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer() { NumberOfTapsRequired = 1 });
-        _tapGestureRecognizer.Tapped += OnTapped;
-
         SetPadding(this);
         CheckButtonStyle(this);
     }
 
     #region Private Methods
-
-    private void OnTapped(object sender, EventArgs e)
-    {
-        Command?.Execute(CommandParameter);
-    }
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is CustomButton customButton)
@@ -174,6 +178,7 @@ public partial class CustomButton : ContentView
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
+                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
             case Enums.ButtonStyle.Fill:
                 UpdateFillStyleColors(customButton);
@@ -239,23 +244,28 @@ public partial class CustomButton : ContentView
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("SecondaryButton");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("White");
+                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
+
                 break;
 
             case ButtonColor.Tertiary:
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("TertiaryButton");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("TrimbleGray");
+                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
 
             case ButtonColor.Danger:
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("DangerRed");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("Transparent");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("White");
+                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
             default:
                 customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
                 customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary("TrimbleBlue");
                 customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary("White");
+                customButton.tempColor = customButton.buttonFrame.BackgroundColor;
                 break;
         }
     }
@@ -263,6 +273,7 @@ public partial class CustomButton : ContentView
     private static void UpdateOutlineStyleColors(CustomButton customButton)
     {
         customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary("Transparent");
+        customButton.tempColor = customButton.buttonFrame.BackgroundColor;
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Primary:
@@ -277,5 +288,67 @@ public partial class CustomButton : ContentView
                 break;
         }
     }
+
+    private Color getOnClickColor(Color color)
+    {
+        if (ButtonStyle == ButtonStyle.Outline)
+        {
+            if (ButtonColor == ButtonColor.Primary)
+            {
+                return (Color)BaseComponent.colorsDictionary()["BluePale"];
+            }
+            if (ButtonColor == ButtonColor.Secondary)
+            {
+                return (Color)BaseComponent.colorsDictionary()["NeutralGrey"];
+            }
+
+
+        }
+        if (ButtonStyle == ButtonStyle.BorderLess)
+        {
+            return (Color)BaseComponent.colorsDictionary()["BluePale"];
+        }
+
+        if (color.Equals((Color)BaseComponent.colorsDictionary()["TrimbleBlue"]))
+        {
+            return (Color)BaseComponent.colorsDictionary()["TrimbleBlueClicked"];
+        }
+        else if (color.Equals((Color)BaseComponent.colorsDictionary()["SecondaryButton"]))
+        {
+            return (Color)BaseComponent.colorsDictionary()["SecondaryButtonClicked"];
+        }
+        else if (color.Equals((Color)BaseComponent.colorsDictionary()["TertiaryButton"]))
+        {
+            return (Color)BaseComponent.colorsDictionary()["TertiaryButtonClicked"];
+        }
+        else if (color.Equals((Color)BaseComponent.colorsDictionary()["DangerRed"]))
+        {
+            return (Color)BaseComponent.colorsDictionary()["DangerRedClicked"];
+        }
+        else if (color.Equals(Colors.Transparent))
+        {
+            return (Color)BaseComponent.colorsDictionary()["DangerRedClicked"];
+        }
+
+        return color;
+    }
+    #endregion
+    #region Public Methods
+
+    public void RaisePressed()
+    {
+        buttonFrame.BackgroundColor = getOnClickColor(buttonFrame.BackgroundColor);
+    }
+    public void RaiseReleased()
+    {
+        buttonFrame.BackgroundColor = tempColor;
+        Command?.Execute(CommandParameter);
+        _clicked?.Invoke(this, EventArgs.Empty);
+    }
+    public void RaiseCancel()
+    {
+        buttonFrame.BackgroundColor = tempColor;
+    }
+
     #endregion
 }
