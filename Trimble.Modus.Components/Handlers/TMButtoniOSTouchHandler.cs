@@ -9,15 +9,8 @@ namespace Trimble.Modus.Components.Handlers;
 public class TMButtoniOSTouchHandler : VisualElementRenderer<CustomButton>
 {
     public TMButtoniOSTouchHandler()
-    {
-        if (Element.IsDisabled)
-        {
-            UserInteractionEnabled = true;
-        }
-        else
-        {
-            UserInteractionEnabled = false;
-        }
+    {    
+       UserInteractionEnabled = true;
     }
 
     public override void TouchesBegan(NSSet touches, UIEvent evt)
