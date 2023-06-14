@@ -80,8 +80,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ValidIcon);
                 TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
-
-            case ToastTheme.Default:
+                
             default:
                 ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
                 LeftIconSource = ImageSource.FromFile(ImageConstants.GreyInfoIcon);
