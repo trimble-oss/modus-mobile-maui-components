@@ -1,40 +1,32 @@
-﻿using Microsoft.Maui.Handlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Trimble.Modus.Components.Handlers;
 
-namespace Trimble.Modus.Components.Handlers
+internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
 {
-    internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
+    public LabelHandler()
     {
-        public LabelHandler()
-        {
-            Label.ControlsLabelMapper.AppendToMapping(
-              nameof(Label.LineBreakMode), UpdateMaxLines);
+        Label.ControlsLabelMapper.AppendToMapping(
+          nameof(Label.LineBreakMode), UpdateMaxLines);
 
-            Label.ControlsLabelMapper.AppendToMapping(
-              nameof(Label.MaxLines), UpdateMaxLines);
-        }
-        static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
-        {
+        Label.ControlsLabelMapper.AppendToMapping(
+          nameof(Label.MaxLines), UpdateMaxLines);
+    }
+    static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
+    {
 #if ANDROID
-                var textView = handler.PlatformView;
-                if (label is Label controlsLabel
-                    && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
-                {
-                    textView.SetMaxLines(controlsLabel.MaxLines);
-                }
+            var textView = handler.PlatformView;
+            if (label is Label controlsLabel
+                && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
+            {
+                textView.SetMaxLines(controlsLabel.MaxLines);
+            }
 #elif IOS
-                var textView = handler.PlatformView;
-                if (label is Label controlsLabel
-                    && textView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)
-                {
-                    textView.Lines = controlsLabel.MaxLines;
-                }
+            var textView = handler.PlatformView;
+            if (label is Label controlsLabel
+                && textView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)
+            {
+                textView.Lines = controlsLabel.MaxLines;
+            }
 #endif
-        }
     }
 }
 
