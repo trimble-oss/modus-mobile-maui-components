@@ -88,6 +88,7 @@ public partial class CustomButton : ContentView
     {
         get => (ICommand)GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);
+
     }
 
     public object CommandParameter

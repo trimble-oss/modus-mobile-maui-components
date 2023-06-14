@@ -12,7 +12,6 @@ public partial class TMButtonPage : ContentPage
     public TMButtonPage()
     {
         _buttonPageViewModel = new ButtonPageViewModel();
-
         InitializeComponent();
         BindingContext = _buttonPageViewModel;
     }
@@ -46,5 +45,18 @@ public partial class TMButtonPage : ContentPage
         {
             _buttonPageViewModel.SelectedImageOption = radioButton.Value.ToString();
         }
+    }
+
+    private void FullWidthToggled(object sender, ToggledEventArgs e)
+    {
+        if (e.Value)
+        {
+            _buttonPageViewModel.FullWidthAlignment = LayoutOptions.FillAndExpand;
+        }
+        else
+        {
+            _buttonPageViewModel.FullWidthAlignment = LayoutOptions.Start;
+        }
+
     }
 }
