@@ -180,9 +180,9 @@ public partial class CustomButton : ContentView
         switch (customButton.ButtonStyle)
         {
             case Enums.ButtonStyle.BorderLess:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.Transparent);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.Transparent);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
             case Enums.ButtonStyle.Fill:
                 UpdateFillStyleColors(customButton);
@@ -245,43 +245,43 @@ public partial class CustomButton : ContentView
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButton);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.White);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
 
                 break;
 
             case ButtonColor.Tertiary:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TertiaryButton);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.Transparent);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleGray);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
 
             case ButtonColor.Danger:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.DangerRed);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.Transparent);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.White);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             default:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.White);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
         }
     }
 
     private static void UpdateOutlineStyleColors(CustomButton customButton)
     {
-        customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.Transparent);
+        customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Primary:
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlue);
+                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
             case ButtonColor.Secondary:
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButton);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButton);
+                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
                 break;
             default:
                 break;
@@ -296,7 +296,7 @@ public partial class CustomButton : ContentView
                 color = GetOnClickOutline(color);
                 break;
             case ButtonStyle.BorderLess:
-                color = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
+                color = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                 break;
             case ButtonStyle.Fill:
                 color = GetOnClickFill();
@@ -313,9 +313,9 @@ public partial class CustomButton : ContentView
         switch (ButtonColor)
         {
             case ButtonColor.Primary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
             case ButtonColor.Secondary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.NeutralGray);
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
             default:
                 return color;
         }
@@ -326,13 +326,13 @@ public partial class CustomButton : ContentView
         switch (ButtonColor)
         {
             case ButtonColor.Secondary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.SecondaryButtonClicked);
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButtonClicked);
             case ButtonColor.Tertiary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TertiaryButtonClicked);
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButtonClicked);
             case ButtonColor.Danger:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.DangerRedClicked);
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRedClicked);
             default:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlueClicked);
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
         }
     }
     #endregion

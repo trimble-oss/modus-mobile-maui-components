@@ -19,7 +19,7 @@ internal class ColorsConstants
     public const string TertiaryButtonClicked = "TertiaryButtonClicked";
     public const string TrimbleBlueClicked = "TrimbleBlueClicked";
     public const string BluePale = "BluePale";
-    public const string NeutralGrey = "NeutralGrey";
+    public const string NeutralGray = "NeutralGray";
     public const string Green = "Green";
     public const string Transparent = "Transparent";
     public const string CardPressed = "CardPressed";
