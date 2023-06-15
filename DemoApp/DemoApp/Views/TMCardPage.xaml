@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components.Controls.TMCard;assembly=Trimble.Modus.Components"
              xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.Views.TMCardPage"
@@ -158,7 +159,7 @@
                      VerticalOptions="Center"
                      LineBreakMode="WordWrap" />
 
-              <Image Source="rounded_icon.png"
+              <Image Source="{x:Static constants:ImageConstants.AccountIcon}"
                      Grid.Column="1"
                      HorizontalOptions="End"
                      VerticalOptions="Start"
@@ -187,7 +188,7 @@
           <StackLayout BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="20">
-            <Image Source="icondark.png"
+            <Image Source="{x:Static constants:ImageConstants.DarkGalleryIcon}"
                    WidthRequest="32"
                    HeightRequest="32" />
             <StackLayout>

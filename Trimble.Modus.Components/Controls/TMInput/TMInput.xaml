@@ -49,7 +49,11 @@
                      IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="CenterAndExpand"
-                     Grid.Column="0">
+                     Grid.Column="0"
+                     Padding="2" >
+          <ImageButton.Padding>
+            <OnIdiom Desktop="10,8,10,10" />
+          </ImageButton.Padding>
           <ImageButton.IsEnabled>
             <MultiBinding Converter="{StaticResource AllTrueConverter}">
               <Binding Path="IsEnabled" />
@@ -91,6 +95,9 @@
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="CenterAndExpand"
                      Grid.Column="2">
+          <ImageButton.Padding>
+            <OnIdiom Desktop="10,8,10,10" />
+          </ImageButton.Padding>
           <ImageButton.IsEnabled>
             <MultiBinding Converter="{StaticResource AllTrueConverter}">
               <Binding Path="IsEnabled" />

@@ -64,8 +64,8 @@ public partial class TMCard : ContentView
         var card = (TMCard)bindable;
         if ((bool)newValue)
         {
-            card._border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
-            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleBlueClicked);
+            card._border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
         }
         else
         {
@@ -123,7 +123,7 @@ public partial class TMCard : ContentView
     {
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, e);
-        _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.CardPressed);
+        _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.CardPressed);
         _border.Content.Opacity = 0.3;
         this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
         {

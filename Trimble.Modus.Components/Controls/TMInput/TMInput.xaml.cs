@@ -389,7 +389,7 @@ public partial class TMInput : ContentView
 
             if (!string.IsNullOrEmpty(tmInput.HelperText))
             {
-                tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
+                tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
                 tmInput.inputHelperLabel.Text = tmInput.HelperText;
             }
         }
@@ -400,15 +400,15 @@ public partial class TMInput : ContentView
             {
                 case ValidationResponse.Success:
                     tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
-                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.TickImage);
+                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.Success_icon_outline);
                     break;
                 case ValidationResponse.Error:
                     tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
-                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.ErrorImage);
+                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
                     break;
                 default:
                     tmInput.inputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.HelperImage);
+                    tmInput.inputHelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
                     tmInput.inputHelperLabel.Text = tmInput.HelperText;
                     break;
             }

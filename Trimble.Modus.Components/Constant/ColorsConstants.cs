@@ -22,4 +22,10 @@ internal class ColorsConstants
     public const string NeutralGrey = "NeutralGrey";
     public const string Green = "Green";
     public const string Transparent = "Transparent";
+    public const string CardPressed = "CardPressed";
+    public const string DangerToastColor = "DangerToastColor";
+    public const string WarningToastColor = "WarningToastColor";
+    public const string SuccessToastColor = "SuccessToastColor";
+    public const string ToastTextBlue = "ToastTextBlue";
+    public const string ModalGraySemiTransparent = "ModalGraySemiTransparent";
 }

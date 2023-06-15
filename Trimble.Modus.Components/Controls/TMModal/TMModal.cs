@@ -255,7 +255,7 @@ namespace Trimble.Modus.Components
                     RadiusX = 4,
                     RadiusY = 4
                 },
-                Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black),
+                Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black),
                 Shadow = shadow,
                 StrokeThickness = 0,
                 BackgroundColor = Colors.White
@@ -263,7 +263,7 @@ namespace Trimble.Modus.Components
 
             SetBinding();
             Animation = new ScaleAnimation();
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.ModalGraySemiTransparent);
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ModalGraySemiTransparent);
 
             Content = _border;
         }
