@@ -1,3 +1,4 @@
+using DemoApp.Constant;
 using Trimble.Modus.Components;
 using Toast = CommunityToolkit.Maui.Alerts.Toast;
 
@@ -20,7 +21,7 @@ public partial class TMModalPage : ContentPage
         try
         {
             TMModal tmModal = new(string.IsNullOrEmpty(ModalTitle.Text) ? "" : ModalTitle.Text);
-            tmModal.TitleIcon = IconCheckBox.IsChecked ? ImageSource.FromFile(Constant.ImageConstants.ModusPlaceholderImage) : null;
+            tmModal.TitleIcon = IconCheckBox.IsChecked ? ImageSource.FromFile(ImageConstants.ModusPlaceholderImage) : null;
             tmModal.Message = Message.Text;
             tmModal.FullWidthButton = FullWidthButtonCheckBox.IsChecked;
             if (InputCheckBox.IsChecked)

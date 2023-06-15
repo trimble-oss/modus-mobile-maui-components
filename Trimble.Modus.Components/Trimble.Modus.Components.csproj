@@ -21,35 +21,44 @@
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Images\black_close_icon.svg" />
+	  <None Remove="Images\blue_close_icon.svg" />
+	  <None Remove="Images\blue_info_outline_icon.svg" />
+	  <None Remove="Images\blue_info_solid_icon.svg" />
+	  <None Remove="Images\error_icon_outline.svg" />
+	  <None Remove="Images\grey_info_icon.svg" />
 	  <None Remove="Images\radio_selected_icon.svg" />
 	  <None Remove="Images\radio_unselected_icon.svg" />
+	  <None Remove="Images\solid_help_icon.svg" />
+	  <None Remove="Images\success_icon_outline.svg" />
+	  <None Remove="Images\toast_danger_icon.svg" />
+	  <None Remove="Images\toast_dark_icon.svg" />
+	  <None Remove="Images\valid_icon.svg" />
+	  <None Remove="Images\warning_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Images\black_close_icon.png" />
-	  <EmbeddedResource Include="Images\blue_close_icon.png" />
-	  <EmbeddedResource Include="Images\danger.png" />
-	  <EmbeddedResource Include="Images\dark.png" />
-	  <EmbeddedResource Include="Images\default.png" />
-	  <EmbeddedResource Include="Images\helper_icon.png" />
-	  <EmbeddedResource Include="Images\input_error_icon.png" />
-	  <EmbeddedResource Include="Images\input_valid_icon.png" />
-	  <MauiImage Include="Images\helper_icon.png" />
-	  <MauiImage Include="Images\input_error_icon.png" />
-	  <MauiImage Include="Images\input_valid_icon.png" />
-	  <EmbeddedResource Include="Images\primary.png" />
-	  <EmbeddedResource Include="Images\secondary.png" />
-	  <EmbeddedResource Include="Images\warning.png" />
-	  <EmbeddedResource Include="Images\white_close_icon.png" />
+	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Images\black_close_icon.svg" />
+	  <MauiImage Include="Images\blue_close_icon.svg" />
+	  <MauiImage Include="Images\blue_info_outline_icon.svg" />
+	  <MauiImage Include="Images\blue_info_solid_icon.svg" />
 	  <MauiImage Include="Images\checked_checkbox.svg" />
 	  <MauiImage Include="Images\default_checkbox.svg" />
+	  <MauiImage Include="Images\grey_info_icon.svg" />
 	  <MauiImage Include="Images\indeterminate_checkbox.svg" />
 	  <MauiImage Include="Images\modus_close_icon.svg" />
 	  <MauiImage Include="Images\radio_selected_icon.svg" />
 	  <MauiImage Include="Images\radio_unselected_icon.svg" />
+	  <MauiImage Include="Images\solid_help_icon.svg" />
+	  <MauiImage Include="Images\error_icon_outline.svg" />
+	  <MauiImage Include="Images\success_icon_outline.svg" />
+	  <MauiImage Include="Images\toast_dark_icon.svg" />
+	  <MauiImage Include="Images\valid_icon.svg" />
+	  <MauiImage Include="Images\warning_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

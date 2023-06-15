@@ -3,6 +3,7 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
              Title="Input">
   <ScrollView>
     <VerticalStackLayout>
@@ -58,7 +59,7 @@
         <Modus:TMInput x:Name="rightIcon"
                           TitleText="Right Icon"
                           Placeholder="Text Input"
-                          RightIconSource="password_eye.png"
+                          RightIconSource="{x:Static constants:ImageConstants.PasswordIcon}"
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
                           RightIconCommand="{Binding ShowPasswordCommand}"
@@ -66,18 +67,18 @@
 
         <Modus:TMInput x:Name="leftIcon"
                           TitleText="Left Icon"
-                          LeftIconSource="s_icon.png"
+                          LeftIconSource="{x:Static constants:ImageConstants.SearchIcon}"
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
                           Placeholder="Text Input" />
 
         <Modus:TMInput x:Name="bothIcon"
                           TitleText="Both Icon"
-                          LeftIconSource="user.png"
+                          LeftIconSource="{x:Static constants:ImageConstants.AccountIcon}"
                           Placeholder="Text Input"
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
-                          RightIconSource="cv.png" />
+                          RightIconSource="{x:Static constants:ImageConstants.ContactIcon}" />
 
       </StackLayout>
     </VerticalStackLayout>

@@ -1,3 +1,4 @@
+
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
@@ -6,10 +7,12 @@ using Trimble.Modus.Components.Constant;
 namespace Trimble.Modus.Components.Controls.Button;
 
 public partial class CustomButton : ContentView
+
 {
     #region Private Properties
 
     private readonly TapGestureRecognizer _tapGestureRecognizer;
+
     private EventHandler _clicked;
     private Color activeColor;
 
@@ -130,6 +133,7 @@ public partial class CustomButton : ContentView
     }
 
     #region Private Methods
+    
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is CustomButton customButton)

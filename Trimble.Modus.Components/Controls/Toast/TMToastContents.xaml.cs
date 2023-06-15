@@ -46,46 +46,52 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         switch (theme)
         {
             case ToastTheme.Dark:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleGray);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.dark.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.White);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDarkThemeIcon);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["White"];
                 break;
 
             case ToastTheme.Primary:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.primary.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.ToastTextBlue);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.BlueInfoIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
                 break;
 
             case ToastTheme.Secondary:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.TertiaryButton);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.secondary.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.SolidHelpIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Danger:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.DangerToastColor);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.danger.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDangerIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Warning:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.WarningToastColor);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.warning.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.WarningIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
 
             case ToastTheme.Success:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.SuccessToastColor);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.ValidIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
-
-            case ToastTheme.Default:
+                
             default:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstant.White);
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.default.png");
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstant.Black);
+                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.GreyInfoIcon);
+                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
                 break;
         }
 
@@ -114,32 +120,14 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         if (string.IsNullOrEmpty(RightIconText))
         {
+            closeButton.IsVisible = isDismissable;
+            actionButton.IsVisible = false;
             if (isDismissable)
             {
                 closeButton.Clicked += (sender, args) =>
                 {
                     action?.Invoke();
                 };
-
-                if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstant.BluePale)))
-                {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-                }
-                else if (ToastBackground.Equals(ResourcesDictionary.ColorsDictionary(ColorsConstant.TrimbleGray)))
-                {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
-                }
-                else
-                {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
-                }
-                closeButton.IsVisible = true;
-                actionButton.IsVisible = false;
-            }
-            else
-            {
-                closeButton.IsVisible = false;
-                actionButton.IsVisible = false;
             }
         }
         else
