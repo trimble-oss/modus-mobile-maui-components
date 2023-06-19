@@ -9,5 +9,7 @@
       Keyboard="Numeric"
       LeftIconSource="{x:Static constants:ImageConstants.MinusImage}"
       RightIconSource="{x:Static constants:ImageConstants.PlusImage}"
+      IsEnabled="{Binding IsEnabled}"
+      IsReadOnly="{Binding IsReadOnly}"
       TextChanged="OnTextChanged"/>
 </ContentView>

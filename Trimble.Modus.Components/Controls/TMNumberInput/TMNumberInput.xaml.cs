@@ -79,11 +79,10 @@ public partial class TMNumberInput : ContentView
     public TMNumberInput()
     {
         InitializeComponent();
+        BindingContext = this;
         TMInputControl.SetCenterTextAlignment();
         TMInputControl.RightIconCommand = new Command(PlusCommand.Execute);
         TMInputControl.LeftIconCommand = new Command(MinusCommand.Execute);
-        TMInputControl.SetBinding(TMInput.IsEnabledProperty, new Binding(nameof(IsEnabled), source: this));
-        TMInputControl.SetBinding(TMInput.IsReadOnlyProperty, new Binding(nameof(IsReadOnly), source: this));
     }
 
     #region Private methods
