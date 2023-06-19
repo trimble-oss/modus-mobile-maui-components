@@ -111,4 +111,10 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Trial\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Trial\" />
+	</ItemGroup>
 </Project>

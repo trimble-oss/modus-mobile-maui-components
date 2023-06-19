@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Controls.TMInput.InputTemplateResourceDictionary"
+                    xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
+  
+  <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+  <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+  <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+  <converters:AllTrueConverter x:Key="AllTrueConverter" />
+  <ControlTemplate x:Key="InputTemplate">
+    <Grid x:Name="tmInputContainer"
+        RowDefinitions="auto,auto,auto"
+        RowSpacing="0"
+        Padding="0"
+        BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+
+      <Label x:Name="inputLabel"
+            Grid.Row="0"
+            Padding="0,0,0,5"
+            Text="{Binding TitleText}"
+            VerticalOptions="Center"
+            IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+            HorizontalOptions="Start" />
+      <Border x:Name="inputBorder"
+              VerticalOptions="FillAndExpand"
+              Grid.Row="1">
+        <Border.StrokeShape>
+          <Rectangle RadiusX="4"
+                    RadiusY="4" />
+        </Border.StrokeShape>
+        <ContentPresenter VerticalOptions="FillAndExpand" />
+      </Border>
+      <HorizontalStackLayout x:Name="inputHelperLayout"
+                             Grid.Row="2"
+                             Spacing="5"
+                             Padding="0,5,0,0"
+                             IsVisible="{Binding HelperText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+        <Image x:Name="inputHelperIcon"
+               WidthRequest="20"
+               HeightRequest="20" />
+        <Label  x:Name="inputHelperLabel"
+                LineBreakMode="WordWrap"
+                Text="{Binding HelperText}"
+                VerticalTextAlignment="Center" />
+      </HorizontalStackLayout>
+    </Grid>
+  </ControlTemplate>
+</ResourceDictionary>
+

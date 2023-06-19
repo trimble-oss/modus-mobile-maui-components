@@ -33,7 +33,7 @@
         <Modus:TMInput  x:Name="modusInput"
                            Placeholder="Input"
                            IsEnabled="{Binding IsEnabled}"
-                           IsReadOnly="{Binding IsReadOnly}" />
+                           IsReadOnly="{Binding IsReadOnly}"/>
 
         <Modus:TMInput  x:Name="modusInputWithTitle"
                            TitleText="Text Input"
