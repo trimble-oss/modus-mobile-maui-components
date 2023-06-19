@@ -1,0 +1,33 @@
+<local:BaseInput xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
+             x:Class="Trimble.Modus.Components.MultiLineInput">
+
+  <local:BaseInput.MiddleContent>
+    <ContentView>
+      <ContentView.Content>
+        <local:BorderlessEditor
+               x:Name="editor"
+               Grid.Column="1"
+               Focused="InputBorderlessEntry_Focused"
+               Unfocused="InputBorderlessEntry_Unfocused"
+               Placeholder="{Binding Placeholder}"
+               Text="{Binding Text}"
+               IsReadOnly="{Binding IsReadOnly}"
+               Keyboard="{Binding Keyboard}"
+               TextColor="Black"
+               VerticalOptions="Start"
+               HorizontalOptions="FillAndExpand">
+          <local:BorderlessEditor.IsEnabled>
+            <MultiBinding Converter="{StaticResource AllTrueConverter}">
+              <Binding Path="IsEnabled" />
+              <Binding Path="IsReadOnly"
+                       Converter="{StaticResource InverseBoolConverter}" />
+            </MultiBinding>
+          </local:BorderlessEditor.IsEnabled>
+        </local:BorderlessEditor>
+      </ContentView.Content>
+    </ContentView>
+    
+  </local:BaseInput.MiddleContent>
+</local:BaseInput>

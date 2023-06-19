@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Controls.Button.CustomButton"
              x:Name="customButton"
-             xmlns:constants="clr-namespace:Trimble.Modus.Components.Contant"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              HorizontalOptions="Start">
   <ContentView.Resources>

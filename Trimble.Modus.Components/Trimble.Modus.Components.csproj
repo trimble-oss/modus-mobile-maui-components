@@ -20,9 +20,18 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Controls\Bord\**" />
+	  <EmbeddedResource Remove="Controls\Bord\**" />
+	  <MauiCss Remove="Controls\Bord\**" />
+	  <MauiXaml Remove="Controls\Bord\**" />
+	  <None Remove="Controls\Bord\**" />
+	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Images\radio_selected_icon.svg" />
 	  <None Remove="Images\radio_unselected_icon.svg" />
+	  <None Remove="Images\vector.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -50,6 +59,7 @@
 	  <MauiImage Include="Images\modus_close_icon.svg" />
 	  <MauiImage Include="Images\radio_selected_icon.svg" />
 	  <MauiImage Include="Images\radio_unselected_icon.svg" />
+	  <MauiImage Include="Images\vector.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,6 +77,15 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\CustomButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\BaseInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\Input.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\MultiLineInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">

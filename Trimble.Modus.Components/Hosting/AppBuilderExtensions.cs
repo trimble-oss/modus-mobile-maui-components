@@ -62,6 +62,8 @@ public static class AppBuilderExtensions
         {
             handlers.AddHandler(typeof(BorderlessEntry), typeof(EntryHandler));
 
+            handlers.AddHandler(typeof(BorderlessEditor), typeof(EditorHandler));
+
             handlers.AddHandler(typeof(Label), typeof(LabelHandler));
 
 #if ANDROID

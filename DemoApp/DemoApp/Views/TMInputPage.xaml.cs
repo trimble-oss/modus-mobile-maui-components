@@ -38,6 +38,28 @@ public partial class TMInputPage : ContentPage
             return Tuple.Create(false, "Invalid Email Address");
         }
     }
+    private Tuple<bool, string> InputValidate(object sender)
+    {
+        var input = sender as MultiLineInput;
+        string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+
+        // Create Regex object
+        Regex regex = new Regex(pattern);
+
+        // Match the input string against the pattern
+        Match match = regex.Match(input.Text);
+
+        // Return true if the input string matches the pattern, otherwise false
+        //return match.Success;
+        if (match.Success)
+        {
+            return Tuple.Create(true, "Valid Email Address");
+        }
+        else
+        {
+            return Tuple.Create(false, "Invalid Email Address");
+        }
+    }
 
     private void IsReadOnly_Toggled(object sender, ToggledEventArgs e)
     {
