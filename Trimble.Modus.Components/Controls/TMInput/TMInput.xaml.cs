@@ -423,7 +423,7 @@ public partial class TMInput : ContentView
         }
     }
 
-    private void InputBorderlessEntry_Focused(object sender, FocusEventArgs e)
+    internal void InputBorderlessEntryFocused(object sender, FocusEventArgs e)
     {
         if (sender is BorderlessEntry)
         {
@@ -461,7 +461,7 @@ public partial class TMInput : ContentView
         tmInput.inputBorder.StrokeThickness = 0;
         tmInput.inputBorder.Opacity = tmInput.inputLabel.Opacity = tmInput.inputHelperLayout.Opacity = 1;
     }
-    private void InputBorderlessEntry_Unfocused(object sender, FocusEventArgs e)
+    internal void InputBorderlessEntryUnfocused(object sender, FocusEventArgs e)
     {
         if (sender is BorderlessEntry)
         {
@@ -475,6 +475,23 @@ public partial class TMInput : ContentView
         {
             tmInput.UpdateBorderColors(tmInput);
         }
+    }
+
+    #endregion
+
+    #region Internal methods
+    internal void ToggleRightIconState(bool enabledState)
+    {
+        inputRightIcon.IsEnabled = enabledState;
+    }
+
+    internal void ToggleLeftIconState(bool enabledState)
+    {
+        inputLeftIcon.IsEnabled = enabledState;
+    }
+    internal void SetCenterTextAlignment()
+    {
+        inputBorderlessEntry.HorizontalTextAlignment = TextAlignment.Center;
     }
 
     #endregion

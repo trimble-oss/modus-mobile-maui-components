@@ -64,8 +64,8 @@
         </ImageButton>
         <controls:BorderlessEntry x:Name="inputBorderlessEntry"
                                   Grid.Column="1"
-                                  Focused="InputBorderlessEntry_Focused"
-                                  Unfocused="InputBorderlessEntry_Unfocused"
+                                  Focused="InputBorderlessEntryFocused"
+                                  Unfocused="InputBorderlessEntryUnfocused"
                                   Placeholder="{Binding Placeholder}"
                                   Text="{Binding Text}"
                                   IsPassword="{Binding IsPassword}"

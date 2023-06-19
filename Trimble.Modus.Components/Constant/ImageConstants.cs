@@ -21,5 +21,7 @@ namespace Trimble.Modus.Components.Constant
         public const string GreyInfoIcon = "grey_info_icon.png";
         public const string BlueInfoIcon = "blue_info_solid_icon.png";
         public const string BlueInfoOutlineIcon = "blue_info_outline_icon.png";
+        public const string MinusImage = "minus_icon.png";
+        public const string PlusImage = "add_icon.png";
     }
 }
