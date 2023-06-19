@@ -9,14 +9,39 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 
+    <PackageId>Trimble.Modus.Components</PackageId>
+    <Title>Trimbel Modus</Title>
+    <Authors>Trimble Inc</Authors>
+    <Company>Trimble Inc</Company>
+    <Description>The One Trimble Design System. The Modus design system is part of the evolving Trimble Operating System.</Description>
+    <PackageDescription>The One Trimble Design System. The Modus design system is part of the evolving Trimble Operating System.</PackageDescription>
+    <PackageTags>Trimble, Modus</PackageTags>
+    <RepositoryUrl>https://github.com/trimble-oss/modus-mobile-components</RepositoryUrl>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<Version>0.0.2-alpha</Version>
+
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<ReleaseVersion>0.0.1-alpha</ReleaseVersion>
+		<SynchReleaseVersion>false</SynchReleaseVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+
+	</PropertyGroup>
+		<ItemGroup>
+	<None Include="README.md">
+  <Pack>True</Pack>
+  <PackagePath>\</PackagePath>
+</None>
+    <None Include="LICENSE.md" Pack="true" PackagePath=""/>
+	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="Images\black_close_icon.png" />
 	  <EmbeddedResource Include="Images\blue_close_icon.png" />
@@ -55,5 +80,4 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
-
 </Project>

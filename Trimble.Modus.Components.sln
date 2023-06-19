@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trimble.Modus.Components", "Trimble.Modus.Components\Trimble.Modus.Components.csproj", "{0E3A5CB2-B54F-4029-9612-E17357E3CA79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trimble.Modus.Components", "Trimble.Modus.Components\Trimble.Modus.Components.csproj", "{0E3A5CB2-B54F-4029-9612-E17357E3CA79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp", "DemoApp\DemoApp\DemoApp.csproj", "{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp\DemoApp\DemoApp.csproj", "{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3EF226E-6E58-48AE-9399-A438CF3E5F47}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		description = The One Trimble Design System. The Modus design system is part of the evolving Trimble Operating System
 	EndGlobalSection
 EndGlobal
