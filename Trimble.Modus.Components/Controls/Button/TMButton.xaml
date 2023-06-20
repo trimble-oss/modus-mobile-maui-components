@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMButton"
-             x:Name="customButton"
+             x:Name="tmButton"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              HorizontalOptions="Start">
@@ -13,8 +13,8 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
-          HorizontalOptions="{Binding Source={x:Reference customButton}, Path=HorizontalOptions}"
-          BindingContext="{x:Reference customButton}"
+          HorizontalOptions="{Binding Source={x:Reference tmButton}, Path=HorizontalOptions}"
+          BindingContext="{x:Reference tmButton}"
           x:Name="buttonFrame">
     <Border.Triggers>
       <DataTrigger TargetType="Border"

@@ -136,90 +136,90 @@ public partial class TMButton : ContentView
     
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton customButton)
+        if (bindable is TMButton tmButton)
         {
-            SetPadding(customButton);
+            SetPadding(tmButton);
         }
     }
     private static void OnButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton customButton && !customButton.IsFloatingButton)
+        if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
         {
-            CheckButtonStyle(customButton);
+            CheckButtonStyle(tmButton);
         }
     }
 
     private static void OnIsDisabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton customButton && !customButton.IsFloatingButton)
+        if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
         {
             if ((bool)newValue)
             {
-                customButton.Opacity = 0.5;
-                customButton.GestureRecognizers.Clear();
+                tmButton.Opacity = 0.5;
+                tmButton.GestureRecognizers.Clear();
             }
             else
             {
-                CheckButtonStyle(customButton);
-                customButton.Opacity = 1;
-                customButton.GestureRecognizers.Add(customButton._tapGestureRecognizer);
+                CheckButtonStyle(tmButton);
+                tmButton.Opacity = 1;
+                tmButton.GestureRecognizers.Add(tmButton._tapGestureRecognizer);
             }
         }
     }
 
     private static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton customButton && !customButton.IsFloatingButton)
+        if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
         {
-            CheckButtonStyle(customButton);
+            CheckButtonStyle(tmButton);
         }
     }
 
-    private static void CheckButtonStyle(TMButton customButton)
+    private static void CheckButtonStyle(TMButton tmButton)
     {
-        switch (customButton.ButtonStyle)
+        switch (tmButton.ButtonStyle)
         {
             case Enums.ButtonStyle.BorderLess:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
             case Enums.ButtonStyle.Fill:
-                UpdateFillStyleColors(customButton);
+                UpdateFillStyleColors(tmButton);
                 break;
             case Enums.ButtonStyle.Outline:
-                UpdateOutlineStyleColors(customButton);
+                UpdateOutlineStyleColors(tmButton);
                 break;
             default:
                 break;
         }
     }
 
-    private static void SetPadding(TMButton customButton)
+    private static void SetPadding(TMButton tmButton)
     {
-        if (!customButton.IsFloatingButton)
+        if (!tmButton.IsFloatingButton)
         {
-            switch (customButton.Size)
+            switch (tmButton.Size)
             {
                 case Enums.Size.XSmall:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
-                    customButton.buttonStackLayout.Padding = new Thickness(16, 6);
-                    customButton.HeightRequest = 32;
+                    tmButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
+                    tmButton.buttonStackLayout.Padding = new Thickness(16, 6);
+                    tmButton.HeightRequest = 32;
                     break;
                 case Enums.Size.Small:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
-                    customButton.buttonStackLayout.Padding = new Thickness(16, 8);
-                    customButton.HeightRequest = 40;
+                    tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
+                    tmButton.buttonStackLayout.Padding = new Thickness(16, 8);
+                    tmButton.HeightRequest = 40;
                     break;
                 case Enums.Size.Default:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
-                    customButton.buttonStackLayout.Padding = new Thickness(16, 12);
-                    customButton.HeightRequest = 48;
+                    tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
+                    tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
+                    tmButton.HeightRequest = 48;
                     break;
                 case Enums.Size.Large:
-                    customButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
-                    customButton.buttonStackLayout.Padding = new Thickness(16, 12);
-                    customButton.HeightRequest = 56;
+                    tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
+                    tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
+                    tmButton.HeightRequest = 56;
                     break;
                 default:
                     break;
@@ -228,60 +228,60 @@ public partial class TMButton : ContentView
         }
         else
         {
-            if (customButton.Title != null)
+            if (tmButton.Title != null)
             {
-                customButton.buttonStackLayout.Padding = new Thickness(16, 0);
+                tmButton.buttonStackLayout.Padding = new Thickness(16, 0);
             }
             else
             {
-                customButton.buttonStackLayout.Padding = new Thickness(16);
+                tmButton.buttonStackLayout.Padding = new Thickness(16);
             }
         }
 
     }
 
-    private static void UpdateFillStyleColors(TMButton customButton)
+    private static void UpdateFillStyleColors(TMButton tmButton)
     {
-        switch (customButton.ButtonColor)
+        switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
 
                 break;
 
             case ButtonColor.Tertiary:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
 
             case ButtonColor.Danger:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             default:
-                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
         }
     }
 
-    private static void UpdateOutlineStyleColors(TMButton customButton)
+    private static void UpdateOutlineStyleColors(TMButton tmButton)
     {
-        customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-        switch (customButton.ButtonColor)
+        tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+        switch (tmButton.ButtonColor)
         {
             case ButtonColor.Primary:
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
             case ButtonColor.Secondary:
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
                 break;
             default:
                 break;
@@ -296,7 +296,7 @@ public partial class TMButton : ContentView
                 color = GetOnClickOutline(color);
                 break;
             case ButtonStyle.BorderLess:
-                color = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+                color = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                 break;
             case ButtonStyle.Fill:
                 color = GetOnClickFill();
@@ -313,9 +313,9 @@ public partial class TMButton : ContentView
         switch (ButtonColor)
         {
             case ButtonColor.Primary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
             case ButtonColor.Secondary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
             default:
                 return color;
         }
@@ -326,13 +326,13 @@ public partial class TMButton : ContentView
         switch (ButtonColor)
         {
             case ButtonColor.Secondary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButtonClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButtonClicked);
             case ButtonColor.Tertiary:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButtonClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButtonClicked);
             case ButtonColor.Danger:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRedClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRedClicked);
             default:
-                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
         }
     }
     #endregion
