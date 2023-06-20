@@ -128,29 +128,21 @@ public partial class BaseInput : ContentView
         BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(BaseInput), false, propertyChanged: OnReadOnlyPropertyChanged);
     public static readonly BindableProperty MiddleContentProperty =
       BindableProperty.Create(nameof(MiddleContent), typeof(ContentView), typeof(BaseInput), propertyChanged: OnMiddleContentPropertyChanged);
+    public static readonly BindableProperty setEditorIconProperty =
+       BindableProperty.Create(nameof(setEditorIcon), typeof(bool), typeof(BaseInput), false, propertyChanged: setEditorIconPropertyChanged);
 
-    private static void OnMiddleContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is BaseInput input)
-        {
-            input.MiddleContent = (ContentView)newValue;
-        }
-    }
     private new static readonly BindableProperty HeightProperty =
      BindableProperty.Create(nameof(Height), typeof(double), typeof(MultiLineInput), default(double), propertyChanged: OnHeightChanged);
-
-    private static void OnHeightChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is BaseInput input)
-        {
-            input.inputBorder.HeightRequest = (double)newValue;
-        }
-    }
 
     #endregion
 
     #region Public properties
 
+    internal bool setEditorIcon
+    {
+        get { return (bool)GetValue(setEditorIconProperty); }
+        set { SetValue(setEditorIconProperty, value); }
+    }
     internal new double Height
     {
         get { return (double)GetValue(HeightProperty); }
@@ -341,7 +333,7 @@ public partial class BaseInput : ContentView
 
     #region Constructor
 
-    public BaseInput()
+    internal BaseInput()
     {
         InitializeComponent();
         SetDefault(this);
@@ -373,6 +365,28 @@ public partial class BaseInput : ContentView
         if (bindable is BaseInput tmInput)
         {
             tmInput.UpdateBorderColors(tmInput);
+        }
+    }
+    private static void OnHeightChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput input)
+        {
+            input.inputBorder.HeightRequest = (double)newValue;
+        }
+    }
+    private static void setEditorIconPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput input)
+        {
+         //   input.inputRightIcon.VerticalOptions = LayoutOptions.End;
+        }
+    }
+
+    private static void OnMiddleContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput input)
+        {
+            input.MiddleContent = (ContentView)newValue;
         }
     }
 

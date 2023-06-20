@@ -35,7 +35,7 @@
       </Border.StrokeShape>
       <Grid ColumnDefinitions="auto,*,auto"
             ColumnSpacing="0"
-            RowSpacing="0" RowDefinitions="40">
+            RowSpacing="0">
         <Grid.Padding>
           <OnIdiom Default="5,0"
                    Phone="16,0" />
@@ -66,24 +66,27 @@
                    HorizontalOptions="Fill" >
     
         </ContentView>
-        <ImageButton x:Name="inputRightIcon"
+        <ContentView Grid.Column="2" BackgroundColor="Aquamarine" VerticalOptions="End"
+                     HorizontalOptions="End" Padding="0,0,0,16">
+          <ImageButton x:Name="inputRightIcon"
                      WidthRequest="20"
                      HeightRequest="20"
                      IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
                      Source="{Binding RightIconSource}"
                      Command="{Binding RightIconCommand}"
                      CommandParameter="{Binding RightIconCommandParameter}"
-                     VerticalOptions="CenterAndExpand"
-                     HorizontalOptions="CenterAndExpand"
-                     Grid.Column="2">
-          <ImageButton.IsEnabled>
-            <MultiBinding Converter="{StaticResource AllTrueConverter}">
-              <Binding Path="IsEnabled" />
-              <Binding Path="IsReadOnly"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     >
+            <ImageButton.IsEnabled>
+              <MultiBinding Converter="{StaticResource AllTrueConverter}">
+                <Binding Path="IsEnabled" />
+                <Binding Path="IsReadOnly"
                        Converter="{StaticResource InverseBoolConverter}" />
-            </MultiBinding>
-          </ImageButton.IsEnabled>
-        </ImageButton>
+              </MultiBinding>
+            </ImageButton.IsEnabled>
+          </ImageButton>
+        </ContentView>
       </Grid>
     </Border>
     <HorizontalStackLayout x:Name="inputHelperLayout"

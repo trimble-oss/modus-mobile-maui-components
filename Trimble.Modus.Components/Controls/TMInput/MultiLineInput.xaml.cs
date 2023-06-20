@@ -29,7 +29,8 @@ public partial class MultiLineInput : BaseInput
     public MultiLineInput()
     {
         InitializeComponent();
-        RightIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.vector.png");
+      //  RightIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.warning.png");
+        setEditorIcon = true;
         BindingContext = this;
 
     }

@@ -34,6 +34,7 @@
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
                           ContentHeight="100"
+                          RightIconSource="cv.png"
                           InputValidation="InputValidate"
                           Placeholder="Text Input" />
         <Modus:TMInput  x:Name="modusInput"
