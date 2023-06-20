@@ -1,3 +1,4 @@
+
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
@@ -6,10 +7,14 @@ using Trimble.Modus.Components.Constant;
 namespace Trimble.Modus.Components.Controls.Button;
 
 public partial class CustomButton : ContentView
+
 {
     #region Private Properties
 
     private readonly TapGestureRecognizer _tapGestureRecognizer;
+
+    private EventHandler _clicked;
+    private Color activeColor;
 
     #endregion
 
@@ -37,16 +42,27 @@ public partial class CustomButton : ContentView
        BindableProperty.Create(nameof(ButtonStyle), typeof(Enums.ButtonStyle), typeof(CustomButton), Enums.ButtonStyle.Fill, propertyChanged: OnButtonStyleChanged);
 
     public static readonly BindableProperty ButtonColorProperty =
-   BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(CustomButton), Enums.ButtonColor.Primary, propertyChanged: OnButtonColorChanged);
+       BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(CustomButton), Enums.ButtonColor.Primary, propertyChanged: OnButtonColorChanged);
 
     public static readonly BindableProperty IsFloatingButtonProperty =
         BindableProperty.Create(nameof(IsFloatingButton), typeof(bool), typeof(CustomButton), false);
 
     public static readonly BindableProperty IsDisabledProperty =
         BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(CustomButton), false, propertyChanged: OnIsDisabledChanged);
+
+    public static readonly BindableProperty ClickedEventProperty =
+            BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(CustomButton));
     #endregion
 
     #region Public Properties
+
+
+    public event EventHandler Clicked
+    {
+        add { _clicked += value; }
+        remove { _clicked -= value; }
+    }
+
     public bool IsFloatingButton
     {
         get { return (bool)GetValue(IsFloatingButtonProperty); }
@@ -112,20 +128,12 @@ public partial class CustomButton : ContentView
     public CustomButton()
     {
         InitializeComponent();
-
-        GestureRecognizers.Add(_tapGestureRecognizer = new TapGestureRecognizer() { NumberOfTapsRequired = 1 });
-        _tapGestureRecognizer.Tapped += OnTapped;
-
         SetPadding(this);
         CheckButtonStyle(this);
     }
 
     #region Private Methods
-
-    private void OnTapped(object sender, EventArgs e)
-    {
-        Command?.Execute(CommandParameter);
-    }
+    
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is CustomButton customButton)
@@ -172,9 +180,9 @@ public partial class CustomButton : ContentView
         switch (customButton.ButtonStyle)
         {
             case Enums.ButtonStyle.BorderLess:
-                customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
             case Enums.ButtonStyle.Fill:
                 UpdateFillStyleColors(customButton);
@@ -237,33 +245,34 @@ public partial class CustomButton : ContentView
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+
                 break;
 
             case ButtonColor.Tertiary:
-                customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
 
             case ButtonColor.Danger:
-                customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             default:
-                customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                customButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonFrame.Stroke = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                customButton.buttonLabel.TextColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
         }
     }
 
     private static void UpdateOutlineStyleColors(CustomButton customButton)
     {
-        customButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+        customButton.buttonFrame.BackgroundColor = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         switch (customButton.ButtonColor)
         {
             case ButtonColor.Primary:
@@ -278,5 +287,81 @@ public partial class CustomButton : ContentView
                 break;
         }
     }
+
+    private Color GetOnClickColor(Color color)
+    {
+        switch (ButtonStyle)
+        {
+            case ButtonStyle.Outline:
+                color = GetOnClickOutline(color);
+                break;
+            case ButtonStyle.BorderLess:
+                color = (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+                break;
+            case ButtonStyle.Fill:
+                color = GetOnClickFill();
+                break;
+            default:
+                break;
+        }
+
+        return color;
+    }
+
+    private Color GetOnClickOutline(Color color)
+    {
+        switch (ButtonColor)
+        {
+            case ButtonColor.Primary:
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+            case ButtonColor.Secondary:
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
+            default:
+                return color;
+        }
+    }
+
+    private Color GetOnClickFill()
+    {
+        switch (ButtonColor)
+        {
+            case ButtonColor.Secondary:
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButtonClicked);
+            case ButtonColor.Tertiary:
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButtonClicked);
+            case ButtonColor.Danger:
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRedClicked);
+            default:
+                return (Color)ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
+        }
+    }
+    #endregion
+    #region Public Methods
+
+    public void RaisePressed()
+    {
+        if (buttonFrame.BackgroundColor != null)
+        {
+            activeColor = buttonFrame.BackgroundColor;
+            buttonFrame.BackgroundColor = GetOnClickColor(buttonFrame.BackgroundColor);
+        }
+    }
+    public void RaiseReleased()
+    {
+        if (activeColor != null)
+        {
+            buttonFrame.BackgroundColor = activeColor;
+        }
+        Command?.Execute(CommandParameter);
+        _clicked?.Invoke(this, EventArgs.Empty);
+    }
+    public void RaiseCancel()
+    {
+        if (activeColor != null)
+        {
+            buttonFrame.BackgroundColor = activeColor;
+        }
+    }
+
     #endregion
 }

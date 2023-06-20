@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
+using Trimble.Modus.Components.Controls.Button;
 using Trimble.Modus.Components.Handlers;
 using Trimble.Modus.Components.Popup.Pages;
 
@@ -66,12 +67,15 @@ public static class AppBuilderExtensions
 
 #if ANDROID
             handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
+            handlers.AddHandler(typeof(CustomButton), typeof(TMButtonAndroidTouchHandler));
 #endif
 #if IOS
                 handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
+                handlers.AddHandler(typeof(CustomButton), typeof(TMButtoniOSTouchHandler));
 #endif
 #if WINDOWS
                 handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
+                handlers.AddHandler(typeof(CustomButton), typeof(TMButtonWindowsTouchHandler));
 #endif
         }
     }

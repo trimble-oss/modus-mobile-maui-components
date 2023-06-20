@@ -20,7 +20,7 @@
   <Color x:Key="TertiaryButtonClicked">#E0E1E9</Color>
   <Color x:Key="TrimbleBlueClicked">#217CBB</Color>
   <Color x:Key="BluePale">#DCEDF9</Color>
-  <Color x:Key="NeutralGrey">#E0E1E9</Color>
+  <Color x:Key="NeutralGray">#E0E1E9</Color>
   <Color x:Key="Green">#1E8A44</Color>
   <Color x:Key="Transparent">transparent</Color>
   <Color x:Key="CardPressed">#C9CACF</Color>
