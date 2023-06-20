@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Controls.Button;
 
 namespace Trimble.Modus.Components.Handlers
 {
-    public class TMButtonWindowsTouchHandler : VisualElementRenderer<CustomButton, Microsoft.UI.Xaml.FrameworkElement>
+    public class TMButtonWindowsTouchHandler : VisualElementRenderer<TMButton, Microsoft.UI.Xaml.FrameworkElement>
     {
         public TMButtonWindowsTouchHandler()
         {

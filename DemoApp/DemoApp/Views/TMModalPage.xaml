@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMModalPage"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:Button="clr-namespace:Trimble.Modus.Components.Controls.Button;assembly=Trimble.Modus.Components"
              Title="TMModalPage">
   <ScrollView>
     <VerticalStackLayout Spacing="5"
@@ -87,13 +88,14 @@
                        Grid.Row="4"
                        TitleText="Danger Button Title" />
       </Grid>
-
-      <Modus:TMButton Title="Show Modal"
+      <Button:TMButton Title="Show Modal"
                       Clicked="ShowModalClicked"
-                      VerticalOptions="Center"
-                      Margin="0,10"
-                      HorizontalOptions="Center" />
+                           Size="Default"
+                           HorizontalOptions="Center"
+                       />
     </VerticalStackLayout>
+
+
   </ScrollView>
 
 </ContentPage>

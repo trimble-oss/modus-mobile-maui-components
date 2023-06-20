@@ -62,6 +62,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\Button\TMButton.xaml.cs">
+	    <DependentUpon>TMButton.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
@@ -78,7 +81,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\Button\CustomButton.xaml">
+	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">

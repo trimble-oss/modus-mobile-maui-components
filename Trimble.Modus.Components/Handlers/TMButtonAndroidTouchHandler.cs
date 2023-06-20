@@ -6,7 +6,7 @@ using Microsoft.Maui.Controls.Handlers.Compatibility;
 
 namespace Trimble.Modus.Components.Handlers;
 
-public class TMButtonAndroidTouchHandler : VisualElementRenderer<CustomButton>
+public class TMButtonAndroidTouchHandler : VisualElementRenderer<TMButton>
 {
     public TMButtonAndroidTouchHandler(Context context) : base(context)
     {

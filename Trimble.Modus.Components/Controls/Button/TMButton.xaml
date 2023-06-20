@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Controls.Button.TMButton"
+             x:Name="customButton"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Contant"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             HorizontalOptions="Start">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Border Padding="0"
+          HorizontalOptions="{Binding Source={x:Reference customButton}, Path=HorizontalOptions}"
+          BindingContext="{x:Reference customButton}"
+          x:Name="buttonFrame">
+    <Border.Triggers>
+      <DataTrigger TargetType="Border"
+                   Binding="{Binding IsFloatingButton}"
+                   Value="false">
+        <Setter Property="StrokeShape">
+          <Rectangle RadiusX="4"
+                     RadiusY="4" />
+        </Setter>
+      </DataTrigger>
+      <DataTrigger TargetType="Border"
+                   Binding="{Binding IsFloatingButton}"
+                   Value="true">
+        <Setter Property="StrokeShape">
+          <Rectangle RadiusX="50"
+                     RadiusY="50" />
+        </Setter>
+        <Setter Property="Shadow">
+          <Shadow Radius="15"
+                  Opacity="1" />
+        </Setter>
+        <Setter Property="ZIndex"
+                Value="1" />
+      </DataTrigger>
+    </Border.Triggers>
+    <HorizontalStackLayout x:Name="buttonStackLayout"
+                           Spacing="8"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="Center">
+      <Image Source="{Binding LeftIconSource}"
+             IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+             HeightRequest="16"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             WidthRequest="16" />
+      <Label x:Name="buttonLabel"
+             Text="{Binding Title}"
+             IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+             HeightRequest="48"
+             HorizontalTextAlignment="Center"
+             VerticalTextAlignment="Center" />
+      <Image Source="{Binding RightIconSource}"
+             IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+             HeightRequest="16"
+             WidthRequest="16"
+             VerticalOptions="Center"
+             HorizontalOptions="Center" />
+    </HorizontalStackLayout>
+  </Border>
+</ContentView>

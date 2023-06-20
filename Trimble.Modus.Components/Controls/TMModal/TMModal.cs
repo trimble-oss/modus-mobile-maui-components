@@ -1,6 +1,7 @@
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls;
+using Trimble.Modus.Components.Controls.Button;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Animations;
@@ -149,8 +150,6 @@ namespace Trimble.Modus.Components
                     foreach (TMButton button in modal._buttonContainer.Children)
                     {
                         button.HorizontalOptions = LayoutOptions.FillAndExpand;
-                        button.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
-                        button._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
                     }
                 }
                 else
@@ -161,8 +160,6 @@ namespace Trimble.Modus.Components
                     foreach (TMButton button in modal._buttonContainer.Children)
                     {
                         button.HorizontalOptions = LayoutOptions.Start;
-                        button.frame.HorizontalOptions = LayoutOptions.Start;
-                        button._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
                     }
                 }
 
@@ -463,18 +460,15 @@ namespace Trimble.Modus.Components
                     ButtonColor = ButtonColor.Primary
                 };
                 _primaryButton.Clicked += OnPrimaryButtonClicked;
-                _primaryButton._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
                 if (FullWidthButton)
                 {
                     _primaryButton.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    _primaryButton.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
                     _buttonContainer.Children.Add(_primaryButton);
                 }
                 else
                 {
                     _primaryButton.HorizontalOptions = LayoutOptions.Start;
-                    _primaryButton.frame.HorizontalOptions = LayoutOptions.Start;
                     _buttonContainer.Children.Insert(0, _primaryButton);
                 }
             }
@@ -510,19 +504,15 @@ namespace Trimble.Modus.Components
                     Size = Enums.Size.Small
                 };
 
-                _secondaryButton._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-
                 _secondaryButton.Clicked += OnSecondaryButtonClicked;
                 if (FullWidthButton)
                 {
                     _secondaryButton.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    _secondaryButton.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
                     _buttonContainer.Children.Add(_secondaryButton);
                 }
                 else
                 {
                     _secondaryButton.HorizontalOptions = LayoutOptions.Start;
-                    _secondaryButton.frame.HorizontalOptions = LayoutOptions.Start;
                     _buttonContainer.Children.Insert(0, _secondaryButton);
                 }
             }
@@ -559,17 +549,15 @@ namespace Trimble.Modus.Components
                 };
 
                 _tertiaryButton.Clicked += OnTertiaryButtonClicked;
-                _tertiaryButton._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                
                 if (FullWidthButton)
                 {
                     _tertiaryButton.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    _tertiaryButton.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
                     _buttonContainer.Children.Add(_tertiaryButton);
                 }
                 else
                 {
                     _tertiaryButton.HorizontalOptions = LayoutOptions.Start;
-                    _tertiaryButton.frame.HorizontalOptions = LayoutOptions.Start;
                     _buttonContainer.Children.Insert(0, _tertiaryButton);
                 }
             }
@@ -604,19 +592,16 @@ namespace Trimble.Modus.Components
                     HorizontalOptions = LayoutOptions.End,
                     Size = Enums.Size.Small
                 };
-                _dangerButton._titleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
                 _dangerButton.Clicked += OnDestructiveButtonClicked;
 
                 if (FullWidthButton)
                 {
                     _dangerButton.HorizontalOptions = LayoutOptions.FillAndExpand;
-                    _dangerButton.frame.HorizontalOptions = LayoutOptions.FillAndExpand;
                     _buttonContainer.Children.Insert(0, _dangerButton);
                 }
                 else
                 {
                     _dangerButton.HorizontalOptions = LayoutOptions.Start;
-                    _dangerButton.frame.HorizontalOptions = LayoutOptions.Start;
                     _buttonContainer.Children.Add(_dangerButton);
                 }
                 _dangerButtonAdded = true;

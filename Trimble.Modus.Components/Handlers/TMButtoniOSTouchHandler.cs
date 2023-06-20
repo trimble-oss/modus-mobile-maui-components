@@ -6,7 +6,7 @@ using UIKit;
 
 namespace Trimble.Modus.Components.Handlers;
 
-public class TMButtoniOSTouchHandler : VisualElementRenderer<CustomButton>
+public class TMButtoniOSTouchHandler : VisualElementRenderer<TMButton>
 {
     public TMButtoniOSTouchHandler()
     {    
