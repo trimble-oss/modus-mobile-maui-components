@@ -177,7 +177,6 @@ public partial class TMNumberInput : ContentView
         if (bindable is TMNumberInput numberInput)
         {
             numberInput.TMInputControl.Text = newValue.ToString();
-            numberInput.ValueChangeCommand?.Execute(numberInput.ValueChangeCommandParameter);
         }
     }
 
@@ -195,6 +194,7 @@ public partial class TMNumberInput : ContentView
             if(validOldValue)
             {
                 ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, double.NaN));
+                ValueChangeCommand?.Execute(ValueChangeCommandParameter);
             }
             return;
         }
@@ -219,6 +219,7 @@ public partial class TMNumberInput : ContentView
                 }
                 if (oldNumber != number) {
                     ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, number));
+                    ValueChangeCommand?.Execute(ValueChangeCommandParameter);
                 }
             }
         }
@@ -279,6 +280,7 @@ public partial class TMNumberInput : ContentView
     /// <param name="newValue"></param>
     private void UpdateValue(double oldValue, double newValue){
         ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldValue, newValue));
+        ValueChangeCommand?.Execute(ValueChangeCommandParameter);
         TMInputControl.Text = newValue.ToString();
     }
 
