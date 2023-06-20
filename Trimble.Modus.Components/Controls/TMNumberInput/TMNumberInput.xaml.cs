@@ -14,13 +14,34 @@ public partial class TMNumberInput : ContentView
     public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(double), typeof(TMNumberInput), double.MinValue, propertyChanged: OnMinValuePropertyChanged);
     public static readonly BindableProperty StepProperty = BindableProperty.Create(nameof(Step), typeof(double), typeof(TMNumberInput), 1d);
     public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(double), typeof(TMNumberInput), double.NaN, propertyChanged: OnValueChanged);
-    public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMNumberInput), true);
-    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(TMNumberInput), false);
-
+    public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMNumberInput), true, propertyChanged: OnEnabledOrReadOnlyPropertyChanged);
+    public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(TMNumberInput), false, propertyChanged: OnEnabledOrReadOnlyPropertyChanged);
+    public static readonly BindableProperty ValueChangeCommandProperty = BindableProperty.Create(nameof(ValueChangeCommand), typeof(ICommand), typeof(TMNumberInput), null);
+    public static readonly BindableProperty ValueChangeCommandParameterProperty = BindableProperty.Create(nameof(ValueChangeCommandParameter), typeof(object), typeof(TMNumberInput), null, BindingMode.OneWay, null);
     #endregion
 
     #region Public properties
+    /// <summary>
+    /// Event raised when the value is changed
+    /// </summary>
     public event EventHandler<ValueChangedEventArgs> ValueChanged;
+    /// <summary>
+    /// Gets or sets the value change command
+    /// </summary>
+    public ICommand ValueChangeCommand
+    {
+        get => (ICommand)GetValue(ValueChangeCommandProperty);
+        set => SetValue(ValueChangeCommandProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the value change command parameter
+    /// </summary>
+    public object ValueChangeCommandParameter
+    {
+        get => GetValue(ValueChangeCommandParameterProperty);
+        set => SetValue(ValueChangeCommandParameterProperty, value);
+    }
 
     /// <summary>
     /// Gets or Sets Max value for the input
@@ -73,6 +94,8 @@ public partial class TMNumberInput : ContentView
     }
 
     #endregion
+
+    #region Constructor
     /// <summary>
     /// Initializes a new instance of the <see cref="TMNumberInput"/> class.
     /// </summary>
@@ -85,7 +108,22 @@ public partial class TMNumberInput : ContentView
         TMInputControl.LeftIconCommand = new Command(MinusCommand.Execute);
     }
 
+    #endregion
     #region Private methods
+    /// <summary>
+    /// Triggered when IsEnabled is changed
+    /// </summary>
+    /// <param name="bindable"></param>
+    /// <param name="oldValue"></param>
+    /// <param name="newValue"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    private static void OnEnabledOrReadOnlyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if(bindable is TMNumberInput numberInput)
+        {
+            numberInput.ToggleLeftAndRightIcons(numberInput.TMInputControl, numberInput.IsEnabled && !numberInput.IsReadOnly);
+        }
+    }
     /// <summary>
     /// Called when the <see cref="MinValue"/> property is changed.
     /// </summary>
@@ -106,7 +144,7 @@ public partial class TMNumberInput : ContentView
         {
             numberInput.Value = min;
         }
-        numberInput.TMInputControl.ToggleRightIconState(numberInput.Value > min);
+        numberInput.ToggleLeftAndRightIcons(numberInput.TMInputControl, numberInput.IsEnabled && !numberInput.IsReadOnly);
     }
     /// <summary>
     /// Called when the <see cref="MaxValue"/> property is changed.
@@ -128,7 +166,7 @@ public partial class TMNumberInput : ContentView
         {
             numberInput.Value = max;
         }
-        numberInput.TMInputControl.ToggleRightIconState(numberInput.Value < max);
+        numberInput.ToggleLeftAndRightIcons(numberInput.TMInputControl, numberInput.IsEnabled && !numberInput.IsReadOnly);
     }
 
     /// <summary>
@@ -139,6 +177,7 @@ public partial class TMNumberInput : ContentView
         if (bindable is TMNumberInput numberInput)
         {
             numberInput.TMInputControl.Text = newValue.ToString();
+            numberInput.ValueChangeCommand?.Execute(numberInput.ValueChangeCommandParameter);
         }
     }
 
@@ -149,35 +188,45 @@ public partial class TMNumberInput : ContentView
     {
         string newText = e.NewTextValue;
         string oldText = e.OldTextValue;
+        bool validOldValue = double.TryParse(oldText, out double oldNumber);
         TMInput tMInput = sender as TMInput;
-        tMInput.TextChanged -= OnTextChanged;
         if (string.IsNullOrEmpty(newText) || newText == "-" || newText == "." || newText == "-." || newText == "," || newText == "-,")
         {
-            tMInput.TextChanged += OnTextChanged;
+            if(validOldValue)
+            {
+                ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, double.NaN));
+            }
             return;
         }
-
-        // This is a hack since the TextChanged event is fired again when we set the text
+        tMInput.TextChanged -= OnTextChanged;
+        // FIXME This is a hack since the TextChanged event is fired again when we set the text        
         await Task.Delay(10);
         if (double.TryParse(newText, out double number))
         {
             if (number > MaxValue)
             {
-                tMInput.Text = MaxValue.ToString();
-                ValueChanged?.Invoke(this, new ValueChangedEventArgs(number, MaxValue));
+                UpdateValue(number , MaxValue);
             }
             else if (number < MinValue)
             {
-                tMInput.Text = MinValue.ToString();
-                ValueChanged?.Invoke(this, new ValueChangedEventArgs(number, MinValue));
+                UpdateValue(number , MinValue);
+            }
+            else
+            {
+                if(!validOldValue)
+                {
+                    oldNumber = double.NaN;
+                }
+                if (oldNumber != number) {
+                    ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, number));
+                }
             }
         }
         else
         {
             tMInput.Text = oldText;
         }
-        tMInput.ToggleRightIconState(IsEnabled && double.Parse(tMInput.Text) < MaxValue);
-        tMInput.ToggleLeftIconState(IsEnabled && double.Parse(tMInput.Text) > MinValue);
+        ToggleLeftAndRightIcons(tMInput, IsEnabled && !IsReadOnly);
         tMInput.TextChanged += OnTextChanged;
     }
 
@@ -195,8 +244,7 @@ public partial class TMNumberInput : ContentView
                     if (number > MinValue)
                     {
                         number -= Step;
-                        ValueChanged?.Invoke(this, new ValueChangedEventArgs(number + Step, number));
-                        TMInputControl.Text = number.ToString();
+                        UpdateValue(number + Step, number);
                     }
                 }
             }));
@@ -217,15 +265,33 @@ public partial class TMNumberInput : ContentView
                     if (number < MaxValue)
                     {
                         number += Step;
-                        ValueChanged?.Invoke(this, new ValueChangedEventArgs(number - Step, number));
-                        TMInputControl.Text = number.ToString();
+                        UpdateValue(number - Step, number);
                     }
                 }
             }));
         }
     }
 
+    /// <summary>
+    /// Invoke ValueChanged call and update text
+    /// </summary>
+    /// <param name="oldValue"></param>
+    /// <param name="newValue"></param>
+    private void UpdateValue(double oldValue, double newValue){
+        ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldValue, newValue));
+        TMInputControl.Text = newValue.ToString();
+    }
 
+    /// <summary>
+    /// Toggle left and right icons states
+    /// </summary>
+    /// <param name="tMInput"></param>
+    /// <param name="shouldEnable"></param>
+    private void ToggleLeftAndRightIcons(TMInput tMInput, bool shouldEnable)
+    {
+        tMInput.ToggleRightIconState(shouldEnable && Value < MaxValue);
+        tMInput.ToggleLeftIconState(shouldEnable && Value > MinValue);
+    }
     #endregion
 
 }

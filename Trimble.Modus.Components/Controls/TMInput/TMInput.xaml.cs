@@ -480,15 +480,30 @@ public partial class TMInput : ContentView
     #endregion
 
     #region Internal methods
+    /// <summary>
+    /// Method to Toggle the IsEnabled state of the right icon
+    /// Used in <see cref="TMNumberInput"/>
+    /// </summary>
     internal void ToggleRightIconState(bool enabledState)
     {
         inputRightIcon.IsEnabled = enabledState;
+        inputRightIcon.Opacity = enabledState ? 1 : disabledOpacity;
     }
 
+    /// <summary>
+    /// Method to Toggle the IsEnabled state of the left icon
+    /// Used in <see cref="TMNumberInput"/>
+    /// </summary>
     internal void ToggleLeftIconState(bool enabledState)
     {
         inputLeftIcon.IsEnabled = enabledState;
+        inputLeftIcon.Opacity = enabledState ? 1 : disabledOpacity;
     }
+
+    /// <summary>
+    /// Used to center align texts in Number Input
+    /// Used in <see cref="TMNumberInput"/>
+    /// </summary>
     internal void SetCenterTextAlignment()
     {
         inputBorderlessEntry.HorizontalTextAlignment = TextAlignment.Center;

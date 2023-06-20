@@ -11,12 +11,13 @@
                          Step="1"
                          Value="0"
                          IsEnabled="{Binding IsToggled, Source={x:Reference IsEnabledProperty}}"
-                         IsReadOnly="{Binding IsToggled, Source={x:Reference IsReadOnlyProperty}}"/>
+                         IsReadOnly="{Binding IsToggled, Source={x:Reference IsReadOnlyProperty}}" />
     <HorizontalStackLayout>
       <modus:TMInput x:Name="MinValueInput"
                      TitleText="Minimum Value"
                      Placeholder="Enter Minimum Value"
-                     Keyboard="Numeric" />
+                     Keyboard="Numeric"
+                     Text="0"/>
       <modus:TMButton x:Name="SetMinValue"
                       Title="Set Min Value"
                       Clicked="SetMinValueClicked"
@@ -27,7 +28,8 @@
       <modus:TMInput x:Name="MaxValueInput"
                      TitleText="Maximum Value"
                      Placeholder="Enter Maximum Value"
-                     Keyboard="Numeric" />
+                     Keyboard="Numeric"
+                     Text="100"/>
       <modus:TMButton x:Name="SetMaxValue"
                       Title="Set Max Value"
                       Clicked="SetMaxValueClicked"
@@ -38,7 +40,8 @@
       <modus:TMInput x:Name="ValueInput"
                      TitleText="Set Value"
                      Placeholder="Enter Value"
-                     Keyboard="Numeric" />
+                     Keyboard="Numeric"
+                     Text="0"/>
       <modus:TMButton x:Name="SetValue"
                       Title="Set Value"
                       Clicked="SetValueClicked"
@@ -49,7 +52,8 @@
       <modus:TMInput x:Name="StepValueInput"
                      TitleText="Step Value"
                      Placeholder="Enter Step Value"
-                     Keyboard="Numeric" />
+                     Keyboard="Numeric"
+                     Text="1"/>
       <modus:TMButton x:Name="SetStepValue"
                       Title="Set Step Value"
                       Clicked="SetStepValueClicked"
