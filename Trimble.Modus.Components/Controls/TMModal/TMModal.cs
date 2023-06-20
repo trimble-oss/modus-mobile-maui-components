@@ -1,7 +1,7 @@
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls;
-using Trimble.Modus.Components.Controls.Button;
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Animations;

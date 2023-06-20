@@ -4,7 +4,6 @@
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components.Controls.TMCard;assembly=Trimble.Modus.Components"
              xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             xmlns:Button="clr-namespace:Trimble.Modus.Components.Controls.Button;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.Views.TMCardPage"
              Title="TMCardPage">
   <ScrollView>
@@ -93,7 +92,7 @@
           <StackLayout BackgroundColor="Transparent"
                        HorizontalOptions="End"
                        Padding="0,10,0,10">
-            <Button:TMButton Title="Button" Size="Default"></Button:TMButton>
+            <local:TMButton Title="Button" Size="Default"></local:TMButton>
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
@@ -126,7 +125,7 @@
           <!-- Footer -->
           <StackLayout BackgroundColor="Transparent"
                        Padding="0,10,0,10">
-            <Button:TMButton Title="Button"
+            <local:TMButton Title="Button"
                     HorizontalOptions="FillAndExpand" />
           </StackLayout>
         </StackLayout>
@@ -175,11 +174,11 @@
           <StackLayout BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="15">
-            <Button:TMButton Title="Button"
+            <local:TMButton Title="Button"
                             ButtonStyle="Outline"  Size="Default">
-            </Button:TMButton>
-            <Button:TMButton Title="Button"
-                            ButtonStyle="Fill"  Size="Default"></Button:TMButton>
+            </local:TMButton>
+            <local:TMButton Title="Button"
+                            ButtonStyle="Fill"  Size="Default"></local:TMButton>
 
           </StackLayout>
         </StackLayout>

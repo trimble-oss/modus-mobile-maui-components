@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trimble.Modus.Components.Controls.Button.TMButton"
+             x:Class="Trimble.Modus.Components.TMButton"
              x:Name="customButton"
-             xmlns:constants="clr-namespace:Trimble.Modus.Components.Contant"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              HorizontalOptions="Start">
   <ContentView.Resources>

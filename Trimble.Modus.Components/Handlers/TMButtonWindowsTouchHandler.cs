@@ -1,7 +1,7 @@
 ﻿#if WINDOWS
 using Microsoft.Maui.Controls.Handlers.Compatibility;
 using Microsoft.UI.Xaml.Input;
-using Trimble.Modus.Components.Controls.Button;
+using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Handlers
 {

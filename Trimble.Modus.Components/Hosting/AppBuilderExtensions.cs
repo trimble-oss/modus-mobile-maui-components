@@ -1,5 +1,5 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
-using Trimble.Modus.Components.Controls.Button;
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Handlers;
 using Trimble.Modus.Components.Popup.Pages;
 

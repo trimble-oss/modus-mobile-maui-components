@@ -1,5 +1,5 @@
 ﻿#if ANDROID
-using Trimble.Modus.Components.Controls.Button;
+using Trimble.Modus.Components;
 using Android.Content;
 using Android.Views;
 using Microsoft.Maui.Controls.Handlers.Compatibility;

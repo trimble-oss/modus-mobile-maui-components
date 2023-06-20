@@ -4,7 +4,7 @@ using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Constant;
 
-namespace Trimble.Modus.Components.Controls.Button;
+namespace Trimble.Modus.Components;
 
 public partial class TMButton : ContentView
 
