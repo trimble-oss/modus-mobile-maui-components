@@ -31,7 +31,14 @@ public partial class TMNumberInputPage : ContentPage
     {
         try
         {
-            NumberInputSample.MinValue = double.Parse(MinValueInput.Text);
+            if (string.IsNullOrEmpty(MinValueInput.Text))
+            {
+                DisplayAlert("Error", "Value cannot be empty", "OK");
+            }
+            else
+            {
+                NumberInputSample.MinValue = double.Parse(MinValueInput.Text);
+            }
         }
         catch (Exception ex)
         {
@@ -43,7 +50,14 @@ public partial class TMNumberInputPage : ContentPage
     {
         try
         {
-            NumberInputSample.MaxValue = double.Parse(MaxValueInput.Text);
+            if (string.IsNullOrEmpty(MaxValueInput.Text))
+            {
+                DisplayAlert("Error", "Value cannot be empty", "OK");
+            }
+            else
+            {
+                NumberInputSample.MaxValue = double.Parse(MaxValueInput.Text);
+            }
         }
         catch (Exception ex)
         {
@@ -55,7 +69,14 @@ public partial class TMNumberInputPage : ContentPage
     {
         try
         {
-            NumberInputSample.Value = double.Parse(ValueInput.Text);
+            if (string.IsNullOrEmpty(ValueInput.Text))
+            {
+                DisplayAlert("Error", "Value cannot be empty", "OK");
+            }
+            else
+            {
+                NumberInputSample.Value = double.Parse(ValueInput.Text);
+            }
         }
         catch (Exception ex)
         {
@@ -66,7 +87,14 @@ public partial class TMNumberInputPage : ContentPage
     {
         try
         {
-            NumberInputSample.Step = double.Parse(StepValueInput.Text);
+            if (string.IsNullOrEmpty(StepValueInput.Text))
+            {
+                DisplayAlert("Error", "Value cannot be empty", "OK");
+            }
+            else
+            {
+                NumberInputSample.Step = double.Parse(StepValueInput.Text);
+            }
         }
         catch (Exception ex)
         {
