@@ -11,7 +11,6 @@ public partial class TMButton : ContentView
 {
     #region Private Properties
 
-    private readonly TapGestureRecognizer _tapGestureRecognizer;
 
     private EventHandler _clicked;
     private Color activeColor;
@@ -36,7 +35,7 @@ public partial class TMButton : ContentView
         BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TMButton), null);
 
     public static readonly BindableProperty SizeProperty =
-        BindableProperty.Create(nameof(Size), typeof(Enums.Size), typeof(TMButton), propertyChanged: OnSizeChanged);
+        BindableProperty.Create(nameof(Size), typeof(Enums.Size), typeof(TMButton), defaultValue: Enums.Size.Empty, propertyChanged: OnSizeChanged);
 
     public static readonly BindableProperty ButtonStyleProperty =
        BindableProperty.Create(nameof(ButtonStyle), typeof(Enums.ButtonStyle), typeof(TMButton), Enums.ButtonStyle.Fill, propertyChanged: OnButtonStyleChanged);
@@ -128,6 +127,7 @@ public partial class TMButton : ContentView
     public TMButton()
     {
         InitializeComponent();
+        Size = Enums.Size.Default;
         SetPadding(this);
         CheckButtonStyle(this);
     }
@@ -162,7 +162,6 @@ public partial class TMButton : ContentView
             {
                 CheckButtonStyle(tmButton);
                 tmButton.Opacity = 1;
-                tmButton.GestureRecognizers.Add(tmButton._tapGestureRecognizer);
             }
         }
     }

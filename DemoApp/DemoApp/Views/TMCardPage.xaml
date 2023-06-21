@@ -92,7 +92,7 @@
           <StackLayout BackgroundColor="Transparent"
                        HorizontalOptions="End"
                        Padding="0,10,0,10">
-            <local:TMButton Title="Button" Size="Default"></local:TMButton>
+            <local:TMButton Title="Button"></local:TMButton>
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
@@ -175,10 +175,10 @@
                        Orientation="Horizontal"
                        Spacing="15">
             <local:TMButton Title="Button"
-                            ButtonStyle="Outline"  Size="Default">
+                            ButtonStyle="Outline">
             </local:TMButton>
             <local:TMButton Title="Button"
-                            ButtonStyle="Fill"  Size="Default"></local:TMButton>
+                            ButtonStyle="Fill"></local:TMButton>
 
           </StackLayout>
         </StackLayout>
