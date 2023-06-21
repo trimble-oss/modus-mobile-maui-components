@@ -18,7 +18,8 @@ namespace DemoApp
                 "Toast",
                 "CheckBox",
                 "Card",
-                "RadioButton"
+                "RadioButton",
+                "NumberInput"
             };
             BindingContext = this;
         }
@@ -48,6 +49,9 @@ namespace DemoApp
                         break;
                     case "RadioButton":
                         Navigation.PushAsync(new TMRadioButtonPage());
+                        break;
+                    case "NumberInput":
+                        Navigation.PushAsync(new TMNumberInputPage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

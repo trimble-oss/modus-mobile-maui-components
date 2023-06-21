@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -21,12 +21,14 @@
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Images\add_icon.svg" />
 	  <None Remove="Images\black_close_icon.svg" />
 	  <None Remove="Images\blue_close_icon.svg" />
 	  <None Remove="Images\blue_info_outline_icon.svg" />
 	  <None Remove="Images\blue_info_solid_icon.svg" />
 	  <None Remove="Images\error_icon_outline.svg" />
 	  <None Remove="Images\grey_info_icon.svg" />
+	  <None Remove="Images\minus_icon.svg" />
 	  <None Remove="Images\radio_selected_icon.svg" />
 	  <None Remove="Images\radio_unselected_icon.svg" />
 	  <None Remove="Images\solid_help_icon.svg" />
@@ -38,6 +40,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>
 
@@ -68,9 +72,6 @@
 	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
 	    <DependentUpon>TMInput.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
-	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-	  </Compile>
 	  <Compile Update="Themes\Colours.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>
@@ -82,6 +83,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">

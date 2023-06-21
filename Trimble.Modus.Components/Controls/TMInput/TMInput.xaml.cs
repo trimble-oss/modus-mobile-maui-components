@@ -423,7 +423,7 @@ public partial class TMInput : ContentView
         }
     }
 
-    private void InputBorderlessEntry_Focused(object sender, FocusEventArgs e)
+    internal void InputBorderlessEntryFocused(object sender, FocusEventArgs e)
     {
         if (sender is BorderlessEntry)
         {
@@ -461,7 +461,7 @@ public partial class TMInput : ContentView
         tmInput.inputBorder.StrokeThickness = 0;
         tmInput.inputBorder.Opacity = tmInput.inputLabel.Opacity = tmInput.inputHelperLayout.Opacity = 1;
     }
-    private void InputBorderlessEntry_Unfocused(object sender, FocusEventArgs e)
+    internal void InputBorderlessEntryUnfocused(object sender, FocusEventArgs e)
     {
         if (sender is BorderlessEntry)
         {
@@ -475,6 +475,38 @@ public partial class TMInput : ContentView
         {
             tmInput.UpdateBorderColors(tmInput);
         }
+    }
+
+    #endregion
+
+    #region Internal methods
+    /// <summary>
+    /// Method to Toggle the IsEnabled state of the right icon
+    /// Used in <see cref="TMNumberInput"/>
+    /// </summary>
+    internal void ToggleRightIconState(bool enabledState)
+    {
+        inputRightIcon.IsEnabled = enabledState;
+        inputRightIcon.Opacity = enabledState ? 1 : disabledOpacity;
+    }
+
+    /// <summary>
+    /// Method to Toggle the IsEnabled state of the left icon
+    /// Used in <see cref="TMNumberInput"/>
+    /// </summary>
+    internal void ToggleLeftIconState(bool enabledState)
+    {
+        inputLeftIcon.IsEnabled = enabledState;
+        inputLeftIcon.Opacity = enabledState ? 1 : disabledOpacity;
+    }
+
+    /// <summary>
+    /// Used to center align texts in Number Input
+    /// Used in <see cref="TMNumberInput"/>
+    /// </summary>
+    internal void SetCenterTextAlignment()
+    {
+        inputBorderlessEntry.HorizontalTextAlignment = TextAlignment.Center;
     }
 
     #endregion
