@@ -53,11 +53,25 @@ public partial class TMNumberInputPage : ContentPage
 
     private void SetValueClicked(object sender, EventArgs e)
     {
-        NumberInputSample.Value = double.Parse(ValueInput.Text);
+        try
+        {
+            NumberInputSample.Value = double.Parse(ValueInput.Text);
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+        }
     }
     private void SetStepValueClicked(object sender, EventArgs e)
     {
-        NumberInputSample.Step = double.Parse(StepValueInput.Text);
+        try
+        {
+            NumberInputSample.Step = double.Parse(StepValueInput.Text);
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+        }
     }
 
 }
