@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:BaseInput xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                ControlTemplate="{StaticResource InputTemplate}"
+                xmlns:base="clr-namespace:Trimble.Modus.Components.Controls.BaseInput"
+                xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+                x:Class="Trimble.Modus.Components.MultiTextInput"
+                xmlns:controls="clr-namespace:Trimble.Modus.Components"
+                x:Name="singleInput">
+
+  <base:BaseInput.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="InputTemplateResourceDictionary.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+      <converters:AllTrueConverter x:Key="AllTrueConverter" />
+    </ResourceDictionary>
+  </base:BaseInput.Resources>
+  <controls:BorderlessEditor x:Name="inputBorderlessEditor"
+                              Focused="InputBorderlessEditor_Focused"
+                              Unfocused="InputBorderlessEditor_Unfocused"
+                              Placeholder="{Binding Placeholder}"
+                              Text="{Binding Text}"
+                              IsReadOnly="{Binding IsReadOnly}"
+                              MaxLength="{Binding MaxLength}"
+                              Keyboard="{Binding Keyboard}"
+                              VerticalOptions="Center"
+                              HorizontalOptions="FillAndExpand">
+
+    <controls:BorderlessEditor.IsEnabled>
+      <MultiBinding Converter="{StaticResource AllTrueConverter}">
+        <Binding Path="IsEnabled" />
+        <Binding Path="IsReadOnly"
+                  Converter="{StaticResource InverseBoolConverter}" />
+      </MultiBinding>
+    </controls:BorderlessEditor.IsEnabled>
+  </controls:BorderlessEditor>
+</base:BaseInput>

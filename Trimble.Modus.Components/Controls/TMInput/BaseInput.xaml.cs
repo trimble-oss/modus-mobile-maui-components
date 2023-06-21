@@ -357,7 +357,7 @@ public partial class BaseInput : ContentView
     #endregion
 
     #region Protected Methods
-    internal virtual View GetCoreContent()
+    internal virtual InputView GetCoreContent()
     {
         return null;
     }

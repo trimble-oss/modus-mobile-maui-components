@@ -134,7 +134,7 @@ public partial class TMInput : BaseInput
         InputLabel = (Label)GetTemplateChild("inputLabel");
     }
 
-    internal override View GetCoreContent()
+    internal override InputView GetCoreContent()
     {
         return this.FindByName<BorderlessEntry>("inputBorderlessEntry"); ;
     }

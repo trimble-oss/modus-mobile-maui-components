@@ -79,8 +79,15 @@
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}"
                           RightIconSource="{x:Static constants:ImageConstants.ContactIcon}" />
+                <Modus:MultiTextInput  TitleText="Both Icon"
+                          HelperText="HelperText"
+                          Placeholder="Text Input"
+                          InputValidation="TMInputValidation"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                         />
 
-      </StackLayout>
+            </StackLayout>
     </VerticalStackLayout>
   </ScrollView>
 </ContentPage>
