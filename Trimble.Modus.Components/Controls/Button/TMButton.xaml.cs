@@ -35,7 +35,7 @@ public partial class TMButton : ContentView
         BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TMButton), null);
 
     public static readonly BindableProperty SizeProperty =
-        BindableProperty.Create(nameof(Size), typeof(Enums.Size), typeof(TMButton), defaultValue: Enums.Size.Empty, propertyChanged: OnSizeChanged);
+        BindableProperty.Create(nameof(Size), typeof(Enums.Size), typeof(TMButton), defaultValue: Enums.Size.Default, propertyChanged: OnSizeChanged);
 
     public static readonly BindableProperty ButtonStyleProperty =
        BindableProperty.Create(nameof(ButtonStyle), typeof(Enums.ButtonStyle), typeof(TMButton), Enums.ButtonStyle.Fill, propertyChanged: OnButtonStyleChanged);
@@ -127,7 +127,6 @@ public partial class TMButton : ContentView
     public TMButton()
     {
         InitializeComponent();
-        Size = Enums.Size.Default;
         SetPadding(this);
         CheckButtonStyle(this);
     }
