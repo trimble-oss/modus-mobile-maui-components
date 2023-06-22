@@ -14,6 +14,7 @@ namespace DemoApp
             {
                 "Button",
                 "Input",
+                "MultiLineInput",
                 "Modal",
                 "Toast",
                 "CheckBox",
@@ -33,6 +34,9 @@ namespace DemoApp
                         break;
                     case "Input":
                         Navigation.PushAsync(new TMInputPage());
+                        break;
+                    case "MultiLineInput":
+                        Navigation.PushAsync(new MultiLineInputPage());
                         break;
                     case "Modal":
                         Navigation.PushAsync(new TMModalPage());

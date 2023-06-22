@@ -43,6 +43,7 @@
 		<None Remove="Images\toast_danger_icon.svg" />
 		<None Remove="Images\toast_dark_icon.svg" />
 		<None Remove="Images\valid_icon.svg" />
+		<None Remove="Images\vector.svg" />
 		<None Remove="Images\warning_icon.svg" />
 	</ItemGroup>
 
@@ -67,12 +68,16 @@
 		<MauiImage Include="Images\success_icon_outline.svg" />
 		<MauiImage Include="Images\toast_dark_icon.svg" />
 		<MauiImage Include="Images\valid_icon.svg" />
+		<MauiImage Include="Images\vector.svg" />
 		<MauiImage Include="Images\warning_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Update="Controls\TMCard\TMCard.xaml.cs">
 			<DependentUpon>asas.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\TMInput\MultiLineInput.xaml.cs">
+		  <DependentUpon>MultiLineInput.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Controls\TMInput\TMInput.xaml.cs">
 		  <DependentUpon>TMInput.xaml</DependentUpon>
@@ -90,7 +95,7 @@
 		<MauiXaml Update="Controls\Button\CustomButton.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Controls\TMInput\MultiTextInput.xaml">
+		<MauiXaml Update="Controls\TMInput\MultiLineInput.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Styles\Colors.xaml">

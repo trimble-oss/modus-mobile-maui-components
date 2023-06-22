@@ -25,12 +25,13 @@ namespace Trimble.Modus.Components.Handlers
                 editorHandler.PlatformView.Layer.BorderWidth = 0;
                 editorHandler.PlatformView.Layer.BorderColor = UIColor.Clear.CGColor;
 #elif ANDROID
+                editorHandler.PlatformView.SetPadding(0, 0, 0, 0);
                 editorHandler.PlatformView.Background = null;
                 editorHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
 #elif WINDOWS
-        
-            editorHandler.PlatformView.BorderBrush = null;
-            editorHandler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+                editorHandler.PlatformView.Padding = new Microsoft.UI.Xaml.Thickness(0);
+                editorHandler.PlatformView.BorderBrush = null;
+                editorHandler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
 #endif
             }
         }
