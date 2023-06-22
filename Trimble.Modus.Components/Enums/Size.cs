@@ -2,7 +2,6 @@
 
 public enum Size
 {
-    Empty,
     XSmall,
     Small,
     Default,

@@ -1,11 +1,11 @@
 ﻿#if WINDOWS
 using Microsoft.Maui.Controls.Handlers.Compatibility;
 using Microsoft.UI.Xaml.Input;
-using Trimble.Modus.Components.Controls.Button;
+using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Handlers
 {
-    public class TMButtonWindowsTouchHandler : VisualElementRenderer<CustomButton, Microsoft.UI.Xaml.FrameworkElement>
+    public class TMButtonWindowsTouchHandler : VisualElementRenderer<TMButton, Microsoft.UI.Xaml.FrameworkElement>
     {
         public TMButtonWindowsTouchHandler()
         {

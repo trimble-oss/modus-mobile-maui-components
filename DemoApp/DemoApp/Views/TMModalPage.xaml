@@ -87,13 +87,14 @@
                        Grid.Row="4"
                        TitleText="Danger Button Title" />
       </Grid>
-
       <Modus:TMButton Title="Show Modal"
                       Clicked="ShowModalClicked"
-                      VerticalOptions="Center"
-                      Margin="0,10"
-                      HorizontalOptions="Center" />
+                           Size="Default"
+                           HorizontalOptions="Center"
+                       />
     </VerticalStackLayout>
+
+
   </ScrollView>
 
 </ContentPage>
