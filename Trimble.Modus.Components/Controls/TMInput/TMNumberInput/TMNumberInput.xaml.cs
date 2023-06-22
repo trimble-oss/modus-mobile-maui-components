@@ -64,7 +64,7 @@ public partial class TMNumberInput : ContentView
     /// </summary>
     public double Value
     {
-        get { return string.IsNullOrEmpty(TMInputControl.Text) ? double.NaN : double.Parse(TMInputControl.Text); }
+        get { return (double)GetValue(ValueProperty); }
         set { SetValue(ValueProperty, value); }
     }
     /// <summary>
@@ -189,44 +189,44 @@ public partial class TMNumberInput : ContentView
         string oldText = e.OldTextValue;
         bool validOldValue = double.TryParse(oldText, out double oldNumber);
         TMInput tMInput = sender as TMInput;
-        if (string.IsNullOrEmpty(newText) || newText == "-" || newText == "." || newText == "-." || newText == "," || newText == "-,")
+
+        if (string.IsNullOrEmpty(newText) || !double.TryParse(newText, out double number))
         {
-            if(validOldValue)
+            if (validOldValue)
             {
                 ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, double.NaN));
                 ValueChangeCommand?.Execute(ValueChangeCommandParameter);
             }
             return;
         }
+
         tMInput.TextChanged -= OnTextChanged;
-        // FIXME This is a hack since the TextChanged event is fired again when we set the text        
+
+        // FIXME: This is a hack to delay execution to avoid re-triggering the TextChanged event
         await Task.Delay(10);
-        if (double.TryParse(newText, out double number))
+
+        if (number >= MaxValue)
         {
-            if (number > MaxValue)
-            {
-                UpdateValue(number , MaxValue);
-            }
-            else if (number < MinValue)
-            {
-                UpdateValue(number , MinValue);
-            }
-            else
-            {
-                if(!validOldValue)
-                {
-                    oldNumber = double.NaN;
-                }
-                if (oldNumber != number) {
-                    ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, number));
-                    ValueChangeCommand?.Execute(ValueChangeCommandParameter);
-                }
-            }
+            UpdateValue(number, MaxValue);
+        }
+        else if (number <= MinValue)
+        {
+            UpdateValue(number, MinValue);
         }
         else
         {
-            tMInput.Text = oldText;
+            if (!validOldValue)
+            {
+                oldNumber = double.NaN;
+            }
+            if (oldNumber != number)
+            {
+                ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, number));
+                ValueChangeCommand?.Execute(ValueChangeCommandParameter);
+                Value = number;
+            }
         }
+
         ToggleLeftAndRightIcons(tMInput, IsEnabled && !IsReadOnly);
         tMInput.TextChanged += OnTextChanged;
     }
@@ -282,6 +282,7 @@ public partial class TMNumberInput : ContentView
         ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldValue, newValue));
         ValueChangeCommand?.Execute(ValueChangeCommandParameter);
         TMInputControl.Text = newValue.ToString();
+        Value = newValue;
     }
 
     /// <summary>
