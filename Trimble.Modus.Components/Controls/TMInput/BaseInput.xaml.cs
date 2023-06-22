@@ -10,12 +10,12 @@ public partial class BaseInput : ContentView
 {
     #region Private Properties
 
-    private const double disabledOpacity = 0.4;
+    internal const double disabledOpacity = 0.4;
     protected Border InputBorder { get; set; }
     protected Label HelperLabel { get; set; }
     protected Image HelperIcon { get; set; }
-    protected HorizontalStackLayout HelperLayout{ get; set; }
-    protected Label InputLabel{ get; set; }
+    protected HorizontalStackLayout HelperLayout { get; set; }
+    protected Label InputLabel { get; set; }
 
     private ValidationResponse _validationResponse;
 
@@ -208,7 +208,7 @@ public partial class BaseInput : ContentView
 
     protected virtual void RetrieveAndProcessChildElement()
     {
-      
+
     }
 
     #region Private Methods
@@ -357,11 +357,10 @@ public partial class BaseInput : ContentView
     #endregion
 
     #region Protected Methods
-    internal virtual InputView GetCoreContent()
+    internal virtual View GetCoreContent()
     {
         return null;
     }
 
     #endregion
 }
-

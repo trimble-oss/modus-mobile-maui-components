@@ -1,12 +1,12 @@
 ﻿#if IOS
 using Foundation;
 using Microsoft.Maui.Controls.Handlers.Compatibility;
-using Trimble.Modus.Components.Controls.Button;
+using Trimble.Modus.Components;
 using UIKit;
 
 namespace Trimble.Modus.Components.Handlers;
 
-public class TMButtoniOSTouchHandler : VisualElementRenderer<CustomButton>
+public class TMButtoniOSTouchHandler : VisualElementRenderer<TMButton>
 {
     public TMButtoniOSTouchHandler()
     {    

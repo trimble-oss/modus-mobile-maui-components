@@ -1,4 +1,3 @@
-﻿
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
@@ -30,25 +29,28 @@
 		<CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Remove="Images\black_close_icon.svg" />
-		<None Remove="Images\blue_close_icon.svg" />
-		<None Remove="Images\blue_info_outline_icon.svg" />
-		<None Remove="Images\blue_info_solid_icon.svg" />
-		<None Remove="Images\error_icon_outline.svg" />
-		<None Remove="Images\grey_info_icon.svg" />
-		<None Remove="Images\radio_selected_icon.svg" />
-		<None Remove="Images\radio_unselected_icon.svg" />
-		<None Remove="Images\solid_help_icon.svg" />
-		<None Remove="Images\success_icon_outline.svg" />
-		<None Remove="Images\toast_danger_icon.svg" />
-		<None Remove="Images\toast_dark_icon.svg" />
-		<None Remove="Images\valid_icon.svg" />
-		<None Remove="Images\vector.svg" />
-		<None Remove="Images\warning_icon.svg" />
+	  <None Remove="Images\add_icon.svg" />
+	  <None Remove="Images\black_close_icon.svg" />
+	  <None Remove="Images\blue_close_icon.svg" />
+	  <None Remove="Images\blue_info_outline_icon.svg" />
+	  <None Remove="Images\blue_info_solid_icon.svg" />
+	  <None Remove="Images\error_icon_outline.svg" />
+	  <None Remove="Images\grey_info_icon.svg" />
+	  <None Remove="Images\minus_icon.svg" />
+	  <None Remove="Images\radio_selected_icon.svg" />
+	  <None Remove="Images\radio_unselected_icon.svg" />
+	  <None Remove="Images\solid_help_icon.svg" />
+	  <None Remove="Images\success_icon_outline.svg" />
+	  <None Remove="Images\toast_danger_icon.svg" />
+	  <None Remove="Images\toast_dark_icon.svg" />
+	  <None Remove="Images\valid_icon.svg" />
+	  <None Remove="Images\warning_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiImage Include="Images\toast_danger_icon.svg" />
+	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\minus_icon.svg" />
+	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,38 +75,41 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Controls\TMCard\TMCard.xaml.cs">
-			<DependentUpon>asas.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Controls\TMInput\MultiLineInput.xaml.cs">
-		  <DependentUpon>MultiLineInput.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Controls\TMInput\TMInput.xaml.cs">
-		  <DependentUpon>TMInput.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
-			<ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-		</Compile>
-		<Compile Update="Themes\Colours.xaml.cs">
-			<SubType>Code</SubType>
-			<DependentUpon>%(Filename)</DependentUpon>
-		</Compile>
+	  <Compile Update="Controls\Button\TMButton.xaml.cs">
+	    <DependentUpon>TMButton.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
+	    <DependentUpon>asas.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
+	    <DependentUpon>TMInput.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	  <Compile Update="Themes\Colours.xaml.cs">
+	    <SubType>Code</SubType>
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Update="Controls\Button\CustomButton.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Controls\TMInput\MultiLineInput.xaml">
-		  <Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Styles\Colors.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Themes\Colours.xaml">
-			<SubType>Designer</SubType>
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
+	  <MauiXaml Update="Controls\Button\TMButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Styles\Colors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Themes\Colours.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             xmlns:controls="clr-namespace:Trimble.Modus.Components.Controls.Button;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.TMButtonPage"
              Title="Button">
 
@@ -15,7 +14,7 @@
       <Label Text="Floating Buttons"></Label>
       <StackLayout Orientation="Vertical"
                    Spacing="10">
-        <controls:CustomButton x:Name="floatingTextWithLeftIconButton"
+        <Modus:TMButton x:Name="floatingTextWithLeftIconButton"
                                Title="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
                                IsFloatingButton="True"
@@ -26,7 +25,7 @@
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
 
-        <controls:CustomButton x:Name="floatingTextWithRightIconButton"
+        <Modus:TMButton x:Name="floatingTextWithRightIconButton"
                                Title="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
                                IsFloatingButton="True"
@@ -36,7 +35,7 @@
                                RightIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
-        <controls:CustomButton x:Name="floatingIconButton"
+        <Modus:TMButton x:Name="floatingIconButton"
                                IsFloatingButton="True"
                                ButtonColor="Primary"
                                IsDisabled="{Binding IsDisabled}"
@@ -45,7 +44,7 @@
                                LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
-        <controls:CustomButton x:Name="floatingButtonWithBothIcons"
+        <Modus:TMButton x:Name="floatingButtonWithBothIcons"
                                IsFloatingButton="True"
                                ButtonColor="Primary"
                                IsDisabled="{Binding IsDisabled}"
@@ -59,7 +58,7 @@
       <Label Text="Buttons with Images" />
       <StackLayout Orientation="Vertical"
                    Spacing="10">
-        <controls:CustomButton x:Name="primaryleftIconButton"
+        <Modus:TMButton x:Name="primaryleftIconButton"
                                Title="Primary"
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Primary"
@@ -70,7 +69,7 @@
                                Size="{Binding SelectedFontSize}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                CommandParameter="Button5" />
-        <controls:CustomButton x:Name="secondaryBothIconButton"
+        <Modus:TMButton x:Name="secondaryBothIconButton"
                                Title="Secondary"
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Secondary"
@@ -82,7 +81,7 @@
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
         <StackLayout Orientation="Horizontal">
-          <controls:CustomButton x:Name="tertiaryLeftIconButton"
+          <Modus:TMButton x:Name="tertiaryLeftIconButton"
                                  Title="Tertiary"
                                  HorizontalOptions="{Binding FullWidthAlignment}"
                                  ButtonColor="Tertiary"
@@ -93,7 +92,7 @@
                                  RightIconSource="{Binding RightIconSource}"
                                  Command="{Binding MyCommand}"
                                  CommandParameter="Button5" />
-          <controls:CustomButton x:Name="dangerRightIconButton"
+          <Modus:TMButton x:Name="dangerRightIconButton"
                                  Title="Danger"
                                  HorizontalOptions="{Binding FullWidthAlignment}"
                                  LeftIconSource="{Binding LeftIconSource}"
