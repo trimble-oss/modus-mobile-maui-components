@@ -209,17 +209,16 @@ public partial class TMButton : ContentView
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 8);
                     tmButton.HeightRequest = 40;
                     break;
-                case Enums.Size.Default:
-                    tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
-                    tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
-                    tmButton.HeightRequest = 48;
-                    break;
                 case Enums.Size.Large:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 56;
                     break;
+                case Enums.Size.Default:
                 default:
+                    tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
+                    tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
+                    tmButton.HeightRequest = 48;
                     break;
 
             }
