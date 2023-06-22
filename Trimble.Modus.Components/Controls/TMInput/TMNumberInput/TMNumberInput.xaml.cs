@@ -205,26 +205,18 @@ public partial class TMNumberInput : ContentView
         // FIXME: This is a hack to delay execution to avoid re-triggering the TextChanged event
         await Task.Delay(10);
 
-        if (number >= MaxValue)
+        if (!validOldValue)
         {
-            UpdateValue(number, MaxValue);
+            oldNumber = double.NaN;
         }
-        else if (number <= MinValue)
+
+        double clampedValue = Math.Clamp(number, MinValue, MaxValue);
+
+        if (oldNumber != clampedValue)
         {
-            UpdateValue(number, MinValue);
-        }
-        else
-        {
-            if (!validOldValue)
-            {
-                oldNumber = double.NaN;
-            }
-            if (oldNumber != number)
-            {
-                ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, number));
-                ValueChangeCommand?.Execute(ValueChangeCommandParameter);
-                Value = number;
-            }
+            ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, clampedValue));
+            ValueChangeCommand?.Execute(ValueChangeCommandParameter);
+            Value = clampedValue;
         }
 
         ToggleLeftAndRightIcons(tMInput, IsEnabled && !IsReadOnly);
