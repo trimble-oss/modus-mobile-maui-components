@@ -65,6 +65,8 @@ public static class AppBuilderExtensions
 
             handlers.AddHandler(typeof(Label), typeof(LabelHandler));
 
+            handlers.AddHandler(typeof(TMSpinner), typeof(SpinnerHandler));
+
 #if ANDROID
             handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
             handlers.AddHandler(typeof(TMButton), typeof(TMButtonAndroidTouchHandler));

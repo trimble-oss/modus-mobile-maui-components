@@ -1,5 +1,6 @@
 ﻿using DemoApp.Views;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 
 namespace DemoApp
@@ -19,7 +20,8 @@ namespace DemoApp
                 "CheckBox",
                 "Card",
                 "RadioButton",
-                "NumberInput"
+                "NumberInput",
+                "Spinner"
             };
             BindingContext = this;
         }
@@ -53,6 +55,9 @@ namespace DemoApp
                     case "NumberInput":
                         Navigation.PushAsync(new TMNumberInputPage());
                         break;
+                    case "Spinner":
+                        Navigation.PushAsync(new TMSpinnerPage());
+                        break; 
                     default:
                         Console.WriteLine("Default Case");
                         break;
