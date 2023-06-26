@@ -3,35 +3,79 @@ using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
+using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
 {
     public class TMSpinner : SKCanvasView
     {
-
+        #region Private Properties
         private SpinnerType _spinnerType;
+        private Color _spinnerColor;
         private float _startAngle = 0f;
+        private int minWidth = 42, minHeight = 42, animateTimerSeconds = 10;
         private float _sweepAngle = 180f;
         private float _rotationAngle = 0f;
         private Timer _animationTimer;
+        #endregion
+        #region Binding Properties
+        public static readonly BindableProperty SpinnerTypeProperty =
+            BindableProperty.Create(nameof(SpinnerType), typeof(SpinnerType), typeof(TMSpinner), defaultValue: SpinnerType.InDeterminate, propertyChanged: OnSpinnerChanged);
 
+        public static readonly BindableProperty SpinnerColorProperty =
+            BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Blue, propertyChanged: OnSpinnerColorChanged);
+        #endregion
+        #region Public Properties
+        public SpinnerType SpinnerType
+        {
+            get => (SpinnerType)GetValue(SpinnerTypeProperty);
+            set => SetValue(SpinnerTypeProperty, value);
+        }
+        public SpinnerColor SpinnerColor
+        {
+            get => (SpinnerColor)GetValue(SpinnerColorProperty);
+            set => SetValue(SpinnerColorProperty, value);
+        }
+        #endregion
         public TMSpinner()
         {
-            WidthRequest = 100;
-            HeightRequest = 100;
+            WidthRequest = minWidth;
+            HeightRequest = minHeight;
             IgnorePixelScaling = false;
-            _spinnerType = SpinnerType.Determinate;
             StartAnimation();
         }
+        #region Protected Methods
+        protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
+        {
+            base.OnPaintSurface(e);
 
+            DrawCircle(e);
+        }
+        #endregion
+        #region Private Methods
+        private static void OnSpinnerColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is TMSpinner tmSpinner)
+            {
+                tmSpinner._spinnerColor = ((SpinnerColor)newValue == SpinnerColor.White) ? ResourcesDictionary.ColorsDictionary(ColorsConstants.White)
+                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+            }
+        }
+        private static void OnSpinnerChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is TMSpinner tmSpinner)
+            {
+                tmSpinner._spinnerType = (SpinnerType)newValue;
+            }
+        }
         private void StartAnimation()
         {
-            _animationTimer = new Timer(UpdateAnimation, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(20));
+            _animationTimer = new Timer(UpdateAnimation, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(animateTimerSeconds));
         }
 
         private void UpdateAnimation(object state)
         {
-            if (_spinnerType == SpinnerType.Indeterminate)
+            if (_spinnerType == SpinnerType.InDeterminate)
             {
                 _rotationAngle += 5f;
             }
@@ -45,32 +89,27 @@ namespace Trimble.Modus.Components
                     _startAngle = 0f;
                 }
             }
-
             Device.BeginInvokeOnMainThread(() =>
             {
                 InvalidateSurface();
             });
         }
-
-
-        protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
-        {
-            base.OnPaintSurface(e);
-
-            DrawCircle(e);
-        }
-
         private void DrawCircle(SKPaintSurfaceEventArgs e)
         {
             SKImageInfo info = e.Info;
             SKSurface surface = e.Surface;
             SKCanvas canvas = surface.Canvas;
-
             canvas.Clear();
 
-            float diameter = Math.Min(info.Width, info.Height) - 200;
-            float centerX = info.Width / 2;
-            float centerY = info.Height / 2;
+            float height = Math.Max(info.Height, minHeight);
+            float width = Math.Max(info.Width, minWidth);
+            if (height < minHeight || width < minWidth)
+            {
+                Console.WriteLine("Height or Width < 42");
+            }
+            float diameter = Math.Min(width, height) - 15;
+            float centerX = width / 2;
+            float centerY = height / 2;
             float radius = diameter / 2;
 
             SKRect rect = new SKRect(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
@@ -78,12 +117,13 @@ namespace Trimble.Modus.Components
             var arcPaint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
-                Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue).ToSKColor(),
+                Color = _spinnerColor.ToSKColor(),
                 StrokeWidth = 15
             };
 
-            if (_spinnerType == SpinnerType.Indeterminate)
+            if (_spinnerType == SpinnerType.InDeterminate)
             {
+                _sweepAngle = 270;
                 canvas.Save();
                 canvas.RotateDegrees(_rotationAngle, centerX, centerY);
                 canvas.DrawArc(rect, _startAngle, _sweepAngle, false, arcPaint);
@@ -92,11 +132,12 @@ namespace Trimble.Modus.Components
             }
             else if (_spinnerType == SpinnerType.Determinate)
             {
-                float startAngle = 0f;
-                float progress = 1f; 
+                float startAngle = 270f;
+                float progress = 1f;
                 float endAngle = startAngle + (_sweepAngle * progress);
-                canvas.DrawArc(rect, 270, endAngle - startAngle, false, arcPaint);
+                canvas.DrawArc(rect, startAngle, endAngle - startAngle, false, arcPaint);
             }
         }
+        #endregion
     }
 }

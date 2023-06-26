@@ -4,8 +4,28 @@
              x:Class="DemoApp.Views.TMSpinnerPage"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="TMSpinnerPage">
-    <VerticalStackLayout Padding="10">
-    <modus:TMSpinner>
-    </modus:TMSpinner>
+  <VerticalStackLayout BackgroundColor="Tan" Spacing="50" Padding="10">
+    <Label Text="Determinate Spinner"></Label>
+    <modus:TMSpinner
+      SpinnerType="Determinate"
+      SpinnerColor="{Binding SpinnerColor}"
+      />
+    <Label Text="InDeterminate Spinner"></Label>
+    <modus:TMSpinner
+      SpinnerType="InDeterminate"
+      SpinnerColor="{Binding SpinnerColor}"
+      />
+    <modus:TMRadioButtonGroup x:Name="RadioGroup"
+                              SelectedIndex="0"
+                              Orientation="Horizontal"
+                              GroupTitle="Spinner Color"
+                              HorizontalOptions="Center"
+                              SelectedRadioButtonChanged="SelectedRadioButtonChanged"
+                              ItemsSource="{Binding RadioButtons}">
+      <modus:TMRadioButton Text="White" Value="White" />
+      <modus:TMRadioButton Text="Blue" Value="Blue" />
+    </modus:TMRadioButtonGroup>
+
+
   </VerticalStackLayout>
 </ContentPage>
