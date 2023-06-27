@@ -22,8 +22,7 @@ namespace Trimble.Modus.Components.Handlers
             {
 
 #if IOS || MACCATALYST
-                editorHandler.PlatformView.Layer.BorderWidth = 0;
-                editorHandler.PlatformView.Layer.BorderColor = UIColor.Clear.CGColor;
+                editorHandler.PlatformView.Layer.BackgroundColor = null;
 #elif ANDROID
                 editorHandler.PlatformView.SetPadding(0, 0, 0, 0);
                 editorHandler.PlatformView.Background = null;
