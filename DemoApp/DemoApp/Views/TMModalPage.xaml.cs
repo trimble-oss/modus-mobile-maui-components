@@ -1,5 +1,7 @@
 using DemoApp.Constant;
 using Trimble.Modus.Components;
+using Trimble.Modus.Components.Controls.Toast;
+using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views;
 
@@ -52,9 +54,9 @@ public partial class TMModalPage : ContentPage
         }
         catch (Exception ex)
         {
-            TMModal errorModal = new("Error", ex.Message);
-            errorModal.AddPrimaryAction("OK");
-            errorModal.Show(false);
+            TMToast tMToast = new("Error", ex.Message);
+            tMToast.theme = ToastTheme.Danger;
+            tMToast.Show();
         }
     }
 }
