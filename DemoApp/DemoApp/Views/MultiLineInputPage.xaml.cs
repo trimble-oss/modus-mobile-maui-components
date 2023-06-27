@@ -20,10 +20,10 @@ public partial class MultiLineInputPage : ContentPage
     {
         var input = sender as MultiLineInput;
 
-        // Returns true if characters >100
-        if (input.Text.Length >= 100)
+        // Returns true if characters >10
+        if (input.Text.Length >= 10)
         {
-            return Tuple.Create(true, "100 or more characters");
+            return Tuple.Create(true, "10 or more characters");
         }
         else
         {

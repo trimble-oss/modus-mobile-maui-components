@@ -52,7 +52,7 @@
                            Placeholder="Text Input" />
 
         <Modus:MultiLineInput TitleText="Success/Error MultiLine Input"
-                          HelperText="Enter more or equal to 100 characters"
+                          HelperText="Enter more or equal to 10 characters"
                           Placeholder="Text Input"
                           AutoSize="{Binding IsAutoSize}"
                           InputValidation="TMMultiLineInputValidation"

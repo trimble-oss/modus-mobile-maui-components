@@ -1,15 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components.Controls.TMInput;assembly=Trimble.Modus.Components"
              Title="Controls Page"
-             x:Class="DemoApp.MainPage"
-             xmlns:constants="clr-namespace:DemoApp.Constant">
-  <!--<VerticalStackLayout Spacing="10">
-        <Modus:TMInput IsReadOnly="False" Placeholder="Placeholder" HelperText="Helper" TitleText="Title" LeftIconSource="{x:Static constants:ImageConstants.PasswordIcon}" />
-
-    <Modus:MultiLineInput />
-  </VerticalStackLayout>-->
+             x:Class="DemoApp.MainPage">
   <ListView ItemsSource="{Binding ControlNames}"
             ItemTapped="ItemTapped">
     <ListView.ItemTemplate>
@@ -22,5 +15,4 @@
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
-
 </ContentPage>
