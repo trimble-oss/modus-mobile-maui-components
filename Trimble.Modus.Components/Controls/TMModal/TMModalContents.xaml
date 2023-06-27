@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:ClassModifier="internal"
+                 x:Class="Trimble.Modus.Components.Modal.TMModalContents"
+                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+                 xmlns:popup="clr-namespace:Trimble.Modus.Components.Popup.Pages"
+                 xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+                 xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+                 Title="TMModalContents"
+                 BackgroundColor="{x:StaticResource ModalGraySemiTransparent}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <color:Colors />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <!-- Note: Using this parent container to create shadow effect for the modal since we are unable to add shadow to the modal/ModalContainer directly.
+             Change the background color of the parent container to change the color of the shadow.
+             Change the padding of the parent container to change the size of the shadow -->
+  <Border x:Name="ParentContainer"
+          StrokeThickness="0"
+          Padding="3"
+          BackgroundColor="{x:StaticResource ModalShadowColor}"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          StrokeShape="RoundRectangle 5">
+    <Border x:Name="ModalContainer"
+            Padding="16"
+            VerticalOptions="Center"
+            HorizontalOptions="Fill"
+            StrokeShape="RoundRectangle 4"
+            Stroke="{x:StaticResource Black}"
+            StrokeThickness="0"
+            BackgroundColor="White">
+      <Border.Shadow>
+        <Shadow Brush="{x:StaticResource Black}"
+                Offset="0,0"
+                Opacity="0.2"
+                Radius="8" />
+      </Border.Shadow>
+      <Grid RowSpacing="16">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackLayout  Grid.Column="0"
+                      Grid.Row="0"
+                      Orientation="Horizontal">
+          <Image x:Name="IconImage"
+               Source="{Binding TitleIcon}"
+               IsVisible="{Binding TitleIcon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+               VerticalOptions="Center"
+               HeightRequest="26"
+               WidthRequest="26"
+               Margin="0,0,8,0"/>
+          <Label x:Name="TitleLabel"
+               Text="{Binding Title}"
+               IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+               VerticalOptions="Center"
+               FontFamily="OpenSans-Semibold"
+               FontSize="16"
+               TextColor="{x:StaticResource Black}"
+               Padding="0,0,8,0" />
+        </StackLayout>
+        
+        <Image Source="{x:Static constants:ImageConstants.CloseButtonImage}"
+               Grid.Column="2"
+               Grid.Row="0"
+               VerticalOptions="Center"
+               HeightRequest="16"
+               WidthRequest="16"
+               Margin="2"
+               BackgroundColor="Transparent"
+               HorizontalOptions="End">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="CloseModal" />
+          </Image.GestureRecognizers>
+        </Image>
+        <StackLayout x:Name="ModalBodyContainer"
+                     Grid.Column="0"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="3"
+                     Orientation="Vertical"
+                     Spacing="16">
+          <Label x:Name="MessageLabel"
+                 Text="{Binding Message}"
+                 IsVisible="{Binding Message,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                 VerticalOptions="StartAndExpand"
+                 FontFamily="OpenSans Regular"
+                 FontSize="14"
+                 TextColor="{x:StaticResource Black}"
+                 LineBreakMode="WordWrap" />
+        </StackLayout>
+        <StackLayout x:Name="ButtonContainer"
+                     Orientation="Horizontal"
+                     HorizontalOptions="End"
+                     Grid.Column="0"
+                     Grid.Row="2"
+                     Grid.ColumnSpan="3"
+                     Spacing="8"/>
+      </Grid>
+    </Border>
+  </Border>
+</popup:PopupPage>
