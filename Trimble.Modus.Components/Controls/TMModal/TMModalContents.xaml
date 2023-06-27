@@ -43,49 +43,48 @@
                 Radius="8" />
       </Border.Shadow>
       <Grid RowSpacing="16">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Height="*" />
           <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackLayout  Grid.Column="0"
-                      Grid.Row="0"
-                      Orientation="Horizontal">
+        <Grid Grid.Column="0"
+              Grid.Row="0"
+              ColumnDefinitions="Auto,*,Auto"
+              RowDefinitions="Auto">
           <Image x:Name="IconImage"
-               Source="{Binding TitleIcon}"
-               IsVisible="{Binding TitleIcon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-               VerticalOptions="Center"
-               HeightRequest="26"
-               WidthRequest="26"
-               Margin="0,0,8,0"/>
+                 Source="{Binding TitleIcon}"
+                 IsVisible="{Binding TitleIcon, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+                 VerticalOptions="Center"
+                 HeightRequest="26"
+                 WidthRequest="26"
+                 Margin="0,0,8,0"
+                 Grid.Column="0"
+                 Grid.Row="0" />
           <Label x:Name="TitleLabel"
-               Text="{Binding Title}"
-               IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
-               VerticalOptions="Center"
-               FontFamily="OpenSans-Semibold"
-               FontSize="16"
-               TextColor="{x:StaticResource Black}"
-               Padding="0,0,8,0" />
-        </StackLayout>
-        
-        <Image Source="{x:Static constants:ImageConstants.CloseButtonImage}"
-               Grid.Column="2"
-               Grid.Row="0"
-               VerticalOptions="Center"
-               HeightRequest="16"
-               WidthRequest="16"
-               Margin="2"
-               BackgroundColor="Transparent"
-               HorizontalOptions="End">
-          <Image.GestureRecognizers>
-            <TapGestureRecognizer Tapped="CloseModal" />
-          </Image.GestureRecognizers>
-        </Image>
+                 Text="{Binding Title}"
+                 IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                 VerticalOptions="Center"
+                 FontFamily="OpenSans-Semibold"
+                 FontSize="16"
+                 TextColor="{StaticResource Black}"
+                 Padding="0,0,8,0"
+                 Grid.Column="1"
+                 Grid.Row="0" />
+          <Image Source="{x:Static constants:ImageConstants.CloseButtonImage}"
+                 Grid.Column="2"
+                 Grid.Row="0"
+                 VerticalOptions="Center"
+                 HeightRequest="16"
+                 WidthRequest="16"
+                 Margin="2"
+                 BackgroundColor="Transparent"
+                 HorizontalOptions="End">
+            <Image.GestureRecognizers>
+              <TapGestureRecognizer Tapped="CloseModal" />
+            </Image.GestureRecognizers>
+          </Image>
+        </Grid>
         <StackLayout x:Name="ModalBodyContainer"
                      Grid.Column="0"
                      Grid.Row="1"

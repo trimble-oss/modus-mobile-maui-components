@@ -54,7 +54,7 @@ public partial class TMModalPage : ContentPage
         {
             TMModal errorModal = new("Error", ex.Message);
             errorModal.AddPrimaryAction("OK");
-            errorModal.Show();
+            errorModal.Show(false);
         }
     }
 }

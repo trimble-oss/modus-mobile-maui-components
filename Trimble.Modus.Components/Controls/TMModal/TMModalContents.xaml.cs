@@ -1,6 +1,5 @@
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Popup.Pages;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Modal;
@@ -84,6 +83,11 @@ public partial class TMModalContents
         get { return (bool)GetValue(FullWidthButtonProperty); }
         set { SetValue(FullWidthButtonProperty, value); }
     }
+
+    /// <summary>
+    /// Gets or sets the CloseAction
+    /// </summary>
+    public Action OnModalClosing { get; set; }
 
     /// <summary>
     /// Action triggered when primary button is clicked
@@ -224,8 +228,9 @@ public partial class TMModalContents
     /// <summary>
     /// Display the modal
     /// </summary>
-    internal void Show()
+    internal void Show(bool closeWhenBackgroundClicked)
     {
+        CloseWhenBackgroundIsClicked = closeWhenBackgroundClicked;
         PopupService.Instance.PushAsync(this);
     }
 
@@ -236,6 +241,7 @@ public partial class TMModalContents
     /// <param name="e"></param>
     internal void CloseModal(object sender, EventArgs e)
     {
+        OnModalClosing?.Invoke();
         PopupService.Instance.RemovePageAsync(this, true);
     }
     #endregion

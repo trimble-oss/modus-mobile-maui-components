@@ -41,6 +41,14 @@ namespace Trimble.Modus.Components
         #endregion
         #region Public Methods
         /// <summary>
+        /// Action to be performed when modal is going to close
+        /// </summary>
+        public Action OnModalClosing
+        {
+            get => TMModalPage.OnModalClosing;
+            set => TMModalPage.OnModalClosing = value;
+        }
+        /// <summary>
         /// Add Primary button
         /// </summary>
         /// <param name="title">Button titke</param>
@@ -93,11 +101,12 @@ namespace Trimble.Modus.Components
             TMModalPage.AddTextInput(inputConfigurationHandler);
         }
         /// <summary>
-        /// Display the modal
+        /// Display modal
         /// </summary>
-        public void Show()
+        /// <param name="closeWhenBackgroundIsClicked">If false, clicking on background will not close the modal. true by default</param>
+        public void Show(bool closeWhenBackgroundIsClicked=true)
         {
-            TMModalPage.Show();
+            TMModalPage.Show(closeWhenBackgroundIsClicked);
         }
         /// <summary>
         /// Close modal
