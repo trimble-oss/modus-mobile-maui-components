@@ -1,7 +1,5 @@
 ﻿using Microsoft.Maui.Handlers;
-#if IOS || MACCATALYST
-using UIKit;
-#endif
+using Microsoft.Maui.Platform;
 #if ANDROID
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 #endif
@@ -21,9 +19,7 @@ namespace Trimble.Modus.Components.Handlers
             if (editorHandler is EditorHandler customEditorHandler && editor is BorderlessEditor)
             {
 
-#if IOS || MACCATALYST
-                editorHandler.PlatformView.Layer.BackgroundColor = null;
-#elif ANDROID
+#if ANDROID
                 editorHandler.PlatformView.SetPadding(0, 0, 0, 0);
                 editorHandler.PlatformView.Background = null;
                 editorHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());

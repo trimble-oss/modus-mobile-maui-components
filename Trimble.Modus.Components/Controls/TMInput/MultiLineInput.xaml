@@ -35,6 +35,7 @@
         Placeholder="{Binding Placeholder}"
         Text="{Binding Text}"
         AutoSize="Disabled"
+        BackgroundColor="Transparent"
         MinimumHeightRequest="44"
         IsReadOnly="{Binding IsReadOnly}"
         MaxLength="{Binding MaxLength}"
