@@ -1,4 +1,4 @@
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
 using Trimble.Modus.Components.Constant;
@@ -137,7 +137,7 @@ namespace Trimble.Modus.Components
                 float endAngle = startAngle + (_sweepAngle * progress);
                 canvas.DrawArc(rect, startAngle, endAngle - startAngle, false, arcPaint);
             }
-        canvas.Flush();
+            canvas.Flush();
         }
         #endregion
     }
