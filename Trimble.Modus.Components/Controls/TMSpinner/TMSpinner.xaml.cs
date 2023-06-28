@@ -11,7 +11,7 @@ namespace Trimble.Modus.Components
     {
         #region Private Properties
         private SpinnerType _spinnerType;
-        private Color _spinnerColor;
+        private Color _spinnerColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
         private float _startAngle = 0f;
         private int minWidth = 42, minHeight = 42, animateTimerSeconds = 10;
         private float _sweepAngle = 180f;
@@ -20,10 +20,10 @@ namespace Trimble.Modus.Components
         #endregion
         #region Binding Properties
         public static readonly BindableProperty SpinnerTypeProperty =
-            BindableProperty.Create(nameof(SpinnerType), typeof(SpinnerType), typeof(TMSpinner), defaultValue: SpinnerType.InDeterminate, propertyChanged: OnSpinnerChanged);
+            BindableProperty.Create(nameof(SpinnerType), typeof(SpinnerType), typeof(TMSpinner), defaultValue: SpinnerType.InDeterminate, propertyChanged: OnSpinnerTypeChanged);
 
         public static readonly BindableProperty SpinnerColorProperty =
-            BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Blue, propertyChanged: OnSpinnerColorChanged);
+            BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Primary, propertyChanged: OnSpinnerColorChanged);
         #endregion
         #region Public Properties
         public SpinnerType SpinnerType
@@ -57,11 +57,11 @@ namespace Trimble.Modus.Components
         {
             if (bindable is TMSpinner tmSpinner)
             {
-                tmSpinner._spinnerColor = ((SpinnerColor)newValue == SpinnerColor.White) ? ResourcesDictionary.ColorsDictionary(ColorsConstants.White)
+                tmSpinner._spinnerColor = ((SpinnerColor)newValue == SpinnerColor.Secondary) ? ResourcesDictionary.ColorsDictionary(ColorsConstants.White)
                     : ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
             }
         }
-        private static void OnSpinnerChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnSpinnerTypeChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is TMSpinner tmSpinner)
             {
@@ -89,7 +89,7 @@ namespace Trimble.Modus.Components
                     _startAngle = 0f;
                 }
             }
-            Device.BeginInvokeOnMainThread(() =>
+            MainThread.BeginInvokeOnMainThread(() =>
             {
                 InvalidateSurface();
             });
@@ -137,6 +137,7 @@ namespace Trimble.Modus.Components
                 float endAngle = startAngle + (_sweepAngle * progress);
                 canvas.DrawArc(rect, startAngle, endAngle - startAngle, false, arcPaint);
             }
+        canvas.Flush();
         }
         #endregion
     }

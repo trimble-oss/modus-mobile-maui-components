@@ -23,7 +23,7 @@ namespace DemoApp.ViewModels
         }
         public SpinnerPageViewModel()
         {
-            SpinnerColor = SpinnerColor.White;
+            SpinnerColor = SpinnerColor.Primary;
         }
     }
 }

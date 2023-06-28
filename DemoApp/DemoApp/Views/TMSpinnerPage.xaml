@@ -20,10 +20,10 @@
                               HorizontalOptions="Center"
                               SelectedRadioButtonChanged="SelectedRadioButtonChanged"
                               ItemsSource="{Binding RadioButtons}">
-      <modus:TMRadioButton Text="White"
-                           Value="White"/>
-      <modus:TMRadioButton Text="Blue"
-                           Value="Blue"/>
+      <modus:TMRadioButton Text="Primary"
+                           Value="Primary"/>
+      <modus:TMRadioButton Text="Secondary"
+                           Value="Secondary"/>
     </modus:TMRadioButtonGroup>
   </VerticalStackLayout>
 </ContentPage>

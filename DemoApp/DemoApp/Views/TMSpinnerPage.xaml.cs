@@ -15,6 +15,6 @@ public partial class TMSpinnerPage : ContentPage
 
     private void SelectedRadioButtonChanged(object sender, Trimble.Modus.Components.TMRadioButtonEventArgs e)
     {
-        spinnerPageViewModel.SpinnerColor = ((string)e.Value == "White") ? SpinnerColor.White : SpinnerColor.Blue;
+        spinnerPageViewModel.SpinnerColor = ((string)e.Value == "Primary") ? SpinnerColor.Primary : SpinnerColor.Secondary;
     }
 }
