@@ -83,6 +83,9 @@
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\MultiLineInputPage.xaml.cs">
+	    <DependentUpon>MultiLineInputPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMInputPage.xaml.cs">
 	    <DependentUpon>TMInputPage.xaml</DependentUpon>
 	  </Compile>
@@ -101,6 +104,9 @@
 	  <MauiXaml Update="Views\TMCheckBoxPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MultiLineInputPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMInputPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -117,5 +123,4 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
-
 </Project>
