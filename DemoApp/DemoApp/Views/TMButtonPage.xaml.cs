@@ -16,6 +16,11 @@ public partial class TMButtonPage : ContentPage
         BindingContext = _buttonPageViewModel;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+    }
+
     private void Style_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)

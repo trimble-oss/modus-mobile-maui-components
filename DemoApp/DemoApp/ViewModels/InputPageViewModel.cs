@@ -9,7 +9,8 @@ namespace DemoApp.ViewModels
         private bool _showPassword;
         private bool _isEnabled;
         private bool _isReadOnly;
-
+        private bool _isAutoSize;
+        
         public bool ShowPassword
         {
             get
@@ -22,7 +23,21 @@ namespace DemoApp.ViewModels
                 OnPropertyChanged(nameof(ShowPassword));
             }
         }
-
+        public bool IsAutoSize
+        {
+            get
+            {
+                return _isAutoSize;
+            }
+            set
+            {
+                if (_isAutoSize != value)
+                {
+                    _isAutoSize = value;
+                    OnPropertyChanged(nameof(IsAutoSize));
+                }
+            }
+        }
         public bool IsEnabled
         {
             get
@@ -59,6 +74,7 @@ namespace DemoApp.ViewModels
             ShowPassword = false;
             IsEnabled = true;
             IsReadOnly = false;
+            IsAutoSize = true;
         }
 
         private void ChangeShowPasswordState(object obj)
