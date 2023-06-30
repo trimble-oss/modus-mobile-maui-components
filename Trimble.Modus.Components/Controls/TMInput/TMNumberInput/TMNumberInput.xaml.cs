@@ -212,6 +212,11 @@ public partial class TMNumberInput : ContentView
 
         double clampedValue = Math.Clamp(number, MinValue, MaxValue);
 
+        if (clampedValue != number)
+        {
+            UpdateValue(number, clampedValue);
+        }
+
         if (oldNumber != clampedValue)
         {
             ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, clampedValue));
