@@ -28,4 +28,7 @@ internal class ColorsConstants
     public const string SuccessToastColor = "SuccessToastColor";
     public const string ToastTextBlue = "ToastTextBlue";
     public const string ModalGraySemiTransparent = "ModalGraySemiTransparent";
+    public const string SegmentSecondaryColor = "SegmentSecondaryColor";
+    public const string SegmentBackgroundColor = "SegmentBackgroundColor";
+    public const string SegmentBorderColor = "SegmentBorderColor";
 }

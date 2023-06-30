@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMSegmentedControl"
+             xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.Layouts"
+             xmlns:component="clr-namespace:Trimble.Modus.Components"
+             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Name="SegmentedControl">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <color:Colors />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <ContentView.Content>
+    <Frame x:Name="FrameView"
+           Padding="0"
+           IsClippedToBounds="True"
+           HeightRequest="32"
+           BorderColor="{x:StaticResource SegmentBorderColor}">
+      <Frame.Style>
+        <Style TargetType="Frame">
+          <Style.Triggers>
+            <DataTrigger TargetType="Frame"
+                         Binding="{Binding Source={x:Reference SegmentedControl}, Path=IsRounded}"
+                         Value="True">
+              <Setter Property="CornerRadius">
+                <Setter.Value>
+                  <OnIdiom Default="32"
+                           Desktop="20" />
+                </Setter.Value>
+              </Setter>
+            </DataTrigger>
+            <DataTrigger TargetType="Frame"
+                         Binding="{Binding Source={x:Reference SegmentedControl}, Path=IsRounded}"
+                         Value="False">
+              <Setter Property="CornerRadius"
+                      Value="8" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Frame.Style>
+      <Grid x:Name="TabButtonHolder"
+            ColumnSpacing="0"
+            BindableLayout.ItemsSource="{Binding Source={x:Reference SegmentedControl}, Path=SegmentedItems}">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate>
+            <component:TMSegmentedItem Text="{Binding Text}"
+                                       Icon="{Binding Icon}"
+                                       Grid.Column="{Binding ItemIndex}"
+                                       ShowSeparator="{Binding ShowSeparator}"
+                                       IsSelected="{Binding IsSelected}"
+                                       ColorTheme="{Binding ColorTheme}" />
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </Grid>
+    </Frame>
+  </ContentView.Content>
+</ContentView>

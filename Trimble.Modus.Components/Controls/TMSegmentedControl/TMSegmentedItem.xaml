@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Frame xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="Trimble.Modus.Components.TMSegmentedItem"
+       xmlns:local="clr-namespace:Trimble.Modus.Components"
+       xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+       xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+       BackgroundColor="Transparent"
+       IsClippedToBounds="True"
+       x:Name="ItemContainer"
+       Padding="0"
+       CornerRadius="8">
+  <Frame.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <color:Colors />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </ResourceDictionary>
+  </Frame.Resources>
+  <Grid RowSpacing="0">
+    <Grid BackgroundColor="{Binding Source={x:Reference ItemContainer}, Path=CurrentBackgroundColor}" />
+    <Image x:Name="SegmentIcon"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           Aspect="Center"
+           Source="{Binding Source={x:Reference ItemContainer}, Path=Icon}"
+           IsVisible="{Binding CurrentIcon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}" />
+    <Label x:Name="TextLabel"
+           HorizontalTextAlignment="Center"
+           VerticalTextAlignment="Center"
+           Margin="0, 2"
+           Text="{Binding Text}"
+           LineBreakMode="TailTruncation"
+           IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+      <Label.Style>
+        <Style TargetType="Label">
+          <Setter Property="TextColor"
+                  Value="Black" />
+          <Style.Triggers>
+            <DataTrigger TargetType="Label"
+                         Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
+                         Value="True">
+              <Setter Property="TextColor"
+                      Value="White" />
+            </DataTrigger>
+            <DataTrigger TargetType="Label"
+                         Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
+                         Value="False">
+              <Setter Property="TextColor"
+                      Value="Black" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Label.Style>
+    </Label>
+    <BoxView x:Name="VerticalSeparator"
+             HorizontalOptions="Start"
+             IsVisible="{Binding Source={x:Reference ItemContainer}, Path=ShowSeparator}"
+             Margin="0,8"
+             Color="{x:StaticResource SegmentBackgroundColor}"
+             VerticalOptions="FillAndExpand"
+             WidthRequest="1" />
+  </Grid>
+</Frame>
