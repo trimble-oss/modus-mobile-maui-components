@@ -54,7 +54,7 @@ public partial class TMModalPage : ContentPage
         }
         catch (Exception ex)
         {
-            TMToast tMToast = new("Error", ex.Message);
+            TMToast tMToast = new(ex.Message);
             tMToast.theme = ToastTheme.Danger;
             tMToast.Show();
         }
