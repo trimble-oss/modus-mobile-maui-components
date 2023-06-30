@@ -1,14 +1,16 @@
 using System.Collections.Specialized;
 using System.Windows.Input;
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.Layouts;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
 public class TMRadioButtonGroup : StackLayout, IDisposable
 {
     #region Private fields
-    private readonly Label _label = new Label() { IsVisible = false, FontSize = 14, Margin = new Thickness(0, 0, 0, 4), TextColor = (Color)BaseComponent.colorsDictionary()["TrimbleGray"] };
+    private readonly Label _label = new Label() { IsVisible = false, FontSize = 14, Margin = new Thickness(0, 0, 0, 4), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray) };
     private readonly WrapLayout _buttonContainer = new WrapLayout();
     private readonly List<TMRadioButton> _radioButtons = new List<TMRadioButton>();
     #endregion

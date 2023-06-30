@@ -46,52 +46,52 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         switch (theme)
         {
             case ToastTheme.Dark:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDarkThemeIcon);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["White"];
+                TextColor = Colors.White;
                 break;
 
             case ToastTheme.Primary:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.BlueInfoIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ToastTextBlue);
                 break;
 
             case ToastTheme.Secondary:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.SolidHelpIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                TextColor = Colors.Black;
                 break;
 
             case ToastTheme.Danger:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerToastColor);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDangerIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                TextColor = Colors.Black;
                 break;
 
             case ToastTheme.Warning:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.WarningToastColor);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.WarningIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                TextColor = Colors.Black;
                 break;
 
             case ToastTheme.Success:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.SuccessToastColor);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ValidIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                TextColor = Colors.Black;
                 break;
                 
             default:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.GreyInfoIcon);
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                TextColor = Colors.Black;
                 break;
         }
 
