@@ -49,4 +49,9 @@ public partial class TMInputPage : ContentPage
     {
         _inputPageViewModel.IsEnabled = e.Value;
     }
+
+    private void IsRequired_Toggled(object sender, ToggledEventArgs e)
+    {
+        _inputPageViewModel.IsRequired = e.Value;
+    }
 }

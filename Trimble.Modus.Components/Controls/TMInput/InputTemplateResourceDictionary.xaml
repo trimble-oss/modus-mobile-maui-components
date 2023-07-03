@@ -3,31 +3,36 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Controls.TMInput.InputTemplateResourceDictionary"
                     xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
-
   <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
   <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
   <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
   <converters:AllTrueConverter x:Key="AllTrueConverter" />
+
   <ControlTemplate x:Key="InputTemplate">
     <Grid x:Name="tmInputContainer"
-        RowDefinitions="auto,auto,auto"
-        RowSpacing="0"
-        Padding="0"
-        BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
-
-      <Label x:Name="inputLabel"
-            Grid.Row="0"
-            Padding="0,0,0,5"
-            Text="{Binding TitleText}"
-            VerticalOptions="Center"
-            IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
-            HorizontalOptions="Start" />
+          RowDefinitions="auto,auto,auto"
+          RowSpacing="0"
+          Padding="0"
+          BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+      <HorizontalStackLayout Grid.Row="0"
+                             Spacing="4"
+                             IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+        <Label x:Name="inputLabel"
+               Padding="0,0,0,5"
+               Text="{Binding TitleText}"
+               VerticalOptions="Center"
+               HorizontalOptions="Start" />
+        <Label Text="*"
+               IsVisible="{Binding IsRequired}"
+               FontAttributes="Bold"
+               TextColor="#DA212C" />
+      </HorizontalStackLayout>
       <Border x:Name="inputBorder"
               VerticalOptions="FillAndExpand"
               Grid.Row="1">
         <Border.StrokeShape>
           <Rectangle RadiusX="4"
-                    RadiusY="4" />
+                     RadiusY="4" />
         </Border.StrokeShape>
         <ContentPresenter VerticalOptions="FillAndExpand" />
       </Border>
@@ -46,4 +51,5 @@
       </HorizontalStackLayout>
     </Grid>
   </ControlTemplate>
+  
 </ResourceDictionary>
