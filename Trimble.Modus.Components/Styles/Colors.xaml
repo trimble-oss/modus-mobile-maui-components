@@ -34,4 +34,5 @@
   
   <!--Modal-->
   <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
+  <Color x:Key="ModalShadowColor">#22000000</Color>
 </ResourceDictionary>
