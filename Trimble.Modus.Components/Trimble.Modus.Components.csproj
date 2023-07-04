@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -27,6 +27,12 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 		<CreatePackage>false</CreatePackage>
+		<MtouchLink>None</MtouchLink>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+	  <MtouchLink>None</MtouchLink>
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Images\add_icon.svg" />
@@ -91,6 +97,9 @@
 	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
 	    <DependentUpon>TMModalContents.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
 	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
 	  </Compile>
@@ -98,6 +107,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\Button\TMFloatingButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">

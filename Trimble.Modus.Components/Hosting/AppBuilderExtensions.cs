@@ -73,14 +73,17 @@ public static class AppBuilderExtensions
 #if ANDROID
             handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
             handlers.AddHandler(typeof(TMButton), typeof(TMButtonAndroidTouchHandler));
+            handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonAndroidTouchHandler));
 #endif
 #if IOS
                 handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
                 handlers.AddHandler(typeof(TMButton), typeof(TMButtoniOSTouchHandler));
+                handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtoniOSTouchHandler));
 #endif
 #if WINDOWS
                 handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
                 handlers.AddHandler(typeof(TMButton), typeof(TMButtonWindowsTouchHandler));
+                handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
 #endif
         }
     }

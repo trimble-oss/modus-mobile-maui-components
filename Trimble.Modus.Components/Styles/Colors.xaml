@@ -24,6 +24,8 @@
   <Color x:Key="Green">#1E8A44</Color>
   <Color x:Key="Transparent">transparent</Color>
   <Color x:Key="CardPressed">#C9CACF</Color>
+  <Color x:Key="PrimaryFloatingButtonClicked">#0E416C</Color>
+  <Color x:Key="SecondaryFloatingButtonClicked">#DCEDF9</Color>
   
   
     <!--ToastColors-->

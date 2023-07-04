@@ -12,8 +12,10 @@ public partial class TMButton : ContentView
     #region Private Properties
 
 
-    private EventHandler _clicked;
-    private Color activeColor;
+    protected EventHandler _clicked;
+    protected Color activeColor;
+    protected Border _buttonFrame;
+    protected Label _buttonLabel;
 
     #endregion
 
@@ -127,12 +129,14 @@ public partial class TMButton : ContentView
     public TMButton()
     {
         InitializeComponent();
+        _buttonFrame = buttonFrame;
+        _buttonLabel = buttonLabel;
         SetPadding(this);
         CheckButtonStyle(this);
     }
 
     #region Private Methods
-    
+
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is TMButton tmButton)

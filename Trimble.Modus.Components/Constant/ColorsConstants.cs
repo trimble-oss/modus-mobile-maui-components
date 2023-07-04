@@ -17,6 +17,8 @@ internal class ColorsConstants
     public const string DangerRedClicked = "DangerRedClicked";
     public const string SecondaryButtonClicked = "SecondaryButtonClicked";
     public const string TertiaryButtonClicked = "TertiaryButtonClicked";
+    public const string PrimaryFloatingButtonClicked = "PrimaryFloatingButtonClicked";
+    public const string SecondaryFloatingButtonClicked = "SecondaryFloatingButtonClicked";
     public const string TrimbleBlueClicked = "TrimbleBlueClicked";
     public const string BluePale = "BluePale";
     public const string NeutralGray = "NeutralGray";

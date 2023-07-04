@@ -15,31 +15,9 @@
   <Border Padding="0"
           HorizontalOptions="{Binding Source={x:Reference tmButton}, Path=HorizontalOptions}"
           BindingContext="{x:Reference tmButton}"
-          x:Name="buttonFrame">
-    <Border.Triggers>
-      <DataTrigger TargetType="Border"
-                   Binding="{Binding IsFloatingButton}"
-                   Value="false">
-        <Setter Property="StrokeShape">
-          <Rectangle RadiusX="4"
-                     RadiusY="4" />
-        </Setter>
-      </DataTrigger>
-      <DataTrigger TargetType="Border"
-                   Binding="{Binding IsFloatingButton}"
-                   Value="true">
-        <Setter Property="StrokeShape">
-          <Rectangle RadiusX="50"
-                     RadiusY="50" />
-        </Setter>
-        <Setter Property="Shadow">
-          <Shadow Radius="15"
-                  Opacity="1" />
-        </Setter>
-        <Setter Property="ZIndex"
-                Value="1" />
-      </DataTrigger>
-    </Border.Triggers>
+          x:Name="buttonFrame"
+          StrokeShape="RoundRectangle 4,4"
+          >
     <HorizontalStackLayout x:Name="buttonStackLayout"
                            Spacing="8"
                            VerticalOptions="FillAndExpand"
