@@ -119,7 +119,7 @@ public partial class TMNumberInput : ContentView
     /// <exception cref="NotImplementedException"></exception>
     private static void OnEnabledOrReadOnlyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if(bindable is TMNumberInput numberInput)
+        if (bindable is TMNumberInput numberInput)
         {
             numberInput.ToggleLeftAndRightIcons(numberInput.TMInputControl, numberInput.IsEnabled && !numberInput.IsReadOnly);
         }
@@ -235,17 +235,7 @@ public partial class TMNumberInput : ContentView
     {
         get
         {
-            return _minusCommand ?? (_minusCommand = new Command(() =>
-            {
-                if (double.TryParse(TMInputControl.Text, out double number))
-                {
-                    if (number > MinValue)
-                    {
-                        number -= Step;
-                        UpdateValue(number + Step, number);
-                    }
-                }
-            }));
+            return _minusCommand ??= new Command(OnMinusCommandClicked);
         }
     }
 
@@ -256,18 +246,72 @@ public partial class TMNumberInput : ContentView
     {
         get
         {
-            return _plusCommand ?? (_plusCommand = new Command(() =>
-            {
-                if (double.TryParse(TMInputControl.Text, out double number))
-                {
-                    if (number < MaxValue)
-                    {
-                        number += Step;
-                        UpdateValue(number - Step, number);
-                    }
-                }
-            }));
+            return _plusCommand ??= new Command(OnPlusCommandClicked);
         }
+    }
+
+    private void OnMinusCommandClicked()
+    {
+
+        if (double.TryParse(TMInputControl.Text, out double number))
+        {
+            if (number <= MinValue)
+            {
+                return;
+            }
+            double nearestValue;
+            double numberRemainingValue = number % Step;
+            if (numberRemainingValue == 0)
+            {
+                nearestValue = number - Step;
+            }
+            else
+            {
+                if (number < 0)
+                {
+                    double nearestStepNumber = number - numberRemainingValue;
+                    nearestValue = nearestStepNumber - Step;
+                }
+                else
+                {
+                    nearestValue = number - numberRemainingValue;
+                }
+            }
+
+            UpdateValue(number, nearestValue);
+        }
+    }
+    private void OnPlusCommandClicked()
+    {
+        if (double.TryParse(TMInputControl.Text, out double number))
+        {
+            if (number >= MaxValue)
+            {
+                return;
+            }
+            double nearestValue;
+           
+            if (number != 0)
+            {
+                double numberRemainingValue = number % Step;
+                double previousStepNumber = number - numberRemainingValue;
+
+                if (number < 0 && numberRemainingValue != 0)
+                {
+                    nearestValue = previousStepNumber;
+                }
+                else
+                {
+                    nearestValue = previousStepNumber + Step;
+                }
+            }
+            else
+            {
+                nearestValue = Step;
+            }
+            UpdateValue(number, nearestValue);
+        }
+
     }
 
     /// <summary>
@@ -275,7 +319,8 @@ public partial class TMNumberInput : ContentView
     /// </summary>
     /// <param name="oldValue"></param>
     /// <param name="newValue"></param>
-    private void UpdateValue(double oldValue, double newValue){
+    private void UpdateValue(double oldValue, double newValue)
+    {
         ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldValue, newValue));
         ValueChangeCommand?.Execute(ValueChangeCommandParameter);
         TMInputControl.Text = newValue.ToString();
