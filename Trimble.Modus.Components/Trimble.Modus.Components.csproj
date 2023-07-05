@@ -69,7 +69,7 @@
 		<MauiImage Include="Images\success_icon_outline.svg" />
 		<MauiImage Include="Images\toast_dark_icon.svg" />
 		<MauiImage Include="Images\valid_icon.svg" />
-		<MauiImage Include="Images\vector.svg" />
+		<MauiImage Include="Images\drag_corner.svg" />
 		<MauiImage Include="Images\warning_icon.svg" />
 	</ItemGroup>
 
