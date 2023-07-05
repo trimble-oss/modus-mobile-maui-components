@@ -72,7 +72,6 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
-		<PackageReference Include="Trimble.Modus.Components" Version="0.0.2-alpha" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -122,5 +121,8 @@
 	  <MauiXaml Update="Views\TMSpinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
 	</ItemGroup>
 </Project>
