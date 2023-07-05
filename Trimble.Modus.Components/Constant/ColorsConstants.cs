@@ -1,4 +1,4 @@
-﻿namespace Trimble.Modus.Components.Constant;
+namespace Trimble.Modus.Components.Constant;
 internal class ColorsConstants
 {
     public const string TrimbleBlue = "TrimbleBlue";
@@ -32,3 +32,4 @@ internal class ColorsConstants
     public const string ModalGraySemiTransparent = "ModalGraySemiTransparent";
     public const string ModalShadowColor = "ModalShadowColor";
 }
+

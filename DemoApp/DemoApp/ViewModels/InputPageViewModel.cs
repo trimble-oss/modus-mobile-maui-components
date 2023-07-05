@@ -10,13 +10,20 @@ namespace DemoApp.ViewModels
         private bool _isEnabled;
         private bool _isReadOnly;
         private bool _isAutoSize;
-        
+        private bool _isRequired;
+
+        public bool IsRequired
+        {
+            get => _isRequired;
+            set
+            {
+                _isRequired = value;
+                OnPropertyChanged(nameof(IsRequired));
+            }
+        }
         public bool ShowPassword
         {
-            get
-            {
-                return _showPassword;
-            }
+            get => _showPassword;
             set
             {
                 _showPassword = value;
@@ -25,10 +32,7 @@ namespace DemoApp.ViewModels
         }
         public bool IsAutoSize
         {
-            get
-            {
-                return _isAutoSize;
-            }
+            get => _isAutoSize;
             set
             {
                 if (_isAutoSize != value)
@@ -40,10 +44,7 @@ namespace DemoApp.ViewModels
         }
         public bool IsEnabled
         {
-            get
-            {
-                return _isEnabled;
-            }
+            get => _isEnabled;
             set
             {
                 if (_isEnabled != value)
@@ -55,10 +56,7 @@ namespace DemoApp.ViewModels
         }
         public bool IsReadOnly
         {
-            get
-            {
-                return _isReadOnly;
-            }
+            get => _isReadOnly;
             set
             {
                 if (_isReadOnly != value)
@@ -75,6 +73,7 @@ namespace DemoApp.ViewModels
             IsEnabled = true;
             IsReadOnly = false;
             IsAutoSize = true;
+            IsRequired = false;
         }
 
         private void ChangeShowPasswordState(object obj)
