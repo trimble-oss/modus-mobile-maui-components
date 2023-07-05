@@ -7,47 +7,9 @@ namespace Trimble.Modus.Components;
 
 public partial class TMFloatingButton : TMButton
 {
-    public static readonly BindableProperty FloatingButtonColorProperty =
-       BindableProperty.Create(nameof(ButtonColor), typeof(FloatingButtonColor), typeof(TMFloatingButton), Enums.FloatingButtonColor.Primary, propertyChanged: OnButtonColorChanged);
-    public new FloatingButtonColor ButtonColor
-    {
-        get => (FloatingButtonColor)GetValue(FloatingButtonColorProperty);
-        set => SetValue(FloatingButtonColorProperty, value);
-    }
-    private new Enums.ButtonStyle ButtonStyle
-    {
-        get => (Enums.ButtonStyle)GetValue(ButtonStyleProperty);
-        set => SetValue(ButtonStyleProperty, value);
-    }
-    private static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is TMFloatingButton tmFloatingButton)
-        {
-            UpdateColor(tmFloatingButton);
-        }
-    }
-    private static void UpdateColor(TMFloatingButton tmFloatingButton)
-    {
-        switch (tmFloatingButton.ButtonColor)
-        {
-            
-            case FloatingButtonColor.Secondary:
-                tmFloatingButton._buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                tmFloatingButton._buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                tmFloatingButton._buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-                break;
-            case FloatingButtonColor.Primary:
-            default:
-                tmFloatingButton._buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmFloatingButton._buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmFloatingButton._buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                break;
-        }
-    }
-
     public TMFloatingButton()
     {
-        InitializeComponent();
+        IsFloatingButton = true;
         SetRadius();
     }
     private void SetRadius()
@@ -80,9 +42,9 @@ public partial class TMFloatingButton : TMButton
     {
         switch (ButtonColor)
         {
-            case FloatingButtonColor.Secondary:
+            case ButtonColor.Secondary:
                 return ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryFloatingButtonClicked);
-            case FloatingButtonColor.Primary:
+            case ButtonColor.Primary:
             default:
                 return ResourcesDictionary.ColorsDictionary(ColorsConstants.PrimaryFloatingButtonClicked);
         }

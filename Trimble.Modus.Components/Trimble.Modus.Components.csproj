@@ -109,9 +109,6 @@
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\Button\TMFloatingButton.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

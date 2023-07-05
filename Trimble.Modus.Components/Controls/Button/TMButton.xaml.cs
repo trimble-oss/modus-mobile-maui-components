@@ -146,7 +146,7 @@ public partial class TMButton : ContentView
     }
     private static void OnButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
+        if (bindable is TMButton tmButton)
         {
             CheckButtonStyle(tmButton);
         }
@@ -154,7 +154,7 @@ public partial class TMButton : ContentView
 
     private static void OnIsDisabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
+        if (bindable is TMButton tmButton)
         {
             if ((bool)newValue)
             {
@@ -171,7 +171,7 @@ public partial class TMButton : ContentView
 
     private static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton && !tmButton.IsFloatingButton)
+        if (bindable is TMButton tmButton)
         {
             CheckButtonStyle(tmButton);
         }
@@ -179,7 +179,11 @@ public partial class TMButton : ContentView
 
     private static void CheckButtonStyle(TMButton tmButton)
     {
-        switch (tmButton.ButtonStyle)
+        if( tmButton.IsFloatingButton && (tmButton.ButtonStyle == ButtonStyle.Outline || tmButton.ButtonStyle == ButtonStyle.BorderLess))
+        {
+            tmButton.ButtonStyle = ButtonStyle.Fill;
+        }
+            switch (tmButton.ButtonStyle)
         {
             case Enums.ButtonStyle.BorderLess:
                 tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
@@ -243,12 +247,26 @@ public partial class TMButton : ContentView
 
     private static void UpdateFillStyleColors(TMButton tmButton)
     {
+        if (tmButton.IsFloatingButton && (tmButton.ButtonColor == ButtonColor.Tertiary || tmButton.ButtonColor == ButtonColor.Danger))
+        {
+            tmButton.ButtonColor = ButtonColor.Primary;
+        }
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                if (tmButton.IsFloatingButton)
+                {
+                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+
+                }
+                else
+                {
+                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                }
 
                 break;
 
