@@ -1,8 +1,7 @@
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls.TMCard;
 
@@ -65,8 +64,8 @@ public partial class TMCard : ContentView
         var card = (TMCard)bindable;
         if ((bool)newValue)
         {
-            card._border.BackgroundColor = (Color)BaseComponent.colorsDictionary()["Primary"];
-            card._border.Stroke = (Color)BaseComponent.colorsDictionary()["TrimbleBlueClicked"];
+            card._border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
         }
         else
         {
@@ -81,15 +80,16 @@ public partial class TMCard : ContentView
     {
         int radius = 15;
         Point offset = new Point(-1, 1);
-        if(DeviceInfo.Platform == DevicePlatform.iOS )
+        if (DeviceInfo.Platform == DevicePlatform.iOS)
         {
             radius = 3;
             offset = new Point(0, 2);
         }
-        else if( DeviceInfo.Platform == DevicePlatform.WinUI ){
+        else if (DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
             radius = 3;
         }
-        
+
         _shadow = new Shadow
         {
             Brush = Colors.Black,
@@ -123,7 +123,7 @@ public partial class TMCard : ContentView
     {
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, e);
-        _border.BackgroundColor = (Color)BaseComponent.colorsDictionary()["CardPressed"]; ;
+        _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.CardPressed);
         _border.Content.Opacity = 0.3;
         this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
         {

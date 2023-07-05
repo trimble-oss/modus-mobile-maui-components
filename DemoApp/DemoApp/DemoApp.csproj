@@ -40,6 +40,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
+	  <MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -58,6 +59,15 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Images\account_icon.svg" />
+	  <None Remove="Resources\Images\contact_icon.svg" />
+	  <None Remove="Resources\Images\dark_gallery_icon.svg" />
+	  <None Remove="Resources\Images\gallery_icon.svg" />
+	  <None Remove="Resources\Images\green_icon.svg" />
+	  <None Remove="Resources\Images\placeholder.svg" />
+	  <None Remove="Resources\Images\search_icon.svg" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
@@ -66,9 +76,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TMModalPage.xaml.cs">
+	    <DependentUpon>TMModalPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMCheckBoxPage.xaml.cs">
 	    <SubType>Code</SubType>
 	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MultiLineInputPage.xaml.cs">
+	    <DependentUpon>MultiLineInputPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\TMInputPage.xaml.cs">
 	    <DependentUpon>TMInputPage.xaml</DependentUpon>
@@ -79,6 +95,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\TMModalPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -88,12 +107,20 @@
 	  <MauiXaml Update="Views\TMCheckBoxPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MultiLineInputPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMInputPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TMModalPage.xaml">
+	  <MauiXaml Update="Views\TMNumberInputPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TMRadioButtonPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TMSpinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
-
 </Project>

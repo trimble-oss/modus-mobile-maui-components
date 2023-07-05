@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DemoApp.MultiLineInputPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             Title="MultiLineInput">
+  <ScrollView>
+    <VerticalStackLayout>
+
+      <StackLayout Padding="10"
+                   Spacing="10">
+
+        <StackLayout Orientation="Horizontal">
+          <Label Grid.Column="0"
+                 Text="IsEnabled"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch Grid.Column="1"
+                  x:Name="isEnabled"
+                  IsToggled="{Binding IsEnabled}"
+                  Toggled="IsEnabled_Toggled" />
+          <Label Grid.Column="0"
+                 Text="IsReadOnly"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch Grid.Column="1"
+                  x:Name="isReadOnly"
+                  IsToggled="{Binding IsReadOnly}"
+                  Toggled="IsReadOnly_Toggled" />
+          <Label Grid.Column="0"
+                 Text="IsAutoSize"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch Grid.Column="1"
+                  x:Name="IsAutoSize"
+                  IsToggled="{Binding IsAutoSize}"
+                  Toggled="IsAutoSize_Toggled" />
+        </StackLayout>
+
+        <Modus:MultiLineInput  x:Name="modusInput"
+                           Placeholder="Text Input"
+                           AutoSize="{Binding IsAutoSize}"
+                           IsEnabled="{Binding IsEnabled}"
+                           IsReadOnly="{Binding IsReadOnly}"/>
+
+        <Modus:MultiLineInput  x:Name="modusInputWithTitle"
+                           TitleText="MultiLine Input"
+                           AutoSize="{Binding IsAutoSize}"
+                           IsEnabled="{Binding IsEnabled}"
+                           IsReadOnly="{Binding IsReadOnly}"
+                           Placeholder="Text Input" />
+
+        <Modus:MultiLineInput TitleText="Success/Error MultiLine Input"
+                          HelperText="Enter more or equal to 10 characters"
+                          Placeholder="Text Input"
+                          AutoSize="{Binding IsAutoSize}"
+                          InputValidation="TMMultiLineInputValidation"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}" />
+
+        <Modus:MultiLineInput x:Name="filled"
+                          TitleText="Filled MultiLine Input"
+                          AutoSize="{Binding IsAutoSize}"
+                          Placeholder="Text Input"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquam nunc neque. Fusce pretium in eros in lobortis. Cras rhoncus arcu id accumsan convallis. Maecenas egestas suscipit odio, et sollicitudin turpis interdum et. Sed ac porttitor ante, vel laoreet lectus. Maecenas ut eleifend ligula. Nullam auctor neque blandit sodales consectetur. Nulla hendrerit rhoncus leo et consequat. Duis quis egestas lorem. Fusce euismod ipsum nisi, sed facilisis sapien convallis in. Proin suscipit, nunc quis commodo scelerisque, nulla velit malesuada eros, et ullamcorper lacus leo id est. Mauris interdum nunc eu ornare egestas. Cras vitae est justo. Aliquam fermentum interdum velit, ut interdum nisl bibendum in. Aliquam erat volutpat. Praesent id risus quis odio dapibus lacinia." />
+      </StackLayout>
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

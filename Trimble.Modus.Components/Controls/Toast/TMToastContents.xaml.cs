@@ -1,4 +1,6 @@
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Controls.Toast;
@@ -10,9 +12,8 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     private const int DELAYTIME = 5000;
 
-    private PopupNavigation popupNavigation;
-
     #endregion
+
     #region Public Properties
 
     public ImageSource LeftIconSource { get; set; }
@@ -29,12 +30,10 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
     #endregion
 
-    internal TMToastContents(string message, string actionButtonText, Object popupNavigation, ToastTheme theme, Action action, bool isDismissable)
+    internal TMToastContents(string message, string actionButtonText, ToastTheme theme, Action action, bool isDismissable)
     {
-
         InitializeComponent();
         SetTheme(theme.ToString());
-        this.popupNavigation = (PopupNavigation)popupNavigation;
         PopupData(message, actionButtonText, action, isDismissable);
         BindingContext = this;
         CloseAfterDelay();
@@ -47,57 +46,60 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         switch (theme)
         {
             case ToastTheme.Dark:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.dark.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["White"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDarkThemeIcon);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
+                TextColor = Colors.White;
                 break;
 
             case ToastTheme.Primary:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.primary.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["ToastTextBlue"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.BlueInfoIcon);
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ToastTextBlue);
                 break;
 
             case ToastTheme.Secondary:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.secondary.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.SolidHelpIcon);
+                TextColor = Colors.Black;
                 break;
 
             case ToastTheme.Danger:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.danger.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerToastColor);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDangerIcon);
+                TextColor = Colors.Black;
                 break;
 
             case ToastTheme.Warning:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.warning.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.WarningToastColor);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.WarningIcon);
+                TextColor = Colors.Black;
                 break;
 
             case ToastTheme.Success:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.input_valid_icon.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.SuccessToastColor);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.ValidIcon);
+                TextColor = Colors.Black;
                 break;
-
-            case ToastTheme.Default:
+                
             default:
-                ToastBackground = (Color)BaseComponent.colorsDictionary()[toastTheme];
-                LeftIconSource = ImageSource.FromResource("Trimble.Modus.Components.Images.default.png");
-                TextColor = (Color)BaseComponent.colorsDictionary()["Black"];
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
+                LeftIconSource = ImageSource.FromFile(ImageConstants.GreyInfoIcon);
+                TextColor = Colors.Black;
                 break;
         }
 
     }
-
-
-
     private void CloseButtonClicked(object sender, EventArgs e)
 
     {
-        popupNavigation.RemovePageAsync(this, true);
+        PopupService.Instance.RemovePageAsync(this, true);
 
     }
     public void CloseAfterDelay()
@@ -105,7 +107,7 @@ public partial class TMToastContents : Popup.Pages.PopupPage
         Task.Run(async () =>
         {
             await Task.Delay(DELAYTIME);
-            await popupNavigation.RemovePageAsync(this, true);
+            await PopupService.Instance.RemovePageAsync(this, true);
         });
     }
 
@@ -118,32 +120,14 @@ public partial class TMToastContents : Popup.Pages.PopupPage
 
         if (string.IsNullOrEmpty(RightIconText))
         {
+            closeButton.IsVisible = isDismissable;
+            actionButton.IsVisible = false;
             if (isDismissable)
             {
                 closeButton.Clicked += (sender, args) =>
                 {
                     action?.Invoke();
                 };
-
-                if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Primary"]))
-                {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.blue_close_icon.png");
-                }
-                else if (ToastBackground.Equals((Color)BaseComponent.colorsDictionary()["Dark"]))
-                {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.white_close_icon.png");
-                }
-                else
-                {
-                    closeButton.Source = ImageSource.FromResource("Trimble.Modus.Components.Images.black_close_icon.png");
-                }
-                closeButton.IsVisible = true;
-                actionButton.IsVisible = false;
-            }
-            else
-            {
-                closeButton.IsVisible = false;
-                actionButton.IsVisible = false;
             }
         }
         else
@@ -179,13 +163,6 @@ public partial class TMToastContents : Popup.Pages.PopupPage
             toastLayout.HorizontalOptions = LayoutOptions.CenterAndExpand;
 
         }
-
-
-   
-    
-
-
-    }  
+    }
     #endregion
-
 }

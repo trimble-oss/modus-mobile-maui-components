@@ -1,3 +1,4 @@
+using DemoApp.ViewModels;
 using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 using Size = Trimble.Modus.Components.Enums.Size;
@@ -6,94 +7,61 @@ namespace DemoApp;
 
 public partial class TMButtonPage : ContentPage
 {
-    private string _selectedStyle = "Fill";
-    private string _selectedSize = "Default";
-    private bool _isDiabled;
-
-    public bool IsDisabled
-    {
-        get => _isDiabled;
-        set
-        {
-            if (_isDiabled != value)
-            {
-                _isDiabled = value;
-                ValidateRadioButtons();
-            }
-        }
-    }
-
+    private readonly ButtonPageViewModel _buttonPageViewModel;
 
     public TMButtonPage()
     {
-
+        _buttonPageViewModel = new ButtonPageViewModel();
         InitializeComponent();
+        BindingContext = _buttonPageViewModel;
     }
 
-    private void StyleChanged(object sender, CheckedChangedEventArgs e)
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+    }
+
+    private void Style_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-            _selectedStyle = radioButton.Value.ToString();
-            ValidateRadioButtons();
+            var selectedStyle = radioButton.Value.ToString();
+            _buttonPageViewModel.SelectedButtonStyle = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<ButtonStyle>(selectedStyle);
         }
     }
 
-    private void SizeChanged(object sender, CheckedChangedEventArgs e)
+    private void Size_Changed(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-            _selectedSize = radioButton.Value.ToString();
-            ValidateRadioButtons();
+            var selectedSize = radioButton.Value.ToString();
+            _buttonPageViewModel.SelectedFontSize = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<Size>(selectedSize);
         }
     }
 
-    private void ValidateRadioButtons()
+    private void isDisabled_Toggled(object sender, ToggledEventArgs e)
     {
-        bool isStyleSelected = !string.IsNullOrEmpty(_selectedStyle);
-        bool isSizeSelected = !string.IsNullOrEmpty(_selectedSize);
+        _buttonPageViewModel.IsDisabled = e.Value;
+    }
 
-        if (isStyleSelected && isSizeSelected)
+    private void ImagePositionChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (sender is RadioButton radioButton && radioButton.IsChecked)
         {
-            List<TMButton> buttons = new List<TMButton> { button1, button2, button3, button4, button1i, button2i, button3i, button4i };
-            List<TMButton> iconbuttons = new List<TMButton> { button1i, button2i, button3i, button4i };
-
-
-            foreach (TMButton button in buttons)
-            {
-
-                button.Size = (Size)Enum.Parse(typeof(Size), _selectedSize);
-                button.ButtonStyle = (ButtonStyle)Enum.Parse(typeof(ButtonStyle), _selectedStyle);
-                int index = buttons.IndexOf(button);
-                if (index >= buttons.Count - 4)
-                {
-                    if (button.ButtonStyle == ButtonStyle.Outline || button.ButtonStyle == ButtonStyle.BorderLess)
-                    {
-                        button.IconSource = ImageSource.FromFile("icondark.png");
-                    }
-                    else
-                    {
-                        if (!(button.ButtonColor == ButtonColor.Tertiary))
-                        {
-                            button.IconSource = ImageSource.FromFile("gallery_icon.png");
-                        }
-                    }
-                }
-
-                if (_isDiabled)
-                {
-                    button.IsDisabled = true;
-                }
-                else
-                {
-                    button.IsDisabled = false;
-                }
-            }
+            _buttonPageViewModel.SelectedImageOption = radioButton.Value.ToString();
         }
     }
 
-    private void isDisabledToggled(object sender, ToggledEventArgs e)
+    private void FullWidthToggled(object sender, ToggledEventArgs e)
     {
-        IsDisabled = e.Value;
+        if (e.Value)
+        {
+            _buttonPageViewModel.FullWidthAlignment = LayoutOptions.FillAndExpand;
+        }
+        else
+        {
+            _buttonPageViewModel.FullWidthAlignment = LayoutOptions.Start;
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DemoApp.Views;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 
 namespace DemoApp
@@ -14,10 +15,14 @@ namespace DemoApp
             {
                 "Button",
                 "Input",
+                "MultiLineInput",
                 "Modal",
                 "Toast",
                 "CheckBox",
-                "Card"
+                "Card",
+                "RadioButton",
+                "NumberInput",
+                "Spinner"
             };
             BindingContext = this;
         }
@@ -33,6 +38,9 @@ namespace DemoApp
                     case "Input":
                         Navigation.PushAsync(new TMInputPage());
                         break;
+                    case "MultiLineInput":
+                        Navigation.PushAsync(new MultiLineInputPage());
+                        break;
                     case "Modal":
                         Navigation.PushAsync(new TMModalPage());
                         break;
@@ -45,6 +53,15 @@ namespace DemoApp
                     case "Card":
                         Navigation.PushAsync(new TMCardPage());
                         break;
+                    case "RadioButton":
+                        Navigation.PushAsync(new TMRadioButtonPage());
+                        break;
+                    case "NumberInput":
+                        Navigation.PushAsync(new TMNumberInputPage());
+                        break;
+                    case "Spinner":
+                        Navigation.PushAsync(new TMSpinnerPage());
+                        break; 
                     default:
                         Console.WriteLine("Default Case");
                         break;

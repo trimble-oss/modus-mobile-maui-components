@@ -1,72 +1,92 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DemoApp.TMInputPage" xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Class="DemoApp.TMInputPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
              Title="Input">
   <ScrollView>
     <VerticalStackLayout>
-      <StackLayout Padding="10" Spacing="15">
-        <Modus:TMInput 
-                    x:Name="modusInput" 
-                    TitleText="Text Input" 
-                    Placeholder="Input" />
 
-        <Modus:TMInput 
-                    x:Name="validationInput" 
-                    TitleText="Success/Error Input" 
-                    HelperText="Helper Text" 
-                    Placeholder="Text Input" 
-                    InputValidation="CustomValidateInput"
-                    Focused="modusInputFocused"/>
+      <StackLayout Padding="10"
+                   Spacing="10">
 
-        <Modus:TMInput 
-                    TitleText="Right Icon" 
-                    Placeholder="Text Input" 
-                    RightIconSource="password_eye.png" 
-                    RightIconCommand="{Binding ShowPasswordCommand}"
-                    IsPassword="{Binding ShowPassword}"/>
+        <StackLayout Orientation="Horizontal">
+          <Label Text="IsEnabled"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch x:Name="isEnabled"
+                  IsToggled="{Binding IsEnabled}"
+                  Toggled="IsEnabled_Toggled" />
+          <Label Text="IsReadOnly"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch x:Name="isReadOnly"
+                  IsToggled="{Binding IsReadOnly}"
+                  Toggled="IsReadOnly_Toggled" />
+          <Label Text="IsRequired"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+          <Switch x:Name="isRequired"
+                  IsToggled="{Binding IsRequired}"
+                  Toggled="IsRequired_Toggled" />
+        </StackLayout>
 
-        <Modus:TMInput 
-                    TitleText="Filled" 
-                    Placeholder="Text Input" 
-                    Text="Filled" />
+        <Modus:TMInput  x:Name="modusInput"
+                        Placeholder="Input"
+                        IsEnabled="{Binding IsEnabled}"
+                        IsReadOnly="{Binding IsReadOnly}" />
 
-        <Modus:TMInput 
-                    HelperText="Helper Text" 
-                    TitleText="Helper Text" 
-                    Placeholder="Text Input" />
+        <Modus:TMInput  x:Name="modusInputWithTitle"
+                        TitleText="Text Input"
+                        IsEnabled="{Binding IsEnabled}"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        IsRequired="{Binding IsRequired}"
+                        Placeholder="Input" />
 
-        <Modus:TMInput 
-                    IsEnabled="False" 
-                    TitleText="Disabled" 
-                    Text="Data"
-                    Placeholder="Text Input" />
+        <Modus:TMInput x:Name="validationInput"
+                       TitleText="Success/Error Input"
+                       HelperText="Enter a valid email"
+                       IsEnabled="{Binding IsEnabled}"
+                       IsReadOnly="{Binding IsReadOnly}"
+                       InputValidation="TMInputValidation"
+                       IsRequired="{Binding IsRequired}"
+                       Placeholder="Text Input" />
 
-        <Modus:TMInput 
-                    IsReadOnly="True" 
-                    TitleText="Read only" 
-                    Placeholder="Text Input"
-                    Text="Data"/>
+        <Modus:TMInput x:Name="filled"
+                       TitleText="Filled"
+                       Placeholder="Text Input"
+                       IsEnabled="{Binding IsEnabled}"
+                       IsRequired="{Binding IsRequired}"
+                       IsReadOnly="{Binding IsReadOnly}"
+                       Text="Filled" />
 
-        <Modus:TMInput 
-                    IsEnabled="False" 
-                    IsReadOnly="True" 
-                    Text="Data"
-                    HelperText="Helper Text"
-                    TitleText="ReadOnly and Disabled" 
-                    Placeholder="Text Input" />
+        <Modus:TMInput x:Name="rightIcon"
+                       TitleText="Right Icon"
+                       Placeholder="Text Input"
+                       RightIconSource="{x:Static constants:ImageConstants.PasswordIcon}"
+                       IsEnabled="{Binding IsEnabled}"
+                       IsReadOnly="{Binding IsReadOnly}"
+                       IsRequired="{Binding IsRequired}"
+                       RightIconCommand="{Binding ShowPasswordCommand}"
+                       IsPassword="{Binding ShowPassword}" />
 
-        <Modus:TMInput 
-                    TitleText="Left Icon" 
-                    LeftIconSource="s_icon.png" 
-                    Placeholder="Text Input" />
+        <Modus:TMInput x:Name="leftIcon"
+                       TitleText="Left Icon"
+                       LeftIconSource="{x:Static constants:ImageConstants.SearchIcon}"
+                       IsEnabled="{Binding IsEnabled}"
+                       IsReadOnly="{Binding IsReadOnly}"
+                       IsRequired="{Binding IsRequired}"
+                       Placeholder="Text Input" />
 
-        <Modus:TMInput 
-                    TitleText="Both Icon" 
-                    LeftIconSource="user.png" 
-                    Placeholder="Text Input" 
-                    RightIconSource="cv.png" />
-
+        <Modus:TMInput x:Name="bothIcon"
+                       TitleText="Both Icon"
+                       LeftIconSource="{x:Static constants:ImageConstants.AccountIcon}"
+                       Placeholder="Text Input"
+                       IsEnabled="{Binding IsEnabled}"
+                       IsReadOnly="{Binding IsReadOnly}"
+                       IsRequired="{Binding IsRequired}"
+                       RightIconSource="{x:Static constants:ImageConstants.ContactIcon}" />
       </StackLayout>
     </VerticalStackLayout>
   </ScrollView>
