@@ -75,6 +75,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Views\TMModalPage.xaml.cs">
 	    <DependentUpon>TMModalPage.xaml</DependentUpon>
 	  </Compile>
@@ -121,8 +125,5 @@
 	  <MauiXaml Update="Views\TMSpinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
-	</ItemGroup>
+	</ItemGroup>	
 </Project>
