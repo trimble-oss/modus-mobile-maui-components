@@ -1,4 +1,4 @@
-﻿using DemoApp.Views;
+using DemoApp.Views;
 using System.Collections.ObjectModel;
 
 namespace DemoApp
