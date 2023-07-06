@@ -13,8 +13,7 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 			14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
-			14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 			21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
@@ -76,7 +75,7 @@
 		<MauiImage Include="Images\success_icon_outline.svg" />
 		<MauiImage Include="Images\toast_dark_icon.svg" />
 		<MauiImage Include="Images\valid_icon.svg" />
-		<MauiImage Include="Images\vector.svg" />
+		<MauiImage Include="Images\drag_corner.svg" />
 		<MauiImage Include="Images\warning_icon.svg" />
 	</ItemGroup>
 
