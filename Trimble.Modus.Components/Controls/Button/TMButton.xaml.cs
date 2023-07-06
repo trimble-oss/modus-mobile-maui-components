@@ -132,7 +132,7 @@ public partial class TMButton : ContentView
         _buttonFrame = buttonFrame;
         _buttonLabel = buttonLabel;
         SetPadding(this);
-        CheckButtonStyle(this);
+        UpdateButtonStyle(this);
     }
 
     #region Private Methods
@@ -148,7 +148,7 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton tmButton)
         {
-            CheckButtonStyle(tmButton);
+            UpdateButtonStyle(tmButton);
         }
     }
 
@@ -163,7 +163,7 @@ public partial class TMButton : ContentView
             }
             else
             {
-                CheckButtonStyle(tmButton);
+                UpdateButtonStyle(tmButton);
                 tmButton.Opacity = 1;
             }
         }
@@ -173,11 +173,11 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton tmButton)
         {
-            CheckButtonStyle(tmButton);
+            UpdateButtonStyle(tmButton);
         }
     }
 
-    private static void CheckButtonStyle(TMButton tmButton)
+    private static void UpdateButtonStyle(TMButton tmButton)
     {
         if( tmButton.IsFloatingButton && (tmButton.ButtonStyle == ButtonStyle.Outline || tmButton.ButtonStyle == ButtonStyle.BorderLess))
         {

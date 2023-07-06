@@ -12,6 +12,7 @@ public partial class TMFloatingButton : TMButton
         IsFloatingButton = true;
         SetRadius();
     }
+    #region Private Methods
     private void SetRadius()
     {
         if (_buttonFrame != null)
@@ -29,14 +30,6 @@ public partial class TMFloatingButton : TMButton
             _buttonFrame.ZIndex = 1;
         }
     }
-    public void RaisePressed()
-    {
-        if (_buttonFrame.BackgroundColor != null)
-        {
-            activeColor = _buttonFrame.BackgroundColor;
-            _buttonFrame.BackgroundColor = GetOnClickColor(_buttonFrame.BackgroundColor);
-        }
-    }
 
     private Color GetOnClickColor(Color backgroundColor)
     {
@@ -49,7 +42,17 @@ public partial class TMFloatingButton : TMButton
                 return ResourcesDictionary.ColorsDictionary(ColorsConstants.PrimaryFloatingButtonClicked);
         }
     }
-    public void RaiseReleased()
+    #endregion
+    #region Public Methods
+    public new void RaisePressed()
+    {
+        if (_buttonFrame.BackgroundColor != null)
+        {
+            activeColor = _buttonFrame.BackgroundColor;
+            _buttonFrame.BackgroundColor = GetOnClickColor(_buttonFrame.BackgroundColor);
+        }
+    }
+    public new void RaiseReleased()
     {
         if (activeColor != null)
         {
@@ -58,12 +61,12 @@ public partial class TMFloatingButton : TMButton
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, EventArgs.Empty);
     }
-    public void RaiseCancel()
+    public new void RaiseCancel()
     {
         if (activeColor != null)
         {
             _buttonFrame.BackgroundColor = activeColor;
         }
     }
-
+    #endregion
 }
