@@ -20,6 +20,7 @@ public partial class BaseInput : ContentView
     private ValidationResponse _validationResponse;
 
     #endregion
+
     #region Bindable Properties
 
     public static readonly BindableProperty TextProperty =
@@ -64,6 +65,12 @@ public partial class BaseInput : ContentView
     /// </summary>
     public static readonly BindableProperty TitleTextProperty =
         BindableProperty.Create(nameof(TitleText), typeof(string), typeof(BaseInput), null);
+
+    /// <summary>
+    /// Gets or sets the required boolean for the label in the control
+    /// </summary>
+    public static readonly BindableProperty IsRequiredProperty =
+        BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(BaseInput), false);
 
     /// <summary>
     /// Gets or sets the text for helper text label in the control
@@ -174,6 +181,16 @@ public partial class BaseInput : ContentView
         get => (string)GetValue(TitleTextProperty);
         set => SetValue(TitleTextProperty, value);
     }
+
+    /// <summary>
+    /// Gets or sets the required property
+    /// </summary>
+    public bool IsRequired
+    {
+        get => (bool)GetValue(IsRequiredProperty);
+        set => SetValue(IsRequiredProperty, value);
+    }
+
 
     /// <summary>
     /// Gets or sets the maximum length
