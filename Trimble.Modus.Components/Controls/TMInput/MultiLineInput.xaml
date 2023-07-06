@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <base:BaseInput xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 ControlTemplate="{StaticResource InputTemplate}"
@@ -19,44 +19,35 @@
       <converters:AllTrueConverter x:Key="AllTrueConverter" />
     </ResourceDictionary>
   </base:BaseInput.Resources>
-  <Grid x:Name="grid"  Padding="16,14" BindingContext="{x:Reference multiLineInput}">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"/>
-      <ColumnDefinition Width="Auto"/>
-    </Grid.ColumnDefinitions>
-
-    <controls:BorderlessEditor
-        x:Name="inputBorderlessEditor"
-        Focused="InputBorderlessEditor_Focused"
-        Unfocused="InputBorderlessEditor_Unfocused"
-        Placeholder="{Binding Placeholder}"
-        Text="{Binding Text}"
-        AutoSize="Disabled"
-        BackgroundColor="Transparent"
-        MinimumHeightRequest="44"
-        IsReadOnly="{Binding IsReadOnly}"
-        MaxLength="{Binding MaxLength}"
-        Keyboard="{Binding Keyboard}"
-        VerticalOptions="FillAndExpand"
-        HorizontalOptions="FillAndExpand"
-        Grid.Column="0">
+  <StackLayout x:Name="editorStackLayout"
+               Padding="10"
+               BindingContext="{x:Reference multiLineInput}">
+    <controls:BorderlessEditor x:Name="inputBorderlessEditor"
+                               Focused="InputBorderlessEditor_Focused"
+                               Unfocused="InputBorderlessEditor_Unfocused"
+                               Placeholder="{Binding Placeholder}"
+                               Text="{Binding Text}"
+                               AutoSize="Disabled"
+                               BackgroundColor="Transparent"
+                               MinimumHeightRequest="44"
+                               IsReadOnly="{Binding IsReadOnly}"
+                               MaxLength="{Binding MaxLength}"
+                               Keyboard="{Binding Keyboard}"
+                               VerticalOptions="FillAndExpand"
+                               HorizontalOptions="FillAndExpand">
       <controls:BorderlessEditor.IsEnabled>
         <MultiBinding Converter="{StaticResource AllTrueConverter}">
           <Binding Path="IsEnabled" />
           <Binding Path="IsReadOnly"
-                  Converter="{StaticResource InverseBoolConverter}" />
+                   Converter="{StaticResource InverseBoolConverter}" />
         </MultiBinding>
       </controls:BorderlessEditor.IsEnabled>
     </controls:BorderlessEditor>
-    <Image
-        Grid.Column="1"
-        HeightRequest="16"
-        WidthRequest="16"
-        HorizontalOptions="End"
-        VerticalOptions="End"
-        Source="vector.png" />
-  </Grid>
+    <Image HeightRequest="16"
+           WidthRequest="16"
+           Margin="0,-7,0,0"
+           HorizontalOptions="End"
+           VerticalOptions="End"
+           Source="drag_corner.png" />
+  </StackLayout>
 </base:BaseInput>
