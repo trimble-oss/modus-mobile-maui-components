@@ -90,12 +90,11 @@
 	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
 	    <DependentUpon>TMInput.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
+	    <DependentUpon>TMModalContents.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-	  </Compile>
-	  <Compile Update="Themes\Colours.xaml.cs">
-	    <SubType>Code</SubType>
-	    <DependentUpon>%(Filename)</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -106,7 +105,7 @@
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
+	  <MauiXaml Update="Controls\TMModal\TMModalContents.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedControl.xaml">
@@ -116,10 +115,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">
+	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Themes\Colours.xaml">
-	    <SubType>Designer</SubType>
+	  <MauiXaml Update="Styles\Colors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,6 +1,7 @@
 using DemoApp.Constant;
 using Trimble.Modus.Components;
-using Toast = CommunityToolkit.Maui.Alerts.Toast;
+using Trimble.Modus.Components.Controls.Toast;
+using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views;
 
@@ -18,21 +19,21 @@ public partial class TMModalPage : ContentPage
     /// <param name="e"></param>
     private void ShowModalClicked(object sender, EventArgs e)
     {
+        TMModal tmModal = new(string.IsNullOrEmpty(ModalTitle.Text) ? "" : ModalTitle.Text);
+        tmModal.TitleIcon = IconCheckBox.IsChecked ? ImageSource.FromFile(ImageConstants.ModusPlaceholderImage) : null;
+        tmModal.FullWidthButton = FullWidthButtonCheckBox.IsChecked;
+        tmModal.Message = Message.Text;
+        tmModal.FullWidthButton = FullWidthButtonCheckBox.IsChecked;
+        if (InputCheckBox.IsChecked)
+        {
+            tmModal.AddTextInput((tmInput) =>
+            {
+                tmInput.TitleText = "Input Text";
+                tmInput.Placeholder = "Enter text here";
+            });
+        }
         try
         {
-            TMModal tmModal = new(string.IsNullOrEmpty(ModalTitle.Text) ? "" : ModalTitle.Text);
-            tmModal.TitleIcon = IconCheckBox.IsChecked ? ImageSource.FromFile(ImageConstants.ModusPlaceholderImage) : null;
-            tmModal.Message = Message.Text;
-            tmModal.FullWidthButton = FullWidthButtonCheckBox.IsChecked;
-            if (InputCheckBox.IsChecked)
-            {
-                tmModal.AddTextInput((tmInput) =>
-                {
-                    tmInput.TitleText = "Input Text";
-                    tmInput.Placeholder = "Enter text here";
-                });
-            }
-
             if (!string.IsNullOrEmpty(PrimaryButtonTitle.Text))
             {
                 tmModal.AddPrimaryAction(PrimaryButtonTitle.Text);
@@ -49,12 +50,13 @@ public partial class TMModalPage : ContentPage
             {
                 tmModal.AddDangerAction(DangerButtonTitleEntry.Text);
             }
-
             tmModal.Show();
         }
         catch (Exception ex)
         {
-            Toast.Make(ex.Message).Show();
+            TMToast tMToast = new(ex.Message);
+            tMToast.theme = ToastTheme.Danger;
+            tMToast.Show();
         }
     }
 }

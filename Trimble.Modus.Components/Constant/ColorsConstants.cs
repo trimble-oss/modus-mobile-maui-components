@@ -31,4 +31,5 @@ internal class ColorsConstants
     public const string SegmentSecondaryColor = "SegmentSecondaryColor";
     public const string SegmentBackgroundColor = "SegmentBackgroundColor";
     public const string SegmentBorderColor = "SegmentBorderColor";
+    public const string ModalShadowColor = "ModalShadowColor";
 }
