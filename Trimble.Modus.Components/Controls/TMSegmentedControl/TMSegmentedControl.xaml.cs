@@ -109,7 +109,7 @@ public partial class TMSegmentedControl : ContentView
     #region Bindable properties
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMSegmentedControl), null, propertyChanged: OnItemSourceChanged, defaultBindingMode: BindingMode.TwoWay);
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMSegmentedControl), 0, BindingMode.TwoWay, propertyChanged: OnSelectedIndexChanged);
-    public static readonly BindableProperty IsRoundedProperty = BindableProperty.Create(nameof(IsRounded), typeof(bool), typeof(TMSegmentedControl), false);
+    public static readonly BindableProperty IsRoundedProperty = BindableProperty.Create(nameof(IsRounded), typeof(bool), typeof(TMSegmentedControl), false, propertyChanged: OnRoundedPropertyChanged);
     public static readonly BindableProperty ColorThemeProperty = BindableProperty.Create(nameof(ColorTheme), typeof(SegmentColorTheme), typeof(TMSegmentedControl), SegmentColorTheme.Primary, BindingMode.TwoWay, propertyChanged: OnColorThemeChanged);
     public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMSegmentedControl), true, propertyChanged: OnEnabledStateChanged);
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedControl), defaultValue: SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
@@ -118,6 +118,25 @@ public partial class TMSegmentedControl : ContentView
     #endregion
 
     #region Property change handlers
+    /// <summary>
+    /// Update radius of the segmented control when the size/ IsRounded property is changed
+    /// </summary>
+    private static void OnRoundedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var segmentedControl = bindable as TMSegmentedControl;
+        if(segmentedControl.IsRounded)
+        {
+            segmentedControl.FrameView.CornerRadius = 30;
+            if(DeviceInfo.Idiom == DeviceIdiom.Desktop)
+            {
+                segmentedControl.FrameView.CornerRadius = (float)(segmentedControl.FrameView.HeightRequest / 2);
+            }
+        }
+        else
+        {
+            segmentedControl.FrameView.CornerRadius = 8;
+        }
+    }
     /// <summary>
     /// Method that is called when the size of the segmented control is changed.
     /// </summary>
@@ -140,6 +159,7 @@ public partial class TMSegmentedControl : ContentView
                     segmentedControl.FrameView.HeightRequest = 56;
                     break;
             }
+            OnRoundedPropertyChanged(bindable, oldValue, newValue);
         }
     }
 

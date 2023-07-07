@@ -124,7 +124,7 @@ public partial class TMSegmentedItem
     /// </summary>
     static void OnSegmentedItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        (bindable as TMSegmentedItem)?.UpdateCurrent();
+        (bindable as TMSegmentedItem)?.UpdateCurrentItemStyle();
     }
 
     #region Constructor
@@ -137,21 +137,43 @@ public partial class TMSegmentedItem
     /// <summary>
     /// Update the current background color and icon color based on the selection
     /// </summary>
-    void UpdateCurrent()
+    void UpdateCurrentItemStyle()
+    {
+        UpdateBackgroundColor();
+        UpdateIconBehavior();
+        UpdateLayout();
+    }
+
+    /// <summary>
+    /// Update the background color of the segment based on the selection
+    /// </summary>
+    void UpdateBackgroundColor()
     {
         CurrentBackgroundColor = !IsSelected
             ? ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent)
             : SelectedBackgroundColor
                 ?? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-        SegmentIcon.Behaviors.Clear();
-        var behavior = new IconTintColorBehavior
-        {
-            TintColor = IsSelected ? Colors.White : Colors.Black
-        };
-        SegmentIcon.Behaviors.Add(behavior);
-
-        UpdateLayout();
     }
+
+    /// <summary>
+    /// Update the icon color based on the selection
+    /// </summary>
+    void UpdateIconBehavior()
+    {
+        // FIXME: IconTintColorBehavior is not working on windows, so we are removing the behavior for now
+        // https://github.com/CommunityToolkit/Maui/issues/1212 - Issue about the same
+        // This should be updated in the next release of the toolkit and we can remove this code
+        if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+        {
+            SegmentIcon.Behaviors.Clear();
+            var behavior = new IconTintColorBehavior
+            {
+                TintColor = IsSelected ? Colors.White : Colors.Black
+            };
+            SegmentIcon.Behaviors.Add(behavior);
+        }
+    }
+
 
     /// <summary>
     /// Triggered to update the layout based on the text and icon

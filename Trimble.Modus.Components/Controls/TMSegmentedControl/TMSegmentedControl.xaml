@@ -19,29 +19,8 @@
            Padding="0"
            IsClippedToBounds="True"
            HeightRequest="32"
-           BorderColor="{x:StaticResource SegmentBorderColor}">
-      <Frame.Style>
-        <Style TargetType="Frame">
-          <Style.Triggers>
-            <DataTrigger TargetType="Frame"
-                         Binding="{Binding Source={x:Reference SegmentedControl}, Path=IsRounded}"
-                         Value="True">
-              <Setter Property="CornerRadius">
-                <Setter.Value>
-                  <OnIdiom Default="32"
-                           Desktop="20" />
-                </Setter.Value>
-              </Setter>
-            </DataTrigger>
-            <DataTrigger TargetType="Frame"
-                         Binding="{Binding Source={x:Reference SegmentedControl}, Path=IsRounded}"
-                         Value="False">
-              <Setter Property="CornerRadius"
-                      Value="8" />
-            </DataTrigger>
-          </Style.Triggers>
-        </Style>
-      </Frame.Style>
+           BorderColor="{x:StaticResource SegmentBorderColor}"
+           CornerRadius="8">
       <Grid x:Name="TabButtonHolder"
             ColumnSpacing="0"
             BindableLayout.ItemsSource="{Binding Source={x:Reference SegmentedControl}, Path=SegmentedItems}">
