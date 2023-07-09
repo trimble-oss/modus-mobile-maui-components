@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TextCell">
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Image Grid.Column="0" Grid.Row="0" Source="{Binding LeftIconSource}"
+        WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="12,0,12,0" />
+
+    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="4" Padding="0,6,0,6" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
+      <Label Text="{Binding Title}" Grid.Row="0"   FontSize="16" />
+      <Label Text="{Binding Description}"  FontSize="14" LineBreakMode="NoWrap">
+        <Label.Triggers>
+          <DataTrigger TargetType="Label" Binding="{Binding Description.Length}" Value="0">
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+          </DataTrigger>
+        </Label.Triggers>
+      </Label>
+
+    </StackLayout>
+
+    <Image Grid.Column="2" Grid.Row="0" Source="{Binding RightIconSource}" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="12,0,12,0" />
+  </Grid>
+
+</ViewCell>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.TMListViewPage"
+             xmlns:local ="clr-namespace:DemoApp.Views"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="TMListView">
+  <ScrollView>
+    <VerticalStackLayout>
+      <Label Text="Custom Template" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Modus:TMListView x:Name="list" >
+        <Modus:TMListView.ItemsSource>
+          <x:Array Type="{x:Type local:Person}">
+            <local:Person Title="Steve" Age="21" Description="USA" />
+            <local:Person Title="John" Age="37" Description="USA" />
+            <local:Person Title="Tom" Age="42" Description="UK" />
+            <local:Person Title="Tariq" Age="39" Description="UK" />
+            <local:Person Title="Jane" Age="30" Description="USA" />
+          </x:Array>
+        </Modus:TMListView.ItemsSource>
+        <Modus:TMListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Orientation="Horizontal" Spacing="140" Padding="10,5,0,0" >
+                <Label Text="{Binding Title}" FontAttributes="Italic"  HorizontalOptions="Start"/>
+                <Label Text="{Binding Age}" FontAttributes="None"/>
+                <Label Text="{Binding Description}" FontAttributes="Bold"/>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </Modus:TMListView.ItemTemplate>
+
+
+      </Modus:TMListView>
+      <Label Text="Text Template" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Modus:TMListView x:Name="list2" >
+        <Modus:TMListView.ItemsSource>
+          <x:Array Type="{x:Type local:Person}">
+            <local:Person Title="Steve" Age="21" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
+            <local:Person Title="John" Age="37" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
+            <local:Person Title="Tom" Age="42" Description="UK" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
+            <local:Person Title="Tariq" Age="39" Description="UK" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
+            <local:Person Title="Jane" Age="30" Description="USA"  RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
+          </x:Array>
+        </Modus:TMListView.ItemsSource>
+        <Modus:TMListView.ItemTemplate>
+          <DataTemplate>
+            <Modus:TextCell
+            Title="{Binding Title}"
+            Description="{Binding Description}"
+            LeftIconSource="{Binding LeftIconSource}"
+            RightIconSource="{Binding RightIconSource}">
+            </Modus:TextCell>
+          </DataTemplate>
+        </Modus:TMListView.ItemTemplate>
+      </Modus:TMListView>
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

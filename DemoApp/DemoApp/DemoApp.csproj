@@ -79,6 +79,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TMListViewPage.xaml.cs">
+	    <DependentUpon>TMListViewPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMModalPage.xaml.cs">
 	    <DependentUpon>TMModalPage.xaml</DependentUpon>
 	  </Compile>
@@ -98,6 +101,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\TMListViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMModalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -126,4 +132,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionDemoAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 </Project>

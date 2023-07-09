@@ -22,7 +22,8 @@ namespace DemoApp
                 "Card",
                 "RadioButton",
                 "NumberInput",
-                "Spinner"
+                "Spinner",
+                "ListView"
             };
             BindingContext = this;
         }
@@ -61,7 +62,10 @@ namespace DemoApp
                         break;
                     case "Spinner":
                         Navigation.PushAsync(new TMSpinnerPage());
-                        break; 
+                        break;
+                    case "ListView":
+                        Navigation.PushAsync(new TMListViewPage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
