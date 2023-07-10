@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Frame xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        x:Class="Trimble.Modus.Components.TMSegmentedItem"
        xmlns:local="clr-namespace:Trimble.Modus.Components"
        xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
        xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
        BackgroundColor="Transparent"
-       IsClippedToBounds="True"
+        StrokeThickness="0"
        x:Name="ItemContainer"
-       Padding="0"
-       CornerRadius="8">
-  <Frame.Resources>
+       Padding="0">
+  <Border.StrokeShape>
+        <RoundRectangle CornerRadius="8" />
+    </Border.StrokeShape>
+  <Border.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <color:Colors />
@@ -19,9 +21,8 @@
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ResourceDictionary>
-  </Frame.Resources>
-  <Grid RowSpacing="0">
-    <Grid BackgroundColor="{Binding Source={x:Reference ItemContainer}, Path=CurrentBackgroundColor}" HorizontalOptions="Fill" VerticalOptions="Fill" />
+  </Border.Resources>
+  <Grid RowSpacing="0" BackgroundColor="{Binding Source={x:Reference ItemContainer}, Path=CurrentBackgroundColor}">
     <Image x:Name="SegmentIcon"
            HorizontalOptions="Center"
            VerticalOptions="Center"
@@ -68,4 +69,4 @@
              VerticalOptions="FillAndExpand"
              WidthRequest="1" />
   </Grid>
-</Frame>
+</Border>
