@@ -22,5 +22,8 @@ namespace Trimble.Modus.Components.Model
 
         [ObservableProperty]
         private int _itemIndex;
+
+        [ObservableProperty]
+        private SegmentedControlSize _size;
     }
 }

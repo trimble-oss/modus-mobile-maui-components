@@ -33,7 +33,8 @@
                                        Icon="{Binding Icon}"
                                        ShowSeparator="{Binding ShowSeparator}"
                                        IsSelected="{Binding IsSelected}"
-                                       ColorTheme="{Binding ColorTheme}" />
+                                       ColorTheme="{Binding ColorTheme}"
+                                       Size="{Binding Size}"/>
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>

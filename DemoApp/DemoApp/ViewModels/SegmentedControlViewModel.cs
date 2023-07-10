@@ -28,7 +28,7 @@ namespace DemoApp.ViewModels
 
         public SegmentedControlViewModel()
         {
-            _segmentItems = new() { "Item 1", "item 2", "Item 3", "Item 4" };
+            _segmentItems = new() { "One", "Two", "Three", "Four" };
             _segmentImageItems = new()
             {
                 ImageSource.FromFile(ImageConstants.GalleryIcon),

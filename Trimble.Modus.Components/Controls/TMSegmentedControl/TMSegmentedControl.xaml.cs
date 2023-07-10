@@ -103,7 +103,7 @@ public partial class TMSegmentedControl : ContentView
     public static readonly BindableProperty IsRoundedProperty = BindableProperty.Create(nameof(IsRounded), typeof(bool), typeof(TMSegmentedControl), false, propertyChanged: OnRoundedPropertyChanged);
     public static readonly BindableProperty ColorThemeProperty = BindableProperty.Create(nameof(ColorTheme), typeof(SegmentColorTheme), typeof(TMSegmentedControl), SegmentColorTheme.Primary, BindingMode.TwoWay, propertyChanged: OnColorThemeChanged);
     public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMSegmentedControl), true, propertyChanged: OnEnabledStateChanged);
-    public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedControl), defaultValue: SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
+    public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedControl), defaultValue: SegmentedControlSize.Small, BindingMode.TwoWay, propertyChanged: OnSizeChanged);
     public static readonly BindableProperty SelectedIndexChangedCommandProperty = BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(TMSegmentedControl));
     #endregion
 
@@ -148,6 +148,10 @@ public partial class TMSegmentedControl : ContentView
                 case SegmentedControlSize.XLarge:
                     segmentedControl.FrameView.HeightRequest = 56;
                     break;
+            }
+            foreach (var item in segmentedControl.SegmentedItems)
+            {
+                item.Size = (SegmentedControlSize)newValue;
             }
             OnRoundedPropertyChanged(bindable, oldValue, newValue);
         }
@@ -249,7 +253,8 @@ public partial class TMSegmentedControl : ContentView
                     ItemIndex = SegmentedItems.Count,
                     ColorTheme = ColorTheme,
                     IsSelected = SegmentedItems.Count == SelectedIndex,
-                    ShowSeparator = SegmentedItems.Count != 0
+                    ShowSeparator = SegmentedItems.Count != 0,
+                    Size = Size
                 };
             if (item is ImageSource)
             {

@@ -17,10 +17,25 @@ public partial class TMSegmentedItem
     public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(TMSegmentedItem), null, propertyChanged: OnSegmentedItemPropertyChanged);
     internal static readonly BindablePropertyKey CurrentBackgroundColorPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), Colors.Transparent);
     public static readonly BindableProperty CurrentBackgroundColorProperty = CurrentBackgroundColorPropertyKey.BindableProperty;
+    public static readonly BindableProperty SizeProperty= BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedItem), SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
+
     #endregion
 
     #region public properties
     public int ItemIndex { get; internal set; }
+    /// <summary>
+    /// Size of segment
+    /// </summary>
+    [
+        EditorBrowsable(EditorBrowsableState.Never),
+        Browsable(false),
+        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
+    ]
+    public SegmentedControlSize Size
+    {
+        get => (SegmentedControlSize)GetValue(SizeProperty);
+        internal set => SetValue(SizeProperty, value);
+    }
 
     /// <summary>
     /// Icon to be displayed in the segment
@@ -101,6 +116,33 @@ public partial class TMSegmentedItem
         set => SetValue(ColorThemeProperty, value);
     }
     #endregion
+    /// <summary>
+    /// Update font size and height of the icon based on the size
+    /// </summary>
+    private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if(bindable is TMSegmentedItem segmentedItem)
+        {
+            if(segmentedItem.Size == SegmentedControlSize.Small)
+            {
+                segmentedItem.TextLabel.FontSize = 12;
+                segmentedItem.SegmentIcon.MinimumWidthRequest = 24;
+                segmentedItem.SegmentIcon.MinimumHeightRequest = 24;
+            }
+            else if(segmentedItem.Size == SegmentedControlSize.Medium || segmentedItem.Size == SegmentedControlSize.Large)
+            {
+                segmentedItem.TextLabel.FontSize = 16;
+                segmentedItem.SegmentIcon.MinimumWidthRequest = 24;
+                segmentedItem.SegmentIcon.MinimumHeightRequest = 24;
+            }
+            else if(segmentedItem.Size == SegmentedControlSize.XLarge)
+            {
+                segmentedItem.TextLabel.FontSize = 20;
+                segmentedItem.SegmentIcon.MinimumWidthRequest = 32;
+                segmentedItem.SegmentIcon.MinimumHeightRequest = 32;
+            }
+        }
+    }
     /// <summary>
     /// Update the background color of the segment based on the color theme
     /// </summary>

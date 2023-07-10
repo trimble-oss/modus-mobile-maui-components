@@ -38,7 +38,9 @@
            Margin="16,0"
            LineBreakMode="TailTruncation"
            MaxLines="1"
-           IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+           IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+           FontAttributes="Bold"
+           FontSize="12">
       <Label.Style>
         <Style TargetType="Label">
           <Setter Property="TextColor"
