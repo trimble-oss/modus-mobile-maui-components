@@ -96,15 +96,6 @@ public partial class TMSegmentedControl : ContentView
         get { return (ICommand)GetValue(SelectedIndexChangedCommandProperty); }
         set { SetValue(SelectedIndexChangedCommandProperty, value); }
     }
-
-    /// <summary>
-    /// Command parameter to be passed when the selected index is changed
-    /// </summary>
-    public object CommandParameter
-    {
-        get { return GetValue(CommandParameterProperty); }
-        set { SetValue(CommandParameterProperty, value); }
-    }
     #endregion
     #region Bindable properties
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMSegmentedControl), null, propertyChanged: OnItemSourceChanged, defaultBindingMode: BindingMode.TwoWay);
@@ -114,7 +105,6 @@ public partial class TMSegmentedControl : ContentView
     public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMSegmentedControl), true, propertyChanged: OnEnabledStateChanged);
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedControl), defaultValue: SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
     public static readonly BindableProperty SelectedIndexChangedCommandProperty = BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(TMSegmentedControl));
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TMSegmentedControl));
     #endregion
 
     #region Property change handlers
@@ -251,7 +241,6 @@ public partial class TMSegmentedControl : ContentView
     {
         if (ItemsSource == null)
             return;
-        ClearSegmentedItems();
         foreach (var item in ItemsSource)
         {
             SegmentItemModel newTab =
@@ -274,8 +263,6 @@ public partial class TMSegmentedControl : ContentView
             {
                 newTab.Text = item.ToString();
             }
-            var columnDefinition = new ColumnDefinition();
-            TabButtonHolder.ColumnDefinitions.Add(columnDefinition);
             UpdateSegmentedItem(newTab);
             SegmentedItems.Add(newTab);
         }
@@ -290,6 +277,8 @@ public partial class TMSegmentedControl : ContentView
             HandleAdd(e);
         else if (e.Action == NotifyCollectionChangedAction.Remove)
             HandleRemove(e);
+        else if (e.Action == NotifyCollectionChangedAction.Reset)
+            ClearSegmentedItems();
     }
 
     /// <summary>
@@ -327,9 +316,9 @@ public partial class TMSegmentedControl : ContentView
     {
         var selectedIndexEventArgs = new SelectedIndexEventArgs(SelectedIndex);
         SelectedIndexChanged?.Invoke(this, selectedIndexEventArgs);
-        if (SelectedIndexChangedCommand != null && SelectedIndexChangedCommand.CanExecute(CommandParameter))
+        if (SelectedIndexChangedCommand != null && SelectedIndexChangedCommand.CanExecute(SelectedIndex))
         {
-            SelectedIndexChangedCommand.Execute(CommandParameter);
+            SelectedIndexChangedCommand.Execute(SelectedIndex);
         }
 
         for (int i = 0; i < SegmentedItems.Count; i++)
@@ -396,7 +385,6 @@ public partial class TMSegmentedControl : ContentView
             return;
 
         SegmentedItems.Clear();
-        TabButtonHolder.ColumnDefinitions.Clear();
     }
 
     /// <summary>
@@ -407,13 +395,7 @@ public partial class TMSegmentedControl : ContentView
     {
         if (TabButtonHolder == null)
             return;
-        int columnIndex = Grid.GetColumn(segmentedItem);
-
         TabButtonHolder.Children.Remove(segmentedItem);
-        if (TabButtonHolder.ColumnDefinitions.Count > columnIndex)
-        {
-            TabButtonHolder.ColumnDefinitions.RemoveAt(columnIndex);
-        }
     }
 
     /// <summary>
@@ -451,8 +433,6 @@ public partial class TMSegmentedControl : ContentView
             {
                 newTab.Text = item.ToString();
             }
-            var columnDefinition = new ColumnDefinition();
-            TabButtonHolder.ColumnDefinitions.Add(columnDefinition);
             UpdateSegmentedItem(newTab);
             SegmentedItems.Add(newTab);
         }
@@ -488,10 +468,6 @@ public partial class TMSegmentedControl : ContentView
             if (index != -1)
             {
                 SegmentedItems.RemoveAt(index);
-                if (TabButtonHolder.ColumnDefinitions.Count > index)
-                {
-                    TabButtonHolder.ColumnDefinitions.RemoveAt(index);
-                }
             }
         }
     }

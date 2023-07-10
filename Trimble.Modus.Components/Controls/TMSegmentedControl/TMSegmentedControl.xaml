@@ -21,20 +21,22 @@
            HeightRequest="32"
            BorderColor="{x:StaticResource SegmentBorderColor}"
            CornerRadius="8">
-      <Grid x:Name="TabButtonHolder"
-            ColumnSpacing="0"
-            BindableLayout.ItemsSource="{Binding Source={x:Reference SegmentedControl}, Path=SegmentedItems}">
+      <StackLayout x:Name="TabButtonHolder"
+                   Orientation="Horizontal"
+                   HorizontalOptions="FillAndExpand"
+                   IsEnabled="True"
+                   BindableLayout.ItemsSource="{Binding Source={x:Reference SegmentedControl}, Path=SegmentedItems}">
         <BindableLayout.ItemTemplate>
           <DataTemplate>
             <component:TMSegmentedItem Text="{Binding Text}"
+                                       HorizontalOptions="FillAndExpand"
                                        Icon="{Binding Icon}"
-                                       Grid.Column="{Binding ItemIndex}"
                                        ShowSeparator="{Binding ShowSeparator}"
                                        IsSelected="{Binding IsSelected}"
                                        ColorTheme="{Binding ColorTheme}" />
           </DataTemplate>
         </BindableLayout.ItemTemplate>
-      </Grid>
+      </StackLayout>
     </Frame>
   </ContentView.Content>
 </ContentView>

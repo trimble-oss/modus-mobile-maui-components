@@ -20,7 +20,6 @@ public partial class TMSegmentedItem
     #endregion
 
     #region public properties
-    public event EventHandler<EventArgs> ItemClicked;
     public int ItemIndex { get; internal set; }
 
     /// <summary>
