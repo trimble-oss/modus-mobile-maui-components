@@ -9,7 +9,7 @@
   <ScrollView>
     <VerticalStackLayout>
       <Label Text="Custom Template" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
-      <Modus:TMListView x:Name="list" >
+      <Modus:TMListView x:Name="list">
         <Modus:TMListView.ItemsSource>
           <x:Array Type="{x:Type local:Person}">
             <local:Person Title="Steve" Age="21" Description="USA" />
@@ -39,9 +39,9 @@
           <x:Array Type="{x:Type local:Person}">
             <local:Person Title="Steve" Age="21" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
             <local:Person Title="John" Age="37" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
-            <local:Person Title="Tom" Age="42" Description="UK" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
-            <local:Person Title="Tariq" Age="39" Description="UK" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
-            <local:Person Title="Jane" Age="30" Description="USA"  RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
+            <local:Person Title="Tom" Age="42" Description="USAassssssssssssssssssssaasldasdlasjdalsdjasljdaskldjksaljdkalsjdksaljdlkasjdklasjdklasdksadjalsdjlaskjdkalsjdlasjdlasjdslakdslajdaslk"  />
+            <local:Person Title="Tariq" Age="39" Description="USAassssssssssssssssssssaasldasdlasjdalsdjasljdaskldjksaljdkalsjdksaljdlkasjdklasjdklasdksadjalsdjlaskjdkalsjdlasjdlasjdslakdslajdaslk" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"  />
+            <local:Person Title="Jane" Age="30" Description="USAassssssssssssssssssssaasldasdlasjdalsdjasljdaskldjksaljdkalsjdksaljdlkasjdklasjdklasdksadjalsdjlaskjdkalsjdlasjdlasjdslakdslajdaslkssssssss"  RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
           </x:Array>
         </Modus:TMListView.ItemsSource>
         <Modus:TMListView.ItemTemplate>
