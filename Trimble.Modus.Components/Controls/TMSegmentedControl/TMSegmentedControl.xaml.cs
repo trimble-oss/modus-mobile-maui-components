@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Input;
+using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Model;
 
@@ -55,11 +56,10 @@ public partial class TMSegmentedControl : ContentView
     /// <summary>
     /// Corner radius of the segmented control
     /// </summary>
-    public float CornerRadius
+    public CornerRadius CornerRadius
     {
-        get => FrameView.CornerRadius;
-        internal set => FrameView.CornerRadius = value;
-    }
+        get; set;
+    } = 8;
 
     /// <summary>
     /// Color theme of the segmented control
@@ -114,19 +114,23 @@ public partial class TMSegmentedControl : ContentView
     private static void OnRoundedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var segmentedControl = bindable as TMSegmentedControl;
-        if(segmentedControl.IsRounded)
+        if (segmentedControl.IsRounded)
         {
-            segmentedControl.FrameView.CornerRadius = 30;
-            if(DeviceInfo.Idiom == DeviceIdiom.Desktop)
+            segmentedControl.CornerRadius = segmentedControl.FrameView.HeightRequest / 2;
+            segmentedControl.FrameView.StrokeShape = new RoundRectangle()
             {
-                segmentedControl.FrameView.CornerRadius = (float)(segmentedControl.FrameView.HeightRequest / 2);
-            }
+                CornerRadius = segmentedControl.FrameView.HeightRequest / 2
+            };
         }
         else
         {
-            segmentedControl.FrameView.CornerRadius = 8;
+            segmentedControl.FrameView.StrokeShape = new RoundRectangle()
+            {
+                CornerRadius = 8
+            };
         }
     }
+
     /// <summary>
     /// Method that is called when the size of the segmented control is changed.
     /// </summary>

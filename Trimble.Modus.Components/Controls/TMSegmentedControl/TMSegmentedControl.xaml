@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMSegmentedControl"
@@ -15,12 +15,13 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <Frame x:Name="FrameView"
+    <Border x:Name="FrameView"
            Padding="0"
-           IsClippedToBounds="True"
            HeightRequest="32"
-           BorderColor="{x:StaticResource SegmentBorderColor}"
-           CornerRadius="8">
+           Stroke="{x:StaticResource SegmentBorderColor}">
+      <Border.StrokeShape>
+        <RoundRectangle CornerRadius="{Binding Source={x:Reference SegmentedControl}, Path=CornerRadius}" />
+    </Border.StrokeShape>
       <StackLayout x:Name="TabButtonHolder"
                    Orientation="Horizontal"
                    HorizontalOptions="FillAndExpand"
@@ -38,6 +39,6 @@
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>
-    </Frame>
+    </Border>
   </ContentView.Content>
 </ContentView>
