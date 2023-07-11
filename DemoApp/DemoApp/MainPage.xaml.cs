@@ -1,7 +1,5 @@
-﻿using DemoApp.Views;
+using DemoApp.Views;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-
 
 namespace DemoApp
 {
@@ -22,7 +20,8 @@ namespace DemoApp
                 "Card",
                 "RadioButton",
                 "NumberInput",
-                "Spinner"
+                "Spinner",
+                "SegmentedControl"
             };
             BindingContext = this;
         }
@@ -61,7 +60,10 @@ namespace DemoApp
                         break;
                     case "Spinner":
                         Navigation.PushAsync(new TMSpinnerPage());
-                        break; 
+                        break;
+                    case "SegmentedControl":
+                        Navigation.PushAsync(new TMSegmentedControlPage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
