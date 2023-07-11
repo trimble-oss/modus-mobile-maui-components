@@ -38,7 +38,7 @@
   <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
   
   <!--Segmented Control-->
-  <Color x:Key="SegmentSecondaryColor">#6a6e79</Color>
+  <Color x:Key="SegmentSecondaryColor">#FF353A40</Color>
   <Color x:Key="SegmentBackgroundColor">#B7B9C3</Color>
   <Color x:Key="SegmentBorderColor">#FF353A40</Color>
   <Color x:Key="ModalShadowColor">#22000000</Color>

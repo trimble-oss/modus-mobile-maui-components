@@ -16,9 +16,13 @@
   </ContentView.Resources>
   <ContentView.Content>
     <Border x:Name="FrameView"
-           Padding="0"
+           Padding="-1"
            HeightRequest="32"
            Stroke="{x:StaticResource SegmentBorderColor}">
+      <Border.Padding>
+        <OnIdiom Default="-1"
+                 Desktop="0" />
+      </Border.Padding>
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="{Binding Source={x:Reference SegmentedControl}, Path=CornerRadius}" />
       </Border.StrokeShape>
@@ -36,7 +40,12 @@
                                        IsSelected="{Binding IsSelected}"
                                        ColorTheme="{Binding ColorTheme}"
                                        Size="{Binding Size}"
-                                       Margin="-2,0"/>
+                                       Margin="0">
+              <Border.Margin>
+                <OnIdiom Default="0"
+                         Desktop="-2,0" />
+              </Border.Margin>
+            </component:TMSegmentedItem>
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>
