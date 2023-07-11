@@ -126,20 +126,14 @@ public partial class TMSegmentedItem
             if(segmentedItem.Size == SegmentedControlSize.Small)
             {
                 segmentedItem.TextLabel.FontSize = 12;
-                segmentedItem.SegmentIcon.MinimumWidthRequest = 24;
-                segmentedItem.SegmentIcon.MinimumHeightRequest = 24;
             }
             else if(segmentedItem.Size == SegmentedControlSize.Medium || segmentedItem.Size == SegmentedControlSize.Large)
             {
                 segmentedItem.TextLabel.FontSize = 16;
-                segmentedItem.SegmentIcon.MinimumWidthRequest = 24;
-                segmentedItem.SegmentIcon.MinimumHeightRequest = 24;
             }
             else if(segmentedItem.Size == SegmentedControlSize.XLarge)
             {
                 segmentedItem.TextLabel.FontSize = 20;
-                segmentedItem.SegmentIcon.MinimumWidthRequest = 32;
-                segmentedItem.SegmentIcon.MinimumHeightRequest = 32;
             }
         }
     }
