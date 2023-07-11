@@ -21,7 +21,7 @@
            Stroke="{x:StaticResource SegmentBorderColor}">
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="{Binding Source={x:Reference SegmentedControl}, Path=CornerRadius}" />
-    </Border.StrokeShape>
+      </Border.StrokeShape>
       <StackLayout x:Name="TabButtonHolder"
                    Orientation="Horizontal"
                    HorizontalOptions="FillAndExpand"
@@ -35,7 +35,8 @@
                                        ShowSeparator="{Binding ShowSeparator}"
                                        IsSelected="{Binding IsSelected}"
                                        ColorTheme="{Binding ColorTheme}"
-                                       Size="{Binding Size}"/>
+                                       Size="{Binding Size}"
+                                       Margin="-2,0"/>
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </StackLayout>

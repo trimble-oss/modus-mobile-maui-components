@@ -6,7 +6,7 @@
        xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
        xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
        BackgroundColor="Transparent"
-        StrokeThickness="0"
+       StrokeThickness="0"
        x:Name="ItemContainer"
        Padding="0">
   <Border.StrokeShape>
@@ -69,6 +69,6 @@
              Margin="0,8"
              Color="{x:StaticResource SegmentBackgroundColor}"
              VerticalOptions="FillAndExpand"
-             WidthRequest="1" />
+             WidthRequest="1.4" />
   </Grid>
 </Border>
