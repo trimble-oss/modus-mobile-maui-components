@@ -1,0 +1,10 @@
+<Project>
+  <ItemGroup>
+    <MauiImage Include="$(MSBuildThisFileDirectory)\Images\question_mark.svg">
+      <Link>Resources\Images\question_mark.svg</Link>
+    </MauiImage>
+    <MauiImage Include="$(MSBuildThisFileDirectory)\Images\add_icon.svg">
+      <Link>Resources\Images\add_icon.svg</Link>
+    </MauiImage>
+  </ItemGroup>
+</Project>
