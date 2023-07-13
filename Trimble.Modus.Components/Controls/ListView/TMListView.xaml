@@ -11,9 +11,10 @@
 
   <ContentView.Content>
     <StackLayout>
-      <ListView x:Name="listView" RowHeight="56"
-                ItemsSource="{Binding Source={x:Reference tmListView}, Path=ItemsSource}"
+      <ListView x:Name="listView" RowHeight="56" SelectionMode="Single" 
+                ItemsSource="{Binding Source={x:Reference tmListView}, Path=SelectableItemSource}"
                 ItemTemplate="{Binding Source={x:Reference tmListView}, Path=ItemTemplate}"
+                ItemSelected="listView_ItemSelected"
                 >
       </ListView>
     </StackLayout>
