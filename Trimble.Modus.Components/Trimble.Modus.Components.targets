@@ -1,10 +1,12 @@
 <Project>
   <ItemGroup>
-    <MauiImage Include="$(MSBuildThisFileDirectory)\Images\question_mark.svg">
-      <Link>Resources\Images\question_mark.svg</Link>
+    <!--<MauiImage Include="Assets\add_icon.svg" />
+    <MauiImage Include="Assets\minus_icon.svg" />-->
+    <MauiImage Include="$(MSBuildThisFileDirectory)\Resources\Modus\*.svg">
+      <!--<Link>Resources\Modus\add_icon.svg</Link>-->
     </MauiImage>
-    <MauiImage Include="$(MSBuildThisFileDirectory)\Images\add_icon.svg">
-      <Link>Resources\Images\add_icon.svg</Link>
-    </MauiImage>
+    <!--<MauiImage Include="$(MSBuildThisFileDirectory)\Resources\Modus\minus_icon.svg">
+      <Link>Resources\Modus\minus_icon.svg</Link>
+    </MauiImage>-->
   </ItemGroup>
 </Project>
