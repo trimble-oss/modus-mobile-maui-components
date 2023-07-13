@@ -4,8 +4,6 @@ namespace Trimble.Modus.Components;
 
 public partial class TextCell : ViewCell
 {
-    public new Color BackgroundColor { get; set; }
-
     public static readonly BindableProperty TitleProperty =
         BindableProperty.Create(nameof(Title), typeof(string), typeof(TextCell), default(string));
 
