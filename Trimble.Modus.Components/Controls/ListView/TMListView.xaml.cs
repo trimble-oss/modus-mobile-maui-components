@@ -74,8 +74,8 @@ public partial class TMListView : ContentView
 
     private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-                
-        SelectionMode = ListSelectionMode.Multiple;
+
+        ListSelectionMode = ListSelectionMode.Multiple;
 
         if (e.SelectedItem is SelectableItem<object> selectedItem)
         {
