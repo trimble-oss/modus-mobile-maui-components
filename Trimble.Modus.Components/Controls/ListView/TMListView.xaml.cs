@@ -10,14 +10,15 @@ namespace Trimble.Modus.Components;
 public partial class TMListView : ContentView
 {
     private List<SelectableItem<object>> selectedItems;
+    private SelectableItem<object> singleSelectedItem;
     public static readonly BindableProperty ItemsSourceProperty =
     BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMListView), null, propertyChanged: OnItemSourceChanged);
 
     public static readonly BindableProperty SelectableItemsSourceProperty =
    BindableProperty.Create(nameof(SelectableItemSource), typeof(IEnumerable), typeof(TMListView), null);
 
-    public ListSelectionMode SelectionMode;
-   
+    public ListSelectionMode ListSelectionMode { get; set; }
+  
     private static void OnItemSourceChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (newValue is IEnumerable newCollection)
@@ -66,45 +67,64 @@ public partial class TMListView : ContentView
     {
         InitializeComponent();
         selectedItems = new List<SelectableItem<object>>();
+      
 
     }
 
 
     private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
+                
         SelectionMode = ListSelectionMode.Multiple;
-        if (SelectionMode == ListSelectionMode.Multiple)
+
+        if (e.SelectedItem is SelectableItem<object> selectedItem)
         {
 
-            if (e.SelectedItem is SelectableItem<object> selectedItem)
+            if (ListSelectionMode == ListSelectionMode.Multiple)
             {
-                selectedItem.IsSelected = !selectedItem.IsSelected;
-                Console.WriteLine(selectedItem.IsSelected);
+                    Console.WriteLine("Multiple");
+                    selectedItem.IsSelected = !selectedItem.IsSelected;
+                    Console.WriteLine(selectedItem.IsSelected);
 
-                if (selectedItem.IsSelected)
+                    if (selectedItem.IsSelected)
+                    {
+                        selectedItems.Add(selectedItem);
+                    }
+                    else
+                    {
+                        selectedItems.Remove(selectedItem);
+                    }
+                    foreach (var item in selectedItems)
+                    {
+                        Console.WriteLine(selectedItems.Count);
+                    }
+
+                
+            }
+            if (ListSelectionMode == ListSelectionMode.Single)
+            {
+                Console.WriteLine("Single");
+                //  listView.SelectionMode = ListViewSelectionMode.Single;
+                Console.WriteLine(selectedItems.Count);
+                if (selectedItems.Count > 0)
                 {
-                    selectedItems.Add(selectedItem);
+                    Console.WriteLine("if"+selectedItems.Count);
+                    foreach (var item in selectedItems)
+                    {
+                        item.IsSelected = false;
+                       
+                    }
                 }
-                else
-                {
-                    selectedItems.Remove(selectedItem);
-                }
-                foreach (var item in selectedItems)
-                {
-                    Console.WriteLine(item.ToString());
-                }
+                selectedItems.Clear();
+                selectedItem.IsSelected = true;
+                selectedItems.Add(selectedItem);
 
             }
+            if (ListSelectionMode == ListSelectionMode.ReadOnly)
+            {
+                Console.WriteLine("Readonly");
+                listView.SelectionMode = ListViewSelectionMode.None;
+            }
         }
-        if(SelectionMode == ListSelectionMode.Single)
-        {
-            listView.SelectionMode = ListViewSelectionMode.Single;
-            BackgroundColor = Colors.Blue;
-        }
-        if(SelectionMode == ListSelectionMode.ReadOnly)
-        {
-            listView.SelectionMode = ListViewSelectionMode.None;
-        }
-
     }
 }
