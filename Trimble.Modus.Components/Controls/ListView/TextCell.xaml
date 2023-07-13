@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
@@ -19,13 +19,13 @@
       </ResourceDictionary>
     </Grid.Resources>
 
-    <Image Grid.Column="0" Grid.Row="0" Source="{Binding LeftIconSource}" IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+    <Image Grid.Column="0" Grid.Row="0" Source="{Binding Data.LeftIconSource}" IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
         WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="12,0,0,0" />
     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="4" Padding="0,6,0,6" Margin="12,0,12,0" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
-      <Label Text="{Binding Title}" IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" Grid.Row="0"   FontSize="16" />
-      <Label Text="{Binding Description}" IsVisible="{Binding Description,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" FontSize="14" LineBreakMode="TailTruncation" MaxLines="1"/>
+      <Label Text="{Binding Data.Title}" IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" Grid.Row="0"   FontSize="16" />
+      <Label Text="{Binding Data.Description}" IsVisible="{Binding Description,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" FontSize="14" LineBreakMode="TailTruncation" MaxLines="1"/>
     </StackLayout>
-    <Image Grid.Column="2" Grid.Row="0" Source="{Binding RightIconSource}" IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+    <Image Grid.Column="2" Grid.Row="0" Source="{Binding Data.RightIconSource}" IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
            WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="0,0,12,0" />
     <Grid.Triggers>
       <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="True">

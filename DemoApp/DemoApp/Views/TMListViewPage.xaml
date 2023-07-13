@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMListViewPage"
@@ -21,20 +21,22 @@
         </Modus:TMListView.ItemsSource>
         <Modus:TMListView.ItemTemplate>
           <DataTemplate>
-            <ViewCell>
+            <Modus:ListViewTemplateCell>
+              <Modus:ListViewTemplateCell.Content>
               <StackLayout Orientation="Horizontal" Spacing="140" Padding="10,5,0,0" >
                 <Label Text="{Binding Title}" FontAttributes="Italic"  HorizontalOptions="Start"/>
                 <Label Text="{Binding Age}" FontAttributes="None"/>
                 <Label Text="{Binding Description}" FontAttributes="Bold"/>
               </StackLayout>
-            </ViewCell>
+              </Modus:ListViewTemplateCell.Content>
+            </Modus:ListViewTemplateCell>
           </DataTemplate>
         </Modus:TMListView.ItemTemplate>
 
 
       </Modus:TMListView>
       <Label Text="Text Template" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
-      <Modus:TMListView x:Name="list2" >
+      <Modus:TMListView x:Name="list2">
         <Modus:TMListView.ItemsSource>
           <x:Array Type="{x:Type local:Person}">
             <local:Person Title="Steve" Age="21" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />

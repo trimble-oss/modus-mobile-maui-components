@@ -72,6 +72,7 @@ public partial class TMListView : ContentView
 
     private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
+        SelectionMode = ListSelectionMode.Multiple;
         if (SelectionMode == ListSelectionMode.Multiple)
         {
 
