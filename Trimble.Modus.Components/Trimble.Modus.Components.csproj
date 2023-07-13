@@ -10,23 +10,16 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 
-		<SupportedOSPlatformVersion
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 			14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
-			14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 			21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 			10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 			10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion
-			Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">
 			6.5</SupportedOSPlatformVersion>
 
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -48,15 +41,13 @@
 		<PackageReleaseNotes>Test Release notes</PackageReleaseNotes>
 	</PropertyGroup>
 
-	<PropertyGroup
-		Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 		<CreatePackage>false</CreatePackage>
 		<MtouchLink>None</MtouchLink>
 		<MtouchUseLlvm>False</MtouchUseLlvm>
 	</PropertyGroup>
 
-	<PropertyGroup
-		Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 		<MtouchLink>None</MtouchLink>
 	</PropertyGroup>
 	<ItemGroup>
@@ -87,8 +78,6 @@
 		<None Include="Trimble.Modus.Components.targets" Pack="True" PackagePath="buildTransitive\" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="Resources\Images\question_mark.svg" Pack="True"
-			PackagePath="buildTransitive\Resources\Modus\" />
 		<None Include="Images\*" Pack="True" PackagePath="buildTransitive\Resources\Modus\" />
 	</ItemGroup>
 
