@@ -47,8 +47,24 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Assets\" />
+	  <None Remove="Images\add_icon.svg" />
+	  <None Remove="Images\black_close_icon.svg" />
+	  <None Remove="Images\blue_close_icon.svg" />
+	  <None Remove="Images\blue_info_outline_icon.svg" />
+	  <None Remove="Images\blue_info_solid_icon.svg" />
+	  <None Remove="Images\error_icon_outline.svg" />
+	  <None Remove="Images\grey_info_icon.svg" />
+	  <None Remove="Images\minus_icon.svg" />
+	  <None Remove="Images\radio_selected_icon.svg" />
+	  <None Remove="Images\radio_unselected_icon.svg" />
+	  <None Remove="Images\solid_help_icon.svg" />
+	  <None Remove="Images\success_icon_outline.svg" />
+	  <None Remove="Images\toast_danger_icon.svg" />
+	  <None Remove="Images\toast_dark_icon.svg" />
+	  <None Remove="Images\valid_icon.svg" />
+	  <None Remove="Images\warning_icon.svg" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
 		<None Include="LICENSE.md" Pack="true" PackagePath="" />
@@ -56,6 +72,7 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>
 
