@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView x:Name="self"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+             x:Class="Trimble.Modus.Components.DataGrid"
+             x:DataType="local:DataGrid"
+             CompressedLayout.IsHeadless="True">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <color:Colors />
+      </ResourceDictionary.MergedDictionaries>
+      <Style x:Key="DefaultHeaderStyle"
+             TargetType="Label">
+        <Setter Property="HorizontalOptions"
+                Value="Start" />
+        <Setter Property="VerticalOptions"
+                Value="Center" />
+        <Setter Property="TextColor"
+                Value="{x:StaticResource TableHeaderTextColor}" />
+        <Setter Property="LineBreakMode"
+                Value="WordWrap" />
+        <Setter Property="Padding"
+                Value="16,0" />
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Grid CompressedLayout.IsHeadless="True">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0"
+          x:Name="_headerView"
+          HeightRequest="48" />
+    <CollectionView x:Name="_collectionView"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    WidthRequest="{Binding WidthRequest, Source={Reference self}, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedItem, Source={Reference self}, Mode=TwoWay}"
+                    SelectedItems="{Binding SelectedItems, Source={Reference self}, Mode=TwoWay}"
+                    ItemSizingStrategy="{Binding ItemSizingStrategy, Source={Reference self}, Mode=TwoWay}"
+                    SelectionMode="{Binding SelectionMode, Source={Reference self}, Mode=TwoWay}">
+      <!-- Padding="-28.5,0,0,0" -->
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <local:DataGridRow MinimumHeightRequest="48"
+                             Padding="0,0,0,1">
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup Name="CommonStates">
+                <VisualState Name="Normal" />
+                <VisualState Name="Selected">
+                  <VisualState.Setters>
+                    <Setter Property="BackgroundColor"
+                            Value="Transparent" />
+                  </VisualState.Setters>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+          </local:DataGridRow>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+  </Grid>
+</ContentView>

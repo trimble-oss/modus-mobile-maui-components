@@ -39,6 +39,7 @@
 	  <None Remove="Images\blue_close_icon.svg" />
 	  <None Remove="Images\blue_info_outline_icon.svg" />
 	  <None Remove="Images\blue_info_solid_icon.svg" />
+	  <None Remove="Images\caret_down_bold.svg" />
 	  <None Remove="Images\error_icon_outline.svg" />
 	  <None Remove="Images\grey_info_icon.svg" />
 	  <None Remove="Images\minus_icon.svg" />
@@ -54,6 +55,7 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\caret_down_bold.svg" />
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>
@@ -92,6 +94,9 @@
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
+	    <DependentUpon>TextColumn.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
 	    <DependentUpon>TMInput.xaml</DependentUpon>
 	  </Compile>
@@ -108,6 +113,15 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\BooleanColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\ImageColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">

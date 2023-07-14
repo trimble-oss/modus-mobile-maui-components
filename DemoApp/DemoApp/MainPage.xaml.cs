@@ -21,7 +21,8 @@ namespace DemoApp
                 "RadioButton",
                 "NumberInput",
                 "Spinner",
-                "SegmentedControl"
+                "SegmentedControl",
+                "DataGrid"
             };
             BindingContext = this;
         }
@@ -64,6 +65,9 @@ namespace DemoApp
                     case "SegmentedControl":
                         Navigation.PushAsync(new TMSegmentedControlPage());
                         break;
+                    case "DataGrid":
+                        Navigation.PushAsync(new TableView());
+                    break;
                     default:
                         Console.WriteLine("Default Case");
                         break;

@@ -42,4 +42,9 @@
   <Color x:Key="SegmentBackgroundColor">#B7B9C3</Color>
   <Color x:Key="SegmentBorderColor">#FF353A40</Color>
   <Color x:Key="ModalShadowColor">#22000000</Color>
+
+  <!--Table-->
+  <Color x:Key="TableHeaderColor">#F1F1F6</Color>
+  <Color x:Key="TableDividerColor">#B7B9C3</Color>
+  <Color x:Key="TableHeaderTextColor">#464b52</Color>
 </ResourceDictionary>
