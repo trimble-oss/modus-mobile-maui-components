@@ -6,22 +6,16 @@
              xmlns:constant ="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
              x:Name="tmListView"
-             ListSelectionMode="Single"
-             x:Class="Trimble.Modus.Components.TMListView"
-                >
+             x:Class="Trimble.Modus.Components.TMListView">
 
   <ContentView.Content>
     <StackLayout>
-      <ListView x:Name="listView" RowHeight="56"
-                ItemsSource="{Binding Source={x:Reference tmListView}, Path=SelectableItemSource}"
+      <ListView x:Name="listView" RowHeight="56" 
                 ItemTemplate="{Binding Source={x:Reference tmListView}, Path=ItemTemplate}"
-                ItemSelected="listView_ItemSelected"
-                >
+                HasUnevenRows="True"
+                ItemSelected="ListItemSelected">
       </ListView>
     </StackLayout>
   </ContentView.Content>
-
-
-
 
 </ContentView>

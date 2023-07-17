@@ -1,35 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
+             xmlns:helpers="clr-namespace:Trimble.Modus.Components.Helpers"
              x:Class="Trimble.Modus.Components.TextCell">
-  <Grid x:Name="grid" BackgroundColor="{Binding BackgroundColor}">
+  <Grid x:Name="grid" BindingContext="{Binding Data}" >
+    <Grid.Resources>
+      <ResourceDictionary>
+        <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+        <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+        <converters:DescriptionToRowHeightConverter x:Key="DescriptionToRowHeightConverter" />
+      </ResourceDictionary>
+    </Grid.Resources>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-      <RowDefinition Height="*"/>
+      <RowDefinition Height="{Binding Data.Description, Converter={StaticResource DescriptionToRowHeightConverter}}" />
     </Grid.RowDefinitions>
-    <Grid.Resources>
-      <ResourceDictionary>
-        <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
-        <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
-      </ResourceDictionary>
-    </Grid.Resources>
 
-    <Image Grid.Column="0" Grid.Row="0" Source="{Binding Data.LeftIconSource}" IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+
+    <Image Grid.Column="0" Grid.Row="0" Source="{Binding Data.LeftIconSource}" IsVisible="{Binding Data.LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
         WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="12,0,0,0" />
     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="4" Padding="0,6,0,6" Margin="12,0,12,0" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
-      <Label Text="{Binding Data.Title}" IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" Grid.Row="0"   FontSize="16" />
-      <Label Text="{Binding Data.Description}" IsVisible="{Binding Description,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" FontSize="14" LineBreakMode="TailTruncation" MaxLines="1"/>
+      <Label Text="{Binding Data.Title}" IsVisible="{Binding Data.Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" Grid.Row="0"   FontSize="16" VerticalOptions="EndAndExpand" />
+      <Label Text="{Binding Data.Description}" IsVisible="{Binding Data.Description,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" FontSize="14" LineBreakMode="TailTruncation" MaxLines="1"/>
     </StackLayout>
-    <Image Grid.Column="2" Grid.Row="0" Source="{Binding Data.RightIconSource}" IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+    <Image Grid.Column="2" Grid.Row="0" Source="{Binding Data.RightIconSource}" IsVisible="{Binding Data.RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
            WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="0,0,12,0" />
     <Grid.Triggers>
       <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="True">
-        <Setter Property="BackgroundColor" Value="Yellow" />
+        <Setter Property="BackgroundColor" Value="{Binding SetterColor}"/>
       </DataTrigger>
       <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="False">
         <Setter Property="BackgroundColor" Value="White" />

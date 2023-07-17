@@ -1,4 +1,6 @@
 using System.Runtime.CompilerServices;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -38,6 +40,7 @@ public partial class TextCell : ViewCell
         get => (string)GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
     }
+    public Color setterColor;
     public TextCell()
     {
         InitializeComponent();
@@ -46,10 +49,21 @@ public partial class TextCell : ViewCell
     protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         base.OnPropertyChanged(propertyName);
-        if (propertyName != null)
+        if(propertyName ==  TitleProperty.PropertyName)
         {
-            
-
+            Console.WriteLine(TitleProperty);
+        }
+        else if(propertyName == DescriptionProperty.PropertyName)
+        {
+            Console.WriteLine(Description);
+        }
+        else if (propertyName == LeftIconSourceProperty.PropertyName)
+        {
+            Console.WriteLine(LeftIconSourceProperty);
+        }
+        else if( propertyName == RightIconSourceProperty.PropertyName)
+        {
+            Console.WriteLine(RightIconSourceProperty);
         }
     }
 }

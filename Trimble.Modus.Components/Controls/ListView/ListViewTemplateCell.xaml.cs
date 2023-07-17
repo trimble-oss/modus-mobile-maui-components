@@ -1,4 +1,7 @@
-﻿namespace Trimble.Modus.Components;
+﻿using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
+
+namespace Trimble.Modus.Components;
 
 public partial class ListViewTemplateCell : ViewCell
 {
@@ -22,7 +25,6 @@ public partial class ListViewTemplateCell : ViewCell
     public ListViewTemplateCell()
     {
         InitializeComponent();
-        //var trest = BindingContext;
     }
 }
 

@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Name="CustomViewCell"
+             x:Name="CustomViewCell"
+             xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
              x:Class="Trimble.Modus.Components.ListViewTemplateCell">
   <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="56" />
+    </Grid.RowDefinitions>
     <Grid.Triggers>
       <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="True">
-        <Setter Property="BackgroundColor" Value="Yellow" />
+        <Setter Property="BackgroundColor"  Value="{Binding SetterColor}"/>
       </DataTrigger>
       <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="False">
         <Setter Property="BackgroundColor" Value="White" />

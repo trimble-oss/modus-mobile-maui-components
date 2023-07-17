@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -20,10 +22,13 @@ namespace Trimble.Modus.Components;
         Data = data;
     }
 
+    public Color SetterColor { get; set; }
+
     public SelectableItem(object data, bool isSelected)
     {
         Data = data;
         IsSelected = isSelected;
+        SetterColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
     }
 
     public object Data

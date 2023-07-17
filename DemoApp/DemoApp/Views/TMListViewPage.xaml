@@ -6,57 +6,77 @@
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="TMListView">
-  <ScrollView>
-    <VerticalStackLayout>
-      <Label Text="Custom Template" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
-      <Modus:TMListView x:Name="list">
-        <Modus:TMListView.ItemsSource>
-          <x:Array Type="{x:Type local:Person}">
-            <local:Person Title="Steve" Age="21" Description="USA" />
-            <local:Person Title="John" Age="37" Description="USA" />
-            <local:Person Title="Tom" Age="42" Description="UK" />
-            <local:Person Title="Tariq" Age="39" Description="UK" />
-            <local:Person Title="Jane" Age="30" Description="USA" />
-          </x:Array>
-        </Modus:TMListView.ItemsSource>
-        <Modus:TMListView.ItemTemplate>
-          <DataTemplate>
-            <Modus:ListViewTemplateCell>
-              <Modus:ListViewTemplateCell.Content>
-              <StackLayout Orientation="Horizontal" Spacing="140" Padding="10,5,0,0" >
-                <Label Text="{Binding Title}" FontAttributes="Italic"  HorizontalOptions="Start"/>
-                <Label Text="{Binding Age}" FontAttributes="None"/>
-                <Label Text="{Binding Description}" FontAttributes="Bold"/>
-              </StackLayout>
-              </Modus:ListViewTemplateCell.Content>
-            </Modus:ListViewTemplateCell>
-          </DataTemplate>
-        </Modus:TMListView.ItemTemplate>
-
-
-      </Modus:TMListView>
-      <Label Text="Text Template" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
-      <Modus:TMListView x:Name="list2">
-        <Modus:TMListView.ItemsSource>
-          <x:Array Type="{x:Type local:Person}">
-            <local:Person Title="Steve" Age="21" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
-            <local:Person Title="John" Age="37" Description="USA" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
-            <local:Person Title="Tom" Age="42" Description="USAassssssssssssssssssssaasldasdlasjdalsdjasljdaskldjksaljdkalsjdksaljdlkasjdklasjdklasdksadjalsdjlaskjdkalsjdlasjdlasjdslakdslajdaslk"  />
-            <local:Person Title="Tariq" Age="39" Description="USAassssssssssssssssssssaasldasdlasjdalsdjasljdaskldjksaljdkalsjdksaljdlkasjdklasjdklasdksadjalsdjlaskjdkalsjdlasjdlasjdslakdslajdaslk" LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"  />
-            <local:Person Title="Jane" Age="30" Description="USAassssssssssssssssssssaasldasdlasjdalsdjasljdaskldjksaljdkalsjdksaljdlkasjdklasjdklasdksadjalsdjlaskjdkalsjdlasjdlasjdslakdslajdaslkssssssss"  RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}" />
-          </x:Array>
-        </Modus:TMListView.ItemsSource>
-        <Modus:TMListView.ItemTemplate>
-          <DataTemplate>
-            <Modus:TextCell
+  <ContentPage.Resources>
+    <DataTemplate x:Name="TextCell" x:Key="textCellKey">
+      <Modus:TextCell
             Title="{Binding Title}"
             Description="{Binding Description}"
             LeftIconSource="{Binding LeftIconSource}"
             RightIconSource="{Binding RightIconSource}">
-            </Modus:TextCell>
-          </DataTemplate>
-        </Modus:TMListView.ItemTemplate>
+      </Modus:TextCell>
+    </DataTemplate>
+    <DataTemplate x:Name="ViewCell" x:Key="viewCellKey">
+      <Modus:ListViewTemplateCell>
+        <Modus:ListViewTemplateCell.Content>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding ProfilePic}" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Center" Grid.Column="0" HeightRequest="20" WidthRequest="20"/>
+
+            <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
+            <Label Text="{Binding DOB, StringFormat='DOB: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
+            <Label Text="{Binding Address}" Grid.Row="2" Grid.Column="1" FontSize="Micro"/>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Spacing="10">
+              <Button Text="Phone" Clicked="OnPhoneClicked"/>
+              <Button Text="Email" Clicked="OnEmailClicked"/>
+            </StackLayout>
+          </Grid>
+        </Modus:ListViewTemplateCell.Content>
+      </Modus:ListViewTemplateCell>
+    </DataTemplate>
+
+  </ContentPage.Resources>
+  <ScrollView>
+    <VerticalStackLayout>
+      <Label Text="Select View Type" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Modus:TMRadioButtonGroup x:Name="CellGroup"
+                                Padding="10"
+                                SelectedIndex="0"
+                                HorizontalOptions="Center"
+                                SelectedRadioButtonChanged="OnCellGroupButtonChanged"
+                                Orientation="Horizontal">
+        <Modus:TMRadioButton Text="TextCell" />
+        <Modus:TMRadioButton Text="ViewCell" />
+      </Modus:TMRadioButtonGroup>
+      <Modus:TMRadioButtonGroup x:Name="SelectionGroup"
+                                Padding="10"
+                                SelectedIndex="0"
+                                HorizontalOptions="Center"
+                                SelectedRadioButtonChanged="OnSelectionGroupButtonChanged"
+                                Orientation="Horizontal">
+        <Modus:TMRadioButton Text="Single" />
+        <Modus:TMRadioButton Text="Multiple" />
+        <Modus:TMRadioButton Text="None" />
+      </Modus:TMRadioButtonGroup>
+      <Modus:TMListView x:Name="textCellList" IsVisible="True"  ItemSelected="list_ItemSelected" ItemTemplate="{StaticResource textCellKey}" >
+        <Modus:TMListView.ItemsSource>
+          <x:Array Type="{x:Type local:TestUser}">
+            <local:TestUser Title="Steve"/>
+            <local:TestUser Title="John" />
+          </x:Array>
+
+        </Modus:TMListView.ItemsSource>
       </Modus:TMListView>
-    </VerticalStackLayout>
+       </VerticalStackLayout>
   </ScrollView>
 </ContentPage>

@@ -1,90 +1,63 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Internals;
 using System.Collections;
-using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
 public partial class TMListView : ContentView
 {
+   
     private List<SelectableItem<object>> selectedItems;
-    private SelectableItem<object> singleSelectedItem;
+
+    private int _selectedItemCount = 0;
+
     public static readonly BindableProperty ItemsSourceProperty =
-    BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMListView), null, propertyChanged: OnItemSourceChanged);
+        BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMListView), null, propertyChanged: OnItemSourceChanged);
 
     public static readonly BindableProperty SelectableItemsSourceProperty =
-   BindableProperty.Create(nameof(SelectableItemSource), typeof(IEnumerable), typeof(TMListView), null);
+        BindableProperty.Create(nameof(SelectableItemSource), typeof(IEnumerable), typeof(TMListView), null, propertyChanged: OnSelectableItemSourceChanged);
+    
+    public static readonly BindableProperty ItemTemplateProperty =
+        BindableProperty.Create(nameof(ItemTemplate),typeof(DataTemplate),typeof(TMListView));
 
-    public ListSelectionMode ListSelectionMode { get; set; }
-  
-    private static void OnItemSourceChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (newValue is IEnumerable newCollection)
-        {
-            var selectableItems = new List<SelectableItem<object>>();
+    public event EventHandler<SelectableItemEventArgs> ItemSelected;
 
-            foreach (var item in newCollection)
-            {
-                var selectableItem = new SelectableItem<object>(item, false);
-                selectableItems.Add(selectableItem);
+    public ListSelectionMode SelectionMode { get; set; }
 
-            }
+    public List<SelectableItem<object>> selectableItems;
 
-            if (bindable is TMListView tMListView)
-            {
-                tMListView.SelectableItemSource = selectableItems;
-            }
-
-        }
-
-    }
-
-    public IEnumerable SelectableItemSource
-    {
-        get => (IEnumerable)GetValue(SelectableItemsSourceProperty);
-        set => SetValue(SelectableItemsSourceProperty, value);
-    }
     public IEnumerable ItemsSource
     {
         get => (IEnumerable)GetValue(ItemsSourceProperty);
         set => SetValue(ItemsSourceProperty, value);
     }
-
-
-    public static readonly BindableProperty CustomTemplateProperty = BindableProperty.Create(
-        nameof(ItemTemplate),
-        typeof(DataTemplate),
-        typeof(TMListView));
     public DataTemplate ItemTemplate
     {
-        get => (DataTemplate)GetValue(CustomTemplateProperty);
-        set => SetValue(CustomTemplateProperty, value);
+        get => (DataTemplate)GetValue(ItemTemplateProperty);
+        set => SetValue(ItemTemplateProperty, value);
+    }
+    internal IEnumerable SelectableItemSource
+    {
+        get => (IEnumerable)GetValue(SelectableItemsSourceProperty);
+        set => SetValue(SelectableItemsSourceProperty, value);
     }
 
     public TMListView()
     {
         InitializeComponent();
         selectedItems = new List<SelectableItem<object>>();
-      
-
     }
 
 
-    private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private void ListItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-
-        ListSelectionMode = ListSelectionMode.Multiple;
 
         if (e.SelectedItem is SelectableItem<object> selectedItem)
         {
 
-            if (ListSelectionMode == ListSelectionMode.Multiple)
+            switch (SelectionMode)
             {
-                    Console.WriteLine("Multiple");
+                case ListSelectionMode.Multiple:
                     selectedItem.IsSelected = !selectedItem.IsSelected;
-                    Console.WriteLine(selectedItem.IsSelected);
 
                     if (selectedItem.IsSelected)
                     {
@@ -96,35 +69,98 @@ public partial class TMListView : ContentView
                     }
                     foreach (var item in selectedItems)
                     {
-                        Console.WriteLine(selectedItems.Count);
+                        _selectedItemCount = selectedItems.Count;
                     }
+                    break;
 
-                
-            }
-            if (ListSelectionMode == ListSelectionMode.Single)
-            {
-                Console.WriteLine("Single");
-                //  listView.SelectionMode = ListViewSelectionMode.Single;
-                Console.WriteLine(selectedItems.Count);
-                if (selectedItems.Count > 0)
-                {
-                    Console.WriteLine("if"+selectedItems.Count);
-                    foreach (var item in selectedItems)
+                case ListSelectionMode.Single:
+                    if (selectedItems.Count > 0)
                     {
-                        item.IsSelected = false;
-                       
-                    }
-                }
-                selectedItems.Clear();
-                selectedItem.IsSelected = true;
-                selectedItems.Add(selectedItem);
+                        foreach (var item in selectedItems)
+                        {
+                            item.IsSelected = false;
 
+                        }
+                    }
+                    selectedItems.Clear();
+                    selectedItem.IsSelected = true;
+                    selectedItems.Add(selectedItem);
+                    _selectedItemCount = 1;
+
+                    break;
+
+                case ListSelectionMode.ReadOnly:
+                    listView.SelectionMode = ListViewSelectionMode.None;
+                    _selectedItemCount = 0;
+                    break;
+                default:
+                    break;
             }
-            if (ListSelectionMode == ListSelectionMode.ReadOnly)
+
+            ItemSelected?.Invoke(this, GetValueFromItemsSource(ItemsSource, e.SelectedItemIndex, _selectedItemCount));
+        }
+
+    }
+
+    private static void OnItemSourceChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMListView tmlistview)
+        {
+            if (newValue is IEnumerable newCollection)
             {
-                Console.WriteLine("Readonly");
-                listView.SelectionMode = ListViewSelectionMode.None;
+                tmlistview.selectableItems = new List<SelectableItem<object>>();
+
+                foreach (var item in newCollection)
+                {
+                    var selectableItem = new SelectableItem<object>(item, false);
+                    tmlistview.selectableItems.Add(selectableItem);
+                }
+                tmlistview.SelectableItemSource = tmlistview.selectableItems;
             }
         }
+
+    }
+    private static void OnSelectableItemSourceChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMListView tmlistview)
+        {
+            if (newValue is IEnumerable value)
+            {
+                tmlistview.listView.ItemsSource = value;
+            }
+        }
+    }
+
+    private SelectableItemEventArgs GetValueFromItemsSource(IEnumerable itemsSource, int selectedItemIndex,int selectedItemsCount)
+    {
+        if (itemsSource == null || selectedItemIndex < 0)
+            return null;
+
+        if (itemsSource is IList list)
+        {
+            if (selectedItemIndex < list.Count)
+            {
+                var selectedItem = list[selectedItemIndex];
+                return new SelectableItemEventArgs(selectedItem, selectedItemIndex, selectedItemsCount);
+            }
+        }
+        else
+        {
+            var enumerator = itemsSource.GetEnumerator();
+            var currentIndex = 0;
+
+            while (enumerator.MoveNext())
+            {
+                if (currentIndex == selectedItemIndex)
+                {
+                    var selectedItem = enumerator.Current;
+                    return new SelectableItemEventArgs(selectedItem, selectedItemIndex, selectedItemsCount);
+                }
+
+                currentIndex++;
+            }
+        }
+
+        return null;
     }
 }
