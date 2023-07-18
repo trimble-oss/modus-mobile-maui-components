@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMListViewPage"
              xmlns:local ="clr-namespace:DemoApp.Views"
+             xmlns:res="clr-namespace:DemoApp.Resources"
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="TMListView">
   <ContentPage.Resources>
     <DataTemplate x:Name="TextCell" x:Key="textCellKey">
-      <Modus:TextCell
-            Title="{Binding Title}"
-            Description="{Binding Description}"
-            LeftIconSource="{Binding LeftIconSource}"
-            RightIconSource="{Binding RightIconSource}">
+      <Modus:TextCell 
+            Title="{Binding Data.Name}"
+            Description="{Binding Data.Address}"
+            LeftIconSource="{Binding Data.ProfilePic}"
+            RightIconSource="{Binding Data.ProfilePic}">
       </Modus:TextCell>
     </DataTemplate>
     <DataTemplate x:Name="ViewCell" x:Key="viewCellKey">
@@ -69,13 +70,6 @@
         <Modus:TMRadioButton Text="None" />
       </Modus:TMRadioButtonGroup>
       <Modus:TMListView x:Name="textCellList" IsVisible="True"  ItemSelected="list_ItemSelected" ItemTemplate="{StaticResource textCellKey}" >
-        <Modus:TMListView.ItemsSource>
-          <x:Array Type="{x:Type local:TestUser}">
-            <local:TestUser Title="Steve"/>
-            <local:TestUser Title="John" />
-          </x:Array>
-
-        </Modus:TMListView.ItemsSource>
       </Modus:TMListView>
        </VerticalStackLayout>
   </ScrollView>

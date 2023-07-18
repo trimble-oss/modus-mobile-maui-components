@@ -4,34 +4,38 @@
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:helpers="clr-namespace:Trimble.Modus.Components.Helpers"
+             x:Name="textCell"
              x:Class="Trimble.Modus.Components.TextCell">
-  <Grid x:Name="grid" BindingContext="{Binding Data}" >
+  <Grid x:Name="grid" >
     <Grid.Resources>
       <ResourceDictionary>
         <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
         <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
         <converters:DescriptionToRowHeightConverter x:Key="DescriptionToRowHeightConverter" />
-      </ResourceDictionary>
+        </ResourceDictionary>
     </Grid.Resources>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="{Binding Data.Description, Converter={StaticResource DescriptionToRowHeightConverter}}" />
-    </Grid.RowDefinitions>
 
+    <Grid BindingContext="{Binding Source={x:Reference textCell}}" HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
 
-    <Image Grid.Column="0" Grid.Row="0" Source="{Binding Data.LeftIconSource}" IsVisible="{Binding Data.LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-        WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="12,0,0,0" />
-    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="4" Padding="0,6,0,6" Margin="12,0,12,0" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
-      <Label Text="{Binding Data.Title}" IsVisible="{Binding Data.Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" Grid.Row="0"   FontSize="16" VerticalOptions="EndAndExpand" />
-      <Label Text="{Binding Data.Description}" IsVisible="{Binding Data.Description,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" FontSize="14" LineBreakMode="TailTruncation" MaxLines="1"/>
-    </StackLayout>
-    <Image Grid.Column="2" Grid.Row="0" Source="{Binding Data.RightIconSource}" IsVisible="{Binding Data.RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+      <Image Source="{Binding LeftIconSource}" IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+           WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Start" Margin="12,0,0,0" />
+
+      <StackLayout Grid.Column="1" Spacing="4" Padding="0,6,0,6" Margin="12,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
+        <Label Text="{Binding Title}" IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+               FontSize="16" VerticalOptions="StartAndExpand" />
+        <Label Text="{Binding Description}" IsVisible="{Binding Description, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+               FontSize="14" LineBreakMode="TailTruncation" MaxLines="1" />
+      </StackLayout>
+
+      <Image Grid.Column="2" Source="{Binding RightIconSource}" HorizontalOptions="End" IsVisible="{Binding RightIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
            WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="0,0,12,0" />
-    <Grid.Triggers>
+  </Grid>
+  <Grid.Triggers>
       <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="True">
         <Setter Property="BackgroundColor" Value="{Binding SetterColor}"/>
       </DataTrigger>

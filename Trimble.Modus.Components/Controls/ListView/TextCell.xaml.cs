@@ -7,7 +7,12 @@ namespace Trimble.Modus.Components;
 public partial class TextCell : ViewCell
 {
     public static readonly BindableProperty TitleProperty =
-        BindableProperty.Create(nameof(Title), typeof(string), typeof(TextCell), default(string));
+        BindableProperty.Create(nameof(Title), typeof(string), typeof(TextCell), default(string),propertyChanged:TitleChanged);
+
+    private static void TitleChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        Console.WriteLine("Title"+newValue);
+    }
 
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TextCell));
@@ -45,25 +50,5 @@ public partial class TextCell : ViewCell
     {
         InitializeComponent();
         BindingContext = this;
-    }
-    protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        base.OnPropertyChanged(propertyName);
-        if(propertyName ==  TitleProperty.PropertyName)
-        {
-            Console.WriteLine(TitleProperty);
-        }
-        else if(propertyName == DescriptionProperty.PropertyName)
-        {
-            Console.WriteLine(Description);
-        }
-        else if (propertyName == LeftIconSourceProperty.PropertyName)
-        {
-            Console.WriteLine(LeftIconSourceProperty);
-        }
-        else if( propertyName == RightIconSourceProperty.PropertyName)
-        {
-            Console.WriteLine(RightIconSourceProperty);
-        }
     }
 }

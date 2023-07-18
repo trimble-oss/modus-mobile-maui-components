@@ -27,17 +27,7 @@ public partial class TMListViewPage : ContentPage
         textCellList.SelectionMode = Trimble.Modus.Components.Enums.ListSelectionMode.Single;
         BindingContext = this;
     }
-    public async Task TestApi()
-    {
-        var uri = new Uri("https://randomuser.me/api/?results=20");
-        Console.WriteLine(uri?.ToString());
-
-        var res = await _client.GetByteArrayAsync(uri);
-        Console.WriteLine("res1Value" + res);
-
-        var response = await _client.GetStringAsync(uri);
-        Console.WriteLine("Response" + response);
-    }
+ 
     private void list2_ItemSelected(object sender, SelectableItemEventArgs e)
     {
      //   Console.WriteLine(((Person)e.SelectableItem).Title +" "+ ((Person)e.SelectableItem).Description+" "+e.SelectedItemsCount);
@@ -100,7 +90,7 @@ public partial class TMListViewPage : ContentPage
 
                 users.Add(user);
             }
-          //  textCellList.ItemsSource = users;
+            textCellList.ItemsSource = users;
         }
     }
 
