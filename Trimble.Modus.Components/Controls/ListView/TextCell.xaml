@@ -18,8 +18,8 @@
     <Grid BindingContext="{Binding Source={x:Reference textCell}}" HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
 
       <Image Source="{Binding LeftIconSource}" IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
