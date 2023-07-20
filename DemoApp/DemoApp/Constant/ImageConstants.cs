@@ -10,5 +10,7 @@
         public const string DarkGalleryIcon = "dark_gallery_icon.png";
         public const string GalleryIcon = "gallery_icon.png";
         public const string PasswordIcon = "password_eye.png";
+        public const string Email = "email.png";
+        public const string Phone = "phone.png";
     }
 }

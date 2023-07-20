@@ -63,8 +63,10 @@
 	  <None Remove="Resources\Images\account_icon.svg" />
 	  <None Remove="Resources\Images\contact_icon.svg" />
 	  <None Remove="Resources\Images\dark_gallery_icon.svg" />
+	  <None Remove="Resources\Images\email.svg" />
 	  <None Remove="Resources\Images\gallery_icon.svg" />
 	  <None Remove="Resources\Images\green_icon.svg" />
+	  <None Remove="Resources\Images\phone.svg" />
 	  <None Remove="Resources\Images\placeholder.svg" />
 	  <None Remove="Resources\Images\search_icon.svg" />
 	</ItemGroup>

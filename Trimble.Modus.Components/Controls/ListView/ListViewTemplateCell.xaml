@@ -4,21 +4,11 @@
              x:Name="CustomViewCell"
              xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
              x:Class="Trimble.Modus.Components.ListViewTemplateCell">
-  <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+  <Grid x:Name="grid"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
     <Grid.RowDefinitions>
       <RowDefinition Height="56" />
     </Grid.RowDefinitions>
-    <Grid.Triggers>
-      <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="True">
-        <Setter Property="BackgroundColor"  Value="{Binding SetterColor}"/>
-      </DataTrigger>
-      <DataTrigger TargetType="Grid" Binding="{Binding IsSelected}" Value="False">
-        <Setter Property="BackgroundColor" Value="White" />
-      </DataTrigger>
-    </Grid.Triggers>
-    <!--<Label Text="Hello"/>-->
     <ContentView 
-                 BindingContext="{Binding Data}"
                  Content="{Binding Source={x:Reference CustomViewCell}, Path=Content}">
     </ContentView>
     </Grid>

@@ -6,13 +6,12 @@ namespace Trimble.Modus.Components;
 
 public partial class TextCell : ViewCell
 {
+    #region Private Fields
+    private ListView oldParent = null;
+    #endregion
+    #region Bindable Properties
     public static readonly BindableProperty TitleProperty =
-        BindableProperty.Create(nameof(Title), typeof(string), typeof(TextCell), default(string),propertyChanged:TitleChanged);
-
-    private static void TitleChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        Console.WriteLine("Title"+newValue);
-    }
+        BindableProperty.Create(nameof(Title), typeof(string), typeof(TextCell), default(string));
 
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TextCell));
@@ -20,7 +19,13 @@ public partial class TextCell : ViewCell
     public static readonly BindableProperty RightIconSourceProperty =
        BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(TextCell));
 
-     public ImageSource LeftIconSource
+    public static readonly BindableProperty DescriptionProperty =
+        BindableProperty.Create(nameof(Description), typeof(string), typeof(TextCell), default(string));
+
+
+    #endregion
+    #region Public Fields
+    public ImageSource LeftIconSource
     {
         get => (ImageSource)GetValue(LeftIconSourceProperty);
         set => SetValue(LeftIconSourceProperty, value);
@@ -36,19 +41,56 @@ public partial class TextCell : ViewCell
         get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
-
-    public static readonly BindableProperty DescriptionProperty =
-        BindableProperty.Create(nameof(Description), typeof(string), typeof(TextCell), default(string));
-
     public string Description
     {
         get => (string)GetValue(DescriptionProperty);
         set => SetValue(DescriptionProperty, value);
     }
+
     public Color setterColor;
+    #endregion
+    #region Constructor
     public TextCell()
     {
         InitializeComponent();
-        BindingContext = this;
     }
+    #endregion
+    #region Protected Methods
+    protected override void OnParentSet()
+    {
+        base.OnParentSet();
+
+        if (this.Parent != null)
+        {
+            oldParent = this.Parent as ListView;
+            var test = this.Parent;
+            ((ListView)test).ItemTapped += TextCell_ItemSelected;
+        }
+        else
+        {
+            oldParent.ItemTapped -= TextCell_ItemSelected;
+            oldParent = null;
+        }
+    }
+    #endregion
+    #region Private Methods
+    private void TextCell_ItemSelected(object sender, ItemTappedEventArgs e)
+    {
+        if (sender is ListView listView)
+        {
+            var test = listView.Parent.Parent;
+            if (test is TMListView tMListView)
+            {
+                grid.BackgroundColor = Colors.White;
+                foreach (var item in tMListView.selectableItems)
+                {
+                    if (item == BindingContext)
+                    {
+                        grid.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+                    }
+                }
+            }
+        }
+    }
+    #endregion
 }

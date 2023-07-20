@@ -13,7 +13,8 @@
       <ListView x:Name="listView" RowHeight="56" 
                 ItemTemplate="{Binding Source={x:Reference tmListView}, Path=ItemTemplate}"
                 HasUnevenRows="True"
-                ItemSelected="ListItemSelected">
+                ItemTapped="listView_ItemTapped"
+                >
       </ListView>
     </StackLayout>
   </ContentView.Content>

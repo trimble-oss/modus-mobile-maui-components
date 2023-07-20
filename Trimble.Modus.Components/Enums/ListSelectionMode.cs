@@ -2,7 +2,7 @@
 
 public enum ListSelectionMode
 {
-    ReadOnly = 0,
+    None = 0,
     Single = 1,
     Multiple = 2
 }

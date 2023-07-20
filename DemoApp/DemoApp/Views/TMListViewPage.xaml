@@ -10,10 +10,10 @@
   <ContentPage.Resources>
     <DataTemplate x:Name="TextCell" x:Key="textCellKey">
       <Modus:TextCell 
-            Title="{Binding Data.Name}"
-            Description="{Binding Data.Address}"
-            LeftIconSource="{Binding Data.ProfilePic}"
-            RightIconSource="{Binding Data.ProfilePic}">
+            Title="{Binding Name}"
+            Description="{Binding Address}"
+            LeftIconSource="{Binding ProfilePic}"
+            RightIconSource="{Binding ProfilePic}">
       </Modus:TextCell>
     </DataTemplate>
     <DataTemplate x:Name="ViewCell" x:Key="viewCellKey">
@@ -28,19 +28,20 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Image Source="{Binding ProfilePic}" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Center" Grid.Column="0" HeightRequest="20" WidthRequest="20"/>
-
+         
             <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
             <Label Text="{Binding DOB, StringFormat='DOB: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
             <Label Text="{Binding Address}" Grid.Row="2" Grid.Column="1" FontSize="Micro"/>
-
-            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Spacing="10">
-              <Button Text="Phone" Clicked="OnPhoneClicked"/>
-              <Button Text="Email" Clicked="OnEmailClicked"/>
+            <StackLayout Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Spacing="5" VerticalOptions="Center" >
+              <ImageButton Source="{x:Static constants:ImageConstants.Email}"  HeightRequest="20" WidthRequest="20" Clicked="OnEmailClicked"/>
+              <ImageButton Source="{x:Static constants:ImageConstants.Phone}"  HeightRequest="20" WidthRequest="20" Clicked="OnPhoneClicked"/>
             </StackLayout>
+            
           </Grid>
         </Modus:ListViewTemplateCell.Content>
       </Modus:ListViewTemplateCell>
@@ -69,7 +70,7 @@
         <Modus:TMRadioButton Text="Multiple" />
         <Modus:TMRadioButton Text="None" />
       </Modus:TMRadioButtonGroup>
-      <Modus:TMListView x:Name="textCellList" IsVisible="True"  ItemSelected="list_ItemSelected" ItemTemplate="{StaticResource textCellKey}" >
+      <Modus:TMListView x:Name="textCellList" IsVisible="True" SelectionMode="{Binding SelectionMode}"  ItemsSource="{Binding ItemSource}" ItemSelected="ListItemSelected" ItemTemplate="{Binding ItemTemplate}" >
       </Modus:TMListView>
        </VerticalStackLayout>
   </ScrollView>

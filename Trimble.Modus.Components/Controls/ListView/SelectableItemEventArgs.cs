@@ -12,12 +12,9 @@ public class SelectableItemEventArgs : EventArgs
     public object SelectableItem { get; }
     public int SelectableItemIndex { get; }
 
-    public int SelectedItemsCount { get; }
-
-    public SelectableItemEventArgs(object selectableItem, int selectableitemindex, int selectedItemsCount)
+    public SelectableItemEventArgs(object selectableItem, int selectableitemindex)
     {
         SelectableItem = selectableItem;
         SelectableItemIndex = selectableitemindex;
-        SelectedItemsCount = selectedItemsCount;
     }
 }
