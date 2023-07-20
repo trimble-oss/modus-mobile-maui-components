@@ -4,6 +4,7 @@
     {
         //TODO: Add other images here
         public const string ModusPlaceholderImage = "placeholder.png";
+        public const string ModusPlaceholderWhiteImage = "placeholder_white.png";
         public const string AccountIcon = "account_icon.png";
         public const string SearchIcon = "search_icon.png";
         public const string ContactIcon = "contact_icon.png";

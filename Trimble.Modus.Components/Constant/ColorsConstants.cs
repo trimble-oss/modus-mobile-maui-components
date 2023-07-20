@@ -1,4 +1,4 @@
-﻿namespace Trimble.Modus.Components.Constant;
+namespace Trimble.Modus.Components.Constant;
 internal class ColorsConstants
 {
     public const string TrimbleBlue = "TrimbleBlue";
@@ -17,6 +17,8 @@ internal class ColorsConstants
     public const string DangerRedClicked = "DangerRedClicked";
     public const string SecondaryButtonClicked = "SecondaryButtonClicked";
     public const string TertiaryButtonClicked = "TertiaryButtonClicked";
+    public const string PrimaryFloatingButtonClicked = "PrimaryFloatingButtonClicked";
+    public const string SecondaryFloatingButtonClicked = "SecondaryFloatingButtonClicked";
     public const string TrimbleBlueClicked = "TrimbleBlueClicked";
     public const string BluePale = "BluePale";
     public const string NeutralGray = "NeutralGray";
@@ -28,5 +30,9 @@ internal class ColorsConstants
     public const string SuccessToastColor = "SuccessToastColor";
     public const string ToastTextBlue = "ToastTextBlue";
     public const string ModalGraySemiTransparent = "ModalGraySemiTransparent";
+    public const string SegmentSecondaryColor = "SegmentSecondaryColor";
+    public const string SegmentBackgroundColor = "SegmentBackgroundColor";
+    public const string SegmentBorderColor = "SegmentBorderColor";
     public const string ModalShadowColor = "ModalShadowColor";
 }
+

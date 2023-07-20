@@ -68,10 +68,12 @@
 	  <None Remove="Resources\Images\green_icon.svg" />
 	  <None Remove="Resources\Images\phone.svg" />
 	  <None Remove="Resources\Images\placeholder.svg" />
+	  <None Remove="Resources\Images\placeholder_white.svg" />
 	  <None Remove="Resources\Images\search_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -134,7 +136,6 @@
 	  <MauiXaml Update="Views\TMSpinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionDemoAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+	</ItemGroup>	
 </Project>

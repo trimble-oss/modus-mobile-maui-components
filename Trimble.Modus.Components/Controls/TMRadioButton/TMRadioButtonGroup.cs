@@ -147,13 +147,17 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     {
         foreach (var item in e.NewItems)
         {
-            if (item is string radioButtonString)
+            if (item is string radioButtonString && !string.IsNullOrEmpty(radioButtonString))
             {
                 // Create a new radio button from the string
                 var radioButton = new TMRadioButton() { Text = radioButtonString, CreatedFromItemSource = true };
 
                 // Add the radio button to the UI
                 this.Children.Add(radioButton);
+            }
+            else
+            {
+                Console.WriteLine(Constants.RadioButtonEmptyTextError);
             }
         }
     }
@@ -345,6 +349,11 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
         
         foreach (var item in ItemsSource)
         {
+            if (string.IsNullOrEmpty(item.ToString()))
+            {
+                Console.WriteLine(Constants.RadioButtonEmptyTextError);
+                continue;
+            }
             var radioButton = new TMRadioButton()
             {
                 Text = item,
