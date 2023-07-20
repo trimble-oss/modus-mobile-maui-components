@@ -1,7 +1,5 @@
-﻿using DemoApp.Views;
+using DemoApp.Views;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-
 
 namespace DemoApp
 {
@@ -23,6 +21,7 @@ namespace DemoApp
                 "RadioButton",
                 "NumberInput",
                 "Spinner",
+                "SegmentedControl",
                 "ListView"
             };
             BindingContext = this;
@@ -62,6 +61,9 @@ namespace DemoApp
                         break;
                     case "Spinner":
                         Navigation.PushAsync(new TMSpinnerPage());
+                        break;
+                    case "SegmentedControl":
+                        Navigation.PushAsync(new TMSegmentedControlPage());
                         break;
                     case "ListView":
                         Navigation.PushAsync(new TMListViewPage());

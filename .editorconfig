@@ -48,3 +48,7 @@ indent_size = 2
 # YAML files
 [*.{yaml,yml}]
 indent_size = 2
+
+[*.cs]
+# CA1416: Validate platform compatibility
+dotnet_diagnostic.CA1416.severity = none
