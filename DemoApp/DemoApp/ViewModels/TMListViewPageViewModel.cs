@@ -42,6 +42,8 @@ namespace DemoApp.ViewModels
                 var user = new User
                 {
                     Name = $"{userInfo.Name.First} {userInfo.Name.Last}",
+                    Gender = userInfo.Gender,
+                    Color = userInfo.Gender.Equals("male") ? Brush.LightSkyBlue : Brush.HotPink,
                     DOB = DateTime.Parse(userInfo.Dob.Date),
                     Address = $"{userInfo.Location.Street.Number} {userInfo.Location.Street.Name}, {userInfo.Location.City}",
                     ProfilePic = userInfo.Picture.Large,
