@@ -15,17 +15,17 @@
         </ResourceDictionary>
     </Grid.Resources>
 
-    <Grid BindingContext="{Binding Source={x:Reference textCell}}" HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}">
+    <Grid BindingContext="{Binding Source={x:Reference textCell}}" HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}" ColumnSpacing="12" Padding="12,6" >
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
 
-      <Image Source="{Binding LeftIconSource}" IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-           WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Start" Margin="12,0,0,0" />
+      <Image Source="{Binding LeftIconSource}"  IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+           WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Start"/>
 
-      <StackLayout Grid.Column="1" Spacing="4" Padding="0,6,0,6" Margin="12,0,0,0" HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
+      <StackLayout Grid.Column="1" Spacing="4"  HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
         <Label Text="{Binding Title}" IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                FontSize="16" VerticalOptions="StartAndExpand" />
         <Label Text="{Binding Description}" IsVisible="{Binding Description, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
@@ -33,7 +33,7 @@
       </StackLayout>
 
       <Image Grid.Column="2" Source="{Binding RightIconSource}" HorizontalOptions="End" IsVisible="{Binding RightIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-           WidthRequest="24" HeightRequest="24" VerticalOptions="Center" Margin="0,0,12,0" />
+           WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
     </Grid>
   </Grid>
 

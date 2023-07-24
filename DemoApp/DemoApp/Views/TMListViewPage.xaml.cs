@@ -7,23 +7,14 @@ namespace DemoApp.Views
     public partial class TMListViewPage : ContentPage
     {
         #region Private Fields
-        private TMListViewPageViewModel viewModel;
+        private TMListViewPageViewModel tmListViewPageViewModel;
         #endregion
-
-        #region Properties
-        public DataTemplate TextCellTemplate { get; set; }
-        public DataTemplate ViewCellTemplate { get; set; }
-        #endregion
-
         #region Constructor
         public TMListViewPage()
         {
             InitializeComponent();
-            viewModel = new TMListViewPageViewModel();
-            TextCellTemplate = TextCell;
-            ViewCellTemplate = ViewCell;
-            viewModel.ItemTemplate = TextCellTemplate;
-            BindingContext = viewModel;
+            tmListViewPageViewModel = new TMListViewPageViewModel(TextCell);
+            BindingContext = tmListViewPageViewModel;
         }
         #endregion
 
@@ -35,30 +26,22 @@ namespace DemoApp.Views
 
         private void OnCellGroupButtonChanged(object sender, TMRadioButtonEventArgs e)
         {
-            if (e.RadioButtonIndex == 0)
+            tmListViewPageViewModel.ItemTemplate = e.RadioButtonIndex switch
             {
-                viewModel.ItemTemplate = TextCell;
-            }
-            else if (e.RadioButtonIndex == 1)
-            {
-                viewModel.ItemTemplate = ViewCell;
-            }
+                0 => TextCell,
+                1 => ViewCell,
+                _ => TextCell
+            };
         }
-
         private void OnSelectionGroupButtonChanged(object sender, TMRadioButtonEventArgs e)
         {
-            if (e.RadioButtonIndex == 0)
+            tmListViewPageViewModel.SelectionMode = e.RadioButtonIndex switch
             {
-                viewModel.SelectionMode = Trimble.Modus.Components.Enums.ListSelectionMode.Single;
-            }
-            else if (e.RadioButtonIndex == 1)
-            {
-                viewModel.SelectionMode = Trimble.Modus.Components.Enums.ListSelectionMode.Multiple;
-            }
-            else if (e.RadioButtonIndex == 2)
-            {
-                viewModel.SelectionMode = Trimble.Modus.Components.Enums.ListSelectionMode.None;
-            }
+                0 => Trimble.Modus.Components.Enums.ListSelectionMode.Single,
+                1 => Trimble.Modus.Components.Enums.ListSelectionMode.Multiple,
+                2 => Trimble.Modus.Components.Enums.ListSelectionMode.None,
+                _ => Trimble.Modus.Components.Enums.ListSelectionMode.Single,
+            };
         }
 
         private void OnPhoneClicked(object sender, EventArgs e)

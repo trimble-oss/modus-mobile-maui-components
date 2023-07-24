@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
 
             <Image Source="{Binding ProfilePic}" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Center" Grid.Column="0" HeightRequest="20" WidthRequest="20"/>
-         
+
             <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
             <Label Text="{Binding DOB, StringFormat='DOB: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
             <Label Text="{Binding Address}" Grid.Row="2" Grid.Column="1" FontSize="Micro"/>
@@ -41,7 +41,7 @@
               <ImageButton Source="{x:Static constants:ImageConstants.Email}"  HeightRequest="20" WidthRequest="20" Clicked="OnEmailClicked"/>
               <ImageButton Source="{x:Static constants:ImageConstants.Phone}"  HeightRequest="20" WidthRequest="20" Clicked="OnPhoneClicked"/>
             </StackLayout>
-            
+
           </Grid>
         </Modus:ListViewTemplateCell.Content>
       </Modus:ListViewTemplateCell>
@@ -72,6 +72,6 @@
       </Modus:TMRadioButtonGroup>
       <Modus:TMListView x:Name="textCellList" IsVisible="True" SelectionMode="{Binding SelectionMode}"  ItemsSource="{Binding ItemSource}" ItemSelected="ListItemSelected" ItemTemplate="{Binding ItemTemplate}" >
       </Modus:TMListView>
-       </VerticalStackLayout>
+    </VerticalStackLayout>
   </ScrollView>
 </ContentPage>

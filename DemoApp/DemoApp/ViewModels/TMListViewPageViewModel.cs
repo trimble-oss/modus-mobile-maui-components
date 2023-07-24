@@ -1,5 +1,5 @@
-﻿using DemoApp.Resources.Data_Models;
-using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DemoApp.Resources.Data_Models;
 using DemoApp.Resources;
 using Newtonsoft.Json;
 using Trimble.Modus.Components.Enums;
@@ -7,78 +7,24 @@ using System.Collections;
 
 namespace DemoApp.ViewModels
 {
-    public class TMListViewPageViewModel : BaseViewModel
+    internal partial class TMListViewPageViewModel  : ObservableObject
     {
         #region Private Fields
-        private ListSelectionMode _selectedMode;
-        private DataTemplate _itemTemplate, _textCellTemplate, _viewCellTemplate;
-        private IEnumerable _itemSource;
-        #endregion
-
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Public Fields
-        public List<User> Users { get; set; }
-
-        public IEnumerable ItemSource
-        {
-            get => _itemSource;
-            set
-            {
-                _itemSource = value;
-                OnPropertyChanged(nameof(ItemSource));
-            }
-        }
-
-        public DataTemplate TextCellTemplate
-        {
-            get => _textCellTemplate;
-            set
-            {
-                _textCellTemplate = value;
-                OnPropertyChanged(nameof(TextCellTemplate));
-            }
-        }
-
-        public DataTemplate ItemTemplate
-        {
-            get => _itemTemplate;
-            set
-            {
-                _itemTemplate = value;
-                OnPropertyChanged(nameof(ItemTemplate));
-            }
-        }
-
-        public DataTemplate ViewCellTemplate
-        {
-            get => _viewCellTemplate;
-            set
-            {
-                _viewCellTemplate = value;
-                OnPropertyChanged(nameof(ViewCellTemplate));
-            }
-        }
-
-        public ListSelectionMode SelectionMode
-        {
-            get => _selectedMode;
-            set
-            {
-                _selectedMode = value;
-                OnPropertyChanged(nameof(SelectionMode));
-            }
-        }
+        [ObservableProperty]
+        private ListSelectionMode selectionMode;
+        [ObservableProperty]
+        private DataTemplate itemTemplate;
+        [ObservableProperty]
+        private IEnumerable itemSource;
+        private List<User> Users { get; set; }
         #endregion
 
         #region Constructor
-        public TMListViewPageViewModel()
+        public TMListViewPageViewModel(DataTemplate cell)
         {
             Users = new List<User>();
             LoadData();
-            ItemTemplate = TextCellTemplate;
+            ItemTemplate = cell;
             SelectionMode = ListSelectionMode.Single;
         }
         #endregion
