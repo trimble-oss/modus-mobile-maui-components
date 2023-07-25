@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components;
@@ -14,9 +15,18 @@ public partial class TMListView : ContentView
 
     public static readonly BindableProperty SelectionModeProperty =
              BindableProperty.Create(nameof(SelectionMode), typeof(ListSelectionMode), typeof(TMListView));
+
+    public static readonly BindableProperty ItemSelectedCommandProperty =
+             BindableProperty.Create(nameof(ItemSelectedCommand), typeof(ICommand), typeof(TMListView));
+
     #endregion
     #region Public properties  
-    public event EventHandler<SelectableItemEventArgs> ItemSelected;
+    public event EventHandler<object> ItemSelected;
+    public ICommand ItemSelectedCommand
+    {
+        get => (ICommand)GetValue(ItemSelectedCommandProperty);
+        set => SetValue(ItemSelectedCommandProperty, value);
+    }
 
     public List<object> selectableItems;
     public ListSelectionMode SelectionMode
@@ -67,39 +77,6 @@ public partial class TMListView : ContentView
 
     }
 
-    private SelectableItemEventArgs GetValueFromItemsSource(IEnumerable itemsSource, int selectedItemIndex)
-    {
-        if (itemsSource == null || selectedItemIndex < 0)
-            return null;
-
-        if (itemsSource is IList list)
-        {
-            if (selectedItemIndex < list.Count)
-            {
-                var selectedItem = list[selectedItemIndex];
-                return new SelectableItemEventArgs(selectedItem, selectedItemIndex);
-            }
-        }
-        else
-        {
-            var enumerator = itemsSource.GetEnumerator();
-            var currentIndex = 0;
-
-            while (enumerator.MoveNext())
-            {
-                if (currentIndex == selectedItemIndex)
-                {
-                    var selectedItem = enumerator.Current;
-                    return new SelectableItemEventArgs(selectedItem, selectedItemIndex);
-                }
-
-                currentIndex++;
-            }
-        }
-
-        return null;
-    }
-
     private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         switch (SelectionMode)
@@ -124,7 +101,8 @@ public partial class TMListView : ContentView
             default:
                 break;
         }
-        ItemSelected?.Invoke(this, GetValueFromItemsSource(ItemsSource, e.ItemIndex));
+        ItemSelected?.Invoke(this, e.Item);
+        ItemSelectedCommand.Execute(e.Item);
     }
     #endregion
 }
