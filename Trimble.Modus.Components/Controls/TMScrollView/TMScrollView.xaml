@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="scrollContentView"
+             x:Class="Trimble.Modus.Components.TMScrollView">
+  <Grid RowDefinitions="20,*,20">
+    <ImageButton Source="triangle_up.png"
+                 HeightRequest="20"
+                 WidthRequest="20"
+                 HorizontalOptions="End"
+                 IsVisible="{OnPlatform true, WinUI=false}"
+                 Aspect="AspectFit"
+                 Grid.Row="0" />
+    <ScrollView VerticalOptions="FillAndExpand"
+                Grid.Row="1"
+                VerticalScrollBarVisibility="Always">
+      <ContentView VerticalOptions="FillAndExpand"
+                   Content="{Binding Source={x:Reference scrollContentView}, Path=ScrollViewContent}">
+
+      </ContentView>
+    </ScrollView>
+    <ImageButton Source="triangle_down.png"
+                 HeightRequest="20"
+                 Grid.Row="2"
+                 IsVisible="{OnPlatform true, WinUI=false}"
+                 WidthRequest="20"
+                 HorizontalOptions="End"
+                 Aspect="AspectFit"/>
+  </Grid>
+
+</ContentView>

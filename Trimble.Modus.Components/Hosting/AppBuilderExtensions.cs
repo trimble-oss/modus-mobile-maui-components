@@ -68,6 +68,7 @@ public static class AppBuilderExtensions
             handlers.AddHandler(typeof(TMSpinner), typeof(SpinnerHandler));
 
             handlers.AddHandler(typeof(BorderlessEditor), typeof(EditorHandler));
+            handlers.AddHandler(typeof(ScrollView), typeof(ScrollViewHandler));
 
 
 #if ANDROID
