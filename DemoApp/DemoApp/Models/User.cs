@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoApp.Resources
+namespace DemoApp.Models
 {
     public class User
     {

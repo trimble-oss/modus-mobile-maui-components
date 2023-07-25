@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using DemoApp.Resources.Data_Models;
-using DemoApp.Resources;
+using DemoApp.Models;
 using Newtonsoft.Json;
 using Trimble.Modus.Components.Enums;
 using System.Collections;
@@ -15,35 +14,18 @@ namespace DemoApp.ViewModels
         #region Private Fields
         [ObservableProperty]
         private ListSelectionMode selectionMode;
-        [ObservableProperty]
-        private DataTemplate itemTemplate;
+
         [ObservableProperty]
         private IEnumerable itemSource;
         private List<User> Users { get; set; }
-        private DataTemplate textCell, viewCell;
-
-        public ICommand ItemSelectedCommand { get; }
-        public ICommand SelectionGroupButtonCommand { get; }
-        public ICommand OnCellGroupButtonCommand { get; }
-        public ICommand EmailButtonCommand { get; }
-        public ICommand PhoneButtonCommand { get; }
-
         #endregion
 
         #region Constructor
-        public TMListViewPageViewModel(DataTemplate textCell,DataTemplate viewCell)
+        public TMListViewPageViewModel()
         {
             Users = new List<User>();
             LoadData();
-            this.textCell = textCell;
-            this.viewCell = viewCell;
-            ItemTemplate = textCell;
             SelectionMode = ListSelectionMode.Single;
-            ItemSelectedCommand = new RelayCommand<User>(ItemSelected);
-            SelectionGroupButtonCommand = new RelayCommand<TMRadioButtonEventArgs>(OnSelectionGroupButtonChanged);
-            OnCellGroupButtonCommand = new RelayCommand<TMRadioButtonEventArgs>(OnCellGroupButtonCommandChanged);
-            EmailButtonCommand = new RelayCommand(OnEmailClicked);
-            PhoneButtonCommand = new RelayCommand(OnPhoneClicked);
         }
         #endregion
         #region Private Methods
@@ -72,42 +54,32 @@ namespace DemoApp.ViewModels
             }
             ItemSource = Users;
         }
+        [RelayCommand]
         private void ItemSelected(User user)
         {
             Console.WriteLine(user.Name + " " + user.Address);
         }
-        private void OnSelectionGroupButtonChanged(TMRadioButtonEventArgs parameter)
+        [RelayCommand]
+        private void SelectionGroup(TMRadioButtonEventArgs parameter)
         {
+            Console.WriteLine("parameterindex"+parameter.RadioButtonIndex);
                 if (parameter is TMRadioButtonEventArgs radioButton)
                  {
                      SelectionMode = radioButton.RadioButtonIndex switch
                      {
-                         0 => ListSelectionMode.Single,
                          1 => ListSelectionMode.Multiple,
                          2 => ListSelectionMode.None,
                          _ => ListSelectionMode.Single,
                      };
                  }
         }
-        private void OnCellGroupButtonCommandChanged(TMRadioButtonEventArgs e)
-        {
-            if (e is TMRadioButtonEventArgs radioButton)
-            {
-
-                ItemTemplate = radioButton.RadioButtonIndex switch
-                {
-                    0 => textCell,
-                    1 => viewCell,
-                    _ => textCell
-                };
-            }
-        }
-        private void OnPhoneClicked()
+        [RelayCommand]
+        private void PhoneClicked()
         {
             Console.WriteLine("Phone Clicked");
         }
-
-        private void OnEmailClicked()
+        [RelayCommand]
+        private void EmailClicked()
         {
             Console.WriteLine("Email Clicked");
         }

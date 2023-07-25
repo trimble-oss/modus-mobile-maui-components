@@ -50,8 +50,8 @@
             <Label Text="{Binding DOB, StringFormat='DOB: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
             <Label Text="{Binding Address}" Grid.Row="2" Grid.Column="1" FontSize="Micro"/>
             <StackLayout Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Spacing="5" VerticalOptions="Center" >
-              <ImageButton Source="{x:Static constants:ImageConstants.Email}"  HeightRequest="20" WidthRequest="20" Command="{Binding EmailButtonCommand}"/>
-              <ImageButton Source="{x:Static constants:ImageConstants.Phone}"  HeightRequest="20" WidthRequest="20" Command="{Binding PhoneButtonCommand}"/>
+              <ImageButton Source="{x:Static constants:ImageConstants.Email}"  HeightRequest="20" WidthRequest="20" Command="{Binding EmailClickedCommand}"/>
+              <ImageButton Source="{x:Static constants:ImageConstants.Phone}"  HeightRequest="20" WidthRequest="20" Command="{Binding PhoneClickedCommand}"/>
             </StackLayout>
 
           </Grid>
@@ -67,22 +67,28 @@
                                 Padding="10"
                                 SelectedIndex="0"
                                 HorizontalOptions="Center"
-                                SelectedRadioButtonChangedCommand="{Binding OnCellGroupButtonCommand}"
+                                SelectedRadioButtonChanged="OnCellGroupButtonChanged"
                                 Orientation="Horizontal">
         <Modus:TMRadioButton Text="TextCell" />
         <Modus:TMRadioButton Text="ViewCell" />
       </Modus:TMRadioButtonGroup>
+      <Label Text="Select Selection Mode" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
       <Modus:TMRadioButtonGroup x:Name="SelectionGroup"
                                 Padding="10"
                                 SelectedIndex="0"
                                 HorizontalOptions="Center"
-                                SelectedRadioButtonChangedCommand="{Binding SelectionGroupButtonCommand}"
+                                SelectedRadioButtonChangedCommand="{Binding SelectionGroupCommand}"
                                 Orientation="Horizontal">
         <Modus:TMRadioButton Text="Single" />
         <Modus:TMRadioButton Text="Multiple" />
         <Modus:TMRadioButton Text="None" />
       </Modus:TMRadioButtonGroup>
-      <Modus:TMListView x:Name="textCellList" IsVisible="True" SelectionMode="{Binding SelectionMode}" ItemSelectedCommand="{Binding ItemSelectedCommand}" ItemsSource="{Binding ItemSource}" ItemTemplate="{Binding ItemTemplate}" >
+      <Modus:TMListView x:Name="textCellList"
+                        IsVisible="True"
+                        SelectionMode="{Binding SelectionMode}"
+                        ItemSelectedCommand="{Binding ItemSelectedCommand}"
+                        ItemsSource="{Binding ItemSource}"
+                         >
       </Modus:TMListView>
     </VerticalStackLayout>
   </ScrollView>

@@ -7,7 +7,7 @@ namespace Trimble.Modus.Components;
 public partial class TextCell : ViewCell
 {
     #region Private Fields
-    private ListView oldParent = null;
+    private ListView previousParent = null;
     #endregion
     #region Bindable Properties
     public static readonly BindableProperty TitleProperty =
@@ -62,32 +62,28 @@ public partial class TextCell : ViewCell
 
         if (this.Parent != null)
         {
-            oldParent = this.Parent as ListView;
+            previousParent = this.Parent as ListView;
             var test = this.Parent;
             ((ListView)test).ItemTapped += TextCell_ItemSelected;
         }
         else
         {
-            oldParent.ItemTapped -= TextCell_ItemSelected;
-            oldParent = null;
+            previousParent.ItemTapped -= TextCell_ItemSelected;
+            previousParent = null;
         }
     }
     #endregion
     #region Private Methods
     private void TextCell_ItemSelected(object sender, ItemTappedEventArgs e)
     {
-        if (sender is ListView listView)
+        if (sender is TMListView tMListView)
         {
-            var test = listView.Parent.Parent;
-            if (test is TMListView tMListView)
+            grid.BackgroundColor = Colors.White;
+            foreach (var item in tMListView.selectableItems)
             {
-                grid.BackgroundColor = Colors.White;
-                foreach (var item in tMListView.selectableItems)
+                if (item == BindingContext)
                 {
-                    if (item == BindingContext)
-                    {
-                        grid.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                    }
+                    grid.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                 }
             }
         }

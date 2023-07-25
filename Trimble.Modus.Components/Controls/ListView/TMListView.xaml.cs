@@ -4,24 +4,18 @@ using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components;
 
-public partial class TMListView : ContentView
+public partial class TMListView : ListView
 {
     #region Bindable Properties  
-    public static readonly BindableProperty ItemsSourceProperty =
-        BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMListView), null, propertyChanged: OnItemSourceChanged);
-
-    public static readonly BindableProperty ItemTemplateProperty =
-        BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(TMListView));
-
-    public static readonly BindableProperty SelectionModeProperty =
-             BindableProperty.Create(nameof(SelectionMode), typeof(ListSelectionMode), typeof(TMListView));
+    public static new readonly BindableProperty SelectionModeProperty =
+             BindableProperty.Create(nameof(SelectionMode), typeof(ListSelectionMode), typeof(TMListView),propertyChanged:OnSelectionModeChanged);
 
     public static readonly BindableProperty ItemSelectedCommandProperty =
              BindableProperty.Create(nameof(ItemSelectedCommand), typeof(ICommand), typeof(TMListView));
 
     #endregion
     #region Public properties  
-    public event EventHandler<object> ItemSelected;
+    public new event EventHandler<object> ItemSelected;
     public ICommand ItemSelectedCommand
     {
         get => (ICommand)GetValue(ItemSelectedCommandProperty);
@@ -29,30 +23,27 @@ public partial class TMListView : ContentView
     }
 
     public List<object> selectableItems;
-    public ListSelectionMode SelectionMode
+    public new ListSelectionMode SelectionMode
     {
         get => (ListSelectionMode)GetValue(SelectionModeProperty);
         set => SetValue(SelectionModeProperty, value);
     }
 
-
-
-    public IEnumerable ItemsSource
+    public new IEnumerable ItemsSource
     {
         get => (IEnumerable)GetValue(ItemsSourceProperty);
         set => SetValue(ItemsSourceProperty, value);
     }
-    public DataTemplate ItemTemplate
-    {
-        get => (DataTemplate)GetValue(ItemTemplateProperty);
-        set => SetValue(ItemTemplateProperty, value);
-    }
+
     #endregion
     #region Constructor
     public TMListView()
     {
         InitializeComponent();
-       
+        tmListView.SelectionMode = ListViewSelectionMode.None;
+        selectableItems = new List<object> { };
+
+
     }
     #endregion
     #region Protected Methods
@@ -62,19 +53,12 @@ public partial class TMListView : ContentView
     }
     #endregion
     #region Private Methods
-    private static void OnItemSourceChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnSelectionModeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMListView tmlistview)
+        if (bindable is TMListView tmlistview && newValue != null)
         {
-            if (newValue is IEnumerable newCollection)
-            {
-                tmlistview.selectableItems = new List<object>();
-
-
-                tmlistview.listView.ItemsSource = newCollection;
-            }
+            tmlistview.selectableItems.Clear();
         }
-
     }
 
     private void listView_ItemTapped(object sender, ItemTappedEventArgs e)

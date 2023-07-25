@@ -6,6 +6,7 @@
              xmlns:helpers="clr-namespace:Trimble.Modus.Components.Helpers"
              x:Name="textCell"
              x:Class="Trimble.Modus.Components.TextCell">
+
   <Grid x:Name="grid" >
     <Grid.Resources>
       <ResourceDictionary>

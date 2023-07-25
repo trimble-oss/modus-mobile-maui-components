@@ -6,7 +6,7 @@ namespace Trimble.Modus.Components
     public partial class ListViewTemplateCell : ViewCell
     {
         #region Private Fields
-        private ListView _parent = null;
+        private ListView previousParent = null;
         #endregion
 
         #region Bindable Properties
@@ -34,14 +34,14 @@ namespace Trimble.Modus.Components
 
             if (this.Parent != null)
             {
-                _parent = Parent as ListView;
+                previousParent = Parent as ListView;
                 var test = this.Parent;
                 ((ListView)test).ItemTapped += CellItemSelected;
             }
             else
             {
-                _parent.ItemTapped -= CellItemSelected;
-                _parent = null;
+                previousParent.ItemTapped -= CellItemSelected;
+                previousParent = null;
             }
         }
         #endregion
@@ -49,18 +49,14 @@ namespace Trimble.Modus.Components
         #region Private Methods
         private void CellItemSelected(object sender, ItemTappedEventArgs e)
         {
-            if (sender is ListView listView)
+            if (sender is TMListView tMListView)
             {
-                var test = listView.Parent.Parent;
-                if (test is TMListView tMListView)
+                grid.BackgroundColor = Colors.White;
+                foreach (var item in tMListView.selectableItems)
                 {
-                    grid.BackgroundColor = Colors.White;
-                    foreach (var item in tMListView.selectableItems)
+                    if (item == BindingContext)
                     {
-                        if (item == BindingContext)
-                        {
-                            grid.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                        }
+                        grid.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                     }
                 }
             }

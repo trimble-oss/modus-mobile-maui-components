@@ -1,22 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ListView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:Trimble.Modus.Components"
              xmlns:enum="clr-namespace:Trimble.Modus.Components.Enums"
              xmlns:constant ="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
              x:Name="tmListView"
+             HasUnevenRows="True"
+             ItemTapped="listView_ItemTapped"
              x:Class="Trimble.Modus.Components.TMListView">
-
-  <ContentView.Content>
-    <StackLayout>
-      <ListView x:Name="listView" RowHeight="56" 
-                ItemTemplate="{Binding Source={x:Reference tmListView}, Path=ItemTemplate}"
-                HasUnevenRows="True"
-                ItemTapped="listView_ItemTapped"
-                >
-      </ListView>
-    </StackLayout>
-  </ContentView.Content>
-
-</ContentView>
+  
+</ListView>
