@@ -153,9 +153,6 @@
 		</MauiXaml>
     <MauiXaml Update="Controls\ListView\TextCell.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Controls\ListView\TMListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
     </MauiXaml>    
 		<MauiXaml Update="Styles\Colors.xaml">
 			<Generator>MSBuild:Compile</Generator>

@@ -9,7 +9,7 @@ using Trimble.Modus.Components;
 
 namespace DemoApp.ViewModels
 {
-    internal partial class TMListViewPageViewModel  : ObservableObject
+    internal partial class TMListViewPageViewModel : ObservableObject
     {
         #region Private Fields
         [ObservableProperty]
@@ -62,16 +62,15 @@ namespace DemoApp.ViewModels
         [RelayCommand]
         private void SelectionGroup(TMRadioButtonEventArgs parameter)
         {
-            Console.WriteLine("parameterindex"+parameter.RadioButtonIndex);
-                if (parameter is TMRadioButtonEventArgs radioButton)
-                 {
-                     SelectionMode = radioButton.RadioButtonIndex switch
-                     {
-                         1 => ListSelectionMode.Multiple,
-                         2 => ListSelectionMode.None,
-                         _ => ListSelectionMode.Single,
-                     };
-                 }
+            if (parameter is TMRadioButtonEventArgs radioButton)
+            {
+                SelectionMode = radioButton.RadioButtonIndex switch
+                {
+                    1 => ListSelectionMode.Multiple,
+                    2 => ListSelectionMode.None,
+                    _ => ListSelectionMode.Single,
+                };
+            }
         }
         [RelayCommand]
         private void PhoneClicked()
