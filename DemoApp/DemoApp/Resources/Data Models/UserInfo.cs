@@ -14,6 +14,7 @@ namespace DemoApp.Resources.Data_Models
         public PictureInfo Picture { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Gender { get; set; }
     }
     public class ApiResponse
     {

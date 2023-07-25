@@ -19,7 +19,7 @@
     <DataTemplate x:Name="ViewCell" x:Key="viewCellKey">
       <Modus:ListViewTemplateCell>
         <Modus:ListViewTemplateCell.Content>
-          <Grid>
+          <Grid RowSpacing="10" Padding="10">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
               <RowDefinition Height="Auto"/>
@@ -32,7 +32,19 @@
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="{Binding ProfilePic}" Grid.RowSpan="3" Margin="10,0,10,0" VerticalOptions="Center" Grid.Column="0" HeightRequest="20" WidthRequest="20"/>
+            <Border HeightRequest="80" 
+                    WidthRequest="80"
+                    VerticalOptions="Center"
+                    Stroke="{Binding Color}"
+                    StrokeShape="RoundRectangle 40"
+                    StrokeThickness="8"
+                    Grid.RowSpan="3"
+                    Margin="0,0,0,0">
+              <Image Source="{Binding ProfilePic}"
+                     Margin="10,0,10,0"
+                     VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"/>
+
+            </Border>
 
             <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
             <Label Text="{Binding DOB, StringFormat='DOB: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>

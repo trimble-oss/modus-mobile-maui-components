@@ -6,7 +6,7 @@
              x:Class="Trimble.Modus.Components.ListViewTemplateCell">
   <Grid x:Name="grid"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
     <Grid.RowDefinitions>
-      <RowDefinition Height="56" />
+      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
     <ContentView 
                  Content="{Binding Source={x:Reference CustomViewCell}, Path=Content}">
