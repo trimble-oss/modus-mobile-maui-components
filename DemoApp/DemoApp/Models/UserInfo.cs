@@ -9,7 +9,7 @@ namespace DemoApp.Models
     public class UserInfo
     {
         public NameInfo Name { get; set; }
-        public DobInfo Dob { get; set; }
+        public DobInfo DateOfBirth { get; set; }
         public LocationInfo Location { get; set; }
         public PictureInfo Picture { get; set; }
         public string Phone { get; set; }

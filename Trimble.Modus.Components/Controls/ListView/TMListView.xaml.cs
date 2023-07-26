@@ -41,12 +41,6 @@ public partial class TMListView : ListView
         selectableItems = new List<object> { };
     }
     #endregion
-    #region Protected Methods
-    protected override void OnParentSet()
-    {
-        base.OnParentSet();
-    }
-    #endregion
     #region Private Methods
     private static void OnSelectionModeChanged(BindableObject bindable, object oldValue, object newValue)
     {
