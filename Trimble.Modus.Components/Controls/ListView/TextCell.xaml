@@ -4,14 +4,15 @@
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:helpers="clr-namespace:Trimble.Modus.Components.Helpers"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="textCell"
              x:Class="Trimble.Modus.Components.TextCell">
 
   <Grid x:Name="grid" >
     <Grid.Resources>
       <ResourceDictionary>
-        <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
-        <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+        <toolkit:IsNotNullConverter x:Key="ImageNullOrEmptyBoolConverter" />
+        <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
         <converters:DescriptionToRowHeightConverter x:Key="DescriptionToRowHeightConverter" />
         </ResourceDictionary>
     </Grid.Resources>
@@ -27,9 +28,9 @@
            WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Start"/>
 
       <StackLayout Grid.Column="1" Spacing="4"  HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
-        <Label Text="{Binding Title}" IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+        <Label Text="{Binding Title}" IsVisible="{Binding Title, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
                FontSize="16" VerticalOptions="StartAndExpand" />
-        <Label Text="{Binding Description}" IsVisible="{Binding Description, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+        <Label Text="{Binding Description}" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
                FontSize="14" LineBreakMode="TailTruncation" MaxLines="1" />
       </StackLayout>
 

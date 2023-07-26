@@ -3,7 +3,7 @@ using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components
 {
-    public partial class ListViewTemplateCell : ViewCell
+    public partial class TemplateCell : ViewCell
     {
         #region Private Fields
         private ListView previousParent = null;
@@ -11,7 +11,7 @@ namespace Trimble.Modus.Components
 
         #region Bindable Properties
         public static readonly BindableProperty ContentProperty =
-            BindableProperty.Create(nameof(Content), typeof(View), typeof(ListViewTemplateCell));
+            BindableProperty.Create(nameof(Content), typeof(View), typeof(TemplateCell));
 
         public View Content
         {
@@ -21,7 +21,7 @@ namespace Trimble.Modus.Components
         #endregion
 
         #region Constructor
-        public ListViewTemplateCell()
+        public TemplateCell()
         {
             InitializeComponent();
         }
@@ -35,8 +35,7 @@ namespace Trimble.Modus.Components
             if (this.Parent != null)
             {
                 previousParent = Parent as ListView;
-                var test = this.Parent;
-                ((ListView)test).ItemTapped += CellItemSelected;
+                ((ListView)this.Parent).ItemTapped += CellItemSelected;
             }
             else
             {

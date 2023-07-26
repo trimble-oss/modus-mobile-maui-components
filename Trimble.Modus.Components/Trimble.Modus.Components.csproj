@@ -118,6 +118,9 @@
 		<Compile Update="Controls\Button\TMButton.xaml.cs">
 			<DependentUpon>TMButton.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Controls\ListView\TemplateCell.xaml.cs">
+		  <DependentUpon>TemplateCell.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="Controls\TMCard\TMCard.xaml.cs">
 			<DependentUpon>asas.xaml</DependentUpon>
 		</Compile>

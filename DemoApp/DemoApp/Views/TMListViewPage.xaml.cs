@@ -1,10 +1,5 @@
 using Trimble.Modus.Components;
 using DemoApp.ViewModels;
-using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
 namespace DemoApp.Views
 {

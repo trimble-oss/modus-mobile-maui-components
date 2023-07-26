@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 
@@ -63,8 +62,7 @@ public partial class TextCell : ViewCell
         if (this.Parent != null)
         {
             previousParent = this.Parent as ListView;
-            var test = this.Parent;
-            ((ListView)test).ItemTapped += TextCell_ItemSelected;
+            ((ListView)this.Parent).ItemTapped += TextCell_ItemSelected;
         }
         else
         {
