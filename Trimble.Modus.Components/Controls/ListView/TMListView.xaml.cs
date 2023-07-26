@@ -10,15 +10,15 @@ public partial class TMListView : ListView
     public static new readonly BindableProperty SelectionModeProperty =
              BindableProperty.Create(nameof(SelectionMode), typeof(ListSelectionMode), typeof(TMListView),propertyChanged:OnSelectionModeChanged);
 
-    public static readonly BindableProperty ItemSelectedCommandProperty =
-             BindableProperty.Create(nameof(ItemSelectedCommand), typeof(ICommand), typeof(TMListView));
+    public static readonly BindableProperty SelectionChangedCommandProperty =
+             BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(TMListView));
     #endregion
     #region Public properties  
     public new event EventHandler<object> ItemSelected;
-    public ICommand ItemSelectedCommand
+    public ICommand SelectionChangedCommand
     {
-        get => (ICommand)GetValue(ItemSelectedCommandProperty);
-        set => SetValue(ItemSelectedCommandProperty, value);
+        get => (ICommand)GetValue(SelectionChangedCommandProperty);
+        set => SetValue(SelectionChangedCommandProperty, value);
     }
     public List<object> selectableItems;
     public new ListSelectionMode SelectionMode
@@ -54,6 +54,7 @@ public partial class TMListView : ListView
         switch (SelectionMode)
         {
             case ListSelectionMode.Multiple:
+                var old = selectableItems;
                 if (selectableItems.Contains(e.Item))
                 {
                     selectableItems.Remove(e.Item);
@@ -62,7 +63,7 @@ public partial class TMListView : ListView
                 {
                     selectableItems.Add(e.Item);
                     ItemSelected?.Invoke(this, e.Item);
-                    ItemSelectedCommand.Execute(e.Item);
+                    SelectionChangedCommand.Execute(e.Item);
                 }
                 break;
 
@@ -70,7 +71,7 @@ public partial class TMListView : ListView
                 selectableItems.Clear();
                 selectableItems.Add(e.Item);
                 ItemSelected?.Invoke(this, e.Item);
-                ItemSelectedCommand.Execute(e.Item);
+                SelectionChangedCommand.Execute(e.Item);
                 break;
 
             case ListSelectionMode.None:
