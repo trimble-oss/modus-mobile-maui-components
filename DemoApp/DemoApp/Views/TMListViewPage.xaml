@@ -46,7 +46,7 @@
             </Border>
 
             <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
-            <Label Text="{Binding DOB, StringFormat='DOB: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
+            <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
             <Label Text="{Binding Address}" Grid.Row="2" Grid.Column="1" FontSize="Micro"/>
             <StackLayout Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Spacing="5" VerticalOptions="Center" >
               <ImageButton Source="{x:Static constants:ImageConstants.Email}"  HeightRequest="20" WidthRequest="20" Command="{Binding EmailClickedCommand}"/>

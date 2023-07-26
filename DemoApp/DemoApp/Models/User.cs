@@ -10,7 +10,7 @@ namespace DemoApp.Models
     {
         public string Name { get; set; }
         public string Gender { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateofBirth { get; set; }
         public string Address { get; set; }
         public string ProfilePic { get; set; }
         public string Phone { get; set; }

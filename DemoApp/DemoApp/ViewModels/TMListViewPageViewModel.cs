@@ -43,7 +43,7 @@ namespace DemoApp.ViewModels
                     Name = $"{userInfo.Name.First} {userInfo.Name.Last}",
                     Gender = userInfo.Gender,
                     Color = userInfo.Gender.Equals("male") ? Brush.LightSkyBlue : Brush.HotPink,
-                    DateOfBirth = DateTime.Parse(userInfo.DateOfBirth.Date),
+                    DateofBirth = DateTime.Parse(userInfo.Dob.Date),
                     Address = $"{userInfo.Location.Street.Number} {userInfo.Location.Street.Name}, {userInfo.Location.City}",
                     ProfilePic = userInfo.Picture.Large,
                     Phone = userInfo.Phone,
