@@ -85,8 +85,7 @@
                         IsVisible="True"
                         SelectionMode="{Binding SelectionMode}"
                         SelectionChangedCommand="{Binding ItemSelectedCommand}"
-                        ItemsSource="{Binding ItemSource}"
-                        IsPullToRefreshEnabled="True">
+                        ItemsSource="{Binding ItemSource}">
       </Modus:TMListView>
 
     </StackLayout>
