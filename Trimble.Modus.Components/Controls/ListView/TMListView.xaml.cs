@@ -9,7 +9,7 @@ namespace Trimble.Modus.Components;
 public partial class TMListView : ListView
 {
     #region Private Fields
-    private List<object> previousSelection, currentSelection;
+    private List<object> previousSelection;
     #endregion
     #region Bindable Properties  
     public static new readonly BindableProperty SelectionModeProperty =
@@ -19,17 +19,17 @@ public partial class TMListView : ListView
              BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(TMListView));
 
     public static readonly BindableProperty SelectableItemsProperty =
-            BindableProperty.Create(nameof(selectableItems), typeof(List<object>), typeof(TMListView),propertyChanged: OnSelectableItemsChanged);
+            BindableProperty.Create(nameof(SelectableItems), typeof(List<object>), typeof(TMListView),propertyChanged: OnSelectableItemsChanged);
 
     #endregion
     #region Public properties  
-    public new event EventHandler<SelectionChangedEventArgs> SelectionChanged;
+    public event EventHandler<SelectionChangedEventArgs> SelectionChanged;
     public ICommand SelectionChangedCommand
     {
         get => (ICommand)GetValue(SelectionChangedCommandProperty);
         set => SetValue(SelectionChangedCommandProperty, value);
     }
-    public List<object> selectableItems
+    public List<object> SelectableItems
     {
         get => (List<object>)GetValue(SelectableItemsProperty);
         set => SetValue(SelectableItemsProperty, value);
@@ -51,79 +51,79 @@ public partial class TMListView : ListView
     public TMListView()
     {
         HasUnevenRows = true;
-        ItemTapped += listView_ItemTapped;
+        ItemTapped += listViewItemTapped;
         (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.None);  
-        selectableItems = new List<object> { };
+        SelectableItems = new List<object> { };
     }
     #endregion
     #region Private Methods
-    private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+    private void listViewItemTapped(object sender, ItemTappedEventArgs e)
     {
         int selectedIndex = TemplatedItems.GetGlobalIndexOfItem(e.Item);
-        previousSelection = new List<object>(selectableItems);
+        previousSelection = new List<object>(SelectableItems);
         switch (SelectionMode)
         {
             case ListSelectionMode.Multiple:
-                if (selectableItems.Contains(e.Item))
+                if (SelectableItems.Contains(e.Item))
                 {
-                    selectableItems.Remove(e.Item);
+                    SelectableItems.Remove(e.Item);
                 }
                 else
                 {
-                    selectableItems.Add(e.Item);
-                    currentSelection = new List<object>(selectableItems);
-                    RaiseSelectionChangedEvent(previousSelection, currentSelection,selectedIndex);
+                    SelectableItems.Add(e.Item);
                 }
+                RaiseSelectionChangedEvent(previousSelection, selectedIndex);
                 break;
 
             case ListSelectionMode.Single:
-                selectableItems.Clear();
-                selectableItems.Add(e.Item);
-                currentSelection = new List<object>(selectableItems);
-                RaiseSelectionChangedEvent(previousSelection, currentSelection,selectedIndex);
+                SelectableItems.Clear();
+                SelectableItems.Add(e.Item);
+                RaiseSelectionChangedEvent(previousSelection, selectedIndex);
                 break;
 
             case ListSelectionMode.None:
             default:
                 break;
         }
-        ChangeCellColor();
+        UpdateCellColor();
     }
 
     private static void OnSelectableItemsChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is TMListView tMListView && newValue != null)
         {
-            tMListView.ChangeCellColor();
+            tMListView.UpdateCellColor();
         }
     }
     private static void OnSelectionModeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is TMListView tMListView && newValue != null)
         {
-            tMListView.selectableItems.Clear();
+            tMListView.SelectableItems.Clear();
+            tMListView.UpdateCellColor();
         }
     }
 
-    private void RaiseSelectionChangedEvent(List<object> previousSelection, List<object> currentSelection,int index)
+    private void RaiseSelectionChangedEvent(List<object> previousSelection, int index)
     {
         SelectionChangedEventArgs args = new SelectionChangedEventArgs
         {
             PreviousSelection = previousSelection.AsReadOnly(),
-            CurrentSelection = currentSelection.AsReadOnly(),
-            SelectionIndex = index
+            CurrentSelection = SelectableItems.AsReadOnly(),
+            SelectedIndex = index
         };
 
         SelectionChanged?.Invoke(this, args);
         SelectionChangedCommand?.Execute(args);
     }
-    private void ChangeCellColor()
+
+    private void UpdateCellColor()
     {
         foreach (var item in this.TemplatedItems)
         {
             if (item is TextCell textCell)
             {
-                if (selectableItems.Contains(textCell.BindingContext))
+                if (SelectableItems.Contains(textCell.BindingContext))
                 {
                     textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale));
                 }
@@ -134,7 +134,7 @@ public partial class TMListView : ListView
             }
             else if (item is TemplateCell templateCell)
             {
-                if (selectableItems.Contains(templateCell.BindingContext))
+                if (SelectableItems.Contains(templateCell.BindingContext))
                 {
                     templateCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale));
                 }

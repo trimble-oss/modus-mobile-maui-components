@@ -65,11 +65,11 @@ namespace DemoApp.ViewModels
            
             foreach(var item in e.PreviousSelection)
             {
-                Console.WriteLine(" PreviousSelections " + ((User)item).Name +" Index "+ e.SelectionIndex);
+                Console.WriteLine(" PreviousSelections " + ((User)item).Name +" Index "+ e.SelectedIndex);
             }
             foreach (var item in e.CurrentSelection)
             {
-                Console.WriteLine(" CurrentSelections " + ((User)item).Name + " Index " + e.SelectionIndex);
+                Console.WriteLine(" CurrentSelections " + ((User)item).Name + " Index " + e.SelectedIndex);
             }
         }
         [RelayCommand]

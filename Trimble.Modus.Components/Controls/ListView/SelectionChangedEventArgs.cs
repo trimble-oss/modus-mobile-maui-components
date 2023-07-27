@@ -3,6 +3,6 @@ public class SelectionChangedEventArgs : EventArgs
 {
     public IReadOnlyList<object> PreviousSelection { get; set; }
     public IReadOnlyList<object> CurrentSelection { get; set; }
-    public int SelectionIndex { get; set; }
+    public int SelectedIndex { get; set; }
 }
 
