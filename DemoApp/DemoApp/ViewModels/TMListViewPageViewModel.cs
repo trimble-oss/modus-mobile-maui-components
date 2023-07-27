@@ -3,9 +3,10 @@ using DemoApp.Models;
 using Newtonsoft.Json;
 using Trimble.Modus.Components.Enums;
 using System.Collections;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using Trimble.Modus.Components;
+using System.Collections.ObjectModel;
+using SelectionChangedEventArgs = Trimble.Modus.Components.SelectionChangedEventArgs;
 
 namespace DemoApp.ViewModels
 {
@@ -17,13 +18,13 @@ namespace DemoApp.ViewModels
 
         [ObservableProperty]
         private IEnumerable itemSource;
-        private List<User> Users { get; set; }
+        private ObservableCollection<User> Users { get; set; }
         #endregion
 
         #region Constructor
         public TMListViewPageViewModel()
         {
-            Users = new List<User>();
+            Users = new ObservableCollection<User>();
             LoadData();
             SelectionMode = ListSelectionMode.Single;
         }
@@ -55,9 +56,21 @@ namespace DemoApp.ViewModels
             ItemSource = Users;
         }
         [RelayCommand]
-        private void ItemSelected(User user)
+        private void ItemSelected(SelectionChangedEventArgs e)
         {
-            Console.WriteLine(user.Name + " " + user.Address);
+            if(e.PreviousSelection == null)
+            {
+                Console.WriteLine("null");
+            }
+           
+            foreach(var item in e.PreviousSelection)
+            {
+                Console.WriteLine(" PreviousSelections " + ((User)item).Name +" Index "+ e.SelectionIndex);
+            }
+            foreach (var item in e.CurrentSelection)
+            {
+                Console.WriteLine(" CurrentSelections " + ((User)item).Name + " Index " + e.SelectionIndex);
+            }
         }
         [RelayCommand]
         private void SelectionGroup(TMRadioButtonEventArgs parameter)

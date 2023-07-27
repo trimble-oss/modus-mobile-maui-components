@@ -59,8 +59,7 @@
     </DataTemplate>
 
   </ContentPage.Resources>
-  <ScrollView>
-    <VerticalStackLayout>
+    <StackLayout Orientation="Vertical">
       <Label Text="Select View Type" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
       <Modus:TMRadioButtonGroup x:Name="CellGroup"
                                 Padding="10"
@@ -87,8 +86,8 @@
                         SelectionMode="{Binding SelectionMode}"
                         SelectionChangedCommand="{Binding ItemSelectedCommand}"
                         ItemsSource="{Binding ItemSource}"
-                         >
+                        IsPullToRefreshEnabled="True">
       </Modus:TMListView>
-    </VerticalStackLayout>
-  </ScrollView>
+
+    </StackLayout>
 </ContentPage>
