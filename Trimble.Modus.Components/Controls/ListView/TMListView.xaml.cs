@@ -51,13 +51,13 @@ public partial class TMListView : ListView
     public TMListView()
     {
         HasUnevenRows = true;
-        ItemTapped += listViewItemTapped;
+        ItemTapped += ListViewItemTapped;
         (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.None);  
         SelectableItems = new List<object> { };
     }
     #endregion
     #region Private Methods
-    private void listViewItemTapped(object sender, ItemTappedEventArgs e)
+    private void ListViewItemTapped(object sender, ItemTappedEventArgs e)
     {
         int selectedIndex = TemplatedItems.GetGlobalIndexOfItem(e.Item);
         previousSelection = new List<object>(SelectableItems);
