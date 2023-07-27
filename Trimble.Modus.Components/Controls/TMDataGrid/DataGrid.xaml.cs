@@ -571,7 +571,7 @@ public partial class DataGrid
 
     private void OnColumnSizeChanged(object? sender, EventArgs e) => Reload();
 
-    private void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private void OnSelectionChanged(object? sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
         SelectedItem = SelectionMode != SelectionMode.None? _collectionView.SelectedItem : null;
         SelectedItems =  _collectionView.SelectedItems;
