@@ -21,7 +21,8 @@ namespace DemoApp
                 "RadioButton",
                 "NumberInput",
                 "Spinner",
-                "SegmentedControl"
+                "SegmentedControl",
+                "ListView"
             };
             BindingContext = this;
         }
@@ -63,6 +64,9 @@ namespace DemoApp
                         break;
                     case "SegmentedControl":
                         Navigation.PushAsync(new TMSegmentedControlPage());
+                        break;
+                    case "ListView":
+                        Navigation.PushAsync(new TMListViewPage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

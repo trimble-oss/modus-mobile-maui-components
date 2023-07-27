@@ -63,8 +63,10 @@
 	  <None Remove="Resources\Images\account_icon.svg" />
 	  <None Remove="Resources\Images\contact_icon.svg" />
 	  <None Remove="Resources\Images\dark_gallery_icon.svg" />
+	  <None Remove="Resources\Images\email.svg" />
 	  <None Remove="Resources\Images\gallery_icon.svg" />
 	  <None Remove="Resources\Images\green_icon.svg" />
+	  <None Remove="Resources\Images\phone.svg" />
 	  <None Remove="Resources\Images\placeholder.svg" />
 	  <None Remove="Resources\Images\placeholder_white.svg" />
 	  <None Remove="Resources\Images\search_icon.svg" />
@@ -74,6 +76,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,6 +84,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TMListViewPage.xaml.cs">
+	    <DependentUpon>TMListViewPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMModalPage.xaml.cs">
 	    <DependentUpon>TMModalPage.xaml</DependentUpon>
 	  </Compile>
@@ -100,6 +106,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\TMListViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMModalPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -127,5 +136,6 @@
 	  <MauiXaml Update="Views\TMSpinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+
 	</ItemGroup>	
 </Project>
