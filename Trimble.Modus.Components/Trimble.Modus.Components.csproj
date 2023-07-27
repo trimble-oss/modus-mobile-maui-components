@@ -1,15 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
 			$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following
 		this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
-		<UseMaui>true</UseMaui>
-		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
+    <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 			14.2</SupportedOSPlatformVersion>
@@ -22,6 +21,24 @@
 			10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">
 			6.5</SupportedOSPlatformVersion>
+
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>Trimble.Modus.Components</PackageId>
+		<Title>Trimbel Modus</Title>
+		<Version>0.0.6-alpha</Version>
+		<Authors>Trimble Inc</Authors>
+		<Company>Trimble Inc</Company>
+		<Product>Trimble.Modus.Components</Product>
+		<Description>The One Trimble Design System. The Modus design system is part of the evolving
+			Trimble Operating System.</Description>
+		<Copyright>©Trimble 2023</Copyright>
+		<PackageProjectUrl>https://github.com/trimble-oss/modus-mobile-components</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/trimble-oss/modus-mobile-components</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Trimble, Modus</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageReleaseNotes>Test Release notes</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
@@ -31,7 +48,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
-	  <MtouchLink>None</MtouchLink>
+		<MtouchLink>None</MtouchLink>
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Images\add_icon.svg" />
@@ -52,7 +69,17 @@
 	  <None Remove="Images\valid_icon.svg" />
 	  <None Remove="Images\warning_icon.svg" />
 	</ItemGroup>
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="LICENSE.md" Pack="true" PackagePath="" />
+	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="Trimble.Modus.Components.targets" Pack="True" PackagePath="buildTransitive\" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Images\*" Pack="True" PackagePath="buildTransitive\Resources\Modus\" />
+	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
 	  <MauiImage Include="Images\caret_down_bold.svg" />
@@ -82,9 +109,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.76" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.76" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -108,6 +135,9 @@
 	  </Compile>
 	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	  <Compile Update="Controls\ListView\TemplateCell.xaml.cs">
+	    <DependentUpon>TemplateCell.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -142,6 +172,9 @@
 	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\ListView\TextCell.xaml">
+      	<Generator>MSBuild:Compile</Generator>
+      </MauiXaml>    
 	  <MauiXaml Update="Styles\Colors.xaml">
 	    <Generator></Generator>
 	  </MauiXaml>

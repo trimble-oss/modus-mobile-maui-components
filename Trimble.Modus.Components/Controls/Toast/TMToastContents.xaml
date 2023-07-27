@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:color="clr-namespace:Trimble.Modus.Components"
+                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                  xmlns:popup="clr-namespace:Trimble.Modus.Components.Popup.Pages"
                  xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                  x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
@@ -12,7 +12,7 @@
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colours />
+        <color:Colors />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentPage.Resources>
