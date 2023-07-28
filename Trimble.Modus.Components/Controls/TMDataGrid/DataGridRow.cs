@@ -208,7 +208,7 @@ internal sealed class DataGridRow : Grid
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void DataGrid_ItemSelected(object? sender, SelectionChangedEventArgs e)
+    private void DataGrid_ItemSelected(object? sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
         if (_dataGridReference.SelectionMode == SelectionMode.None)
         {

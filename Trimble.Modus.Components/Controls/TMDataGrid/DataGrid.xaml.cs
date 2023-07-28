@@ -57,7 +57,7 @@ public partial class DataGrid
 
     #region Events
 
-    public event EventHandler<SelectionChangedEventArgs> ItemSelected
+    public event EventHandler<Microsoft.Maui.Controls.SelectionChangedEventArgs> ItemSelected
     {
         add => _itemSelectedEventManager.AddEventHandler(value);
         remove => _itemSelectedEventManager.RemoveEventHandler(value);
