@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="DemoApp.Views.PopupView"
+                 xmlns:popup="clr-namespace:Trimble.Modus.Components.Popup.Pages;assembly=Trimble.Modus.Components"
+                 xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                 BackgroundColor="#80000000"
+                 BackgroundInputTransparent="False"
+                 CloseWhenBackgroundIsClicked="True"
+                 HasSystemPadding="True">
+  <ContentPage.Resources>
+    <DataTemplate x:Name="TextCell" x:Key="textCellKey">
+      <Modus:TextCell Title="{Binding .}">
+      </Modus:TextCell>
+    </DataTemplate>
+  </ContentPage.Resources>
+  <Border Padding="16"
+          Margin="20"
+          HeightRequest="300">
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="30" />
+      </Border.StrokeShape>
+    <ScrollView>
+      <VerticalStackLayout>
+        <Label Text="Upcoming Controls" FontSize="22" FontAttributes="Bold" Padding="10" TextColor="#636f82"/>
+        <Modus:TMListView ItemsSource="{Binding UpcomingControls}" ItemTemplate="{x:StaticResource Key=textCellKey}"/>
+      </VerticalStackLayout>
+    </ScrollView>
+
+  </Border>
+</popup:PopupPage>

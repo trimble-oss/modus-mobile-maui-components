@@ -111,7 +111,7 @@ public class PopupPage : ContentPage
         set => SetValue(AndroidTalkbackAccessibilityWorkaroundProperty, value);
     }
 
-    internal PopupPage()
+    public PopupPage()
     {
         //BackgroundColor = Color.FromArgb("#80000000");
     }

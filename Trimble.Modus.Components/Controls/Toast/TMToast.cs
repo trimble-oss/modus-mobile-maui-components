@@ -30,7 +30,7 @@ namespace Trimble.Modus.Components.Controls.Toast
             {
                 throw new ArgumentNullException("Message is required");
             }
-            PopupService.Instance.PushAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable), false);
+            PopupService.Instance.PresentAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable), false);
         }
         #endregion
     }
