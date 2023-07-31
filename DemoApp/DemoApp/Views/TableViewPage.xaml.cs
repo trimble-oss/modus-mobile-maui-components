@@ -2,10 +2,10 @@ using DemoApp.ViewModels;
 
 namespace DemoApp;
 
-public partial class TableView : ContentPage
+public partial class TableViewPage : ContentPage
 {
     TableViewModel _viewModel = new TableViewModel();
-    public TableView()
+    public TableViewPage()
 	{
 		InitializeComponent();
         BindingContext = _viewModel;

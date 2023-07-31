@@ -27,35 +27,33 @@
       </Style>
     </ResourceDictionary>
   </ContentView.Resources>
-  <Grid CompressedLayout.IsHeadless="True">
+  <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
-      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
     <Grid Grid.Row="0"
-          x:Name="_headerView"
-          HeightRequest="48" />
+        x:Name="_headerView"
+        HeightRequest="48" />
     <CollectionView x:Name="_collectionView"
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    WidthRequest="{Binding WidthRequest, Source={Reference self}, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem, Source={Reference self}, Mode=TwoWay}"
-                    SelectedItems="{Binding SelectedItems, Source={Reference self}, Mode=TwoWay}"
-                    ItemSizingStrategy="{Binding ItemSizingStrategy, Source={Reference self}, Mode=TwoWay}"
-                    SelectionMode="{Binding SelectionMode, Source={Reference self}, Mode=TwoWay}">
+                  Grid.Row="1"
+                  WidthRequest="{Binding WidthRequest, Source={Reference self}, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedItem, Source={Reference self}, Mode=TwoWay}"
+                  SelectedItems="{Binding SelectedItems, Source={Reference self}, Mode=TwoWay}"
+                  ItemSizingStrategy="{Binding ItemSizingStrategy, Source={Reference self}, Mode=TwoWay}"
+                  SelectionMode="{Binding SelectionMode, Source={Reference self}, Mode=TwoWay}">
       <!-- Padding="-28.5,0,0,0" -->
       <CollectionView.ItemTemplate>
         <DataTemplate>
           <local:DataGridRow MinimumHeightRequest="48"
-                             Padding="0,0,0,1">
+                            Padding="0,0,0,1">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup Name="CommonStates">
                 <VisualState Name="Normal" />
                 <VisualState Name="Selected">
                   <VisualState.Setters>
                     <Setter Property="BackgroundColor"
-                            Value="Transparent" />
+                          Value="Transparent" />
                   </VisualState.Setters>
                 </VisualState>
               </VisualStateGroup>

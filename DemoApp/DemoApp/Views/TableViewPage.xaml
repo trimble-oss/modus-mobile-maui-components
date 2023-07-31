@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             x:Class="DemoApp.TableView"
+             x:Class="DemoApp.TableViewPage"
              Title="DataGrid">
   <ScrollView>
     <VerticalStackLayout HorizontalOptions="Fill">
@@ -28,31 +28,39 @@
         <modus:DataGrid.Columns>
           <!-- Image column -->
           <modus:ImageColumn Title="Logo"
-                             PropertyName="Logo"
-                             Width="0.25*" />
+                             PropertyName="ProfilePic"
+                             Width="0.4*" />
           <!-- Text Column -->
           <modus:TextColumn Title="Team"
                             PropertyName="Name"
-                            DescriptionProperty="Description"
-                            Width="0.5*"
+                            DescriptionProperty="Gender"
+                            Width="*"
                             HorizontalContentAlignment="Start" />
           <!-- Custom Column -->
-          <modus:DataGridColumn Title="ID"
-                                PropertyName="ID"
-                                Width="0.25*">
+          <modus:DataGridColumn Title="Score"
+                                Width="0.4*"
+                                PropertyName="Score">
             <modus:DataGridColumn.CellTemplate>
               <DataTemplate>
-                <StackLayout VerticalOptions="Center">
-                  <Label Text="{Binding ID}"
-                         Padding="16,0" />
-                </StackLayout>
+                <Border HeightRequest="60"
+                        WidthRequest="60"
+                        VerticalOptions="Center"
+                        Stroke="{Binding Color}"
+                        StrokeShape="RoundRectangle 40"
+                        StrokeThickness="8"
+                        Margin="0,0,0,0">
+                  <Label Text="{Binding Score}"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         TextColor="Black" />
+                </Border>
               </DataTemplate>
             </modus:DataGridColumn.CellTemplate>
           </modus:DataGridColumn>
           <!-- Boolean column -->
-          <modus:BooleanColumn Title="Qualified"
-                               PropertyName="Qualified"
-                               Width="0.25*" />
+          <modus:BooleanColumn Title="Verified"
+                               PropertyName="IsVerified"
+                               Width="100" />
         </modus:DataGrid.Columns>
       </modus:DataGrid>
     </VerticalStackLayout>

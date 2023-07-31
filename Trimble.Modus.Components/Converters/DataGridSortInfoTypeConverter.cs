@@ -6,14 +6,14 @@ namespace Trimble.Modus.Components.Converters;
 /// <summary>
 /// Converts string to SortingOrder enum.
 /// </summary>
-public sealed class SortDataTypeConverter : TypeConverter
+public sealed class DataGridSortInfoTypeConverter : TypeConverter
 {
     /// <inheritdoc/>
     public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
     {
         if (int.TryParse(value.ToString(), out var index))
         {
-            return (SortData)index;
+            return (DataGridSortInfo)index;
         }
 
         return base.ConvertFrom(context, culture, value);

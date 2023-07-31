@@ -1,11 +1,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using DemoApp.Constant;
-using DemoApp.Model;
+using DemoApp.Models;
 using Microsoft.Maui.Controls;
+using Newtonsoft.Json;
 
 namespace DemoApp.ViewModels;
 public partial class TableViewModel : ObservableObject
 {
+    Random rnd = new Random();
+
     [ObservableProperty]
     private List<User> _users;
     [ObservableProperty]
@@ -24,39 +27,35 @@ public partial class TableViewModel : ObservableObject
 
     public TableViewModel()
     {
-        var user1 = new User()
+        Users = new List<User>();
+        LoadData();
+    }
+
+    private async void LoadData()
+    {
+        using var stream = await FileSystem.OpenAppPackageFileAsync("UserData.json");
+        using var reader = new StreamReader(stream);
+
+        var result = JsonConvert.DeserializeObject<ApiResponse>(reader.ReadToEnd());
+        Users.Clear();
+        foreach (var userInfo in result.Results)
         {
-            Name = "User 1",
-            Description = "New User",
-            ID = "1",
-            Logo = ImageConstants.AccountIcon,
-            Qualified = true
-        };
-        var user3 = new User()
-        {
-            Name = "User 2",
-            Description = "New User",
-            ID = "2",
-            Logo = ImageConstants.ContactIcon,
-            Qualified = false
-        };
-        var user2 = new User()
-        {
-            Name = "User 3",
-            Description = "New User",
-            ID = "3",
-            Logo = ImageConstants.SearchIcon,
-            Qualified = true
-        };
-        var user4 = new User()
-        {
-            Name = "User 4",
-            Description = "New User",
-            ID = "4",
-            Logo = ImageConstants.PasswordIcon,
-            Qualified = false
-        };
-        
-        Users = new List<User>() { user1, user2, user3, user4 };
+            var randomNumber = rnd.Next(0, 50);
+            var user = new User
+            {
+                Name = $"{userInfo.Name.First} {userInfo.Name.Last}",
+                Gender = userInfo.Gender,
+                Color = userInfo.Gender.Equals("male") ? Brush.LightSkyBlue : Brush.HotPink,
+                DateofBirth = DateTime.Parse(userInfo.Dob.Date),
+                Address = $"{userInfo.Location.Street.Number} {userInfo.Location.Street.Name}, {userInfo.Location.City}",
+                ProfilePic = userInfo.Picture.Large,
+                Phone = userInfo.Phone,
+                Email = userInfo.Email,
+                Score = randomNumber.ToString(),
+                IsVerified = (randomNumber > 25 ? true : false)
+            };
+
+            Users.Add(user);
+        }
     }
 }

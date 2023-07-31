@@ -84,6 +84,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TableViewPage.xaml.cs">
+	    <DependentUpon>TableViewPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMListViewPage.xaml.cs">
 	    <DependentUpon>TMListViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -106,7 +109,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\TableView.xaml">	    
+	  <MauiXaml Update="Views\TableViewPage.xaml">	    
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TMListViewPage.xaml">

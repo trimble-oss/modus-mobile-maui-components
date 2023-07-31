@@ -70,9 +70,9 @@ public partial class DataGrid
     /// <summary>
     /// Check if the column is sortable and display a debug message if not 
     /// </summary>
-    private bool CanSort(SortData? sortData = null)
+    private bool CanSort(DataGridSortInfo? sortData = null)
     {
-        sortData ??= SortedColumnIndex;
+        sortData ??= ColumnSortingInfo;
 
         if (sortData is null)
         {
@@ -140,7 +140,7 @@ public partial class DataGrid
     /// <param name="sortData">Contains the column index and sorting order</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    private IList<object> GetSortedItems(IEnumerable<object> unsortedItems, SortData sortData)
+    private IList<object> GetSortedItems(IEnumerable<object> unsortedItems, DataGridSortInfo sortData)
     {
         var columnToSort = Columns[sortData.Index];
 
@@ -180,14 +180,14 @@ public partial class DataGrid
         return items;
     }
 
-    private void SortColumn(SortData? sortData = null)
+    private void SortColumn(DataGridSortInfo? sortData = null)
     {
         if (ItemsSource is null)
         {
             return;
         }
 
-        sortData ??= SortedColumnIndex;
+        sortData ??= ColumnSortingInfo;
 
         var originalItems = ItemsSource.Cast<object>().ToList();
 
@@ -222,56 +222,54 @@ public partial class DataGrid
     #region Bindable properties
     public static readonly BindableProperty ReadOnlyListProperty = BindableProperty.Create(nameof(ReadOnlyList), typeof(List<int>), typeof(DataGrid), defaultValueCreator: _ => new List<int>());
     public static readonly BindableProperty ItemSizingStrategyProperty = BindableProperty.Create(nameof(ItemSizingStrategy), typeof(ItemSizingStrategy), typeof(DataGrid), DeviceInfo.Platform == DevicePlatform.Android ? ItemSizingStrategy.MeasureAllItems : ItemSizingStrategy.MeasureFirstItem);
-    public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(ObservableCollection<DataGridColumn>), typeof(DataGrid), propertyChanged: OnColumnChanged, defaultValueCreator: _ => new ObservableCollection<DataGridColumn>());
+    public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(ObservableCollection<DataGridColumn>), typeof(DataGrid), propertyChanged: OnColumnsChanged, defaultValueCreator: _ => new ObservableCollection<DataGridColumn>());
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(DataGrid), null, propertyChanged: OnItemsSourceChanged);
     public static readonly BindableProperty IsSortableProperty = BindableProperty.Create(nameof(IsSortable), typeof(bool), typeof(DataGrid), false);
     public static readonly BindableProperty SelectionModeProperty = BindableProperty.Create(nameof(SelectionMode), typeof(SelectionMode), typeof(DataGrid), Microsoft.Maui.Controls.SelectionMode.None, BindingMode.TwoWay, propertyChanged: OnSelectionModeChanged);
-    public static readonly BindableProperty SortIconProperty = BindableProperty.Create(nameof(SortIcon), typeof(Polygon), typeof(DataGrid));
-    public static readonly BindableProperty NoDataViewProperty = BindableProperty.Create(nameof(NoDataView), typeof(View), typeof(DataGrid), propertyChanged: OnNoDataViewChanged);
+    public static readonly BindableProperty EmptyProperty = BindableProperty.Create(nameof(EmptyView), typeof(View), typeof(DataGrid), propertyChanged: OnNoDataViewChanged);
     public static readonly BindableProperty ShowDividerProperty = BindableProperty.Create(nameof(ShowDivider), typeof(bool), typeof(DataGrid), true, propertyChanged: OnShowDividerPropertyChanged);
     public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(DataGrid), null, BindingMode.TwoWay);
-    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(DataGrid), null, BindingMode.TwoWay,
-        propertyChanged: (bindable, _, newValue) =>
-        {
-            var self = (DataGrid)bindable;
-            if (self._collectionView.SelectedItem != newValue)
-            {
-                self._collectionView.SelectedItem = newValue;
-            }
-        },
-        coerceValue: (bindable, value) =>
-        {
-            var self = (DataGrid)bindable;
-            if (self.SelectionMode == SelectionMode.None)
-            {
-                return null;
-            }
-
-            return value;
-        }
-    );
-    public static readonly BindableProperty SortedColumnIndexProperty = BindableProperty.Create(nameof(SortedColumnIndex), typeof(SortData), typeof(DataGrid), null, BindingMode.TwoWay,
-        (bindable, value) =>
-        {
-            var self = (DataGrid)bindable;
-            var sortData = (SortData)value;
-
-            return self.CanSort(sortData);
-        },
-        (bindable, oldValue, newValue) =>
-        {
-            if (oldValue != newValue && bindable is DataGrid self && newValue is SortData sortData)
-            {
-                self.SortColumn(sortData);
-            }
-        });
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(DataGrid), null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged, coerceValue: ValidateSelectionItemWithMode);
+    public static readonly BindableProperty ColumnSortingInfoProperty = BindableProperty.Create(nameof(ColumnSortingInfo), typeof(DataGridSortInfo), typeof(DataGrid), null, BindingMode.TwoWay, ColumnSortingInfoValidator, OnColumnSortingInfoChanged);
     #endregion Bindable properties
 
     #region Property changed handlers
+    private static bool ColumnSortingInfoValidator(BindableObject bindable, object value)
+    {
+        var self = (DataGrid)bindable;
+        var sortData = (DataGridSortInfo)value;
+
+        return (self.CanSort(sortData));
+    }
+    private static void OnColumnSortingInfoChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (oldValue != newValue && bindable is DataGrid self && newValue is DataGridSortInfo sortData)
+        {
+            self.SortColumn(sortData);
+        }
+    }
+    private static object ValidateSelectionItemWithMode(BindableObject bindable, object value)
+    {
+        var self = (DataGrid)bindable;
+        if (self.SelectionMode == SelectionMode.None)
+        {
+            return null;
+        }
+
+        return value;
+    }
+    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var self = (DataGrid)bindable;
+        if (self._collectionView.SelectedItem != newValue)
+        {
+            self._collectionView.SelectedItem = newValue;
+        }
+    }
     /// <summary>
     /// Triggered when column is changed
     /// </summary>
-    private static void OnColumnChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnColumnsChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (newValue == oldValue || bindable is not DataGrid self)
         {
@@ -495,28 +493,19 @@ public partial class DataGrid
     /// <summary>
     /// Column index and sorting order for the DataGrid
     /// </summary>
-    public SortData SortedColumnIndex
+    public DataGridSortInfo ColumnSortingInfo
     {
-        get => (SortData)GetValue(SortedColumnIndexProperty);
-        set => SetValue(SortedColumnIndexProperty, value);
-    }
-
-    /// <summary>
-    /// Sort icon
-    /// </summary>
-    public Polygon SortIcon
-    {
-        get => (Polygon)GetValue(SortIconProperty);
-        set => SetValue(SortIconProperty, value);
+        get => (DataGridSortInfo)GetValue(ColumnSortingInfoProperty);
+        set => SetValue(ColumnSortingInfoProperty, value);
     }
 
     /// <summary>
     /// View to show when there is no data to display
     /// </summary>
-    public View NoDataView
+    public View EmptyView
     {
-        get => (View)GetValue(NoDataViewProperty);
-        set => SetValue(NoDataViewProperty, value);
+        get => (View)GetValue(EmptyProperty);
+        set => SetValue(EmptyProperty, value);
     }
 
     #endregion Properties
@@ -638,7 +627,7 @@ public partial class DataGrid
                                     break;
                             }
 
-                            SortedColumnIndex = new(index, order);
+                            ColumnSortingInfo = new(index, order);
                         }, () => column.SortingEnabled)
                     }
                 }

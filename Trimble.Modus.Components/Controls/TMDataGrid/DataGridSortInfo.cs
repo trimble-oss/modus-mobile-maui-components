@@ -5,10 +5,11 @@ namespace Trimble.Modus.Components.Controls.DataGridControl;
 /// <summary>
 /// Creates SortData for DataGrid
 /// </summary>
-[TypeConverter(typeof(SortDataTypeConverter))]
-public sealed class SortData
+[TypeConverter(typeof(DataGridSortInfoTypeConverter))]
+public sealed class DataGridSortInfo
+
 {
-    public static implicit operator SortData(int index) => new()
+    public static implicit operator DataGridSortInfo(int index) => new()
     {
         Index = Math.Abs(index),
         Order = index < 0 ? SortingOrder.Descendant : SortingOrder.Ascendant
@@ -17,7 +18,7 @@ public sealed class SortData
     /// <inheritdoc/>
     public override bool Equals(object? obj)
     {
-        if (obj is SortData other)
+        if (obj is DataGridSortInfo other)
         {
             return other.Index == Index && other.Order == Order;
         }
@@ -27,10 +28,10 @@ public sealed class SortData
 
     #region ctor
 
-    public SortData()
+    public DataGridSortInfo()
     { }
 
-    public SortData(int index, SortingOrder order)
+    public DataGridSortInfo(int index, SortingOrder order)
     {
         Index = index;
         Order = order;

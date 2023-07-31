@@ -15,6 +15,8 @@ namespace DemoApp.Models
         public string ProfilePic { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public bool IsVerified { get; set; }
+        public string Score { get; set; }
 
         public Brush Color { get; set; }
     }

@@ -70,7 +70,7 @@ namespace DemoApp
                         Navigation.PushAsync(new TMListViewPage());
                         break;
                     case "DataGrid":
-                        Navigation.PushAsync(new TableView());
+                        Navigation.PushAsync(new TableViewPage());
                     break;
                     default:
                         Console.WriteLine("Default Case");

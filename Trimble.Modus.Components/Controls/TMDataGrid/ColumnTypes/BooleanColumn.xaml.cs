@@ -1,6 +1,6 @@
 namespace Trimble.Modus.Components;
 
-public partial class BooleanColumn
+public partial class BooleanColumn : DataGridColumn
 {
     public static readonly BindableProperty SwitchBindableProperty = BindableProperty.Create(nameof(SwitchProperty), typeof(bool), typeof(BooleanColumn), false);
 
