@@ -67,6 +67,7 @@
 		<None Remove="Images\toast_dark_icon.svg" />
 		<None Remove="Images\valid_icon.svg" />
 		<None Remove="Images\warning_icon.svg" />
+		<None Remove="Controls\TabBar\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -168,4 +169,7 @@
 		</MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Controls\TabBar\" />
+	</ItemGroup>
 </Project>
