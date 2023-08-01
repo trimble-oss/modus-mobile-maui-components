@@ -1,6 +1,7 @@
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Controls.DataGridControl;
+using System.Collections.Generic;
 
 namespace Trimble.Modus.Components;
 internal sealed class DataGridRow : Grid
@@ -20,6 +21,8 @@ internal sealed class DataGridRow : Grid
     /// </summary>
     private void CreateView()
     {
+        if (Children.Count > 0)
+            return;
         ColumnDefinitions.Clear();
         Children.Clear();
 
@@ -173,6 +176,7 @@ internal sealed class DataGridRow : Grid
     protected override void OnParentSet()
     {
         base.OnParentSet();
+        
         Element parent = this;
         int iterations = 0;
         while (parent != null && !(parent is DataGrid) && iterations < 4)
