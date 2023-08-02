@@ -33,19 +33,18 @@ public partial class TMTabbedPage : ContentPage
         contentContainer = new CarouselView
         {
             BackgroundColor = Colors.Yellow,
-            ItemsSource = TabItems.Where(t => t.ContentPage != null),
+            ItemsSource = TabItems,
             ItemTemplate = new DataTemplate(() =>
             {
-                var tabViewItemContent = new ContentView();
-                tabViewItemContent.SetBinding(ContentProperty, "ContentPage.Content");
-                return tabViewItemContent;
+                var contentView = new ContentView();
+                contentView.SetBinding(ContentView.ContentProperty, "ContentPage.Content");
+                return contentView;
             }),
-            IsSwipeEnabled = false,
+            IsSwipeEnabled = true,
             IsScrollAnimated = true,
+            Loop = false,
             HorizontalScrollBarVisibility = ScrollBarVisibility.Never,
             VerticalScrollBarVisibility = ScrollBarVisibility.Never,
-            HorizontalOptions = LayoutOptions.FillAndExpand,
-            VerticalOptions = LayoutOptions.FillAndExpand
         };
 
         tabStripContainer = new Grid

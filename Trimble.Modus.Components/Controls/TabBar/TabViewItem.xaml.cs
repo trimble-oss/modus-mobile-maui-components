@@ -31,6 +31,15 @@ public partial class TabViewItem : ContentView
         set => SetValue(ContentPageProperty, value);
     }
 
+    public View? ContentView
+    {
+        get => (View?)GetValue(ContentViewProperty);
+        set => SetValue(ContentViewProperty, value);
+    }
+
+    public static readonly BindableProperty ContentViewProperty =
+            BindableProperty.Create(nameof(ContentPage), typeof(View), typeof(TabViewItem));
+
     public TabViewItem()
     {
         InitializeComponent();

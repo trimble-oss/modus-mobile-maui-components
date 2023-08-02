@@ -5,18 +5,8 @@
                     xmlns:local="clr-namespace:DemoApp"
              x:Class="DemoApp.Views.TabbedPageDemo">
   <modus:TabViewItem Text="Account"
-                     Icon="account_icon.png">
-    <ContentPage>
-      <ContentPage.Content>
-      <Grid 
-        BackgroundColor="Gray">
-        <Label
-          HorizontalOptions="Center"
-          VerticalOptions="Center"
-          Text="TabContent1" />
-      </Grid>
-      </ContentPage.Content>
-    </ContentPage>
+                     Icon="account_icon.png">    
+    <local:TMButtonPage/>
   </modus:TabViewItem>
   <modus:TabViewItem Text="Search"
                      Icon="search_icon.png">
