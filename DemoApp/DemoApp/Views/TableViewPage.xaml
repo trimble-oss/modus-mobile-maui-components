@@ -5,18 +5,25 @@
              x:Class="DemoApp.TableViewPage"
              Title="DataGrid">
   <Grid RowDefinitions="Auto, Auto, *">
-    <modus:TMRadioButtonGroup Grid.Row="0"
+    <StackLayout Orientation="Vertical"
+                 Padding="10,0">
+      <Label Text="Selection Mode"
+             Padding="0,0,0,5"
+             FontAttributes="Bold"/>
+      <modus:TMRadioButtonGroup Grid.Row="0"
                               x:Name="RadioGroup"
                               Orientation="Horizontal"
-                              GroupTitle="Selection Mode"
                               SelectedIndex="{Binding SelectionModeRadioOption}">
-      <modus:TMRadioButton Text="None" />
-      <modus:TMRadioButton Text="Single" />
-      <modus:TMRadioButton Text="Multiple" />
-    </modus:TMRadioButtonGroup>
-    <HorizontalStackLayout Grid.Row="1">
+        <modus:TMRadioButton Text="None" />
+        <modus:TMRadioButton Text="Single" />
+        <modus:TMRadioButton Text="Multiple" />
+      </modus:TMRadioButtonGroup>
+    </StackLayout>
+    <HorizontalStackLayout Grid.Row="1"
+                           Padding="10,0">
       <Label Text="Show Divider"
-             VerticalOptions="Center" />
+             VerticalOptions="Center"
+             FontAttributes="Bold"/>
       <Switch IsToggled="{Binding DividerToggled}"
               VerticalOptions="Center" />
     </HorizontalStackLayout>

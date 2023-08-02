@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Globalization;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.DataGridControl;
 
@@ -44,7 +45,7 @@ public class DataGridColumn : BindableObject, IDefinition
     #region Bindable Properties
 
     public static readonly BindableProperty WidthProperty = BindableProperty.Create(nameof(Width), typeof(GridLength), typeof(DataGridColumn), GridLength.Star, propertyChanged: OnWidthPropertyChanged);
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(DataGridColumn), string.Empty, propertyChanged: (b, _, n) => ((DataGridColumn)b).HeaderLabel.Text = (string)n);
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(DataGridColumn), string.Empty, propertyChanged: OnColumnTitleChanged);
     public static readonly BindableProperty PropertyNameProperty = BindableProperty.Create(nameof(PropertyName), typeof(string), typeof(DataGridColumn));
     public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(DataGridColumn), true, propertyChanged: OnIsVisiblePropertyChanged);
     public static readonly BindableProperty CellTemplateProperty = BindableProperty.Create(nameof(CellTemplate), typeof(DataTemplate), typeof(DataGridColumn));
@@ -163,6 +164,12 @@ public class DataGridColumn : BindableObject, IDefinition
     #endregion Properties
 
     #region Methods
+    private static void OnColumnTitleChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var column = (DataGridColumn)bindable;
+        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+        column.HeaderLabel.Text = textInfo.ToTitleCase((string)newValue);
+    }
     /// <summary>
     /// On IsVisible property changed
     /// </summary>
