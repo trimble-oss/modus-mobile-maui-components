@@ -1,6 +1,6 @@
 ﻿namespace Trimble.Modus.Components;
 
-[ContentProperty(nameof(Content))]
+[ContentProperty(nameof(ContentPage))]
 public partial class TabViewItem : ContentView
 {
     public static readonly BindableProperty TextProperty =
@@ -22,13 +22,13 @@ public partial class TabViewItem : ContentView
         set => SetValue(IconProperty, value);
     }
 
-    public static readonly BindableProperty ContentProperty =
-            BindableProperty.Create(nameof(Content), typeof(Page), typeof(TabViewItem));
+    public static readonly BindableProperty ContentPageProperty =
+            BindableProperty.Create(nameof(ContentPage), typeof(Page), typeof(TabViewItem));
 
-    public Page? Content
+    public Page? ContentPage
     {
-        get => (Page?)GetValue(ContentProperty);
-        set => SetValue(ContentProperty, value);
+        get => (Page?)GetValue(ContentPageProperty);
+        set => SetValue(ContentPageProperty, value);
     }
 
     public TabViewItem()
