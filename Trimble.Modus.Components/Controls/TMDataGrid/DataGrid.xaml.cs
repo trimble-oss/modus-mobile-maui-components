@@ -39,10 +39,6 @@ public partial class DataGrid
     /// Border thickness for header &amp; each cell
     /// </summary>
     internal Thickness BorderThickness = new(0, 0, 0, 1);
-    /// <summary>
-    /// Readonly row color
-    /// </summary>
-    internal Color ReadOnlyRowColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
     #endregion Fields
 
     #region ctor
@@ -220,8 +216,6 @@ public partial class DataGrid
     #endregion Methods
 
     #region Bindable properties
-    public static readonly BindableProperty ReadOnlyListProperty = BindableProperty.Create(nameof(ReadOnlyList), typeof(List<int>), typeof(DataGrid), defaultValueCreator: _ => new List<int>());
-    public static readonly BindableProperty ItemSizingStrategyProperty = BindableProperty.Create(nameof(ItemSizingStrategy), typeof(ItemSizingStrategy), typeof(DataGrid), DeviceInfo.Platform == DevicePlatform.Android ? ItemSizingStrategy.MeasureAllItems : ItemSizingStrategy.MeasureFirstItem);
     public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(ObservableCollection<DataGridColumn>), typeof(DataGrid), propertyChanged: OnColumnsChanged, defaultValueCreator: _ => new ObservableCollection<DataGridColumn>());
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(DataGrid), null, propertyChanged: OnItemsSourceChanged);
     public static readonly BindableProperty IsSortableProperty = BindableProperty.Create(nameof(IsSortable), typeof(bool), typeof(DataGrid), false);
@@ -397,13 +391,6 @@ public partial class DataGrid
     #endregion
 
     #region Properties
-
-    public List<int> ReadOnlyList
-    {
-        get => (List<int>)GetValue(ReadOnlyListProperty);
-        set => SetValue(ReadOnlyListProperty, value);
-    }
-
     /// <summary>
     /// Set if divider should be shown
     /// </summary>
@@ -411,16 +398,6 @@ public partial class DataGrid
     {
         get => (bool)GetValue(ShowDividerProperty);
         set => SetValue(ShowDividerProperty, value);
-    }
-
-    /// <summary>
-    /// ItemSizingStrategy
-    /// Default Value is MeasureFirstItem, except on Android
-    /// </summary>
-    public ItemSizingStrategy ItemSizingStrategy
-    {
-        get => (ItemSizingStrategy)GetValue(ItemSizingStrategyProperty);
-        set => SetValue(ItemSizingStrategyProperty, value);
     }
 
     /// <summary>

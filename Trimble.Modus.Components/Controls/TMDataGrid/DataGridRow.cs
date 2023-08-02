@@ -121,11 +121,6 @@ internal sealed class DataGridRow : Grid
                 cell.SetBinding(Label.TextProperty, new Binding(col.PropertyName, BindingMode.Default));
             }
         }
-
-        if (_dataGridReference.ReadOnlyList.Contains(GetRowIndex()))
-        {
-            cell.IsEnabled = false;
-        }
         return cell;
     }
 
@@ -144,10 +139,6 @@ internal sealed class DataGridRow : Grid
         _bgColor = _dataGridReference?.SelectionMode != SelectionMode.None && _hasSelected
                 ? _dataGridReference.ActiveRowColor
                 : Colors.White;
-        if (_dataGridReference.ReadOnlyList.Contains(rowIndex))
-        {
-            _bgColor = _dataGridReference.ReadOnlyRowColor;
-        }
         ChangeColor(_bgColor, _textColor);
     }
 
@@ -192,7 +183,7 @@ internal sealed class DataGridRow : Grid
         CreateView();
         if (_dataGridReference.SelectionMode != SelectionMode.None)
         {
-            if (Parent != null && !_dataGridReference.ReadOnlyList.Contains(GetRowIndex()))
+            if (Parent != null)
             {
                 _dataGridReference.ItemSelected += DataGrid_ItemSelected;
             }

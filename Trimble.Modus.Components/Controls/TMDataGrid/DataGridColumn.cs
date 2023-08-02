@@ -52,7 +52,6 @@ public class DataGridColumn : BindableObject, IDefinition
     public static readonly BindableProperty HorizontalContentAlignmentProperty = BindableProperty.Create(nameof(HorizontalContentAlignment), typeof(LayoutOptions), typeof(DataGridColumn), LayoutOptions.Center);
     public static readonly BindableProperty VerticalContentAlignmentProperty = BindableProperty.Create(nameof(VerticalContentAlignment), typeof(LayoutOptions), typeof(DataGridColumn), LayoutOptions.Center);
     public static readonly BindableProperty SortingEnabledProperty = BindableProperty.Create(nameof(SortingEnabled), typeof(bool), typeof(DataGridColumn), true);
-    public static readonly BindableProperty FormattedTitleProperty = BindableProperty.Create(nameof(FormattedTitle), typeof(FormattedString), typeof(DataGridColumn), propertyChanged: (b, _, n) => ((DataGridColumn)b).HeaderLabel.FormattedText = (FormattedString)n);
     #endregion Bindable Properties
 
     #region Properties
@@ -91,24 +90,6 @@ public class DataGridColumn : BindableObject, IDefinition
     {
         get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
-    }
-    /// <summary>
-    /// Formatted title for column
-    /// <example>
-    /// <code>
-    ///  &lt;DataGridColumn.FormattedTitle &gt;
-    ///     &lt;FormattedString &gt;
-    ///       &lt;Span Text = "Home" TextColor="Black" FontSize="13" FontAttributes="Bold" / &gt;
-    ///       &lt;Span Text = " (won-lost)" TextColor="#333333" FontSize="11" / &gt;
-    ///     &lt;/FormattedString &gt;
-    ///  &lt;/DataGridColumn.FormattedTitle &gt;
-    /// </code>
-    /// </example>
-    /// </summary>
-    public FormattedString FormattedTitle
-    {
-        get => (string)GetValue(FormattedTitleProperty);
-        set => SetValue(FormattedTitleProperty, value);
     }
     /// <summary>
     /// Property name to bind in the object

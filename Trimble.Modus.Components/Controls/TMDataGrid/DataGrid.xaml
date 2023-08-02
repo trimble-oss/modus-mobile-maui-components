@@ -40,9 +40,7 @@
                   WidthRequest="{Binding WidthRequest, Source={Reference self}, Mode=TwoWay}"
                   SelectedItem="{Binding SelectedItem, Source={Reference self}, Mode=TwoWay}"
                   SelectedItems="{Binding SelectedItems, Source={Reference self}, Mode=TwoWay}"
-                  ItemSizingStrategy="{Binding ItemSizingStrategy, Source={Reference self}, Mode=TwoWay}"
                   SelectionMode="{Binding SelectionMode, Source={Reference self}, Mode=TwoWay}">
-      <!-- Padding="-28.5,0,0,0" -->
       <CollectionView.ItemTemplate>
         <DataTemplate>
           <local:DataGridRow MinimumHeightRequest="48"
