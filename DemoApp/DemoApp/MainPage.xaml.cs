@@ -24,6 +24,7 @@ namespace DemoApp
                 "Spinner",
                 "SegmentedControl",
                 "ListView",
+                "DataGrid",
                 "PopupView"
             };
             BindingContext = this;
@@ -69,6 +70,9 @@ namespace DemoApp
                         break;
                     case "ListView":
                         Navigation.PushAsync(new TMListViewPage());
+                        break;
+                    case "DataGrid":
+                        Navigation.PushAsync(new TableViewPage());
                         break;
                     case "PopupView":
                         PopupService.Instance.PresentAsync(new PopupView());
