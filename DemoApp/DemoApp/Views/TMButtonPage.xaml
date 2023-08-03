@@ -4,9 +4,10 @@
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.TMButtonPage"
+             BackgroundColor="Pink"
              Title="Button">
 
-  <ScrollView>
+  <ScrollView BackgroundColor="White">
 
     <StackLayout x:Name="layout"
                  Spacing="20"

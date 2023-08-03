@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\placeholder.svg" />
 	  <None Remove="Resources\Images\placeholder_white.svg" />
 	  <None Remove="Resources\Images\search_icon.svg" />
+	  <None Remove="Views\TabViewItems\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,6 +78,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="22.2.7" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -138,4 +140,7 @@
 	  </MauiXaml>
 
 	</ItemGroup>	
+	<ItemGroup>
+	  <Folder Include="Views\TabViewItems\" />
+	</ItemGroup>
 </Project>

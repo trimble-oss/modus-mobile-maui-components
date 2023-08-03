@@ -8,5 +8,10 @@ public partial class TabbedPageDemo : TMTabbedPage
     {
         InitializeComponent();
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+    }
 }
 

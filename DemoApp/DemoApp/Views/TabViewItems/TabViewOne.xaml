@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                          xmlns:constants="clr-namespace:DemoApp.Constant"
+             x:Class="DemoApp.Views.TabViewItems.TabViewOne">
+    <Modus:TMListView x:Name="textCellList"
+                        IsVisible="True"
+                        SelectionMode="{Binding SelectionMode}"
+                        SelectionChangedCommand="{Binding ItemSelectedCommand}"
+                        ItemsSource="{Binding ItemSource}">
+      <Modus:TMListView.ItemTemplate>
+        <DataTemplate>
+          <Modus:TextCell 
+            Title="{Binding Name}"
+            Description="{Binding Address}"
+            LeftIconSource="{Binding ProfilePic}"
+            RightIconSource="{Binding ProfilePic}">
+      </Modus:TextCell>
+        </DataTemplate>
+      </Modus:TMListView.ItemTemplate>
+      </Modus:TMListView>
+</ContentView>
+
