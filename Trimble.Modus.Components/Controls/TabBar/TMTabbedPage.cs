@@ -37,7 +37,7 @@ public partial class TMTabbedPage : ContentPage
             ItemTemplate = new DataTemplate(() =>
             {
                 var contentView = new ContentView();
-                contentView.SetBinding(ContentView.ContentProperty, "ContentPage.Content");
+                contentView.SetBinding(ContentView.ContentProperty, "ContentView");
                 return contentView;
             }),
             IsSwipeEnabled = true,

@@ -66,7 +66,9 @@ namespace DemoApp
                         Navigation.PushAsync(new TMSegmentedControlPage());
                         break;
                     case "ListView":
-                        Navigation.PushAsync(new TMListViewPage());
+                        Navigation.PushAsync(new TabbedPageDemo());
+
+                        //Navigation.PushAsync(new TMListViewPage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

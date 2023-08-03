@@ -7,12 +7,12 @@
              x:Class="DemoApp.Views.TabbedPageDemo">
   <modus:TabViewItem Text="Account"
                      Icon="account_icon.png">    
-    <local:TMButtonPage BackgroundColor="White"/>
+    <tabs:TabViewOne BackgroundColor="White"/>
   </modus:TabViewItem>
   <modus:TabViewItem Text="Search"
                      Icon="search_icon.png">
-    <ContentPage>
-      <ContentPage.Content>
+    <ContentView>
+      <ContentView.Content>
       <Grid 
         BackgroundColor="Red">
         <Label
@@ -20,9 +20,9 @@
           VerticalOptions="Center"
           Text="TabContent2" />
       </Grid>
-              </ContentPage.Content>
+              </ContentView.Content>
 
-    </ContentPage>
+    </ContentView>
 
   </modus:TabViewItem>
 </modus:TMTabbedPage>

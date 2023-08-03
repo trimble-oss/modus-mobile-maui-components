@@ -1,6 +1,6 @@
 ﻿namespace Trimble.Modus.Components;
 
-[ContentProperty(nameof(ContentPage))]
+[ContentProperty(nameof(ContentView))]
 public partial class TabViewItem : ContentView
 {
     public static readonly BindableProperty TextProperty =
