@@ -9,6 +9,13 @@ namespace Trimble.Modus.Components.Popup.Pages;
 
 public class PopupPage : ContentPage
 {
+    #region Private fields
+    private readonly Components.Enums.ModalPosition _position;
+    private readonly View _anchorView;
+    private double _popupHeight = -1;
+    private double _popupWidth = -1;
+    private double _padding = 10;
+    #endregion
     public event EventHandler? BackgroundClicked;
 
     internal Task? AppearingTransactionTask { get; set; }
@@ -115,6 +122,12 @@ public class PopupPage : ContentPage
     {
         //BackgroundColor = Color.FromArgb("#80000000");
     }
+    public PopupPage(View anchorView, Trimble.Modus.Components.Enums.ModalPosition position)
+    {
+        _anchorView = anchorView;
+        _position = position;
+        SizeChanged += OnSizeChanged;
+    }
 
     protected override bool OnBackButtonPressed()
     {
@@ -212,6 +225,11 @@ public class PopupPage : ContentPage
 
     internal async Task AppearingAnimation()
     {
+        if(_anchorView != null)
+        {
+            Content.VerticalOptions = LayoutOptions.Start;
+            Content.HorizontalOptions = LayoutOptions.Start;
+        }
         OnAppearingAnimationBegin();
         await OnAppearingAnimationBeginAsync();
 
@@ -224,6 +242,7 @@ public class PopupPage : ContentPage
 
     internal async Task DisappearingAnimation()
     {
+        SizeChanged -= OnSizeChanged;
         OnDisappearingAnimationBegin();
         await OnDisappearingAnimationBeginAsync();
 
@@ -279,6 +298,56 @@ public class PopupPage : ContentPage
     protected virtual bool OnBackgroundClicked()
     {
         return CloseWhenBackgroundIsClicked;
+    }
+
+    private void OnSizeChanged(object sender, EventArgs e)
+    {
+        if (!(sender is PopupPage popupPage)) return;
+
+        try
+        {
+            _popupHeight = popupPage.Content.Height;
+            _popupWidth = popupPage.Content.Width;
+
+            var locationFetcher = new Helpers.LocationFetcher();
+            var loc = locationFetcher.GetCoordinates(_anchorView);
+
+            if (_popupHeight > 0)
+            {
+                double translationY = 0;
+                double translationX = 0;
+
+                switch (_position)
+                {
+                    case Components.Enums.ModalPosition.Top:
+                        translationY = loc.Top - _popupHeight - loc.Height / 2;
+                        translationX = loc.Center.X - _popupWidth / 2;
+                        break;
+
+                    case Components.Enums.ModalPosition.Bottom:
+                        translationY = loc.Bottom - _popupHeight + loc.Height / 2;
+                        translationX = loc.Center.X - _popupWidth / 2;
+                        break;
+
+                    case Components.Enums.ModalPosition.Left:
+                        translationY = loc.Y - _popupHeight / 2;
+                        translationX = loc.Left - _popupWidth;
+                        break;
+
+                    case Components.Enums.ModalPosition.Right:
+                        translationY = loc.Y - _popupHeight / 2;
+                        translationX = loc.Right;
+                        break;
+                }
+
+                popupPage.Content.TranslationY = translationY;
+                popupPage.Content.TranslationX = translationX;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(Constant.Constants.UnableToCreatePopupError + ex.Message);
+        }
     }
 
     internal void SendBackgroundClick()

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             x:Class="DemoApp.Views.SamplePopupPage"
+             Title="SamplePopupPage">
+  <AbsoluteLayout>
+    <ImageButton Clicked="ArrowDownClicked"
+                 Source="{x:Static constants:ImageConstants.ArrowDown}"
+                 AbsoluteLayout.LayoutBounds="50,50" />
+    <ImageButton Clicked="ArrowLeftClicked"
+                 Source="{x:Static constants:ImageConstants.ArrowLeft}"
+                 AbsoluteLayout.LayoutBounds="300,50" />
+    <ImageButton Clicked="ArrowRightClicked"
+                 Source="{x:Static constants:ImageConstants.ArrowRight}"
+                 AbsoluteLayout.LayoutBounds="50,650" />
+    <ImageButton Clicked="ArrowUpClicked"
+                 Source="{x:Static constants:ImageConstants.ArrowUp}"
+                 AbsoluteLayout.LayoutBounds="300,650" />
+    <Modus:TMButton Clicked="CenterButtonClicked"
+                    Title="Custom Popup"
+                    AbsoluteLayout.LayoutBounds="125,325" />
+  </AbsoluteLayout>
+</ContentPage>

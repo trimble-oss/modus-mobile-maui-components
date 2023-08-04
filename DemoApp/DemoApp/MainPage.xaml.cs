@@ -75,7 +75,7 @@ namespace DemoApp
                         Navigation.PushAsync(new TableViewPage());
                         break;
                     case "PopupView":
-                        PopupService.Instance.PresentAsync(new PopupView());
+                        Navigation.PushAsync(new SamplePopupPage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
