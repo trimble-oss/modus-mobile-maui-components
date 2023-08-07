@@ -9,7 +9,6 @@ namespace Trimble.Modus.Components;
 [ContentProperty(nameof(TabItems))]
 public partial class TMTabbedPage : ContentPage
 {
-    private bool isSelected;
     public static readonly BindableProperty SelectedIndexProperty =
     BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMTabbedPage), -1, BindingMode.TwoWay,
         propertyChanged: OnSelectedIndexChanged);
@@ -72,9 +71,7 @@ public partial class TMTabbedPage : ContentPage
     public ObservableCollection<TabViewItem> TabItems { get; set; } = new();
 
     public static readonly BindableProperty TabItemsSourceProperty =
-            BindableProperty.Create(nameof(TabItemsSource),
-                typeof(IList), typeof(TMTabbedPage), null,
-                propertyChanged: OnTabItemsSourceChanged);
+            BindableProperty.Create(nameof(TabItemsSource),typeof(IList), typeof(TMTabbedPage), null);
 
     public IList? TabItemsSource
     {
@@ -158,12 +155,9 @@ public partial class TMTabbedPage : ContentPage
         else if (e.PropertyName == nameof(CarouselView.Position))
         {
             var selectedIndex = contentContainer.Position;
-            Console.WriteLine("SI "+SelectedIndex +"si "+selectedIndex);
-
             if (SelectedIndex != selectedIndex)
             {
                 UpdateSelectedIndex(selectedIndex, true);
-        
             }
         }
     }
@@ -180,22 +174,10 @@ public partial class TMTabbedPage : ContentPage
         for (var i = 0; i < tabItemsCount; i++)
             contentWidthCollection.Add(contentWidth * i);
     }
-    static void OnTabItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-
-    }
-
     private void TabItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         Console.WriteLine(e.NewItems);
         TabItemsSource = TabItems;
-        if (e.OldItems != null)
-        {
-            foreach (var tabViewItem in e.OldItems.OfType<TabViewItem>())
-            {
-               // ClearTabViewItem(tabViewItem);
-            }
-        }
 
         if (e.NewItems != null)
         {
@@ -256,10 +238,10 @@ public partial class TMTabbedPage : ContentPage
 
             if (CanUpdateSelectedIndex(capturedIndex))
             {
-                isSelected = true;
                 if (SelectedIndex != capturedIndex)
                     UpdateSelectedIndex(capturedIndex);
             }
+       
         };
 
         view.GestureRecognizers.Add(tapGestureRecognizer);
@@ -282,7 +264,6 @@ public partial class TMTabbedPage : ContentPage
         return true;
     }
     protected Grid _tabBarView = null;
-
     protected List<View> cells;
     protected List<View> selectedCells;
 
@@ -333,7 +314,7 @@ public partial class TMTabbedPage : ContentPage
                 contentContainer.Position = contentIndex;
 
             if (tabStripContainer.Children.Count > 0)
-                contentContainer.ScrollTo(tabStripIndex,ScrollToPosition.MakeVisible);
+                contentContainer.ScrollTo(tabStripIndex);
 
             SelectedIndex = position;
             if (oldposition != SelectedIndex)
