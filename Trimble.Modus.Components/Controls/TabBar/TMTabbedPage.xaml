@@ -4,7 +4,7 @@
              x:Class="Trimble.Modus.Components.TMTabbedPage"
              Title="TMTabbedPage">
   <ContentPage.Content>
-  <StackLayout BindableLayout.ItemsSource="{Binding TabItemsSource}">
+  <StackLayout BindableLayout.ItemsSource="{Binding TabItemsSource}" >
     <BindableLayout.ItemTemplate>
       <DataTemplate>
       </DataTemplate>

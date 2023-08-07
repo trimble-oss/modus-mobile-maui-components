@@ -3,15 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TabViewItem">
   <ContentView.Content>
-    <VerticalStackLayout>
-      <Image Source="{Binding Icon}"
-             HeightRequest="50"
-             WidthRequest="50"
+    <StackLayout x:Name="fullTab"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+      <Border x:Name="selectedBorder" Margin="12" Stroke="Transparent" >
+        <Border.StrokeShape>
+          <RoundRectangle CornerRadius="40"  />
+        </Border.StrokeShape>
+        <StackLayout x:Name="tabItem"  VerticalOptions="Center" HorizontalOptions="Center" Spacing="4" Padding="4">
+          <Image x:Name="icon" Source="{Binding Icon}"
+             HeightRequest="20"
+             WidthRequest="20"
              HorizontalOptions="Center"/>
-      <Label Text="{Binding Text}"
-             VerticalOptions="End" 
+          <Label Text="{Binding Text}"
+                 FontSize="12"
+             TextColor="{Binding CurrentTextColor}"
+             VerticalOptions="Center" 
              HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        </StackLayout>
+      </Border>
+    </StackLayout>
   </ContentView.Content>
 </ContentView>
 

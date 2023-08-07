@@ -2,25 +2,93 @@
 <modus:TMTabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-                    xmlns:local="clr-namespace:DemoApp"
-                    xmlns:tabs="clr-namespace:DemoApp.Views.TabViewItems"
+             xmlns:local="clr-namespace:DemoApp"
+             TabColor="Secondary"
+             Orientation="Horizontal"
+             xmlns:tabs="clr-namespace:DemoApp.Views.TabViewItems"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
              x:Class="DemoApp.Views.TabbedPageDemo">
-  <modus:TabViewItem Text="Account"
-                     Icon="account_icon.png">    
+  <modus:TabViewItem 
+                     Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
+                     IconSelected="{Static constants:ImageConstants.GalleryIcon }">
     <tabs:TabViewOne BackgroundColor="White"/>
   </modus:TabViewItem>
-  <modus:TabViewItem Text="Search"
-                     Icon="search_icon.png">
+  <modus:TabViewItem Text="Info"
+                     Icon="{Static constants:ImageConstants.Email }"
+                     IconSelected="{Static constants:ImageConstants.ContactIcon }">
     <ContentView>
       <ContentView.Content>
-      <Grid 
-        BackgroundColor="Red">
-        <Label
-          HorizontalOptions="Center"
-          VerticalOptions="Center"
-          Text="TabContent2" />
-      </Grid>
-              </ContentView.Content>
+        <Grid BackgroundColor="Red">
+          <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="TabContent2" />
+        </Grid>
+      </ContentView.Content>
+
+    </ContentView>
+
+  </modus:TabViewItem>
+  <modus:TabViewItem Text="With Text"
+                     Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
+                     IconSelected="{Static constants:ImageConstants.GalleryIcon }">
+    <ContentView>
+      <ContentView.Content>
+        <Grid BackgroundColor="Yellow">
+          <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="TabContent3" />
+        </Grid>
+      </ContentView.Content>
+
+    </ContentView>
+
+  </modus:TabViewItem>
+  <modus:TabViewItem 
+                     Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
+                     IconSelected="{Static constants:ImageConstants.GalleryIcon }">
+    <ContentView>
+      <ContentView.Content>
+        <Grid BackgroundColor="Green">
+          <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="TabContent4" />
+        </Grid>
+      </ContentView.Content>
+
+    </ContentView>
+
+  </modus:TabViewItem>
+  <modus:TabViewItem 
+                     Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
+                     IconSelected="{Static constants:ImageConstants.GalleryIcon }">
+    <ContentView>
+      <ContentView.Content>
+        <Grid BackgroundColor="Green">
+          <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="TabContent5" />
+        </Grid>
+      </ContentView.Content>
+
+    </ContentView>
+
+  </modus:TabViewItem>
+  <modus:TabViewItem 
+                     Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
+                     IconSelected="{Static constants:ImageConstants.GalleryIcon }">
+    <ContentView>
+      <ContentView.Content>
+        <Grid BackgroundColor="Green">
+          <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="TabContent6" />
+        </Grid>
+      </ContentView.Content>
 
     </ContentView>
 

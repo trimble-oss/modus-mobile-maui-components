@@ -168,8 +168,4 @@
 			<Generator></Generator>
 		</MauiXaml>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Controls\TabBar\" />
-	</ItemGroup>
 </Project>

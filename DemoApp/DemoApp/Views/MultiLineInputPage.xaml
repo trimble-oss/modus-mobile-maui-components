@@ -40,6 +40,7 @@
 
         <Modus:MultiLineInput  x:Name="modusInput"
                            Placeholder="Text Input"
+                               HeightRequest="500"
                            AutoSize="{Binding IsAutoSize}"
                            IsEnabled="{Binding IsEnabled}"
                            IsReadOnly="{Binding IsReadOnly}"/>

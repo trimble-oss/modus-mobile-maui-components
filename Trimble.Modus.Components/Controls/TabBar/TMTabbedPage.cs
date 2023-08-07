@@ -1,14 +1,74 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using static System.Net.Mime.MediaTypeNames;
+using System.ComponentModel;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
 [ContentProperty(nameof(TabItems))]
 public partial class TMTabbedPage : ContentPage
 {
+    private bool isSelected;
+    public static readonly BindableProperty SelectedIndexProperty =
+    BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMTabbedPage), -1, BindingMode.TwoWay,
+        propertyChanged: OnSelectedIndexChanged);
+
+    public delegate void TabSelectionChangedEventHandler(object? sender, TabSelectionChangedEventArgs e);
+
+    public event TabSelectionChangedEventHandler? SelectionChanged;
+
+    public static readonly BindableProperty OrientationProperty =
+     BindableProperty.Create(nameof(Orientation), typeof(StackOrientation), typeof(TMTabbedPage), StackOrientation.Vertical);
+
+    public StackOrientation Orientation
+    {
+        get => (StackOrientation)GetValue(OrientationProperty);
+        set => SetValue(OrientationProperty, value);
+    }
+
+    public TabColor TabColor
+    {
+        get => (TabColor)GetValue(TabColorProperty);
+        set => SetValue(TabColorProperty, value);
+    }
+    public static readonly BindableProperty TabColorProperty =
+        BindableProperty.Create(nameof(TabColor), typeof(TabColor), typeof(TabViewItem), defaultValue: TabColor.Primary, propertyChanged: OnTabColorPropertyChanged);
+
+    private static void OnTabColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMTabbedPage tabbedPage)
+        {
+            if ((TabColor)newValue == TabColor.Primary)
+            {
+                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+            }
+            else
+            {
+                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            }
+        }
+    }
+    public int SelectedIndex
+    {
+        get => (int)GetValue(SelectedIndexProperty);
+        set => SetValue(SelectedIndexProperty, value);
+    }
+
+    static void OnSelectedIndexChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMTabbedPage tabView && tabView.TabItems != null)
+        {
+            var selectedIndex = (int)newValue;
+
+            if (selectedIndex < 0)
+            {
+                return;
+            }
+           if ((int)oldValue != selectedIndex)
+                tabView.UpdateSelectedIndex(selectedIndex);
+        }
+    }
     public ObservableCollection<TabViewItem> TabItems { get; set; } = new();
 
     public static readonly BindableProperty TabItemsSourceProperty =
@@ -25,14 +85,17 @@ public partial class TMTabbedPage : ContentPage
     private Grid mainContainer;
     private Grid tabStripContainer;
     private CarouselView contentContainer;
+    private List<double> contentWidthCollection;
+    ObservableCollection<TabViewItem>? contentTabItems;
 
     public TMTabbedPage()
     {
         InitializeComponent();
 
+        contentWidthCollection = new List<double>();
         contentContainer = new CarouselView
         {
-            BackgroundColor = Colors.Yellow,
+            BackgroundColor = Colors.LightGray,
             ItemsSource = TabItems,
             ItemTemplate = new DataTemplate(() =>
             {
@@ -45,11 +108,12 @@ public partial class TMTabbedPage : ContentPage
             Loop = false,
             HorizontalScrollBarVisibility = ScrollBarVisibility.Never,
             VerticalScrollBarVisibility = ScrollBarVisibility.Never,
+
         };
 
         tabStripContainer = new Grid
         {
-            BackgroundColor = Colors.DeepPink,
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue),
             HeightRequest = 70,
             VerticalOptions = LayoutOptions.Fill
         };
@@ -72,8 +136,50 @@ public partial class TMTabbedPage : ContentPage
         Content = mainContainer;
 
         TabItems.CollectionChanged += TabItems_CollectionChanged;
+        contentContainer.PropertyChanged += OnContentContainerPropertyChanged;
+        contentContainer.Scrolled += OnContentContainerScrolled;
+
+    }
+    void OnContentContainerScrolled(object? sender, ItemsViewScrolledEventArgs args)
+    {
+        for (var i = 0; i < TabItems.Count; i++)
+            TabItems[i].UpdateCurrentContent();
     }
 
+    void OnContentContainerPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(CarouselView.ItemsSource)
+            || e.PropertyName == nameof(CarouselView.VisibleViews))
+        {
+            var items = contentContainer.ItemsSource;
+
+            UpdateItemsSource(items);
+        }
+        else if (e.PropertyName == nameof(CarouselView.Position))
+        {
+            var selectedIndex = contentContainer.Position;
+            Console.WriteLine("SI "+SelectedIndex +"si "+selectedIndex);
+
+            if (SelectedIndex != selectedIndex)
+            {
+                UpdateSelectedIndex(selectedIndex, true);
+        
+            }
+        }
+    }
+    void UpdateItemsSource(IEnumerable items)
+    {
+        contentWidthCollection.Clear();
+
+        if (contentContainer.VisibleViews.Count == 0)
+            return;
+
+        var contentWidth = contentContainer.VisibleViews.FirstOrDefault().Width;
+        var tabItemsCount = items.Cast<object>().Count();
+
+        for (var i = 0; i < tabItemsCount; i++)
+            contentWidthCollection.Add(contentWidth * i);
+    }
     static void OnTabItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
     {
 
@@ -87,7 +193,7 @@ public partial class TMTabbedPage : ContentPage
         {
             foreach (var tabViewItem in e.OldItems.OfType<TabViewItem>())
             {
-                //ClearTabViewItem(tabViewItem);
+               // ClearTabViewItem(tabViewItem);
             }
         }
 
@@ -125,99 +231,127 @@ public partial class TMTabbedPage : ContentPage
         {
             Width = GridLength.Star
         });
-
+        item.TabColor = TabColor;
+        item.Orientation = Orientation;
         tabStripContainer.Add(item, index, 0);
+        AddSelectionTapRecognizer(item);
+        if (SelectedIndex != 0)
+            UpdateSelectedIndex(0);
     }
+    void AddSelectionTapRecognizer(View view)
+    {
+        TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
+        tapGestureRecognizer.Tapped += (sender, args) =>
+        {
+            if (sender is not View view)
+                return;
 
+            var capturedIndex = tabStripContainer.Children.IndexOf(view);
 
+            if (view is TabViewItem tabViewItem)
+            {
+                var tabTappedEventArgs = new TabTappedEventArgs(capturedIndex);
+                tabViewItem.OnTabTapped(tabTappedEventArgs);
+            }
+
+            if (CanUpdateSelectedIndex(capturedIndex))
+            {
+                isSelected = true;
+                if (SelectedIndex != capturedIndex)
+                    UpdateSelectedIndex(capturedIndex);
+            }
+        };
+
+        view.GestureRecognizers.Add(tapGestureRecognizer);
+    }
+    bool CanUpdateSelectedIndex(int selectedIndex)
+    {
+        if (TabItems == null || TabItems.Count == 0)
+            return true;
+
+        var tabItem = TabItems[selectedIndex];
+
+        if (tabItem != null && tabItem.Content == null)
+        {
+            var itemsCount = TabItems.Count;
+            var contentItemsCount = TabItems.Count(t => t.Content == null);
+
+            return itemsCount == contentItemsCount;
+        }
+
+        return true;
+    }
     protected Grid _tabBarView = null;
 
     protected List<View> cells;
     protected List<View> selectedCells;
 
-    protected void createTabBar()
+    void UpdateSelectedIndex(int position, bool hasCurrentItem = false)
     {
-        _tabBarView = new Grid
-        {
-            HeightRequest = 50,
-            RowSpacing = 0
-        };
+        if (position < 0)
+            return;
+        var oldposition = SelectedIndex;
 
-        _tabBarView.RowDefinitions.Add(new RowDefinition
-        {
-            Height = new GridLength(50, GridUnitType.Absolute)
-        });
-        _tabBarView.RowDefinitions.Add(new RowDefinition
-        {
-            Height = new GridLength(1, GridUnitType.Star)
-        });
+        var newPosition = position;
 
-        _tabBarView.Add(new BoxView
+        MainThread.BeginInvokeOnMainThread(() =>
         {
-            BackgroundColor = Colors.Red
-        }, 0, 0);
+            if (contentTabItems == null || contentTabItems.Count != TabItems.Count)
+                contentTabItems = new ObservableCollection<TabViewItem>(TabItems.Where(t => t.Content != null));
 
+            var contentIndex = position;
+            var tabStripIndex = position;
 
-        cells = new List<View>();
-
-        Grid gridTabs = new Grid()
-        {
-            ColumnSpacing = 0
-        };
-        int i = 0;
-        /*
-        foreach (Page page in Children)
-        {
-            if (i > 0)
+            if (TabItems.Count > 0)
             {
-                gridTabs.ColumnDefinitions.Add(new ColumnDefinition
+                TabViewItem? currentItem = null;
+
+                if (hasCurrentItem)
+                    currentItem = (TabViewItem)contentContainer.CurrentItem;
+
+                var tabViewItem = TabItems[position];
+
+                contentIndex = contentTabItems.IndexOf(tabViewItem);
+                tabStripIndex = TabItems.IndexOf(tabViewItem);
+
+                position = tabStripIndex;
+
+                for (var index = 0; index < TabItems.Count; index++)
                 {
-                    Width = new GridLength(SplitterWidth, GridUnitType.Absolute)
-                });
-                gridTabs.Add(new BoxView
+                    if (index == position)
+                    {
+                        TabItems[position].IsSelected = true;
+                    }
+                    else
+                    {
+                        TabItems[index].IsSelected = false;
+                    }
+                }
+            }
+            
+            if (contentIndex >= 0)
+                contentContainer.Position = contentIndex;
+
+            if (tabStripContainer.Children.Count > 0)
+                contentContainer.ScrollTo(tabStripIndex,ScrollToPosition.MakeVisible);
+
+            SelectedIndex = position;
+            if (oldposition != SelectedIndex)
+            {
+                var selectionChangedArgs = new TabSelectionChangedEventArgs()
                 {
-                    BackgroundColor = SplitterColor
-                }, 2 * i - 1, 0);
+                    NewPosition = newPosition,
+                    OldPosition = oldposition
+                };
+
+                OnTabSelectionChanged(selectionChangedArgs);
             }
-
-            gridTabs.ColumnDefinitions.Add(new ColumnDefinition
-            {
-                Width = new GridLength(1, GridUnitType.Star)
-            });
-
-            View cell = (View)TabBarCellTemplate.CreateContent();
-            cell.BindingContext = page.BindingContext == null ? page : page.BindingContext;
-            cell.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                CommandParameter = cell,
-                Command = SelectCellCommand
-            });
-            gridTabs.Add(cell, 2 * i, 0);
-            cells.Add(cell);
-
-            if (TabBarSelectedCellTemplate != null)
-            {
-                View selectedCell = (View)TabBarSelectedCellTemplate.CreateContent();
-                selectedCell.BindingContext = cell.BindingContext;
-                selectedCell.IsVisible = false;
-                gridTabs.Add(selectedCell, 2 * i, 0);
-                selectedCells.Add(selectedCell);
-            }
-
-            i++;
-        }
-        */
-
-        _tabBarView.Add(gridTabs, 0, 1);
+        });
+    }
+    internal virtual void OnTabSelectionChanged(TabSelectionChangedEventArgs e)
+    {
+        var handler = SelectionChanged;
+        handler?.Invoke(this, e);
     }
 
-    public Grid TabBarView
-    {
-        get
-        {
-            if (_tabBarView == null)
-                createTabBar();
-            return _tabBarView;
-        }
-    }
 }
