@@ -14,4 +14,3 @@ public partial class TabbedPageDemo : TMTabbedPage
         base.OnAppearing();
     }
 }
-

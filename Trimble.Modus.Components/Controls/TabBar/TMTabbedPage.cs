@@ -322,7 +322,7 @@ public partial class TMTabbedPage : ContentPage
                 contentContainer.Position = contentIndex;
 
             if (tabStripContainer.Children.Count > 0)
-                contentContainer.ScrollTo(tabStripIndex);
+                contentContainer.ScrollTo(tabStripIndex, 1, ScrollToPosition.MakeVisible, false);
 
             SelectedIndex = position;
             if (oldposition != SelectedIndex)
