@@ -9,17 +9,39 @@ namespace Trimble.Modus.Components;
 [ContentProperty(nameof(TabItems))]
 public partial class TMTabbedPage : ContentPage
 {
-    public static readonly BindableProperty SelectedIndexProperty =
-    BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMTabbedPage), -1, BindingMode.TwoWay,
-        propertyChanged: OnSelectedIndexChanged);
-
+    #region Private Fields
+    private Grid mainContainer;
+    private Grid tabStripContainer;
+    private CarouselView contentContainer;
+    private List<double> contentWidthCollection;
+    private ObservableCollection<TabViewItem>? contentTabItems;
+    #endregion
+    #region Public Fields
+    public ObservableCollection<TabViewItem> TabItems { get; set; } = new();
     public delegate void TabSelectionChangedEventHandler(object? sender, TabSelectionChangedEventArgs e);
-
     public event TabSelectionChangedEventHandler? SelectionChanged;
+    #endregion
+    #region Protected Fields
+    protected Grid _tabBarView = null;
+    protected List<View> cells;
+    protected List<View> selectedCells;
+    #endregion
+
+    #region Bindable Properties
+    public static readonly BindableProperty SelectedIndexProperty =
+        BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMTabbedPage), -1, BindingMode.TwoWay, propertyChanged: OnSelectedIndexChanged);
 
     public static readonly BindableProperty OrientationProperty =
      BindableProperty.Create(nameof(Orientation), typeof(StackOrientation), typeof(TMTabbedPage), StackOrientation.Vertical);
 
+    public static readonly BindableProperty TabItemsSourceProperty =
+            BindableProperty.Create(nameof(TabItemsSource), typeof(IList), typeof(TMTabbedPage), null);
+
+    public static readonly BindableProperty TabColorProperty =
+       BindableProperty.Create(nameof(TabColor), typeof(TabColor), typeof(TabViewItem), defaultValue: TabColor.Primary, propertyChanged: OnTabColorPropertyChanged);
+
+    #endregion
+    #region Public Fields
     public StackOrientation Orientation
     {
         get => (StackOrientation)GetValue(OrientationProperty);
@@ -31,60 +53,19 @@ public partial class TMTabbedPage : ContentPage
         get => (TabColor)GetValue(TabColorProperty);
         set => SetValue(TabColorProperty, value);
     }
-    public static readonly BindableProperty TabColorProperty =
-        BindableProperty.Create(nameof(TabColor), typeof(TabColor), typeof(TabViewItem), defaultValue: TabColor.Primary, propertyChanged: OnTabColorPropertyChanged);
-
-    private static void OnTabColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is TMTabbedPage tabbedPage)
-        {
-            if ((TabColor)newValue == TabColor.Primary)
-            {
-                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-            }
-            else
-            {
-                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-            }
-        }
-    }
     public int SelectedIndex
     {
         get => (int)GetValue(SelectedIndexProperty);
         set => SetValue(SelectedIndexProperty, value);
     }
-
-    static void OnSelectedIndexChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is TMTabbedPage tabView && tabView.TabItems != null)
-        {
-            var selectedIndex = (int)newValue;
-
-            if (selectedIndex < 0)
-            {
-                return;
-            }
-           if ((int)oldValue != selectedIndex)
-                tabView.UpdateSelectedIndex(selectedIndex);
-        }
-    }
-    public ObservableCollection<TabViewItem> TabItems { get; set; } = new();
-
-    public static readonly BindableProperty TabItemsSourceProperty =
-            BindableProperty.Create(nameof(TabItemsSource),typeof(IList), typeof(TMTabbedPage), null);
-
     public IList? TabItemsSource
     {
         get => (IList?)GetValue(TabItemsSourceProperty);
         set => SetValue(TabItemsSourceProperty, value);
     }
+    #endregion
 
-    private Grid mainContainer;
-    private Grid tabStripContainer;
-    private CarouselView contentContainer;
-    private List<double> contentWidthCollection;
-    ObservableCollection<TabViewItem>? contentTabItems;
-
+    #region Constructor
     public TMTabbedPage()
     {
         InitializeComponent();
@@ -137,13 +118,43 @@ public partial class TMTabbedPage : ContentPage
         contentContainer.Scrolled += OnContentContainerScrolled;
 
     }
-    void OnContentContainerScrolled(object? sender, ItemsViewScrolledEventArgs args)
+    #endregion
+    #region Private Methods
+    private static void OnSelectedIndexChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMTabbedPage tabView && tabView.TabItems != null)
+        {
+            var selectedIndex = (int)newValue;
+
+            if (selectedIndex < 0)
+            {
+                return;
+            }
+            if ((int)oldValue != selectedIndex)
+                tabView.UpdateSelectedIndex(selectedIndex);
+        }
+    }
+    private static void OnTabColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMTabbedPage tabbedPage)
+        {
+            if ((TabColor)newValue == TabColor.Primary)
+            {
+                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+            }
+            else
+            {
+                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            }
+        }
+    }
+    private void OnContentContainerScrolled(object? sender, ItemsViewScrolledEventArgs args)
     {
         for (var i = 0; i < TabItems.Count; i++)
             TabItems[i].UpdateCurrentContent();
     }
 
-    void OnContentContainerPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    private void OnContentContainerPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(CarouselView.ItemsSource)
             || e.PropertyName == nameof(CarouselView.VisibleViews))
@@ -161,7 +172,7 @@ public partial class TMTabbedPage : ContentPage
             }
         }
     }
-    void UpdateItemsSource(IEnumerable items)
+    private void UpdateItemsSource(IEnumerable items)
     {
         contentWidthCollection.Clear();
 
@@ -188,7 +199,7 @@ public partial class TMTabbedPage : ContentPage
         }
     }
 
-    void AddTabViewItem(TabViewItem item, int index = -1)
+   private void AddTabViewItem(TabViewItem item, int index = -1)
     {
         var tabItem = new Grid()
         {
@@ -220,7 +231,7 @@ public partial class TMTabbedPage : ContentPage
         if (SelectedIndex != 0)
             UpdateSelectedIndex(0);
     }
-    void AddSelectionTapRecognizer(View view)
+    private void AddSelectionTapRecognizer(View view)
     {
         TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
         tapGestureRecognizer.Tapped += (sender, args) =>
@@ -246,7 +257,7 @@ public partial class TMTabbedPage : ContentPage
 
         view.GestureRecognizers.Add(tapGestureRecognizer);
     }
-    bool CanUpdateSelectedIndex(int selectedIndex)
+    private bool CanUpdateSelectedIndex(int selectedIndex)
     {
         if (TabItems == null || TabItems.Count == 0)
             return true;
@@ -263,11 +274,8 @@ public partial class TMTabbedPage : ContentPage
 
         return true;
     }
-    protected Grid _tabBarView = null;
-    protected List<View> cells;
-    protected List<View> selectedCells;
 
-    void UpdateSelectedIndex(int position, bool hasCurrentItem = false)
+    private void UpdateSelectedIndex(int position, bool hasCurrentItem = false)
     {
         if (position < 0)
             return;
@@ -329,10 +337,12 @@ public partial class TMTabbedPage : ContentPage
             }
         });
     }
+    #endregion
+    #region Internal Methods
     internal virtual void OnTabSelectionChanged(TabSelectionChangedEventArgs e)
     {
         var handler = SelectionChanged;
         handler?.Invoke(this, e);
     }
-
+    #endregion
 }
