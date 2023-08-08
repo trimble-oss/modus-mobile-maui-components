@@ -4,10 +4,10 @@
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              xmlns:local="clr-namespace:DemoApp"
              TabColor="Primary"
-             Orientation="Vertical"
+             Orientation="Horizontal"
              xmlns:tabs="clr-namespace:DemoApp.Views.TabViewItems"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             x:Class="DemoApp.Views.TabbedPageDemo">
+             x:Class="DemoApp.Views.TMTabbedPageDemo">
   <modus:TabViewItem Text="Home"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
                      IconSelected="{Static constants:ImageConstants.GalleryIcon }">
@@ -16,49 +16,18 @@
   <modus:TabViewItem Text="Mail"
                      Icon="{Static constants:ImageConstants.Email }"
                      IconSelected="{Static constants:ImageConstants.ContactIcon }">
-    <ContentView>
-      <ContentView.Content>
-        <Grid BackgroundColor="Red">
-          <Label
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            Text="TabContent2" />
-        </Grid>
-      </ContentView.Content>
-
-    </ContentView>
-
+    <tabs:TabViewTwo BackgroundColor="White"/>
   </modus:TabViewItem>
   <modus:TabViewItem Text="Photos"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
                      IconSelected="{Static constants:ImageConstants.GalleryIcon }">
-    <ContentView>
-      <ContentView.Content>
-        <Grid BackgroundColor="Yellow">
-          <Label
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            Text="TabContent3" />
-        </Grid>
-      </ContentView.Content>
-
-    </ContentView>
+    <tabs:TabViewThree BackgroundColor="White"/>
 
   </modus:TabViewItem>
   <modus:TabViewItem Text="Settings"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }"
                      IconSelected="{Static constants:ImageConstants.GalleryIcon }">
-    <ContentView>
-      <ContentView.Content>
-        <Grid BackgroundColor="Green">
-          <Label
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            Text="TabContent4" />
-        </Grid>
-      </ContentView.Content>
-
-    </ContentView>
+    <tabs:TabViewFour BackgroundColor="White"/>
 
   </modus:TabViewItem>  
 </modus:TMTabbedPage>

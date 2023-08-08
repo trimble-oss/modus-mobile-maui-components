@@ -86,6 +86,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TabViewItems\TabViewFour.xaml.cs">
+	    <DependentUpon>TabViewFour.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TabViewItems\TabViewThree.xaml.cs">
+	    <DependentUpon>TabViewThree.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TabViewItems\TabViewTwo.xaml.cs">
+	    <DependentUpon>TabViewTwo.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TMTabbedPageDemo.xaml.cs">
+	    <DependentUpon>TMTabbedPageDemo.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMListViewPage.xaml.cs">
 	    <DependentUpon>TMListViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -108,6 +120,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\TabViewItems\TabViewFour.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TabViewItems\TabViewThree.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TabViewItems\TabViewTwo.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TMListViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -139,8 +160,5 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 
-	</ItemGroup>	
-	<ItemGroup>
-	  <Folder Include="Views\TabViewItems\" />
 	</ItemGroup>
 </Project>

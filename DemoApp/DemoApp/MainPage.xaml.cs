@@ -70,7 +70,7 @@ namespace DemoApp
                         Navigation.PushAsync(new TMListViewPage());
                         break;
                     case "TabbedPage":
-                        Navigation.PushAsync(new TabbedPageDemo());
+                        Navigation.PushAsync(new TMTabbedPageDemo());
                         break;
                     default:
                         Console.WriteLine("Default Case");

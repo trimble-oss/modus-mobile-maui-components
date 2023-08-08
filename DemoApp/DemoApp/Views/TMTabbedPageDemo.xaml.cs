@@ -2,9 +2,9 @@
 
 namespace DemoApp.Views;
 
-public partial class TabbedPageDemo : TMTabbedPage
+public partial class TMTabbedPageDemo : TMTabbedPage
 {
-    public TabbedPageDemo()
+    public TMTabbedPageDemo()
     {
         InitializeComponent();
     }

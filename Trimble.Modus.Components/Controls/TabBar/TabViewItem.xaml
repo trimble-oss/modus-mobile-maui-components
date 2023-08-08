@@ -4,7 +4,7 @@
              x:Class="Trimble.Modus.Components.TabViewItem">
   <ContentView.Content>
     <StackLayout x:Name="fullTab"  HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-      <Border x:Name="selectedBorder" Margin="12" Stroke="Transparent" >
+      <Border x:Name="selectedBorder" Margin="1" Stroke="Transparent" >
         <Border.StrokeShape>
           <RoundRectangle CornerRadius="40"  />
         </Border.StrokeShape>
