@@ -23,24 +23,16 @@ public partial class TabViewItem : ContentView
 
     public static readonly BindableProperty IsSelectedProperty =
         BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TabViewItem), false, propertyChanged: OnIsSelectedChanged);
-
+    // See if we can support Content Page in the future
+    /*
     public static readonly BindableProperty ContentPageProperty =
         BindableProperty.Create(nameof(ContentPage), typeof(Page), typeof(TabViewItem));
-
-    public static readonly BindableProperty IconSelectedProperty =
-        BindableProperty.Create(nameof(IconSelected), typeof(ImageSource), typeof(TabViewItem), null,propertyChanged: OnTabViewItemPropertyChanged);
-
-    public static readonly BindableProperty TextColorSelectedProperty =
-        BindableProperty.Create(nameof(TextColorSelected), typeof(Color), typeof(TabViewItem), Colors.White);
-
+    */
     public static readonly BindableProperty IconProperty =
           BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(TabViewItem), null, propertyChanged: OnTabViewItemPropertyChanged);
 
     public static readonly BindableProperty TextProperty =
           BindableProperty.Create(nameof(Text), typeof(string), typeof(TabViewItem), string.Empty);
-
-    public static readonly BindableProperty TextColorProperty =
-          BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TabViewItem), Colors.Black, propertyChanged: OnTabViewItemPropertyChanged);
 
     public static readonly BindableProperty OrientationProperty =
          BindableProperty.Create(nameof(Orientation), typeof(StackOrientation), typeof(TabViewItem), StackOrientation.Vertical, propertyChanged: OnOrientationPropertyChanged);
@@ -49,10 +41,7 @@ public partial class TabViewItem : ContentView
 
     public static readonly BindableProperty CurrentContentProperty = CurrentContentPropertyKey.BindableProperty;
 
-    internal static readonly BindablePropertyKey CurrentIconPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentIcon), typeof(ImageSource), typeof(TabViewItem), null);
-
-    public static readonly BindableProperty CurrentIconProperty = CurrentIconPropertyKey.BindableProperty;
-
+    
     internal static readonly BindablePropertyKey CurrentTextColorPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentTextColor), typeof(Color), typeof(TabViewItem), Colors.Black);
 
     public static readonly BindableProperty CurrentTextColorProperty = CurrentTextColorPropertyKey.BindableProperty;
@@ -89,13 +78,7 @@ public partial class TabViewItem : ContentView
         private set => SetValue(CurrentContentPropertyKey, value);
     }
 
-    public ImageSource? CurrentIcon
-    {
-        get => (ImageSource?)GetValue(CurrentIconProperty);
-        private set => SetValue(CurrentIconPropertyKey, value);
-    }
-
-    public Color CurrentTextColor
+    internal Color CurrentTextColor
     {
         get => (Color)GetValue(CurrentTextColorProperty);
         private set => SetValue(CurrentTextColorPropertyKey, value);
@@ -106,35 +89,18 @@ public partial class TabViewItem : ContentView
         set => SetValue(TextProperty, value);
     }
 
-    public Color TextColor
-    {
-        get => (Color)GetValue(TextColorProperty);
-        set => SetValue(TextColorProperty, value);
-    }
-
-    public Color TextColorSelected
-    {
-        get => (Color)GetValue(TextColorSelectedProperty);
-        set => SetValue(TextColorSelectedProperty, value);
-    }
-
     public ImageSource? Icon
     {
         get => (ImageSource?)GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
-
-    public ImageSource? IconSelected
-    {
-        get => (ImageSource?)GetValue(IconSelectedProperty);
-        set => SetValue(IconSelectedProperty, value);
-    }
-
+    // See if we can support Content Page in the future
+    /*
     public Page? ContentPage
     {
         get => (Page?)GetValue(ContentPageProperty);
         set => SetValue(ContentPageProperty, value);
-    }
+    }*/
 
     public View? ContentView
     {
@@ -142,7 +108,7 @@ public partial class TabViewItem : ContentView
         set => SetValue(ContentViewProperty, value);
     }
 
-    public bool IsSelected
+    internal bool IsSelected
     {
         get => (bool)GetValue(IsSelectedProperty);
         set => SetValue(IsSelectedProperty, value);
@@ -178,6 +144,7 @@ public partial class TabViewItem : ContentView
         };
         tabItem.Orientation = Orientation;
         icon.Behaviors.Add(behavior);
+        text.TextColor = CurrentTextColor;
         selectedBorder.BackgroundColor = !IsSelected ? Colors.Transparent : ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
         UpdateCurrentContent();
     }
@@ -189,10 +156,8 @@ public partial class TabViewItem : ContentView
     {
         if (bindable != null && bindable is TabViewItem item)
         {
-            Console.WriteLine("bindable" + newValue);
             if (newValue is TabColor)
             {
-                Console.WriteLine($"TabColor: {newValue}");
                 item.UpdateCurrent();
             }
 
@@ -202,13 +167,14 @@ public partial class TabViewItem : ContentView
     {
         if (bindable != null && bindable is TabViewItem item)
         {
-            Console.WriteLine("bindable" + newValue);
             if (newValue is StackOrientation)
             {
-                Console.WriteLine($"TabColor: {newValue}");
                 item.tabItem.Orientation = (StackOrientation)newValue;
                 if ((StackOrientation)newValue == StackOrientation.Horizontal)
+                {
                     item.tabItem.Margin = new Thickness(12, 4, 12, 4);
+                    item.tabItem.Spacing = 4;
+                }
             }
 
         }

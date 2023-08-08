@@ -187,7 +187,6 @@ public partial class TMTabbedPage : ContentPage
     }
     private void TabItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
-        Console.WriteLine(e.NewItems);
         TabItemsSource = TabItems;
 
         if (e.NewItems != null)
