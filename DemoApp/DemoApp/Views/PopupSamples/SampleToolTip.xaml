@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:Class="DemoApp.Views.SampleToolTip"
@@ -18,7 +18,7 @@
           WidthRequest="150"
           BackgroundColor="#E0E1E9">
     <Border.StrokeShape>
-      <RoundRectangle CornerRadius="30" />
+      <RoundRectangle CornerRadius="2" />
     </Border.StrokeShape>
     <VerticalStackLayout VerticalOptions="Center"
                          HorizontalOptions="Center">
