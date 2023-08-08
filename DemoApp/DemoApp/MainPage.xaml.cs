@@ -23,7 +23,8 @@ namespace DemoApp
                 "Spinner",
                 "SegmentedControl",
                 "ListView",
-                "DataGrid"
+                "DataGrid",
+                "Badge"
             };
             BindingContext = this;
         }
@@ -71,7 +72,10 @@ namespace DemoApp
                         break;
                     case "DataGrid":
                         Navigation.PushAsync(new TableViewPage());
-                    break;
+                        break;
+                    case "Badge":
+                        Navigation.PushAsync(new TMBadgesPage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;

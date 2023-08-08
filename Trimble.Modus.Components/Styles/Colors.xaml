@@ -26,6 +26,7 @@
   <Color x:Key="CardPressed">#C9CACF</Color>
   <Color x:Key="PrimaryFloatingButtonClicked">#0E416C</Color>
   <Color x:Key="SecondaryFloatingButtonClicked">#DCEDF9</Color>
+  <Color x:Key="TrimbleNeutralGray">#585C65</Color>
   <!-- ToastColors -->
   <Color x:Key="DangerToastColor">#FBD4D7</Color>
   <Color x:Key="WarningToastColor">#FFF5E4</Color>
