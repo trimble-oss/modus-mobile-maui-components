@@ -7,26 +7,27 @@ namespace DemoApp.Views
     public partial class TMBadgesPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private BadgeSize _size;
+        private BadgeSize _badgeSize;
+
         public TMBadgesPageViewModel()
         {
-            Size = BadgeSize.Large;
+            BadgeSize = BadgeSize.Large;
         }
    
         [RelayCommand]
-        private void SizeChanged(TMRadioButtonEventArgs e)
+        private void BadgeSizeChanged(TMRadioButtonEventArgs e)
         {
             switch (e.RadioButtonIndex)
             {
                 case 0:
-                    Size = BadgeSize.Small;
+                    BadgeSize = BadgeSize.Small;
                     break;
                 case 2:
-                    Size = BadgeSize.Large;
+                    BadgeSize = BadgeSize.Large;
                     break;
                 case 1:
                 default:
-                    Size = BadgeSize.Medium;
+                    BadgeSize = BadgeSize.Medium;
                     break;
             }
         }

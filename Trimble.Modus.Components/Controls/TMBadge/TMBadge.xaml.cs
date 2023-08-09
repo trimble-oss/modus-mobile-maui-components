@@ -2,8 +2,6 @@ namespace Trimble.Modus.Components;
 
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
-using System;
-using System.Runtime.CompilerServices;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 
@@ -47,7 +45,6 @@ public partial class TMBadge : ContentView
     public TMBadge()
     {
         InitializeComponent();
-        BindingContext = this;
         UpdateBadge(this);
     }
 
@@ -86,14 +83,14 @@ public partial class TMBadge : ContentView
         switch (tmBadge.Shape)
         {
             case BadgeShape.Round:
-                tmBadge.buttonFrame.StrokeShape = new RoundRectangle
+                tmBadge.frame.StrokeShape = new RoundRectangle
                 {
                     CornerRadius = new CornerRadius(20)
                 };
                 break;
             case BadgeShape.Rectangle:
             default:
-                tmBadge.buttonFrame.StrokeShape = new RoundRectangle
+                tmBadge.frame.StrokeShape = new RoundRectangle
                 {
                     CornerRadius = new CornerRadius(4)
                 };
@@ -106,18 +103,18 @@ public partial class TMBadge : ContentView
         switch (badge.BadgeSize)
         {
             case BadgeSize.Small:
-                badge.buttonLabel.FontSize = 12;
-                badge.buttonFrame.Padding = new Thickness(8,0,8,0);
-                badge.buttonLabel.Margin = new Thickness(0,2,0,2);
+                badge.label.FontSize = 12;
+                badge.frame.Padding = new Thickness(8,0,8,0);
+                badge.label.Margin = new Thickness(0,2,0,2);
                 break;
             case BadgeSize.Large:
-                badge.buttonLabel.FontSize = 14;
-                badge.buttonFrame.Padding = new Thickness(12, 4);
+                badge.label.FontSize = 14;
+                badge.frame.Padding = new Thickness(12, 4);
                 break;
             case BadgeSize.Medium:
             default:
-                badge.buttonLabel.FontSize = 12;
-                badge.buttonFrame.Padding = new Thickness(12, 2);
+                badge.label.FontSize = 12;
+                badge.frame.Padding = new Thickness(12, 2);
                 break;
         }
     }
@@ -127,29 +124,29 @@ public partial class TMBadge : ContentView
         switch(tmBadge.Color)
         {
             case BadgeColor.Secondary:
-                tmBadge.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleNeutralGray);
-                tmBadge.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleNeutralGray);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             case BadgeColor.Tertiary:
-                tmBadge.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
-                tmBadge.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
                 break;
             case BadgeColor.Success:
-                tmBadge.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
-                tmBadge.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             case BadgeColor.Warning:
-                tmBadge.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleYellow);
-                tmBadge.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleYellow);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
                 break;
             case BadgeColor.Error:
-                tmBadge.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
-                tmBadge.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             case BadgeColor.Primary:
             default:
-                tmBadge.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmBadge.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
         }
     }
