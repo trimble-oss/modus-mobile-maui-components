@@ -2,7 +2,8 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-                          xmlns:constants="clr-namespace:DemoApp.Constant"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             BackgroundColor="White"
              x:Class="DemoApp.Views.TabViewItems.TabViewOne">
     <Modus:TMListView x:Name="textCellList"
                         IsVisible="True"

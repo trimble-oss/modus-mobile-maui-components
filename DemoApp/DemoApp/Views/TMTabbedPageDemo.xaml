@@ -10,20 +10,20 @@
              x:Class="DemoApp.Views.TMTabbedPageDemo">
   <modus:TabViewItem Text="Home"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }">
-    <tabs:TabViewOne BackgroundColor="White"/>
+    <tabs:TabViewOne />
   </modus:TabViewItem>
   <modus:TabViewItem Text="Mail"
                      Icon="{Static constants:ImageConstants.Email }">
-    <tabs:TabViewTwo BackgroundColor="White"/>
+    <tabs:TabViewTwo />
   </modus:TabViewItem>
   <modus:TabViewItem Text="Photos"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }">
-    <tabs:TabViewThree BackgroundColor="White"/>
+    <tabs:TabViewThree />
 
   </modus:TabViewItem>
   <modus:TabViewItem Text="Phone"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }">
-    <tabs:TabViewFour BackgroundColor="White"/>
+    <tabs:TabViewFour />
 
   </modus:TabViewItem>  
 </modus:TMTabbedPage>

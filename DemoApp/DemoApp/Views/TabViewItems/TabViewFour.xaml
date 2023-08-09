@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              xmlns:constants="clr-namespace:DemoApp.Constant"
+             BackgroundColor="White"
              x:Class="DemoApp.Views.TabViewItems.TabViewFour">
   <VerticalStackLayout Margin="10">
     <modus:TMSegmentedControl x:Name="MainControl"
@@ -19,7 +20,7 @@
                               IsEnabled="{Binding IsEnabled}"
                               Margin="0,0,0,10"
                               ItemsSource="{Binding SegmentImageItems}" />
-    <modus:TMRadioButtonGroup SelectedIndex="0">
+    <modus:TMRadioButtonGroup SelectedIndex="0" SelectedRadioButtonChangedCommand="{Binding RadioButtonCommand}">
       <modus:TMRadioButton Text="Small"
                            Value="Small" />
       <modus:TMRadioButton Text="Medium"
@@ -32,21 +33,21 @@
     <HorizontalStackLayout>
       <Label Text="Rounded Corners"
              VerticalOptions="Center" />
-      <Switch IsToggled="False"
+      <Switch IsToggled="{Binding RoundedCornersSwitch}"
               VerticalOptions="Center"
               Margin="5,0" />
     </HorizontalStackLayout>
     <HorizontalStackLayout>
       <Label Text="Secondary theme"
              VerticalOptions="Center" />
-      <Switch IsToggled="False"
+      <Switch IsToggled="{Binding SecondaryThemeSwitch}"
               VerticalOptions="Center"
               Margin="5,0" />
     </HorizontalStackLayout>
     <HorizontalStackLayout>
       <Label Text="Enabled"
              VerticalOptions="Center" />
-      <Switch IsToggled="True"
+      <Switch IsToggled="{Binding EnabledSwitch}"
               VerticalOptions="Center"
               Margin="5,0" />
     </HorizontalStackLayout>
