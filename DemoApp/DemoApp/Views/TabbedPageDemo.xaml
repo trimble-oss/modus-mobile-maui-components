@@ -7,7 +7,7 @@
              Orientation="Vertical"
              xmlns:tabs="clr-namespace:DemoApp.Views.TabViewItems"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             x:Class="DemoApp.Views.TMTabbedPageDemo">
+             x:Class="DemoApp.Views.TabbedPageDemo">
   <modus:TabViewItem Text="Home"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }">
     <tabs:TabViewOne />

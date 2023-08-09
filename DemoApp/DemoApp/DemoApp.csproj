@@ -94,8 +94,8 @@
 	  <Compile Update="Views\TabViewItems\TabViewTwo.xaml.cs">
 	    <DependentUpon>TabViewTwo.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\TMTabbedPageDemo.xaml.cs">
-	    <DependentUpon>TMTabbedPageDemo.xaml</DependentUpon>
+	  <Compile Update="Views\TabbedPageDemo.xaml.cs">
+	    <DependentUpon>TabbedPageDemo.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\TMListViewPage.xaml.cs">
 	    <DependentUpon>TMListViewPage.xaml</DependentUpon>

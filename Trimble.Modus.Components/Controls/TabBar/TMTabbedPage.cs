@@ -13,7 +13,6 @@ public partial class TMTabbedPage : ContentPage
     private Grid mainContainer;
     private Grid tabStripContainer;
     private CarouselView contentContainer;
-    private List<double> contentWidthCollection;
     private ObservableCollection<TabViewItem>? contentTabItems;
     #endregion
     #region Public Fields
@@ -21,12 +20,6 @@ public partial class TMTabbedPage : ContentPage
     public delegate void TabSelectionChangedEventHandler(object? sender, TabSelectionChangedEventArgs e);
     public event TabSelectionChangedEventHandler? SelectionChanged;
     #endregion
-    #region Protected Fields
-    protected Grid _tabBarView = null;
-    protected List<View> cells;
-    protected List<View> selectedCells;
-    #endregion
-
     #region Bindable Properties
     public static readonly BindableProperty SelectedIndexProperty =
         BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMTabbedPage), -1, BindingMode.TwoWay, propertyChanged: OnSelectedIndexChanged);
@@ -70,7 +63,6 @@ public partial class TMTabbedPage : ContentPage
     {
         InitializeComponent();
 
-        contentWidthCollection = new List<double>();
         contentContainer = new CarouselView
         {
             BackgroundColor = Colors.LightGray,
@@ -174,7 +166,6 @@ public partial class TMTabbedPage : ContentPage
     }
     private void UpdateItemsSource(IEnumerable items)
     {
-        contentWidthCollection.Clear();
 
         if (contentContainer.VisibleViews.Count == 0)
             return;
@@ -182,8 +173,6 @@ public partial class TMTabbedPage : ContentPage
         var contentWidth = contentContainer.VisibleViews.FirstOrDefault().Width;
         var tabItemsCount = items.Cast<object>().Count();
 
-        for (var i = 0; i < tabItemsCount; i++)
-            contentWidthCollection.Add(contentWidth * i);
     }
     private void TabItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
