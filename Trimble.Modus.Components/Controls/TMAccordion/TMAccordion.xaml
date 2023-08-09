@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMAccordion"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+             x:Name="_accordion_view">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <color:Colors />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <ContentView.Content>
+    <Border StrokeThickness="0"
+            VerticalOptions="Center">
+      <Border.StrokeShape>
+        <Rectangle RadiusX="4"
+                   RadiusY="4" />
+      </Border.StrokeShape>
+      <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <ContentView VerticalOptions="Center"
+                     Padding="0,0,0,20"
+                     Grid.Row="1"
+                     x:Name="_accContent"
+                     BackgroundColor="White"
+                     Content="{Binding Source={x:Reference _accordion_view}, Path=AccordionContentView}">
+          <ContentView.Triggers>
+            <DataTrigger TargetType="ContentView"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=IsEnabled}"
+                         Value="false">
+              <Setter Property="Opacity"
+                      Value="0.5" />
+            </DataTrigger>
+            <DataTrigger TargetType="ContentView"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=IsEnabled}"
+                         Value="true">
+              <Setter Property="Opacity"
+                      Value="1" />
+            </DataTrigger>
+          </ContentView.Triggers>
+        </ContentView>
+        <Grid VerticalOptions="Center"
+              Padding="8,4"
+              BackgroundColor="White"
+              HeightRequest="56">
+          <Grid.Triggers>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=Size}"
+                         Value="Small">
+              <Setter Property="HeightRequest"
+                      Value="48" />
+              <Setter Property="Padding"
+                      Value="8,4" />
+            </DataTrigger>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=Size}"
+                         Value="Default">
+              <Setter Property="HeightRequest"
+                      Value="56" />
+              <Setter Property="Padding"
+                      Value="8,0" />
+            </DataTrigger>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=Size}"
+                         Value="Large">
+              <Setter Property="HeightRequest"
+                      Value="64" />
+              <Setter Property="Padding"
+                      Value="8" />
+            </DataTrigger>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=Size}"
+                         Value="XLarge">
+              <Setter Property="HeightRequest"
+                      Value="80" />
+              <Setter Property="Padding"
+                      Value="8,16" />
+            </DataTrigger>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=IsEnabled}"
+                         Value="false">
+              <Setter Property="Opacity"
+                      Value="0.5" />
+            </DataTrigger>
+            <DataTrigger TargetType="Grid"
+                         Binding="{Binding Source={x:Reference _accordion_view}, Path=IsEnabled}"
+                         Value="true">
+              <Setter Property="Opacity"
+                      Value="1" />
+            </DataTrigger>
+          </Grid.Triggers>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TitleTapped" />
+          </Grid.GestureRecognizers>
+          <Image VerticalOptions="Center"
+                 Margin="0,0,-12,0"
+                 Grid.Column="1"
+                 Source="{Binding Source={x:Reference _accordion_view}, Path=LeftIconSource}"
+                 IsVisible="{Binding Source={x:Reference _accordion_view}, Path=LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}" />
+          <StackLayout HorizontalOptions="Start"
+                       Grid.Column="2"
+                       Orientation="Vertical"
+                       Padding="0"
+                       Spacing="0"
+                       VerticalOptions="Center">
+            <Label FontSize="16"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Margin="16,0,0,0"
+                   Text="{Binding Source={x:Reference _accordion_view}, Path=AccordionTitle}"
+                   TextColor="{x:StaticResource AccordionTitleColor}">
+              <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference _accordion_view}, Path=IsOpen}"
+                             Value="false">
+                  <Setter Property="FontAttributes"
+                          Value="None" />
+                </DataTrigger>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={x:Reference _accordion_view}, Path=IsOpen}"
+                             Value="true">
+                  <Setter Property="FontAttributes"
+                          Value="Bold" />
+                </DataTrigger>
+              </Label.Triggers>
+            </Label>
+            <Label Text="{Binding Source={x:Reference _accordion_view}, Path=AccordionSubtitle}"
+                   VerticalOptions="Center"
+                   Margin="16,0,0,0"
+                   FontSize="10"
+                   TextColor="{x:StaticResource AccordionDescriptionColor}"
+                   IsVisible="{Binding Source={x:Reference _accordion_view}, Path=AccordionSubtitle, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" />
+          </StackLayout>
+          <Image VerticalOptions="Center"
+                 Source="{Binding Source={x:Reference _accordion_view}, Path=RightIconSource}"
+                 Grid.Column="3"
+                 IsVisible="{Binding Source={x:Reference _accordion_view}, Path=RightIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}" />
+          <ImageButton Grid.Column="4"
+                       HeightRequest="32"
+                       WidthRequest="32"
+                       x:Name="_indicatorContainer"
+                       Source="{x:Static constants:ImageConstants.ChevronDownIcon}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Padding="0"
+                       Margin="0,8"
+                       Clicked="TitleTapped">
+            <ImageButton.Triggers>
+              <DataTrigger TargetType="ImageButton"
+                           Binding="{Binding Source={x:Reference _accordion_view}, Path=ChevronPosition}"
+                           Value="Left">
+                <Setter Property="Grid.Column"
+                        Value="0" />
+              </DataTrigger>
+              <DataTrigger TargetType="ImageButton"
+                           Binding="{Binding Source={x:Reference _accordion_view}, Path=ChevronPosition}"
+                           Value="Right">
+                <Setter Property="Grid.Column"
+                        Value="4" />
+              </DataTrigger>
+            </ImageButton.Triggers>
+          </ImageButton>
+        </Grid>
+      </Grid>
+    </Border>
+  </ContentView.Content>
+</ContentView>

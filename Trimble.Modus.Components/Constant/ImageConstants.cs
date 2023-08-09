@@ -24,5 +24,6 @@ namespace Trimble.Modus.Components.Constant
         public const string MinusImage = "minus_icon.png";
         public const string PlusImage = "add_icon.png";
         public const string CaretDownImage = "caret_down_bold.png";
+        public const string ChevronDownIcon = "chevron_down_icon.png";
     }
 }

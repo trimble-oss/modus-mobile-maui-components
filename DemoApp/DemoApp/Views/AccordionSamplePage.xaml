@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:DemoApp.ViewModels"
+             x:Class="DemoApp.Views.AccordionSamplePage"
+             Title="Accordion">
+  <ScrollView>
+    <StackLayout Orientation="Vertical"
+                 Margin="10">
+      <Label Text="Size"
+             FontSize="Large"
+             FontAttributes="Bold"
+             HorizontalOptions="Start"
+             Margin="0,10,0,0" />
+      <modus:TMRadioButtonGroup x:Name="AccordionSize"
+                                SelectedIndex="1"
+                                SelectedRadioButtonChangedCommand="{Binding SizeRadioButtonCommand}">
+        <modus:TMRadioButton Text="Small"
+                             Value="0" />
+        <modus:TMRadioButton Text="Default"
+                             Value="1" />
+        <modus:TMRadioButton Text="Large"
+                             Value="2" />
+        <modus:TMRadioButton Text="XLarge"
+                             Value="3" />
+      </modus:TMRadioButtonGroup>
+      <Label Text="Chevron Position"
+             FontSize="Large"
+             FontAttributes="Bold"
+             HorizontalOptions="Start"
+             Margin="0,10,0,0" />
+      <modus:TMRadioButtonGroup x:Name="PositionGroup"
+                                SelectedIndex="0"
+                                SelectedRadioButtonChangedCommand="{Binding ChevronPositionRadioButtonCommand}">
+        <modus:TMRadioButton Text="Right"
+                             Value="0" />
+        <modus:TMRadioButton Text="Left"
+                             Value="1" />
+      </modus:TMRadioButtonGroup>
+      <modus:TMListView IsVisible="True"
+                        ItemsSource="{Binding Items}"
+                        SelectionMode="None">
+        <modus:TMListView.ItemTemplate>
+          <DataTemplate>
+            <modus:TemplateCell>
+              <modus:TemplateCell.Content>
+                <Border StrokeThickness="2"
+                        Margin="0,-2">
+                  <Border.StrokeShape>
+                    <Rectangle RadiusX="4"
+                               RadiusY="4" />
+                  </Border.StrokeShape>
+                  <modus:TMAccordion AccordionTitle="{Binding Name}"
+                                     AccordionSubtitle="{Binding Gender}"
+                                     ChevronPosition="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=ChevronPosition}"
+                                     Size="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=Size}">
+                    <Grid RowSpacing="10"
+                          Padding="10">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                      </Grid.ColumnDefinitions>
+                      <Image Grid.Column="0"
+                             Source="{Binding ProfilePic}"
+                             Margin="10,0,10,0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             HeightRequest="80"
+                             WidthRequest="80" />
+                      <StackLayout Orientation="Vertical"
+                                   Grid.Column="1">
+                        <Label Text="{Binding Name}"
+                               FontSize="Medium" />
+                        <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}"
+                               FontSize="Small" />
+                        <Label Text="{Binding Address}"
+                               FontSize="Micro" />
+                      </StackLayout>
+                    </Grid>
+                  </modus:TMAccordion>
+                </Border>
+              </modus:TemplateCell.Content>
+            </modus:TemplateCell>
+          </DataTemplate>
+        </modus:TMListView.ItemTemplate>
+      </modus:TMListView>
+    </StackLayout>
+  </ScrollView>
+</ContentPage>
