@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Styles.Colors">
@@ -26,20 +26,20 @@
   <Color x:Key="CardPressed">#C9CACF</Color>
   <Color x:Key="PrimaryFloatingButtonClicked">#0E416C</Color>
   <Color x:Key="SecondaryFloatingButtonClicked">#DCEDF9</Color>
-  
-  
-    <!--ToastColors-->
+  <!-- ToastColors -->
   <Color x:Key="DangerToastColor">#FBD4D7</Color>
   <Color x:Key="WarningToastColor">#FFF5E4</Color>
   <Color x:Key="SuccessToastColor">#E0ECCF</Color>
   <Color x:Key="ToastTextBlue">#0063A3</Color>
-  
-  <!--Modal-->
+  <!-- Modal -->
   <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
-  
-  <!--Segmented Control-->
+  <!-- Segmented Control -->
   <Color x:Key="SegmentSecondaryColor">#FF353A40</Color>
   <Color x:Key="SegmentBackgroundColor">#B7B9C3</Color>
   <Color x:Key="SegmentBorderColor">#FF353A40</Color>
   <Color x:Key="ModalShadowColor">#22000000</Color>
+  <!-- Table -->
+  <Color x:Key="TableHeaderColor">#F1F1F6</Color>
+  <Color x:Key="TableDividerColor">#B7B9C3</Color>
+  <Color x:Key="TableHeaderTextColor">#464b52</Color>
 </ResourceDictionary>

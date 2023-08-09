@@ -23,6 +23,7 @@ namespace DemoApp
                 "Spinner",
                 "SegmentedControl",
                 "ListView",
+                "DataGrid",
                 "TabbedPage"
             };
             BindingContext = this;
@@ -68,6 +69,9 @@ namespace DemoApp
                         break;
                     case "ListView":
                         Navigation.PushAsync(new TMListViewPage());
+                        break;
+                    case "DataGrid":
+                        Navigation.PushAsync(new TableViewPage());
                         break;
                     case "TabbedPage":
                         Navigation.PushAsync(new TabbedPageDemo());

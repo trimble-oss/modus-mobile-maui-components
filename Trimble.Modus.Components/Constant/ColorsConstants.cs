@@ -34,5 +34,8 @@ internal class ColorsConstants
     public const string SegmentBackgroundColor = "SegmentBackgroundColor";
     public const string SegmentBorderColor = "SegmentBorderColor";
     public const string ModalShadowColor = "ModalShadowColor";
+    public const string TableHeaderColor = "TableHeaderColor";
+    public const string TableDividerColor = "TableDividerColor";
+    public const string TableHeaderTextColor = "TableHeaderTextColor";
 }
 

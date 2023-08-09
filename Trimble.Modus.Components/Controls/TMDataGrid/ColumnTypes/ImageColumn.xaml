@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modus:DataGridColumn xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:modus="clr-namespace:Trimble.Modus.Components"
+                      x:Class="Trimble.Modus.Components.ImageColumn">
+  <modus:DataGridColumn.CellTemplate>
+    <DataTemplate>
+      <Image Margin="4"
+             HeightRequest="40"
+             WidthRequest="40" />
+    </DataTemplate>
+  </modus:DataGridColumn.CellTemplate>
+</modus:DataGridColumn>
