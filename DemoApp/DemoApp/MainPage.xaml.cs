@@ -1,5 +1,6 @@
 using DemoApp.Views;
 using System.Collections.ObjectModel;
+using Trimble.Modus.Components.Popup.Services;
 
 namespace DemoApp
 {
@@ -14,16 +15,17 @@ namespace DemoApp
                 "Button",
                 "Input",
                 "MultiLineInput",
+                "NumberInput",
                 "Modal",
                 "Toast",
                 "CheckBox",
                 "Card",
                 "RadioButton",
-                "NumberInput",
                 "Spinner",
                 "SegmentedControl",
                 "ListView",
-                "DataGrid"
+                "DataGrid",
+                "PopupView"
             };
             BindingContext = this;
         }
@@ -71,7 +73,10 @@ namespace DemoApp
                         break;
                     case "DataGrid":
                         Navigation.PushAsync(new TableViewPage());
-                    break;
+                        break;
+                    case "PopupView":
+                        Navigation.PushAsync(new SamplePopupPage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;

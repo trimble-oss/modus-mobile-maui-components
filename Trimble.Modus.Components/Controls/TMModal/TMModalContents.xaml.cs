@@ -231,7 +231,7 @@ public partial class TMModalContents
     internal void Show(bool closeWhenBackgroundClicked)
     {
         CloseWhenBackgroundIsClicked = closeWhenBackgroundClicked;
-        PopupService.Instance.PushAsync(this);
+        PopupService.Instance.PresentAsync(this);
     }
 
     /// <summary>

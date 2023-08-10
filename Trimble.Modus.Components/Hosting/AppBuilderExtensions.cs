@@ -1,7 +1,9 @@
 using Microsoft.Maui.LifecycleEvents;
 using Trimble.Modus.Components;
-using Trimble.Modus.Components.Handlers;
+#if ANDROID
 using Trimble.Modus.Components.Popup.Pages;
+#endif
+using Trimble.Modus.Components.Handlers;
 
 namespace Trimble.Modus.Components.Hosting;
 

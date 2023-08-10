@@ -104,7 +104,7 @@ namespace Trimble.Modus.Components
         /// Display modal
         /// </summary>
         /// <param name="closeWhenBackgroundIsClicked">If false, clicking on background will not close the modal. true by default</param>
-        public void Show(bool closeWhenBackgroundIsClicked=true)
+        public void Show(bool closeWhenBackgroundIsClicked=false)
         {
             TMModalPage.Show(closeWhenBackgroundIsClicked);
         }

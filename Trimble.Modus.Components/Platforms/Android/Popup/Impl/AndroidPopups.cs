@@ -22,7 +22,7 @@ internal class AndroidPopups : IPopupPlatform
 
             if (!isPreventClose)
             {
-                popupNavigationInstance.PopAsync();
+                popupNavigationInstance.DismissAsync();
             }
 
             return true;
