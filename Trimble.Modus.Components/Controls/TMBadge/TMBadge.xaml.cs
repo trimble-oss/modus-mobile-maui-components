@@ -104,17 +104,19 @@ public partial class TMBadge : ContentView
         {
             case BadgeSize.Small:
                 badge.label.FontSize = 12;
-                badge.frame.Padding = new Thickness(8,0,8,0);
-                badge.label.Margin = new Thickness(0,2,0,2);
+                badge.label.Padding = new Thickness(12, 0);
+                badge.label.HeightRequest = 20;
                 break;
             case BadgeSize.Large:
                 badge.label.FontSize = 14;
-                badge.frame.Padding = new Thickness(12, 4);
+                badge.label.Padding = new Thickness(12, 4);
+                badge.label.HeightRequest = 32;
                 break;
             case BadgeSize.Medium:
             default:
                 badge.label.FontSize = 12;
-                badge.frame.Padding = new Thickness(12, 2);
+                badge.label.Padding = new Thickness(12, 2);
+                badge.label.HeightRequest = 24;
                 break;
         }
     }
