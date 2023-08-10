@@ -3,6 +3,7 @@ namespace Trimble.Modus.Components;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 
 public partial class TMBadge : ContentView
@@ -152,27 +153,5 @@ public partial class TMBadge : ContentView
                 break;
         }
     }
-}
-
-public enum BadgeSize
-{
-    Small,
-    Medium,
-    Large
-}
-
-public enum BadgeColor
-{
-    Primary,
-    Secondary,
-    Tertiary,
-    Success,
-    Warning,
-    Error
-}
-public enum BadgeShape
-{
-    Rectangle,
-    Round
 }
 

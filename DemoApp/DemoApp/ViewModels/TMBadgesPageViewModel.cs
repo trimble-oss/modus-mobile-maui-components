@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Trimble.Modus.Components;
+using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views
 {
@@ -11,7 +12,7 @@ namespace DemoApp.Views
 
         public TMBadgesPageViewModel()
         {
-            BadgeSize = BadgeSize.Large;
+            BadgeSize = BadgeSize.Medium;
         }
    
         [RelayCommand]
