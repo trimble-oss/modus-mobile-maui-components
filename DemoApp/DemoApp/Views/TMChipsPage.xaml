@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.TMChipsPage"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="TMSpinnerPage">
+  <VerticalStackLayout 
+                       Spacing="10"
+                       Padding="10">
+    <Label Text="Determinate Spinner"/>
+    <modus:TMChips Text="Chips" State="Default" Style="Fill" ChipsSize="Large" IsEnabled="True"/>
+
+  </VerticalStackLayout>
+</ContentPage>

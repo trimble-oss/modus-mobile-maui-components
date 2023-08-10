@@ -145,6 +145,9 @@
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\BooleanColumn.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

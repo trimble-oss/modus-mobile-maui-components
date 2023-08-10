@@ -1,5 +1,6 @@
 using DemoApp.Views;
 using System.Collections.ObjectModel;
+using Trimble.Modus.Components;
 
 namespace DemoApp
 {
@@ -23,7 +24,8 @@ namespace DemoApp
                 "Spinner",
                 "SegmentedControl",
                 "ListView",
-                "DataGrid"
+                "DataGrid",
+                "Chips"
             };
             BindingContext = this;
         }
@@ -71,7 +73,10 @@ namespace DemoApp
                         break;
                     case "DataGrid":
                         Navigation.PushAsync(new TableViewPage());
-                    break;
+                        break;
+                    case "Chips":
+                        Navigation.PushAsync(new TMChipsPage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
