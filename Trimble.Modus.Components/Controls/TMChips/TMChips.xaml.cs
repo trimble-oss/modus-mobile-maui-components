@@ -13,11 +13,15 @@ public partial class TMChips : ContentView
     private EventHandler _clicked;
 
     private TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
+
+    public static readonly BindableProperty LeftIconSourceProperty =
+        BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMChips));
+
     public static readonly BindableProperty ChipsTextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(TMChips), "");
 
     public static readonly BindableProperty ChipsSizeProperty =
-        BindableProperty.Create(nameof(ChipsSize), typeof(ChipsSize), typeof(TMChips), ChipsSize.Medium, propertyChanged: OnSizeChanged);
+        BindableProperty.Create(nameof(ChipsSize), typeof(ChipsSize), typeof(TMChips), ChipsSize.Default, propertyChanged: OnSizeChanged);
 
     public static readonly BindableProperty ChipsStateProperty =
             BindableProperty.Create(nameof(State), typeof(ChipsState), typeof(TMChips), ChipsState.Default);
@@ -26,10 +30,16 @@ public partial class TMChips : ContentView
         BindableProperty.Create(nameof(Style), typeof(ChipsStyle), typeof(TMChips), ChipsStyle.Fill);
 
     public static readonly BindableProperty ChipsTypeProperty =
-      BindableProperty.Create(nameof(ChipsType), typeof(ChipsType), typeof(TMChips), ChipsType.Input);
+      BindableProperty.Create(nameof(ChipsType), typeof(ChipsType), typeof(TMChips), ChipsType.Input, propertyChanged: OnChipsTypeSelected);
 
     public new static readonly BindableProperty IsEnabledProperty =
       BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMChips), true, propertyChanged: OnIsEnabledChanged);
+
+    public ImageSource LeftIconSource
+    {
+        get => (ImageSource)GetValue(LeftIconSourceProperty);
+        set => SetValue(LeftIconSourceProperty, value);
+    }
 
     public event EventHandler Clicked
     {
@@ -74,9 +84,16 @@ public partial class TMChips : ContentView
     public TMChips()
     {
         InitializeComponent();
+        InitialiseChips();
+    }
+    private void InitialiseChips()
+    {
         UpdateChips(this);
         UpdateTapGestureRecogniser();
         tapGestureRecognizer.Tapped += OnTapped;
+        lefticon.Source = LeftIconSource != null ? LeftIconSource : ImageConstants.Check;
+        lefticon.IsVisible = true;
+        righticon.IsVisible = false;
     }
 
     private void UpdateTapGestureRecogniser()
@@ -113,7 +130,7 @@ public partial class TMChips : ContentView
                     frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                     frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
                 }
-                _clicked.Invoke(this, e);
+                _clicked?.Invoke(this, EventArgs.Empty);
             }
             else
             {
@@ -166,6 +183,26 @@ public partial class TMChips : ContentView
             UpdateState();
         }
     }
+    private static void OnChipsTypeSelected(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable != null && bindable is TMChips tMChips)
+        {
+            switch (tMChips.Type)
+            {
+                case ChipsType.Filter:
+                    tMChips.righticon.Source = ImageConstants.CancelCircle;
+                    tMChips.lefticon.IsVisible = false;
+                    tMChips.righticon.IsVisible = true;
+                    break;
+                case ChipsType.Input:
+                default:
+                    tMChips.lefticon.Source = tMChips.LeftIconSource != null ? tMChips.LeftIconSource : ImageConstants.Check;
+                    tMChips.lefticon.IsVisible = true;
+                    tMChips.righticon.IsVisible = false;
+                    break;
+            }
+        }
+    }
     private void UpdateState()
     {
         switch (State)
@@ -204,18 +241,15 @@ public partial class TMChips : ContentView
         switch (tMChips.ChipsSize)
         {
             case ChipsSize.Small:
-                tMChips.label.FontSize = 12;
-                tMChips.frame.Padding = new Thickness(8, 0, 8, 0);
-                tMChips.label.Margin = new Thickness(0, 2, 0, 2);
-                break;
-            case ChipsSize.Large:
                 tMChips.label.FontSize = 14;
                 tMChips.frame.Padding = new Thickness(12, 4);
+                tMChips.label.Margin = new Thickness(4, 0, 4, 0);
                 break;
-            case ChipsSize.Medium:
+            case ChipsSize.Default:
             default:
-                tMChips.label.FontSize = 12;
-                tMChips.frame.Padding = new Thickness(12, 2);
+                tMChips.label.FontSize = 16;
+                tMChips.frame.Padding = new Thickness(12);
+                tMChips.label.Margin = new Thickness(4, 0, 4, 0);
                 break;
         }
     }
@@ -224,8 +258,7 @@ public partial class TMChips : ContentView
 public enum ChipsSize
 {
     Small,
-    Medium,
-    Large
+    Default
 }
 
 public enum ChipsState

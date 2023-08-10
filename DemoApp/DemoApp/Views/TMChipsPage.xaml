@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMChipsPage"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="TMSpinnerPage">
   <VerticalStackLayout 
                        Spacing="10"
                        Padding="10">
     <Label Text="Determinate Spinner"/>
-    <modus:TMChips Text="Chips" State="Default" Style="Fill" ChipsSize="Large" IsEnabled="True"/>
+    <modus:TMChips Text="Chips" />
 
   </VerticalStackLayout>
 </ContentPage>

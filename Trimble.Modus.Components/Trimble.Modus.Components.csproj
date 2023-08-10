@@ -81,8 +81,14 @@
 		<None Include="Images\*" Pack="True" PackagePath="buildTransitive\Resources\Modus\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="Images\cancel_circle.svg" />
+	  <None Remove="Images\check.svg" />
+	</ItemGroup>
+	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\cancel_circle.svg" />
 	  <MauiImage Include="Images\caret_down_bold.svg" />
+	  <MauiImage Include="Images\check.svg" />
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>

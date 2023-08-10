@@ -9,12 +9,22 @@
           VerticalOptions="Center"
           Stroke="Transparent"
           >
-    <Label x:Name="label"
+    <HorizontalStackLayout>
+      <Image x:Name="lefticon"
+             BindingContext="{x:Reference tmChips}"
+             HeightRequest="24"
+             WidthRequest="24"/>
+      <Label x:Name="label"
              BindingContext="{x:Reference tmChips}"
              Text="{Binding Text}"
              LineHeight="20"
              FontAttributes="Bold"
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
+      <Image x:Name="righticon"
+             BindingContext="{x:Reference tmChips}"
+             HeightRequest="24"
+             WidthRequest="24"/>
+    </HorizontalStackLayout>
   </Border>
 </ContentView>
