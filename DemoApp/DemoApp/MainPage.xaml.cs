@@ -21,7 +21,7 @@ namespace DemoApp
                 "Card",
                 "RadioButton",
                 "DataGrid",
-                "TabbedPage"
+                "TabbedPage",
                 "PopupView"
             };
             BindingContext = this;
@@ -73,6 +73,7 @@ namespace DemoApp
                         break;
                     case "TabbedPage":
                         Navigation.PushAsync(new TabbedPageDemo());
+                        break;
                     case "PopupView":
                         Navigation.PushAsync(new SamplePopupPage());
                         break;
