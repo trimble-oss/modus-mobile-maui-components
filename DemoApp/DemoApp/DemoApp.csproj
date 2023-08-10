@@ -96,6 +96,7 @@
 	  </Compile>
 	  <Compile Update="Views\TabbedPageDemo.xaml.cs">
 	    <DependentUpon>TabbedPageDemo.xaml</DependentUpon>
+		</Compile>
 	  <Compile Update="Views\TableViewPage.xaml.cs">
 	    <DependentUpon>TableViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -129,6 +130,7 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TabViewItems\TabViewTwo.xaml">
 	    <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	  <MauiXaml Update="Views\TableViewPage.xaml">	    
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
