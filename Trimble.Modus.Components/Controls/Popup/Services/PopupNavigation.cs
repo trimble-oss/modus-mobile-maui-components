@@ -1,6 +1,6 @@
 ﻿using Trimble.Modus.Components.Popup.Events;
 using Trimble.Modus.Components.Popup.Interfaces;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Popup.Services;
 
@@ -11,13 +11,13 @@ internal class PopupNavigation : IPopupNavigation
     public IReadOnlyList<PopupPage> PopupStack => _popupStack;
     private readonly List<PopupPage> _popupStack = new();
 
-    public event EventHandler<PopupNavigationEventArgs>? Pushing;
+    public event EventHandler<PopupNavigationEventArgs>? Presenting;
 
-    public event EventHandler<PopupNavigationEventArgs>? Pushed;
+    public event EventHandler<PopupNavigationEventArgs>? Presented;
 
-    public event EventHandler<PopupNavigationEventArgs>? Popping;
+    public event EventHandler<PopupNavigationEventArgs>? Dismissing;
 
-    public event EventHandler<PopupNavigationEventArgs>? Popped;
+    public event EventHandler<PopupNavigationEventArgs>? Dismissed;
 
     private static readonly Lazy<IPopupPlatform> lazyImplementation = new(() => GeneratePopupPlatform(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
 
@@ -48,15 +48,15 @@ internal class PopupNavigation : IPopupNavigation
     {
         if (_popupStack.Count > 0)
         {
-            PopAllAsync();
+            PresentAllAsync();
         }
     }
 
 
 
-    public Task PushAsync(PopupPage page, bool animate = true)
+    public Task PresentAsync(PopupPage page, bool animate = true)
     {
-        Pushing?.Invoke(this, new PopupNavigationEventArgs(page, animate));
+        Presenting?.Invoke(this, new PopupNavigationEventArgs(page, animate));
         _popupStack.Add(page);
 
         return MainThread.IsMainThread
@@ -76,19 +76,19 @@ internal class PopupNavigation : IPopupNavigation
 
             page.SendAppearing();
             await page.AppearingAnimation();
-            Pushed?.Invoke(this, new PopupNavigationEventArgs(page, animate));
+            Presented?.Invoke(this, new PopupNavigationEventArgs(page, animate));
         };
     }
 
-    public async Task PopAllAsync(bool animate = true)
+    public async Task PresentAllAsync(bool animate = true)
     {
         while (PopupService.Instance.PopupStack.Count > 0)
         {
-            await PopAsync(animate);
+            await DismissAsync(animate);
         }
     }
 
-    public Task PopAsync(bool animate = true)
+    public Task DismissAsync(bool animate = true)
     {
         return _popupStack.Count <= 0
             ? throw new InvalidOperationException("PopupStack is empty")
@@ -118,14 +118,14 @@ internal class PopupNavigation : IPopupNavigation
                 }
             }
 
-            Popping?.Invoke(this, new PopupNavigationEventArgs(page, animate));
+            Dismissing?.Invoke(this, new PopupNavigationEventArgs(page, animate));
             await page.DisappearingAnimation();
             page.SendDisappearing();
             await PopupPlatform.RemoveAsync(page);
             page.DisposingAnimation();
 
             _popupStack.Remove(page);
-            Popped?.Invoke(this, new PopupNavigationEventArgs(page, animate));
+            Dismissed?.Invoke(this, new PopupNavigationEventArgs(page, animate));
         }
     }
 }

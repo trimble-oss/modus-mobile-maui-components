@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="DemoApp.Views.SampleToolTip"
+                 xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                 BackgroundColor="Transparent"
+                 BackgroundInputTransparent="True"
+                 CloseWhenBackgroundIsClicked="True"
+                 HasSystemPadding="True">
+  <ContentPage.Resources>
+    <DataTemplate x:Name="TextCell"
+                  x:Key="textCellKey">
+      <Modus:TextCell Title="{Binding .}" />
+    </DataTemplate>
+  </ContentPage.Resources>
+  <Border HeightRequest="50"
+          WidthRequest="150"
+          BackgroundColor="#E0E1E9">
+    <Border.StrokeShape>
+      <RoundRectangle CornerRadius="2" />
+    </Border.StrokeShape>
+    <VerticalStackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center">
+      <Label Text="ToolTip"
+             FontSize="12"
+             FontAttributes="Bold"
+             TextColor="Black"
+             VerticalOptions="Center"
+             HorizontalOptions="Center" />
+    </VerticalStackLayout>
+  </Border>
+</Modus:PopupPage>
