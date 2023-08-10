@@ -1,38 +1,13 @@
-using CommunityToolkit.Maui.Behaviors;
-using DemoApp.Views.PopupSamples;
-using Trimble.Modus.Components;
-using Trimble.Modus.Components.Popup.Services;
+using DemoApp.ViewModels;
 
 namespace DemoApp.Views;
 
 public partial class SamplePopupPage : ContentPage
 {
+    SamplePopupPageViewModel _viewModel = new SamplePopupPageViewModel();
 	public SamplePopupPage()
 	{
 		InitializeComponent();
-    }
-
-    private void ArrowUpClicked(object sender, EventArgs e)
-    {
-        PopupService.Instance.PresentAsync(new SampleToolTip((sender as TMButton), Trimble.Modus.Components.Enums.ModalPosition.Top));
-    }
-
-    private void ArrowDownClicked(object sender, EventArgs e)
-    {
-        PopupService.Instance.PresentAsync(new SampleToolTip((sender as TMButton), Trimble.Modus.Components.Enums.ModalPosition.Bottom));
-    }
-
-    private void ArrowLeftClicked(object sender, EventArgs e)
-    {
-        PopupService.Instance.PresentAsync(new SampleToolTip((sender as TMButton), Trimble.Modus.Components.Enums.ModalPosition.Left));
-    }
-
-    private void ArrowRightClicked(object sender, EventArgs e)
-    {
-        PopupService.Instance.PresentAsync(new SampleToolTip((sender as TMButton), Trimble.Modus.Components.Enums.ModalPosition.Right));
-    }
-    private void CenterButtonClicked(object sender, EventArgs e)
-    {
-        PopupService.Instance.PresentAsync(new SampleCustomPopup());
+        BindingContext = _viewModel;
     }
 }

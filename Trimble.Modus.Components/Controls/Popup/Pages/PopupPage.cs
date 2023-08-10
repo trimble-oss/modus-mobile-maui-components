@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Popup.Animations.Base;
 using Trimble.Modus.Components.Popup.Enums;
 using Trimble.Modus.Components.Popup.Services;
 
-namespace Trimble.Modus.Components.Popup.Pages;
+namespace Trimble.Modus.Components;
 
 public class PopupPage : ContentPage
 {

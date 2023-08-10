@@ -1,7 +1,7 @@
 ﻿using CoreGraphics;
 
 using Foundation;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 
 using UIKit;
 

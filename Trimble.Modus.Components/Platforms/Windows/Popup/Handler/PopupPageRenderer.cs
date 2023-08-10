@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Platform;
 using Microsoft.UI.Xaml.Input;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 using Windows.UI.ViewManagement;
 using Rect = Windows.Foundation.Rect;
 using Size = Windows.Foundation.Size;

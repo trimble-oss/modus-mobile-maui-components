@@ -1,6 +1,5 @@
 using DemoApp.ViewModels;
 using Trimble.Modus.Components;
-using Trimble.Modus.Components.Popup.Pages;
 
 namespace DemoApp.Views;
 

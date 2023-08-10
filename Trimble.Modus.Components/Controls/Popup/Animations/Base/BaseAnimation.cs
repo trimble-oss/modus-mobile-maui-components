@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Popup.Animations.Base;
 

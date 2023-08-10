@@ -1,6 +1,6 @@
 ﻿using Trimble.Modus.Components.Popup.Events;
 using Trimble.Modus.Components.Popup.Interfaces;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Popup.Services;
 
