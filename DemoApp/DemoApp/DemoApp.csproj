@@ -97,6 +97,9 @@
 	  <Compile Update="Views\TableViewPage.xaml.cs">
 	    <DependentUpon>TableViewPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\BadgeSamplePage.xaml.cs">
+	    <DependentUpon>BadgeSamplePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TMListViewPage.xaml.cs">
 	    <DependentUpon>TMListViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -130,6 +133,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TableViewPage.xaml">	    
 	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BadgeSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TMListViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>

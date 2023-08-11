@@ -25,7 +25,8 @@ namespace DemoApp
                 "SegmentedControl",
                 "ListView",
                 "DataGrid",
-                "PopupView"
+                "PopupView",
+                "Badge"
             };
             BindingContext = this;
         }
@@ -76,6 +77,9 @@ namespace DemoApp
                         break;
                     case "PopupView":
                         Navigation.PushAsync(new SamplePopupPage());
+                        break;
+                    case "Badge":
+                        Navigation.PushAsync(new BadgeSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
