@@ -37,5 +37,6 @@ internal class ColorsConstants
     public const string TableHeaderColor = "TableHeaderColor";
     public const string TableDividerColor = "TableDividerColor";
     public const string TableHeaderTextColor = "TableHeaderTextColor";
+    public const string TrimbleNeutralGray = "TrimbleNeutralGray";
 }
 
