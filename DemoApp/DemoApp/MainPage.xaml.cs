@@ -74,7 +74,7 @@ namespace DemoApp
                         Navigation.PushAsync(new TableViewPage());
                         break;
                     case "Badge":
-                        Navigation.PushAsync(new TMBadgesPage());
+                        Navigation.PushAsync(new BadgeSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

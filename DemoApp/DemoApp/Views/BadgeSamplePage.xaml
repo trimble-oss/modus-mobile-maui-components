@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.modus.Components"
+             x:Class="DemoApp.Views.BadgeSamplePage"
+             Title="TMBadgesPage">
+  <StackLayout Orientation="Vertical" Padding="10" Spacing="10" HorizontalOptions="Fill">
+    <Label Text="Rectangle Badges"/>
+    <StackLayout Orientation="Horizontal" Spacing="10">
+      <modus:TMBadge Text="-300" Color="Primary" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="700" Color="Secondary" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="150" Color="Tertiary" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="250" Color="Success" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="450" Color="Warning" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="850" Color="Error" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
+    </StackLayout>
+    <Label Text="Rounded Badges"/>
+    <StackLayout Orientation="Horizontal" Spacing="10" >
+      <modus:TMBadge Text="-300" Color="Primary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="700" Color="Secondary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="150" Color="Tertiary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="250" Color="Success" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="450" Color="Warning" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="850" Color="Error" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+    </StackLayout>
+    <modus:TMRadioButtonGroup Orientation="Horizontal"
+                              SelectedRadioButtonChangedCommand="{Binding BadgeSizeChangedCommand}"
+                              SelectedIndex="1">
+      <modus:TMRadioButton Text="Small"></modus:TMRadioButton>
+      <modus:TMRadioButton Text="Medium"></modus:TMRadioButton>
+      <modus:TMRadioButton Text="Large"></modus:TMRadioButton>
+    </modus:TMRadioButtonGroup>
+  </StackLayout>
+</ContentPage>

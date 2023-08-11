@@ -5,12 +5,12 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views
 {
-    public partial class TMBadgesPageViewModel : ObservableObject
+    public partial class BadgeSamplePageViewModel : ObservableObject
     {
         [ObservableProperty]
         private BadgeSize _badgeSize;
 
-        public TMBadgesPageViewModel()
+        public BadgeSamplePageViewModel()
         {
             BadgeSize = BadgeSize.Medium;
         }
