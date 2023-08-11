@@ -1,25 +1,25 @@
 ﻿using Trimble.Modus.Components.Popup.Events;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Popup.Interfaces;
 
 public interface IPopupNavigation
 {
-    event EventHandler<PopupNavigationEventArgs> Pushing;
+    event EventHandler<PopupNavigationEventArgs> Presenting;
 
-    event EventHandler<PopupNavigationEventArgs> Pushed;
+    event EventHandler<PopupNavigationEventArgs> Presented;
 
-    event EventHandler<PopupNavigationEventArgs> Popping;
+    event EventHandler<PopupNavigationEventArgs> Dismissing;
 
-    event EventHandler<PopupNavigationEventArgs> Popped;
+    event EventHandler<PopupNavigationEventArgs> Dismissed;
 
     IReadOnlyList<PopupPage> PopupStack { get; }
 
-    Task PushAsync(PopupPage page, bool animate = true);
+    Task PresentAsync(PopupPage page, bool animate = true);
 
-    Task PopAsync(bool animate = true);
+    Task DismissAsync(bool animate = true);
 
-    Task PopAllAsync(bool animate = true);
+    Task PresentAllAsync(bool animate = true);
 
     Task RemovePageAsync(PopupPage page, bool animate = true);
 }

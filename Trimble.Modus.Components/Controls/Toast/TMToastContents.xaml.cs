@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Controls.Toast;
 
-public partial class TMToastContents : Popup.Pages.PopupPage
+public partial class TMToastContents : PopupPage
 
 {
     #region Private Properties

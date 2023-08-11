@@ -13,5 +13,9 @@
         public const string PasswordIcon = "password_eye.png";
         public const string Email = "email.png";
         public const string Phone = "phone.png";
+        public const string ArrowUp = "arrow_up.png";
+        public const string ArrowDown= "arrow_down.png";
+        public const string ArrowLeft= "arrow_left.png";
+        public const string ArrowRight= "arrow_right.png";
     }
 }

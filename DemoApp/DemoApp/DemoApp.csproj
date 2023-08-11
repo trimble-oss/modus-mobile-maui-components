@@ -61,6 +61,10 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\Images\account_icon.svg" />
+	  <None Remove="Resources\Images\arrow_down.svg" />
+	  <None Remove="Resources\Images\arrow_left.svg" />
+	  <None Remove="Resources\Images\arrow_right.svg" />
+	  <None Remove="Resources\Images\arrow_up.svg" />
 	  <None Remove="Resources\Images\contact_icon.svg" />
 	  <None Remove="Resources\Images\dark_gallery_icon.svg" />
 	  <None Remove="Resources\Images\email.svg" />
@@ -84,6 +88,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\PopupSamples\SampleToolTip.xaml.cs">
+	    <DependentUpon>SampleToolTip.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\PopupSamples\SamplePopupPage.xaml.cs">
+	    <DependentUpon>SamplePopupPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TableViewPage.xaml.cs">
 	    <DependentUpon>TableViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -112,6 +122,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\PopupSamples\SampleCustomPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopupSamples\SampleToolTip.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopupSamples\SamplePopupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TableViewPage.xaml">	    
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,6 +1,6 @@
 ﻿using Trimble.Modus.Components.Platforms.iOS;
 using Trimble.Modus.Components.Popup.Interfaces;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 using UIKit;
 
 namespace Trimble.Modus.Components.iOS.Implementation;
