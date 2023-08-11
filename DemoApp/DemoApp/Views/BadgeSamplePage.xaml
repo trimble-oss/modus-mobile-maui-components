@@ -6,23 +6,47 @@
              Title="TMBadgesPage">
   <StackLayout Orientation="Vertical" Padding="10" Spacing="10" HorizontalOptions="Fill">
     <Label Text="Rectangle Badges"/>
-    <StackLayout Orientation="Horizontal" Spacing="10">
-      <modus:TMBadge Text="-300" Color="Primary" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
-      <modus:TMBadge Text="700" Color="Secondary" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
-      <modus:TMBadge Text="150" Color="Tertiary" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
-      <modus:TMBadge Text="250" Color="Success" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
-      <modus:TMBadge Text="450" Color="Warning" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
-      <modus:TMBadge Text="850" Color="Error" Shape="Rectangle" BadgeSize="{Binding BadgeSize}"/>
-    </StackLayout>
+    <FlexLayout Wrap="Wrap">
+      <modus:TMBadge Text="Primary"
+                     Margin="2"
+                     Color="Primary"
+                     Shape="Rectangle"
+                     BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="Secondary"
+                     Margin="2"
+                     Color="Secondary"
+                     Shape="Rectangle"
+                     BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="Tertiary"
+                     Margin="2"
+                     Color="Tertiary"
+                     Shape="Rectangle"
+                     BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="Success"
+                     Margin="2"
+                     Color="Success"
+                     Shape="Rectangle"
+                     BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="Warning"
+                     Margin="2"
+                     Color="Warning"
+                     Shape="Rectangle"
+                     BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="Error"
+                     Margin="2"
+                     Color="Error"
+                     Shape="Rectangle"
+                     BadgeSize="{Binding BadgeSize}"/>
+    </FlexLayout>
     <Label Text="Rounded Badges"/>
-    <StackLayout Orientation="Horizontal" Spacing="10" >
-      <modus:TMBadge Text="-300" Color="Primary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
-      <modus:TMBadge Text="700" Color="Secondary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+    <FlexLayout Wrap="Wrap">
+      <modus:TMBadge Text="300" Color="Primary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
+      <modus:TMBadge Text="99+" Color="Secondary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
       <modus:TMBadge Text="150" Color="Tertiary" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
       <modus:TMBadge Text="250" Color="Success" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
       <modus:TMBadge Text="450" Color="Warning" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
       <modus:TMBadge Text="850" Color="Error" Shape="Round" BadgeSize="{Binding BadgeSize}"/>
-    </StackLayout>
+    </FlexLayout>
     <modus:TMRadioButtonGroup Orientation="Horizontal"
                               SelectedRadioButtonChangedCommand="{Binding BadgeSizeChangedCommand}"
                               SelectedIndex="1">
