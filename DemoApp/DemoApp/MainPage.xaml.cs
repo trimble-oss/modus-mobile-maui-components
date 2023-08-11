@@ -26,6 +26,7 @@ namespace DemoApp
                 "ListView",
                 "DataGrid",
                 "PopupView",
+                "TabbedPage",
                 "Badge"
             };
             BindingContext = this;
@@ -77,6 +78,9 @@ namespace DemoApp
                         break;
                     case "PopupView":
                         Navigation.PushAsync(new SamplePopupPage());
+                        break;
+                    case "TabbedPage":
+                        Navigation.PushAsync(new TabbedPageDemo());
                         break;
                     case "Badge":
                         Navigation.PushAsync(new BadgeSamplePage());

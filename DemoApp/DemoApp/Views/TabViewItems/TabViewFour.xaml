@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DemoApp.Views.TMSegmentedControlPage"
-             xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             Title="TMSegmentedControlPage"
-             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             BackgroundColor="White"
+             x:Class="DemoApp.Views.TabViewItems.TabViewFour">
   <VerticalStackLayout Margin="10">
     <modus:TMSegmentedControl x:Name="MainControl"
                               Size="{Binding Size}"
@@ -21,8 +20,7 @@
                               IsEnabled="{Binding IsEnabled}"
                               Margin="0,0,0,10"
                               ItemsSource="{Binding SegmentImageItems}" />
-    <modus:TMRadioButtonGroup SelectedIndex="0"
-                              SelectedRadioButtonChanged="TMRadioButtonGroup_SelectedRadioButtonChanged">
+    <modus:TMRadioButtonGroup SelectedIndex="0" SelectedRadioButtonChangedCommand="{Binding RadioButtonCommand}">
       <modus:TMRadioButton Text="Small"
                            Value="Small" />
       <modus:TMRadioButton Text="Medium"
@@ -35,26 +33,24 @@
     <HorizontalStackLayout>
       <Label Text="Rounded Corners"
              VerticalOptions="Center" />
-      <Switch IsToggled="False"
+      <Switch IsToggled="{Binding RoundedCornersSwitch}"
               VerticalOptions="Center"
-              Toggled="Switch_Toggled"
               Margin="5,0" />
     </HorizontalStackLayout>
     <HorizontalStackLayout>
       <Label Text="Secondary theme"
              VerticalOptions="Center" />
-      <Switch IsToggled="False"
+      <Switch IsToggled="{Binding SecondaryThemeSwitch}"
               VerticalOptions="Center"
-              Toggled="Theme_Switch_Toggled"
               Margin="5,0" />
     </HorizontalStackLayout>
     <HorizontalStackLayout>
       <Label Text="Enabled"
              VerticalOptions="Center" />
-      <Switch IsToggled="True"
+      <Switch IsToggled="{Binding EnabledSwitch}"
               VerticalOptions="Center"
-              Toggled="Enable_Switch_Toggled"
               Margin="5,0" />
     </HorizontalStackLayout>
   </VerticalStackLayout>
-</ContentPage>
+</ContentView>
+

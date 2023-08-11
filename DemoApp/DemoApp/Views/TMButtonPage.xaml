@@ -6,7 +6,7 @@
              x:Class="DemoApp.TMButtonPage"
              Title="Button">
 
-  <ScrollView>
+  <ScrollView BackgroundColor="White">
 
     <StackLayout x:Name="layout"
                  Spacing="20"
