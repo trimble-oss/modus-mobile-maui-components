@@ -42,19 +42,48 @@
     </HorizontalStackLayout>
     <Label Text="Sports (Size :Small)" FontSize="Body"/>
     <HorizontalStackLayout Spacing="5">
-      <modus:TMChips Title="Cricket" Type="Filter"
+      <modus:TMChips Title="Cricket"
+                     Type="Filter"
                      ChipsSize="Small"
                      ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
                      LeftIconSource="{Static constants:ImageConstants.AccountIcon}" />
-      <modus:TMChips Title="Football" Type="Filter"
+      <modus:TMChips Title="Football"
+                     Type="Filter"
                      ChipsSize="Small"
                      ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}" />
-      <modus:TMChips Title="Tennis" Type="Filter"
+      <modus:TMChips Title="Tennis"
+                     Type="Filter"
                      ChipsSize="Small"
                      ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}" />
-      <modus:TMChips Title="Badminton" Type="Filter"
+      <modus:TMChips Title="Badminton"
+                     Type="Filter"
                      ChipsSize="Small"
                      ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"/>
     </HorizontalStackLayout>
+    <Label Text="Fruits (Style :Outline)" FontSize="Body"/>
+    <HorizontalStackLayout Spacing="5">
+      <modus:TMChips Title="Apple"
+                     Type="Filter"
+                     ChipsSize="Small"
+                     Style="Outline"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
+                     LeftIconSource="{Static constants:ImageConstants.AccountIcon}" />
+      <modus:TMChips Title="Mango"
+                     Type="Filter"
+                     ChipsSize="Small"
+                     Style="Outline"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}" />
+      <modus:TMChips Title="Orange"
+                     Type="Filter"
+                     ChipsSize="Small"
+                     Style="Outline"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}" />
+      <modus:TMChips Title="Bananas"
+                     Type="Filter"
+                     Style="Outline"
+                     ChipsSize="Small"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"/>
+    </HorizontalStackLayout>
+
   </VerticalStackLayout>
 </ContentPage>
