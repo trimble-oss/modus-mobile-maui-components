@@ -2,14 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.TMChipsPage"
+             x:Name="tmchipspage"
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="TMSpinnerPage">
   <VerticalStackLayout 
                        Spacing="10"
                        Padding="10">
-    <Label Text="Determinate Spinner"/>
-    <modus:TMChips Text="Chips" />
+    <Label Text="Input Type Chips" FontSize="Large"/>
+    <VerticalStackLayout Spacing="10">
+      <FlexLayout BindableLayout.ItemsSource="{Binding ChipsCollection}"  Direction="Column">
+        <BindableLayout.ItemTemplate>
+          <DataTemplate>
+            <modus:TMChips 
+                           Title="{Binding Title}"
+                           ChipsSize="{Binding ChipSize}"
+                           BindingContext="{Binding}"
+                           ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
+                           LeftIconSource="{Binding LeftIconSource}"
+                           CloseCommand="{Binding Path=BindingContext.CloseChipCommand, Source={x:Reference Name=tmchipspage}}"/>
+          </DataTemplate>
+        </BindableLayout.ItemTemplate>
+      </FlexLayout>
 
+      <modus:TMButton Title="Add Chip" Command="{Binding AddChipCommand}"/>
+    </VerticalStackLayout>
+    <Label Text="Filter Type Chips" FontSize="Large"/>
+    <Label Text="Cities (Size :Default)" FontSize="Body"/>
+    <HorizontalStackLayout Spacing="10">
+      <modus:TMChips Title="Chennai" Type="Filter"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
+                     LeftIconSource="{Static constants:ImageConstants.AccountIcon}" />
+      <modus:TMChips Title="Paris" Type="Filter"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"/>
+      <modus:TMChips Title="New York" Type="Filter"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"/>
+      <modus:TMChips Title="Sydney" Type="Filter"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"/>
+    </HorizontalStackLayout>
+    <Label Text="Sports (Size :Small)" FontSize="Body"/>
+    <HorizontalStackLayout Spacing="5">
+      <modus:TMChips Title="Cricket" Type="Filter"
+                     ChipsSize="Small"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
+                     LeftIconSource="{Static constants:ImageConstants.AccountIcon}" />
+      <modus:TMChips Title="Football" Type="Filter"
+                     ChipsSize="Small"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}" />
+      <modus:TMChips Title="Tennis" Type="Filter"
+                     ChipsSize="Small"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}" />
+      <modus:TMChips Title="Badminton" Type="Filter"
+                     ChipsSize="Small"
+                     ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"/>
+    </HorizontalStackLayout>
   </VerticalStackLayout>
 </ContentPage>

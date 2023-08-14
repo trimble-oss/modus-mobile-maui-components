@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Name="tmChips"
+             HorizontalOptions="Start"
+             VerticalOptions="Start"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              x:Class="Trimble.Modus.Components.TMChips">
   <Border 
           x:Name="frame"
@@ -11,20 +13,20 @@
           >
     <HorizontalStackLayout>
       <Image x:Name="lefticon"
-             BindingContext="{x:Reference tmChips}"
              HeightRequest="24"
              WidthRequest="24"/>
       <Label x:Name="label"
-             BindingContext="{x:Reference tmChips}"
-             Text="{Binding Text}"
              LineHeight="20"
              FontAttributes="Bold"
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
-      <Image x:Name="righticon"
-             BindingContext="{x:Reference tmChips}"
+      <ImageButton x:Name="righticon"
+                   BackgroundColor="Transparent"
+                   Clicked="OnRightIconTapped"
+             Source="{Static constants:ImageConstants.CancelCircle}"
              HeightRequest="24"
-             WidthRequest="24"/>
+             WidthRequest="24">
+      </ImageButton>
     </HorizontalStackLayout>
   </Border>
 </ContentView>
