@@ -23,9 +23,9 @@
       <ImageButton x:Name="righticon"
                    BackgroundColor="Transparent"
                    Clicked="OnRightIconTapped"
-             Source="{Static constants:ImageConstants.CancelCircle}"
-             HeightRequest="24"
-             WidthRequest="24">
+                   Source="{Static constants:ImageConstants.CancelCircle}"
+                   HeightRequest="24"
+                   WidthRequest="24">
       </ImageButton>
     </HorizontalStackLayout>
   </Border>
