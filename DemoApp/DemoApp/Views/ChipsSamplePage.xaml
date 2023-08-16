@@ -15,7 +15,8 @@
         <BindableLayout.ItemTemplate>
           <DataTemplate>
             <modus:TMChips BindingContext="{Binding}"
-                           ChipSize="{Binding ChipSize}"
+                           ChipSize="Default"
+                           ChipType="Input"
                            Title="{Binding Title}"
                            LeftIconSource="{Binding LeftIconSource}"
                            ClickedCommand="{Binding ClickChipCommand}"

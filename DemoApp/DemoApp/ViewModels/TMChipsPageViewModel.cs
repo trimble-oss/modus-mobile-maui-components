@@ -15,10 +15,9 @@ namespace DemoApp.ViewModels
 
         public ChipsSamplePageViewModel()
         {
-            ChipsCollection.Add(new ChipsItem("Chips 1", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
-            ChipsCollection.Add(new ChipsItem("Chips 2", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
-            ChipsCollection.Add(new ChipsItem("Chips 3", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
-            ChipsCollection.Add(new ChipsItem("Chips 4", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 1", ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 2", ImageConstants.ContactIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 3", ImageConstants.DarkGalleryIcon, ClickChipCommand, CloseChipCommand));
         }
         [RelayCommand]
         public void ClickChip(object tMChips)
@@ -40,7 +39,7 @@ namespace DemoApp.ViewModels
         public void AddChip()
         {
             count++;
-            ChipsCollection.Add(new ChipsItem("Additional Chips "+count, ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Additional Chips "+count, ImageConstants.Phone, ClickChipCommand, CloseChipCommand));
         }
     }
 }

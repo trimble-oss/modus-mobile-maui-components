@@ -12,11 +12,9 @@ public class ChipsItem
     public string LeftIconSource { get; set; }
     public ICommand CloseChipCommand { get; set; }
 
-    public ChipsItem(string title, ChipType type, ChipSize size, string iconSource, ICommand clickChipCommand, ICommand closeChipCommand)
+    public ChipsItem(string title, string iconSource, ICommand clickChipCommand, ICommand closeChipCommand)
     {
         Title = title;
-        Type = type;
-        ChipSize = size;
         ClickChipCommand = clickChipCommand;
         LeftIconSource = iconSource;
         CloseChipCommand = closeChipCommand;

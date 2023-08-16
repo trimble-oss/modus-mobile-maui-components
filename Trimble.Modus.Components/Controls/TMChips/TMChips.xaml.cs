@@ -306,12 +306,14 @@ public partial class TMChips : ContentView
                 tMChips.label.FontSize = 14;
                 tMChips.frame.Padding = new Thickness(12, 4);
                 tMChips.label.Margin = new Thickness(4, 0, 4, 0);
+                tMChips.frame.HeightRequest = 32;
                 break;
             case ChipSize.Default:
             default:
                 tMChips.label.FontSize = 16;
                 tMChips.frame.Padding = new Thickness(12);
                 tMChips.label.Margin = new Thickness(4, 0, 4, 0);
+                tMChips.frame.HeightRequest = 48;
                 break;
         }
     }

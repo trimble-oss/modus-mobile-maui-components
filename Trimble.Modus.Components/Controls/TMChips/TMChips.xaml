@@ -18,6 +18,7 @@
       <Label x:Name="label"
              LineHeight="20"
              FontAttributes="Bold"
+             FontFamily="OpenSans-Semibold"
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
       <ImageButton x:Name="righticon"
