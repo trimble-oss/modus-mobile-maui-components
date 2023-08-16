@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using DemoApp.Constant;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
@@ -25,7 +28,8 @@ namespace DemoApp.ViewModels
         [ObservableProperty]
         private ObservableCollection<ImageSource> _segmentImageItems =
             new ObservableCollection<ImageSource>();
-
+        [ObservableProperty]
+        private bool roundedCornersSwitch,enabledSwitch,secondaryThemeSwitch;
         public SegmentedControlViewModel()
         {
             _segmentItems = new() { "One", "Two", "Three", "Four" };
@@ -35,6 +39,40 @@ namespace DemoApp.ViewModels
                 ImageSource.FromFile(ImageConstants.ModusPlaceholderImage),
                 ImageSource.FromFile(ImageConstants.AccountIcon)
             };
+            RoundedCornersSwitch = false;
+            EnabledSwitch = true;
+        }
+        [RelayCommand]
+        private void RadioButton(TMRadioButtonEventArgs e)
+        {
+            Size = e.Value switch
+            {
+                "Small" => SegmentedControlSize.Small,
+                "Medium" => SegmentedControlSize.Medium,
+                "Large" => SegmentedControlSize.Large,
+                "XLarge" => SegmentedControlSize.XLarge,
+                _ => SegmentedControlSize.Small,
+            };
+        }
+        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            switch (e.PropertyName)
+            {
+                case "RoundedCornersSwitch":
+                    RoundedCorners = RoundedCornersSwitch;
+                    break;
+
+                case "SecondaryThemeSwitch":
+                    SegmentTheme = SecondaryThemeSwitch ? SegmentColorTheme.Secondary : SegmentColorTheme.Primary;
+                    break;
+
+                case "EnabledSwitch":
+                    IsEnabled = EnabledSwitch;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

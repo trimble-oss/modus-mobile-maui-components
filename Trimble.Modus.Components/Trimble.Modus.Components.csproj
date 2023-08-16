@@ -68,6 +68,7 @@
 	  <None Remove="Images\toast_dark_icon.svg" />
 	  <None Remove="Images\valid_icon.svg" />
 	  <None Remove="Images\warning_icon.svg" />
+    <None Remove="Controls\TabBar\" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="" />
@@ -152,6 +153,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
+	  <MauiXaml Update="Controls\TMBadge\TMBadge.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\BooleanColumn.xaml">
@@ -188,5 +190,4 @@
 	    <Generator></Generator>
 	  </MauiXaml>
 	</ItemGroup>
-
 </Project>

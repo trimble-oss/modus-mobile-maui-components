@@ -38,5 +38,5 @@ internal class ColorsConstants
     public const string TableDividerColor = "TableDividerColor";
     public const string TableHeaderTextColor = "TableHeaderTextColor";
     public const string ChipSelectedBackground = "ChipSelectedBackground";
+    public const string TrimbleNeutralGray = "TrimbleNeutralGray";
 }
-

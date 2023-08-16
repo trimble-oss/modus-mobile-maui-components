@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             BackgroundColor="White"
+             x:Class="DemoApp.Views.TabViewItems.TabViewThree">
+  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+    <Modus:TMButton Clicked="TMButtonClicked" Title="Navigate to Button Page"/>
+  </StackLayout>
+</ContentView>
+

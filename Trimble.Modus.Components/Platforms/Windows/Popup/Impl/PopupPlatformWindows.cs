@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Platform;
 using Trimble.Modus.Components.Platforms.Windows;
 using Trimble.Modus.Components.Popup.Interfaces;
-using Trimble.Modus.Components.Popup.Pages;
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Windows.Implementation;
@@ -37,7 +37,7 @@ internal class PopupPlatformWindows : IPopupPlatform
 
             if (!isPreventClose)
             {
-                popupNavigationInstance.PopAsync();
+                popupNavigationInstance.DismissAsync();
             }
 
             return true;
