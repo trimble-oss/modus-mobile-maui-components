@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DemoApp.Helper;
 using DemoApp.Models;
 using Newtonsoft.Json;
 using System.Collections;
@@ -17,40 +18,15 @@ namespace DemoApp.ViewModels
         private AccordionChevronPosition _chevronPosition;
         [ObservableProperty]
         private IEnumerable _items ;
-        private ObservableCollection<User> Users = new ObservableCollection<User>();
 
         public AccordionSampleViewModel()
         {
-            LoadData();
+            InitializeUsers();
         }
-
-        private async void LoadData()
+        private async void InitializeUsers()
         {
-            using var stream = await FileSystem.OpenAppPackageFileAsync("UserData.json");
-            using var reader = new StreamReader(stream);
-
-            var result = JsonConvert.DeserializeObject<ApiResponse>(reader.ReadToEnd());
-            Users.Clear();
-            for ( int i = 0; i < 20; i++)
-            {
-                var userInfo = result.Results[i];
-                var user = new User
-                {
-                    Name = $"{userInfo.Name.First} {userInfo.Name.Last}",
-                    Gender = userInfo.Gender,
-                    Color = userInfo.Gender.Equals("male") ? Brush.LightSkyBlue : Brush.HotPink,
-                    DateofBirth = DateTime.Parse(userInfo.Dob.Date),
-                    Address = $"{userInfo.Location.Street.Number} {userInfo.Location.Street.Name}, {userInfo.Location.City}",
-                    ProfilePic = userInfo.Picture.Large,
-                    Phone = userInfo.Phone,
-                    Email = userInfo.Email
-                };
-
-                Users.Add(user);
-            }
-            Items= Users;
+            Items = await UserDataCreator.LoadData(20);
         }
-
         [RelayCommand]
         private void SizeRadioButton(TMRadioButtonEventArgs e)
         {
