@@ -106,9 +106,6 @@
 	  <Compile Update="Views\TMButtonPage.xaml.cs">
 	    <DependentUpon>TMButtonPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\TMChipsPage.xaml.cs">
-	    <DependentUpon>TMChipsPage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -142,7 +139,7 @@
 	  <MauiXaml Update="Views\TMRadioButtonPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TMChipsPage.xaml">
+	  <MauiXaml Update="Views\ChipsSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TMSpinnerPage.xaml">

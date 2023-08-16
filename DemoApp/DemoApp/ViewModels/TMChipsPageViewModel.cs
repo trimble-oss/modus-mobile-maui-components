@@ -1,24 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DemoApp.Constant;
+using DemoApp.Models;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    internal partial class TMChipsPageViewModel : ObservableObject
+    internal partial class ChipsSamplePageViewModel : ObservableObject
     {
         private int count = 0;
-        public ObservableCollection<TMChips> ChipsCollection { get; } = new ObservableCollection<TMChips>();
+        public ObservableCollection<ChipsItem> ChipsCollection { get; } = new ObservableCollection<ChipsItem>();
 
-        public TMChipsPageViewModel()
+        public ChipsSamplePageViewModel()
         {
-            ChipsCollection.Add(new TMChips() { Title = "Chip 1", ChipType = ChipType.Input, LeftIconSource = ImageConstants.AccountIcon, ChipSize = ChipSize.Small });
-            ChipsCollection.Add(new TMChips() { Title = "Chip 2", ChipType = ChipType.Input, LeftIconSource = ImageConstants.ContactIcon, ChipSize = ChipSize.Small }); 
-            ChipsCollection.Add(new TMChips() { Title = "Chip 3", ChipType = ChipType.Input, LeftIconSource = ImageConstants.SearchIcon, ChipSize = ChipSize.Small });
-         
+            ChipsCollection.Add(new ChipsItem("Chips 1", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 2", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 3", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 4", ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
         }
         [RelayCommand]
         public void ClickChip(object tMChips)
@@ -40,7 +40,7 @@ namespace DemoApp.ViewModels
         public void AddChip()
         {
             count++;
-            ChipsCollection.Add(new TMChips() { Title = "Additional Chip " + count, ChipType = ChipType.Input, LeftIconSource = ImageConstants.AccountIcon});
+            ChipsCollection.Add(new ChipsItem("Additional Chips "+count, ChipType.Input, ChipSize.Default, ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
         }
     }
 }

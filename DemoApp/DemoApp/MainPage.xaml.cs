@@ -75,7 +75,7 @@ namespace DemoApp
                         Navigation.PushAsync(new TableViewPage());
                         break;
                     case "Chips":
-                        Navigation.PushAsync(new TMChipsPage());
+                        Navigation.PushAsync(new ChipsSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
