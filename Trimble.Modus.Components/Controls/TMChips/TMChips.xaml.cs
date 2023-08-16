@@ -22,19 +22,19 @@ public partial class TMChips : ContentView
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMChips),propertyChanged:OnLeftIconPropertyChanged);
 
     public static readonly BindableProperty TitleProperty =
-        BindableProperty.Create(nameof(Title), typeof(string), typeof(TMChips), propertyChanged: OnTextChanged);
+        BindableProperty.Create(nameof(Title), typeof(string), typeof(TMChips), propertyChanged: OnTitleChanged);
 
-    public static readonly BindableProperty ChipsSizeProperty =
-        BindableProperty.Create(nameof(ChipsSize), typeof(ChipSize), typeof(TMChips), ChipSize.Default, propertyChanged: OnSizeChanged);
+    public static readonly BindableProperty ChipSizeProperty =
+        BindableProperty.Create(nameof(ChipSize), typeof(ChipSize), typeof(TMChips), ChipSize.Default, propertyChanged: OnSizeChanged);
 
-    public static readonly BindableProperty ChipsStateProperty =
-        BindableProperty.Create(nameof(State), typeof(ChipState), typeof(TMChips), ChipState.Default);
+    public static readonly BindableProperty ChipStateProperty =
+        BindableProperty.Create(nameof(ChipState), typeof(ChipState), typeof(TMChips), ChipState.Default);
 
-    public static readonly BindableProperty ChipsStyleProperty =
-        BindableProperty.Create(nameof(Style), typeof(ChipStyle), typeof(TMChips), ChipStyle.Fill);
+    public static readonly BindableProperty ChipStyleProperty =
+        BindableProperty.Create(nameof(ChipStyle), typeof(ChipStyle), typeof(TMChips), ChipStyle.Fill);
 
-    public static readonly BindableProperty ChipsTypeProperty =
-      BindableProperty.Create(nameof(Type), typeof(ChipType), typeof(TMChips), ChipType.Input, propertyChanged: OnChipsTypeSelected);
+    public static readonly BindableProperty ChipTypeProperty =
+      BindableProperty.Create(nameof(ChipType), typeof(ChipType), typeof(TMChips), ChipType.Input, propertyChanged: OnChipsTypeSelected);
 
     public new static readonly BindableProperty IsEnabledProperty =
       BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMChips), true, propertyChanged: OnIsEnabledChanged);
@@ -82,26 +82,26 @@ public partial class TMChips : ContentView
         set => SetValue(IsEnabledProperty, value);
     }
 
-    public ChipType Type
+    public ChipType ChipType
     {
-        get => (ChipType)GetValue(ChipsTypeProperty);
-        set => SetValue(ChipsTypeProperty, value);
+        get => (ChipType)GetValue(ChipTypeProperty);
+        set => SetValue(ChipTypeProperty, value);
     }
-    public ChipSize ChipsSize
+    public ChipSize ChipSize
     {
-        get => (ChipSize)GetValue(ChipsSizeProperty);
-        set => SetValue(ChipsSizeProperty, value);
+        get => (ChipSize)GetValue(ChipSizeProperty);
+        set => SetValue(ChipSizeProperty, value);
     }
 
-    public ChipState State
+    public ChipState ChipState
     {
-        get => (ChipState)GetValue(ChipsStateProperty);
-        set => SetValue(ChipsStateProperty, value);
+        get => (ChipState)GetValue(ChipStateProperty);
+        set => SetValue(ChipStateProperty, value);
     }
-    public ChipStyle Style
+    public ChipStyle ChipStyle
     {
-        get => (ChipStyle)GetValue(ChipsStyleProperty);
-        set => SetValue(ChipsStyleProperty, value);
+        get => (ChipStyle)GetValue(ChipStyleProperty);
+        set => SetValue(ChipStyleProperty, value);
     }
     #endregion
     #region Constructor
@@ -116,7 +116,7 @@ public partial class TMChips : ContentView
     protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         base.OnPropertyChanged(propertyName);
-        if (propertyName == "State" || propertyName == "Style")
+        if (propertyName == "ChipState" || propertyName == "ChipStyle")
         {
             UpdateState();
         }
@@ -132,7 +132,7 @@ public partial class TMChips : ContentView
 
     private void UpdateTapGestureRecogniser()
     {
-        if (IsEnabled && State != ChipState.Error)
+        if (IsEnabled && ChipState != ChipState.Error)
         {
             if (!GestureRecognizers.Contains(tapGestureRecognizer))
             {
@@ -162,7 +162,7 @@ public partial class TMChips : ContentView
             if (isSelected)
             {
                 label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-                if (Style == ChipStyle.Fill)
+                if (ChipStyle == ChipStyle.Fill)
                 {
                     frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ChipSelectedBackground);
                     frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
@@ -172,7 +172,7 @@ public partial class TMChips : ContentView
                     frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ChipSelectedBackground);
                     frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 }
-                if(Type == ChipType.Filter)
+                if(ChipType == ChipType.Filter)
                 {
                     tMChips.lefticon.IsVisible = true;
                     tMChips.lefticon.Source = ImageConstants.Check;
@@ -183,7 +183,7 @@ public partial class TMChips : ContentView
             else
             {
                 UpdateState();
-                if (Type == ChipType.Filter)
+                if (ChipType == ChipType.Filter)
                 {
                     tMChips.lefticon.IsVisible = false;
                 }
@@ -209,11 +209,11 @@ public partial class TMChips : ContentView
             UpdateLabelOnSize(TMChips);
         }
     }
-    private static void OnTextChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnTitleChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable != null && bindable is TMChips TMChips)
+        if (bindable != null && bindable is TMChips tMChips)
         {
-            TMChips.label.Text = (string)newValue;
+            tMChips.label.Text = (string)newValue;
         }
     }
 
@@ -236,7 +236,7 @@ public partial class TMChips : ContentView
     {
         if (bindable != null && bindable is TMChips tMChips)
         {
-            if (newValue != null && tMChips.Type == ChipType.Input)
+            if (newValue != null && tMChips.ChipType == ChipType.Input)
             {
                 tMChips.lefticon.Source = (ImageSource)newValue;
                 tMChips.lefticon.IsVisible = true;
@@ -252,7 +252,7 @@ public partial class TMChips : ContentView
     {
         if (bindable != null && bindable is TMChips tMChips)
         {
-            switch (tMChips.Type)
+            switch (tMChips.ChipType)
             {
                 case ChipType.Filter:
                     tMChips.lefticon.IsVisible = false;
@@ -268,7 +268,7 @@ public partial class TMChips : ContentView
     }
     private void UpdateState()
     {
-        switch (State)
+        switch (ChipState)
         {
             case ChipState.Error:
                 AssignStates(ColorsConstants.DangerToastColor, ColorsConstants.DangerRedClicked);
@@ -286,7 +286,7 @@ public partial class TMChips : ContentView
     }
     private void AssignStates(string backgroundColor, string textColor)
     {
-        if (Style == ChipStyle.Fill)
+        if (ChipStyle == ChipStyle.Fill)
         {
             frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(backgroundColor);
             frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
@@ -300,7 +300,7 @@ public partial class TMChips : ContentView
     }
     private static void UpdateLabelOnSize(TMChips tMChips)
     {
-        switch (tMChips.ChipsSize)
+        switch (tMChips.ChipSize)
         {
             case ChipSize.Small:
                 tMChips.label.FontSize = 14;

@@ -15,9 +15,9 @@ namespace DemoApp.ViewModels
 
         public TMChipsPageViewModel()
         {
-            ChipsCollection.Add(new TMChips() { Title = "Chip 1", Type = ChipType.Input, LeftIconSource = ImageConstants.AccountIcon, ChipsSize = ChipSize.Small });
-            ChipsCollection.Add(new TMChips() { Title = "Chip 2", Type = ChipType.Input, LeftIconSource = ImageConstants.ContactIcon, ChipsSize = ChipSize.Small }); 
-            ChipsCollection.Add(new TMChips() { Title = "Chip 3", Type = ChipType.Input, LeftIconSource = ImageConstants.SearchIcon, ChipsSize = ChipSize.Small });
+            ChipsCollection.Add(new TMChips() { Title = "Chip 1", ChipType = ChipType.Input, LeftIconSource = ImageConstants.AccountIcon, ChipSize = ChipSize.Small });
+            ChipsCollection.Add(new TMChips() { Title = "Chip 2", ChipType = ChipType.Input, LeftIconSource = ImageConstants.ContactIcon, ChipSize = ChipSize.Small }); 
+            ChipsCollection.Add(new TMChips() { Title = "Chip 3", ChipType = ChipType.Input, LeftIconSource = ImageConstants.SearchIcon, ChipSize = ChipSize.Small });
          
         }
         [RelayCommand]
@@ -40,7 +40,7 @@ namespace DemoApp.ViewModels
         public void AddChip()
         {
             count++;
-            ChipsCollection.Add(new TMChips() { Title = "Additional Chip " + count, Type = ChipType.Input, LeftIconSource = ImageConstants.AccountIcon});
+            ChipsCollection.Add(new TMChips() { Title = "Additional Chip " + count, ChipType = ChipType.Input, LeftIconSource = ImageConstants.AccountIcon});
         }
     }
 }
