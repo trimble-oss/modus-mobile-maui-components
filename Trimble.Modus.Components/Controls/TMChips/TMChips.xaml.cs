@@ -164,13 +164,13 @@ public partial class TMChips : ContentView
                 label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 if (Style == ChipStyle.Fill)
                 {
-                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ChipSelectedBackground);
                     frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 }
                 else
                 {
-                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                    frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
+                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ChipSelectedBackground);
+                    frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 }
                 if(Type == ChipType.Filter)
                 {
