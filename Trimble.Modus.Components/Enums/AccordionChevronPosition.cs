@@ -11,5 +11,4 @@ namespace Trimble.Modus.Components.Enums
         Right,
         Left,
     }
-
 }

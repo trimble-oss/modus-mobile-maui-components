@@ -48,7 +48,6 @@ public partial class TMAccordion : ContentView
         get => (ImageSource)GetValue(RightIconSourceProperty);
         set => SetValue(RightIconSourceProperty, value);
     }
-
     /// <summary>
     /// Content of the accordion
     /// </summary>
@@ -57,7 +56,6 @@ public partial class TMAccordion : ContentView
         get => (View)GetValue(ContentViewProperty);
         set => SetValue(ContentViewProperty, value);
     }
-
     /// <summary>
     /// Title of the accordion
     /// </summary>
@@ -74,7 +72,6 @@ public partial class TMAccordion : ContentView
         get => (string)GetValue(AccordionSubtitleProperty);
         set => SetValue(AccordionSubtitleProperty, value);
     }
-
     /// <summary>
     /// Set or Get the state of the accordion
     /// </summary>
@@ -83,7 +80,6 @@ public partial class TMAccordion : ContentView
         get { return (bool)GetValue(IsOpenBindablePropertyProperty); }
         set { SetValue(IsOpenBindablePropertyProperty, value); }
     }
-
     public event EventHandler ExpandedStateChanged;
     public uint AnimationDuration { get; set; } = 250;
     #endregion
@@ -131,10 +127,9 @@ public partial class TMAccordion : ContentView
             _accContent.TranslateTo(0, -10, AnimationDuration),
             _indicatorContainer.RotateTo(0, AnimationDuration),
             _accContent.FadeTo(0, 50)
-            );
+        );
         _accContent.IsVisible = false;
     }
-
     /// <summary>
     /// Opening the accordion
     /// </summary>
@@ -147,7 +142,6 @@ public partial class TMAccordion : ContentView
             _accContent.FadeTo(30, 50, Easing.SinIn)
         );
     }
-
     /// <summary>
     /// Trigger the IsOpen property when the title is tapped
     /// </summary>

@@ -22,16 +22,12 @@
         <Rectangle RadiusX="4"
                    RadiusY="4" />
       </Border.StrokeShape>
-      <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition />
-        </Grid.RowDefinitions>
+      <Grid RowSpacing="0" RowDefinitions="Auto, Auto">
         <ContentView VerticalOptions="Center"
                      Padding="0,0,0,20"
                      Grid.Row="1"
                      x:Name="_accContent"
-                     BackgroundColor="White"
+                     BackgroundColor="{x:StaticResource White}"
                      Content="{Binding Source={x:Reference _accordion_view}, Path=AccordionContentView}">
           <ContentView.Triggers>
             <DataTrigger TargetType="ContentView"
@@ -50,7 +46,7 @@
         </ContentView>
         <Grid VerticalOptions="Center"
               Padding="8,4"
-              BackgroundColor="White"
+              BackgroundColor="{x:StaticResource White}"
               HeightRequest="56">
           <Grid.Triggers>
             <DataTrigger TargetType="Grid"

@@ -39,53 +39,48 @@
         <modus:TMRadioButton Text="Left"
                              Value="1" />
       </modus:TMRadioButtonGroup>
-      <modus:TMListView IsVisible="True"
-                        ItemsSource="{Binding Items}"
-                        SelectionMode="None">
-        <modus:TMListView.ItemTemplate>
+      <StackLayout Orientation="Vertical"
+                   BindableLayout.ItemsSource="{Binding Items}">
+        <BindableLayout.ItemTemplate>
           <DataTemplate>
-            <modus:TemplateCell>
-              <modus:TemplateCell.Content>
-                <Border StrokeThickness="2"
-                        Margin="0,-2">
-                  <Border.StrokeShape>
-                    <Rectangle RadiusX="4"
-                               RadiusY="4" />
-                  </Border.StrokeShape>
-                  <modus:TMAccordion AccordionTitle="{Binding Name}"
-                                     AccordionSubtitle="{Binding Gender}"
-                                     ChevronPosition="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=ChevronPosition}"
-                                     Size="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=Size}">
-                    <Grid RowSpacing="10"
-                          Padding="10">
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                      </Grid.ColumnDefinitions>
-                      <Image Grid.Column="0"
-                             Source="{Binding ProfilePic}"
-                             Margin="10,0,10,0"
-                             VerticalOptions="Center"
-                             HorizontalOptions="Center"
-                             HeightRequest="80"
-                             WidthRequest="80" />
-                      <StackLayout Orientation="Vertical"
-                                   Grid.Column="1">
-                        <Label Text="{Binding Name}"
-                               FontSize="Medium" />
-                        <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}"
-                               FontSize="Small" />
-                        <Label Text="{Binding Address}"
-                               FontSize="Micro" />
-                      </StackLayout>
-                    </Grid>
-                  </modus:TMAccordion>
-                </Border>
-              </modus:TemplateCell.Content>
-            </modus:TemplateCell>
+            <Border StrokeThickness="2"
+                    Margin="0,-2.5">
+              <Border.StrokeShape>
+                <Rectangle RadiusX="4"
+                           RadiusY="4" />
+              </Border.StrokeShape>
+              <modus:TMAccordion AccordionTitle="{Binding Name}"
+                                 AccordionSubtitle="{Binding Gender}"
+                                 ChevronPosition="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=ChevronPosition}"
+                                 Size="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=Size}">
+                <Grid RowSpacing="10"
+                      Padding="10">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Image Grid.Column="0"
+                         Source="{Binding ProfilePic}"
+                         Margin="10,0,10,0"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         HeightRequest="80"
+                         WidthRequest="80" />
+                  <StackLayout Orientation="Vertical"
+                               Grid.Column="1">
+                    <Label Text="{Binding Name}"
+                           FontSize="Medium" />
+                    <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}"
+                           FontSize="Small" />
+                    <Label Text="{Binding Address}"
+                           FontSize="Micro" />
+                  </StackLayout>
+                </Grid>
+              </modus:TMAccordion>
+            </Border>
           </DataTemplate>
-        </modus:TMListView.ItemTemplate>
-      </modus:TMListView>
+        </BindableLayout.ItemTemplate>
+      </StackLayout>
     </StackLayout>
   </ScrollView>
 </ContentPage>
