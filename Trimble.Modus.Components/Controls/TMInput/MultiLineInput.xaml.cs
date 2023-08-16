@@ -9,7 +9,7 @@ public partial class MultiLineInput : BaseInput
     public static readonly BindableProperty AutoSizeProperty =
             BindableProperty.Create(nameof(AutoSize), typeof(bool), typeof(MultiLineInput), false, propertyChanged: OnAutoSizePropertyChanged);
     public new static readonly BindableProperty HeightRequestProperty =
-           BindableProperty.Create(nameof(HeightRequest), typeof(int), typeof(MultiLineInput), propertyChanged: OnIntValueChanged);
+           BindableProperty.Create(nameof(HeightRequest), typeof(int), typeof(MultiLineInput), propertyChanged: OnHeightRequestChanged);
 
     #endregion
 
@@ -56,7 +56,7 @@ public partial class MultiLineInput : BaseInput
             multiLineInput.inputBorderlessEditor.AutoSize = multiLineInput.AutoSize ? (EditorAutoSizeOption)1 : (EditorAutoSizeOption)0;
         }
     }
-    private static void OnIntValueChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnHeightRequestChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is MultiLineInput multiLineInput && (int)newValue > 44)
         {
