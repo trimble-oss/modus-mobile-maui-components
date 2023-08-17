@@ -1,4 +1,5 @@
 using Microsoft.Maui.LifecycleEvents;
+using SkiaSharp.Views.Maui.Handlers;
 using Trimble.Modus.Components;
 #if ANDROID
 using Trimble.Modus.Components.Popup.Pages;
@@ -70,6 +71,7 @@ public static class AppBuilderExtensions
             handlers.AddHandler(typeof(TMSpinner), typeof(SpinnerHandler));
 
             handlers.AddHandler(typeof(BorderlessEditor), typeof(EditorHandler));
+            handlers.AddHandler<BaseProgressBar, SKCanvasViewHandler>();
 
 
 #if ANDROID
@@ -83,7 +85,7 @@ public static class AppBuilderExtensions
                 handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtoniOSTouchHandler));
 #endif
 #if WINDOWS
-                handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
+            handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
                 handlers.AddHandler(typeof(TMButton), typeof(TMButtonWindowsTouchHandler));
                 handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
 #endif

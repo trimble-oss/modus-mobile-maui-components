@@ -27,7 +27,8 @@ namespace DemoApp
                 "DataGrid",
                 "PopupView",
                 "TabbedPage",
-                "Badge"
+                "Badge",
+                "ProgressBar"
             };
             BindingContext = this;
         }
@@ -84,6 +85,9 @@ namespace DemoApp
                         break;
                     case "Badge":
                         Navigation.PushAsync(new BadgeSamplePage());
+                        break;
+                    case "ProgressBar":
+                        Navigation.PushAsync(new ProgressBarSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

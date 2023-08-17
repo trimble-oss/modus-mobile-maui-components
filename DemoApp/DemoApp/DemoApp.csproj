@@ -135,6 +135,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\ProgressBarSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TabViewItems\TabViewFour.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
