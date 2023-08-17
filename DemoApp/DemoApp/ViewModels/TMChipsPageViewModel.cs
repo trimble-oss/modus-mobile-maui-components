@@ -13,12 +13,22 @@ namespace DemoApp.ViewModels
         private int count = 0;
         public ObservableCollection<ChipsItem> ChipsCollection { get; } = new ObservableCollection<ChipsItem>();
 
+        [ObservableProperty]
+        private ChipSize chipSize;
+
         public ChipsSamplePageViewModel()
         {
             ChipsCollection.Add(new ChipsItem("Chips 1", ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
             ChipsCollection.Add(new ChipsItem("Chips 2", ImageConstants.ContactIcon, ClickChipCommand, CloseChipCommand));
             ChipsCollection.Add(new ChipsItem("Chips 3", ImageConstants.DarkGalleryIcon, ClickChipCommand, CloseChipCommand));
         }
+
+        [RelayCommand]
+        public void SizeSelectionChanged(TMRadioButtonEventArgs e)
+        {
+            ChipSize = e.RadioButtonIndex == 0 ? ChipSize.Default : ChipSize.Small;
+        }
+
         [RelayCommand]
         public void ClickChip(object tMChips)
         {
