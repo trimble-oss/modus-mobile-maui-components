@@ -18,9 +18,10 @@ namespace DemoApp.ViewModels
 
         public ChipsSamplePageViewModel()
         {
-            ChipsCollection.Add(new ChipsItem("Chips 1", ImageConstants.AccountIcon, ClickChipCommand, CloseChipCommand));
-            ChipsCollection.Add(new ChipsItem("Chips 2", ImageConstants.ContactIcon, ClickChipCommand, CloseChipCommand));
-            ChipsCollection.Add(new ChipsItem("Chips 3", ImageConstants.DarkGalleryIcon, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips 1", ImageConstants.AccountIcon));
+            ChipsCollection.Add(new ChipsItem("Chips 2", ImageConstants.ContactIcon));
+            ChipsCollection.Add(new ChipsItem("Chips 3", ImageConstants.DarkGalleryIcon));
+            count = ChipsCollection.Count;
         }
 
         [RelayCommand]
@@ -49,7 +50,7 @@ namespace DemoApp.ViewModels
         public void AddChip()
         {
             count++;
-            ChipsCollection.Add(new ChipsItem("Additional Chips "+count, ImageConstants.Phone, ClickChipCommand, CloseChipCommand));
+            ChipsCollection.Add(new ChipsItem("Chips " + count, ImageConstants.Phone));
         }
     }
 }

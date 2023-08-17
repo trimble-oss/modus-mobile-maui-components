@@ -28,8 +28,8 @@
                            ChipType="Input"
                            Title="{Binding Title}"
                            LeftIconSource="{Binding LeftIconSource}"
-                           ClickedCommand="{Binding ClickChipCommand}"
-                           CloseCommand="{Binding CloseChipCommand}" />
+                           ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
+                           CloseCommand="{Binding Path=BindingContext.CloseChipCommand, Source={x:Reference Name=tmchipspage}}" />
           </DataTemplate>
         </BindableLayout.ItemTemplate>
       </FlexLayout>
