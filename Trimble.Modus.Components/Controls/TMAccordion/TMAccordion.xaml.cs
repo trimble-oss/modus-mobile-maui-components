@@ -81,7 +81,7 @@ public partial class TMAccordion : ContentView
         set { SetValue(IsOpenBindablePropertyProperty, value); }
     }
     public event EventHandler ExpandedStateChanged;
-    public uint AnimationDuration { get; set; } = 250;
+    private uint AnimationDuration { get; set; } = 250;
     #endregion
 
     #region Constructor
