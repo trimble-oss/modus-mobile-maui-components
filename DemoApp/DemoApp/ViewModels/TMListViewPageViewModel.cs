@@ -24,7 +24,6 @@ namespace DemoApp.ViewModels
         #region Constructor
         public TMListViewPageViewModel()
         {
-            Users = new ObservableCollection<User>();
             InitialzeUsers();
             SelectionMode = ListSelectionMode.Single;
         }
