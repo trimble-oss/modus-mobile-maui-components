@@ -23,8 +23,8 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        //RegisterViewModel(builder);
-        //RegisterPages(builder);
+        RegisterViewModel(builder);
+        RegisterPages(builder);
 
         return builder.Build();
     }
@@ -32,12 +32,9 @@ public static class MauiProgram
     {
         builder.Services.AddTransient<ProgressBarSamplePageViewModel>();
     }
+
     public static void RegisterPages(MauiAppBuilder builder)
     {
-
-        builder.Services.AddTransient(service => new ProgressBarSamplePage()
-        {
-            BindingContext = service.GetService<ProgressBarSamplePageViewModel>()
-        });
+        builder.Services.AddTransient<ProgressBarSamplePage>();
     }
 }
