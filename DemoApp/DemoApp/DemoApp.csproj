@@ -75,6 +75,7 @@
 	  <None Remove="Resources\Images\placeholder_white.svg" />
 	  <None Remove="Resources\Images\search_icon.svg" />
 	  <None Remove="Views\TabViewItems\" />
+	  <None Remove="Helpers\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -193,5 +194,8 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Helpers\" />
 	</ItemGroup>
 </Project>
