@@ -27,7 +27,8 @@ namespace DemoApp
                 "DataGrid",
                 "PopupView",
                 "TabbedPage",
-                "Badge"
+                "Badge",
+                "Accordion"
             };
             BindingContext = this;
         }
@@ -78,6 +79,9 @@ namespace DemoApp
                         break;
                     case "PopupView":
                         Navigation.PushAsync(new SamplePopupPage());
+                        break;
+                    case "Accordion":
+                        Navigation.PushAsync(new AccordionSamplePage());
                         break;
                     case "TabbedPage":
                         Navigation.PushAsync(new TabbedPageDemo());
