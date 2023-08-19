@@ -147,10 +147,7 @@ public partial class TMChips : ContentView
     }
     private void OnRightIconTapped(object sender, EventArgs e)
     {
-        if (sender is ImageButton tMChips)
-        {
-           CloseCommand?.Execute(this);
-        }
+        CloseCommand?.Execute(this);
     }
 
 

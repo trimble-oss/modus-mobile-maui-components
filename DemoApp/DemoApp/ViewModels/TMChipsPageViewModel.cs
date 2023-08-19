@@ -50,7 +50,7 @@ namespace DemoApp.ViewModels
         public void AddChip()
         {
             count++;
-            ChipsCollection.Add(new ChipsItem("Chips " + count, ImageConstants.Phone));
+            ChipsCollection.Add(new ChipsItem("Chips " + count, ImageConstants.Email));
         }
     }
 }

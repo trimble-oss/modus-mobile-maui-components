@@ -20,15 +20,15 @@
              FontFamily="OpenSans-Semibold"
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
-      <ImageButton x:Name="righticon"
-                   BackgroundColor="Transparent"
-                   Margin="{OnPlatform '0', iOS='-8,0'}"
-                   Padding="{OnPlatform '0', iOS='0,8', WinUI='8'}"
-                   Clicked="OnRightIconTapped"
-                   Source="{Static constants:ImageConstants.CancelCircle}"
-                   HeightRequest="24"
-                   WidthRequest="24">
-      </ImageButton>
+      <StackLayout>
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Tapped="OnRightIconTapped"/>
+        </StackLayout.GestureRecognizers>
+        <Image x:Name="righticon"
+             Source="{Static constants:ImageConstants.CancelCircle}"
+             HeightRequest="24"
+             WidthRequest="24"/>
+      </StackLayout>
     </HorizontalStackLayout>
   </Border>
 </ContentView>
