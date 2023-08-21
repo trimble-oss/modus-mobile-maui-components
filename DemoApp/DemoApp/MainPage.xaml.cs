@@ -28,8 +28,7 @@ namespace DemoApp
                 "PopupView",
                 "TabbedPage",
                 "Badge",
-                "Accordion"
-                "Badge",
+                "Accordion",
                 "Chips"
             };
             BindingContext = this;
