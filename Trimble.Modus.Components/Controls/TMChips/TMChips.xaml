@@ -13,7 +13,9 @@
                            VerticalOptions="Center">
       <Image x:Name="lefticon"
              HeightRequest="24"
-             WidthRequest="24"/>
+             WidthRequest="24"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"/>
       <Label x:Name="label"
              VerticalTextAlignment="Center"
              FontAttributes="Bold"
@@ -27,7 +29,9 @@
         <Image x:Name="righticon"
              Source="{Static constants:ImageConstants.CancelCircle}"
              HeightRequest="24"
-             WidthRequest="24"/>
+             WidthRequest="24"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"/>
       </StackLayout>
     </HorizontalStackLayout>
   </Border>
