@@ -85,8 +85,14 @@
 	  <None Remove="Images\chevron_down_icon.svg" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="Images\cancel_circle.svg" />
+	  <None Remove="Images\check.svg" />
+	</ItemGroup>
+	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\cancel_circle.svg" />
 	  <MauiImage Include="Images\caret_down_bold.svg" />
+	  <MauiImage Include="Images\check.svg" />
 	  <MauiImage Include="Images\chevron_down_icon.svg" />
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
@@ -149,6 +155,9 @@
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
+      <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMBadge\TMBadge.xaml">
 	  	<Generator>MSBuild:Compile</Generator>

@@ -28,7 +28,8 @@ namespace DemoApp
                 "PopupView",
                 "TabbedPage",
                 "Badge",
-                "Accordion"
+                "Accordion",
+                "Chips"
             };
             BindingContext = this;
         }
@@ -89,6 +90,9 @@ namespace DemoApp
                     case "Badge":
                         Navigation.PushAsync(new BadgeSamplePage());
                         break;
+                    case "Chips":
+                        Navigation.PushAsync(new ChipsSamplePage());
+                        break; 
                     default:
                         Console.WriteLine("Default Case");
                         break;
