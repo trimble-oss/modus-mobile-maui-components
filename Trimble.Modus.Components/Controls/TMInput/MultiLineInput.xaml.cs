@@ -1,4 +1,6 @@
 namespace Trimble.Modus.Components;
+
+using System;
 using Trimble.Modus.Components.Controls.BaseInput;
 
 public partial class MultiLineInput : BaseInput
@@ -6,6 +8,9 @@ public partial class MultiLineInput : BaseInput
     #region Bindable Properties
     public static readonly BindableProperty AutoSizeProperty =
             BindableProperty.Create(nameof(AutoSize), typeof(bool), typeof(MultiLineInput), false, propertyChanged: OnAutoSizePropertyChanged);
+    public new static readonly BindableProperty HeightRequestProperty =
+           BindableProperty.Create(nameof(HeightRequest), typeof(int), typeof(MultiLineInput), propertyChanged: OnHeightRequestChanged);
+
     #endregion
 
     #region Public Properties
@@ -16,6 +21,11 @@ public partial class MultiLineInput : BaseInput
     {
         get => (bool)GetValue(AutoSizeProperty);
         set => SetValue(AutoSizeProperty, value);
+    }
+    public new int HeightRequest
+    {
+        get => (int)GetValue(HeightRequestProperty);
+        set => SetValue(HeightRequestProperty, value);
     }
     #endregion
     public MultiLineInput()
@@ -44,6 +54,13 @@ public partial class MultiLineInput : BaseInput
         if(bindable is MultiLineInput multiLineInput)
         {
             multiLineInput.inputBorderlessEditor.AutoSize = multiLineInput.AutoSize ? (EditorAutoSizeOption)1 : (EditorAutoSizeOption)0;
+        }
+    }
+    private static void OnHeightRequestChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is MultiLineInput multiLineInput && (int)newValue > 44)
+        {
+            multiLineInput.inputBorderlessEditor.HeightRequest = (int)newValue;
         }
     }
 

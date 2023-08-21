@@ -143,7 +143,10 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TabViewItems\TabViewTwo.xaml">
 	    <Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AccordionSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\PopupSamples\SampleCustomPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

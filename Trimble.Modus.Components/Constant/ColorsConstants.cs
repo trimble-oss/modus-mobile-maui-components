@@ -39,4 +39,7 @@ internal class ColorsConstants
     public const string TableHeaderTextColor = "TableHeaderTextColor";
     public const string ChipSelectedBackground = "ChipSelectedBackground";
     public const string TrimbleNeutralGray = "TrimbleNeutralGray";
+    public const string AccordionTitleColor = "AccordionTitleColor";
+    public const string AccordionDescriptionColor = "AccordionDescriptionColor";
 }
+

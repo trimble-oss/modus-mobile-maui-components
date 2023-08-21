@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using Trimble.Modus.Components;
 using System.Collections.ObjectModel;
 using SelectionChangedEventArgs = Trimble.Modus.Components.SelectionChangedEventArgs;
+using DemoApp.Helper;
 
 namespace DemoApp.ViewModels
 {
@@ -18,42 +19,20 @@ namespace DemoApp.ViewModels
 
         [ObservableProperty]
         private IEnumerable itemSource;
-        private ObservableCollection<User> Users { get; set; }
         #endregion
 
         #region Constructor
         public TMListViewPageViewModel()
         {
-            Users = new ObservableCollection<User>();
-            LoadData();
+            InitialzeUsers();
             SelectionMode = ListSelectionMode.Single;
         }
+
         #endregion
         #region Private Methods
-        private async void LoadData()
+        private async void InitialzeUsers()
         {
-            using var stream = await FileSystem.OpenAppPackageFileAsync("UserData.json");
-            using var reader = new StreamReader(stream);
-
-            var result = JsonConvert.DeserializeObject<ApiResponse>(reader.ReadToEnd());
-            Users.Clear();
-            foreach (var userInfo in result.Results)
-            {
-                var user = new User
-                {
-                    Name = $"{userInfo.Name.First} {userInfo.Name.Last}",
-                    Gender = userInfo.Gender,
-                    Color = userInfo.Gender.Equals("male") ? Brush.LightSkyBlue : Brush.HotPink,
-                    DateofBirth = DateTime.Parse(userInfo.Dob.Date),
-                    Address = $"{userInfo.Location.Street.Number} {userInfo.Location.Street.Name}, {userInfo.Location.City}",
-                    ProfilePic = userInfo.Picture.Large,
-                    Phone = userInfo.Phone,
-                    Email = userInfo.Email
-                };
-
-                Users.Add(user);
-            }
-            ItemSource = Users;
+            ItemSource = await UserDataCreator.LoadData();
         }
         [RelayCommand]
         private void ItemSelected(SelectionChangedEventArgs e)
