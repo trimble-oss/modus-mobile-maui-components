@@ -1,71 +1,39 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Input;
 
 namespace DemoApp.ViewModels
 {
-    public class InputPageViewModel : BaseViewModel
+    public partial class InputPageViewModel : ObservableValidator
     {
         public ICommand ShowPasswordCommand { get; set; }
-
+        [ObservableProperty]
         private bool _showPassword;
+        [ObservableProperty]
         private bool _isEnabled;
+        [ObservableProperty]
         private bool _isReadOnly;
+        [ObservableProperty]
         private bool _isAutoSize;
+        [ObservableProperty]
         private bool _isRequired;
+        [ObservableProperty]
+        [Required]
+        [EmailAddress(ErrorMessage = "Email Address is not valid")]
+        private string? _emailAddress;
+        [ObservableProperty]
+        private string _emailIDErrorText;
+        [ObservableProperty]
+        private string _emailIDSuccessText;
+        [ObservableProperty]
+        [Required]
+        [MinLength(10, ErrorMessage ="Length should be greater than or equal to 10")]
+        private string? _multiLineInput;
+        [ObservableProperty]
+        private string _multiLineInputErrorText;
+        [ObservableProperty]
+        private string _multiLineInputSuccessText;
 
-        public bool IsRequired
-        {
-            get => _isRequired;
-            set
-            {
-                _isRequired = value;
-                OnPropertyChanged(nameof(IsRequired));
-            }
-        }
-        public bool ShowPassword
-        {
-            get => _showPassword;
-            set
-            {
-                _showPassword = value;
-                OnPropertyChanged(nameof(ShowPassword));
-            }
-        }
-        public bool IsAutoSize
-        {
-            get => _isAutoSize;
-            set
-            {
-                if (_isAutoSize != value)
-                {
-                    _isAutoSize = value;
-                    OnPropertyChanged(nameof(IsAutoSize));
-                }
-            }
-        }
-        public bool IsEnabled
-        {
-            get => _isEnabled;
-            set
-            {
-                if (_isEnabled != value)
-                {
-                    _isEnabled = value;
-                    OnPropertyChanged(nameof(IsEnabled));
-                }
-            }
-        }
-        public bool IsReadOnly
-        {
-            get => _isReadOnly;
-            set
-            {
-                if (_isReadOnly != value)
-                {
-                    _isReadOnly = value;
-                    OnPropertyChanged(nameof(IsReadOnly));
-                }
-            }
-        }
         public InputPageViewModel()
         {
             ShowPasswordCommand = new Command(ChangeShowPasswordState);
@@ -75,17 +43,57 @@ namespace DemoApp.ViewModels
             IsAutoSize = true;
             IsRequired = false;
         }
-
         private void ChangeShowPasswordState(object obj)
         {
-            Console.WriteLine("In Command ");
-            if (_showPassword == true)
+            if (ShowPassword == true)
             {
                 ShowPassword = false;
             }
             else
             {
                 ShowPassword = true;
+            }
+        }
+        partial void OnEmailAddressChanged(string oldValue, string newValue)
+        {
+            if (string.IsNullOrEmpty(newValue))
+            {
+                EmailIDErrorText = null;
+                EmailIDSuccessText = null;
+                return;
+            }
+            ValidateAllProperties();
+            var emailIdError = GetErrors("EmailAddress").ToList();
+            if (emailIdError.Count > 0)
+            {
+                EmailIDErrorText = emailIdError[0].ErrorMessage;
+                EmailIDSuccessText = null;
+            }
+            else
+            {
+                EmailIDSuccessText = "Email Address is valid";
+                EmailIDErrorText = null;
+            }
+        }
+        partial void OnMultiLineInputChanged(string oldValue, string newValue)
+        {
+            if (string.IsNullOrEmpty(newValue))
+            {
+                MultiLineInputErrorText = null;
+                MultiLineInputSuccessText = null;
+                return;
+            }
+            ValidateAllProperties();
+            var multiLineInputError = GetErrors("MultiLineInput").ToList();
+            if (multiLineInputError.Count > 0)
+            {
+                MultiLineInputErrorText = multiLineInputError[0].ErrorMessage;
+                MultiLineInputSuccessText = null;
+            }
+            else
+            {
+                MultiLineInputSuccessText = "Input is valid";
+                MultiLineInputErrorText = null;
             }
         }
     }

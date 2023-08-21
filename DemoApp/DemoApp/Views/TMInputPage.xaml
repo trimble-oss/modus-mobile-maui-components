@@ -16,20 +16,17 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch x:Name="isEnabled"
-                  IsToggled="{Binding IsEnabled}"
-                  Toggled="IsEnabled_Toggled" />
+                  IsToggled="{Binding IsEnabled}"/>
           <Label Text="IsReadOnly"
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch x:Name="isReadOnly"
-                  IsToggled="{Binding IsReadOnly}"
-                  Toggled="IsReadOnly_Toggled" />
+                  IsToggled="{Binding IsReadOnly}"/>
           <Label Text="IsRequired"
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch x:Name="isRequired"
-                  IsToggled="{Binding IsRequired}"
-                  Toggled="IsRequired_Toggled" />
+                  IsToggled="{Binding IsRequired}"/>
         </StackLayout>
 
         <Modus:TMInput  x:Name="modusInput"
@@ -49,8 +46,10 @@
                        HelperText="Enter a valid email"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
-                       InputValidation="TMInputValidation"
                        IsRequired="{Binding IsRequired}"
+                       Text="{Binding EmailAddress}"
+                       ErrorText="{Binding EmailIDErrorText}"
+                       SuccessText="{Binding EmailIDSuccessText}"
                        Placeholder="Text Input" />
 
         <Modus:TMInput x:Name="filled"

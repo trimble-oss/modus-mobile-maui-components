@@ -24,7 +24,7 @@ public partial class BaseInput : ContentView
     #region Bindable Properties
 
     public static readonly BindableProperty TextProperty =
-        BindableProperty.Create(nameof(Text), typeof(string), typeof(BaseInput), propertyChanged: OnTextChanged);
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(BaseInput), defaultBindingMode: BindingMode.TwoWay,propertyChanged: OnTextChanged);
     /// <summary>
     /// Gets or sets the type of keyboard is used when the entry is focused.
     /// </summary>
@@ -76,7 +76,17 @@ public partial class BaseInput : ContentView
     /// Gets or sets the text for helper text label in the control
     /// </summary>
     public static readonly BindableProperty HelperTextProperty =
-        BindableProperty.Create(nameof(HelperText), typeof(string), typeof(BaseInput), null, propertyChanged: OnHelperTextChanged);
+        BindableProperty.Create(nameof(HelperText), typeof(string), typeof(BaseInput), null, propertyChanged: OnInfoTextsChanged);
+    /// <summary>
+    /// Gets or sets the text for error text in the control
+    /// </summary>
+    public static readonly BindableProperty ErrorTextProperty =
+        BindableProperty.Create(nameof(ErrorText), typeof(string), typeof(BaseInput), null, propertyChanged: OnInfoTextsChanged);
+    /// <summary>
+    /// Gets or sets the text for success text in the control
+    /// </summary>
+    public static readonly BindableProperty SuccessTextProperty =
+        BindableProperty.Create(nameof(SuccessText), typeof(string), typeof(BaseInput), null, propertyChanged: OnInfoTextsChanged);
     /// <summary>
     /// Gets or sets value that indicates whether the input control is enabled or not.
     /// </summary>
@@ -88,7 +98,6 @@ public partial class BaseInput : ContentView
     /// </summary>
     public static readonly BindableProperty IsReadOnlyProperty =
         BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(BaseInput), false, propertyChanged: OnReadOnlyPropertyChanged);
-
     #endregion
 
     #region Public Properties
@@ -102,10 +111,6 @@ public partial class BaseInput : ContentView
     /// Public event handler to be invoked when text is changed
     /// </summary>
     public event EventHandler<TextChangedEventArgs> TextChanged;
-    /// <summary>
-    /// Public event handler to hold the input validation function
-    /// </summary>
-    public event InputValidationHandler InputValidation;
     public string Text
     {
         get => (string)GetValue(TextProperty);
@@ -208,7 +213,22 @@ public partial class BaseInput : ContentView
         get => (string)GetValue(HelperTextProperty);
         set => SetValue(HelperTextProperty, value);
     }
-
+    /// <summary>
+    /// Gets or sets the Error text
+    /// </summary>
+    public string ErrorText
+    {
+        get => (string)GetValue(ErrorTextProperty);
+        set => SetValue(ErrorTextProperty, value);
+    }
+    /// <summary>
+    /// Gets or sets the Success text
+    /// </summary>
+    public string SuccessText
+    {
+        get => (string)GetValue(SuccessTextProperty);
+        set => SetValue(SuccessTextProperty, value);
+    }
     #endregion
     public BaseInput()
     {
@@ -258,73 +278,54 @@ public partial class BaseInput : ContentView
     {
         if (bindable is BaseInput tmInput)
         {
-            Tuple<bool, string> result = null;
-
-            if (!string.IsNullOrEmpty((string)newValue))
-            {
-                result = tmInput.InputValidation?.Invoke(tmInput);
-                if (result != null && !string.IsNullOrEmpty(result.Item2))
-                {
-                    tmInput.HelperLabel.Text = result.Item2;
-                    var response = result.Item1 ? ValidationResponse.Success : ValidationResponse.Error;
-                    // To avoid multiple times updating needs to check old value not equal to current value
-                    if (tmInput._validationResponse != response)
-                    {
-                        tmInput._validationResponse = response;
-                        SetBorderColor(tmInput);
-                    }
-
-                }
-            }
-            else
-            {
-                // To avoid multiple times updating needs to check old value not equal to current value
-                if (tmInput._validationResponse != ValidationResponse.Info)
-                {
-                    tmInput._validationResponse = ValidationResponse.Info;
-                    SetBorderColor(tmInput);
-                }
-            }
             tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
     }
 
     protected static void SetBorderColor(BaseInput tmInput)
     {
-        if (!tmInput.GetCoreContent().IsFocused)
-        {
-            tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
-            tmInput.InputBorder.StrokeThickness = 1;
+        bool isFocused = tmInput.GetCoreContent().IsFocused;
+        bool hasError = !string.IsNullOrEmpty(tmInput.ErrorText);
+        bool hasSuccess = !string.IsNullOrEmpty(tmInput.SuccessText);
 
-            if (!string.IsNullOrEmpty(tmInput.HelperText))
+        tmInput.InputBorder.StrokeThickness = isFocused ? 2 : 1;
+
+        if (isFocused)
+        {
+            if (hasError)
             {
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
+                tmInput.HelperLabel.Text = tmInput.ErrorText;
+            }
+            else if (hasSuccess)
+            {
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
+                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Success_icon_outline);
+                tmInput.HelperLabel.Text = tmInput.SuccessText;
+            }
+            else
+            {
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
                 tmInput.HelperLabel.Text = tmInput.HelperText;
             }
         }
         else
         {
-            tmInput.InputBorder.StrokeThickness = 2;
-            switch (tmInput._validationResponse)
-            {
-                case ValidationResponse.Success:
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
-                    tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Success_icon_outline);
-                    break;
-                case ValidationResponse.Error:
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
-                    tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
-                    break;
-                default:
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                    tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
-                    tmInput.HelperLabel.Text = tmInput.HelperText;
-                    break;
-            }
+            tmInput.InputBorder.Stroke = hasError
+                ? ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed)
+                : ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+
+            tmInput.HelperIcon.Source = hasError
+                ? ImageSource.FromFile(ImageConstants.Error_icon_outline)
+                : ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
+
+            tmInput.HelperLabel.Text = hasError ? tmInput.ErrorText : tmInput.HelperText;
         }
     }
 
-    private static void OnHelperTextChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnInfoTextsChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is BaseInput tmInput)
         {
