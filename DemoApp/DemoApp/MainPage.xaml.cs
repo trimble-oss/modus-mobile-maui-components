@@ -29,7 +29,8 @@ namespace DemoApp
                 "TabbedPage",
                 "Badge",
                 "Accordion",
-                "Chips"
+                "Chips",
+                "ProgressBar"
             };
             BindingContext = this;
         }
@@ -89,6 +90,9 @@ namespace DemoApp
                         break;
                     case "Badge":
                         Navigation.PushAsync(new BadgeSamplePage());
+                        break;
+                    case "ProgressBar":
+                        Navigation.PushAsync(new ProgressBarSamplePage());
                         break;
                     case "Chips":
                         Navigation.PushAsync(new ChipsSamplePage());

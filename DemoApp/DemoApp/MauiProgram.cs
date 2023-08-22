@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using DemoApp.ViewModels;
+using DemoApp.Views;
 using Microsoft.Extensions.Logging;
 using Trimble.Modus.Components.Hosting;
 
@@ -21,7 +23,18 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+        RegisterViewModel(builder);
+        RegisterPages(builder);
 
         return builder.Build();
+    }
+    public static void RegisterViewModel(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<ProgressBarSamplePageViewModel>();
+    }
+
+    public static void RegisterPages(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<ProgressBarSamplePage>();
     }
 }
