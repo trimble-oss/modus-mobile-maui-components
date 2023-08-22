@@ -12,7 +12,7 @@ namespace DemoApp.Helpers
 #elif IOS || MACCATALYST
 			MauiUIApplicationDelegate.Current.Services;
 #else
-            _current;
+            MauiWinUIApplication.Current.Services;
 #endif    
     }
 }

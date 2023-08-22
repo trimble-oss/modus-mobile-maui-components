@@ -29,7 +29,7 @@ namespace DemoApp
                 "TabbedPage",
                 "Badge",
                 "Accordion",
-                "Chips"
+                "Chips",
                 "ProgressBar"
             };
             BindingContext = this;
