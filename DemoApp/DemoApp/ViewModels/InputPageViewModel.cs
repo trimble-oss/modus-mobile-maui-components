@@ -16,8 +16,6 @@ namespace DemoApp.ViewModels
         [ObservableProperty]
         private bool _isAutoSize;
         [ObservableProperty]
-        private bool _isRequired;
-        [ObservableProperty]
         [Required]
         [EmailAddress(ErrorMessage = "Email Address is not valid")]
         private string? _emailAddress;
@@ -41,7 +39,6 @@ namespace DemoApp.ViewModels
             IsEnabled = true;
             IsReadOnly = false;
             IsAutoSize = true;
-            IsRequired = false;
         }
         private void ChangeShowPasswordState(object obj)
         {
@@ -56,12 +53,6 @@ namespace DemoApp.ViewModels
         }
         partial void OnEmailAddressChanged(string oldValue, string newValue)
         {
-            if (string.IsNullOrEmpty(newValue))
-            {
-                EmailIDErrorText = null;
-                EmailIDSuccessText = null;
-                return;
-            }
             ValidateAllProperties();
             var emailIdError = GetErrors("EmailAddress").ToList();
             if (emailIdError.Count > 0)

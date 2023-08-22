@@ -24,7 +24,7 @@ public partial class BaseInput : ContentView
     #region Bindable Properties
 
     public static readonly BindableProperty TextProperty =
-        BindableProperty.Create(nameof(Text), typeof(string), typeof(BaseInput), defaultBindingMode: BindingMode.TwoWay,propertyChanged: OnTextChanged);
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(BaseInput), defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnTextChanged);
     /// <summary>
     /// Gets or sets the type of keyboard is used when the entry is focused.
     /// </summary>
@@ -287,46 +287,81 @@ public partial class BaseInput : ContentView
         bool isFocused = tmInput.GetCoreContent().IsFocused;
         bool hasError = !string.IsNullOrEmpty(tmInput.ErrorText);
         bool hasSuccess = !string.IsNullOrEmpty(tmInput.SuccessText);
-
+        Console.WriteLine("suces " +hasSuccess+ " error " + hasError);
         tmInput.InputBorder.StrokeThickness = isFocused ? 2 : 1;
 
         if (isFocused)
         {
             if (hasError)
             {
+                tmInput.HelperLayout.IsVisible = true;
                 tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
             }
             else if (hasSuccess)
             {
+                tmInput.HelperLayout.IsVisible = true;
                 tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Success_icon_outline);
                 tmInput.HelperLabel.Text = tmInput.SuccessText;
             }
             else
             {
+                if (!string.IsNullOrEmpty(tmInput.HelperText))
+                {
+                    tmInput.HelperLayout.IsVisible = true;
+                }
+                else
+                {
+                    tmInput.HelperLayout.IsVisible = false;
+                }
                 tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
                 tmInput.HelperLabel.Text = tmInput.HelperText;
             }
+
         }
         else
         {
-            tmInput.InputBorder.Stroke = hasError
-                ? ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed)
-                : ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+            if (hasError)
+            {
+                tmInput.HelperLayout.IsVisible = true;
+                tmInput.HelperLabel.Text = tmInput.ErrorText;
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
+            }
+            else if (tmInput.IsRequired && string.IsNullOrEmpty(tmInput.Text))
+            {
+                tmInput.HelperLayout.IsVisible = true;
+                tmInput.HelperLabel.Text = "Field is Required";
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
+                    
+            }
+            else
+            {
+                if(!string.IsNullOrEmpty(tmInput.HelperText))
+                {
+                    tmInput.HelperLayout.IsVisible = true;
+                    tmInput.HelperLabel.Text = tmInput.HelperText;
+                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
 
-            tmInput.HelperIcon.Source = hasError
-                ? ImageSource.FromFile(ImageConstants.Error_icon_outline)
-                : ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
+                }
+                else
+                {
 
-            tmInput.HelperLabel.Text = hasError ? tmInput.ErrorText : tmInput.HelperText;
+                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmInput.HelperLayout.IsVisible = false;
+                }
+            }
         }
     }
 
     private static void OnInfoTextsChanged(BindableObject bindable, object oldValue, object newValue)
     {
+        Console.WriteLine("Helpertext values" + (string)newValue +" oldvalue "+(string)oldValue);
         if (bindable is BaseInput tmInput)
         {
             SetBorderColor(tmInput);
@@ -343,6 +378,7 @@ public partial class BaseInput : ContentView
             if (tmInput.IsEnabled)
             {
                 tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
                 tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 SetBorderColor(tmInput);

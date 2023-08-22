@@ -22,11 +22,6 @@
                  VerticalOptions="Center" />
           <Switch x:Name="isReadOnly"
                   IsToggled="{Binding IsReadOnly}"/>
-          <Label Text="IsRequired"
-                 HorizontalOptions="Center"
-                 VerticalOptions="Center" />
-          <Switch x:Name="isRequired"
-                  IsToggled="{Binding IsRequired}"/>
         </StackLayout>
 
         <Modus:TMInput  x:Name="modusInput"
@@ -38,7 +33,6 @@
                         TitleText="Text Input"
                         IsEnabled="{Binding IsEnabled}"
                         IsReadOnly="{Binding IsReadOnly}"
-                        IsRequired="{Binding IsRequired}"
                         Placeholder="Input" />
 
         <Modus:TMInput x:Name="validationInput"
@@ -46,17 +40,25 @@
                        HelperText="Enter a valid email"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
-                       IsRequired="{Binding IsRequired}"
+                       IsRequired="true"
                        Text="{Binding EmailAddress}"
                        ErrorText="{Binding EmailIDErrorText}"
                        SuccessText="{Binding EmailIDSuccessText}"
+                       Placeholder="Text Input" />
+        
+        <Modus:TMInput x:Name="numbervalidationInput"
+                       TitleText="Success/Error Input Without Helper Text"
+                       IsEnabled="{Binding IsEnabled}"
+                       IsReadOnly="{Binding IsReadOnly}"
+                       Text="{Binding MultiLineInput}"
+                       ErrorText="{Binding MultiLineInputErrorText}"
+                       SuccessText="{Binding MultiLineInputSuccessText}"
                        Placeholder="Text Input" />
 
         <Modus:TMInput x:Name="filled"
                        TitleText="Filled"
                        Placeholder="Text Input"
                        IsEnabled="{Binding IsEnabled}"
-                       IsRequired="{Binding IsRequired}"
                        IsReadOnly="{Binding IsReadOnly}"
                        Text="Filled" />
 
@@ -66,7 +68,6 @@
                        RightIconSource="{x:Static constants:ImageConstants.PasswordIcon}"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
-                       IsRequired="{Binding IsRequired}"
                        RightIconCommand="{Binding ShowPasswordCommand}"
                        IsPassword="{Binding ShowPassword}" />
 
@@ -75,7 +76,6 @@
                        LeftIconSource="{x:Static constants:ImageConstants.SearchIcon}"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
-                       IsRequired="{Binding IsRequired}"
                        Placeholder="Text Input" />
 
         <Modus:TMInput x:Name="bothIcon"
@@ -84,7 +84,6 @@
                        Placeholder="Text Input"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
-                       IsRequired="{Binding IsRequired}"
                        RightIconSource="{x:Static constants:ImageConstants.ContactIcon}" />
       </StackLayout>
     </VerticalStackLayout>
