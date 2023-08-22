@@ -1,10 +1,11 @@
-﻿using DemoApp.Constant;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DemoApp.Constant;
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    public class ButtonPageViewModel : BaseViewModel
+    public class ButtonPageViewModel : ObservableObject
     {
         private Trimble.Modus.Components.Enums.Size _selectedFontSize;
         private ButtonStyle _selectedButtonStyle;
