@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.SwitchSamplePage"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             Title="SwitchSamplePage">
+  <StackLayout Spacing="20" Padding="10" HorizontalOptions="Start" VerticalOptions="Start" Orientation="Vertical">
+    <Label Text="Medium Switches"/>
+    <Modus:TMSwitch Text="Enabled" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
+    <Modus:TMSwitch Text="Disabled" SwitchSize="Medium"  IsEnabled="False" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
+    <Label Text="Large Switches"/>
+    <Modus:TMSwitch Text="Enabled" SwitchSize="Large"  IsEnabled="True" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
+    <Modus:TMSwitch Text="Disabled" SwitchSize="Large"  IsEnabled="False" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
+  </StackLayout>
+</ContentPage>

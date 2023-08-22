@@ -41,5 +41,7 @@ internal class ColorsConstants
     public const string TrimbleNeutralGray = "TrimbleNeutralGray";
     public const string AccordionTitleColor = "AccordionTitleColor";
     public const string AccordionDescriptionColor = "AccordionDescriptionColor";
+    public const string SwitchSelected = "SwitchSelected";
+    public const string SwitchUnselected = "SwitchUnselected";
 }
 

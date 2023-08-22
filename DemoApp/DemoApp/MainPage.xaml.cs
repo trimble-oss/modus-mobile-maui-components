@@ -29,7 +29,8 @@ namespace DemoApp
                 "TabbedPage",
                 "Badge",
                 "Accordion",
-                "Chips"
+                "Chips",
+                "Switch"
             };
             BindingContext = this;
         }
@@ -92,7 +93,10 @@ namespace DemoApp
                         break;
                     case "Chips":
                         Navigation.PushAsync(new ChipsSamplePage());
-                        break; 
+                        break;
+                    case "Switch":
+                        Navigation.PushAsync(new SwitchSamplePage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
