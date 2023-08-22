@@ -43,4 +43,9 @@
   <Color x:Key="TableHeaderColor">#F1F1F6</Color>
   <Color x:Key="TableDividerColor">#B7B9C3</Color>
   <Color x:Key="TableHeaderTextColor">#464b52</Color>
+  
+  <Color x:Key="AccordionTitleColor">#FF252A2E</Color>
+  <Color x:Key="AccordionDescriptionColor">#FF7D808D</Color>
+  <!-- Chip -->
+  <Color x:Key="ChipSelectedBackground">#A1BFD2</Color>
 </ResourceDictionary>
