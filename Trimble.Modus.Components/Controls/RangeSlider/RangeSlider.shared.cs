@@ -56,16 +56,16 @@ namespace Trimble.Modus.Components
 			= BindableProperty.Create(nameof(TrackSize), typeof(double), typeof(RangeSlider), 4.0, propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackColorProperty
-			= BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(RangeSlider), Colors.BlueViolet, propertyChanged: OnLayoutPropertyChanged);
+			= BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackHighlightColorProperty
-			= BindableProperty.Create(nameof(TrackHighlightColor), typeof(Color), typeof(RangeSlider), Colors.Red, propertyChanged: OnLayoutPropertyChanged);
+			= BindableProperty.Create(nameof(TrackHighlightColor), typeof(Color), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackBorderColorProperty
-			= BindableProperty.Create(nameof(TrackBorderColor), typeof(Color), typeof(RangeSlider), Colors.Black, propertyChanged: OnLayoutPropertyChanged);
+			= BindableProperty.Create(nameof(TrackBorderColor), typeof(Color), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackHighlightBorderColorProperty
-			= BindableProperty.Create(nameof(TrackHighlightBorderColor), typeof(Color), typeof(RangeSlider), Colors.Green, propertyChanged: OnLayoutPropertyChanged);
+			= BindableProperty.Create(nameof(TrackHighlightBorderColor), typeof(Color), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty ValueLabelStyleProperty
 			= BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
@@ -357,16 +357,14 @@ namespace Trimble.Modus.Components
 			UpperValueLabel.BatchBegin();
 
 			Track.BackgroundColor = Color.FromArgb("#A3A6B1");
-			TrackHighlight.BackgroundColor = GetColorOrDefault(TrackHighlightColor, Color.FromRgb(46, 124, 246));
-			Track.Stroke = GetColorOrDefault(TrackBorderColor, Colors.Black);
-			TrackHighlight.Stroke = GetColorOrDefault(TrackHighlightBorderColor, Colors.Green);
+			TrackHighlight.BackgroundColor = Color.FromArgb("#0063A3");
+            TrackHighlight.StrokeThickness = 0;
 
 			var trackSize = TrackSize;
-			var trackRadius = (float)GetDoubleOrDefault(TrackRadius, trackSize / 2);
 			var lowerThumbSize = 20;
 			var upperThumbSize = 20;
-            Track.StrokeShape = new Rectangle() { RadiusX = 10, RadiusY = 10};
-			TrackHighlight.StrokeShape = new Rectangle() { RadiusX = 10, RadiusY = 10 };
+            Track.StrokeShape = new Rectangle() { RadiusX = 100, RadiusY = 100};
+			TrackHighlight.StrokeShape = new Rectangle() { RadiusX = 100, RadiusY = 100 };
 
 			var labelWithSpacingHeight = Max(Max(LowerValueLabel.Height, UpperValueLabel.Height), 0);
 			if (labelWithSpacingHeight > 0)
