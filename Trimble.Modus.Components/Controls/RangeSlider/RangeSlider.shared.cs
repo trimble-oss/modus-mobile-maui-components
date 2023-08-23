@@ -1,5 +1,6 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using System.Runtime.CompilerServices;
+using Trimble.Modus.Components.Constant;
 using static System.Math;
 
 namespace Trimble.Modus.Components
@@ -57,9 +58,6 @@ namespace Trimble.Modus.Components
 		public static BindableProperty LowerThumbSizeProperty
 			= BindableProperty.Create(nameof(LowerThumbSize), typeof(double), typeof(RangeSlider), -1.0, propertyChanged: OnLayoutPropertyChanged);
 
-		public static BindableProperty UpperThumbSizeProperty
-			= BindableProperty.Create(nameof(UpperThumbSize), typeof(double), typeof(RangeSlider), -1.0, propertyChanged: OnLayoutPropertyChanged);
-
 		public static BindableProperty TrackSizeProperty
 			= BindableProperty.Create(nameof(TrackSize), typeof(double), typeof(RangeSlider), 4.0, propertyChanged: OnLayoutPropertyChanged);
 
@@ -68,9 +66,6 @@ namespace Trimble.Modus.Components
 
 		public static BindableProperty LowerThumbColorProperty
 			= BindableProperty.Create(nameof(LowerThumbColor), typeof(Color), typeof(RangeSlider), Colors.Aqua, propertyChanged: OnLayoutPropertyChanged);
-
-		public static BindableProperty UpperThumbColorProperty
-			= BindableProperty.Create(nameof(UpperThumbColor), typeof(Color), typeof(RangeSlider), Colors.Aqua, propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackColorProperty
 			= BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(RangeSlider), Colors.BlueViolet, propertyChanged: OnLayoutPropertyChanged);
@@ -83,9 +78,6 @@ namespace Trimble.Modus.Components
 
 		public static BindableProperty LowerThumbBorderColorProperty
 			= BindableProperty.Create(nameof(LowerThumbBorderColor), typeof(Color), typeof(RangeSlider), Colors.Black, propertyChanged: OnLayoutPropertyChanged);
-
-		public static BindableProperty UpperThumbBorderColorProperty
-			= BindableProperty.Create(nameof(UpperThumbBorderColor), typeof(Color), typeof(RangeSlider), Colors.Black, propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackBorderColorProperty
 			= BindableProperty.Create(nameof(TrackBorderColor), typeof(Color), typeof(RangeSlider), Colors.Black, propertyChanged: OnLayoutPropertyChanged);
@@ -108,9 +100,6 @@ namespace Trimble.Modus.Components
 		public static BindableProperty LowerThumbViewProperty
 			= BindableProperty.Create(nameof(LowerThumbView), typeof(View), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
 
-		public static BindableProperty UpperThumbViewProperty
-			= BindableProperty.Create(nameof(UpperThumbView), typeof(View), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
-
 		public static BindableProperty ValueLabelSpacingProperty
 			= BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(RangeSlider), 5.0, propertyChanged: OnLayoutPropertyChanged);
 
@@ -119,9 +108,6 @@ namespace Trimble.Modus.Components
 
 		public static BindableProperty LowerThumbRadiusProperty
 			= BindableProperty.Create(nameof(LowerThumbRadius), typeof(double), typeof(RangeSlider), -1.0, propertyChanged: OnLayoutPropertyChanged);
-
-		public static BindableProperty UpperThumbRadiusProperty
-			= BindableProperty.Create(nameof(UpperThumbRadius), typeof(double), typeof(RangeSlider), -1.0, propertyChanged: OnLayoutPropertyChanged);
 
 		public static BindableProperty TrackRadiusProperty
 			= BindableProperty.Create(nameof(TrackRadius), typeof(double), typeof(RangeSlider), -1.0, propertyChanged: OnLayoutPropertyChanged);
@@ -184,12 +170,6 @@ namespace Trimble.Modus.Components
 			set => SetValue(LowerThumbSizeProperty, value);
 		}
 
-		public double UpperThumbSize
-		{
-			get => (double)GetValue(UpperThumbSizeProperty);
-			set => SetValue(UpperThumbSizeProperty, value);
-		}
-
 		public double TrackSize
 		{
 			get => (double)GetValue(TrackSizeProperty);
@@ -206,12 +186,6 @@ namespace Trimble.Modus.Components
 		{
 			get => (Color)GetValue(LowerThumbColorProperty);
 			set => SetValue(LowerThumbColorProperty, value);
-		}
-
-		public Color UpperThumbColor
-		{
-			get => (Color)GetValue(UpperThumbColorProperty);
-			set => SetValue(UpperThumbColorProperty, value);
 		}
 
 		public Color TrackColor
@@ -236,12 +210,6 @@ namespace Trimble.Modus.Components
 		{
 			get => (Color)GetValue(LowerThumbBorderColorProperty);
 			set => SetValue(LowerThumbBorderColorProperty, value);
-		}
-
-		public Color UpperThumbBorderColor
-		{
-			get => (Color)GetValue(UpperThumbBorderColorProperty);
-			set => SetValue(UpperThumbBorderColorProperty, value);
 		}
 
 		public Color TrackBorderColor
@@ -286,12 +254,6 @@ namespace Trimble.Modus.Components
 			set => SetValue(LowerThumbViewProperty, value);
 		}
 
-		public View? UpperThumbView
-		{
-			get => (View?)GetValue(UpperThumbViewProperty);
-			set => SetValue(UpperThumbViewProperty, value);
-		}
-
 		public double ValueLabelSpacing
 		{
 			get => (double)GetValue(ValueLabelSpacingProperty);
@@ -310,12 +272,6 @@ namespace Trimble.Modus.Components
 			set => SetValue(LowerThumbRadiusProperty, value);
 		}
 
-		public double UpperThumbRadius
-		{
-			get => (double)GetValue(UpperThumbRadiusProperty);
-			set => SetValue(UpperThumbRadiusProperty, value);
-		}
-
 		public double TrackRadius
 		{
 			get => (double)GetValue(TrackRadiusProperty);
@@ -331,13 +287,13 @@ namespace Trimble.Modus.Components
 
 		Border LowerThumb { get; } = CreateBorderElement<ThumbBorder>(IsThumbShadowSupported);
 
-		Border UpperThumb { get; } = CreateBorderElement<ThumbBorder>(IsThumbShadowSupported);
-
 		Label LowerValueLabel { get; } = CreateLabelElement();
 
 		Label UpperValueLabel { get; } = CreateLabelElement();
 
-		double TrackWidth => Width - LowerThumb.Width - UpperThumb.Width;
+        ImageButton ThumbIcon { get; } = new ImageButton() { Source = ImageConstants.SliderThumbIcon, BackgroundColor = Colors.Transparent};
+
+		double TrackWidth => Width - LowerThumb.Width - LowerThumb.Width;
 
 		protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
 		{
@@ -373,15 +329,15 @@ namespace Trimble.Modus.Components
             Children.Add(Track);
             Children.Add(TrackHighlight);
             Children.Add(LowerThumb);
-            Children.Add(UpperThumb);
             Children.Add(LowerValueLabel);
             Children.Add(UpperValueLabel);
+            Children.Add(ThumbIcon);
 
             AddGestureRecognizer(LowerThumb, lowerThumbGestureRecognizer);
-            AddGestureRecognizer(UpperThumb, upperThumbGestureRecognizer);
+            AddGestureRecognizer(ThumbIcon, upperThumbGestureRecognizer);
             Track.SizeChanged += OnViewSizeChanged;
             LowerThumb.SizeChanged += OnViewSizeChanged;
-            UpperThumb.SizeChanged += OnViewSizeChanged;
+            ThumbIcon.SizeChanged += OnViewSizeChanged;
             LowerValueLabel.SizeChanged += OnViewSizeChanged;
             UpperValueLabel.SizeChanged += OnViewSizeChanged;
             OnIsEnabledChanged();
@@ -454,18 +410,18 @@ namespace Trimble.Modus.Components
 			upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth) + LowerThumb.Width;
 
 			LowerThumb.TranslationX = lowerTranslation;
-			UpperThumb.TranslationX = upperTranslation;
+			ThumbIcon.TranslationX = upperTranslation;
 			OnValueLabelTranslationChanged();
 
 			var bounds = GetLayoutBounds((IView)TrackHighlight);
-			this.SetLayoutBounds(TrackHighlight, new Rect(lowerTranslation, bounds.Y, upperTranslation - lowerTranslation + UpperThumb.Width, bounds.Height));
+			this.SetLayoutBounds(TrackHighlight, new Rect(lowerTranslation, bounds.Y, upperTranslation - lowerTranslation + ThumbIcon.Width, bounds.Height));
 		}
 
 		void OnValueLabelTranslationChanged()
 		{
 			var labelSpacing = 5;
 			var lowerLabelTranslation = lowerTranslation + ((LowerThumb.Width - LowerValueLabel.Width) / 2);
-			var upperLabelTranslation = upperTranslation + ((UpperThumb.Width - UpperValueLabel.Width) / 2);
+			var upperLabelTranslation = upperTranslation + ((ThumbIcon.Width - UpperValueLabel.Width) / 2);
 			LowerValueLabel.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - LowerValueLabel.Width - UpperValueLabel.Width - labelSpacing);
 			UpperValueLabel.TranslationX = Min(Max(upperLabelTranslation, LowerValueLabel.TranslationX + LowerValueLabel.Width + labelSpacing), Width - UpperValueLabel.Width);
 		}
@@ -476,25 +432,20 @@ namespace Trimble.Modus.Components
 			Track.BatchBegin();
 			TrackHighlight.BatchBegin();
 			LowerThumb.BatchBegin();
-			UpperThumb.BatchBegin();
+			ThumbIcon.BatchBegin();
 			LowerValueLabel.BatchBegin();
 			UpperValueLabel.BatchBegin();
 
 			var lowerThumbColor = GetColorOrDefault(LowerThumbColor, ThumbColor);
-			var upperThumbColor = GetColorOrDefault(UpperThumbColor, ThumbColor);
 			var lowerThumbBorderColor = GetColorOrDefault(LowerThumbBorderColor, ThumbBorderColor);
-			var upperThumbBorderColor = GetColorOrDefault(UpperThumbBorderColor, ThumbBorderColor);
 			if (!IsThumbShadowSupported)
 			{
 				var defaultThumbColor = Color.FromRgb(182, 182, 182);
 				lowerThumbBorderColor = GetColorOrDefault(lowerThumbBorderColor, defaultThumbColor);
-				upperThumbBorderColor = GetColorOrDefault(upperThumbBorderColor, defaultThumbColor);
 			}
 
 			LowerThumb.Stroke = lowerThumbBorderColor;
-			UpperThumb.Stroke = upperThumbBorderColor;
 			LowerThumb.BackgroundColor = GetColorOrDefault(lowerThumbColor, Colors.White);
-			UpperThumb.BackgroundColor = GetColorOrDefault(upperThumbColor, Colors.White);
 			Track.BackgroundColor = GetColorOrDefault(TrackColor, Color.FromRgb(182, 182, 182));
 			TrackHighlight.BackgroundColor = GetColorOrDefault(TrackHighlightColor, Color.FromRgb(46, 124, 246));
 			Track.Stroke = GetColorOrDefault(TrackBorderColor, Colors.Black);
@@ -503,14 +454,12 @@ namespace Trimble.Modus.Components
 			var trackSize = TrackSize;
 			var trackRadius = (float)GetDoubleOrDefault(TrackRadius, trackSize / 2);
 			var lowerThumbSize = GetDoubleOrDefault(LowerThumbSize, ThumbSize);
-			var upperThumbSize = GetDoubleOrDefault(UpperThumbSize, ThumbSize);
+			var upperThumbSize = GetDoubleOrDefault(LowerThumbSize, ThumbSize);
             Track.StrokeShape = new Rectangle() { RadiusX = 10, RadiusY = 10};
 			TrackHighlight.StrokeShape = new Rectangle() { RadiusX = 10, RadiusY = 10 };
             LowerThumb.StrokeShape = new Rectangle() { RadiusX = (float)GetDoubleOrDefault(GetDoubleOrDefault(LowerThumbRadius, ThumbRadius), lowerThumbSize / 2), RadiusY = (float)GetDoubleOrDefault(GetDoubleOrDefault(LowerThumbRadius, ThumbRadius), lowerThumbSize / 2) };
-			UpperThumb.StrokeShape = new Rectangle() { RadiusY = (float)GetDoubleOrDefault(GetDoubleOrDefault(UpperThumbRadius, ThumbRadius), upperThumbSize / 2), RadiusX = (float)GetDoubleOrDefault(GetDoubleOrDefault(UpperThumbRadius, ThumbRadius), upperThumbSize / 2), };
 
 			LowerThumb.Content = LowerThumbView;
-			UpperThumb.Content = UpperThumbView;
 
 			var labelWithSpacingHeight = Max(Max(LowerValueLabel.Height, UpperValueLabel.Height), 0);
 			if (labelWithSpacingHeight > 0)
@@ -527,7 +476,7 @@ namespace Trimble.Modus.Components
 			SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
 			SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
 			SetLayoutBounds((IView)LowerThumb, new Rect(0, lowerThumbVerticalPosition, lowerThumbSize, lowerThumbSize));
-			SetLayoutBounds((IView)UpperThumb, new Rect(0, upperThumbVerticalPosition, upperThumbSize, upperThumbSize));
+			//SetLayoutBounds((IView)UpperThumb, new Rect(0, upperThumbVerticalPosition, upperThumbSize, upperThumbSize));
 			SetLayoutBounds((IView)LowerValueLabel, new Rect(0, 0, -1, -1));
 			SetLayoutBounds((IView)UpperValueLabel, new Rect(0, 0, -1, -1));
 			SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
@@ -540,7 +489,7 @@ namespace Trimble.Modus.Components
 			Track.BatchCommit();
 			TrackHighlight.BatchCommit();
 			LowerThumb.BatchCommit();
-			UpperThumb.BatchCommit();
+            ThumbIcon.BatchCommit();
 			LowerValueLabel.BatchCommit();
 			UpperValueLabel.BatchCommit();
 			BatchCommit();
