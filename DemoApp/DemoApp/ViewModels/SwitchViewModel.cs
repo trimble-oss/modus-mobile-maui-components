@@ -4,9 +4,9 @@ using Trimble.Modus.Components;
 
 namespace DemoApp.ViewModels
 {
-    public partial class SwitchViewModel : ObservableObject
+    public partial class SwitchSamplePageViewModel : ObservableObject
     {
-        public SwitchViewModel()
+        public SwitchSamplePageViewModel()
         {
 
         }
