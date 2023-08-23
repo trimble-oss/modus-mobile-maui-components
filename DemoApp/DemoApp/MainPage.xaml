@@ -21,7 +21,11 @@
   <ContentPage.Content>
     <ScrollView>
       <StackLayout BackgroundColor="White" Padding="20,40,20,20" Spacing="50">
-        <modus:TMSlider/>
+        <modus:RangeSlider MaximumValue="10"
+                MinimumValue="-10"
+                StepValue="0.01"
+                LowerValue="-10"
+                UpperValue="10"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
       </StackLayout>
     </ScrollView>
