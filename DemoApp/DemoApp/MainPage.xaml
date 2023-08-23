@@ -25,7 +25,8 @@
                 MinimumValue="-10"
                 StepValue="0.01"
                 LowerValue="-10"
-                UpperValue="10"/>
+                UpperValue="10"
+                           WidthRequest="250"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
       </StackLayout>
     </ScrollView>
