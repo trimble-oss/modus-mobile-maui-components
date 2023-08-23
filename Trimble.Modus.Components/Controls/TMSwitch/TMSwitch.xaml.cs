@@ -151,10 +151,15 @@ public partial class TMSwitch : ContentView
 
     private void OnSwitchTapped(object sender, TappedEventArgs e)
     {
+        if (!IsEnabled)
+            return;
         IsToggled = !IsToggled;
     }
     private static void OnSwitchSelected(TMSwitch tMSwitch)
     {
+        if (!tMSwitch.hasLoaded)
+            return;
+
         tMSwitch._clicked?.Invoke(tMSwitch, new TMSwitchEventArgs(true));
         tMSwitch.ToggledCommand?.Execute(new TMSwitchEventArgs(true));
 
@@ -170,6 +175,9 @@ public partial class TMSwitch : ContentView
 
     private static void OnSwitchUnSelected(TMSwitch tMSwitch)
     {
+        if (!tMSwitch.hasLoaded)
+            return;
+
         tMSwitch._clicked?.Invoke(tMSwitch, new TMSwitchEventArgs(false));
         tMSwitch.ToggledCommand?.Execute(new TMSwitchEventArgs(false));
         tMSwitch.Animate("UnselectedAnimation",
