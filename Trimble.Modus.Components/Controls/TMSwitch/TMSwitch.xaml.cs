@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
@@ -7,10 +8,11 @@ namespace Trimble.Modus.Components;
 
 public partial class TMSwitch : ContentView
 {
+    private int circleMargin = 6;
+    private bool hasLoaded = false;
     protected EventHandler<TMSwitchEventArgs> _clicked;
     private bool _switchSelected;
     private TMSwitchEventArgs switchEventTrue, switchEventFalse;
-    private TapGestureRecognizer tapGestureRecognizer;
     public static readonly BindableProperty SwitchSizeProperty =
         BindableProperty.Create(nameof(SwitchSize), typeof(SwitchSize), typeof(TMSwitch), SwitchSize.Medium, propertyChanged: OnSwitchSizeChanged);
     public static readonly BindableProperty IsToggledProperty =
@@ -57,8 +59,21 @@ public partial class TMSwitch : ContentView
         InitializeComponent();
         switchEventTrue = new TMSwitchEventArgs(true);
         switchEventFalse = new TMSwitchEventArgs(false);
-        UpdateSwitch(this);
         UpdateSwitchSize(this);
+
+        Loaded += (sender, args) =>
+        {
+            hasLoaded = true;
+            if (IsToggled)
+            {
+                OnSwitchSelected(this);
+            }
+            else
+            {
+                OnSwitchUnSelected(this);
+            }
+        };
+
     }
     private static void OnIsEnabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -67,12 +82,10 @@ public partial class TMSwitch : ContentView
             if ((bool)newValue)
             {
                 tMSwitch.container.Opacity = 1;
-                tMSwitch.border.GestureRecognizers.Add(tMSwitch.tapGestureRecognizer);
             }
             else
             {
                 tMSwitch.container.Opacity = 0.5;
-                tMSwitch.border.GestureRecognizers.Clear();
             }
 
         }
@@ -83,12 +96,11 @@ public partial class TMSwitch : ContentView
         {
             if (String.IsNullOrEmpty((string)newValue))
             {
-                tMSwitch.container.Spacing = 0;
                 tMSwitch.switchText.IsVisible = false;
+                tMSwitch.switchText.Text = string.Empty;
             }
             else
             {
-                tMSwitch.container.Spacing = 8;
                 tMSwitch.switchText.IsVisible = true;
                 tMSwitch.switchText.Text = (string)newValue;
             }
@@ -117,26 +129,17 @@ public partial class TMSwitch : ContentView
                 OnSwitchUnSelected(tMSwitch);
             }
         }
-    }
-    private void UpdateSwitch(TMSwitch tMSwitch)
-    {
-
-        tapGestureRecognizer = new TapGestureRecognizer();
-        tapGestureRecognizer.Tapped += OnSwitchTapped;
-        border.GestureRecognizers.Add(tapGestureRecognizer);
-        tMSwitch.border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchUnselected);
-        tMSwitch.border.Padding = 5;
-    }
+    }    
 
     private static void UpdateSwitchSize(TMSwitch tMSwitch)
     {
-        tMSwitch.border.Padding = 6;
         if (tMSwitch.SwitchSize == SwitchSize.Medium)
         {
             tMSwitch.border.HeightRequest = 24;
             tMSwitch.border.WidthRequest = 48;
             tMSwitch.circle.HeightRequest = 12;
             tMSwitch.circle.WidthRequest = 12;
+            tMSwitch.circleMargin = 4;
         }
         else
         {
@@ -144,11 +147,17 @@ public partial class TMSwitch : ContentView
             tMSwitch.border.WidthRequest = 64;
             tMSwitch.circle.HeightRequest = 16;
             tMSwitch.circle.WidthRequest = 16;
+            tMSwitch.circleMargin = 6;
         }
+        tMSwitch.border.CornerRadius = tMSwitch.border.HeightRequest / 2;
+        tMSwitch.circle.CornerRadius = tMSwitch.circle.HeightRequest / 2;
+        tMSwitch.circle.TranslationX = tMSwitch.IsToggled ? -tMSwitch.border.Width : tMSwitch.border.Width;
     }
 
     private void OnSwitchTapped(object sender, TappedEventArgs e)
     {
+        if (!IsEnabled)
+            return;
         _switchSelected = !_switchSelected;
         if (!_switchSelected)
         {
@@ -161,50 +170,41 @@ public partial class TMSwitch : ContentView
     }
     private static void OnSwitchSelected(TMSwitch tMSwitch)
     {
+        if (!tMSwitch.hasLoaded)
+            return;
         tMSwitch._clicked?.Invoke(tMSwitch, tMSwitch.switchEventTrue);
         tMSwitch.ToggledCommand?.Execute(tMSwitch.switchEventTrue);
 
-        if (tMSwitch.SwitchSize == SwitchSize.Medium)
-        {
-            tMSwitch.Animate("SelectedAnimation",
-                new Animation
-                {
-            { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.0, 1.36) },
-            { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, 0,tMSwitch.border.Width - (tMSwitch.circle.Width +13.6) ) }
-                },
-                length: 250, easing: Easing.CubicIn);
-        }
-        else
-        {
-            tMSwitch.Animate("SelectedAnimation",
-                new Animation
-                {
-            { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.0, 1.38) },
-            { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, 0,tMSwitch.border.Width - (tMSwitch.circle.Width +14.8) ) }
-                },
-                length: 250, easing: Easing.CubicIn);
-        }
-        tMSwitch.border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchSelected);
-        tMSwitch.border.Padding = 6;
+        tMSwitch.Animate("SelectedAnimation",
+            new Animation
+            {
+                { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.0, 1.36) },
+                { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin, tMSwitch.circleMargin) }
+            },
+            length: 250, easing: Easing.CubicIn);
+        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchSelected);
     }
+
     private static void OnSwitchUnSelected(TMSwitch tMSwitch)
     {
+        if (!tMSwitch.hasLoaded)
+            return;
+
         tMSwitch._clicked?.Invoke(tMSwitch, tMSwitch.switchEventFalse);
         tMSwitch.ToggledCommand?.Execute(tMSwitch.switchEventFalse);
         tMSwitch.Animate("UnselectedAnimation",
             new Animation
             {
-            { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.3, 1.0) },
-            { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.Width - (tMSwitch.circle.Width +15), 0) }
+                { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.3, 1.0) },
+                { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.circleMargin, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicInOut);
-        VisualStateManager.GoToState(tMSwitch, "Unselected");
-        tMSwitch.border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchUnselected);
-        tMSwitch.border.Padding = 6;
+        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchUnselected);
     }
 }
+
 public class TMSwitchEventArgs : EventArgs
 {
     public TMSwitchEventArgs(bool value) => Value = value;
-    public bool Value;
+    public bool Value { get; internal set; }
 }
