@@ -291,7 +291,7 @@ namespace Trimble.Modus.Components
 
 		Label UpperValueLabel { get; } = CreateLabelElement();
 
-        ImageButton ThumbIcon { get; } = new ImageButton() { Source = ImageConstants.SliderThumbIcon, BackgroundColor = Colors.Transparent};
+        Image ThumbIcon { get; } = new Image() { Source = ImageConstants.SliderThumbIcon, BackgroundColor = Colors.Transparent};
 
 		double TrackWidth => Width - LowerThumb.Width - LowerThumb.Width;
 
@@ -329,9 +329,9 @@ namespace Trimble.Modus.Components
             Children.Add(Track);
             Children.Add(TrackHighlight);
             Children.Add(LowerThumb);
+            Children.Add(ThumbIcon);
             Children.Add(LowerValueLabel);
             Children.Add(UpperValueLabel);
-            Children.Add(ThumbIcon);
 
             AddGestureRecognizer(LowerThumb, lowerThumbGestureRecognizer);
             AddGestureRecognizer(ThumbIcon, upperThumbGestureRecognizer);
@@ -476,14 +476,13 @@ namespace Trimble.Modus.Components
 			SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
 			SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
 			SetLayoutBounds((IView)LowerThumb, new Rect(0, lowerThumbVerticalPosition, lowerThumbSize, lowerThumbSize));
-			//SetLayoutBounds((IView)UpperThumb, new Rect(0, upperThumbVerticalPosition, upperThumbSize, upperThumbSize));
+			SetLayoutBounds((IView)ThumbIcon, new Rect(0, upperThumbVerticalPosition, 28, 28));
 			SetLayoutBounds((IView)LowerValueLabel, new Rect(0, 0, -1, -1));
 			SetLayoutBounds((IView)UpperValueLabel, new Rect(0, 0, -1, -1));
 			SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
 			SetValueLabelBinding(UpperValueLabel, UpperValueProperty);
 			LowerValueLabel.Style = LowerValueLabelStyle ?? ValueLabelStyle;
 			UpperValueLabel.Style = UpperValueLabelStyle ?? ValueLabelStyle;
-
 			OnLowerUpperValuePropertyChanged();
 
 			Track.BatchCommit();
