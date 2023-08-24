@@ -102,14 +102,14 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// CommandProperty for Focused Event
     /// </summary>
-    public static readonly BindableProperty FocusedEventCommandProperty =
-         BindableProperty.Create(nameof(FocusedEventCommand), typeof(ICommand), typeof(BaseInput), null);
+    public static readonly BindableProperty FocusedCommandProperty =
+         BindableProperty.Create(nameof(FocusedCommand), typeof(ICommand), typeof(BaseInput), null);
 
     /// <summary>
     /// CommandProperty for UnFocused Event
     /// </summary>
-    public static readonly BindableProperty UnFocusedEventCommandProperty =
-         BindableProperty.Create(nameof(UnFocusedEventCommand), typeof(ICommand), typeof(BaseInput), null);
+    public static readonly BindableProperty UnFocusedCommandProperty =
+         BindableProperty.Create(nameof(UnFocusedCommand), typeof(ICommand), typeof(BaseInput), null);
     #endregion
 
     #region Public Properties
@@ -244,18 +244,18 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// Command for Focused Event
     /// </summary>
-    public ICommand FocusedEventCommand
+    public ICommand FocusedCommand
     {
-        get => (ICommand)GetValue(FocusedEventCommandProperty);
-        set => SetValue(FocusedEventCommandProperty, value);
+        get => (ICommand)GetValue(FocusedCommandProperty);
+        set => SetValue(FocusedCommandProperty, value);
     }
     /// <summary>
     /// Command for UnFocused Event
     /// </summary>
-    public ICommand UnFocusedEventCommand
+    public ICommand UnFocusedCommand
     {
-        get => (ICommand)GetValue(UnFocusedEventCommandProperty);
-        set => SetValue(UnFocusedEventCommandProperty, value);
+        get => (ICommand)GetValue(UnFocusedCommandProperty);
+        set => SetValue(UnFocusedCommandProperty, value);
     }
     #endregion
     public BaseInput()
@@ -315,12 +315,11 @@ public partial class BaseInput : ContentView
         bool isFocused = tmInput.GetCoreContent().IsFocused;
         bool hasError = !string.IsNullOrEmpty(tmInput.ErrorText);
         bool hasSuccess = !string.IsNullOrEmpty(tmInput.SuccessText);
-        Console.WriteLine("suces " +hasSuccess+ " error " + hasError);
         tmInput.InputBorder.StrokeThickness = isFocused ? 2 : 1;
 
         if (isFocused)
         {
-            tmInput.FocusedEventCommand?.Execute(new FocusEventArgs(tmInput, true));
+            tmInput.FocusedCommand?.Execute(new FocusEventArgs(tmInput, true));
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
@@ -353,7 +352,7 @@ public partial class BaseInput : ContentView
         }
         else
         {
-            tmInput.UnFocusedEventCommand?.Execute(new FocusEventArgs(tmInput, false));
+            tmInput.UnFocusedCommand?.Execute(new FocusEventArgs(tmInput, false));
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
@@ -391,7 +390,6 @@ public partial class BaseInput : ContentView
 
     private static void OnInfoTextsChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        Console.WriteLine("Helpertext values" + (string)newValue +" oldvalue "+(string)oldValue);
         if (bindable is BaseInput tmInput)
         {
             SetBorderColor(tmInput);

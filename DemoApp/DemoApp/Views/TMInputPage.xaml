@@ -44,8 +44,8 @@
                        Text="{Binding EmailAddress}"
                        ErrorText="{Binding EmailIDErrorText}"
                        SuccessText="{Binding EmailIDSuccessText}"
-                       FocusedEventCommand="{Binding FocusedCommand}"
-                       UnFocusedEventCommand="{Binding UnFocusedCommand}"
+                       FocusedCommand="{Binding FocusedCommand}"
+                       UnFocusedCommand="{Binding UnFocusedCommand}"
                        Placeholder="Text Input" />
         
         <Modus:TMInput x:Name="numbervalidationInput"
