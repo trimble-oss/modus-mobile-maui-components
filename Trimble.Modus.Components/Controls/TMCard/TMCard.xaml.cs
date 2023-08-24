@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 
-namespace Trimble.Modus.Components.Controls.TMCard;
+namespace Trimble.Modus.Components;
 
 public partial class TMCard : ContentView
 {

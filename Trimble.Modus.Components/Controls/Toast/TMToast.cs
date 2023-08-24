@@ -1,7 +1,8 @@
-﻿using Trimble.Modus.Components.Enums;
+﻿using Trimble.Modus.Components.Controls.Toast;
+using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
 
-namespace Trimble.Modus.Components.Controls.Toast
+namespace Trimble.Modus.Components
 {
     public class TMToast
     {

@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components.Controls.TMCard;assembly=Trimble.Modus.Components"
-             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.Views.TMCardPage"
              Title="TMCardPage">
   <ScrollView>
@@ -92,7 +91,7 @@
           <StackLayout BackgroundColor="Transparent"
                        HorizontalOptions="End"
                        Padding="0,10,0,10">
-            <local:TMButton Title="Button"></local:TMButton>
+            <Modus:TMButton Title="Button"></Modus:TMButton>
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
@@ -125,7 +124,7 @@
           <!-- Footer -->
           <StackLayout BackgroundColor="Transparent"
                        Padding="0,10,0,10">
-            <local:TMButton Title="Button"
+            <Modus:TMButton Title="Button"
                     HorizontalOptions="FillAndExpand" />
           </StackLayout>
         </StackLayout>
@@ -174,11 +173,11 @@
           <StackLayout BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="15">
-            <local:TMButton Title="Button"
+            <Modus:TMButton Title="Button"
                             ButtonStyle="Outline">
-            </local:TMButton>
-            <local:TMButton Title="Button"
-                            ButtonStyle="Fill"></local:TMButton>
+            </Modus:TMButton>
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Fill"></Modus:TMButton>
 
           </StackLayout>
         </StackLayout>
