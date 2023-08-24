@@ -98,6 +98,18 @@ public partial class BaseInput : ContentView
     /// </summary>
     public static readonly BindableProperty IsReadOnlyProperty =
         BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(BaseInput), false, propertyChanged: OnReadOnlyPropertyChanged);
+
+    /// <summary>
+    /// CommandProperty for Focused Event
+    /// </summary>
+    public static readonly BindableProperty FocusedEventCommandProperty =
+         BindableProperty.Create(nameof(FocusedEventCommand), typeof(ICommand), typeof(BaseInput), null);
+
+    /// <summary>
+    /// CommandProperty for UnFocused Event
+    /// </summary>
+    public static readonly BindableProperty UnFocusedEventCommandProperty =
+         BindableProperty.Create(nameof(UnFocusedEventCommand), typeof(ICommand), typeof(BaseInput), null);
     #endregion
 
     #region Public Properties
@@ -229,6 +241,22 @@ public partial class BaseInput : ContentView
         get => (string)GetValue(SuccessTextProperty);
         set => SetValue(SuccessTextProperty, value);
     }
+    /// <summary>
+    /// Command for Focused Event
+    /// </summary>
+    public ICommand FocusedEventCommand
+    {
+        get => (ICommand)GetValue(FocusedEventCommandProperty);
+        set => SetValue(FocusedEventCommandProperty, value);
+    }
+    /// <summary>
+    /// Command for UnFocused Event
+    /// </summary>
+    public ICommand UnFocusedEventCommand
+    {
+        get => (ICommand)GetValue(UnFocusedEventCommandProperty);
+        set => SetValue(UnFocusedEventCommandProperty, value);
+    }
     #endregion
     public BaseInput()
     {
@@ -292,6 +320,7 @@ public partial class BaseInput : ContentView
 
         if (isFocused)
         {
+            tmInput.FocusedEventCommand?.Execute(new FocusEventArgs(tmInput, true));
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
@@ -324,6 +353,7 @@ public partial class BaseInput : ContentView
         }
         else
         {
+            tmInput.UnFocusedEventCommand?.Execute(new FocusEventArgs(tmInput, false));
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 
@@ -86,6 +87,16 @@ namespace DemoApp.ViewModels
                 MultiLineInputSuccessText = "Input is valid";
                 MultiLineInputErrorText = null;
             }
+        }
+        [RelayCommand]
+        private void Focused(object obj)
+        {
+            Console.WriteLine("Focused " + ((FocusEventArgs)obj).IsFocused);
+        }
+        [RelayCommand]
+        private void UnFocused(object obj)
+        {
+            Console.WriteLine("UnFocused " + ((FocusEventArgs)obj).IsFocused);
         }
     }
 }
