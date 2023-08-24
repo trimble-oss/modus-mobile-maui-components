@@ -146,7 +146,6 @@ public partial class TMSwitch : ContentView
         }
         tMSwitch.border.CornerRadius = tMSwitch.border.HeightRequest / 2;
         tMSwitch.circle.CornerRadius = tMSwitch.circle.HeightRequest / 2;
-       // tMSwitch.circle.TranslationX = tMSwitch.IsToggled ? -tMSwitch.border.Width : tMSwitch.border.Width;
     }
 
     private void OnSwitchTapped(object sender, TappedEventArgs e)
