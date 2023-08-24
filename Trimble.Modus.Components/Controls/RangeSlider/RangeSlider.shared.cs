@@ -160,8 +160,8 @@ namespace Trimble.Modus.Components
 
 		Label UpperValueLabel { get; } = CreateLabelElement();
 
-        Image RightThumbIcon { get; } = new Image() { Source = ImageConstants.SliderThumbIcon, BackgroundColor = Colors.Transparent};
-        Image LeftThumbIcon { get; } = new Image() { Source = ImageConstants.SliderThumbIcon, BackgroundColor = Colors.Transparent};
+        Border RightThumbIcon = CreateBorderElement<Border>();
+        Border LeftThumbIcon = CreateBorderElement<Border>();
 
 		double TrackWidth => Width - RightThumbIcon.Width - LeftThumbIcon.Width;
 
@@ -205,6 +205,7 @@ namespace Trimble.Modus.Components
 
             AddGestureRecognizer(LeftThumbIcon, lowerThumbGestureRecognizer);
             AddGestureRecognizer(RightThumbIcon, upperThumbGestureRecognizer);
+
             Track.SizeChanged += OnViewSizeChanged;
             LeftThumbIcon.SizeChanged += OnViewSizeChanged;
             RightThumbIcon.SizeChanged += OnViewSizeChanged;
@@ -223,6 +224,17 @@ namespace Trimble.Modus.Components
 
 			return border;
 		}
+
+        private void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize, double thumbRadius)
+        {
+            border.StrokeThickness = thumbStrokeThickness;
+            border.Stroke = Color.FromArgb("#217CBB");
+            border.HeightRequest = thumbSize;
+            border.WidthRequest = thumbSize;
+            border.Margin = new Thickness(0);
+            border.BackgroundColor = Colors.White;
+            border.StrokeShape = new Rectangle() { RadiusX = thumbRadius, RadiusY = thumbRadius };
+        }
 
 		static Label CreateLabelElement()
 			=> new Label
@@ -250,7 +262,7 @@ namespace Trimble.Modus.Components
 
 		void OnIsEnabledChanged()
 		{
-			this.Opacity = IsEnabled
+			Opacity = IsEnabled
 				? enabledOpacity
 				: disabledOpacity;
 		}
@@ -307,23 +319,31 @@ namespace Trimble.Modus.Components
 			UpperValueLabel.BatchBegin();
 
 			Track.BackgroundColor = Color.FromArgb("#FFA3A6B1");
-			TrackHighlight.BackgroundColor = Color.FromArgb("#FF0063A3");
+            Track.StrokeThickness = 0;
+            TrackHighlight.BackgroundColor = Color.FromArgb("#FF0063A3");
             TrackHighlight.StrokeThickness = 0;
+
             var trackSize = 8;
-            var lowerThumbSize = 24;
-            var upperThumbSize = 24;
+            var thumbSize = 25;
+            var thumbStrokeThickness = 3;
+            var thumbRadius = 13;
             if (Size == SliderSize.Small)
             {
                 trackSize = 4;
-                lowerThumbSize = 20;
-                upperThumbSize = 20;
+                thumbSize = 21;
+                thumbStrokeThickness = 2;
+                thumbRadius = 10;
             }
             else if ( Size == SliderSize.Large)
             {
                 trackSize = 12;
-                lowerThumbSize = 32;
-                upperThumbSize = 32;
+                thumbSize = 33;
+                thumbStrokeThickness = 4;
+                thumbRadius = 16;
             }
+            SetThumbStyle( LeftThumbIcon, thumbStrokeThickness, thumbSize, thumbRadius);
+            SetThumbStyle( RightThumbIcon , thumbStrokeThickness, thumbSize, thumbRadius);
+
             Track.StrokeShape = new Rectangle() { RadiusX = 100, RadiusY = 100};
 			TrackHighlight.StrokeShape = new Rectangle() { RadiusX = 100, RadiusY = 100 };
 
@@ -331,18 +351,18 @@ namespace Trimble.Modus.Components
 			if (labelWithSpacingHeight > 0)
 				labelWithSpacingHeight += ValueLabelSpacing;
 
-			var trackThumbHeight = Max(Max(lowerThumbSize, upperThumbSize), trackSize);
+			var trackThumbHeight = Max(Max(thumbSize, thumbSize), trackSize);
 			var trackVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - trackSize) / 2);
-			var lowerThumbVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - lowerThumbSize) / 2);
-			var upperThumbVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - upperThumbSize) / 2);
+			var lowerThumbVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - thumbSize) / 2);
+			var upperThumbVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - thumbSize) / 2);
 
 			this.HeightRequest = labelWithSpacingHeight + trackThumbHeight;
 
 			var trackHighlightBounds = GetLayoutBounds((IView)TrackHighlight);
 			SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
 			SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
-			SetLayoutBounds((IView)LeftThumbIcon, new Rect(0, lowerThumbVerticalPosition, lowerThumbSize, lowerThumbSize));
-			SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, upperThumbSize, upperThumbSize));
+			SetLayoutBounds((IView)LeftThumbIcon, new Rect(0, lowerThumbVerticalPosition, thumbSize, thumbSize));
+			SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, thumbSize, thumbSize));
 			SetLayoutBounds((IView)LowerValueLabel, new Rect(0, 0, -1, -1));
 			SetLayoutBounds((IView)UpperValueLabel, new Rect(0, 0, -1, -1));
 			SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
@@ -376,7 +396,10 @@ namespace Trimble.Modus.Components
 		void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
 		{
 			var view = (View)(sender ?? throw new NullReferenceException($"{nameof(sender)} cannot be null"));
-
+            if (!IsEnabled)
+            {
+                return;
+            }
 			switch (e.StatusType)
 			{
 				case GestureStatus.Started:
