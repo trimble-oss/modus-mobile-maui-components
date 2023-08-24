@@ -44,4 +44,3 @@ internal class ColorsConstants
     public const string SwitchSelected = "SwitchSelected";
     public const string SwitchUnselected = "SwitchUnselected";
 }
-
