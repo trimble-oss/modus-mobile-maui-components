@@ -229,11 +229,9 @@ namespace Trimble.Modus.Components
         {
             border.StrokeThickness = thumbStrokeThickness;
             border.Stroke = Color.FromArgb("#217CBB");
-            border.HeightRequest = thumbSize;
-            border.WidthRequest = thumbSize;
             border.Margin = new Thickness(0);
             border.BackgroundColor = Colors.White;
-            border.StrokeShape = new Rectangle() { RadiusX = thumbRadius, RadiusY = thumbRadius };
+            border.StrokeShape = new Ellipse() { WidthRequest = thumbSize, HeightRequest = thumbSize};
         }
 
 		static Label CreateLabelElement()
@@ -262,6 +260,22 @@ namespace Trimble.Modus.Components
 
 		void OnIsEnabledChanged()
 		{
+            foreach(View child in Children)
+            {
+                if(child.ZIndex != 3)
+                {
+                    child.Opacity = IsEnabled
+                                    ? enabledOpacity
+                                    : disabledOpacity;
+                }
+                else
+                {
+                    if(child is Border)
+                    {
+
+                    }
+                }
+            }
 			Opacity = IsEnabled
 				? enabledOpacity
 				: disabledOpacity;
@@ -324,20 +338,20 @@ namespace Trimble.Modus.Components
             TrackHighlight.StrokeThickness = 0;
 
             var trackSize = 8;
-            var thumbSize = 25;
+            var thumbSize = 24;
             var thumbStrokeThickness = 3;
             var thumbRadius = 13;
             if (Size == SliderSize.Small)
             {
                 trackSize = 4;
-                thumbSize = 21;
+                thumbSize = 20;
                 thumbStrokeThickness = 2;
                 thumbRadius = 10;
             }
             else if ( Size == SliderSize.Large)
             {
                 trackSize = 12;
-                thumbSize = 33;
+                thumbSize = 32;
                 thumbStrokeThickness = 4;
                 thumbRadius = 16;
             }
