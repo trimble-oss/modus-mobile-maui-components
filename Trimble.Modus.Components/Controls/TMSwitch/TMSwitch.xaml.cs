@@ -146,7 +146,7 @@ public partial class TMSwitch : ContentView
         }
         tMSwitch.border.CornerRadius = tMSwitch.border.HeightRequest / 2;
         tMSwitch.circle.CornerRadius = tMSwitch.circle.HeightRequest / 2;
-        tMSwitch.circle.TranslationX = tMSwitch.IsToggled ? -tMSwitch.border.Width : tMSwitch.border.Width;
+       // tMSwitch.circle.TranslationX = tMSwitch.IsToggled ? -tMSwitch.border.Width : tMSwitch.border.Width;
     }
 
     private void OnSwitchTapped(object sender, TappedEventArgs e)
@@ -167,7 +167,7 @@ public partial class TMSwitch : ContentView
             new Animation
             {
                 { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.0, 1.36) },
-                { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin, tMSwitch.circleMargin) }
+                { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.circleMargin,tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicIn);
         tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchSelected);
@@ -184,7 +184,7 @@ public partial class TMSwitch : ContentView
             new Animation
             {
                 { 0, 1, new Animation(v => tMSwitch.circle.Scale = v, 1.3, 1.0) },
-                { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.circleMargin, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin) }
+                { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin, tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicInOut);
         tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchUnselected);
