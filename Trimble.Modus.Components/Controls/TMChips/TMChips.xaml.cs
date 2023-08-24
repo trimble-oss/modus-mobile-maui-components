@@ -13,7 +13,6 @@ using Trimble.Modus.Components.Helpers;
 public partial class TMChips : ContentView
 {
     #region Private Fields
-    private Color iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
     private bool isSelected = false;
     private EventHandler _clicked;
 
@@ -129,17 +128,7 @@ public partial class TMChips : ContentView
     {
         UpdateChips(this);
         UpdateTapGestureRecogniser();
-        UpdateChipsIconColor();
         tapGestureRecognizer.Tapped += OnTapped;
-    }
-    private void UpdateChipsIconColor()
-    {
-        var behavior = new IconTintColorBehavior
-        {
-            TintColor = iconColor
-        };
-        lefticon.Behaviors.Add(behavior);
-        righticon.Behaviors.Add(behavior);
     }
 
     private void UpdateTapGestureRecogniser()
