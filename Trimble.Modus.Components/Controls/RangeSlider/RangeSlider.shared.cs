@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components
 	{
 		const double enabledOpacity = 1;
 
-		const double disabledOpacity = .6;
+		const double disabledOpacity = .5;
 
 		public event EventHandler? ValueChanged;
 
@@ -202,6 +202,8 @@ namespace Trimble.Modus.Components
             Children.Add(RightThumbIcon);
             Children.Add(LowerValueLabel);
             Children.Add(UpperValueLabel);
+            RightThumbIcon.ZIndex = 3;
+            LeftThumbIcon.ZIndex = 3;
 
             AddGestureRecognizer(LeftThumbIcon, lowerThumbGestureRecognizer);
             AddGestureRecognizer(RightThumbIcon, upperThumbGestureRecognizer);
@@ -228,10 +230,11 @@ namespace Trimble.Modus.Components
         private void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize, double thumbRadius)
         {
             border.StrokeThickness = thumbStrokeThickness;
-            border.Stroke = Color.FromArgb("#217CBB");
+            border.Stroke = IsEnabled ? Color.FromArgb("#217CBB") : Color.FromArgb("#C3C4C9");
             border.Margin = new Thickness(0);
             border.BackgroundColor = Colors.White;
             border.StrokeShape = new Ellipse() { WidthRequest = thumbSize, HeightRequest = thumbSize};
+            border.ZIndex = 3;
         }
 
 		static Label CreateLabelElement()
@@ -268,17 +271,11 @@ namespace Trimble.Modus.Components
                                     ? enabledOpacity
                                     : disabledOpacity;
                 }
-                else
+                else if(child is Border)
                 {
-                    if(child is Border)
-                    {
-
-                    }
+                    (child as Border).Stroke = IsEnabled ? Color.FromArgb("#217CBB") : Color.FromArgb("#C3C4C9");
                 }
             }
-			Opacity = IsEnabled
-				? enabledOpacity
-				: disabledOpacity;
 		}
 
 		double CoerceValue(double value)
