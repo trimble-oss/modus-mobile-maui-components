@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Constant;
+using CommunityToolkit.Maui.Behaviors;
 
 namespace Trimble.Modus.Components;
 
@@ -11,7 +12,7 @@ public partial class TMButton : ContentView
 {
     #region Private Properties
 
-
+    private Color iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
     protected EventHandler _clicked;
     protected Color activeColor;
     protected Border _buttonFrame;
@@ -133,6 +134,17 @@ public partial class TMButton : ContentView
         _buttonLabel = buttonLabel;
         SetPadding(this);
         UpdateButtonStyle(this);
+        UpdateButtonIconColor();
+    }
+
+    private void UpdateButtonIconColor()
+    {
+        var behavior = new IconTintColorBehavior
+        {
+            TintColor = iconColor
+        };
+        leftIcon.Behaviors.Add(behavior);
+        rightIcon.Behaviors.Add(behavior);
     }
 
     #region Private Methods
@@ -189,6 +201,7 @@ public partial class TMButton : ContentView
                 tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
                 break;
             case Enums.ButtonStyle.Fill:
                 UpdateFillStyleColors(tmButton);
@@ -199,6 +212,7 @@ public partial class TMButton : ContentView
             default:
                 break;
         }
+        tmButton.UpdateButtonIconColor();
     }
 
     private static void SetPadding(TMButton tmButton)
@@ -259,6 +273,7 @@ public partial class TMButton : ContentView
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmButton.iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
 
                 }
                 else
@@ -274,6 +289,7 @@ public partial class TMButton : ContentView
                 tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                tmButton.iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
                 break;
 
             case ButtonColor.Danger:
@@ -292,6 +308,7 @@ public partial class TMButton : ContentView
     private static void UpdateOutlineStyleColors(TMButton tmButton)
     {
         tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+        tmButton.iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Primary:
