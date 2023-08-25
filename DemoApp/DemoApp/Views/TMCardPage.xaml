@@ -204,7 +204,41 @@
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
+      <Modus:TMCard x:Name="card6" Padding="0">
+        <StackLayout>
+          <!-- Header -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="10">
+            <Label Text="Card Header"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+          </StackLayout>
 
+          <!-- Content -->
+          <StackLayout Padding="0" BackgroundColor="AliceBlue">
+            <Image Source="{x:Static constants:ImageConstants.IconPlaceHolder}"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Aspect="Fill" />
+          </StackLayout>
+
+
+          <!-- Footer -->
+          <StackLayout Padding="10"
+                       HorizontalOptions="End"
+                       BackgroundColor="Transparent"
+                       Orientation="Horizontal"
+                       Spacing="15">
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Outline">
+            </Modus:TMButton>
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Fill"></Modus:TMButton>
+
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
     </VerticalStackLayout>
   </ScrollView>
 </ContentPage>
