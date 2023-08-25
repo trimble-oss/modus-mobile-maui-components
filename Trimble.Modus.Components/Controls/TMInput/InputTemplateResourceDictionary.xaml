@@ -39,14 +39,13 @@
       <HorizontalStackLayout x:Name="inputHelperLayout"
                              Grid.Row="2"
                              Spacing="5"
-                             Padding="0,5,0,0"
-                             IsVisible="{Binding HelperText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+                             IsVisible="false"
+                             Padding="0,5,0,0">
         <Image x:Name="inputHelperIcon"
                WidthRequest="20"
                HeightRequest="20" />
         <Label  x:Name="inputHelperLabel"
                 LineBreakMode="WordWrap"
-                Text="{Binding HelperText}"
                 VerticalTextAlignment="Center" />
       </HorizontalStackLayout>
     </Grid>

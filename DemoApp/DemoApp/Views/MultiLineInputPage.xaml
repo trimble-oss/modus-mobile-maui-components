@@ -18,24 +18,21 @@
                  VerticalOptions="Center" />
           <Switch Grid.Column="1"
                   x:Name="isEnabled"
-                  IsToggled="{Binding IsEnabled}"
-                  Toggled="IsEnabled_Toggled" />
+                  IsToggled="{Binding IsEnabled}"/>
           <Label Grid.Column="0"
                  Text="IsReadOnly"
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch Grid.Column="1"
                   x:Name="isReadOnly"
-                  IsToggled="{Binding IsReadOnly}"
-                  Toggled="IsReadOnly_Toggled" />
+                  IsToggled="{Binding IsReadOnly}"/>
           <Label Grid.Column="0"
                  Text="IsAutoSize"
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch Grid.Column="1"
                   x:Name="IsAutoSize"
-                  IsToggled="{Binding IsAutoSize}"
-                  Toggled="IsAutoSize_Toggled" />
+                  IsToggled="{Binding IsAutoSize}"/>
         </StackLayout>
 
         <Modus:MultiLineInput  x:Name="modusInput"
@@ -54,8 +51,10 @@
         <Modus:MultiLineInput TitleText="Success/Error MultiLine Input"
                           HelperText="Enter more or equal to 10 characters"
                           Placeholder="Text Input"
+                          Text="{Binding MultiLineInput}"
+                          ErrorText="{Binding MultiLineInputErrorText}"
+                          SuccessText="{Binding MultiLineInputSuccessText}"
                           AutoSize="{Binding IsAutoSize}"
-                          InputValidation="TMMultiLineInputValidation"
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}" />
 
