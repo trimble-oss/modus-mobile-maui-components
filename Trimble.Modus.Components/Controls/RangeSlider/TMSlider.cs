@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using System.Runtime.CompilerServices;
 using Trimble.Modus.Components.Controls;
+using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
 using static System.Math;
 
@@ -30,7 +31,7 @@ namespace Trimble.Modus.Components
                     OnIsEnabledChanged();
                     break;
                 case nameof(Value):
-                    RaiseEvent(ValueChanged);
+                    SliderHelper.RaiseEvent(this, ValueChanged);
                     break;
             }
         }
@@ -41,8 +42,8 @@ namespace Trimble.Modus.Components
             set => SetValue(ValueProperty, value);
         }
 
-        Label ValueLabel { get; } = CreateLabelElement();
-        Border ThumbIcon = CreateBorderElement<Border>();
+        Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
+        Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
         double TrackWidth => Width - ThumbIcon.Width;
 
         public TMSlider()
@@ -63,7 +64,10 @@ namespace Trimble.Modus.Components
             OnLayoutPropertyChanged();
         }
         static object CoerceValue(BindableObject bindable, object value)
-            => ((TMSlider)bindable).CoerceValue((double)value);
+        {
+            var slider = (bindable as TMSlider);
+            return SliderHelper.CoerceValue((double)value, slider.StepValue, slider.MinimumValue, slider.MaximumValue);
+        }
         static void OnLowerUpperValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((TMSlider)bindable).OnLowerUpperValuePropertyChanged();
 
@@ -149,14 +153,14 @@ namespace Trimble.Modus.Components
 
         protected override void OnMinimumMaximumValuePropertyChanged()
         {
-            Value = CoerceValue(Value);
+            Value = SliderHelper.CoerceValue(Value, StepValue, MinimumValue, MaximumValue);
             OnLowerUpperValuePropertyChanged();
         }
 
         protected override void OnPanStarted(View view)
         {
             thumbPositionMap[view] = view.TranslationX;
-            RaiseEvent(DragStarted);
+            SliderHelper.RaiseEvent(this, DragStarted);
         }
 
         protected override void OnPanRunning(View view, double value)
@@ -165,7 +169,7 @@ namespace Trimble.Modus.Components
         protected override void OnPanCompleted(View view)
         {
             thumbPositionMap[view] = view.TranslationX;
-            RaiseEvent(DragCompleted);
+            SliderHelper.RaiseEvent(this, DragCompleted);
         }
 
         protected override void OnViewSizeChanged(object sender, EventArgs e)

@@ -1,64 +1,53 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
+using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
-using static System.Math;
 
 namespace Trimble.Modus.Components.Controls
 {
     public abstract class SliderControl : AbsoluteLayout
     {
+        #region Private fields
         const double enabledOpacity = 1;
-
         const double disabledOpacity = .5;
-        public static BindableProperty MinimumValueProperty
-                    = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderControl), .0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        Microsoft.Maui.Graphics.Size allocatedSize;
+        protected readonly Dictionary<View, double> thumbPositionMap = new Dictionary<View, double>();
+        protected double labelMaxHeight;
+        protected int dragCount;
+        #endregion
 
-        public static BindableProperty MaximumValueProperty
-            = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderControl), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        #region Bindable Property
+        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderControl), .0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderControl), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderControl), 0.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderControl), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty ValueLabelStyleProperty = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty ValueLabelStringFormatProperty = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty ValueLabelSpacingProperty = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
+        #endregion
 
-        public static BindableProperty StepValueProperty
-            = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderControl), 0.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-
-        public static BindableProperty SizeProperty
-            = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderControl), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
-
-        public static BindableProperty ValueLabelStyleProperty
-            = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
-
-
-        public static BindableProperty ValueLabelStringFormatProperty
-            = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
-
-        public static BindableProperty ValueLabelSpacingProperty
-            = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
+        #region Property change methods
         static void OnLayoutPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnLayoutPropertyChanged();
+        static void OnMinimumMaximumValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderControl)bindable).OnMinimumMaximumValuePropertyChanged();
+        #endregion
 
-        protected readonly Dictionary<View, double> thumbPositionMap = new Dictionary<View, double>();
-
-        Microsoft.Maui.Graphics.Size allocatedSize;
-
-        protected double labelMaxHeight;
-
-        protected int dragCount;
-
+        #region Public Property
         public SliderSize Size
         {
             get => (SliderSize)GetValue(SizeProperty);
             set => SetValue(SizeProperty, value);
         }
-
         public double MinimumValue
         {
             get => (double)GetValue(MinimumValueProperty);
             set => SetValue(MinimumValueProperty, value);
         }
-
         public double MaximumValue
         {
             get => (double)GetValue(MaximumValueProperty);
             set => SetValue(MaximumValueProperty, value);
         }
-
         public double StepValue
         {
             get => (double)GetValue(StepValueProperty);
@@ -69,23 +58,24 @@ namespace Trimble.Modus.Components.Controls
             get => (Style)GetValue(ValueLabelStyleProperty);
             set => SetValue(ValueLabelStyleProperty, value);
         }
-
         public string ValueLabelStringFormat
         {
             get => (string)GetValue(ValueLabelStringFormatProperty);
             set => SetValue(ValueLabelStringFormatProperty, value);
         }
-
         public double ValueLabelSpacing
         {
             get => (double)GetValue(ValueLabelSpacingProperty);
             set => SetValue(ValueLabelSpacingProperty, value);
         }
-        internal Border Track { get; } = CreateBorderElement<Border>();
+        #endregion
 
-        internal Border TrackHighlight { get; } = CreateBorderElement<Border>();
+        #region UI Elements
+        internal Border Track { get; } = SliderHelper.CreateBorderElement<Border>();
+        internal Border TrackHighlight { get; } = SliderHelper.CreateBorderElement<Border>();
+        #endregion
 
-
+        #region Protected methods
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
@@ -95,40 +85,6 @@ namespace Trimble.Modus.Components.Controls
 
             allocatedSize = new Microsoft.Maui.Graphics.Size(width, height);
             OnLayoutPropertyChanged();
-        }
-        protected abstract void OnLayoutPropertyChanged();
-        protected static Border CreateBorderElement<TBorder>() where TBorder : Border, new()
-        {
-            var border = new Border
-            {
-                Padding = 0
-            };
-
-            return border;
-        }
-
-        internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize, double thumbRadius)
-        {
-            border.StrokeThickness = thumbStrokeThickness;
-            border.Stroke = IsEnabled ? Color.FromArgb("#217CBB") : Color.FromArgb("#C3C4C9");
-            border.Margin = new Thickness(0);
-            border.BackgroundColor = Colors.White;
-            border.StrokeShape = new Ellipse() { WidthRequest = thumbSize, HeightRequest = thumbSize };
-            border.ZIndex = 3;
-        }
-
-        protected static Label CreateLabelElement()
-            => new Label
-            {
-                HorizontalTextAlignment = TextAlignment.Center,
-                VerticalTextAlignment = TextAlignment.Center,
-                LineBreakMode = LineBreakMode.NoWrap,
-                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
-            };
-
-        static void OnMinimumMaximumValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((SliderControl)bindable).OnMinimumMaximumValuePropertyChanged();
         }
         protected void OnIsEnabledChanged()
         {
@@ -146,20 +102,15 @@ namespace Trimble.Modus.Components.Controls
                 }
             }
         }
-
-        protected double CoerceValue(double value)
+        internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize, double thumbRadius)
         {
-            if (StepValue > 0 && value < MaximumValue)
-            {
-                var stepIndex = (int)((value - MinimumValue) / StepValue);
-                value = MinimumValue + (stepIndex * StepValue);
-            }
-            return Clamp(value, MinimumValue, MaximumValue);
+            border.StrokeThickness = thumbStrokeThickness;
+            border.Stroke = IsEnabled ? Color.FromArgb("#217CBB") : Color.FromArgb("#C3C4C9");
+            border.Margin = new Thickness(0);
+            border.BackgroundColor = Colors.White;
+            border.StrokeShape = new Ellipse() { WidthRequest = thumbSize, HeightRequest = thumbSize };
+            border.ZIndex = 3;
         }
-
-        protected abstract void OnMinimumMaximumValuePropertyChanged();
-        protected abstract void OnViewSizeChanged(object? sender, System.EventArgs e);
-
         protected void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
         {
             var view = (View)(sender ?? throw new NullReferenceException($"{nameof(sender)} cannot be null"));
@@ -181,10 +132,6 @@ namespace Trimble.Modus.Components.Controls
                     break;
             }
         }
-        protected abstract void OnPanStarted(View view);
-        protected abstract void OnPanRunning(View view, double value);
-        protected abstract void OnPanCompleted(View view);
-        protected abstract void OnValueLabelTranslationChanged();
         protected double GetPanShiftValue(View view)
             => Device.RuntimePlatform == Device.Android
                 ? view.TranslationX
@@ -194,9 +141,6 @@ namespace Trimble.Modus.Components.Controls
             gestureRecognizer.PanUpdated += OnPanUpdated;
             view.GestureRecognizers.Add(gestureRecognizer);
         }
-
-        protected void RaiseEvent(EventHandler? eventHandler)
-            => eventHandler?.Invoke(this, EventArgs.Empty);
         protected void SetValueLabelBinding(Label label, BindableProperty bindableProperty)
             => label.SetBinding(Label.TextProperty, new Binding
             {
@@ -204,5 +148,16 @@ namespace Trimble.Modus.Components.Controls
                 Path = bindableProperty.PropertyName,
                 StringFormat = ValueLabelStringFormat
             });
+        #endregion
+
+        #region Abstract Methods
+        protected abstract void OnLayoutPropertyChanged();
+        protected abstract void OnMinimumMaximumValuePropertyChanged();
+        protected abstract void OnViewSizeChanged(object? sender, System.EventArgs e);
+        protected abstract void OnPanStarted(View view);
+        protected abstract void OnPanRunning(View view, double value);
+        protected abstract void OnPanCompleted(View view);
+        protected abstract void OnValueLabelTranslationChanged();
+        #endregion
     }
 }

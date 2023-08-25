@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using System.Runtime.CompilerServices;
 using Trimble.Modus.Components.Controls;
+using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
 using static System.Math;
 
@@ -78,12 +79,12 @@ namespace Trimble.Modus.Components
 			set => SetValue(UpperValueLabelStyleProperty, value);
 		}
 
-		Label LowerValueLabel { get; } = CreateLabelElement();
+		Label LowerValueLabel { get; } = SliderHelper.CreateLabelElement();
 
-		Label UpperValueLabel { get; } = CreateLabelElement();
+		Label UpperValueLabel { get; } = SliderHelper.CreateLabelElement();
 
-        Border RightThumbIcon = CreateBorderElement<Border>();
-        Border LeftThumbIcon = CreateBorderElement<Border>();
+        Border RightThumbIcon = SliderHelper.CreateBorderElement<Border>();
+        Border LeftThumbIcon = SliderHelper.CreateBorderElement<Border>();
 
 		double TrackWidth => Width - RightThumbIcon.Width - LeftThumbIcon.Width;
 
@@ -96,12 +97,12 @@ namespace Trimble.Modus.Components
 					OnIsEnabledChanged();
 					break;
 				case nameof(LowerValue):
-					RaiseEvent(LowerValueChanged);
-					RaiseEvent(ValueChanged);
+                    SliderHelper.RaiseEvent(this, LowerValueChanged);
+					SliderHelper.RaiseEvent(this, ValueChanged);
 					break;
 				case nameof(UpperValue):
-					RaiseEvent(UpperValueChanged);
-					RaiseEvent(ValueChanged);
+					SliderHelper.RaiseEvent(this, UpperValueChanged);
+					SliderHelper.RaiseEvent(this, ValueChanged);
 					break;
 			}
 		}
@@ -135,12 +136,15 @@ namespace Trimble.Modus.Components
             => ((RangeSlider)bindable).OnLayoutPropertyChanged();
 
         static object CoerceValue(BindableObject bindable, object value)
-            => ((RangeSlider)bindable).CoerceValue((double)value);
+        {
+            var slider = (RangeSlider)bindable;
+            return SliderHelper.CoerceValue((double)value, slider.StepValue, slider.MinimumValue, slider.MaximumValue);
+        }
 
         protected override void OnMinimumMaximumValuePropertyChanged()
 		{
-			LowerValue = CoerceValue(LowerValue);
-			UpperValue = CoerceValue(UpperValue);
+			LowerValue = SliderHelper.CoerceValue(LowerValue, StepValue, MinimumValue, MaximumValue);
+			UpperValue = SliderHelper.CoerceValue(UpperValue, StepValue, MinimumValue, MaximumValue);
             OnLowerUpperValuePropertyChanged();
         }
 
@@ -258,12 +262,12 @@ namespace Trimble.Modus.Components
 		protected override void OnPanStarted(View view)
 		{
 			thumbPositionMap[view] = view.TranslationX;
-			RaiseEvent(view == LeftThumbIcon
+			SliderHelper.RaiseEvent(this, view == LeftThumbIcon
 				? LowerDragStarted
 				: UpperDragStarted);
 
 			if (Interlocked.Increment(ref dragCount) == 1)
-				RaiseEvent(DragStarted);
+				SliderHelper.RaiseEvent(this, DragStarted);
 		}
 
 		protected override void OnPanRunning(View view, double value)
@@ -272,12 +276,12 @@ namespace Trimble.Modus.Components
 		protected override void OnPanCompleted(View view)
 		{
 			thumbPositionMap[view] = view.TranslationX;
-			RaiseEvent(view == LeftThumbIcon
+			SliderHelper.RaiseEvent(this, view == LeftThumbIcon
 				? LowerDragCompleted
 				: UpperDragCompleted);
 
 			if (Interlocked.Decrement(ref dragCount) == 0)
-				RaiseEvent(DragCompleted);
+				SliderHelper.RaiseEvent(this, DragCompleted);
 		}
 
 		void UpdateValue(View view, double value)
@@ -290,6 +294,5 @@ namespace Trimble.Modus.Components
 			}
 			UpperValue = Min(Max(LowerValue, ((value - LeftThumbIcon.Width) / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
 		}
-
 	}
 }
