@@ -1,4 +1,4 @@
-using Trimble.Modus.Components.Controls.Toast;
+using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp;
