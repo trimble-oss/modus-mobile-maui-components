@@ -30,6 +30,7 @@ namespace DemoApp
                 "Badge",
                 "Accordion",
                 "Chips",
+                "Switch",
                 "ProgressBar"
             };
             BindingContext = this;
@@ -96,13 +97,15 @@ namespace DemoApp
                         break;
                     case "Chips":
                         Navigation.PushAsync(new ChipsSamplePage());
+                        break;
+                    case "Switch":
+                        Navigation.PushAsync(new SwitchSamplePage());
                         break; 
                     default:
                         Console.WriteLine("Default Case");
                         break;
                 }
             }
-
             ((ListView)sender).SelectedItem = null;
         }
     }

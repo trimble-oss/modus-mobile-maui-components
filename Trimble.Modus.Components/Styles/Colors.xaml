@@ -48,4 +48,7 @@
   <Color x:Key="AccordionDescriptionColor">#FF7D808D</Color>
   <!-- Chip -->
   <Color x:Key="ChipSelectedBackground">#A1BFD2</Color>
+  <!-- Switch -->
+  <Color x:Key="SwitchSelected">#217CBB</Color>
+  <Color x:Key="SwitchUnselected">#90939f</Color>
 </ResourceDictionary>

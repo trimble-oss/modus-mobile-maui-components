@@ -189,6 +189,9 @@
 	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
