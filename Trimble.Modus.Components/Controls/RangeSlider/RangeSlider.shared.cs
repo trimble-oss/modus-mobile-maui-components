@@ -109,7 +109,7 @@ namespace Trimble.Modus.Components
         {
             Children.Add(Track);
             Children.Add(TrackHighlight);
-            //Children.Add(LeftThumbIcon);
+            Children.Add(LeftThumbIcon);
             Children.Add(RightThumbIcon);
             Children.Add(LowerValueLabel);
             Children.Add(UpperValueLabel);

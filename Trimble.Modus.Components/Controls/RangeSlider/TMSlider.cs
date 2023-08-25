@@ -15,7 +15,7 @@ namespace Trimble.Modus.Components
         public event EventHandler? DragCompleted;
 
         public static BindableProperty ValueProperty
-                = BindableProperty.Create(nameof(Value), typeof(double), typeof(RangeSlider), .0, BindingMode.TwoWay, propertyChanged: OnLowerUpperValuePropertyChanged, coerceValue: CoerceValue);
+                = BindableProperty.Create(nameof(Value), typeof(double), typeof(TMSlider), .0, BindingMode.TwoWay, propertyChanged: OnLowerUpperValuePropertyChanged, coerceValue: CoerceValue);
 
         readonly PanGestureRecognizer thumbGestureRecognizer = new PanGestureRecognizer();
         double thumbTranslation;
@@ -57,6 +57,8 @@ namespace Trimble.Modus.Components
 
             Track.SizeChanged += OnViewSizeChanged;
             ThumbIcon.SizeChanged += OnViewSizeChanged;
+            ValueLabel.SizeChanged += OnViewSizeChanged;
+
             OnIsEnabledChanged();
             OnLayoutPropertyChanged();
         }
@@ -76,7 +78,7 @@ namespace Trimble.Modus.Components
             OnValueLabelTranslationChanged();
 
             var bounds = GetLayoutBounds((IView)TrackHighlight);
-            this.SetLayoutBounds(TrackHighlight, new Rect(lowerTranslation, bounds.Y, lowerTranslation, bounds.Height));
+            this.SetLayoutBounds(TrackHighlight, new Rect(0, bounds.Y, lowerTranslation+32, bounds.Height));
         }
         protected override void OnValueLabelTranslationChanged()
         {
@@ -155,9 +157,6 @@ namespace Trimble.Modus.Components
         {
             thumbPositionMap[view] = view.TranslationX;
             RaiseEvent(DragStarted);
-
-            if (Interlocked.Increment(ref dragCount) == 1)
-                RaiseEvent(DragStarted);
         }
 
         protected override void OnPanRunning(View view, double value)
@@ -167,19 +166,25 @@ namespace Trimble.Modus.Components
         {
             thumbPositionMap[view] = view.TranslationX;
             RaiseEvent(DragCompleted);
-
-            if (Interlocked.Decrement(ref dragCount) == 0)
-                RaiseEvent(DragCompleted);
         }
 
         protected override void OnViewSizeChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var maxHeight = ValueLabel.Height;
+            if ((sender == ValueLabel) && labelMaxHeight == maxHeight)
+            {
+                Device.BeginInvokeOnMainThread(OnValueLabelTranslationChanged);
+                return;
+            }
+
+            labelMaxHeight = maxHeight;
+            OnLayoutPropertyChanged();
         }
         void UpdateValue(View view, double value)
         {
             var rangeValue = MaximumValue - MinimumValue;
-            Value = Min(Max(Value, ((value - ThumbIcon.Width) / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
+            Value = Min(Max(MinimumValue, (value / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
+
         }
     }
 }

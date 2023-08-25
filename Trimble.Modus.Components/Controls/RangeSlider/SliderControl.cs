@@ -22,14 +22,14 @@ namespace Trimble.Modus.Components.Controls
             = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderControl), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
 
         public static BindableProperty ValueLabelStyleProperty
-            = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(RangeSlider), propertyChanged: OnLayoutPropertyChanged);
+            = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
 
 
         public static BindableProperty ValueLabelStringFormatProperty
-            = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(RangeSlider), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
+            = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
 
         public static BindableProperty ValueLabelSpacingProperty
-            = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(RangeSlider), 5.0, propertyChanged: OnLayoutPropertyChanged);
+            = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
         static void OnLayoutPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnLayoutPropertyChanged();
 
@@ -128,7 +128,7 @@ namespace Trimble.Modus.Components.Controls
 
         static void OnMinimumMaximumValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((RangeSlider)bindable).OnMinimumMaximumValuePropertyChanged();
+            ((SliderControl)bindable).OnMinimumMaximumValuePropertyChanged();
         }
         protected void OnIsEnabledChanged()
         {
