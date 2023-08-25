@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             x:Class="DemoApp.Views.CardPage"
+             Title="TMCardPage">
+  <ScrollView>
+    <VerticalStackLayout Spacing="10"
+                         Padding="5">
+
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0"
+               Text="Selected"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Switch Grid.Column="1"
+                x:Name="isSelected"
+                Toggled="IsSelectedToggled" />
+      </Grid>
+      <Modus:TMCard x:Name="card1"
+                    Clicked="Card1Clicked">
+        <StackLayout>
+          <!-- Header -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,0,0,10">
+            <Label Text="Card Header"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+          </StackLayout>
+
+          <!-- Content -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,10,0,10">
+            <Label Text="Card Title"
+                   FontAttributes="Bold"
+                   FontSize="15" />
+            <Label Text="Card SubTitle"
+                   FontAttributes="Bold"
+                   FontSize="12"
+                   Padding="0,5,0,5" />
+            <Label Text="Content with multiple lines of text that will wrap around based on the available space."
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   LineBreakMode="WordWrap" />
+          </StackLayout>
+
+          <!-- Footer -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,10,0,10">
+            <Label Text="Card Footer"
+                   VerticalOptions="Center" />
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
+
+      <Modus:TMCard x:Name="card2"
+                    Command="{Binding Command}"
+                    CommandParameter="Parameter">
+        <StackLayout>
+          <!-- Header -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,0,0,10">
+            <Label Text="Card Header"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+          </StackLayout>
+
+          <!-- Content -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,10,0,10">
+            <Label Text="Card Title"
+                   FontAttributes="Bold"
+                   FontSize="15" />
+            <Label Text="Card SubTitle"
+                   FontAttributes="Bold"
+                   FontSize="12"
+                   Padding="0,5,0,5" />
+            <Label Text="Content with multiple lines of text that will wrap around based on the available space."
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   LineBreakMode="WordWrap" />
+          </StackLayout>
+
+          <!-- Footer -->
+          <StackLayout BackgroundColor="Transparent"
+                       HorizontalOptions="End"
+                       Padding="0,10,0,10">
+            <Modus:TMButton Title="Button"></Modus:TMButton>
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
+      <Modus:TMCard x:Name="card3">
+        <StackLayout>
+          <!-- Header -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,0,0,10">
+            <Label Text="Card Header"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+          </StackLayout>
+
+          <!-- Content -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,10,0,10">
+            <Label Text="Card Title"
+                   FontAttributes="Bold"
+                   FontSize="15" />
+            <Label Text="Card SubTitle"
+                   FontAttributes="Bold"
+                   FontSize="12"
+                   Padding="0,5,0,5" />
+            <Label Text="Content with multiple lines of text that will wrap around based on the available space."
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   LineBreakMode="WordWrap" />
+          </StackLayout>
+
+          <!-- Footer -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,10,0,10">
+            <Modus:TMButton Title="Button"
+                    HorizontalOptions="FillAndExpand" />
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
+      <Modus:TMCard x:Name="card4"
+                    WidthRequest="250">
+        <StackLayout>
+          <!-- Header -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="0,0,0,10">
+            <Label Text="Card Header"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+          </StackLayout>
+
+          <!-- Content -->
+          <StackLayout>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+
+              <Label HeightRequest="80"
+                     Text="Content with multiple lines of text that will wrap around."
+                     HorizontalOptions="StartAndExpand"
+                     VerticalOptions="Center"
+                     LineBreakMode="WordWrap" />
+
+              <Image Source="{x:Static constants:ImageConstants.AccountIcon}"
+                     Grid.Column="1"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     WidthRequest="50"
+                     HeightRequest="50"
+                     Aspect="AspectFit" />
+            </Grid>
+          </StackLayout>
+
+
+          <!-- Footer -->
+          <StackLayout BackgroundColor="Transparent"
+                       Orientation="Horizontal"
+                       Spacing="15">
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Outline">
+            </Modus:TMButton>
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Fill"></Modus:TMButton>
+
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
+      <Modus:TMCard x:Name="card5">
+        <StackLayout>
+          <!-- Content -->
+          <StackLayout BackgroundColor="Transparent"
+                       Orientation="Horizontal"
+                       Spacing="20">
+            <Image Source="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                   WidthRequest="32"
+                   HeightRequest="32" />
+            <StackLayout>
+              <Label Text="Card Title"
+                     FontAttributes="Bold"
+                     FontSize="16"
+                     Padding="0,0,0,5" />
+              <Label Text="Single line text"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     FontSize="12" />
+            </StackLayout>
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
+
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

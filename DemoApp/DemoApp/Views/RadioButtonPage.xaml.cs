@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views;
 
-public partial class TMRadioButtonPage : ContentPage
+public partial class RadioButtonPage : ContentPage
 {
     private ObservableCollection<string> _radioButtons;
 
@@ -21,7 +21,7 @@ public partial class TMRadioButtonPage : ContentPage
             OnPropertyChanged(nameof(RadioButtons));
         }
     }
-    public TMRadioButtonPage()
+    public RadioButtonPage()
     {
         InitializeComponent();
         BindingContext = this;

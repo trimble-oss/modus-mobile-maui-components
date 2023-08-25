@@ -4,11 +4,11 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views;
 
-public partial class TMSegmentedControlPage : ContentPage
+public partial class SegmentedControlPage : ContentPage
 {
     private SegmentedControlViewModel _segmentedControlViewModel = new();
 
-    public TMSegmentedControlPage()
+    public SegmentedControlPage()
     {
         InitializeComponent();
         BindingContext = _segmentedControlViewModel;

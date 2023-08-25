@@ -3,14 +3,14 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp;
 
-public partial class TMCheckBoxPage : ContentPage
+public partial class CheckBoxPage : ContentPage
 {
     private string _selectedSize = "Default";
     private IList<TMCheckBox> childCheckboxes;
     private bool updatingCheckboxes = false;
 
     public bool ParentChecked { get; set; }
-    public TMCheckBoxPage()
+    public CheckBoxPage()
     {
         InitializeComponent();
         childCheckboxes = new List<TMCheckBox>
