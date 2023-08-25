@@ -129,8 +129,7 @@
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
-      <Modus:TMCard x:Name="card4"
-                    WidthRequest="250">
+      <Modus:TMCard x:Name="card4">
         <StackLayout>
           <!-- Header -->
           <StackLayout BackgroundColor="Transparent"
@@ -143,7 +142,7 @@
 
           <!-- Content -->
           <StackLayout>
-            <Grid>
+            <Grid ColumnSpacing="10">
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
@@ -216,12 +215,12 @@
           </StackLayout>
 
           <!-- Content -->
-          <StackLayout Padding="0" BackgroundColor="AliceBlue">
+          
             <Image Source="{x:Static constants:ImageConstants.IconPlaceHolder}"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand"
-                     Aspect="Fill" />
-          </StackLayout>
+                     Aspect="AspectFill" />
+          
 
 
           <!-- Footer -->
