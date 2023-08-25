@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Constant;
+using CommunityToolkit.Maui.Behaviors;
 
 namespace Trimble.Modus.Components;
 
@@ -10,7 +11,6 @@ public partial class TMButton : ContentView
 
 {
     #region Private Properties
-
 
     protected EventHandler _clicked;
     protected Color activeColor;
@@ -133,6 +133,19 @@ public partial class TMButton : ContentView
         _buttonLabel = buttonLabel;
         SetPadding(this);
         UpdateButtonStyle(this);
+        UpdateButtonIconColor();
+    }
+
+    private void UpdateButtonIconColor()
+    {
+        leftIcon.Behaviors.Clear();
+        rightIcon.Behaviors.Clear();
+        var behavior = new IconTintColorBehavior
+        {
+            TintColor = buttonLabel.TextColor
+        };
+        leftIcon.Behaviors.Add(behavior);
+        rightIcon.Behaviors.Add(behavior);
     }
 
     #region Private Methods
@@ -199,6 +212,7 @@ public partial class TMButton : ContentView
             default:
                 break;
         }
+        tmButton.UpdateButtonIconColor();
     }
 
     private static void SetPadding(TMButton tmButton)
@@ -259,7 +273,6 @@ public partial class TMButton : ContentView
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
-
                 }
                 else
                 {
@@ -294,15 +307,14 @@ public partial class TMButton : ContentView
         tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         switch (tmButton.ButtonColor)
         {
-            case ButtonColor.Primary:
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                break;
             case ButtonColor.Secondary:
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
                 break;
+            case ButtonColor.Primary:
             default:
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
         }
     }
@@ -331,12 +343,11 @@ public partial class TMButton : ContentView
     {
         switch (ButtonColor)
         {
-            case ButtonColor.Primary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
             case ButtonColor.Secondary:
                 return ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
+            case ButtonColor.Primary:
             default:
-                return color;
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
         }
     }
 

@@ -1,5 +1,6 @@
 namespace Trimble.Modus.Components;
 
+using CommunityToolkit.Maui.Behaviors;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using System;
