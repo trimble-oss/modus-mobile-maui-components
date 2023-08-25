@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace DemoApp.ViewModels
 {
-    public partial class InputPageViewModel : ObservableValidator
+    public partial class InputSamplePageViewModel : ObservableValidator
     {
         public ICommand ShowPasswordCommand { get; set; }
         [ObservableProperty]
@@ -33,7 +33,7 @@ namespace DemoApp.ViewModels
         [ObservableProperty]
         private string _multiLineInputSuccessText;
 
-        public InputPageViewModel()
+        public InputSamplePageViewModel()
         {
             ShowPasswordCommand = new Command(ChangeShowPasswordState);
             ShowPassword = false;

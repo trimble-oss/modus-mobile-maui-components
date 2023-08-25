@@ -3,10 +3,10 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp;
 
-public partial class ToastPage : ContentPage
+public partial class ToastSamplePage : ContentPage
 {
     private ToastTheme toastTheme;
-    public ToastPage()
+    public ToastSamplePage()
     {
         InitializeComponent();
         toastPicker.SelectedItem = ToastTheme.Default;

@@ -4,9 +4,9 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.Views;
 
-public partial class ModalPage : ContentPage
+public partial class ModalSamplePage : ContentPage
 {
-    public ModalPage()
+    public ModalSamplePage()
     {
         InitializeComponent();
     }

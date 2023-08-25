@@ -8,7 +8,7 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    internal partial class SegmentedControlViewModel : ObservableObject
+    internal partial class SegmentedControlSamplePageViewModel : ObservableObject
     {
         [ObservableProperty]
         private SegmentedControlSize _size;
@@ -30,7 +30,7 @@ namespace DemoApp.ViewModels
             new ObservableCollection<ImageSource>();
         [ObservableProperty]
         private bool roundedCornersSwitch,enabledSwitch,secondaryThemeSwitch;
-        public SegmentedControlViewModel()
+        public SegmentedControlSamplePageViewModel()
         {
             _segmentItems = new() { "One", "Two", "Three", "Four" };
             _segmentImageItems = new()

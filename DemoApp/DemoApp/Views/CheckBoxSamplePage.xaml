@@ -1,8 +1,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             x:Class="DemoApp.CheckBoxPage"
-             Title="TMCheckBoxPage">
+             x:Class="DemoApp.CheckBoxSamplePage"
+             Title="CheckBoxSamplePage">
   <VerticalStackLayout Padding="10"
                        HorizontalOptions="Start">
     <Label Text="CheckBox :"

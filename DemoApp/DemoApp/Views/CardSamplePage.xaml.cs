@@ -4,10 +4,10 @@ using Trimble.Modus.Components;
 
 namespace DemoApp.Views;
 
-public partial class CardPage : ContentPage
+public partial class CardSamplePage : ContentPage
 {
     public ICommand Command => new Command(OnClickedCommand);
-    public CardPage()
+    public CardSamplePage()
     {
         InitializeComponent();
         BindingContext = this;

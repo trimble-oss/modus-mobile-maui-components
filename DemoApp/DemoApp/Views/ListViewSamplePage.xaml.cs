@@ -3,16 +3,16 @@ using DemoApp.ViewModels;
 
 namespace DemoApp.Views
 {
-    public partial class ListViewPage : ContentPage
+    public partial class ListViewSamplePage : ContentPage
     {
         #region Private Fields
-        private TMListViewPageViewModel tmListViewPageViewModel;
+        private TMListViewSamplePageViewModel tmListViewPageViewModel;
         #endregion
         #region Constructor
-        public ListViewPage()
+        public ListViewSamplePage()
         {
             InitializeComponent();
-            tmListViewPageViewModel = new TMListViewPageViewModel();
+            tmListViewPageViewModel = new TMListViewSamplePageViewModel();
             textCellList.ItemTemplate = TextCell;
             BindingContext = tmListViewPageViewModel;
         }

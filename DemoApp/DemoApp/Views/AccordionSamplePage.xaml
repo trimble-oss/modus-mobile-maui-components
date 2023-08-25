@@ -5,7 +5,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:local="clr-namespace:DemoApp.ViewModels"
              x:Class="DemoApp.Views.AccordionSamplePage"
-             Title="Accordion">
+             Title="AccordionSamplePage">
   <ScrollView>
     <StackLayout Orientation="Vertical"
                  Margin="10">
