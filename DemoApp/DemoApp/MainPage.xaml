@@ -31,7 +31,7 @@
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
                         Value="10"
-                        Size="Large"
+                        Size="Medium"
                         StepValue="1"
                         IsEnabled="True"
                         ShowSteps="True"/>

@@ -13,6 +13,7 @@ namespace Trimble.Modus.Components.Controls
         protected readonly Dictionary<View, double> thumbPositionMap = new Dictionary<View, double>();
         protected double labelMaxHeight;
         protected int dragCount;
+        protected double thumbSize;
         #endregion
 
         #region Bindable Property
@@ -82,15 +83,9 @@ namespace Trimble.Modus.Components.Controls
         internal Border Track { get; } = SliderHelper.CreateBorderElement<Border>();
         internal Border TrackHighlight { get; } = SliderHelper.CreateBorderElement<Border>();
         internal StackLayout StepContainer { get; } = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand, Orientation = StackOrientation.Horizontal, Spacing = 0 };
-        internal StackLayout LastStepContainer { get; } = new StackLayout { Orientation = StackOrientation.Vertical, Margin = 0, Padding = 0, HorizontalOptions = LayoutOptions.StartAndExpand };
-        internal BoxView LastBoxContainer { get; } = new BoxView { HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, Margin = new Thickness(14,0,0,0), WidthRequest = 1, HeightRequest = 4, Color = Colors.Black};
-        internal Label LastLabel { get; } = new Label { TextColor = Colors.Black, FontSize = 8,
-            HorizontalTextAlignment = TextAlignment.Start,
-            LineBreakMode = LineBreakMode.NoWrap,
-            Margin = new Thickness(14, 0, 0, 0),
-            Padding = new Thickness(0, 4, 0, 0),
-            HorizontalOptions = LayoutOptions.StartAndExpand,
-        };
+        internal StackLayout LastStepContainer { get; } = SliderHelper.CreateStepLabelContainer();
+        internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
+        internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
         #endregion
 
         #region Protected methods
@@ -183,35 +178,16 @@ namespace Trimble.Modus.Components.Controls
         {
             StepContainer.Children.Clear();
 
-            StepContainer.WidthRequest = Width-32;
-            for (var i = 0; i < 10; i++)
+            StepContainer.WidthRequest = Width-thumbSize;
+            var totalSteps = (MaximumValue - MinimumValue) / StepValue;
+            for (var i = 0; StepValue != 0 && i < totalSteps; i++)
             {
-                var stack = new StackLayout();
-                stack.Margin = 0;
-                stack.Padding = 0;
-                stack.Orientation = StackOrientation.Vertical;
-                stack.HorizontalOptions = LayoutOptions.StartAndExpand;
-                var box = new BoxView();
-                box.HorizontalOptions = LayoutOptions.CenterAndExpand;
-                box.VerticalOptions = LayoutOptions.FillAndExpand;
-                box.Margin = new Thickness(14, 0, 0, 0);
-                box.WidthRequest = 1;
-                box.HeightRequest = 4;
-                box.IsVisible = true;
-                box.Color = Colors.Black;
+                var stack = SliderHelper.CreateStepLabelContainer();
+                var box = SliderHelper.CreateStepLine(Size);
                 stack.Children.Add(box);
 
-                var label = new Label
-                {
-                    Text = i.ToString(),
-                    TextColor = Colors.Black,
-                    FontSize = 8,
-                    HorizontalTextAlignment = TextAlignment.Start,
-                    LineBreakMode = LineBreakMode.NoWrap,
-                    Margin = new Thickness(14,0,0,0),
-                    Padding = new Thickness(0,4,0,0),
-                    HorizontalOptions = LayoutOptions.StartAndExpand
-                };
+                var label = SliderHelper.CreateStepLabel(Size);
+                label.Text = i.ToString();
                 stack.Children.Add(label);
                 StepContainer.Children.Add(stack);
             }

@@ -97,8 +97,8 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchBegin();
             ThumbIcon.BatchBegin();
             ValueLabel.BatchBegin();
-            StepContainer?.BatchBegin();
-            LastStepContainer?.BatchBegin();
+            StepContainer.BatchBegin();
+            LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
 
             Track.BackgroundColor = Color.FromArgb("#FFA3A6B1");
@@ -107,7 +107,7 @@ namespace Trimble.Modus.Components
             TrackHighlight.StrokeThickness = 0;
 
             var trackSize = 8;
-            var thumbSize = 24;
+            thumbSize = 24;
             var thumbStrokeThickness = 3;
             var thumbRadius = 13;
             if (Size == SliderSize.Small)
@@ -158,8 +158,8 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchCommit();
             ThumbIcon.BatchCommit();
             ValueLabel.BatchCommit();
-            StepContainer?.BatchCommit();
-            LastStepContainer?.BatchCommit();
+            StepContainer.BatchCommit();
+            LastStepContainer.BatchCommit();
             BuildStepper();
 
             BatchCommit();
@@ -203,7 +203,7 @@ namespace Trimble.Modus.Components
             if (ShowSteps)
             {
                 Children.Add(StepContainer);
-                LastStepContainer.Children.Add(LastBoxContainer);
+                LastStepContainer.Children.Add(LastStepLine);
                 LastStepContainer.Children.Add(LastLabel);
                 Children.Add(LastStepContainer);
                 OnLayoutPropertyChanged();
