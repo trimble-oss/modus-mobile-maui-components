@@ -73,6 +73,7 @@ namespace Trimble.Modus.Components.Controls
         #region UI Elements
         internal Border Track { get; } = SliderHelper.CreateBorderElement<Border>();
         internal Border TrackHighlight { get; } = SliderHelper.CreateBorderElement<Border>();
+        internal StackLayout StepContainer { get; } = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand, Orientation = StackOrientation.Horizontal, Spacing = 0 };
         #endregion
 
         #region Protected methods
@@ -159,5 +160,43 @@ namespace Trimble.Modus.Components.Controls
         protected abstract void OnPanCompleted(View view);
         protected abstract void OnValueLabelTranslationChanged();
         #endregion
+
+        protected void BuildStepper()
+        {
+            StepContainer.Children.Clear();
+
+            StepContainer.WidthRequest = Width-32;
+            for (var i = 0; i < 10; i++)
+            {
+                var stack = new StackLayout();
+                stack.Margin = 0;
+                stack.Padding = 0;
+                stack.Orientation = StackOrientation.Vertical;
+                stack.HorizontalOptions = LayoutOptions.StartAndExpand;
+                var box = new BoxView();
+                box.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                box.VerticalOptions = LayoutOptions.FillAndExpand;
+                box.Margin = new Thickness(14, 0, 0, 0);
+                box.WidthRequest = 1;
+                box.HeightRequest = 4;
+                box.IsVisible = true;
+                box.Color = Colors.Black;
+                stack.Children.Add(box);
+
+                var label = new Label
+                {
+                    Text = i.ToString(),
+                    TextColor = Colors.Black,
+                    FontSize = 8,
+                    HorizontalTextAlignment = TextAlignment.Start,
+                    LineBreakMode = LineBreakMode.NoWrap,
+                    Margin = new Thickness(14,0,0,0),
+                    Padding = new Thickness(0,4,0,0),
+                    HorizontalOptions = LayoutOptions.StartAndExpand
+                };
+                stack.Children.Add(label);
+                StepContainer.Children.Add(stack);
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ using static System.Math;
 
 namespace Trimble.Modus.Components
 {
-	public class RangeSlider : SliderControl
+	public class RangeSlider : SliderCore
     {
 		public event EventHandler? ValueChanged;
 
@@ -114,6 +114,7 @@ namespace Trimble.Modus.Components
             Children.Add(RightThumbIcon);
             Children.Add(LowerValueLabel);
             Children.Add(UpperValueLabel);
+            Children.Add(StepContainer);
             RightThumbIcon.ZIndex = 3;
             LeftThumbIcon.ZIndex = 3;
 
@@ -126,6 +127,7 @@ namespace Trimble.Modus.Components
             LowerValueLabel.SizeChanged += OnViewSizeChanged;
             UpperValueLabel.SizeChanged += OnViewSizeChanged;
             OnIsEnabledChanged();
+            //BuildStepper();
             OnLayoutPropertyChanged();
         }
 

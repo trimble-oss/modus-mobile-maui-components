@@ -30,9 +30,9 @@
                            IsEnabled="True"/>
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
-                        Value="4"
+                        Value="10"
                         Size="Large"
-                        StepValue="0.01"
+                        StepValue="1"
                         IsEnabled="True"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
       </StackLayout>
