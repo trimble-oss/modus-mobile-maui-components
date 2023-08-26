@@ -23,9 +23,12 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty ValueLabelStyleProperty = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelStringFormatProperty = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelSpacingProperty = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderControl), false, propertyChanged: OnShowStepsPropertyChanged);
         #endregion
 
         #region Property change methods
+        static void OnShowStepsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderControl)bindable).OnShowStepsPropertyChanged();
         static void OnLayoutPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnLayoutPropertyChanged();
         static void OnMinimumMaximumValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -33,6 +36,11 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Public Property
+        public Boolean ShowSteps
+        {
+            get => (Boolean)GetValue(ShowStepsProperty);
+            set => SetValue(ShowStepsProperty, value);
+        }
         public SliderSize Size
         {
             get => (SliderSize)GetValue(SizeProperty);
@@ -74,6 +82,15 @@ namespace Trimble.Modus.Components.Controls
         internal Border Track { get; } = SliderHelper.CreateBorderElement<Border>();
         internal Border TrackHighlight { get; } = SliderHelper.CreateBorderElement<Border>();
         internal StackLayout StepContainer { get; } = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand, Orientation = StackOrientation.Horizontal, Spacing = 0 };
+        internal StackLayout LastStepContainer { get; } = new StackLayout { Orientation = StackOrientation.Vertical, Margin = 0, Padding = 0, HorizontalOptions = LayoutOptions.StartAndExpand };
+        internal BoxView LastBoxContainer { get; } = new BoxView { HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, Margin = new Thickness(14,0,0,0), WidthRequest = 1, HeightRequest = 4, Color = Colors.Black};
+        internal Label LastLabel { get; } = new Label { TextColor = Colors.Black, FontSize = 8,
+            HorizontalTextAlignment = TextAlignment.Start,
+            LineBreakMode = LineBreakMode.NoWrap,
+            Margin = new Thickness(14, 0, 0, 0),
+            Padding = new Thickness(0, 4, 0, 0),
+            HorizontalOptions = LayoutOptions.StartAndExpand,
+        };
         #endregion
 
         #region Protected methods
@@ -159,6 +176,7 @@ namespace Trimble.Modus.Components.Controls
         protected abstract void OnPanRunning(View view, double value);
         protected abstract void OnPanCompleted(View view);
         protected abstract void OnValueLabelTranslationChanged();
+        protected abstract void OnShowStepsPropertyChanged();
         #endregion
 
         protected void BuildStepper()

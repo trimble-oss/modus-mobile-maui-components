@@ -7,7 +7,7 @@ using static System.Math;
 
 namespace Trimble.Modus.Components
 {
-	public class RangeSlider : SliderCore
+	public class RangeSlider : SliderControl
     {
 		public event EventHandler? ValueChanged;
 
@@ -296,5 +296,10 @@ namespace Trimble.Modus.Components
 			}
 			UpperValue = Min(Max(LowerValue, ((value - LeftThumbIcon.Width) / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
 		}
-	}
+
+        protected override void OnShowStepsPropertyChanged()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

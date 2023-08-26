@@ -33,7 +33,8 @@
                         Value="10"
                         Size="Large"
                         StepValue="1"
-                        IsEnabled="True"/>
+                        IsEnabled="True"
+                        ShowSteps="True"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
       </StackLayout>
     </ScrollView>

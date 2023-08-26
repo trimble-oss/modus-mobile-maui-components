@@ -7,7 +7,7 @@ using static System.Math;
 
 namespace Trimble.Modus.Components
 {
-    public class TMSlider : SliderCore
+    public class TMSlider : SliderControl
     {
         public event EventHandler? ValueChanged;
 
@@ -52,7 +52,6 @@ namespace Trimble.Modus.Components
             Children.Add(TrackHighlight);
             Children.Add(ThumbIcon);
             Children.Add(ValueLabel);
-            Children.Add(StepContainer);
             ThumbIcon.ZIndex = 3;
 
             AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
@@ -98,7 +97,9 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchBegin();
             ThumbIcon.BatchBegin();
             ValueLabel.BatchBegin();
-            StepContainer.BatchBegin();
+            StepContainer?.BatchBegin();
+            LastStepContainer?.BatchBegin();
+            LastLabel.Text = MaximumValue.ToString();
 
             Track.BackgroundColor = Color.FromArgb("#FFA3A6B1");
             Track.StrokeThickness = 0;
@@ -142,7 +143,13 @@ namespace Trimble.Modus.Components
             SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
             SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
             SetLayoutBounds((IView)ValueLabel, new Rect(0, 0, -1, -1));
-            SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
+
+            if (ShowSteps)
+            {
+                SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
+                SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth, trackVerticalPosition + 20, -1, -1));
+            }
+
             SetValueLabelBinding(ValueLabel, ValueProperty);
             ValueLabel.Style = ValueLabelStyle ?? ValueLabelStyle;
             OnLowerUpperValuePropertyChanged();
@@ -151,7 +158,8 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchCommit();
             ThumbIcon.BatchCommit();
             ValueLabel.BatchCommit();
-            StepContainer.BatchCommit();
+            StepContainer?.BatchCommit();
+            LastStepContainer?.BatchCommit();
             BuildStepper();
 
             BatchCommit();
@@ -190,11 +198,26 @@ namespace Trimble.Modus.Components
             labelMaxHeight = maxHeight;
             OnLayoutPropertyChanged();
         }
+        protected override void OnShowStepsPropertyChanged()
+        {
+            if (ShowSteps)
+            {
+                Children.Add(StepContainer);
+                LastStepContainer.Children.Add(LastBoxContainer);
+                LastStepContainer.Children.Add(LastLabel);
+                Children.Add(LastStepContainer);
+                OnLayoutPropertyChanged();
+            }
+            else
+            {
+                Children.Remove(StepContainer);
+                Children.Remove(LastStepContainer);
+            }
+        }
         void UpdateValue(View view, double value)
         {
             var rangeValue = MaximumValue - MinimumValue;
             Value = Min(Max(MinimumValue, (value / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
-
         }
     }
 }
