@@ -163,7 +163,7 @@ namespace Trimble.Modus.Components
 
 			var bounds = GetLayoutBounds((IView)TrackHighlight);
 			//this.SetLayoutBounds(TrackHighlight, new Rect(lowerTranslation, bounds.Y, upperTranslation - lowerTranslation + RightThumbIcon.Width, bounds.Height));
-			this.SetLayoutBounds(TrackHighlight, new Rect(lowerTranslation, bounds.Y, upperTranslation - lowerTranslation + 32, bounds.Height));
+			this.SetLayoutBounds(TrackHighlight, new Rect(lowerTranslation, bounds.Y, upperTranslation - lowerTranslation + thumbSize, bounds.Height));
 		}
 
 		protected override void OnValueLabelTranslationChanged()

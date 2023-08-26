@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
 using System.Runtime.CompilerServices;
 using Trimble.Modus.Components.Controls;
+using Trimble.Modus.Components.Controls.RangeSlider;
 using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
 using static System.Math;
@@ -41,7 +42,8 @@ namespace Trimble.Modus.Components
             get => (double)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
-
+        StackLayout ValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
+        View ValueToolTipShape = new ToolTipAnchor() { };
         Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
         Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
         double TrackWidth => Width - ThumbIcon.Width;
@@ -51,7 +53,14 @@ namespace Trimble.Modus.Components
             Children.Add(Track);
             Children.Add(TrackHighlight);
             Children.Add(ThumbIcon);
-            Children.Add(ValueLabel);
+            ValueToolTipShape.VerticalOptions = LayoutOptions.Start;
+            ValueToolTipShape.TranslationY = 0;
+            ValueToolTipShape.RotateTo(180);
+            ValueLabel.BackgroundColor = Colors.Black;
+            ValueHolder.Children.Add(ValueLabel);
+            ValueHolder.Children.Add(ValueToolTipShape);
+            Children.Add(ValueHolder);
+            //Children.Add(ValueLabel);
             ThumbIcon.ZIndex = 3;
 
             AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
@@ -82,13 +91,13 @@ namespace Trimble.Modus.Components
             OnValueLabelTranslationChanged();
 
             var bounds = GetLayoutBounds((IView)TrackHighlight);
-            this.SetLayoutBounds(TrackHighlight, new Rect(0, bounds.Y, lowerTranslation+32, bounds.Height));
+            this.SetLayoutBounds(TrackHighlight, new Rect(0, bounds.Y, lowerTranslation+thumbSize, bounds.Height));
         }
         protected override void OnValueLabelTranslationChanged()
         {
             var labelSpacing = 5;
             var lowerLabelTranslation = lowerTranslation + ((ThumbIcon.Width - ValueLabel.Width) / 2);
-            ValueLabel.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - ValueLabel.Width - labelSpacing);
+            ValueHolder.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - ValueLabel.Width - labelSpacing);
         }
         protected override void OnLayoutPropertyChanged()
         {
@@ -97,6 +106,7 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchBegin();
             ThumbIcon.BatchBegin();
             ValueLabel.BatchBegin();
+            ValueHolder.BatchBegin();
             StepContainer.BatchBegin();
             LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
@@ -105,7 +115,7 @@ namespace Trimble.Modus.Components
             Track.StrokeThickness = 0;
             TrackHighlight.BackgroundColor = Color.FromArgb("#FF0063A3");
             TrackHighlight.StrokeThickness = 0;
-
+            ValueLabel.TextColor = Colors.White;
             var trackSize = 8;
             thumbSize = 24;
             var thumbStrokeThickness = 3;
@@ -142,7 +152,7 @@ namespace Trimble.Modus.Components
             SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
             SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
             SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
-            SetLayoutBounds((IView)ValueLabel, new Rect(0, 0, -1, -1));
+            SetLayoutBounds((IView)ValueHolder, new Rect(0, 0, -1, -1));
 
             if (ShowSteps)
             {
@@ -158,6 +168,7 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchCommit();
             ThumbIcon.BatchCommit();
             ValueLabel.BatchCommit();
+            ValueHolder.BatchCommit();
             BuildStepper();
             StepContainer.BatchCommit();
             LastStepContainer.BatchCommit();

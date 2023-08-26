@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Controls.RangeSlider.ToolTipAnchor">
+  <Polygon Points="{OnIdiom '0 32,15 15,30 32',Phone='0,30 15,15 30,30'}" Fill="Black" StrokeThickness="1" Stroke="Black" StrokeLineJoin="Miter" ScaleX="0.4" ScaleY="0.4" TranslationY="13"/>
+</ContentView>

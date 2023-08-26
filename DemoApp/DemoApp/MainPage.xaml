@@ -29,11 +29,11 @@
                            StepValue="1"
                            ShowSteps="True"
                            IsEnabled="True"/>
-        <modus:TMSlider MaximumValue="15"
+        <modus:TMSlider MaximumValue="20"
                         MinimumValue="0"
-                        Value="9"
-                        Size="Medium"
-                        StepValue="1"
+                        Value="20"
+                        Size="Small"
+                        StepValue="2"
                         IsEnabled="True"
                         ShowSteps="True"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
