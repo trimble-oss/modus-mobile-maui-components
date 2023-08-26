@@ -22,15 +22,16 @@
     <ScrollView>
       <StackLayout BackgroundColor="White" Padding="20,40,20,20" Spacing="50">
         <modus:RangeSlider MaximumValue="10"
-                           MinimumValue="0"
+                           MinimumValue="-10"
                            LowerValue="0"
                            UpperValue="6"
                            Size="Large"
-                           StepValue="0.01"
+                           StepValue="1"
+                           ShowSteps="True"
                            IsEnabled="True"/>
-        <modus:TMSlider MaximumValue="10"
+        <modus:TMSlider MaximumValue="15"
                         MinimumValue="0"
-                        Value="10"
+                        Value="9"
                         Size="Medium"
                         StepValue="1"
                         IsEnabled="True"

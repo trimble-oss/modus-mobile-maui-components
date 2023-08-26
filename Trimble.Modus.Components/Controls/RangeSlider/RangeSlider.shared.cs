@@ -114,7 +114,6 @@ namespace Trimble.Modus.Components
             Children.Add(RightThumbIcon);
             Children.Add(LowerValueLabel);
             Children.Add(UpperValueLabel);
-            Children.Add(StepContainer);
             RightThumbIcon.ZIndex = 3;
             LeftThumbIcon.ZIndex = 3;
 
@@ -185,14 +184,17 @@ namespace Trimble.Modus.Components
 			RightThumbIcon.BatchBegin();
 			LowerValueLabel.BatchBegin();
 			UpperValueLabel.BatchBegin();
+            StepContainer.BatchBegin();
+            LastStepContainer.BatchBegin();
+            LastLabel.Text = MaximumValue.ToString();
 
-			Track.BackgroundColor = Color.FromArgb("#FFA3A6B1");
+            Track.BackgroundColor = Color.FromArgb("#FFA3A6B1");
             Track.StrokeThickness = 0;
             TrackHighlight.BackgroundColor = Color.FromArgb("#FF0063A3");
             TrackHighlight.StrokeThickness = 0;
 
             var trackSize = 8;
-            var thumbSize = 24;
+            thumbSize = 24;
             var thumbStrokeThickness = 3;
             var thumbRadius = 13;
             if (Size == SliderSize.Small)
@@ -233,7 +235,12 @@ namespace Trimble.Modus.Components
 			SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, thumbSize, thumbSize));
 			SetLayoutBounds((IView)LowerValueLabel, new Rect(0, 0, -1, -1));
 			SetLayoutBounds((IView)UpperValueLabel, new Rect(0, 0, -1, -1));
-			SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
+            if (ShowSteps)
+            {
+                SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
+                SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth, trackVerticalPosition + 20, -1, -1));
+            }
+            SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
 			SetValueLabelBinding(UpperValueLabel, UpperValueProperty);
 			LowerValueLabel.Style = LowerValueLabelStyle ?? ValueLabelStyle;
 			UpperValueLabel.Style = UpperValueLabelStyle ?? ValueLabelStyle;
@@ -245,7 +252,10 @@ namespace Trimble.Modus.Components
             RightThumbIcon.BatchCommit();
 			LowerValueLabel.BatchCommit();
 			UpperValueLabel.BatchCommit();
-			BatchCommit();
+            BuildStepper();
+            StepContainer.BatchCommit();
+            LastStepContainer.BatchCommit();
+            BatchCommit();
 		}
 
 		protected override void OnViewSizeChanged(object? sender, System.EventArgs e)
@@ -299,7 +309,19 @@ namespace Trimble.Modus.Components
 
         protected override void OnShowStepsPropertyChanged()
         {
-            throw new NotImplementedException();
+            if (ShowSteps)
+            {
+                Children.Add(StepContainer);
+                LastStepContainer.Children.Add(LastStepLine);
+                LastStepContainer.Children.Add(LastLabel);
+                Children.Add(LastStepContainer);
+                OnLayoutPropertyChanged();
+            }
+            else
+            {
+                Children.Remove(StepContainer);
+                Children.Remove(LastStepContainer);
+            }
         }
     }
 }

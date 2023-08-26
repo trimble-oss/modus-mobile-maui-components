@@ -180,7 +180,7 @@ namespace Trimble.Modus.Components.Controls
 
             StepContainer.WidthRequest = Width-thumbSize;
             var totalSteps = (MaximumValue - MinimumValue) / StepValue;
-            for (var i = 0; StepValue != 0 && i < totalSteps; i++)
+            for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
             {
                 var stack = SliderHelper.CreateStepLabelContainer();
                 var box = SliderHelper.CreateStepLine(Size);

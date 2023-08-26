@@ -158,9 +158,9 @@ namespace Trimble.Modus.Components
             TrackHighlight.BatchCommit();
             ThumbIcon.BatchCommit();
             ValueLabel.BatchCommit();
+            BuildStepper();
             StepContainer.BatchCommit();
             LastStepContainer.BatchCommit();
-            BuildStepper();
 
             BatchCommit();
         }
