@@ -179,6 +179,7 @@ namespace Trimble.Modus.Components.Controls
             StepContainer.Children.Clear();
 
             StepContainer.WidthRequest = Width-thumbSize;
+            //StepContainer.WidthRequest = Width-2*thumbSize; For RangeSlider
             for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
             {
                 var stack = SliderHelper.CreateStepLabelContainer();

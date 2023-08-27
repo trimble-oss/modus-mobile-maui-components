@@ -155,7 +155,8 @@ namespace Trimble.Modus.Components
 			var trackWidth = TrackWidth;
 
 			lowerTranslation = (LowerValue - MinimumValue) / rangeValue * trackWidth;
-			upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth) + LeftThumbIcon.Width;
+			upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth);
+			//upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth) + LeftThumbIcon.Width;
 
             LeftThumbIcon.TranslationX = lowerTranslation;
 			RightThumbIcon.TranslationX = upperTranslation;

@@ -56,7 +56,7 @@ namespace Trimble.Modus.Components
             ValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             ValueToolTipShape.TranslationY = 0;
             ValueToolTipShape.RotateTo(180);
-            ValueLabel.BackgroundColor = Colors.Black;
+            ValueLabel.BackgroundColor = Color.FromArgb("#585C65");
             ValueHolder.Children.Add(ValueLabel);
             ValueHolder.Children.Add(ValueToolTipShape);
             Children.Add(ValueHolder);
@@ -98,6 +98,14 @@ namespace Trimble.Modus.Components
             var labelSpacing = 5;
             var lowerLabelTranslation = lowerTranslation + ((ThumbIcon.Width - ValueLabel.Width) / 2);
             ValueHolder.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - ValueLabel.Width - labelSpacing);
+            if (Value == MinimumValue)
+            {
+                ValueHolder.TranslationX -= 6;
+            }
+            else if (Value == MaximumValue)
+            {
+                ValueHolder.TranslationX += 9;
+            }
         }
         protected override void OnLayoutPropertyChanged()
         {
