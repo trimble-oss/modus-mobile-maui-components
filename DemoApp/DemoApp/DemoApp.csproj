@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Images\email.svg" />
 	  <None Remove="Resources\Images\gallery_icon.svg" />
 	  <None Remove="Resources\Images\green_icon.svg" />
+	  <None Remove="Resources\Images\icon_placeholder.svg" />
 	  <None Remove="Resources\Images\phone.svg" />
 	  <None Remove="Resources\Images\placeholder.svg" />
 	  <None Remove="Resources\Images\placeholder_white.svg" />

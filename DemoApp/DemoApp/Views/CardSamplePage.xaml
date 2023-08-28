@@ -129,8 +129,7 @@
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
-      <Modus:TMCard x:Name="card4"
-                    WidthRequest="250">
+      <Modus:TMCard x:Name="card4">
         <StackLayout>
           <!-- Header -->
           <StackLayout BackgroundColor="Transparent"
@@ -143,7 +142,7 @@
 
           <!-- Content -->
           <StackLayout>
-            <Grid>
+            <Grid ColumnSpacing="10">
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
               </Grid.RowDefinitions>
@@ -204,7 +203,41 @@
           </StackLayout>
         </StackLayout>
       </Modus:TMCard>
+      <Modus:TMCard x:Name="card6" Padding="0">
+        <StackLayout>
+          <!-- Header -->
+          <StackLayout BackgroundColor="Transparent"
+                       Padding="10">
+            <Label Text="Card Header"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+          </StackLayout>
 
+          <!-- Content -->
+          
+            <Image Source="{x:Static constants:ImageConstants.IconPlaceHolder}"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Aspect="AspectFill" />
+          
+
+
+          <!-- Footer -->
+          <StackLayout Padding="10"
+                       HorizontalOptions="End"
+                       BackgroundColor="Transparent"
+                       Orientation="Horizontal"
+                       Spacing="15">
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Outline">
+            </Modus:TMButton>
+            <Modus:TMButton Title="Button"
+                            ButtonStyle="Fill"></Modus:TMButton>
+
+          </StackLayout>
+        </StackLayout>
+      </Modus:TMCard>
     </VerticalStackLayout>
   </ScrollView>
 </ContentPage>
