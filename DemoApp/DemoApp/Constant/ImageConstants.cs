@@ -17,5 +17,6 @@
         public const string ArrowDown= "arrow_down.png";
         public const string ArrowLeft= "arrow_left.png";
         public const string ArrowRight= "arrow_right.png";
+        public const string IconPlaceHolder = "icon_placeholder.png";
     }
 }
