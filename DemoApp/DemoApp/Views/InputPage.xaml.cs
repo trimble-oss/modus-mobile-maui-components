@@ -4,11 +4,11 @@ namespace DemoApp;
 
 public partial class InputPage : ContentPage
 {
-    private InputPageViewModel _inputPageViewModel;
+    private InputSamplePageViewModel _inputPageViewModel;
 
     public InputPage()
     {
-        _inputPageViewModel = new InputPageViewModel();
+        _inputPageViewModel = new InputSamplePageViewModel();
         InitializeComponent();
         BindingContext = _inputPageViewModel;
     }

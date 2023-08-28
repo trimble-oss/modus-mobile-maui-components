@@ -7,11 +7,11 @@ namespace DemoApp;
 
 public partial class ButtonPage : ContentPage
 {
-    private readonly ButtonPageViewModel _buttonPageViewModel;
+    private readonly ButtonSamplePageViewModel _buttonPageViewModel;
 
     public ButtonPage()
     {
-        _buttonPageViewModel = new ButtonPageViewModel();
+        _buttonPageViewModel = new ButtonSamplePageViewModel();
         InitializeComponent();
         BindingContext = _buttonPageViewModel;
     }

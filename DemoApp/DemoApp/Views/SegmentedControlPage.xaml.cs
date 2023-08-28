@@ -6,7 +6,7 @@ namespace DemoApp.Views;
 
 public partial class SegmentedControlPage : ContentPage
 {
-    private SegmentedControlViewModel _segmentedControlViewModel = new();
+    private SegmentedControlSamplePageViewModel _segmentedControlViewModel = new();
 
     public SegmentedControlPage()
     {

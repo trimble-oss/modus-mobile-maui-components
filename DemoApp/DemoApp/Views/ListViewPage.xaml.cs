@@ -6,13 +6,13 @@ namespace DemoApp.Views
     public partial class ListViewPage : ContentPage
     {
         #region Private Fields
-        private TMListViewPageViewModel tmListViewPageViewModel;
+        private TMListViewSamplePageViewModel tmListViewPageViewModel;
         #endregion
         #region Constructor
         public ListViewPage()
         {
             InitializeComponent();
-            tmListViewPageViewModel = new TMListViewPageViewModel();
+            tmListViewPageViewModel = new TMListViewSamplePageViewModel();
             textCellList.ItemTemplate = TextCell;
             BindingContext = tmListViewPageViewModel;
         }
