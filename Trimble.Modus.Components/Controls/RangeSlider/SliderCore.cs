@@ -174,11 +174,11 @@ namespace Trimble.Modus.Components.Controls
         protected abstract void OnShowStepsPropertyChanged();
         #endregion
 
-        protected void BuildStepper()
+        protected void BuildStepper(bool isRangeSlider = false)
         {
             StepContainer.Children.Clear();
 
-            StepContainer.WidthRequest = Width-thumbSize;
+            StepContainer.WidthRequest = Width-(isRangeSlider? 2*thumbSize : thumbSize);
             //StepContainer.WidthRequest = Width-2*thumbSize; For RangeSlider
             for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
             {

@@ -176,8 +176,12 @@ namespace Trimble.Modus.Components
 			var trackWidth = TrackWidth;
 
 			lowerTranslation = (LowerValue - MinimumValue) / rangeValue * trackWidth;
-			upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth);
-			//upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth) + LeftThumbIcon.Width;
+            upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth);
+            if(UpperValue == LowerValue)
+            {
+                upperTranslation += thumbSize;
+            }
+            //upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth) + LeftThumbIcon.Width;
 
             LeftThumbIcon.TranslationX = lowerTranslation;
 			RightThumbIcon.TranslationX = upperTranslation;
@@ -282,7 +286,7 @@ namespace Trimble.Modus.Components
 			UpperValueLabel.BatchCommit();
             UpperValueHolder.BatchCommit();
             LowerValueHolder.BatchCommit();
-            BuildStepper();
+            BuildStepper(true);
             StepContainer.BatchCommit();
             LastStepContainer.BatchCommit();
             BatchCommit();
