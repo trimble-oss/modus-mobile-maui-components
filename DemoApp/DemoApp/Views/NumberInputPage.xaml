@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.NumberInputPage"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="TMNumberInputPage">
+  <VerticalStackLayout Padding="5">
+    <modus:TMNumberInput x:Name="NumberInputSample"
+                         MinValue="0"
+                         MaxValue="100"
+                         Step="1"
+                         Value="0"
+                         IsEnabled="{Binding IsToggled, Source={x:Reference IsEnabledProperty}}"
+                         IsReadOnly="{Binding IsToggled, Source={x:Reference IsReadOnlyProperty}}" />
+    <HorizontalStackLayout>
+      <modus:TMInput x:Name="MinValueInput"
+                     TitleText="Minimum Value"
+                     Placeholder="Enter Minimum Value"
+                     Keyboard="Numeric"
+                     Text="0"/>
+      <modus:TMButton x:Name="SetMinValue"
+                      Title="Set Min Value"
+                      Clicked="SetMinValueClicked"
+                      VerticalOptions="End"
+                      Padding="0,5,0,0"/>
+    </HorizontalStackLayout>
+    <HorizontalStackLayout>
+      <modus:TMInput x:Name="MaxValueInput"
+                     TitleText="Maximum Value"
+                     Placeholder="Enter Maximum Value"
+                     Keyboard="Numeric"
+                     Text="100"/>
+      <modus:TMButton x:Name="SetMaxValue"
+                      Title="Set Max Value"
+                      Clicked="SetMaxValueClicked"
+                      VerticalOptions="End"
+                      Padding="0,5,0,0"/>
+    </HorizontalStackLayout>
+    <HorizontalStackLayout>
+      <modus:TMInput x:Name="ValueInput"
+                     TitleText="Set Value"
+                     Placeholder="Enter Value"
+                     Keyboard="Numeric"
+                     Text="0"/>
+      <modus:TMButton x:Name="SetValue"
+                      Title="Set Value"
+                      Clicked="SetValueClicked"
+                      VerticalOptions="End"
+                      Padding="0,5,0,0"/>
+    </HorizontalStackLayout>
+    <HorizontalStackLayout>
+      <modus:TMInput x:Name="StepValueInput"
+                     TitleText="Step Value"
+                     Placeholder="Enter Step Value"
+                     Keyboard="Numeric"
+                     Text="1"/>
+      <modus:TMButton x:Name="SetStepValue"
+                      Title="Set Step Value"
+                      Clicked="SetStepValueClicked"
+                      VerticalOptions="End"
+                      Padding="0,5,0,0"/>
+    </HorizontalStackLayout>
+    <modus:TMButton x:Name="ShowValue"
+                    Title="Show Value"
+                    Clicked="ShowValueClicked"
+                    Padding="0,5,0,0"/>
+    <Label x:Name="ValueChange" />
+    <Label Text="IsEnabled" />
+    <Switch x:Name="IsEnabledProperty"
+            IsToggled="True"
+            HorizontalOptions="Start"/>
+    <Label Text="IsReadOnly" />
+    <Switch x:Name="IsReadOnlyProperty"
+            IsToggled="False"
+            HorizontalOptions="Start"/>
+  </VerticalStackLayout>
+</ContentPage>
