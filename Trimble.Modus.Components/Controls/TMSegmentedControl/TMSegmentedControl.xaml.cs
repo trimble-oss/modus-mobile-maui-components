@@ -268,25 +268,15 @@ public partial class TMSegmentedControl : ContentView
             {
                 newTab.Text = (string)item;
             }
+            else if (item is SegmentedItem segmentedItem)
+            {
+
+                newTab.Text = segmentedItem.Text;
+                newTab.Icon = segmentedItem.IconSource;
+            }
             else
             {
-                try
-                {
-                    var info = item.GetType().GetProperty("Text");
-                    var imageInfo = item.GetType().GetProperty("Image");
-                    if (info != null && info.GetValue(item) != null)
-                    {
-                        newTab.Text = info.GetValue(item) as string;
-                    }
-                    if (imageInfo != null && imageInfo.GetValue(item) != null)
-                    {
-                        newTab.Icon = imageInfo.GetValue(item) as ImageSource;
-                    }
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine("Trimble Modus | ", ex);
-                }
+                newTab.Text = item.ToString();
             }
             UpdateSegmentedItem(newTab);
             SegmentedItems.Add(newTab);

@@ -23,12 +23,11 @@
     </ResourceDictionary>
   </Border.Resources>
   <Grid RowSpacing="0" BackgroundColor="{Binding Source={x:Reference ItemContainer}, Path=CurrentBackgroundColor}">
-    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="10,0" HorizontalOptions="CenterAndExpand">
       <Image x:Name="SegmentIcon"
-       HorizontalOptions="CenterAndExpand"
+       HorizontalOptions="Center"
        VerticalOptions="Center"
-       Aspect="Center"
-       Margin="8,0"
+       Aspect="Center"  
        Source="{Binding Source={x:Reference ItemContainer}, Path=Icon}"
        IsVisible="{Binding CurrentIcon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"/>
 
@@ -36,8 +35,9 @@
       <Label x:Name="TextLabel"
            HorizontalTextAlignment="Center"
            VerticalTextAlignment="Center"
+           HorizontalOptions="CenterAndExpand"
+           Margin="4,0"
            Text="{Binding Text}"
-           Margin="16,0"
            LineBreakMode="TailTruncation"
            MaxLines="1"
            IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"

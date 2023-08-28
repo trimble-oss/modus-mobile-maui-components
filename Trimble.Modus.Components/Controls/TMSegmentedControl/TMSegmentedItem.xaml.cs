@@ -176,7 +176,6 @@ public partial class TMSegmentedItem
     {
         UpdateBackgroundColor();
         UpdateIconBehavior();
-        UpdateLayout();
     }
 
     /// <summary>
@@ -206,22 +205,6 @@ public partial class TMSegmentedItem
                 TintColor = IsSelected ? Colors.White : Colors.Black
             };
             SegmentIcon.Behaviors.Add(behavior);
-        }
-    }
-
-
-    /// <summary>
-    /// Triggered to update the layout based on the text and icon
-    /// </summary>
-    private void UpdateLayout()
-    {
-        if (!string.IsNullOrEmpty(Text))
-        {
-            //SegmentIcon.IsVisible = false;
-        }
-        else if (Icon != null)
-        {
-            //TextLabel.IsVisible = false;
         }
     }
 }

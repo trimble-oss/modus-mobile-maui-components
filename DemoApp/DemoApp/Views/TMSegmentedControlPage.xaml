@@ -21,13 +21,13 @@
                               IsEnabled="{Binding IsEnabled}"
                               Margin="0,0,0,10"
                               ItemsSource="{Binding SegmentImageItems}" />
-    <modus:TMSegmentedControl x:Name="DemoSegmentControl"
+    <modus:TMSegmentedControl x:Name="SegmentedItemSegmentControl"
                               Size="{Binding Size}"
                               IsRounded="{Binding RoundedCorners}"
                               ColorTheme="{Binding SegmentTheme}"
                               IsEnabled="{Binding IsEnabled}"
                               Margin="0,0,0,10"
-                              ItemsSource="{Binding SegmentDemoItems}" />
+                              ItemsSource="{Binding SegmentedItemItems}" />
     <modus:TMRadioButtonGroup SelectedIndex="0"
                               SelectedRadioButtonChanged="TMRadioButtonGroup_SelectedRadioButtonChanged">
       <modus:TMRadioButton Text="Small"
