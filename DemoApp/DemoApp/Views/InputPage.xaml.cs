@@ -2,11 +2,11 @@ using DemoApp.ViewModels;
 
 namespace DemoApp;
 
-public partial class TMInputPage : ContentPage
+public partial class InputPage : ContentPage
 {
     private InputPageViewModel _inputPageViewModel;
 
-    public TMInputPage()
+    public InputPage()
     {
         _inputPageViewModel = new InputPageViewModel();
         InitializeComponent();

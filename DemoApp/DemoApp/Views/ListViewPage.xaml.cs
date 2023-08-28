@@ -3,13 +3,13 @@ using DemoApp.ViewModels;
 
 namespace DemoApp.Views
 {
-    public partial class TMListViewPage : ContentPage
+    public partial class ListViewPage : ContentPage
     {
         #region Private Fields
         private TMListViewPageViewModel tmListViewPageViewModel;
         #endregion
         #region Constructor
-        public TMListViewPage()
+        public ListViewPage()
         {
             InitializeComponent();
             tmListViewPageViewModel = new TMListViewPageViewModel();

@@ -1,8 +1,8 @@
 namespace DemoApp.Views;
 
-public partial class TMNumberInputPage : ContentPage
+public partial class NumberInputPage : ContentPage
 {
-    public TMNumberInputPage()
+    public NumberInputPage()
     {
         InitializeComponent();
         StepValueInput.TextChanged += OnStepValueChanged;

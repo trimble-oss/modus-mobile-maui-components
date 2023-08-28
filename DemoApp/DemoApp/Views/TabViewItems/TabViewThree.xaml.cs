@@ -12,7 +12,7 @@ public partial class TabViewThree : ContentView
 
     private void TMButtonClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new TMButtonPage());
+        Navigation.PushAsync(new ButtonPage());
     }
 }
 

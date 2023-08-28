@@ -42,40 +42,40 @@ namespace DemoApp
                 switch (name)
                 {
                     case "Button":
-                        Navigation.PushAsync(new TMButtonPage());
+                        Navigation.PushAsync(new ButtonPage());
                         break;
                     case "Input":
-                        Navigation.PushAsync(new TMInputPage());
+                        Navigation.PushAsync(new InputPage());
                         break;
                     case "MultiLineInput":
                         Navigation.PushAsync(new MultiLineInputPage());
                         break;
                     case "Modal":
-                        Navigation.PushAsync(new TMModalPage());
+                        Navigation.PushAsync(new ModalPage());
                         break;
                     case "Toast":
-                        Navigation.PushAsync(new TMToastPage());
+                        Navigation.PushAsync(new ToastPage());
                         break;
                     case "CheckBox":
-                        Navigation.PushAsync(new TMCheckBoxPage());
+                        Navigation.PushAsync(new CheckBoxPage());
                         break;
                     case "Card":
-                        Navigation.PushAsync(new TMCardPage());
+                        Navigation.PushAsync(new CardPage());
                         break;
                     case "RadioButton":
-                        Navigation.PushAsync(new TMRadioButtonPage());
+                        Navigation.PushAsync(new RadioButtonPage());
                         break;
                     case "NumberInput":
-                        Navigation.PushAsync(new TMNumberInputPage());
+                        Navigation.PushAsync(new NumberInputPage());
                         break;
                     case "Spinner":
-                        Navigation.PushAsync(new TMSpinnerPage());
+                        Navigation.PushAsync(new SpinnerPage());
                         break;
                     case "SegmentedControl":
-                        Navigation.PushAsync(new TMSegmentedControlPage());
+                        Navigation.PushAsync(new SegmentedControlPage());
                         break;
                     case "ListView":
-                        Navigation.PushAsync(new TMListViewPage());
+                        Navigation.PushAsync(new ListViewPage());
                         break;
                     case "DataGrid":
                         Navigation.PushAsync(new TableViewPage());
