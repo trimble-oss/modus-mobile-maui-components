@@ -11,7 +11,7 @@ using DemoApp.Helper;
 
 namespace DemoApp.ViewModels
 {
-    internal partial class TMListViewSamplePageViewModel : ObservableObject
+    internal partial class ListViewSamplePageViewModel : ObservableObject
     {
         #region Private Fields
         [ObservableProperty]
@@ -22,7 +22,7 @@ namespace DemoApp.ViewModels
         #endregion
 
         #region Constructor
-        public TMListViewSamplePageViewModel()
+        public ListViewSamplePageViewModel()
         {
             InitialzeUsers();
             SelectionMode = ListSelectionMode.Single;

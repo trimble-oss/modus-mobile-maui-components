@@ -7,7 +7,7 @@ public partial class TabViewOne : ContentView
     public TabViewOne()
     {
         InitializeComponent();
-        BindingContext = new TMListViewSamplePageViewModel();
+        BindingContext = new ListViewSamplePageViewModel();
     }
 }
 
