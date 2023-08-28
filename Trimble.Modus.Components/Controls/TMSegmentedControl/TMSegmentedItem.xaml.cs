@@ -217,11 +217,11 @@ public partial class TMSegmentedItem
     {
         if (!string.IsNullOrEmpty(Text))
         {
-            SegmentIcon.IsVisible = false;
+            //SegmentIcon.IsVisible = false;
         }
         else if (Icon != null)
         {
-            TextLabel.IsVisible = false;
+            //TextLabel.IsVisible = false;
         }
     }
 }

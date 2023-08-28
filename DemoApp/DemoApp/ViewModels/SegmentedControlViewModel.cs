@@ -8,6 +8,16 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
+    public class DemoClass{
+        public string Text { get; set; }
+
+        public ImageSource Image { get; set; }
+        public DemoClass(string text, ImageSource image)
+        {
+            Text = text;
+            Image= image;
+        }
+    }
     internal partial class SegmentedControlViewModel : ObservableObject
     {
         [ObservableProperty]
@@ -29,6 +39,9 @@ namespace DemoApp.ViewModels
         private ObservableCollection<ImageSource> _segmentImageItems =
             new ObservableCollection<ImageSource>();
         [ObservableProperty]
+        private ObservableCollection<DemoClass> _segmentDemoItems =
+            new ObservableCollection<DemoClass>();
+        [ObservableProperty]
         private bool roundedCornersSwitch,enabledSwitch,secondaryThemeSwitch;
         public SegmentedControlViewModel()
         {
@@ -38,6 +51,12 @@ namespace DemoApp.ViewModels
                 ImageSource.FromFile(ImageConstants.GalleryIcon),
                 ImageSource.FromFile(ImageConstants.ModusPlaceholderImage),
                 ImageSource.FromFile(ImageConstants.AccountIcon)
+            };
+            _segmentDemoItems = new ObservableCollection<DemoClass>()
+            {
+                new DemoClass("One",ImageSource.FromFile(ImageConstants.GalleryIcon)),
+                new DemoClass("Two",ImageSource.FromFile(ImageConstants.ModusPlaceholderImage)),
+                new DemoClass("Three",ImageSource.FromFile(ImageConstants.AccountIcon))
             };
             RoundedCornersSwitch = false;
             EnabledSwitch = true;
