@@ -81,10 +81,11 @@ namespace Trimble.Modus.Components
 		}
         StackLayout UpperValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
         View UpperValueToolTipShape = new ToolTipAnchor() { };
+        Border UpperValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0};
         StackLayout LowerValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
+        Border LowerValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0 };
         View LowerValueToolTipShape = new ToolTipAnchor() { };
         Label LowerValueLabel { get; } = SliderHelper.CreateLabelElement();
-
 		Label UpperValueLabel { get; } = SliderHelper.CreateLabelElement();
 
         Border RightThumbIcon = SliderHelper.CreateBorderElement<Border>();
@@ -116,14 +117,13 @@ namespace Trimble.Modus.Components
             Children.Add(TrackHighlight);
             Children.Add(LeftThumbIcon);
             Children.Add(RightThumbIcon);
-            //Children.Add(LowerValueLabel);
-            //Children.Add(UpperValueLabel);
 
             UpperValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             UpperValueToolTipShape.TranslationY = 0;
             UpperValueToolTipShape.RotateTo(180);
             UpperValueLabel.BackgroundColor = Color.FromArgb("#585C65");
-            UpperValueHolder.Children.Add(UpperValueLabel);
+            UpperValueBorder.Content = UpperValueLabel;
+            UpperValueHolder.Children.Add(UpperValueBorder);
             UpperValueHolder.Children.Add(UpperValueToolTipShape);
             Children.Add(UpperValueHolder);
 
@@ -131,7 +131,8 @@ namespace Trimble.Modus.Components
             LowerValueToolTipShape.TranslationY = 0;
             LowerValueToolTipShape.RotateTo(180);
             LowerValueLabel.BackgroundColor = Color.FromArgb("#585C65");
-            LowerValueHolder.Children.Add(LowerValueLabel);
+            LowerValueBorder.Content = LowerValueLabel;
+            LowerValueHolder.Children.Add(LowerValueBorder);
             LowerValueHolder.Children.Add(LowerValueToolTipShape);
             Children.Add(LowerValueHolder);
 
@@ -147,7 +148,6 @@ namespace Trimble.Modus.Components
             LowerValueLabel.SizeChanged += OnViewSizeChanged;
             UpperValueLabel.SizeChanged += OnViewSizeChanged;
             OnIsEnabledChanged();
-            //BuildStepper();
             OnLayoutPropertyChanged();
         }
 
@@ -181,7 +181,6 @@ namespace Trimble.Modus.Components
             {
                 upperTranslation += thumbSize;
             }
-            //upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth) + LeftThumbIcon.Width;
 
             LeftThumbIcon.TranslationX = lowerTranslation;
 			RightThumbIcon.TranslationX = upperTranslation;
@@ -196,8 +195,10 @@ namespace Trimble.Modus.Components
 			var labelSpacing = 5;
 			var lowerLabelTranslation = lowerTranslation + ((LeftThumbIcon.Width - LowerValueLabel.Width) / 2);
 			var upperLabelTranslation = upperTranslation + ((RightThumbIcon.Width - UpperValueLabel.Width) / 2);
-			LowerValueLabel.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - LowerValueLabel.Width - UpperValueLabel.Width - labelSpacing);
-			UpperValueLabel.TranslationX = Min(Max(upperLabelTranslation, LowerValueLabel.TranslationX + LowerValueLabel.Width + labelSpacing), Width - UpperValueLabel.Width);
+			LowerValueBorder.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - LowerValueLabel.Width - UpperValueLabel.Width - labelSpacing);
+            LowerValueToolTipShape.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - LowerValueLabel.Width - UpperValueLabel.Width - labelSpacing);
+			UpperValueBorder.TranslationX = Min(Max(upperLabelTranslation, LowerValueLabel.TranslationX + LowerValueLabel.Width + labelSpacing), Width - UpperValueLabel.Width);
+            UpperValueToolTipShape.TranslationX = Min(Max(upperLabelTranslation, LowerValueLabel.TranslationX + LowerValueLabel.Width + labelSpacing), Width - UpperValueLabel.Width);
 		}
 
 		protected override void OnLayoutPropertyChanged()
@@ -209,6 +210,8 @@ namespace Trimble.Modus.Components
 			RightThumbIcon.BatchBegin();
 			LowerValueLabel.BatchBegin();
 			UpperValueLabel.BatchBegin();
+			LowerValueBorder.BatchBegin();
+			UpperValueBorder.BatchBegin();
             UpperValueHolder.BatchBegin();
             LowerValueHolder.BatchBegin();
 
@@ -263,8 +266,6 @@ namespace Trimble.Modus.Components
 			SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
 			SetLayoutBounds((IView)LeftThumbIcon, new Rect(0, lowerThumbVerticalPosition, thumbSize, thumbSize));
 			SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, thumbSize, thumbSize));
-			//SetLayoutBounds((IView)LowerValueLabel, new Rect(0, 0, -1, -1));
-			//SetLayoutBounds((IView)UpperValueLabel, new Rect(0, 0, -1, -1));
             SetLayoutBounds((IView)UpperValueHolder, new Rect(0, 0, -1, -1));
             SetLayoutBounds((IView)LowerValueHolder, new Rect(0, 0, -1, -1));
             if (ShowSteps)
@@ -285,6 +286,8 @@ namespace Trimble.Modus.Components
 			LowerValueLabel.BatchCommit();
 			UpperValueLabel.BatchCommit();
             UpperValueHolder.BatchCommit();
+            LowerValueBorder.BatchCommit();
+            UpperValueBorder.BatchCommit();
             LowerValueHolder.BatchCommit();
             BuildStepper(true);
             StepContainer.BatchCommit();

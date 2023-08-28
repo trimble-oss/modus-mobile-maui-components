@@ -44,6 +44,8 @@ namespace Trimble.Modus.Components
         }
         StackLayout ValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
         View ValueToolTipShape = new ToolTipAnchor() { };
+        Border ValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0 };
+
         Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
         Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
         double TrackWidth => Width - ThumbIcon.Width;
@@ -57,7 +59,8 @@ namespace Trimble.Modus.Components
             ValueToolTipShape.TranslationY = 0;
             ValueToolTipShape.RotateTo(180);
             ValueLabel.BackgroundColor = Color.FromArgb("#585C65");
-            ValueHolder.Children.Add(ValueLabel);
+            ValueBorder.Content = ValueLabel;
+            ValueHolder.Children.Add(ValueBorder);
             ValueHolder.Children.Add(ValueToolTipShape);
             Children.Add(ValueHolder);
             ThumbIcon.ZIndex = 3;
