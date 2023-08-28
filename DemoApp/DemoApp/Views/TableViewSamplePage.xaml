@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             x:Class="DemoApp.TableViewPage"
-             Title="DataGrid">
+             x:Class="DemoApp.TableViewSamplePage"
+             Title="TableViewSamplePage">
   <Grid RowDefinitions="Auto, Auto, *">
     <StackLayout Orientation="Vertical"
                  Padding="10,0">
@@ -31,7 +31,7 @@
                     ItemsSource="{Binding Users}"
                     IsSortable="True"
                     ShowDivider="{Binding DividerToggled, Mode=OneWay}"
-                    SelectionMode="{Binding SelectionMode}}"
+                    SelectionMode="{Binding SelectionMode}"
                     x:Name="ModusDataGrid">
       <modus:DataGrid.Columns>
         <!-- Image column -->

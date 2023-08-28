@@ -5,11 +5,11 @@ using Size = Trimble.Modus.Components.Enums.Size;
 
 namespace DemoApp;
 
-public partial class ButtonPage : ContentPage
+public partial class ButtonSamplePage : ContentPage
 {
     private readonly ButtonSamplePageViewModel _buttonPageViewModel;
 
-    public ButtonPage()
+    public ButtonSamplePage()
     {
         _buttonPageViewModel = new ButtonSamplePageViewModel();
         InitializeComponent();

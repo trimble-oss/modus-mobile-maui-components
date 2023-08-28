@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    public class SpinnerPageViewModel : ObservableObject
+    public class SpinnerSamplePageViewModel : ObservableObject
     {
         public ICommand SpinnerCommand { get; set; }
         private SpinnerColor _spinnerColor;
@@ -20,7 +20,7 @@ namespace DemoApp.ViewModels
                 OnPropertyChanged(nameof(SpinnerColor));
             }
         }
-        public SpinnerPageViewModel()
+        public SpinnerSamplePageViewModel()
         {
             SpinnerColor = SpinnerColor.Primary;
             SpinnerCommand = new Command(methodsCommand);        }

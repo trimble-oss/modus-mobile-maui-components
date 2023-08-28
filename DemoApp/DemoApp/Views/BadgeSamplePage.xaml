@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.modus.Components"
              x:Class="DemoApp.Views.BadgeSamplePage"
-             Title="TMBadgesPage">
+             Title="BadgesSamplePage">
   <StackLayout Orientation="Vertical" Padding="10" Spacing="10" HorizontalOptions="Fill">
     <Label Text="Rectangle Badges"/>
     <FlexLayout Wrap="Wrap">

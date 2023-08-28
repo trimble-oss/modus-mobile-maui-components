@@ -5,10 +5,10 @@ namespace DemoApp.Views;
 
 public partial class SpinnerPage : ContentPage
 {
-    private SpinnerPageViewModel spinnerPageViewModel;
+    private SpinnerSamplePageViewModel spinnerPageViewModel;
     public SpinnerPage()
     {
-        spinnerPageViewModel = new SpinnerPageViewModel();
+        spinnerPageViewModel = new SpinnerSamplePageViewModel();
         InitializeComponent();
         BindingContext = spinnerPageViewModel;
     }

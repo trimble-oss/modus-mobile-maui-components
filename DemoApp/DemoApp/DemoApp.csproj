@@ -109,48 +109,48 @@
 	  <Compile Update="Views\PopupSamples\SamplePopupPage.xaml.cs">
 	    <DependentUpon>SamplePopupPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\TableViewPage.xaml.cs">
-	    <DependentUpon>TableViewPage.xaml</DependentUpon>
+	  <Compile Update="Views\TableViewSamplePage.xaml.cs">
+	    <DependentUpon>TableViewSamplePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\BadgeSamplePage.xaml.cs">
 	    <DependentUpon>BadgeSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\CardPage.xaml.cs">
-	    <DependentUpon>CardPage.xaml</DependentUpon>
+	  <Compile Update="Views\CardSamplePage.xaml.cs">
+	    <DependentUpon>CardSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ListViewPage.xaml.cs">
-	    <DependentUpon>ListViewPage.xaml</DependentUpon>
+	  <Compile Update="Views\ListViewSamplePage.xaml.cs">
+	    <DependentUpon>ListViewSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ModalPage.xaml.cs">
-	    <DependentUpon>ModalPage.xaml</DependentUpon>
+	  <Compile Update="Views\ModalSamplePage.xaml.cs">
+	    <DependentUpon>ModalSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\CheckBoxPage.xaml.cs">
+	  <Compile Update="Views\CheckBoxSamplePage.xaml.cs">
 	    <SubType>Code</SubType>
-	    <DependentUpon>CheckBoxPage.xaml</DependentUpon>
+	    <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\MultiLineInputPage.xaml.cs">
-	    <DependentUpon>MultiLineInputPage.xaml</DependentUpon>
+	  <Compile Update="Views\MultiLineInputSamplePage.xaml.cs">
+	    <DependentUpon>MultiLineInputSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\InputPage.xaml.cs">
-	    <DependentUpon>InputPage.xaml</DependentUpon>
+	  <Compile Update="Views\InputSamplePage.xaml.cs">
+	    <DependentUpon>InputSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ButtonPage.xaml.cs">
-	    <DependentUpon>ButtonPage.xaml</DependentUpon>
+	  <Compile Update="Views\ButtonSamplePage.xaml.cs">
+	    <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\NumberInputPage.xaml.cs">
-	    <DependentUpon>NumberInputPage.xaml</DependentUpon>
+	  <Compile Update="Views\NumberInputSamplePage.xaml.cs">
+	    <DependentUpon>NumberInputSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\RadioButtonPage.xaml.cs">
-	    <DependentUpon>RadioButtonPage.xaml</DependentUpon>
+	  <Compile Update="Views\RadioButtonSamplePage.xaml.cs">
+	    <DependentUpon>RadioButtonSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\SegmentedControlPage.xaml.cs">
-	    <DependentUpon>SegmentedControlPage.xaml</DependentUpon>
+	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
+	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\SpinnerPage.xaml.cs">
-	    <DependentUpon>SpinnerPage.xaml</DependentUpon>
+	  <Compile Update="Views\SpinnerSamplePage.xaml.cs">
+	    <DependentUpon>SpinnerSamplePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ToastPage.xaml.cs">
-	    <DependentUpon>ToastPage.xaml</DependentUpon>
+	  <Compile Update="Views\ToastSamplePage.xaml.cs">
+	    <DependentUpon>ToastSamplePage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -179,43 +179,43 @@
 	  <MauiXaml Update="Views\PopupSamples\SamplePopupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TableViewPage.xaml">	    
+	  <MauiXaml Update="Views\TableViewSamplePage.xaml">	    
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\BadgeSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ListViewPage.xaml">
+	  <MauiXaml Update="Views\ListViewSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ModalPage.xaml">
+	  <MauiXaml Update="Views\ModalSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ButtonPage.xaml">
+	  <MauiXaml Update="Views\ButtonSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CardPage.xaml">
+	  <MauiXaml Update="Views\CardSamplePage.xaml">
 		<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckBoxPage.xaml">
+	  <MauiXaml Update="Views\CheckBoxSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MultiLineInputPage.xaml">
+	  <MauiXaml Update="Views\MultiLineInputSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\InputPage.xaml">
+	  <MauiXaml Update="Views\InputSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\NumberInputPage.xaml">
+	  <MauiXaml Update="Views\NumberInputSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RadioButtonPage.xaml">
+	  <MauiXaml Update="Views\RadioButtonSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChipsSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SpinnerPage.xaml">
+	  <MauiXaml Update="Views\SpinnerSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 

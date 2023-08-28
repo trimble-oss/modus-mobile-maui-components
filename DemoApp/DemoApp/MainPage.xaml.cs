@@ -42,43 +42,43 @@ namespace DemoApp
                 switch (name)
                 {
                     case "Button":
-                        Navigation.PushAsync(new ButtonPage());
+                        Navigation.PushAsync(new ButtonSamplePage());
                         break;
                     case "Input":
-                        Navigation.PushAsync(new InputPage());
+                        Navigation.PushAsync(new InputSamplePage());
                         break;
                     case "MultiLineInput":
-                        Navigation.PushAsync(new MultiLineInputPage());
+                        Navigation.PushAsync(new MultiLineInputSamplePage());
                         break;
                     case "Modal":
-                        Navigation.PushAsync(new ModalPage());
+                        Navigation.PushAsync(new ModalSamplePage());
                         break;
                     case "Toast":
-                        Navigation.PushAsync(new ToastPage());
+                        Navigation.PushAsync(new ToastSamplePage());
                         break;
                     case "CheckBox":
-                        Navigation.PushAsync(new CheckBoxPage());
+                        Navigation.PushAsync(new CheckBoxSamplePage());
                         break;
                     case "Card":
-                        Navigation.PushAsync(new CardPage());
+                        Navigation.PushAsync(new CardSamplePage());
                         break;
                     case "RadioButton":
-                        Navigation.PushAsync(new RadioButtonPage());
+                        Navigation.PushAsync(new RadioButtonSamplePage());
                         break;
                     case "NumberInput":
-                        Navigation.PushAsync(new NumberInputPage());
+                        Navigation.PushAsync(new NumberInputSamplePage());
                         break;
                     case "Spinner":
-                        Navigation.PushAsync(new SpinnerPage());
+                        Navigation.PushAsync(new SpinnerSamplePage());
                         break;
                     case "SegmentedControl":
-                        Navigation.PushAsync(new SegmentedControlPage());
+                        Navigation.PushAsync(new SegmentedControlSamplePage());
                         break;
                     case "ListView":
-                        Navigation.PushAsync(new ListViewPage());
+                        Navigation.PushAsync(new ListViewSamplePage());
                         break;
                     case "DataGrid":
-                        Navigation.PushAsync(new TableViewPage());
+                        Navigation.PushAsync(new TableViewSamplePage());
                         break;
                     case "PopupView":
                         Navigation.PushAsync(new SamplePopupPage());
@@ -87,7 +87,7 @@ namespace DemoApp
                         Navigation.PushAsync(new AccordionSamplePage());
                         break;
                     case "TabbedPage":
-                        Navigation.PushAsync(new TabbedPageDemo());
+                        Navigation.PushAsync(new TabbedPageSamplePage());
                         break;
                     case "Badge":
                         Navigation.PushAsync(new BadgeSamplePage());

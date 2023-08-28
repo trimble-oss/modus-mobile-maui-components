@@ -7,7 +7,7 @@ public partial class TabViewFour : ContentView
     public TabViewFour()
     {
         InitializeComponent();
-        BindingContext = new SegmentedControlViewModel();
+        BindingContext = new SegmentedControlSamplePageViewModel();
     }
 }
 
