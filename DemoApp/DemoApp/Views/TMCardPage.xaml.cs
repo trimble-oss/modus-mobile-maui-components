@@ -21,7 +21,7 @@ public partial class TMCardPage : ContentPage
 
     private void IsSelectedToggled(object sender, ToggledEventArgs e)
     {
-        List<TMCard> cardlist = new List<TMCard>() { card1, card2, card3, card4, card5 };
+        List<TMCard> cardlist = new List<TMCard>() { card1, card2, card3, card4, card5, card6 };
         foreach (TMCard card in cardlist)
         {
             card.IsSelected = e.Value;
