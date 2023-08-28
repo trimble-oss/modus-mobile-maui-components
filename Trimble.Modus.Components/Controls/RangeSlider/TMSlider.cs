@@ -60,7 +60,6 @@ namespace Trimble.Modus.Components
             ValueHolder.Children.Add(ValueLabel);
             ValueHolder.Children.Add(ValueToolTipShape);
             Children.Add(ValueHolder);
-            //Children.Add(ValueLabel);
             ThumbIcon.ZIndex = 3;
 
             AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
