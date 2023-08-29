@@ -11,6 +11,7 @@
     <Label x:Name="label"
            BindingContext="{x:Reference tmBadge}"
            Text="{Binding Text}"
+           FontFamily="OpenSans-Bold"
            FontAttributes="Bold"
            VerticalTextAlignment="Center"
            VerticalOptions="Center"

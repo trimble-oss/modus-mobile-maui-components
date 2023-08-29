@@ -16,6 +16,7 @@
           <Label
              x:Name="text"
              Text="{Binding Text}"
+             FontFamily="OpenSans-Bold"
              FontSize="12"
              TextColor="{Binding CurrentTextColor}"
              VerticalOptions="Center" 

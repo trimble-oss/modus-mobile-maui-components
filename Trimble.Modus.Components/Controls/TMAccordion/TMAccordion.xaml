@@ -116,6 +116,7 @@
                        Spacing="0"
                        VerticalOptions="Center">
             <Label FontSize="16"
+                   FontFamily="OpenSans-Regular"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Margin="16,0,0,0"
@@ -137,6 +138,7 @@
               </Label.Triggers>
             </Label>
             <Label Text="{Binding Source={x:Reference accordionView}, Path=AccordionSubtitle}"
+                   FontFamily="OpenSans-Regular"
                    VerticalOptions="Center"
                    Margin="16,0,0,0"
                    FontSize="10"

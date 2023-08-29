@@ -96,7 +96,8 @@ namespace Trimble.Modus.Components
             _label = new Label()
             {
                 FontSize = _defaultFontSize,
-                VerticalOptions = LayoutOptions.Center
+                VerticalOptions = LayoutOptions.Center,
+                FontFamily = "OpenSans-Regular"
             };
             _label?.SetBinding(
                 Label.TextProperty,

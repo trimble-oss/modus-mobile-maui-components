@@ -23,6 +23,7 @@
                Padding="10"
                BindingContext="{x:Reference multiLineInput}">
     <controls:BorderlessEditor x:Name="inputBorderlessEditor"
+                               FontFamily="OpenSans-Regular"
                                Focused="InputBorderlessEditor_Focused"
                                Unfocused="InputBorderlessEditor_Unfocused"
                                Placeholder="{Binding Placeholder}"
