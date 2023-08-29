@@ -19,14 +19,14 @@
                              IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
         <Label x:Name="inputLabel"
                Padding="0,0,0,5"
-               FontFamily="OpenSans Semibold"
+               FontFamily="OpenSansSemibold"
                Text="{Binding TitleText}"
                VerticalOptions="Center"
                HorizontalOptions="Start" />
         <Label Text="*"
                IsVisible="{Binding IsRequired}"
                FontAttributes="Bold"
-               FontFamily="OpenSans Semibold"
+               FontFamily="OpenSansSemibold"
                TextColor="#DA212C" />
       </HorizontalStackLayout>
       <Border x:Name="inputBorder"
@@ -47,7 +47,6 @@
                WidthRequest="20"
                HeightRequest="20" />
         <Label  x:Name="inputHelperLabel"
-                FontFamily="OpenSans Regular"
                 LineBreakMode="WordWrap"
                 VerticalTextAlignment="Center" />
       </HorizontalStackLayout>

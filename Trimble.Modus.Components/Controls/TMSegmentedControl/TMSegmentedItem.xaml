@@ -33,7 +33,7 @@
 
     <!--Max lines should be set while LineBreakMode is set. Otherwise ArrayIndexOutOfBoundsException is thrown on Android.-->
     <Label x:Name="TextLabel"
-           FontFamily="OpenSans Semibold"
+           FontFamily="OpenSansSemibold"
            HorizontalTextAlignment="Center"
            VerticalTextAlignment="Center"
            Text="{Binding Text}"

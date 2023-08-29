@@ -28,9 +28,9 @@
            WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Start"/>
 
       <StackLayout Grid.Column="1" Spacing="4"  HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
-        <Label Text="{Binding Title}" FontFamily="OpenSans Regular" IsVisible="{Binding Title, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+        <Label Text="{Binding Title}" IsVisible="{Binding Title, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
                FontSize="16" VerticalOptions="StartAndExpand" />
-        <Label Text="{Binding Description}" FontFamily="OpenSans Regular" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+        <Label Text="{Binding Description}" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
                FontSize="14" LineBreakMode="TailTruncation" MaxLines="1" />
       </StackLayout>
 
