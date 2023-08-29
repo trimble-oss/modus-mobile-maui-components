@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/controls"
              x:Class="DemoApp.Views.CardSamplePage"
              Title="CardSamplePage">
   <ScrollView>
@@ -23,7 +23,7 @@
                 x:Name="isSelected"
                 Toggled="IsSelectedToggled" />
       </Grid>
-      <Modus:TMCard x:Name="card1"
+      <modus:TMCard x:Name="card1"
                     Clicked="Card1Clicked">
         <StackLayout>
           <!-- Header -->
@@ -57,9 +57,9 @@
                    VerticalOptions="Center" />
           </StackLayout>
         </StackLayout>
-      </Modus:TMCard>
+      </modus:TMCard>
 
-      <Modus:TMCard x:Name="card2"
+      <modus:TMCard x:Name="card2"
                     Command="{Binding Command}"
                     CommandParameter="Parameter">
         <StackLayout>
@@ -91,11 +91,11 @@
           <StackLayout BackgroundColor="Transparent"
                        HorizontalOptions="End"
                        Padding="0,10,0,10">
-            <Modus:TMButton Title="Button"></Modus:TMButton>
+            <modus:TMButton Title="Button"></modus:TMButton>
           </StackLayout>
         </StackLayout>
-      </Modus:TMCard>
-      <Modus:TMCard x:Name="card3">
+      </modus:TMCard>
+      <modus:TMCard x:Name="card3">
         <StackLayout>
           <!-- Header -->
           <StackLayout BackgroundColor="Transparent"
@@ -124,12 +124,12 @@
           <!-- Footer -->
           <StackLayout BackgroundColor="Transparent"
                        Padding="0,10,0,10">
-            <Modus:TMButton Title="Button"
+            <modus:TMButton Title="Button"
                     HorizontalOptions="FillAndExpand" />
           </StackLayout>
         </StackLayout>
-      </Modus:TMCard>
-      <Modus:TMCard x:Name="card4">
+      </modus:TMCard>
+      <modus:TMCard x:Name="card4">
         <StackLayout>
           <!-- Header -->
           <StackLayout BackgroundColor="Transparent"
@@ -172,16 +172,16 @@
           <StackLayout BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="15">
-            <Modus:TMButton Title="Button"
+            <modus:TMButton Title="Button"
                             ButtonStyle="Outline">
-            </Modus:TMButton>
-            <Modus:TMButton Title="Button"
-                            ButtonStyle="Fill"></Modus:TMButton>
+            </modus:TMButton>
+            <modus:TMButton Title="Button"
+                            ButtonStyle="Fill"></modus:TMButton>
 
           </StackLayout>
         </StackLayout>
-      </Modus:TMCard>
-      <Modus:TMCard x:Name="card5">
+      </modus:TMCard>
+      <modus:TMCard x:Name="card5">
         <StackLayout>
           <!-- Content -->
           <StackLayout BackgroundColor="Transparent"
@@ -202,8 +202,8 @@
             </StackLayout>
           </StackLayout>
         </StackLayout>
-      </Modus:TMCard>
-      <Modus:TMCard x:Name="card6" Padding="0">
+      </modus:TMCard>
+      <modus:TMCard x:Name="card6" Padding="0">
         <StackLayout>
           <!-- Header -->
           <StackLayout BackgroundColor="Transparent"
@@ -229,15 +229,15 @@
                        BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="15">
-            <Modus:TMButton Title="Button"
+            <modus:TMButton Title="Button"
                             ButtonStyle="Outline">
-            </Modus:TMButton>
-            <Modus:TMButton Title="Button"
-                            ButtonStyle="Fill"></Modus:TMButton>
+            </modus:TMButton>
+            <modus:TMButton Title="Button"
+                            ButtonStyle="Fill"></modus:TMButton>
 
           </StackLayout>
         </StackLayout>
-      </Modus:TMCard>
+      </modus:TMCard>
     </VerticalStackLayout>
   </ScrollView>
 </ContentPage>

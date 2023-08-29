@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:Class="DemoApp.Views.SampleToolTip"
-                 xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                 xmlns:modus="http://modus.trimble.com/controls"
                  BackgroundColor="Transparent"
                  BackgroundInputTransparent="True"
                  CloseWhenBackgroundIsClicked="True"
@@ -10,7 +10,7 @@
   <ContentPage.Resources>
     <DataTemplate x:Name="TextCell"
                   x:Key="textCellKey">
-      <Modus:TextCell Title="{Binding .}" />
+      <modus:TextCell Title="{Binding .}" />
     </DataTemplate>
   </ContentPage.Resources>
   <Border HeightRequest="50"
@@ -29,4 +29,4 @@
              HorizontalOptions="Center" />
     </VerticalStackLayout>
   </Border>
-</Modus:PopupPage>
+</modus:PopupPage>

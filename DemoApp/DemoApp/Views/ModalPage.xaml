@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.ModalPage"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/controls"
              Title="TMModalPage">
   <ScrollView>
     <VerticalStackLayout Spacing="5"
@@ -10,7 +10,7 @@
       <Label Text="Modal"
              FontSize="Medium"
              FontAttributes="Bold" />
-      <Modus:TMInput x:Name="ModalTitle"
+      <modus:TMInput x:Name="ModalTitle"
                            Text="Accept TC?"
                            TitleText="Modal Title"
                            Placeholder="Enter title here" />
@@ -65,29 +65,29 @@
                Text="Buttons"
                FontSize="Medium"
                FontAttributes="Bold" />
-        <Modus:TMInput  x:Name="PrimaryButtonTitle"
+        <modus:TMInput  x:Name="PrimaryButtonTitle"
                        Text="Accept"
                        Grid.Column="0"
                        Grid.Row="1"
                        TitleText="Primary Button Title" />
 
-        <Modus:TMInput  x:Name="SecondaryButtonTitle"
+        <modus:TMInput  x:Name="SecondaryButtonTitle"
                        Text="Reject"
                        Grid.Column="0"
                        Grid.Row="2"
                        TitleText="Secondary Button Title" />
 
-        <Modus:TMInput x:Name="TertiaryButtonTitle"
+        <modus:TMInput x:Name="TertiaryButtonTitle"
                        Grid.Column="0"
                        Grid.Row="3"
                        TitleText="Tertiary Button Title" />
 
-        <Modus:TMInput x:Name="DangerButtonTitleEntry"
+        <modus:TMInput x:Name="DangerButtonTitleEntry"
                        Grid.Column="0"
                        Grid.Row="4"
                        TitleText="Danger Button Title" />
       </Grid>
-      <Modus:TMButton Title="Show Modal"
+      <modus:TMButton Title="Show Modal"
                       Clicked="ShowModalClicked"
                            Size="Default"
                            HorizontalOptions="Center"

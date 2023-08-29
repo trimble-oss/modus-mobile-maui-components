@@ -2,7 +2,7 @@
 <ContentPage x:Class="DemoApp.MultiLineInputSamplePage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/controls"
              xmlns:constants="clr-namespace:DemoApp.Constant"
              Title="MultiLineInputSamplePage">
   <ScrollView>
@@ -35,20 +35,20 @@
                   IsToggled="{Binding IsAutoSize}"/>
         </StackLayout>
 
-        <Modus:MultiLineInput  x:Name="modusInput"
+        <modus:MultiLineInput  x:Name="modusInput"
                            Placeholder="Text Input"
                            AutoSize="{Binding IsAutoSize}"
                            IsEnabled="{Binding IsEnabled}"
                            IsReadOnly="{Binding IsReadOnly}"/>
 
-        <Modus:MultiLineInput  x:Name="modusInputWithTitle"
+        <modus:MultiLineInput  x:Name="modusInputWithTitle"
                            TitleText="MultiLine Input"
                            AutoSize="{Binding IsAutoSize}"
                            IsEnabled="{Binding IsEnabled}"
                            IsReadOnly="{Binding IsReadOnly}"
                            Placeholder="Text Input" />
 
-        <Modus:MultiLineInput TitleText="Success/Error MultiLine Input"
+        <modus:MultiLineInput TitleText="Success/Error MultiLine Input"
                           HelperText="Enter more or equal to 10 characters"
                           Placeholder="Text Input"
                           Text="{Binding MultiLineInput}"
@@ -58,7 +58,7 @@
                           IsEnabled="{Binding IsEnabled}"
                           IsReadOnly="{Binding IsReadOnly}" />
 
-        <Modus:MultiLineInput x:Name="filled"
+        <modus:MultiLineInput x:Name="filled"
                           TitleText="Filled MultiLine Input"
                           AutoSize="{Binding IsAutoSize}"
                           Placeholder="Text Input"

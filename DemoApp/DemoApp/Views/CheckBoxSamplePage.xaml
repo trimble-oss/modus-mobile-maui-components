@@ -1,17 +1,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/controls"
              x:Class="DemoApp.CheckBoxSamplePage"
              Title="CheckBoxSamplePage">
   <VerticalStackLayout Padding="10"
                        HorizontalOptions="Start">
     <Label Text="CheckBox :"
            Padding="0,0,0,10" />
-    <Modus:TMCheckBox x:Name="CheckBox"
+    <modus:TMCheckBox x:Name="CheckBox"
                       IsIndeterminate="False"
                       IsDisabled="False"
                       Text="Checked"
-                      Size="Default"></Modus:TMCheckBox>
+                      Size="Default"></modus:TMCheckBox>
     <StackLayout Orientation="Horizontal">
       <Label Text="Disabled"
              VerticalOptions="Center"
@@ -38,29 +38,29 @@
     </StackLayout>
     <Label Text="Indeterminate CheckBox :"
            Padding="0,0,0,10" />
-    <Modus:TMCheckBox x:Name="ParentCheckBox"
+    <modus:TMCheckBox x:Name="ParentCheckBox"
                       IsChecked="True"
                       IsIndeterminate="False"
                       IsDisabled="False"
                       Text="ParentCheckbox"
                       Size="Default"
-                      IsCheckedChanged="ParentCheckBoxCheckedChanged"></Modus:TMCheckBox>
+                      IsCheckedChanged="ParentCheckBoxCheckedChanged"></modus:TMCheckBox>
     <StackLayout>
-      <Modus:TMCheckBox x:Name="ChildCheckBox1"
+      <modus:TMCheckBox x:Name="ChildCheckBox1"
                         Padding="10,10,0,10"
                         IsDisabled="False"
                         IsChecked="True"
                         Text="Child CheckBox 1"
                         Size="Default"
                         IsCheckedChanged="ChildCheckboxCheckedChanged" />
-      <Modus:TMCheckBox x:Name="ChildCheckBox2"
+      <modus:TMCheckBox x:Name="ChildCheckBox2"
                         Padding="10,0,0,10"
                         IsDisabled="False"
                         IsChecked="True"
                         Text="Child CheckBox 2"
                         Size="Default"
                         IsCheckedChanged="ChildCheckboxCheckedChanged" />
-      <Modus:TMCheckBox x:Name="ChildCheckBox3"
+      <modus:TMCheckBox x:Name="ChildCheckBox3"
                         Padding="10,0,0,10"
                         IsDisabled="False"
                         IsChecked="True"

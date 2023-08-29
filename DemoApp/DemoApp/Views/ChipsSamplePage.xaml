@@ -4,7 +4,7 @@
              x:Class="DemoApp.Views.ChipsSamplePage"
              x:Name="tmchipspage"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/controls"
              Title="ChipsSamplePage">
   <VerticalStackLayout Spacing="10"
                        Padding="10">
