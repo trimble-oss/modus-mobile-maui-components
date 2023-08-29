@@ -56,7 +56,16 @@ public static class AppBuilderExtensions
                 });
 #endif
             })
-            .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
+            .ConfigureMauiHandlers(handlers => SetHandlers(handlers))
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Bold.ttf", "OpenSans-Bold");
+                fonts.AddFont("OpenSans-ExtraBold.ttf", "OpenSans-Extrabold");
+                fonts.AddFont("OpenSans-Light.ttf", "OpenSans-Light");
+                fonts.AddFont("OpenSans-Medium.ttf", "OpenSans-Medium");
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSans-Regular");
+                fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSans-Semibold");
+            });
 
         return builder;
     }
