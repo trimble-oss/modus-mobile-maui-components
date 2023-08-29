@@ -29,7 +29,7 @@
        VerticalOptions="Center"
        Aspect="Center"  
        Source="{Binding Source={x:Reference ItemContainer}, Path=Icon}"
-       IsVisible="{Binding CurrentIcon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"/>
+       IsVisible="{Binding Icon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"/>
 
       <!--Max lines should be set while LineBreakMode is set. Otherwise ArrayIndexOutOfBoundsException is thrown on Android.-->
       <Label x:Name="TextLabel"
