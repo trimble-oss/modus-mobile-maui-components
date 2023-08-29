@@ -65,7 +65,7 @@
                  Text="{Binding Title}"
                  IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="Center"
-                 FontFamily="OpenSans-Semibold"
+                 FontFamily="OpenSans Semibold"
                  FontSize="16"
                  TextColor="{StaticResource Black}"
                  Padding="0,0,8,0"

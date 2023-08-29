@@ -18,7 +18,7 @@
            Text="{Binding Text}"
            IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
            FontAttributes="Bold"
-           FontFamily="OpenSans-Bold"
+           FontFamily="OpenSans Bold"
            VerticalOptions="Center"
            HorizontalOptions="Start" />
   </VerticalStackLayout>

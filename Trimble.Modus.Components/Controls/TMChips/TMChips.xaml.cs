@@ -308,14 +308,14 @@ public partial class TMChips : ContentView
         {
             case ChipSize.Small:
                 tMChips.label.FontSize = 14;
-                tMChips.label.FontFamily = "OpenSans-Semibold";
+                tMChips.label.FontFamily = "OpenSans Semibold";
                 tMChips.chipContent.Padding = new Thickness(12, 4);
                 tMChips.chipContent.HeightRequest = 32;
                 break;
             case ChipSize.Default:
             default:
                 tMChips.label.FontSize = 16;
-                tMChips.label.FontFamily = "OpenSans-Regular";
+                tMChips.label.FontFamily = "OpenSans Regular";
                 tMChips.chipContent.Padding = new Thickness(12);
                 tMChips.chipContent.HeightRequest = 48;
                 break;

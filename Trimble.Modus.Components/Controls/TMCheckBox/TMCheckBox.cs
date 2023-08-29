@@ -159,7 +159,7 @@ namespace Trimble.Modus.Components
 
         public TMCheckBox()
         {
-            _label = new Label() { FontSize = _defaultFontSize, VerticalOptions = LayoutOptions.Center, FontFamily = "OpenSans-Regular" };
+            _label = new Label() { FontSize = _defaultFontSize, VerticalOptions = LayoutOptions.Center, FontFamily = "OpenSans Regular" };
             _checkbox = new Image { Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton), VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
             Content = new StackLayout
             {

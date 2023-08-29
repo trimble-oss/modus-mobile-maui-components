@@ -33,7 +33,7 @@
              Text="{Binding Title}"
              IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
              HeightRequest="48"
-             FontFamily="OpenSans-Semibold"
+             FontFamily="OpenSans Semibold"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center" />
       <Image x:Name="rightIcon"

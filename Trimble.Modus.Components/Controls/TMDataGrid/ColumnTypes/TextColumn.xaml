@@ -11,14 +11,14 @@
           <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0"
-               FontFamily="OpenSans-Regular"
+               FontFamily="OpenSans Regular"
                HorizontalTextAlignment="Start"
                VerticalTextAlignment="Center"
                Padding="16,0"
                FontSize="16"
                LineBreakMode="WordWrap" />
         <Label Grid.Row="1"
-               FontFamily="OpenSans-Regular"
+               FontFamily="OpenSans Regular"
                HorizontalTextAlignment="Start"
                VerticalTextAlignment="Center"
                Padding="16,0"

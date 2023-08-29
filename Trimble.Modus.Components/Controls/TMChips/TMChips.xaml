@@ -19,7 +19,7 @@
       <Label x:Name="label"
              VerticalTextAlignment="Center"
              FontAttributes="Bold"
-             FontFamily="OpenSans-Semibold"
+             FontFamily="OpenSans Semibold"
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
       <StackLayout>
