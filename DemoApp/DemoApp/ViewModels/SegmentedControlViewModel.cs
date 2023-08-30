@@ -29,6 +29,9 @@ namespace DemoApp.ViewModels
         private ObservableCollection<ImageSource> _segmentImageItems =
             new ObservableCollection<ImageSource>();
         [ObservableProperty]
+        private ObservableCollection<SegmentedItem> _segmentedItemItems =
+            new ObservableCollection<SegmentedItem>();
+        [ObservableProperty]
         private bool roundedCornersSwitch,enabledSwitch,secondaryThemeSwitch;
         public SegmentedControlSamplePageViewModel()
         {
@@ -38,6 +41,12 @@ namespace DemoApp.ViewModels
                 ImageSource.FromFile(ImageConstants.GalleryIcon),
                 ImageSource.FromFile(ImageConstants.ModusPlaceholderImage),
                 ImageSource.FromFile(ImageConstants.AccountIcon)
+            };
+            _segmentedItemItems = new ObservableCollection<SegmentedItem>()
+            {
+                new SegmentedItem("One",ImageSource.FromFile(ImageConstants.GalleryIcon)),
+                new SegmentedItem("Two",ImageSource.FromFile(ImageConstants.ModusPlaceholderImage)),
+                new SegmentedItem("Three",ImageSource.FromFile(ImageConstants.AccountIcon))
             };
             RoundedCornersSwitch = false;
             EnabledSwitch = true;

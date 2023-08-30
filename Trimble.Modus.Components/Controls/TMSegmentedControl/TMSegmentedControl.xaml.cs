@@ -268,6 +268,12 @@ public partial class TMSegmentedControl : ContentView
             {
                 newTab.Text = (string)item;
             }
+            else if (item is SegmentedItem segmentedItem)
+            {
+
+                newTab.Text = segmentedItem.Text;
+                newTab.Icon = segmentedItem.IconSource;
+            }
             else
             {
                 newTab.Text = item.ToString();
