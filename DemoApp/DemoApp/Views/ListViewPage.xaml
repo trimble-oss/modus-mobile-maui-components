@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.ListViewPage"
+             xmlns:local ="clr-namespace:DemoApp.Views"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             Title="TMListView">
+  <ContentPage.Resources>
+    <DataTemplate x:Name="TextCell" x:Key="textCellKey">
+      <Modus:TextCell 
+            Title="{Binding Name}"
+            Description="{Binding Address}"
+            LeftIconSource="{Binding ProfilePic}"
+            RightIconSource="{Binding ProfilePic}">
+      </Modus:TextCell>
+    </DataTemplate>
+    <DataTemplate x:Name="ViewCell" x:Key="viewCellKey">
+      <Modus:TemplateCell>
+        <Modus:TemplateCell.Content>
+          <Grid RowSpacing="10" Padding="10">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border HeightRequest="80" 
+                    WidthRequest="80"
+                    VerticalOptions="Center"
+                    Stroke="{Binding Color}"
+                    StrokeShape="RoundRectangle 40"
+                    StrokeThickness="8"
+                    Grid.RowSpan="3"
+                    Margin="0,0,0,0">
+              <Image Source="{Binding ProfilePic}"
+                     Margin="10,0,10,0"
+                     VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"/>
+
+            </Border>
+
+            <Label Text="{Binding Name}"  Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
+            <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" FontSize="Small"/>
+            <Label Text="{Binding Address}" Grid.Row="2" Grid.Column="1" FontSize="Micro"/>
+            <StackLayout Grid.Column="2" Grid.Row="1" HorizontalOptions="Center" Orientation="Horizontal" Spacing="5" VerticalOptions="Center" >
+              <ImageButton Source="{x:Static constants:ImageConstants.Email}"  HeightRequest="20" WidthRequest="20" Command="{Binding EmailClickedCommand}"/>
+              <ImageButton Source="{x:Static constants:ImageConstants.Phone}"  HeightRequest="20" WidthRequest="20" Command="{Binding PhoneClickedCommand}"/>
+            </StackLayout>
+
+          </Grid>
+        </Modus:TemplateCell.Content>
+      </Modus:TemplateCell>
+    </DataTemplate>
+
+  </ContentPage.Resources>
+    <StackLayout Orientation="Vertical">
+      <Label Text="Select View Type" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Modus:TMRadioButtonGroup x:Name="CellGroup"
+                                Padding="10"
+                                SelectedIndex="0"
+                                HorizontalOptions="Center"
+                                SelectedRadioButtonChanged="OnCellGroupButtonChanged"
+                                Orientation="Horizontal">
+        <Modus:TMRadioButton Text="Text Cell" />
+        <Modus:TMRadioButton Text="Template Cell" />
+      </Modus:TMRadioButtonGroup>
+      <Label Text="Selection Mode" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Modus:TMRadioButtonGroup x:Name="SelectionGroup"
+                                Padding="10"
+                                SelectedIndex="0"
+                                HorizontalOptions="Center"
+                                SelectedRadioButtonChangedCommand="{Binding SelectionGroupCommand}"
+                                Orientation="Horizontal">
+        <Modus:TMRadioButton Text="Single" />
+        <Modus:TMRadioButton Text="Multiple" />
+        <Modus:TMRadioButton Text="None" />
+      </Modus:TMRadioButtonGroup>
+      <Modus:TMListView x:Name="textCellList"
+                        IsVisible="True"
+                        SelectionMode="{Binding SelectionMode}"
+                        SelectionChangedCommand="{Binding ItemSelectedCommand}"
+                        ItemsSource="{Binding ItemSource}">
+      </Modus:TMListView>
+
+    </StackLayout>
+</ContentPage>

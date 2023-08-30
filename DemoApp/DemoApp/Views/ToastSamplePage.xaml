@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:theme="clr-namespace:Trimble.Modus.Components.Enums;assembly=Trimble.Modus.Components"
+             x:Class="DemoApp.ToastSamplePage"
+             Title="ToastSamplePage">
+  <StackLayout HeightRequest="400"
+               VerticalOptions="Start"
+               Padding="10">
+    <Label Text="Toast Message"
+           FontSize="Large"
+           FontAttributes="Bold"></Label>
+    <Editor x:Name="Message"
+            Text="Data saved successfully!"
+            Placeholder="Enter Toast Message"
+            Margin="5"
+            VerticalOptions="FillAndExpand" />
+    <Label Text="Right Icon Text"
+           FontSize="Large"
+           FontAttributes="Bold"></Label>
+    <Entry x:Name="IconText"
+           Placeholder="Enter Right Icon Text"
+           Margin="5"
+           HorizontalOptions="Start" />
+    <Label Text="Theme"
+           FontSize="Large"
+           FontAttributes="Bold"></Label>
+    <Picker  x:Name="toastPicker"
+             Margin="5"
+             SelectedIndexChanged="ToastPickerSelectedIndexChanged"
+             HorizontalOptions="Start"
+             WidthRequest="100">
+
+      <Picker.ItemsSource>
+        <x:Array Type="{x:Type theme:ToastTheme}">
+          <theme:ToastTheme></theme:ToastTheme>
+          <theme:ToastTheme>Dark</theme:ToastTheme>
+          <theme:ToastTheme>Primary</theme:ToastTheme>
+          <theme:ToastTheme>Secondary</theme:ToastTheme>
+          <theme:ToastTheme>Danger</theme:ToastTheme>
+          <theme:ToastTheme>Warning</theme:ToastTheme>
+          <theme:ToastTheme>Success</theme:ToastTheme>
+        </x:Array>
+      </Picker.ItemsSource>
+
+
+    </Picker>
+    <Button x:Name="button"
+            Text="Toast"
+            Margin="5"
+            Clicked="OnToastActionTapped" />
+
+  </StackLayout>
+
+</ContentPage>
