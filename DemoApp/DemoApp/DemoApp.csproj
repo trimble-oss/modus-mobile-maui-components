@@ -91,6 +91,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
+	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TabViewItems\TabViewFour.xaml.cs">
 	    <DependentUpon>TabViewFour.xaml</DependentUpon>
 	  </Compile>
@@ -142,9 +145,6 @@
 	  </Compile>
 	  <Compile Update="Views\RadioButtonSamplePage.xaml.cs">
 	    <DependentUpon>RadioButtonSamplePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
-	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\SpinnerSamplePage.xaml.cs">
 	    <DependentUpon>SpinnerSamplePage.xaml</DependentUpon>

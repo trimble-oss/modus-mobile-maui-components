@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Views.SegmentedControlSamplePage"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              Title="SegmentedControlSamplePage"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
   <VerticalStackLayout Margin="10">
@@ -21,6 +21,13 @@
                               IsEnabled="{Binding IsEnabled}"
                               Margin="0,0,0,10"
                               ItemsSource="{Binding SegmentImageItems}" />
+    <modus:TMSegmentedControl x:Name="SegmentedItemSegmentControl"
+                              Size="{Binding Size}"
+                              IsRounded="{Binding RoundedCorners}"
+                              ColorTheme="{Binding SegmentTheme}"
+                              IsEnabled="{Binding IsEnabled}"
+                              Margin="0,0,0,10"
+                              ItemsSource="{Binding SegmentedItemItems}" />
     <modus:TMRadioButtonGroup SelectedIndex="0"
                               SelectedRadioButtonChanged="TMRadioButtonGroup_SelectedRadioButtonChanged">
       <modus:TMRadioButton Text="Small"

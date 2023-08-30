@@ -2,7 +2,7 @@
 <ContentPage x:Class="DemoApp.InputSamplePage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              xmlns:constants="clr-namespace:DemoApp.Constant"
              Title="InputSamplePage">
   <ScrollView>
@@ -24,18 +24,18 @@
                   IsToggled="{Binding IsReadOnly}"/>
         </StackLayout>
 
-        <Modus:TMInput  x:Name="modusInput"
+        <modus:TMInput  x:Name="modusInput"
                         Placeholder="Input"
                         IsEnabled="{Binding IsEnabled}"
                         IsReadOnly="{Binding IsReadOnly}" />
 
-        <Modus:TMInput  x:Name="modusInputWithTitle"
+        <modus:TMInput  x:Name="modusInputWithTitle"
                         TitleText="Text Input"
                         IsEnabled="{Binding IsEnabled}"
                         IsReadOnly="{Binding IsReadOnly}"
                         Placeholder="Input" />
 
-        <Modus:TMInput x:Name="validationInput"
+        <modus:TMInput x:Name="validationInput"
                        TitleText="Success/Error Input"
                        HelperText="Enter a valid email"
                        IsEnabled="{Binding IsEnabled}"
@@ -48,7 +48,7 @@
                        UnFocusedCommand="{Binding UnFocusedCommand}"
                        Placeholder="Text Input" />
         
-        <Modus:TMInput x:Name="numbervalidationInput"
+        <modus:TMInput x:Name="numbervalidationInput"
                        TitleText="Success/Error Input Without Helper Text"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
@@ -57,14 +57,14 @@
                        SuccessText="{Binding MultiLineInputSuccessText}"
                        Placeholder="Text Input" />
 
-        <Modus:TMInput x:Name="filled"
+        <modus:TMInput x:Name="filled"
                        TitleText="Filled"
                        Placeholder="Text Input"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
                        Text="Filled" />
 
-        <Modus:TMInput x:Name="rightIcon"
+        <modus:TMInput x:Name="rightIcon"
                        TitleText="Right Icon"
                        Placeholder="Text Input"
                        RightIconSource="{x:Static constants:ImageConstants.PasswordIcon}"
@@ -73,14 +73,14 @@
                        RightIconCommand="{Binding ShowPasswordCommand}"
                        IsPassword="{Binding ShowPassword}" />
 
-        <Modus:TMInput x:Name="leftIcon"
+        <modus:TMInput x:Name="leftIcon"
                        TitleText="Left Icon"
                        LeftIconSource="{x:Static constants:ImageConstants.SearchIcon}"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
                        Placeholder="Text Input" />
 
-        <Modus:TMInput x:Name="bothIcon"
+        <modus:TMInput x:Name="bothIcon"
                        TitleText="Both Icon"
                        LeftIconSource="{x:Static constants:ImageConstants.AccountIcon}"
                        Placeholder="Text Input"
