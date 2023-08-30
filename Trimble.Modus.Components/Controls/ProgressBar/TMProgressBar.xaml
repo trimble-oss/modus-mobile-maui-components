@@ -17,7 +17,6 @@
     <Label x:Name="progressBarIndicatorText"
            Text="{Binding Text}"
            IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
-           FontAttributes="Bold"
            FontFamily="OpenSansBold"
            VerticalOptions="Center"
            HorizontalOptions="Start" />

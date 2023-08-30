@@ -11,7 +11,6 @@
                  Margin="10">
       <Label Text="Size"
              FontSize="Large"
-             FontAttributes="Bold"
              HorizontalOptions="Start"
              Margin="0,10,0,0" />
       <modus:TMRadioButtonGroup x:Name="AccordionSize"
@@ -28,7 +27,6 @@
       </modus:TMRadioButtonGroup>
       <Label Text="Chevron Position"
              FontSize="Large"
-             FontAttributes="Bold"
              HorizontalOptions="Start"
              Margin="0,10,0,0" />
       <modus:TMRadioButtonGroup x:Name="PositionGroup"

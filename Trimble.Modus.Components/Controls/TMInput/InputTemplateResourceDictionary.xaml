@@ -25,7 +25,6 @@
                HorizontalOptions="Start" />
         <Label Text="*"
                IsVisible="{Binding IsRequired}"
-               FontAttributes="Bold"
                FontFamily="OpenSansSemibold"
                TextColor="#DA212C" />
       </HorizontalStackLayout>
@@ -47,6 +46,7 @@
                WidthRequest="20"
                HeightRequest="20" />
         <Label  x:Name="inputHelperLabel"
+                FontFamily="OpenSansRegular"
                 LineBreakMode="WordWrap"
                 VerticalTextAlignment="Center" />
       </HorizontalStackLayout>

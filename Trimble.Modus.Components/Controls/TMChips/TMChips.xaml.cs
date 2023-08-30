@@ -315,6 +315,7 @@ public partial class TMChips : ContentView
             case ChipSize.Default:
             default:
                 tMChips.label.FontSize = 16;
+                tMChips.label.FontFamily = "OpenSansRegular";
                 tMChips.chipContent.Padding = new Thickness(12);
                 tMChips.chipContent.HeightRequest = 48;
                 break;
