@@ -23,46 +23,49 @@
     </ResourceDictionary>
   </Border.Resources>
   <Grid RowSpacing="0" BackgroundColor="{Binding Source={x:Reference ItemContainer}, Path=CurrentBackgroundColor}">
-    <Image x:Name="SegmentIcon"
-           HorizontalOptions="Center"
-           VerticalOptions="Center"
-           Aspect="Center"
-           Margin="8,0"
-           Source="{Binding Source={x:Reference ItemContainer}, Path=Icon}"
-           IsVisible="{Binding CurrentIcon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}" />
+    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="10,0" HorizontalOptions="CenterAndExpand">
+      <Image x:Name="SegmentIcon"
+       HorizontalOptions="Center"
+       VerticalOptions="Center"
+       Aspect="Center"  
+       Source="{Binding Source={x:Reference ItemContainer}, Path=Icon}"
+       IsVisible="{Binding Icon,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"/>
 
-    <!--Max lines should be set while LineBreakMode is set. Otherwise ArrayIndexOutOfBoundsException is thrown on Android.-->
-    <Label x:Name="TextLabel"
+      <!--Max lines should be set while LineBreakMode is set. Otherwise ArrayIndexOutOfBoundsException is thrown on Android.-->
+      <Label x:Name="TextLabel"
            HorizontalTextAlignment="Center"
            VerticalTextAlignment="Center"
+           HorizontalOptions="CenterAndExpand"
+           Margin="4,0"
            Text="{Binding Text}"
-           Margin="16,0"
            LineBreakMode="TailTruncation"
            MaxLines="1"
            IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
            FontAttributes="Bold"
            FontSize="12">
-      <Label.Style>
-        <Style TargetType="Label">
-          <Setter Property="TextColor"
+        <Label.Style>
+          <Style TargetType="Label">
+            <Setter Property="TextColor"
                   Value="Black" />
-          <Style.Triggers>
-            <DataTrigger TargetType="Label"
+            <Style.Triggers>
+              <DataTrigger TargetType="Label"
                          Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
                          Value="True">
-              <Setter Property="TextColor"
+                <Setter Property="TextColor"
                       Value="White" />
-            </DataTrigger>
-            <DataTrigger TargetType="Label"
+              </DataTrigger>
+              <DataTrigger TargetType="Label"
                          Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
                          Value="False">
-              <Setter Property="TextColor"
+                <Setter Property="TextColor"
                       Value="Black" />
-            </DataTrigger>
-          </Style.Triggers>
-        </Style>
-      </Label.Style>
-    </Label>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </Label.Style>
+      </Label>
+    </StackLayout>
+    
     <BoxView x:Name="VerticalSeparator"
              HorizontalOptions="Start"
              IsVisible="{Binding Source={x:Reference ItemContainer}, Path=ShowSeparator}"
