@@ -23,15 +23,16 @@
       <StackLayout BackgroundColor="White" Padding="20,40,20,20" Spacing="50">
         <modus:RangeSlider MaximumValue="10"
                            MinimumValue="-10"
-                           LowerValue="0"
+                           LowerValue="-10"
                            UpperValue="10"
                            Size="Large"
                            StepValue="1"
                            ShowSteps="True"
+                           Title="Something"
                            IsEnabled="True"/>
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
-                        Value="10"
+                        Value="5"
                         Size="Small"
                         StepValue="2"
                         IsEnabled="True"

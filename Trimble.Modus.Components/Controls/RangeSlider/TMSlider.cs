@@ -20,7 +20,6 @@ namespace Trimble.Modus.Components
                 = BindableProperty.Create(nameof(Value), typeof(double), typeof(TMSlider), .0, BindingMode.TwoWay, propertyChanged: OnLowerUpperValuePropertyChanged, coerceValue: CoerceValue);
 
         readonly PanGestureRecognizer thumbGestureRecognizer = new PanGestureRecognizer();
-        double thumbTranslation;
 
         double lowerTranslation;
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -63,6 +62,7 @@ namespace Trimble.Modus.Components
             ValueHolder.Children.Add(ValueBorder);
             ValueHolder.Children.Add(ValueToolTipShape);
             Children.Add(ValueHolder);
+            Children.Add(SliderTitle);
             ThumbIcon.ZIndex = 3;
 
             AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
@@ -120,6 +120,7 @@ namespace Trimble.Modus.Components
             StepContainer.BatchBegin();
             LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
+            SliderTitle.BatchBegin();
 
             Track.BackgroundColor = Color.FromArgb("#FFA3A6B1");
             Track.StrokeThickness = 0;
@@ -152,17 +153,18 @@ namespace Trimble.Modus.Components
             if (labelWithSpacingHeight > 0)
                 labelWithSpacingHeight += ValueLabelSpacing;
 
-            var trackThumbHeight = Max(Max(thumbSize, thumbSize), trackSize);
+            var trackThumbHeight = Max(thumbSize, trackSize);
             var trackVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - trackSize) / 2);
             var thumbVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - thumbSize) / 2);
 
-            this.HeightRequest = labelWithSpacingHeight + trackThumbHeight;
+            HeightRequest = labelWithSpacingHeight + trackThumbHeight;
 
             var trackHighlightBounds = GetLayoutBounds((IView)TrackHighlight);
             SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
             SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
             SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
             SetLayoutBounds((IView)ValueHolder, new Rect(0, 0, -1, -1));
+            SetLayoutBounds((IView)SliderTitle, new Rect(0, -ValueBorder.Height/2 - 2, -1, -1));
 
             if (ShowSteps)
             {
@@ -171,6 +173,7 @@ namespace Trimble.Modus.Components
             }
 
             SetValueLabelBinding(ValueLabel, ValueProperty);
+            SetTitleLabelBinding(SliderTitle, TitleProperty);
             ValueLabel.Style = ValueLabelStyle ?? ValueLabelStyle;
             OnLowerUpperValuePropertyChanged();
 
@@ -182,6 +185,7 @@ namespace Trimble.Modus.Components
             BuildStepper();
             StepContainer.BatchCommit();
             LastStepContainer.BatchCommit();
+            SliderTitle.BatchCommit();
 
             BatchCommit();
         }

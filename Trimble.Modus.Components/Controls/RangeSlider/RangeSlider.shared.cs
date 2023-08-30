@@ -117,6 +117,7 @@ namespace Trimble.Modus.Components
             Children.Add(TrackHighlight);
             Children.Add(LeftThumbIcon);
             Children.Add(RightThumbIcon);
+            Children.Add(SliderTitle);
 
             UpperValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             UpperValueToolTipShape.TranslationY = 0;
@@ -214,6 +215,7 @@ namespace Trimble.Modus.Components
 			UpperValueBorder.BatchBegin();
             UpperValueHolder.BatchBegin();
             LowerValueHolder.BatchBegin();
+            SliderTitle.BatchBegin();
 
             StepContainer.BatchBegin();
             LastStepContainer.BatchBegin();
@@ -268,6 +270,8 @@ namespace Trimble.Modus.Components
 			SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, thumbSize, thumbSize));
             SetLayoutBounds((IView)UpperValueHolder, new Rect(0, 0, -1, -1));
             SetLayoutBounds((IView)LowerValueHolder, new Rect(0, 0, -1, -1));
+            SetLayoutBounds((IView)SliderTitle, new Rect(0, -UpperValueBorder.Height / 2 - 2, -1, -1));
+
             if (ShowSteps)
             {
                 SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
@@ -275,7 +279,9 @@ namespace Trimble.Modus.Components
             }
             SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
 			SetValueLabelBinding(UpperValueLabel, UpperValueProperty);
-			LowerValueLabel.Style = LowerValueLabelStyle ?? ValueLabelStyle;
+            SetTitleLabelBinding(SliderTitle, TitleProperty);
+
+            LowerValueLabel.Style = LowerValueLabelStyle ?? ValueLabelStyle;
 			UpperValueLabel.Style = UpperValueLabelStyle ?? ValueLabelStyle;
 			OnLowerUpperValuePropertyChanged();
 

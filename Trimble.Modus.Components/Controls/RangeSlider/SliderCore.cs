@@ -23,6 +23,7 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderControl), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelStyleProperty = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelStringFormatProperty = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderControl), null);
         public static BindableProperty ValueLabelSpacingProperty = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderControl), false, propertyChanged: OnShowStepsPropertyChanged);
         #endregion
@@ -37,6 +38,11 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Public Property
+        public string Title
+        {
+            get => (string)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
+        }
         public Boolean ShowSteps
         {
             get => (Boolean)GetValue(ShowStepsProperty);
@@ -86,6 +92,7 @@ namespace Trimble.Modus.Components.Controls
         internal StackLayout LastStepContainer { get; } = SliderHelper.CreateStepLabelContainer();
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
+        internal Label SliderTitle = new Label { FontSize = 12, TextColor = Color.FromArgb("#464B52")};
         #endregion
 
         #region Protected methods
@@ -160,6 +167,12 @@ namespace Trimble.Modus.Components.Controls
                 Source = this,
                 Path = bindableProperty.PropertyName,
                 StringFormat = ValueLabelStringFormat
+            });
+        protected void SetTitleLabelBinding(Label label, BindableProperty bindableProperty)
+            => label.SetBinding(Label.TextProperty, new Binding
+            {
+                Source = this,
+                Path = bindableProperty.PropertyName,
             });
         #endregion
 
