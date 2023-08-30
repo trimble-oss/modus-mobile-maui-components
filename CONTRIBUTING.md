@@ -45,7 +45,7 @@ Also add a priority level label to the issue. The priority options are low, medi
 
 ## Changelog
 
-The release notes are present in this [Google Drive](https://drive.google.com/drive/u/0/folders/1cv7LPemnfGGndV1-adQfvpe_09iiz8sW) page.
+The release notes are present in this [Google Drive](https://drive.google.com/drive/u/0/folders/1cv7LPemnfGGndV1-adQfvpe_09iiz8sW).
 
 ## Queries
 
