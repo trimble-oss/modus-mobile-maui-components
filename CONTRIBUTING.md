@@ -49,4 +49,4 @@ The release notes are present in this [Google Drive](https://drive.google.com/dr
 
 ## Queries
 
-For queries contact via [modus-mobile-contributors-ug@trimble.com]
+For queries contact via modus-mobile-contributors-ug@trimble.com
