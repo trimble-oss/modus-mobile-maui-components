@@ -32,10 +32,11 @@ public static class MauiProgram
 Now you can use the controls in your app.
 ## Getting Started
 - Install Git - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-- Install GitHub Desktop - https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop
+- Install GitHub Desktop - https://desktop.github.com/
 - Install Visual Studio - [https://visualstudio.microsoft.com/vs/](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation?tabs=visual-studio-code)
 - Install .Net - https://dotnet.microsoft.com/en-us/download/dotnet/7.0
 - Run the Demo App - https://dotnet.microsoft.com/en-us/learn/maui/first-app-tutorial/device-setup
+- Know About MAUI - https://dotnet.microsoft.com/en-us/learn/maui
 ## Submitting Issues
 Whether you're contributing directly to the code or have suggestions, submitting an issue through GitHub is needed for referencing changes. Please submit change items as an Issue [here](https://github.com/trimble-oss/modus-mobile-maui-components/issues).
 
