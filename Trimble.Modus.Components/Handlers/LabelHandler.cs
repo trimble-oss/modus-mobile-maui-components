@@ -16,8 +16,6 @@ internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
         if (label is Label controlsLabel)
         {
 
-            controlsLabel.FontFamily = "OpenSansBold";
-
 #if ANDROID
             
             if (textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)

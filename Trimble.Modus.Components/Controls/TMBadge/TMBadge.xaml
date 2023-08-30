@@ -12,7 +12,6 @@
            BindingContext="{x:Reference tmBadge}"
            Text="{Binding Text}"
            FontFamily="OpenSansBold"
-           FontAttributes="Bold"
            VerticalTextAlignment="Center"
            VerticalOptions="Center"
            HorizontalOptions="Center"/>
