@@ -1,6 +1,5 @@
 using DemoApp.Views;
 using System.Collections.ObjectModel;
-using Trimble.Modus.Components.Popup.Services;
 
 namespace DemoApp
 {
@@ -12,26 +11,27 @@ namespace DemoApp
             InitializeComponent();
             ControlNames = new ObservableCollection<string>
             {
+                "Accordion",
+                "Badge",
                 "Button",
+                "Card",
+                "CheckBox",
+                "Chips",
+                "DataGrid",
                 "Input",
                 "MultiLineInput",
                 "NumberInput",
-                "Modal",
-                "Toast",
-                "CheckBox",
-                "Card",
-                "RadioButton",
-                "Spinner",
-                "SegmentedControl",
                 "ListView",
-                "DataGrid",
+                "Modal",
                 "PopupView",
-                "TabbedPage",
-                "Badge",
-                "Accordion",
-                "Chips",
+                "ProgressBar",
+                "RadioButton",
+                "SegmentedControl",
+                "Spinner",
                 "Switch",
-                "ProgressBar"
+                "TabbedPage",
+                "Toast"
+
             };
             BindingContext = this;
         }
@@ -100,7 +100,7 @@ namespace DemoApp
                         break;
                     case "Switch":
                         Navigation.PushAsync(new SwitchSamplePage());
-                        break; 
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
