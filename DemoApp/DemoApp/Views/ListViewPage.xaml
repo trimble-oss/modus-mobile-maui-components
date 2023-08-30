@@ -4,7 +4,7 @@
              x:Class="DemoApp.Views.ListViewPage"
              xmlns:local ="clr-namespace:DemoApp.Views"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:modus="http://modus.trimble.com/controls"
+             xmlns:modus="http://modus.trimble.com/components"
              Title="TMListView">
   <ContentPage.Resources>
     <DataTemplate x:Name="TextCell" x:Key="textCellKey">
