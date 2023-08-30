@@ -4,20 +4,20 @@
              x:Class="DemoApp.Views.ListViewPage"
              xmlns:local ="clr-namespace:DemoApp.Views"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              Title="TMListView">
   <ContentPage.Resources>
     <DataTemplate x:Name="TextCell" x:Key="textCellKey">
-      <Modus:TextCell 
+      <modus:TextCell 
             Title="{Binding Name}"
             Description="{Binding Address}"
             LeftIconSource="{Binding ProfilePic}"
             RightIconSource="{Binding ProfilePic}">
-      </Modus:TextCell>
+      </modus:TextCell>
     </DataTemplate>
     <DataTemplate x:Name="ViewCell" x:Key="viewCellKey">
-      <Modus:TemplateCell>
-        <Modus:TemplateCell.Content>
+      <modus:TemplateCell>
+        <modus:TemplateCell.Content>
           <Grid RowSpacing="10" Padding="10">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
@@ -54,39 +54,39 @@
             </StackLayout>
 
           </Grid>
-        </Modus:TemplateCell.Content>
-      </Modus:TemplateCell>
+        </modus:TemplateCell.Content>
+      </modus:TemplateCell>
     </DataTemplate>
 
   </ContentPage.Resources>
     <StackLayout Orientation="Vertical">
       <Label Text="Select View Type" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
-      <Modus:TMRadioButtonGroup x:Name="CellGroup"
+      <modus:TMRadioButtonGroup x:Name="CellGroup"
                                 Padding="10"
                                 SelectedIndex="0"
                                 HorizontalOptions="Center"
                                 SelectedRadioButtonChanged="OnCellGroupButtonChanged"
                                 Orientation="Horizontal">
-        <Modus:TMRadioButton Text="Text Cell" />
-        <Modus:TMRadioButton Text="Template Cell" />
-      </Modus:TMRadioButtonGroup>
+        <modus:TMRadioButton Text="Text Cell" />
+        <modus:TMRadioButton Text="Template Cell" />
+      </modus:TMRadioButtonGroup>
       <Label Text="Selection Mode" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
-      <Modus:TMRadioButtonGroup x:Name="SelectionGroup"
+      <modus:TMRadioButtonGroup x:Name="SelectionGroup"
                                 Padding="10"
                                 SelectedIndex="0"
                                 HorizontalOptions="Center"
                                 SelectedRadioButtonChangedCommand="{Binding SelectionGroupCommand}"
                                 Orientation="Horizontal">
-        <Modus:TMRadioButton Text="Single" />
-        <Modus:TMRadioButton Text="Multiple" />
-        <Modus:TMRadioButton Text="None" />
-      </Modus:TMRadioButtonGroup>
-      <Modus:TMListView x:Name="textCellList"
+        <modus:TMRadioButton Text="Single" />
+        <modus:TMRadioButton Text="Multiple" />
+        <modus:TMRadioButton Text="None" />
+      </modus:TMRadioButtonGroup>
+      <modus:TMListView x:Name="textCellList"
                         IsVisible="True"
                         SelectionMode="{Binding SelectionMode}"
                         SelectionChangedCommand="{Binding ItemSelectedCommand}"
                         ItemsSource="{Binding ItemSource}">
-      </Modus:TMListView>
+      </modus:TMListView>
 
     </StackLayout>
 </ContentPage>
