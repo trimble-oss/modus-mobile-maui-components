@@ -22,4 +22,4 @@ Check out the Storybook site's [Getting Started page](https://happy-pond-034b3b4
 
 # Contributing
 
-Curious about contributing? We've got a [contributing guide](https://github.com/trimble-oss/modus-mobile-maui-components/blob/feature/develop/CONTRIBUTING.md) to help get you going.
+Curious about contributing? We've got a [contributing guide](https://github.com/trimble-oss/modus-mobile-maui-components/blob/feature/Add_files/CONTRIBUTING.md) to help get you going.
