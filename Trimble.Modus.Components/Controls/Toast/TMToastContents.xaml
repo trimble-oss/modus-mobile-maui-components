@@ -42,6 +42,7 @@
                HorizontalOptions="Start"
                VerticalOptions="CenterAndExpand" />
         <Label x:Name="label"
+               FontFamily="OpenSansRegular"
                Text="{Binding Message}"
                LineBreakMode="TailTruncation"
                Padding="0,8,0,8"

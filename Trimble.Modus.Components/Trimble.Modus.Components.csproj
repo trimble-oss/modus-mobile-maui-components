@@ -124,7 +124,9 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.76" />
 	</ItemGroup>
-
+  <ItemGroup>
+    <MauiFont Include="Fonts\*" />
+  </ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Controls\Button\TMButton.xaml.cs">
 	    <DependentUpon>TMButton.xaml</DependentUpon>

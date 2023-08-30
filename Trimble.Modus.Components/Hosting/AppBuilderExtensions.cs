@@ -32,7 +32,16 @@ public static class AppBuilderExtensions
 
 #endif
             })
-            .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
+            .ConfigureMauiHandlers(handlers => SetHandlers(handlers))
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Bold.ttf", "OpenSansBold");
+                fonts.AddFont("OpenSans-ExtraBold.ttf", "OpenSansExtrabold");
+                fonts.AddFont("OpenSans-Light.ttf", "OpenSansLight");
+                fonts.AddFont("OpenSans-Medium.ttf", "OpenSansMedium");
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSansSemibold");
+            });
 
         return builder;
     }
@@ -56,7 +65,16 @@ public static class AppBuilderExtensions
                 });
 #endif
             })
-            .ConfigureMauiHandlers(handlers => SetHandlers(handlers));
+            .ConfigureMauiHandlers(handlers => SetHandlers(handlers))
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Bold.ttf", "OpenSansBold");
+                fonts.AddFont("OpenSans-ExtraBold.ttf", "OpenSansExtrabold");
+                fonts.AddFont("OpenSans-Light.ttf", "OpenSansLight");
+                fonts.AddFont("OpenSans-Medium.ttf", "OpenSansMedium");
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSansSemibold");
+            });
 
         return builder;
     }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        x:Class="Trimble.Modus.Components.TMSegmentedItem"
@@ -33,6 +33,7 @@
 
       <!--Max lines should be set while LineBreakMode is set. Otherwise ArrayIndexOutOfBoundsException is thrown on Android.-->
       <Label x:Name="TextLabel"
+           FontFamily="OpenSansSemibold"
            HorizontalTextAlignment="Center"
            VerticalTextAlignment="Center"
            HorizontalOptions="CenterAndExpand"

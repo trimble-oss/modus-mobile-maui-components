@@ -51,6 +51,7 @@
       </ImageButton.IsEnabled>
     </ImageButton>
     <controls:BorderlessEntry x:Name="inputBorderlessEntry"
+                              FontFamily="OpenSansRegular"
                               Grid.Column="1"
                               Focused="InputBorderlessEntry_Focused"
                               Unfocused="InputBorderlessEntry_Unfocused"
