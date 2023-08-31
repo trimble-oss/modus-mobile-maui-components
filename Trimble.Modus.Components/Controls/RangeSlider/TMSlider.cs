@@ -22,6 +22,34 @@ namespace Trimble.Modus.Components
         readonly PanGestureRecognizer thumbGestureRecognizer = new PanGestureRecognizer();
 
         double lowerTranslation;
+        protected override void OnLeftIconSourceChanged()
+        {
+            LeftIcon.Source = LeftIconSource;
+            if(LeftIconSource != null )
+            {
+                LeftIcon.WidthRequest = 20;
+                LeftIcon.IsVisible = true;
+            }
+            else
+            {
+                LeftIcon.WidthRequest = 0;
+                LeftIcon.IsVisible = false;
+            }
+        }
+        protected override void OnRightIconSourceChanged()
+        {
+            RightIcon.Source = RightIconSource;
+            if (RightIconSource != null)
+            {
+                RightIcon.WidthRequest = 20;
+                RightIcon.IsVisible = true;
+            }
+            else
+            {
+                RightIcon.WidthRequest = 0;
+                RightIcon.IsVisible = false;
+            }
+        }
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             base.OnPropertyChanged(propertyName);
@@ -44,16 +72,16 @@ namespace Trimble.Modus.Components
         StackLayout ValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
         View ValueToolTipShape = new ToolTipAnchor() { };
         Border ValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0 };
-
         Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
         Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
-        double TrackWidth => Width - ThumbIcon.Width;
+        double TrackWidth => AbsoluteLayout.Width - ThumbIcon.Width;
 
         public TMSlider()
         {
-            Children.Add(Track);
-            Children.Add(TrackHighlight);
-            Children.Add(ThumbIcon);
+            Orientation = StackOrientation.Horizontal;
+            AbsoluteLayout.Children.Add(Track);
+            AbsoluteLayout.Children.Add(TrackHighlight);
+            AbsoluteLayout.Children.Add(ThumbIcon);
             ValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             ValueToolTipShape.TranslationY = 0;
             ValueToolTipShape.RotateTo(180);
@@ -61,8 +89,18 @@ namespace Trimble.Modus.Components
             ValueBorder.Content = ValueLabel;
             ValueHolder.Children.Add(ValueBorder);
             ValueHolder.Children.Add(ValueToolTipShape);
-            Children.Add(ValueHolder);
-            Children.Add(SliderTitle);
+            AbsoluteLayout.Children.Add(SliderTitle);
+
+
+            AbsoluteLayout.HorizontalOptions = LayoutOptions.FillAndExpand;
+            LeftIcon.VerticalOptions = LayoutOptions.End;
+            RightIcon.VerticalOptions = LayoutOptions.End;
+            Children.Add(LeftLabel);
+            Children.Add(LeftIcon);
+            Children.Add(AbsoluteLayout);
+            Children.Add(RightIcon);
+            Children.Add(RightLabel);
+
             ThumbIcon.ZIndex = 3;
 
             AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
@@ -92,14 +130,14 @@ namespace Trimble.Modus.Components
             ThumbIcon.TranslationX = lowerTranslation;
             OnValueLabelTranslationChanged();
 
-            var bounds = GetLayoutBounds((IView)TrackHighlight);
-            this.SetLayoutBounds(TrackHighlight, new Rect(0, bounds.Y, lowerTranslation+thumbSize, bounds.Height));
+            var bounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
+            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(0, bounds.Y, lowerTranslation+thumbSize, bounds.Height));
         }
         protected override void OnValueLabelTranslationChanged()
         {
             var labelSpacing = 5;
             var lowerLabelTranslation = lowerTranslation + ((ThumbIcon.Width - ValueLabel.Width) / 2);
-            ValueHolder.TranslationX = Min(Max(lowerLabelTranslation, 0), Width - ValueLabel.Width - labelSpacing);
+            ValueHolder.TranslationX = Min(Max(lowerLabelTranslation, 0), AbsoluteLayout.Width - ValueLabel.Width - labelSpacing);
             if (Value == MinimumValue)
             {
                 ValueHolder.TranslationX -= 6;
@@ -111,7 +149,7 @@ namespace Trimble.Modus.Components
         }
         protected override void OnLayoutPropertyChanged()
         {
-            BatchBegin();
+            AbsoluteLayout.BatchBegin();
             Track.BatchBegin();
             TrackHighlight.BatchBegin();
             ThumbIcon.BatchBegin();
@@ -157,24 +195,28 @@ namespace Trimble.Modus.Components
             var trackVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - trackSize) / 2);
             var thumbVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - thumbSize) / 2);
 
-            HeightRequest = labelWithSpacingHeight + trackThumbHeight;
+            AbsoluteLayout.HeightRequest = labelWithSpacingHeight + trackThumbHeight;
 
-            var trackHighlightBounds = GetLayoutBounds((IView)TrackHighlight);
-            SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
-            SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, Width, trackSize));
-            SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
-            SetLayoutBounds((IView)ValueHolder, new Rect(0, 0, -1, -1));
-            SetLayoutBounds((IView)SliderTitle, new Rect(0, -ValueBorder.Height/2 - 2, -1, -1));
+            var trackHighlightBounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
+            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
+            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, AbsoluteLayout.Width, trackSize));
+            AbsoluteLayout.SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
+            AbsoluteLayout.SetLayoutBounds((IView)SliderTitle, new Rect(0, -ValueBorder.Height/2 - 2, -1, -1));
 
             if (ShowSteps)
             {
-                SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
-                SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth, trackVerticalPosition + 20, -1, -1));
+                AbsoluteLayout.SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
+                AbsoluteLayout.SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth, trackVerticalPosition + 20, -1, -1));
+            }
+            if (ShowToolTip)
+            {
+                AbsoluteLayout.SetLayoutBounds((IView)ValueHolder, new Rect(0, 0, -1, -1));
             }
 
             SetValueLabelBinding(ValueLabel, ValueProperty);
             SetTitleLabelBinding(SliderTitle, TitleProperty);
-            ValueLabel.Style = ValueLabelStyle ?? ValueLabelStyle;
+            SetTitleLabelBinding(LeftLabel, LeftTextProperty);
+            SetTitleLabelBinding(RightLabel, RightTextProperty);
             OnLowerUpperValuePropertyChanged();
 
             Track.BatchCommit();
@@ -187,7 +229,7 @@ namespace Trimble.Modus.Components
             LastStepContainer.BatchCommit();
             SliderTitle.BatchCommit();
 
-            BatchCommit();
+            AbsoluteLayout.BatchCommit();
         }
 
         protected override void OnMinimumMaximumValuePropertyChanged()
@@ -227,17 +269,31 @@ namespace Trimble.Modus.Components
         {
             if (ShowSteps)
             {
-                Children.Add(StepContainer);
+                AbsoluteLayout.Children.Add(StepContainer);
                 LastStepContainer.Children.Add(LastStepLine);
                 LastStepContainer.Children.Add(LastLabel);
-                Children.Add(LastStepContainer);
+                AbsoluteLayout.Children.Add(LastStepContainer);
                 OnLayoutPropertyChanged();
             }
             else
             {
-                Children.Remove(StepContainer);
-                Children.Remove(LastStepContainer);
+                AbsoluteLayout.Children.Remove(StepContainer);
+                AbsoluteLayout.Children.Remove(LastStepContainer);
+                LastStepContainer.Children.Remove(LastStepLine);
+                LastStepContainer.Children.Remove(LastLabel);
             }
+        }
+        protected override void OnShowToolTipPropertyChanged()
+        {
+            if (ShowToolTip)
+            {
+                AbsoluteLayout.Children.Add(ValueHolder);
+            }
+            else
+            {
+                AbsoluteLayout.Children.Remove(ValueHolder);
+            }
+            OnLayoutPropertyChanged();
         }
         void UpdateValue(View view, double value)
         {

@@ -4,7 +4,7 @@ using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components.Controls
 {
-    public abstract class SliderControl : AbsoluteLayout
+    public abstract class SliderControl : StackLayout
     {
         #region Private fields
         const double enabledOpacity = 1;
@@ -24,17 +24,28 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty ValueLabelStyleProperty = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelStringFormatProperty = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderControl), null);
+        public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderControl), null);
+        public static BindableProperty RightTextProperty = BindableProperty.Create(nameof(RightText), typeof(string), typeof(SliderControl), null);
+        public static BindableProperty LeftIconProperty = BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(SliderControl), null, propertyChanged: OnLeftIconSourceChanged);
+        public static BindableProperty RightIconProperty = BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(SliderControl), null, propertyChanged: OnRightIconSourceChanged);
         public static BindableProperty ValueLabelSpacingProperty = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderControl), false, propertyChanged: OnShowStepsPropertyChanged);
+        public static BindableProperty ShowToolTipProperty= BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderControl), false, propertyChanged: OnShowToolTipPropertyChanged);
         #endregion
 
         #region Property change methods
         static void OnShowStepsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnShowStepsPropertyChanged();
+        static void OnShowToolTipPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderControl)bindable).OnShowToolTipPropertyChanged();
         static void OnLayoutPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnLayoutPropertyChanged();
         static void OnMinimumMaximumValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnMinimumMaximumValuePropertyChanged();
+        static void OnLeftIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderControl)bindable).OnLeftIconSourceChanged();
+        static void OnRightIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderControl)bindable).OnRightIconSourceChanged();
         #endregion
 
         #region Public Property
@@ -43,10 +54,35 @@ namespace Trimble.Modus.Components.Controls
             get => (string)GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
         }
+        public string LeftText
+        {
+            get => (string)GetValue(LeftTextProperty);
+            set => SetValue(LeftTextProperty, value);
+        }
+        public string RightText
+        {
+            get => (string)GetValue(RightTextProperty);
+            set => SetValue(RightTextProperty, value);
+        }
+        public ImageSource LeftIconSource
+        {
+            get => (ImageSource)GetValue(LeftIconProperty);
+            set => SetValue(LeftIconProperty, value);
+        }
+        public ImageSource RightIconSource
+        {
+            get => (ImageSource)GetValue(RightIconProperty);
+            set => SetValue(RightIconProperty, value);
+        }
         public Boolean ShowSteps
         {
             get => (Boolean)GetValue(ShowStepsProperty);
             set => SetValue(ShowStepsProperty, value);
+        }
+        public Boolean ShowToolTip
+        {
+            get => (Boolean)GetValue(ShowToolTipProperty);
+            set => SetValue(ShowToolTipProperty, value);
         }
         public SliderSize Size
         {
@@ -93,6 +129,12 @@ namespace Trimble.Modus.Components.Controls
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
         internal Label SliderTitle = new Label { FontSize = 12, TextColor = Color.FromArgb("#464B52")};
+        internal Label LeftLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.End};
+        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(0,20,0,0),};
+        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(0, 20, 0, 0), };
+        internal Label RightLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.End};
+        internal AbsoluteLayout AbsoluteLayout = new AbsoluteLayout();
+
         #endregion
 
         #region Protected methods
@@ -185,13 +227,16 @@ namespace Trimble.Modus.Components.Controls
         protected abstract void OnPanCompleted(View view);
         protected abstract void OnValueLabelTranslationChanged();
         protected abstract void OnShowStepsPropertyChanged();
+        protected abstract void OnShowToolTipPropertyChanged();
+        protected abstract void OnLeftIconSourceChanged();
+        protected abstract void OnRightIconSourceChanged();
         #endregion
 
         protected void BuildStepper(bool isRangeSlider = false)
         {
             StepContainer.Children.Clear();
 
-            StepContainer.WidthRequest = Width-(isRangeSlider? 2*thumbSize : thumbSize);
+            StepContainer.WidthRequest = AbsoluteLayout.Width - (isRangeSlider? 2*thumbSize : thumbSize);
             //StepContainer.WidthRequest = Width-2*thumbSize; For RangeSlider
             for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
             {

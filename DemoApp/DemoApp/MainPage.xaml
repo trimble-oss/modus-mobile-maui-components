@@ -22,21 +22,27 @@
     <ScrollView>
       <StackLayout BackgroundColor="White" Padding="20,40,20,20" Spacing="50">
         <modus:RangeSlider MaximumValue="10"
-                           MinimumValue="-10"
-                           LowerValue="-10"
+                           MinimumValue="0"
+                           LowerValue="10"
                            UpperValue="10"
                            Size="Large"
-                           StepValue="1"
+                           StepValue="2"
                            ShowSteps="True"
-                           Title="Something"
-                           IsEnabled="True"/>
+                           ShowToolTip="True"
+                           IsEnabled="True"
+                           LeftText="0"
+                           RightText="10"
+                           BackgroundColor="AliceBlue"/>
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
-                        Value="5"
+                        Value="10"
                         Size="Small"
                         StepValue="2"
                         IsEnabled="True"
-                        ShowSteps="True"/>
+                        ShowSteps="True"
+                        ShowToolTip="True"
+                        LeftText="0"
+                        RightText="10"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
       </StackLayout>
     </ScrollView>
