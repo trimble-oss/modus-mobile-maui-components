@@ -4,32 +4,10 @@
 
 ## Table of Contents
 
-- [Dependencies](#dependencies)
 - [Getting Started](#getting-started)
 - [Submitting Issues](#submitting-issues)
 - [Changelog](#changelog)
 - [Queries](#queries)
-
-## Dependencies
-In your dotnet MAUI application, right click on the Dependencies -> Manage Nuget Packages and search and choose the Trimble.Modus.Components and click the Add Package
-Here’s the direct link: Trimble.Modus.Components
-
-Add the following using statement in your MauiProgram:
-using Trimble.Modus.Components.Hosting;
-Then register the handlers to use the Modus components
-public static class MauiProgram
-{
-    public static MauiApp CreateMauiApp()
-    {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .UseTrimbleModus()
-            // register other handlers
-        return builder.Build();
-    }
-}
-Now you can use the controls in your app.
 ## Getting Started
 - Install Git - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 - Install GitHub Desktop - https://desktop.github.com/
