@@ -1,6 +1,5 @@
 using DemoApp.Views;
 using System.Collections.ObjectModel;
-using Trimble.Modus.Components.Popup.Services;
 
 namespace DemoApp
 {
@@ -12,27 +11,30 @@ namespace DemoApp
             InitializeComponent();
             ControlNames = new ObservableCollection<string>
             {
+                "Accordion",
+                "Badge",
                 "Button",
+                "Card",
+                "CheckBox",
+                "Chips",
+                "DataGrid",
+                "Display Alert",
                 "Input",
                 "MultiLineInput",
                 "NumberInput",
-                "Modal",
-                "Toast",
-                "CheckBox",
-                "Card",
-                "RadioButton",
-                "Spinner",
-                "SegmentedControl",
                 "ListView",
-                "DataGrid",
+                "Modal",
                 "PopupView",
+                "ProgressBar",
+                "RadioButton",
+                "SegmentedControl",
+                "Spinner",
+                "Switch",
                 "TabbedPage",
-                "Badge",
                 "Accordion",
                 "Chips",
                 "Switch",
                 "ProgressBar",
-                "Display Alert"
             };
             BindingContext = this;
         }

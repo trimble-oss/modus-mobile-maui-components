@@ -60,7 +60,7 @@
 
   </ContentPage.Resources>
     <StackLayout Orientation="Vertical">
-      <Label Text="Select View Type" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Label Text="Select View Type" FontSize="Medium"  Padding="10"></Label>
       <modus:TMRadioButtonGroup x:Name="CellGroup"
                                 Padding="10"
                                 SelectedIndex="0"
@@ -70,7 +70,7 @@
         <modus:TMRadioButton Text="Text Cell" />
         <modus:TMRadioButton Text="Template Cell" />
       </modus:TMRadioButtonGroup>
-      <Label Text="Selection Mode" FontSize="Medium" FontAttributes="Bold" Padding="10"></Label>
+      <Label Text="Selection Mode" FontSize="Medium"  Padding="10"></Label>
       <modus:TMRadioButtonGroup x:Name="SelectionGroup"
                                 Padding="10"
                                 SelectedIndex="0"

@@ -200,7 +200,6 @@ public partial class TMTabbedPage : ContentPage
         var text = new Label
         {
             FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-            FontAttributes = FontAttributes.Bold,
             HorizontalOptions = LayoutOptions.Center,
             VerticalOptions = LayoutOptions.Center,
             Margin = new Thickness(0, 6)
