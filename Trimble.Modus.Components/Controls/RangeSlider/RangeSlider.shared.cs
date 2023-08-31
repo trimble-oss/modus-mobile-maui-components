@@ -91,7 +91,7 @@ namespace Trimble.Modus.Components
         Border RightThumbIcon = SliderHelper.CreateBorderElement<Border>();
         Border LeftThumbIcon = SliderHelper.CreateBorderElement<Border>();
 
-		double TrackWidth => AbsoluteLayout.Width - RightThumbIcon.Width - LeftThumbIcon.Width;
+		double TrackWidth => AbsoluteLayout.Width - thumbSize*2;
 
 		protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
 		{
@@ -181,7 +181,7 @@ namespace Trimble.Modus.Components
 		void OnLowerUpperValuePropertyChanged()
 		{
 			var rangeValue = MaximumValue - MinimumValue;
-			var trackWidth = TrackWidth;
+			var trackWidth = TrackWidth+thumbSize;
 
 			lowerTranslation = (LowerValue - MinimumValue) / rangeValue * trackWidth;
             upperTranslation = ((UpperValue - MinimumValue) / rangeValue * trackWidth);
@@ -278,8 +278,8 @@ namespace Trimble.Modus.Components
             AbsoluteLayout.HeightRequest = labelWithSpacingHeight + trackThumbHeight;
 
             var trackHighlightBounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
-            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X+thumbSize, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
-            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(thumbSize / 4, trackVerticalPosition, TrackWidth + thumbSize / 4, trackSize));
+            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width+thumbSize, trackSize));
+            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(thumbSize / 4, trackVerticalPosition, TrackWidth + 1.25*thumbSize , trackSize));
             AbsoluteLayout.SetLayoutBounds((IView)LeftThumbIcon, new Rect(0, lowerThumbVerticalPosition, thumbSize, thumbSize));
             AbsoluteLayout.SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, thumbSize, thumbSize));
 
@@ -288,7 +288,7 @@ namespace Trimble.Modus.Components
             if (ShowSteps)
             {
                 AbsoluteLayout.SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
-                AbsoluteLayout.SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth, trackVerticalPosition + 20, -1, -1));
+                AbsoluteLayout.SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth+thumbSize, trackVerticalPosition + 20, -1, -1));
             }
             if (ShowToolTip)
             {

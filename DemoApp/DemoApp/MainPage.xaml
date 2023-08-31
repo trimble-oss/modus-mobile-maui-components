@@ -31,12 +31,11 @@
                            ShowToolTip="True"
                            IsEnabled="True"
                            LeftText="0"
-                           RightText="10"
-                           BackgroundColor="AliceBlue"/>
+                           RightText="10"/>
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
                         Value="10"
-                        Size="Small"
+                        Size="Large"
                         StepValue="2"
                         IsEnabled="True"
                         ShowSteps="True"

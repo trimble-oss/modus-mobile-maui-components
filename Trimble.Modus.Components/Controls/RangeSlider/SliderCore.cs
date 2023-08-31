@@ -129,10 +129,10 @@ namespace Trimble.Modus.Components.Controls
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
         internal Label SliderTitle = new Label { FontSize = 12, TextColor = Color.FromArgb("#464B52")};
-        internal Label LeftLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.End};
+        internal Label LeftLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
         internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(0,20,0,0),};
         internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(0, 20, 0, 0), };
-        internal Label RightLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.End};
+        internal Label RightLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
         internal AbsoluteLayout AbsoluteLayout = new AbsoluteLayout();
 
         #endregion
@@ -236,7 +236,7 @@ namespace Trimble.Modus.Components.Controls
         {
             StepContainer.Children.Clear();
 
-            StepContainer.WidthRequest = AbsoluteLayout.Width - (isRangeSlider? 2*thumbSize : thumbSize);
+            StepContainer.WidthRequest = AbsoluteLayout.Width - (isRangeSlider? thumbSize : thumbSize);
             //StepContainer.WidthRequest = Width-2*thumbSize; For RangeSlider
             for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
             {

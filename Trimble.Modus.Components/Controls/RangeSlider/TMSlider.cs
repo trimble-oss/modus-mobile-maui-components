@@ -131,20 +131,16 @@ namespace Trimble.Modus.Components
             OnValueLabelTranslationChanged();
 
             var bounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
-            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(0, bounds.Y, lowerTranslation+thumbSize, bounds.Height));
+            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(thumbSize/4, bounds.Y, lowerTranslation, bounds.Height));
         }
         protected override void OnValueLabelTranslationChanged()
         {
             var labelSpacing = 5;
             var lowerLabelTranslation = lowerTranslation + ((ThumbIcon.Width - ValueLabel.Width) / 2);
             ValueHolder.TranslationX = Min(Max(lowerLabelTranslation, 0), AbsoluteLayout.Width - ValueLabel.Width - labelSpacing);
-            if (Value == MinimumValue)
+            if (Value == MaximumValue)
             {
-                ValueHolder.TranslationX -= 6;
-            }
-            else if (Value == MaximumValue)
-            {
-                ValueHolder.TranslationX += 9;
+                ValueHolder.TranslationX += 3;
             }
         }
         protected override void OnLayoutPropertyChanged()
@@ -199,7 +195,7 @@ namespace Trimble.Modus.Components
 
             var trackHighlightBounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
             AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
-            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(0, trackVerticalPosition, AbsoluteLayout.Width, trackSize));
+            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(thumbSize/4, trackVerticalPosition, TrackWidth+thumbSize / 4, trackSize));
             AbsoluteLayout.SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
             AbsoluteLayout.SetLayoutBounds((IView)SliderTitle, new Rect(0, -ValueBorder.Height/2 - 2, -1, -1));
 
