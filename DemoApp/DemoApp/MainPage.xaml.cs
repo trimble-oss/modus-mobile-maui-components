@@ -31,7 +31,8 @@ namespace DemoApp
                 "Accordion",
                 "Chips",
                 "Switch",
-                "ProgressBar"
+                "ProgressBar",
+                "Display Alert"
             };
             BindingContext = this;
         }
@@ -100,7 +101,10 @@ namespace DemoApp
                         break;
                     case "Switch":
                         Navigation.PushAsync(new SwitchSamplePage());
-                        break; 
+                        break;
+                    case "Display Alert":
+                        Navigation.PushAsync(new DisplayAlertSamplePage());
+                        break;
                     default:
                         Console.WriteLine("Default Case");
                         break;
