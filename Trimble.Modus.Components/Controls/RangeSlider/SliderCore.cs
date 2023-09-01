@@ -4,7 +4,7 @@ using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components.Controls
 {
-    public abstract class SliderControl : Grid
+    public abstract class SliderCore : Grid
     {
         #region Private fields
         const double enabledOpacity = 1;
@@ -17,37 +17,34 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Bindable Property
-        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderControl), .0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderControl), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderControl), 0.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderControl), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
-        public static BindableProperty ValueLabelStyleProperty = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
-        public static BindableProperty ValueLabelStringFormatProperty = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
-        public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderControl), null, propertyChanged: OnTitleTextPropertyChanged);
-        public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderControl), null);
-        public static BindableProperty RightTextProperty = BindableProperty.Create(nameof(RightText), typeof(string), typeof(SliderControl), null);
-        public static BindableProperty LeftIconProperty = BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(SliderControl), null, propertyChanged: OnLeftIconSourceChanged);
-        public static BindableProperty RightIconProperty = BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(SliderControl), null, propertyChanged: OnRightIconSourceChanged);
-        public static BindableProperty ValueLabelSpacingProperty = BindableProperty.Create(nameof(ValueLabelSpacing), typeof(double), typeof(SliderControl), 5.0, propertyChanged: OnLayoutPropertyChanged);
-        public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderControl), false, propertyChanged: OnShowStepsPropertyChanged);
-        public static BindableProperty ShowToolTipProperty= BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderControl), false, propertyChanged: OnShowToolTipPropertyChanged);
+        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderCore), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), 0.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderCore), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderCore), null, propertyChanged: OnTitleTextPropertyChanged);
+        public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderCore), null);
+        public static BindableProperty RightTextProperty = BindableProperty.Create(nameof(RightText), typeof(string), typeof(SliderCore), null);
+        public static BindableProperty LeftIconProperty = BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnLeftIconSourceChanged);
+        public static BindableProperty RightIconProperty = BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnRightIconSourceChanged);
+        public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderCore), false, propertyChanged: OnShowStepsPropertyChanged);
+        public static BindableProperty ShowToolTipProperty= BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderCore), false, propertyChanged: OnShowToolTipPropertyChanged);
         #endregion
 
         #region Property change methods
         static void OnTitleTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnTitleTextPropertyChanged((string) newValue);
+            => ((SliderCore)bindable).OnTitleTextPropertyChanged((string) newValue);
         static void OnShowStepsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnShowStepsPropertyChanged();
+            => ((SliderCore)bindable).OnShowStepsPropertyChanged();
         static void OnShowToolTipPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnShowToolTipPropertyChanged();
+            => ((SliderCore)bindable).OnShowToolTipPropertyChanged();
         static void OnLayoutPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnLayoutPropertyChanged();
+            => ((SliderCore)bindable).OnLayoutPropertyChanged();
         static void OnMinimumMaximumValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnMinimumMaximumValuePropertyChanged();
+            => ((SliderCore)bindable).OnMinimumMaximumValuePropertyChanged();
         static void OnLeftIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnLeftIconSourceChanged();
+            => ((SliderCore)bindable).OnLeftIconSourceChanged();
         static void OnRightIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderControl)bindable).OnRightIconSourceChanged();
+            => ((SliderCore)bindable).OnRightIconSourceChanged();
         #endregion
 
         #region Public Property
@@ -106,21 +103,6 @@ namespace Trimble.Modus.Components.Controls
             get => (double)GetValue(StepValueProperty);
             set => SetValue(StepValueProperty, value);
         }
-        public Style ValueLabelStyle
-        {
-            get => (Style)GetValue(ValueLabelStyleProperty);
-            set => SetValue(ValueLabelStyleProperty, value);
-        }
-        public string ValueLabelStringFormat
-        {
-            get => (string)GetValue(ValueLabelStringFormatProperty);
-            set => SetValue(ValueLabelStringFormatProperty, value);
-        }
-        public double ValueLabelSpacing
-        {
-            get => (double)GetValue(ValueLabelSpacingProperty);
-            set => SetValue(ValueLabelSpacingProperty, value);
-        }
         #endregion
 
         #region UI Elements
@@ -140,12 +122,14 @@ namespace Trimble.Modus.Components.Controls
 
         #endregion
 
-        public SliderControl()
+        #region Constructor
+        internal SliderCore()
         {
             RowDefinitions = new RowDefinitionCollection(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }, new RowDefinition());
             Children.Add(sliderHolderLayout);
             Grid.SetRow(sliderHolderLayout, 1);
         }
+        #endregion
 
         #region Protected methods
         protected override void OnSizeAllocated(double width, double height)
@@ -204,6 +188,23 @@ namespace Trimble.Modus.Components.Controls
                     break;
             }
         }
+        protected void BuildStepper()
+        {
+            StepContainer.Children.Clear();
+
+            StepContainer.WidthRequest = AbsoluteLayout.Width - thumbSize;
+            for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
+            {
+                var stack = SliderHelper.CreateStepLabelContainer();
+                var box = SliderHelper.CreateStepLine(Size);
+                stack.Children.Add(box);
+
+                var label = SliderHelper.CreateStepLabel(Size);
+                label.Text = i.ToString();
+                stack.Children.Add(label);
+                StepContainer.Children.Add(stack);
+            }
+        }
         protected double GetPanShiftValue(View view)
             => Device.RuntimePlatform == Device.Android
                 ? view.TranslationX
@@ -218,7 +219,6 @@ namespace Trimble.Modus.Components.Controls
             {
                 Source = this,
                 Path = bindableProperty.PropertyName,
-                StringFormat = ValueLabelStringFormat
             });
         protected void SetTitleLabelBinding(Label label, BindableProperty bindableProperty)
             => label.SetBinding(Label.TextProperty, new Binding
@@ -242,24 +242,5 @@ namespace Trimble.Modus.Components.Controls
         protected abstract void OnRightIconSourceChanged();
         protected abstract void OnTitleTextPropertyChanged(string newValue);
         #endregion
-
-        protected void BuildStepper(bool isRangeSlider = false)
-        {
-            StepContainer.Children.Clear();
-
-            StepContainer.WidthRequest = AbsoluteLayout.Width - (isRangeSlider? thumbSize : thumbSize);
-            //StepContainer.WidthRequest = Width-2*thumbSize; For RangeSlider
-            for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
-            {
-                var stack = SliderHelper.CreateStepLabelContainer();
-                var box = SliderHelper.CreateStepLine(Size);
-                stack.Children.Add(box);
-
-                var label = SliderHelper.CreateStepLabel(Size);
-                label.Text = i.ToString();
-                stack.Children.Add(label);
-                StepContainer.Children.Add(stack);
-            }
-        }
     }
 }

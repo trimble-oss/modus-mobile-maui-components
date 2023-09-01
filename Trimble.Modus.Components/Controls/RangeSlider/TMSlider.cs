@@ -8,24 +8,116 @@ using static System.Math;
 
 namespace Trimble.Modus.Components
 {
-    public class TMSlider : SliderControl
+    public class TMSlider : SliderCore
     {
+        #region Private fields
+        readonly PanGestureRecognizer thumbGestureRecognizer = new PanGestureRecognizer();
+        double _trackWidth => AbsoluteLayout.Width - ThumbIcon.Width;
+        double _lowerTranslation;
+        #endregion
+
+        #region EventHandler
         public event EventHandler? ValueChanged;
 
         public event EventHandler? DragStarted;
 
         public event EventHandler? DragCompleted;
+        #endregion
 
+        #region BindableProperty
         public static BindableProperty ValueProperty
                 = BindableProperty.Create(nameof(Value), typeof(double), typeof(TMSlider), .0, BindingMode.TwoWay, propertyChanged: OnLowerUpperValuePropertyChanged, coerceValue: CoerceValue);
+        #endregion
 
-        readonly PanGestureRecognizer thumbGestureRecognizer = new PanGestureRecognizer();
+        #region Public Property
 
-        double lowerTranslation;
+        public double Value
+        {
+            get => (double)GetValue(ValueProperty);
+            set => SetValue(ValueProperty, value);
+        }
+        #endregion
+
+        #region UI Elements
+        StackLayout ValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
+        View ValueToolTipShape = new ToolTipAnchor() { };
+        Border ValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0 };
+        Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
+        Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
+        #endregion
+
+        #region Constructors
+        public TMSlider()
+        {
+            sliderHolderLayout.Orientation = StackOrientation.Horizontal;
+            AbsoluteLayout.Children.Add(Track);
+            AbsoluteLayout.Children.Add(TrackHighlight);
+            AbsoluteLayout.Children.Add(ThumbIcon);
+            ValueToolTipShape.VerticalOptions = LayoutOptions.Start;
+            ValueToolTipShape.TranslationY = 0;
+            ValueToolTipShape.RotateTo(180);
+            ValueLabel.BackgroundColor = Color.FromArgb("#585C65");
+            ValueBorder.Content = ValueLabel;
+            ValueHolder.Children.Add(ValueBorder);
+            ValueHolder.Children.Add(ValueToolTipShape);
+
+
+            AbsoluteLayout.HorizontalOptions = LayoutOptions.FillAndExpand;
+            LeftIcon.VerticalOptions = LayoutOptions.End;
+            RightIcon.VerticalOptions = LayoutOptions.End;
+            sliderHolderLayout.Children.Add(LeftLabel);
+            sliderHolderLayout.Children.Add(LeftIcon);
+            sliderHolderLayout.Children.Add(AbsoluteLayout);
+            sliderHolderLayout.Children.Add(RightIcon);
+            sliderHolderLayout.Children.Add(RightLabel);
+
+            ThumbIcon.ZIndex = 3;
+
+            AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
+
+            Track.SizeChanged += OnViewSizeChanged;
+            ThumbIcon.SizeChanged += OnViewSizeChanged;
+            ValueLabel.SizeChanged += OnViewSizeChanged;
+
+            OnIsEnabledChanged();
+            OnLayoutPropertyChanged();
+        }
+        #endregion
+
+        #region Private methods
+        void UpdateValue(View view, double value)
+        {
+            var rangeValue = MaximumValue - MinimumValue;
+            Value = Min(Max(MinimumValue, (value / _trackWidth * rangeValue) + MinimumValue), MaximumValue);
+        }
+        static object CoerceValue(BindableObject bindable, object value)
+        {
+            var slider = (bindable as TMSlider);
+            return SliderHelper.CoerceValue((double)value, slider.StepValue, slider.MinimumValue, slider.MaximumValue);
+        }
+        static void OnLowerUpperValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((TMSlider)bindable).OnLowerUpperValuePropertyChanged();
+
+        void OnLowerUpperValuePropertyChanged()
+        {
+            var rangeValue = MaximumValue - MinimumValue;
+            var trackWidth = _trackWidth;
+
+            _lowerTranslation = (Value - MinimumValue) / rangeValue * trackWidth;
+
+            ThumbIcon.TranslationX = _lowerTranslation;
+            OnValueLabelTranslationChanged();
+
+            var bounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
+            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(thumbSize/4, bounds.Y, _lowerTranslation, bounds.Height));
+        }
+        #endregion
+
+        #region Protected Methods
         protected override void OnLeftIconSourceChanged()
         {
             LeftIcon.Source = LeftIconSource;
-            if(LeftIconSource != null )
+            if (LeftIconSource != null)
             {
                 LeftIcon.WidthRequest = 20;
                 LeftIcon.IsVisible = true;
@@ -63,79 +155,10 @@ namespace Trimble.Modus.Components
                     break;
             }
         }
-
-        public double Value
-        {
-            get => (double)GetValue(ValueProperty);
-            set => SetValue(ValueProperty, value);
-        }
-        StackLayout ValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
-        View ValueToolTipShape = new ToolTipAnchor() { };
-        Border ValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0 };
-        Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
-        Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
-        double TrackWidth => AbsoluteLayout.Width - ThumbIcon.Width;
-
-        public TMSlider()
-        {
-            sliderHolderLayout.Orientation = StackOrientation.Horizontal;
-            AbsoluteLayout.Children.Add(Track);
-            AbsoluteLayout.Children.Add(TrackHighlight);
-            AbsoluteLayout.Children.Add(ThumbIcon);
-            ValueToolTipShape.VerticalOptions = LayoutOptions.Start;
-            ValueToolTipShape.TranslationY = 0;
-            ValueToolTipShape.RotateTo(180);
-            ValueLabel.BackgroundColor = Color.FromArgb("#585C65");
-            ValueBorder.Content = ValueLabel;
-            ValueHolder.Children.Add(ValueBorder);
-            ValueHolder.Children.Add(ValueToolTipShape);
-
-
-            AbsoluteLayout.HorizontalOptions = LayoutOptions.FillAndExpand;
-            LeftIcon.VerticalOptions = LayoutOptions.End;
-            RightIcon.VerticalOptions = LayoutOptions.End;
-            sliderHolderLayout.Children.Add(LeftLabel);
-            sliderHolderLayout.Children.Add(LeftIcon);
-            sliderHolderLayout.Children.Add(AbsoluteLayout);
-            sliderHolderLayout.Children.Add(RightIcon);
-            sliderHolderLayout.Children.Add(RightLabel);
-
-            ThumbIcon.ZIndex = 3;
-
-            AddGestureRecognizer(ThumbIcon, thumbGestureRecognizer);
-
-            Track.SizeChanged += OnViewSizeChanged;
-            ThumbIcon.SizeChanged += OnViewSizeChanged;
-            ValueLabel.SizeChanged += OnViewSizeChanged;
-
-            OnIsEnabledChanged();
-            OnLayoutPropertyChanged();
-        }
-        static object CoerceValue(BindableObject bindable, object value)
-        {
-            var slider = (bindable as TMSlider);
-            return SliderHelper.CoerceValue((double)value, slider.StepValue, slider.MinimumValue, slider.MaximumValue);
-        }
-        static void OnLowerUpperValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((TMSlider)bindable).OnLowerUpperValuePropertyChanged();
-
-        void OnLowerUpperValuePropertyChanged()
-        {
-            var rangeValue = MaximumValue - MinimumValue;
-            var trackWidth = TrackWidth;
-
-            lowerTranslation = (Value - MinimumValue) / rangeValue * trackWidth;
-
-            ThumbIcon.TranslationX = lowerTranslation;
-            OnValueLabelTranslationChanged();
-
-            var bounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
-            AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(thumbSize/4, bounds.Y, lowerTranslation, bounds.Height));
-        }
         protected override void OnValueLabelTranslationChanged()
         {
             var labelSpacing = 5;
-            var lowerLabelTranslation = lowerTranslation + ((ThumbIcon.Width - ValueLabel.Width) / 2);
+            var lowerLabelTranslation = _lowerTranslation + ((ThumbIcon.Width - ValueLabel.Width) / 2);
             ValueHolder.TranslationX = Min(Max(lowerLabelTranslation, 0), AbsoluteLayout.Width - ValueLabel.Width - labelSpacing);
             if (Value == MaximumValue)
             {
@@ -182,8 +205,6 @@ namespace Trimble.Modus.Components
             Track.StrokeShape = new Rectangle() { RadiusX = 100, RadiusY = 100 };
             TrackHighlight.StrokeShape = new Rectangle() { RadiusX = 100, RadiusY = 100 };
             var labelWithSpacingHeight = Max(ValueLabel.Height, 0);
-            if (labelWithSpacingHeight > 0)
-                labelWithSpacingHeight += ValueLabelSpacing;
 
             var trackThumbHeight = Max(thumbSize, trackSize);
             var trackVerticalPosition = labelWithSpacingHeight + ((trackThumbHeight - trackSize) / 2);
@@ -193,17 +214,17 @@ namespace Trimble.Modus.Components
 
             var trackHighlightBounds = AbsoluteLayout.GetLayoutBounds((IView)TrackHighlight);
             AbsoluteLayout.SetLayoutBounds((IView)TrackHighlight, new Rect(trackHighlightBounds.X, trackVerticalPosition, trackHighlightBounds.Width, trackSize));
-            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(thumbSize/4, trackVerticalPosition, TrackWidth+thumbSize / 4, trackSize));
+            AbsoluteLayout.SetLayoutBounds((IView)Track, new Rect(thumbSize/4, trackVerticalPosition, _trackWidth+thumbSize / 4, trackSize));
             AbsoluteLayout.SetLayoutBounds((IView)ThumbIcon, new Rect(0, thumbVerticalPosition, thumbSize, thumbSize));
 
             if (ShowSteps)
             {
                 AbsoluteLayout.SetLayoutBounds((IView)StepContainer, new Rect(0, trackVerticalPosition + 20, -1, -1));
-                AbsoluteLayout.SetLayoutBounds((IView)LastStepContainer, new Rect(TrackWidth, trackVerticalPosition + 20, -1, -1));
+                AbsoluteLayout.SetLayoutBounds((IView)LastStepContainer, new Rect(_trackWidth, trackVerticalPosition + 20, -1, -1));
             }
             if (ShowToolTip)
             {
-                AbsoluteLayout.SetLayoutBounds((IView)ValueHolder, new Rect(0, 0, -1, -1));
+                AbsoluteLayout.SetLayoutBounds((IView)ValueHolder, new Rect(0, -4, -1, -1));
             }
 
             SetValueLabelBinding(ValueLabel, ValueProperty);
@@ -303,10 +324,6 @@ namespace Trimble.Modus.Components
             }
             OnLayoutPropertyChanged();
         }
-        void UpdateValue(View view, double value)
-        {
-            var rangeValue = MaximumValue - MinimumValue;
-            Value = Min(Max(MinimumValue, (value / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
-        }
+        #endregion
     }
 }
