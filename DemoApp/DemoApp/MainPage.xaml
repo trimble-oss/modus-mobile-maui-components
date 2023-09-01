@@ -23,7 +23,7 @@
       <StackLayout BackgroundColor="White" Padding="20,40,20,20" Spacing="50">
         <modus:RangeSlider MaximumValue="10"
                            MinimumValue="0"
-                           LowerValue="10"
+                           LowerValue="0"
                            UpperValue="10"
                            Size="Large"
                            StepValue="2"
@@ -31,7 +31,10 @@
                            ShowToolTip="True"
                            IsEnabled="True"
                            LeftText="0"
-                           RightText="10"/>
+                           Title="Something"
+                           RightText="10"
+                           RightIconSource="password_eye.png"
+                           LeftIconSource="password_eye.png"/>
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
                         Value="5"
@@ -40,8 +43,11 @@
                         IsEnabled="True"
                         ShowSteps="True"
                         ShowToolTip="True"
+                        Title="Something"
                         LeftText="0"
-                        RightText="10"/>
+                        RightText="10"
+                        RightIconSource="password_eye.png"
+                        LeftIconSource="password_eye.png"/>
         <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
       </StackLayout>
     </ScrollView>

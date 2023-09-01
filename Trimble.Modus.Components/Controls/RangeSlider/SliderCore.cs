@@ -4,7 +4,7 @@ using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components.Controls
 {
-    public abstract class SliderControl : StackLayout
+    public abstract class SliderControl : Grid
     {
         #region Private fields
         const double enabledOpacity = 1;
@@ -23,7 +23,7 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderControl), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelStyleProperty = BindableProperty.Create(nameof(ValueLabelStyle), typeof(Style), typeof(SliderControl), propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty ValueLabelStringFormatProperty = BindableProperty.Create(nameof(ValueLabelStringFormat), typeof(string), typeof(SliderControl), "{0:0.##}", propertyChanged: OnLayoutPropertyChanged);
-        public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderControl), null);
+        public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderControl), null, propertyChanged: OnTitleTextPropertyChanged);
         public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderControl), null);
         public static BindableProperty RightTextProperty = BindableProperty.Create(nameof(RightText), typeof(string), typeof(SliderControl), null);
         public static BindableProperty LeftIconProperty = BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(SliderControl), null, propertyChanged: OnLeftIconSourceChanged);
@@ -34,6 +34,8 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Property change methods
+        static void OnTitleTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderControl)bindable).OnTitleTextPropertyChanged((string) newValue);
         static void OnShowStepsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderControl)bindable).OnShowStepsPropertyChanged();
         static void OnShowToolTipPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -129,13 +131,21 @@ namespace Trimble.Modus.Components.Controls
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
         internal Label SliderTitle = new Label { FontSize = 12, TextColor = Color.FromArgb("#464B52")};
-        internal Label LeftLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
-        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(0,20,0,0),};
-        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(0, 20, 0, 0), };
-        internal Label RightLabel= new Label { FontSize = 12, TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
+        internal Label LeftLabel= new Label { FontSize = 12, Margin = new Thickness(0, 25, 0, 0), TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
+        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(5,25,5,0),};
+        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(5, 25, 5, 0), };
+        internal Label RightLabel= new Label { FontSize = 12, Margin = new Thickness(0, 25, 0, 0), TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
         internal AbsoluteLayout AbsoluteLayout = new AbsoluteLayout();
+        internal StackLayout sliderHolderLayout = new StackLayout();
 
         #endregion
+
+        public SliderControl()
+        {
+            RowDefinitions = new RowDefinitionCollection(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }, new RowDefinition());
+            Children.Add(sliderHolderLayout);
+            Grid.SetRow(sliderHolderLayout, 1);
+        }
 
         #region Protected methods
         protected override void OnSizeAllocated(double width, double height)
@@ -230,6 +240,7 @@ namespace Trimble.Modus.Components.Controls
         protected abstract void OnShowToolTipPropertyChanged();
         protected abstract void OnLeftIconSourceChanged();
         protected abstract void OnRightIconSourceChanged();
+        protected abstract void OnTitleTextPropertyChanged(string newValue);
         #endregion
 
         protected void BuildStepper(bool isRangeSlider = false)

@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components.Controls.Slider
             if (stepValue > 0 && value < maximumValue)
             {
                 double difference = value - minimumValue;
-                int stepIndex = (int)(difference / stepValue);
+                int stepIndex = (int)Math.Floor(difference / stepValue);
                 bool shouldIncrementStep = (DeviceInfo.Platform == DevicePlatform.WinUI) ? stepIndex >= (int)(value) / stepValue : stepIndex > (int)(value) / stepValue;
                 if (difference % stepValue >0 && shouldIncrementStep)
                 {

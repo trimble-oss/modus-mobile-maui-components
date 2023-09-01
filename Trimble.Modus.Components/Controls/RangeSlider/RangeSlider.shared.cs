@@ -113,12 +113,11 @@ namespace Trimble.Modus.Components
 		}
         public RangeSlider()
         {
-            Orientation = StackOrientation.Horizontal;
+            sliderHolderLayout.Orientation = StackOrientation.Horizontal;
             AbsoluteLayout.Children.Add(Track);
             AbsoluteLayout.Children.Add(TrackHighlight);
             AbsoluteLayout.Children.Add(LeftThumbIcon);
             AbsoluteLayout.Children.Add(RightThumbIcon);
-            AbsoluteLayout.Children.Add(SliderTitle);
 
             UpperValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             UpperValueToolTipShape.TranslationY = 0;
@@ -138,11 +137,11 @@ namespace Trimble.Modus.Components
             AbsoluteLayout.HorizontalOptions = LayoutOptions.FillAndExpand;
             LeftIcon.VerticalOptions = LayoutOptions.End;
             RightIcon.VerticalOptions = LayoutOptions.End;
-            Children.Add(LeftLabel);
-            Children.Add(LeftIcon);
-            Children.Add(AbsoluteLayout);
-            Children.Add(RightIcon);
-            Children.Add(RightLabel);
+            sliderHolderLayout.Children.Add(LeftLabel);
+            sliderHolderLayout.Children.Add(LeftIcon);
+            sliderHolderLayout.Children.Add(AbsoluteLayout);
+            sliderHolderLayout.Children.Add(RightIcon);
+            sliderHolderLayout.Children.Add(RightLabel);
 
             RightThumbIcon.ZIndex = 3;
             LeftThumbIcon.ZIndex = 3;
@@ -229,7 +228,6 @@ namespace Trimble.Modus.Components
 			UpperValueBorder.BatchBegin();
             UpperValueHolder.BatchBegin();
             LowerValueHolder.BatchBegin();
-            SliderTitle.BatchBegin();
 
             StepContainer.BatchBegin();
             LastStepContainer.BatchBegin();
@@ -283,7 +281,6 @@ namespace Trimble.Modus.Components
             AbsoluteLayout.SetLayoutBounds((IView)LeftThumbIcon, new Rect(0, lowerThumbVerticalPosition, thumbSize, thumbSize));
             AbsoluteLayout.SetLayoutBounds((IView)RightThumbIcon, new Rect(0, upperThumbVerticalPosition, thumbSize, thumbSize));
 
-            AbsoluteLayout.SetLayoutBounds((IView)SliderTitle, new Rect(0, -UpperValueBorder.Height / 2 - 2, -1, -1));
 
             if (ShowSteps)
             {
@@ -297,7 +294,6 @@ namespace Trimble.Modus.Components
             }
             SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
 			SetValueLabelBinding(UpperValueLabel, UpperValueProperty);
-            SetTitleLabelBinding(SliderTitle, TitleProperty);
             SetTitleLabelBinding(LeftLabel, LeftTextProperty);
             SetTitleLabelBinding(RightLabel, RightTextProperty);
 
@@ -364,7 +360,7 @@ namespace Trimble.Modus.Components
 			var rangeValue = MaximumValue - MinimumValue;
 			if (view == LeftThumbIcon)
 			{
-				LowerValue = Min(Max(MinimumValue, (value / TrackWidth * rangeValue) + MinimumValue), UpperValue);
+                LowerValue = Min(Max(MinimumValue, ((value - thumbSize/2.5) / TrackWidth * rangeValue) + MinimumValue), UpperValue);
 				return;
 			}
 			UpperValue = Min(Max(LowerValue, ((value - LeftThumbIcon.Width) / TrackWidth * rangeValue) + MinimumValue), MaximumValue);
@@ -429,6 +425,23 @@ namespace Trimble.Modus.Components
                 AbsoluteLayout.Children.Remove(LowerValueHolder);
                 AbsoluteLayout.Children.Remove(UpperValueHolder);
             }
+            OnTitleTextPropertyChanged(SliderTitle.Text);
+            OnLayoutPropertyChanged();
+        }
+        protected override void OnTitleTextPropertyChanged(string newValue)
+        {
+            SliderTitle.Text = newValue;
+            SliderTitle.Margin = (ShowToolTip) ? new Thickness(0, 0, 0, 10) : new Thickness(0, 10, 0, 0);
+            if (!string.IsNullOrEmpty(newValue))
+            {
+                Children.Remove(SliderTitle);
+                Children.Add(SliderTitle);
+            }
+            else
+            {
+                Children.Remove(SliderTitle);
+            }
+
             OnLayoutPropertyChanged();
         }
     }
