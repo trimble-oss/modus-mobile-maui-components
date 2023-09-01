@@ -34,7 +34,7 @@
                            RightText="10"/>
         <modus:TMSlider MaximumValue="10"
                         MinimumValue="0"
-                        Value="10"
+                        Value="5"
                         Size="Large"
                         StepValue="2"
                         IsEnabled="True"
