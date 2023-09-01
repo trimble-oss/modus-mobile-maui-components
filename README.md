@@ -43,7 +43,7 @@ For more information check out the [Getting Started page](https://happy-pond-034
 
 # Contributing
 
-Curious about contributing? We've got a [contributing guide](https://github.com/trimble-oss/modus-mobile-maui-components/blob/feature/Add_files/CONTRIBUTING.md) to help get you going.
+Curious about contributing? We've got a [contributing guide](CONTRIBUTING.md) to help get you going.
 
 
 
