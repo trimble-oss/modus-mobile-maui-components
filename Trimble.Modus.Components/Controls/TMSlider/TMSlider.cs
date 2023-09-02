@@ -210,12 +210,20 @@ namespace Trimble.Modus.Components
                 trackSize = 4;
                 _thumbSize = 20;
                 thumbStrokeThickness = 2;
+                LeftIcon.Margin = new Thickness(0, 15, 0, 0);
+                LeftLabel.Margin = new Thickness(0, 15, 0, 0);
+                RightIcon.Margin = new Thickness(0, 15, 0, 0);
+                RightLabel.Margin = new Thickness(0, 15, 0, 0);
             }
             else if (Size == SliderSize.Large)
             {
                 trackSize = 12;
                 _thumbSize = 32;
                 thumbStrokeThickness = 4;
+                LeftIcon.Margin = new Thickness(0, 0, 0, 5);
+                LeftLabel.Margin = new Thickness(0, 0, 0, 5);
+                RightIcon.Margin = new Thickness(0, 0, 0, 5);
+                RightLabel.Margin = new Thickness(0, 0, 0, 5);
             }
             SetThumbStyle(ThumbIcon, thumbStrokeThickness, _thumbSize);
 
@@ -264,6 +272,7 @@ namespace Trimble.Modus.Components
         protected override void OnMinimumMaximumValuePropertyChanged()
         {
             Value = SliderHelper.CoerceValue(Value, StepValue, MinimumValue, MaximumValue);
+            BuildStepper();
             OnLowerUpperValuePropertyChanged();
         }
 
@@ -294,6 +303,7 @@ namespace Trimble.Modus.Components
         }
         protected override void OnShowStepsPropertyChanged()
         {
+            OnLayoutPropertyChanged();
             if (ShowSteps)
             {
                 SliderContainer.Children.Add(StepContainer);

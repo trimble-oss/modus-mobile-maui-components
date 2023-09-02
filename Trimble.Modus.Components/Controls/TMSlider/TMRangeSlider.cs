@@ -191,6 +191,7 @@ namespace Trimble.Modus.Components
         {
             LowerValue = SliderHelper.CoerceValue(LowerValue, StepValue, MinimumValue, MaximumValue);
             UpperValue = SliderHelper.CoerceValue(UpperValue, StepValue, MinimumValue, MaximumValue);
+            BuildStepper();
             OnLowerUpperValuePropertyChanged();
         }
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -255,12 +256,20 @@ namespace Trimble.Modus.Components
                 trackSize = 4;
                 _thumbSize = 20;
                 thumbStrokeThickness = 2;
+                LeftIcon.Margin = new Thickness(0,20,0,0);
+                LeftLabel.Margin = new Thickness(0, 20, 0, 0);
+                RightIcon.Margin = new Thickness(0, 20, 0, 0);
+                RightLabel.Margin = new Thickness(0, 20, 0, 0);
             }
             else if ( Size == SliderSize.Large)
             {
                 trackSize = 12;
                 _thumbSize = 32;
                 thumbStrokeThickness = 4;
+                LeftIcon.Margin = new Thickness(0, 0, 0, 5);
+                LeftLabel.Margin = new Thickness(0, 0, 0, 5);
+                RightIcon.Margin = new Thickness(0, 0, 0, 5);
+                RightLabel.Margin = new Thickness(0, 0, 0, 5);
             }
             SetThumbStyle( LeftThumbIcon, thumbStrokeThickness, _thumbSize);
             SetThumbStyle( RightThumbIcon , thumbStrokeThickness, _thumbSize);

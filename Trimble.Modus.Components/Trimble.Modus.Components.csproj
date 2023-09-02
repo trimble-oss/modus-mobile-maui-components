@@ -158,7 +158,7 @@
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\RangeSlider\ToolTipAnchor.xaml">
+	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">

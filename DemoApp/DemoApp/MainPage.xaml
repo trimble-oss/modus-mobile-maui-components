@@ -4,7 +4,7 @@
              Title="Controls Page"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              x:Class="DemoApp.MainPage">
-  <!--<ListView ItemsSource="{Binding ControlNames}"
+  <ListView ItemsSource="{Binding ControlNames}"
             ItemTapped="ItemTapped">
     <ListView.ItemTemplate>
       <DataTemplate>
@@ -17,39 +17,5 @@
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
-  </ListView>-->
-  <ContentPage.Content>
-    <ScrollView>
-      <StackLayout BackgroundColor="White" Padding="20,40,20,20" Spacing="50">
-        <modus:RangeSlider MaximumValue="10"
-                           MinimumValue="0"
-                           LowerValue="0"
-                           UpperValue="10"
-                           Size="Large"
-                           StepValue="2"
-                           ShowSteps="True"
-                           ShowToolTip="True"
-                           IsEnabled="True"
-                           LeftText="0"
-                           Title="Something"
-                           RightText="10"
-                           RightIconSource="password_eye.png"
-                           LeftIconSource="password_eye.png"/>
-        <modus:TMSlider MaximumValue="10"
-                        MinimumValue="0"
-                        Value="5"
-                        Size="Large"
-                        StepValue="2"
-                        IsEnabled="True"
-                        ShowSteps="True"
-                        ShowToolTip="True"
-                        Title="Something"
-                        LeftText="0"
-                        RightText="10"
-                        RightIconSource="password_eye.png"
-                        LeftIconSource="password_eye.png"/>
-        <Slider MinimumTrackColor="#FF0063A3" MaximumTrackColor="#FFA3A6B1" Minimum="0" Maximum="100"/>
-      </StackLayout>
-    </ScrollView>
-  </ContentPage.Content>
+  </ListView>
 </ContentPage>

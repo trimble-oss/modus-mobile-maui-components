@@ -11,7 +11,6 @@ namespace Trimble.Modus.Components.Controls
         #region Private fields
         const double _enabledOpacity = 1;
         const double _disabledOpacity = .5;
-        const int _outerElementTopPadding = 25;
         const int _iconHorizontalPadding = 4;
         protected const int _thumbZindex = 3;
         protected const int _stepLabelSpacing = 20;
@@ -24,17 +23,17 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Bindable Property
-        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0,  propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderCore), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), 0.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderCore), SliderSize.Medium, propertyChanged: OnLayoutPropertyChanged);
+        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), (double)1, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderCore), SliderSize.Medium, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderCore), null, propertyChanged: OnTitleTextPropertyChanged);
         public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderCore), null);
         public static BindableProperty RightTextProperty = BindableProperty.Create(nameof(RightText), typeof(string), typeof(SliderCore), null);
         public static BindableProperty LeftIconProperty = BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnLeftIconSourceChanged);
         public static BindableProperty RightIconProperty = BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnRightIconSourceChanged);
-        public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderCore), false, propertyChanged: OnShowStepsPropertyChanged);
-        public static BindableProperty ShowToolTipProperty= BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderCore), false, propertyChanged: OnShowToolTipPropertyChanged);
+        public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowStepsPropertyChanged);
+        public static BindableProperty ShowToolTipProperty= BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowToolTipPropertyChanged);
         #endregion
 
         #region Property change methods
@@ -55,6 +54,8 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Public Property
+        const int _outerElementTopPadding = 30;
+
         public string Title
         {
             get => (string)GetValue(TitleProperty);
@@ -120,10 +121,10 @@ namespace Trimble.Modus.Components.Controls
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
         internal Label SliderTitle = new Label { FontSize = 12, TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray8) };
-        internal Label LeftLabel= new Label { FontSize = 12, Margin = new Thickness(0, _outerElementTopPadding, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
-        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, _outerElementTopPadding, _iconHorizontalPadding, 0),};
-        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, _outerElementTopPadding, _iconHorizontalPadding, 0), };
-        internal Label RightLabel= new Label { FontSize = 12, Margin = new Thickness(0, _outerElementTopPadding, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
+        internal Label LeftLabel= new Label { FontSize = 12, Margin = new Thickness(0, (DeviceInfo.Idiom == DeviceIdiom.Desktop )?_outerElementTopPadding : 0, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
+        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0, _iconHorizontalPadding, 0),};
+        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0, _iconHorizontalPadding, 0), };
+        internal Label RightLabel= new Label { FontSize = 12, Margin = new Thickness(0, (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
         internal AbsoluteLayout SliderContainer = new AbsoluteLayout();
         internal StackLayout SliderHolderLayout = new StackLayout();
         #endregion
@@ -151,6 +152,12 @@ namespace Trimble.Modus.Components.Controls
         protected void OnIsEnabledChanged()
         {
             foreach (View child in Children)
+            {
+                child.Opacity = IsEnabled
+                                ? _enabledOpacity
+                                : _disabledOpacity;
+            }
+            foreach (View child in SliderContainer)
             {
                 if (child.ZIndex != _thumbZindex)
                 {
