@@ -48,9 +48,18 @@ namespace Trimble.Modus.Components
         #endregion
 
         #region UI Elements
-        StackLayout ValueHolder = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 0, Padding = 0 };
+        StackLayout ValueHolder = new StackLayout
+        {
+            Orientation = StackOrientation.Vertical,
+            Spacing = 0,
+            Padding = 0
+        };
         View ValueToolTipShape = new ToolTipAnchor() { };
-        Border ValueBorder = new Border { StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) }, StrokeThickness = 0 };
+        Border ValueBorder = new Border
+        {
+            StrokeShape = new RoundRectangle { CornerRadius = new CornerRadius(4) },
+            StrokeThickness = 0
+        };
         Label ValueLabel { get; } = SliderHelper.CreateLabelElement();
         Border ThumbIcon = SliderHelper.CreateBorderElement<Border>();
         #endregion
@@ -108,6 +117,7 @@ namespace Trimble.Modus.Components
             var rangeValue = MaximumValue - MinimumValue;
             Value = Min(Max(MinimumValue, (value / _trackWidth * rangeValue) + MinimumValue), MaximumValue);
         }
+
         static object CoerceValue(BindableObject bindable, object value)
         {
             var slider = (bindable as TMSlider);
@@ -146,6 +156,7 @@ namespace Trimble.Modus.Components
                 LeftIcon.IsVisible = false;
             }
         }
+
         protected override void OnRightIconSourceChanged()
         {
             RightIcon.Source = RightIconSource;
@@ -160,6 +171,7 @@ namespace Trimble.Modus.Components
                 RightIcon.IsVisible = false;
             }
         }
+
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             base.OnPropertyChanged(propertyName);
@@ -174,6 +186,7 @@ namespace Trimble.Modus.Components
                     break;
             }
         }
+
         protected override void OnValueLabelTranslationChanged()
         {
             var labelSpacing = 5;
@@ -185,6 +198,7 @@ namespace Trimble.Modus.Components
                 ValueHolder.TranslationX += 3;
             }
         }
+
         protected override void OnLayoutPropertyChanged()
         {
             SliderContainer.BatchBegin();
@@ -281,8 +295,8 @@ namespace Trimble.Modus.Components
             _thumbPositionMap[view] = view.TranslationX;
         }
 
-        protected override void OnPanRunning(View view, double value)
-            => UpdateValue(view, value + GetPanShiftValue(view));
+        protected override void OnPanRunning(View view, double value) =>
+            UpdateValue(view, value + GetPanShiftValue(view));
 
         protected override void OnPanCompleted(View view)
         {
@@ -301,6 +315,7 @@ namespace Trimble.Modus.Components
             _labelMaxHeight = maxHeight;
             OnLayoutPropertyChanged();
         }
+
         protected override void OnShowStepsPropertyChanged()
         {
             OnLayoutPropertyChanged();
@@ -320,6 +335,7 @@ namespace Trimble.Modus.Components
                 LastStepContainer.Children.Remove(LastLabel);
             }
         }
+
         protected override void OnShowToolTipPropertyChanged()
         {
             if (ShowToolTip)
@@ -333,6 +349,7 @@ namespace Trimble.Modus.Components
             OnTitleTextPropertyChanged(SliderTitle.Text);
             OnLayoutPropertyChanged();
         }
+
         protected override void OnTitleTextPropertyChanged(string newValue)
         {
             SliderTitle.Text = newValue;

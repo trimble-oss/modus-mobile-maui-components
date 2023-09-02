@@ -116,15 +116,69 @@ namespace Trimble.Modus.Components.Controls
         #region UI Elements
         internal Border Track { get; } = SliderHelper.CreateBorderElement<Border>();
         internal Border TrackHighlight { get; } = SliderHelper.CreateBorderElement<Border>();
-        internal StackLayout StepContainer { get; } = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand, Orientation = StackOrientation.Horizontal, Spacing = 0 };
+        internal StackLayout StepContainer { get; } =
+            new StackLayout
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Orientation = StackOrientation.Horizontal,
+                Spacing = 0
+            };
         internal StackLayout LastStepContainer { get; } = SliderHelper.CreateStepLabelContainer();
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
-        internal Label SliderTitle = new Label { FontSize = 12, TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray8) };
-        internal Label LeftLabel= new Label { FontSize = 12, Margin = new Thickness(0, (DeviceInfo.Idiom == DeviceIdiom.Desktop )?_outerElementTopPadding : 0, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
-        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0, _iconHorizontalPadding, 0),};
-        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0, _iconHorizontalPadding, 0), };
-        internal Label RightLabel= new Label { FontSize = 12, Margin = new Thickness(0, (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
+        internal Label SliderTitle = new Label
+        {
+            FontSize = 12,
+            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray8)
+        };
+        internal Label LeftLabel = new Label
+        {
+            FontSize = 12,
+            Margin = new Thickness(
+                0,
+                (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0,
+                0,
+                0
+            ),
+            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray),
+            HorizontalOptions = LayoutOptions.Start,
+            HorizontalTextAlignment = TextAlignment.Start,
+            VerticalOptions = LayoutOptions.Center
+        };
+        internal Image LeftIcon = new Image
+        {
+            HeightRequest = 20,
+            Margin = new Thickness(
+                _iconHorizontalPadding,
+                (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0,
+                _iconHorizontalPadding,
+                0
+            ),
+        };
+        internal Image RightIcon = new Image
+        {
+            HeightRequest = 20,
+            Margin = new Thickness(
+                _iconHorizontalPadding,
+                (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0,
+                _iconHorizontalPadding,
+                0
+            ),
+        };
+        internal Label RightLabel = new Label
+        {
+            FontSize = 12,
+            Margin = new Thickness(
+                0,
+                (DeviceInfo.Idiom == DeviceIdiom.Desktop) ? _outerElementTopPadding : 0,
+                0,
+                0
+            ),
+            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray),
+            HorizontalOptions = LayoutOptions.End,
+            HorizontalTextAlignment = TextAlignment.End,
+            VerticalTextAlignment = TextAlignment.Center
+        };
         internal AbsoluteLayout SliderContainer = new AbsoluteLayout();
         internal StackLayout SliderHolderLayout = new StackLayout();
         #endregion
@@ -132,7 +186,10 @@ namespace Trimble.Modus.Components.Controls
         #region Constructor
         internal SliderCore()
         {
-            RowDefinitions = new RowDefinitionCollection(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }, new RowDefinition());
+            RowDefinitions = new RowDefinitionCollection(
+                new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+                new RowDefinition()
+            );
             Children.Add(SliderHolderLayout);
             Grid.SetRow(SliderHolderLayout, 1);
         }
@@ -149,40 +206,53 @@ namespace Trimble.Modus.Components.Controls
             _allocatedSize = new Microsoft.Maui.Graphics.Size(width, height);
             OnLayoutPropertyChanged();
         }
+
         protected void OnIsEnabledChanged()
         {
             foreach (View child in Children)
             {
-                child.Opacity = IsEnabled
-                                ? _enabledOpacity
-                                : _disabledOpacity;
+                child.Opacity = IsEnabled ? _enabledOpacity : _disabledOpacity;
             }
             foreach (View child in SliderContainer)
             {
                 if (child.ZIndex != _thumbZindex)
                 {
-                    child.Opacity = IsEnabled
-                                    ? _enabledOpacity
-                                    : _disabledOpacity;
+                    child.Opacity = IsEnabled ? _enabledOpacity : _disabledOpacity;
                 }
                 else if (child is Border)
                 {
-                    (child as Border).Stroke = IsEnabled ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor) : ResourcesDictionary.ColorsDictionary(ColorsConstants.SliderThumbBorderDisabledColor);
+                    (child as Border).Stroke = IsEnabled
+                        ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor)
+                        : ResourcesDictionary.ColorsDictionary(
+                            ColorsConstants.SliderThumbBorderDisabledColor
+                        );
                 }
             }
         }
+
         internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize)
         {
             border.StrokeThickness = thumbStrokeThickness;
-            border.Stroke = IsEnabled ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor) : ResourcesDictionary.ColorsDictionary(ColorsConstants.SliderThumbBorderDisabledColor);
+            border.Stroke = IsEnabled
+                ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor)
+                : ResourcesDictionary.ColorsDictionary(
+                    ColorsConstants.SliderThumbBorderDisabledColor
+                );
             border.Margin = new Thickness(0);
             border.BackgroundColor = Colors.White;
-            border.StrokeShape = new Ellipse() { WidthRequest = thumbSize, HeightRequest = thumbSize };
+            border.StrokeShape = new Ellipse()
+            {
+                WidthRequest = thumbSize,
+                HeightRequest = thumbSize
+            };
             border.ZIndex = _thumbZindex;
         }
+
         protected void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
         {
-            var view = (View)(sender ?? throw new NullReferenceException($"{nameof(sender)} cannot be null"));
+            var view = (View)(
+                sender ?? throw new NullReferenceException($"{nameof(sender)} cannot be null")
+            );
             if (!IsEnabled)
             {
                 return;
@@ -201,6 +271,7 @@ namespace Trimble.Modus.Components.Controls
                     break;
             }
         }
+
         protected void BuildStepper()
         {
             StepContainer.Children.Clear();
@@ -218,27 +289,27 @@ namespace Trimble.Modus.Components.Controls
                 StepContainer.Children.Add(stack);
             }
         }
-        protected double GetPanShiftValue(View view)
-            => Device.RuntimePlatform == Device.Android
-                ? view.TranslationX
-                : _thumbPositionMap[view];
+
+        protected double GetPanShiftValue(View view) =>
+            Device.RuntimePlatform == Device.Android ? view.TranslationX : _thumbPositionMap[view];
+
         protected void AddGestureRecognizer(View view, PanGestureRecognizer gestureRecognizer)
         {
             gestureRecognizer.PanUpdated += OnPanUpdated;
             view.GestureRecognizers.Add(gestureRecognizer);
         }
-        protected void SetValueLabelBinding(Label label, BindableProperty bindableProperty)
-            => label.SetBinding(Label.TextProperty, new Binding
-            {
-                Source = this,
-                Path = bindableProperty.PropertyName,
-            });
-        protected void SetTitleLabelBinding(Label label, BindableProperty bindableProperty)
-            => label.SetBinding(Label.TextProperty, new Binding
-            {
-                Source = this,
-                Path = bindableProperty.PropertyName,
-            });
+
+        protected void SetValueLabelBinding(Label label, BindableProperty bindableProperty) =>
+            label.SetBinding(
+                Label.TextProperty,
+                new Binding { Source = this, Path = bindableProperty.PropertyName, }
+            );
+
+        protected void SetTitleLabelBinding(Label label, BindableProperty bindableProperty) =>
+            label.SetBinding(
+                Label.TextProperty,
+                new Binding { Source = this, Path = bindableProperty.PropertyName, }
+            );
         #endregion
 
         #region Abstract Methods
