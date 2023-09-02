@@ -65,7 +65,7 @@
                  Text="{Binding Title}"
                  IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="Center"
-                 FontFamily="OpenSans-Semibold"
+                 FontFamily="OpenSansSemibold"
                  FontSize="16"
                  TextColor="{StaticResource Black}"
                  Padding="0,0,8,0"
@@ -95,7 +95,6 @@
                  Text="{Binding Message}"
                  IsVisible="{Binding Message,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="StartAndExpand"
-                 FontFamily="OpenSans Regular"
                  FontSize="14"
                  TextColor="{x:StaticResource Black}"
                  LineBreakMode="WordWrap" />

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
 using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    public class SpinnerPageViewModel : BaseViewModel
+    public class SpinnerSamplePageViewModel : ObservableObject
     {
         public ICommand SpinnerCommand { get; set; }
         private SpinnerColor _spinnerColor;
@@ -24,7 +20,7 @@ namespace DemoApp.ViewModels
                 OnPropertyChanged(nameof(SpinnerColor));
             }
         }
-        public SpinnerPageViewModel()
+        public SpinnerSamplePageViewModel()
         {
             SpinnerColor = SpinnerColor.Primary;
             SpinnerCommand = new Command(methodsCommand);        }

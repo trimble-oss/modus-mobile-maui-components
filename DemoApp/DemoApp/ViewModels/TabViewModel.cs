@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DemoApp.ViewModels
 {
-    public class TabViewOneViewModel : BaseViewModel
+    public class TabViewOneViewModel : ObservableObject
     {
         public string HeaderText { get; set; } = "First Page";
     }

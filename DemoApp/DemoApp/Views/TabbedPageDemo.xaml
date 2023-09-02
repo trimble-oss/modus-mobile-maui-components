@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <modus:TMTabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              xmlns:local="clr-namespace:DemoApp"
              TabColor="Primary"
+             Title="TabbedPageSamplePage"
              Orientation="Vertical"
              xmlns:tabs="clr-namespace:DemoApp.Views.TabViewItems"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             x:Class="DemoApp.Views.TabbedPageDemo">
+             x:Class="DemoApp.Views.TabbedPageSamplePage">
   <modus:TabViewItem Text="Home"
                      Icon="{Static constants:ImageConstants.DarkGalleryIcon }">
     <tabs:TabViewOne />

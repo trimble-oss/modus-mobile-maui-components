@@ -3,7 +3,7 @@ using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 
-namespace Trimble.Modus.Components.Controls.TMCard;
+namespace Trimble.Modus.Components;
 
 public partial class TMCard : ContentView
 {
@@ -16,8 +16,11 @@ public partial class TMCard : ContentView
     #endregion
 
     #region Public properties
-
-
+    public new Thickness Padding
+    {
+        get { return (Thickness)GetValue(PaddingProperty); }
+        set { SetValue(PaddingProperty, value); }
+    }
     public bool IsSelected
     {
         get { return (bool)GetValue(IsSelectedProperty); }
@@ -43,6 +46,8 @@ public partial class TMCard : ContentView
 
     #region Bindable Properties
 
+    public new static readonly BindableProperty PaddingProperty =
+       BindableProperty.Create(nameof(Padding), typeof(Thickness), typeof(TMCard), defaultValue: new Thickness(16), propertyChanged: OnPaddingPropertyChanged);
 
     public static readonly BindableProperty IsSelectedProperty =
         BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TMCard), defaultValue: false, propertyChanged: SelectedChanged);
@@ -55,10 +60,9 @@ public partial class TMCard : ContentView
 
     public static readonly BindableProperty CommandParameterProperty =
         BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TMCard), null);
+
     #endregion
-
     #region Property Changes
-
     private static void SelectedChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var card = (TMCard)bindable;
@@ -73,11 +77,17 @@ public partial class TMCard : ContentView
             card._border.Stroke = Colors.Transparent;
         }
     }
-
+    private static void OnPaddingPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if(bindable is TMCard tMCard)
+        {
+            tMCard._border.Padding = (Thickness)newValue;
+        }
+    }
     #endregion
 
     public TMCard()
-    {
+    {        
         int radius = 15;
         Point offset = new Point(-1, 1);
         if (DeviceInfo.Platform == DevicePlatform.iOS)
@@ -99,7 +109,7 @@ public partial class TMCard : ContentView
         };
         _border = new Border
         {
-            Padding = 16,
+            Padding = Padding,
             Shadow = _shadow,
             BackgroundColor = Colors.White,
             Stroke = Colors.Transparent,

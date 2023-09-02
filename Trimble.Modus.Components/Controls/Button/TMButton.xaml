@@ -22,7 +22,8 @@
                            Spacing="8"
                            VerticalOptions="FillAndExpand"
                            HorizontalOptions="Center">
-      <Image Source="{Binding LeftIconSource}"
+      <Image x:Name="leftIcon"
+             Source="{Binding LeftIconSource}"
              IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"
              VerticalOptions="Center"
@@ -32,9 +33,11 @@
              Text="{Binding Title}"
              IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
              HeightRequest="48"
+             FontFamily="OpenSansSemibold"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center" />
-      <Image Source="{Binding RightIconSource}"
+      <Image x:Name="rightIcon"
+             Source="{Binding RightIconSource}"
              IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"
              WidthRequest="16"

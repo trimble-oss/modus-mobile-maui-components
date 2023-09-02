@@ -21,7 +21,7 @@ public class DataGridColumn : BindableObject, IDefinition
 
     public DataGridColumn()
     {
-        HeaderLabel = new Label { Margin = new Thickness(0,0,0,0)};
+        HeaderLabel = new Label { Margin = new Thickness(0,0,0,0), FontFamily = "OpenSansRegular" };
         SortingIcon = new Image {Source = ImageConstants.CaretDownImage};
         SortingIconContainer = new ContentView
         {

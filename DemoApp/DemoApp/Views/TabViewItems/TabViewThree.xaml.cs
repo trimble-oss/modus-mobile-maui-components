@@ -7,12 +7,12 @@ public partial class TabViewThree : ContentView
     public TabViewThree()
     {
         InitializeComponent();
-        BindingContext = new ButtonPageViewModel();
+        BindingContext = new ButtonSamplePageViewModel();
     }
 
     private void TMButtonClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new TMButtonPage());
+        Navigation.PushAsync(new ButtonSamplePage());
     }
 }
 

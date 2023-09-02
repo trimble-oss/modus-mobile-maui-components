@@ -1,10 +1,11 @@
-﻿using DemoApp.Constant;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DemoApp.Constant;
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    public class ButtonPageViewModel : BaseViewModel
+    public class ButtonSamplePageViewModel : ObservableObject
     {
         private Trimble.Modus.Components.Enums.Size _selectedFontSize;
         private ButtonStyle _selectedButtonStyle;
@@ -109,7 +110,7 @@ namespace DemoApp.ViewModels
 
         public ICommand MyCommand { get; set; }
 
-        public ButtonPageViewModel()
+        public ButtonSamplePageViewModel()
         {
             SelectedFontSize = Trimble.Modus.Components.Enums.Size.Default;
             SelectedButtonStyle = ButtonStyle.Fill;
@@ -123,7 +124,7 @@ namespace DemoApp.ViewModels
             Console.WriteLine(obj.ToString());
         }
 
-        private static void OnImagePositionChanged(ButtonPageViewModel buttonPageViewModel)
+        private static void OnImagePositionChanged(ButtonSamplePageViewModel buttonPageViewModel)
         {
             switch (buttonPageViewModel.SelectedImageOption)
             {

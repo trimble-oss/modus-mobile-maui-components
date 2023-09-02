@@ -7,7 +7,7 @@ public partial class TabViewTwo : ContentView
     public TabViewTwo()
     {
         InitializeComponent();
-        BindingContext = new SpinnerPageViewModel();
+        BindingContext = new SpinnerSamplePageViewModel();
     }
 }
 

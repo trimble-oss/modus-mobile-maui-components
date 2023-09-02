@@ -19,12 +19,13 @@
                              IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
         <Label x:Name="inputLabel"
                Padding="0,0,0,5"
+               FontFamily="OpenSansSemibold"
                Text="{Binding TitleText}"
                VerticalOptions="Center"
                HorizontalOptions="Start" />
         <Label Text="*"
                IsVisible="{Binding IsRequired}"
-               FontAttributes="Bold"
+               FontFamily="OpenSansSemibold"
                TextColor="#DA212C" />
       </HorizontalStackLayout>
       <Border x:Name="inputBorder"
@@ -39,14 +40,14 @@
       <HorizontalStackLayout x:Name="inputHelperLayout"
                              Grid.Row="2"
                              Spacing="5"
-                             Padding="0,5,0,0"
-                             IsVisible="{Binding HelperText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
+                             IsVisible="false"
+                             Padding="0,5,0,0">
         <Image x:Name="inputHelperIcon"
                WidthRequest="20"
                HeightRequest="20" />
         <Label  x:Name="inputHelperLabel"
+                FontFamily="OpenSansRegular"
                 LineBreakMode="WordWrap"
-                Text="{Binding HelperText}"
                 VerticalTextAlignment="Center" />
       </HorizontalStackLayout>
     </Grid>

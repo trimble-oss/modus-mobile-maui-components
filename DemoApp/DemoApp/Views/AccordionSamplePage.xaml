@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:local="clr-namespace:DemoApp.ViewModels"
+             xmlns:vm="clr-namespace:DemoApp.ViewModels"
              x:Class="DemoApp.Views.AccordionSamplePage"
-             Title="Accordion">
+             Title="AccordionSamplePage">
   <ScrollView>
     <StackLayout Orientation="Vertical"
                  Margin="10">
       <Label Text="Size"
              FontSize="Large"
-             FontAttributes="Bold"
              HorizontalOptions="Start"
              Margin="0,10,0,0" />
       <modus:TMRadioButtonGroup x:Name="AccordionSize"
@@ -28,7 +27,6 @@
       </modus:TMRadioButtonGroup>
       <Label Text="Chevron Position"
              FontSize="Large"
-             FontAttributes="Bold"
              HorizontalOptions="Start"
              Margin="0,10,0,0" />
       <modus:TMRadioButtonGroup x:Name="PositionGroup"
@@ -51,8 +49,8 @@
               </Border.StrokeShape>
               <modus:TMAccordion AccordionTitle="{Binding Name}"
                                  AccordionSubtitle="{Binding Gender}"
-                                 ChevronPosition="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=ChevronPosition}"
-                                 Size="{Binding Source={RelativeSource AncestorType={x:Type local:AccordionSampleViewModel}}, Path=Size}">
+                                 ChevronPosition="{Binding Source={RelativeSource AncestorType={x:Type vm:AccordionSampleViewModel}}, Path=ChevronPosition}"
+                                 Size="{Binding Source={RelativeSource AncestorType={x:Type vm:AccordionSampleViewModel}}, Path=Size}">
                 <Grid RowSpacing="10"
                       Padding="10">
                   <Grid.ColumnDefinitions>

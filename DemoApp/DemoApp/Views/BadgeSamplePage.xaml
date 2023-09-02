@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              x:Class="DemoApp.Views.BadgeSamplePage"
-             Title="TMBadgesPage">
+             Title="BadgesSamplePage">
   <StackLayout Orientation="Vertical" Padding="10" Spacing="10" HorizontalOptions="Fill">
     <Label Text="Rectangle Badges"/>
     <FlexLayout Wrap="Wrap">

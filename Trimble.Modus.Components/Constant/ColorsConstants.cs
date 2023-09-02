@@ -43,5 +43,6 @@ internal class ColorsConstants
     public const string AccordionDescriptionColor = "AccordionDescriptionColor";
     public const string BlueLightColor = "BlueLightColor";
     public const string SliderThumbBorderDisabledColor = "SliderThumbBorderDisabledColor";
+    public const string SwitchSelected = "SwitchSelected";
+    public const string SwitchUnselected = "SwitchUnselected";
 }
-

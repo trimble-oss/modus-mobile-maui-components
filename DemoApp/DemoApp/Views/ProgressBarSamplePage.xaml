@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="http://modus.trimble.com/components"
+             x:Class="DemoApp.Views.ProgressBarSamplePage"
+             Title="ProgressBarSamplePage">
+  <VerticalStackLayout Padding="10"
+                       Spacing="10">
+    <modus:TMProgressBar Progress="{Binding ProgressValue}"
+                         Text="{Binding ProgressText}"
+                         Size="{Binding SelectedProgressBarSize}" />
+    <modus:TMRadioButtonGroup Orientation="Horizontal"
+                              SelectedRadioButtonChangedCommand="{Binding ProgressBarSizeChangedCommand}"
+                              SelectedIndex="0">
+      <modus:TMRadioButton Text="Default"></modus:TMRadioButton>
+      <modus:TMRadioButton Text="Small"></modus:TMRadioButton>
+    </modus:TMRadioButtonGroup>
+
+    <modus:TMInput Text="{Binding ProgressText, Mode=TwoWay}"></modus:TMInput>
+    <Slider Value="{Binding ProgressValue}"
+            Minimum="0"
+            Maximum="1" />
+  </VerticalStackLayout>
+</ContentPage>

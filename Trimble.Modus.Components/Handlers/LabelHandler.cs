@@ -12,21 +12,23 @@ internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
     }
     static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
     {
+        var textView = handler.PlatformView;
+        if (label is Label controlsLabel)
+        {
+
 #if ANDROID
-            var textView = handler.PlatformView;
-            if (label is Label controlsLabel
-                && textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
+            
+            if (textView.Ellipsize == Android.Text.TextUtils.TruncateAt.End)
             {
-                textView.SetMaxLines(controlsLabel.MaxLines);
+            textView.SetMaxLines(controlsLabel.MaxLines);
             }
 #elif IOS
-            var textView = handler.PlatformView;
-            if (label is Label controlsLabel
-                && textView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)
+            if (textView.LineBreakMode == UIKit.UILineBreakMode.TailTruncation)
             {
                 textView.Lines = controlsLabel.MaxLines;
             }
 #endif
+        }
     }
 }
 

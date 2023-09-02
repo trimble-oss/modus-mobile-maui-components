@@ -2,60 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constants="clr-namespace:DemoApp.Constant"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:modus="http://modus.trimble.com/components"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="DemoApp.Views.SamplePopupPage"
              Title="SamplePopupPage">
   <AbsoluteLayout>
-    <Modus:TMButton x:Name="ArrowDown"
+    <modus:TMButton x:Name="ArrowDown"
                     LeftIconSource="{x:Static constants:ImageConstants.ArrowDown}"
                     AbsoluteLayout.LayoutBounds="50,50">
-      <Modus:TMButton.Behaviors>
+      <modus:TMButton.Behaviors>
         <toolkit:EventToCommandBehavior
                 EventName="Clicked"
                 Command="{Binding ArrowDownClickedCommand}"
                 CommandParameter="{Binding Source={x:Reference ArrowDown}}"/>
-      </Modus:TMButton.Behaviors>
-    </Modus:TMButton>
-    <Modus:TMButton  x:Name="ArrowLeft" 
+      </modus:TMButton.Behaviors>
+    </modus:TMButton>
+    <modus:TMButton  x:Name="ArrowLeft" 
                     LeftIconSource="{x:Static constants:ImageConstants.ArrowLeft}"
                     AbsoluteLayout.LayoutBounds="300,50" >
-      <Modus:TMButton.Behaviors>
+      <modus:TMButton.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Clicked"
             Command="{Binding ArrowLeftClickedCommand}"
             CommandParameter="{Binding Source={x:Reference ArrowLeft}}"/>
-      </Modus:TMButton.Behaviors>
-    </Modus:TMButton>
-    <Modus:TMButton x:Name="ArrowRight" 
+      </modus:TMButton.Behaviors>
+    </modus:TMButton>
+    <modus:TMButton x:Name="ArrowRight" 
                     LeftIconSource="{x:Static constants:ImageConstants.ArrowRight}"
                     AbsoluteLayout.LayoutBounds="50,650" >
-      <Modus:TMButton.Behaviors>
+      <modus:TMButton.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Clicked"
             Command="{Binding ArrowRightClickedCommand}"
             CommandParameter="{Binding Source={x:Reference ArrowRight}}"/>
-      </Modus:TMButton.Behaviors>
-    </Modus:TMButton>
-    <Modus:TMButton x:Name="ArrowUp" 
+      </modus:TMButton.Behaviors>
+    </modus:TMButton>
+    <modus:TMButton x:Name="ArrowUp" 
                     LeftIconSource="{x:Static constants:ImageConstants.ArrowUp}"
                     AbsoluteLayout.LayoutBounds="300,650" >
-      <Modus:TMButton.Behaviors>
+      <modus:TMButton.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Clicked"
             Command="{Binding ArrowUpClickedCommand}"
             CommandParameter="{Binding Source={x:Reference ArrowUp}}"/>
-      </Modus:TMButton.Behaviors>
-    </Modus:TMButton>
-    <Modus:TMButton x:Name="CenterButton" 
+      </modus:TMButton.Behaviors>
+    </modus:TMButton>
+    <modus:TMButton x:Name="CenterButton" 
                     Title="Custom Popup"
                     AbsoluteLayout.LayoutBounds="125,325" >
-      <Modus:TMButton.Behaviors>
+      <modus:TMButton.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Clicked"
             Command="{Binding CenterButtonClickedCommand}"
             CommandParameter="{Binding Source={x:Reference CenterButton}}"/>
-      </Modus:TMButton.Behaviors>
-    </Modus:TMButton>
+      </modus:TMButton.Behaviors>
+    </modus:TMButton>
   </AbsoluteLayout>
 </ContentPage>

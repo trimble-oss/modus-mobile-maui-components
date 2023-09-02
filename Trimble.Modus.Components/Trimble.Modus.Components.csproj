@@ -126,7 +126,9 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.76" />
 	</ItemGroup>
-
+  <ItemGroup>
+    <MauiFont Include="Fonts\*" />
+  </ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Controls\Button\TMButton.xaml.cs">
 	    <DependentUpon>TMButton.xaml</DependentUpon>
@@ -164,6 +166,9 @@
 	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
       <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\ProgressBar\TMProgressBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMBadge\TMBadge.xaml">
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -192,6 +197,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
+	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Styles\Colors.xaml">

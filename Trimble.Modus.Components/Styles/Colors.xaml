@@ -54,4 +54,7 @@
   <!-- Sldier -->
   <Color x:Key="SliderThumbBorderDisabledColor">#C3C4C9</Color>
 
+  <!-- Switch -->
+  <Color x:Key="SwitchSelected">#217CBB</Color>
+  <Color x:Key="SwitchUnselected">#90939f</Color>
 </ResourceDictionary>
