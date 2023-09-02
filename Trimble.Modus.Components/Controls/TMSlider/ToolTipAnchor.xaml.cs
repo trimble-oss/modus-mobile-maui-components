@@ -1,4 +1,4 @@
-namespace Trimble.Modus.Components.Controls.RangeSlider;
+namespace Trimble.Modus.Components.Controls.Slider;
 
 public partial class ToolTipAnchor : ContentView
 {

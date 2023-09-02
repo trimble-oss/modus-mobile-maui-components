@@ -120,7 +120,7 @@
                    VerticalOptions="Center"
                    Margin="16,0,0,0"
                    Text="{Binding Source={x:Reference accordionView}, Path=AccordionTitle}"
-                   TextColor="{x:StaticResource AccordionTitleColor}">
+                   TextColor="{x:StaticResource TrimbleGray}">
               <Label.Triggers>
                 <DataTrigger TargetType="Label"
                              Binding="{Binding Source={x:Reference accordionView}, Path=IsOpen}"

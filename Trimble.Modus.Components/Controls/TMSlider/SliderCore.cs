@@ -1,19 +1,26 @@
 ﻿using Microsoft.Maui.Controls.Shapes;
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls
 {
     public abstract class SliderCore : Grid
     {
         #region Private fields
-        const double enabledOpacity = 1;
-        const double disabledOpacity = .5;
-        Microsoft.Maui.Graphics.Size allocatedSize;
-        protected readonly Dictionary<View, double> thumbPositionMap = new Dictionary<View, double>();
-        protected double labelMaxHeight;
-        protected int dragCount;
-        protected double thumbSize;
+        const double _enabledOpacity = 1;
+        const double _disabledOpacity = .5;
+        const int _outerElementTopPadding = 25;
+        const int _iconHorizontalPadding = 4;
+        protected const int _thumbZindex = 3;
+        protected const int _stepLabelSpacing = 20;
+        protected const int _iconSize = 20;
+        Microsoft.Maui.Graphics.Size _allocatedSize;
+        protected readonly Dictionary<View, double> _thumbPositionMap = new Dictionary<View, double>();
+        protected double _labelMaxHeight;
+        protected int _dragCount;
+        protected double _thumbSize;
         #endregion
 
         #region Bindable Property
@@ -112,22 +119,21 @@ namespace Trimble.Modus.Components.Controls
         internal StackLayout LastStepContainer { get; } = SliderHelper.CreateStepLabelContainer();
         internal BoxView LastStepLine { get; } = SliderHelper.CreateStepLine();
         internal Label LastLabel { get; } = SliderHelper.CreateStepLabel();
-        internal Label SliderTitle = new Label { FontSize = 12, TextColor = Color.FromArgb("#464B52")};
-        internal Label LeftLabel= new Label { FontSize = 12, Margin = new Thickness(0, 25, 0, 0), TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
-        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(5,25,5,0),};
-        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(5, 25, 5, 0), };
-        internal Label RightLabel= new Label { FontSize = 12, Margin = new Thickness(0, 25, 0, 0), TextColor = Color.FromArgb("#252A2E"), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
-        internal AbsoluteLayout AbsoluteLayout = new AbsoluteLayout();
-        internal StackLayout sliderHolderLayout = new StackLayout();
-
+        internal Label SliderTitle = new Label { FontSize = 12, TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray8) };
+        internal Label LeftLabel= new Label { FontSize = 12, Margin = new Thickness(0, _outerElementTopPadding, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.Start, HorizontalTextAlignment = TextAlignment.Start, VerticalOptions = LayoutOptions.Center};
+        internal Image LeftIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, _outerElementTopPadding, _iconHorizontalPadding, 0),};
+        internal Image RightIcon = new Image { HeightRequest = 20, Margin = new Thickness(_iconHorizontalPadding, _outerElementTopPadding, _iconHorizontalPadding, 0), };
+        internal Label RightLabel= new Label { FontSize = 12, Margin = new Thickness(0, _outerElementTopPadding, 0, 0), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray), HorizontalOptions = LayoutOptions.End, HorizontalTextAlignment = TextAlignment.End, VerticalTextAlignment = TextAlignment.Center};
+        internal AbsoluteLayout SliderContainer = new AbsoluteLayout();
+        internal StackLayout SliderHolderLayout = new StackLayout();
         #endregion
 
         #region Constructor
         internal SliderCore()
         {
             RowDefinitions = new RowDefinitionCollection(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }, new RowDefinition());
-            Children.Add(sliderHolderLayout);
-            Grid.SetRow(sliderHolderLayout, 1);
+            Children.Add(SliderHolderLayout);
+            Grid.SetRow(SliderHolderLayout, 1);
         }
         #endregion
 
@@ -136,36 +142,36 @@ namespace Trimble.Modus.Components.Controls
         {
             base.OnSizeAllocated(width, height);
 
-            if (width == allocatedSize.Width && height == allocatedSize.Height)
+            if (width == _allocatedSize.Width && height == _allocatedSize.Height)
                 return;
 
-            allocatedSize = new Microsoft.Maui.Graphics.Size(width, height);
+            _allocatedSize = new Microsoft.Maui.Graphics.Size(width, height);
             OnLayoutPropertyChanged();
         }
         protected void OnIsEnabledChanged()
         {
             foreach (View child in Children)
             {
-                if (child.ZIndex != 3)
+                if (child.ZIndex != _thumbZindex)
                 {
                     child.Opacity = IsEnabled
-                                    ? enabledOpacity
-                                    : disabledOpacity;
+                                    ? _enabledOpacity
+                                    : _disabledOpacity;
                 }
                 else if (child is Border)
                 {
-                    (child as Border).Stroke = IsEnabled ? Color.FromArgb("#217CBB") : Color.FromArgb("#C3C4C9");
+                    (child as Border).Stroke = IsEnabled ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor) : ResourcesDictionary.ColorsDictionary(ColorsConstants.SliderThumbBorderDisabledColor);
                 }
             }
         }
-        internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize, double thumbRadius)
+        internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize)
         {
             border.StrokeThickness = thumbStrokeThickness;
-            border.Stroke = IsEnabled ? Color.FromArgb("#217CBB") : Color.FromArgb("#C3C4C9");
+            border.Stroke = IsEnabled ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor) : ResourcesDictionary.ColorsDictionary(ColorsConstants.SliderThumbBorderDisabledColor);
             border.Margin = new Thickness(0);
             border.BackgroundColor = Colors.White;
             border.StrokeShape = new Ellipse() { WidthRequest = thumbSize, HeightRequest = thumbSize };
-            border.ZIndex = 3;
+            border.ZIndex = _thumbZindex;
         }
         protected void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
         {
@@ -192,7 +198,7 @@ namespace Trimble.Modus.Components.Controls
         {
             StepContainer.Children.Clear();
 
-            StepContainer.WidthRequest = AbsoluteLayout.Width - thumbSize;
+            StepContainer.WidthRequest = SliderContainer.Width - _thumbSize;
             for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
             {
                 var stack = SliderHelper.CreateStepLabelContainer();
@@ -208,7 +214,7 @@ namespace Trimble.Modus.Components.Controls
         protected double GetPanShiftValue(View view)
             => Device.RuntimePlatform == Device.Android
                 ? view.TranslationX
-                : thumbPositionMap[view];
+                : _thumbPositionMap[view];
         protected void AddGestureRecognizer(View view, PanGestureRecognizer gestureRecognizer)
         {
             gestureRecognizer.PanUpdated += OnPanUpdated;
