@@ -171,6 +171,9 @@ namespace Trimble.Modus.Components
             return SliderHelper.CoerceValue((double)value, slider.StepValue, slider.MinimumValue, slider.MaximumValue);
         }
 
+        /// <summary>
+        /// Update slider when lower or upper value is changed
+        /// </summary>
         void OnLowerUpperValuePropertyChanged()
         {
             var rangeValue = MaximumValue - MinimumValue;
@@ -206,6 +209,9 @@ namespace Trimble.Modus.Components
             );
         }
 
+        /// <summary>
+        /// Update Lower / Upper value
+        /// </summary>
         void UpdateValue(View view, double value)
         {
             var rangeValue = MaximumValue - MinimumValue;
@@ -339,8 +345,8 @@ namespace Trimble.Modus.Components
             }
             SetValueLabelBinding(LowerValueLabel, LowerValueProperty);
             SetValueLabelBinding(UpperValueLabel, UpperValueProperty);
-            SetTitleLabelBinding(LeftLabel, LeftTextProperty);
-            SetTitleLabelBinding(RightLabel, RightTextProperty);
+            SetValueLabelBinding(LeftLabel, LeftTextProperty);
+            SetValueLabelBinding(RightLabel, RightTextProperty);
 
             OnLowerUpperValuePropertyChanged();
 

@@ -207,6 +207,9 @@ namespace Trimble.Modus.Components.Controls
             OnLayoutPropertyChanged();
         }
 
+        /// <summary>
+        /// Change the opacity of the elements in the control based on IsEnabled status
+        /// </summary>
         protected void OnIsEnabledChanged()
         {
             foreach (View child in Children)
@@ -230,6 +233,12 @@ namespace Trimble.Modus.Components.Controls
             }
         }
 
+        /// <summary>
+        /// Set the thumb style 
+        /// </summary>
+        /// <param name="border"></param>
+        /// <param name="thumbStrokeThickness"></param>
+        /// <param name="thumbSize"></param>
         internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize)
         {
             border.StrokeThickness = thumbStrokeThickness;
@@ -248,6 +257,9 @@ namespace Trimble.Modus.Components.Controls
             border.ZIndex = _thumbZindex;
         }
 
+        /// <summary>
+        /// Triggered when a thumb is moved
+        /// </summary>
         protected void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
         {
             var view = (View)(
@@ -272,6 +284,9 @@ namespace Trimble.Modus.Components.Controls
             }
         }
 
+        /// <summary>
+        /// Build the step label container based on the parameters of the slider
+        /// </summary>
         protected void BuildStepper()
         {
             StepContainer.Children.Clear();
@@ -290,40 +305,83 @@ namespace Trimble.Modus.Components.Controls
             }
         }
 
+        /// <summary>
+        /// Get the Pan shift value for thumb 
+        /// </summary>
         protected double GetPanShiftValue(View view) =>
             Device.RuntimePlatform == Device.Android ? view.TranslationX : _thumbPositionMap[view];
 
+        /// <summary>
+        /// Add gesture recognizer for thumb
+        /// </summary>
         protected void AddGestureRecognizer(View view, PanGestureRecognizer gestureRecognizer)
         {
             gestureRecognizer.PanUpdated += OnPanUpdated;
             view.GestureRecognizers.Add(gestureRecognizer);
         }
 
+        /// <summary>
+        /// Set label binding
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="bindableProperty"></param>
         protected void SetValueLabelBinding(Label label, BindableProperty bindableProperty) =>
             label.SetBinding(
                 Label.TextProperty,
                 new Binding { Source = this, Path = bindableProperty.PropertyName, }
             );
 
-        protected void SetTitleLabelBinding(Label label, BindableProperty bindableProperty) =>
-            label.SetBinding(
-                Label.TextProperty,
-                new Binding { Source = this, Path = bindableProperty.PropertyName, }
-            );
         #endregion
 
         #region Abstract Methods
+        /// <summary>
+        /// Set the layout of the absolute layout
+        /// </summary>
         protected abstract void OnLayoutPropertyChanged();
+        /// <summary>
+        /// Update the slider when minimum or maximum value is changed
+        /// </summary>
         protected abstract void OnMinimumMaximumValuePropertyChanged();
+        /// <summary>
+        /// On view size changed
+        /// </summary>
         protected abstract void OnViewSizeChanged(object? sender, System.EventArgs e);
+        /// <summary>
+        /// Triggered when Panning started
+        /// </summary>
         protected abstract void OnPanStarted(View view);
+        /// <summary>
+        /// Triggered when panning
+        /// </summary>
         protected abstract void OnPanRunning(View view, double value);
+        /// <summary>
+        /// Triggered when panning is completed
+        /// </summary>
         protected abstract void OnPanCompleted(View view);
+        /// <summary>
+        /// Update translation of value label border and tooltip when translate of value label is changed
+        /// </summary>
         protected abstract void OnValueLabelTranslationChanged();
+        /// <summary>
+        /// Build Step labels and add or remove it from the container based on property
+        /// </summary>
         protected abstract void OnShowStepsPropertyChanged();
+        /// <summary>
+        /// Show or hide tooltip for value 
+        /// </summary>
         protected abstract void OnShowToolTipPropertyChanged();
+        /// <summary>
+        /// Show or hide left icon
+        /// </summary>
         protected abstract void OnLeftIconSourceChanged();
+        /// <summary>
+        /// Show or hide right icon
+        /// </summary>
         protected abstract void OnRightIconSourceChanged();
+        /// <summary>
+        /// Add title text
+        /// </summary>
+        /// <param name="newValue"></param>
         protected abstract void OnTitleTextPropertyChanged(string newValue);
         #endregion
     }

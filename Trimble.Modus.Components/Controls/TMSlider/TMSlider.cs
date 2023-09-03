@@ -112,6 +112,9 @@ namespace Trimble.Modus.Components
         #endregion
 
         #region Private methods
+        /// <summary>
+        /// Update Lower / Upper value
+        /// </summary>
         void UpdateValue(View view, double value)
         {
             var rangeValue = MaximumValue - MinimumValue;
@@ -126,6 +129,9 @@ namespace Trimble.Modus.Components
         static void OnLowerUpperValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((TMSlider)bindable).OnLowerUpperValuePropertyChanged();
 
+        /// <summary>
+        /// Update slider when lower or upper value is changed
+        /// </summary>
         void OnLowerUpperValuePropertyChanged()
         {
             var rangeValue = MaximumValue - MinimumValue;
@@ -267,8 +273,8 @@ namespace Trimble.Modus.Components
             }
 
             SetValueLabelBinding(ValueLabel, ValueProperty);
-            SetTitleLabelBinding(LeftLabel, LeftTextProperty);
-            SetTitleLabelBinding(RightLabel, RightTextProperty);
+            SetValueLabelBinding(LeftLabel, LeftTextProperty);
+            SetValueLabelBinding(RightLabel, RightTextProperty);
             OnLowerUpperValuePropertyChanged();
 
             Track.BatchCommit();
