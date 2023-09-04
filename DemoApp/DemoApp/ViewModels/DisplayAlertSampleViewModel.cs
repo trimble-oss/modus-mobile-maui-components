@@ -21,20 +21,15 @@ namespace DemoApp.ViewModels
         [RelayCommand]
         async Task ShowAlert()
         {
-            var confirmationDialog = new DisplayAlert(Title, Message, PrimaryButtonText, SecondaryButtonText);
-            confirmationDialog.OnPrimaryButtonClicked += delegate { OnPrimarySelected(); };
-            confirmationDialog.OnSecondaryButtonClicked += delegate { OnSecondarySelected(); };
-            await confirmationDialog.Show();
-        }
-
-        void OnPrimarySelected()
-        {
-            Console.WriteLine("Primary button clicked");
-        }
-
-        void OnSecondarySelected()
-        {
-            Console.WriteLine("Secondary button clicked");
+            var confirmationDialog = new AlertDialogue(Title, Message, PrimaryButtonText, SecondaryButtonText);
+            try
+            {
+                var result = await confirmationDialog.Show();
+                Console.WriteLine(result ? "Primary button tapped" : "Secondary button tapped");
+            } catch (Exception ex)
+            {
+                Console.WriteLine("Invalid result " + ex.Message);
+            }
         }
     }
 }

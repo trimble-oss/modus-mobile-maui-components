@@ -182,9 +182,6 @@
 	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMModal\DisplayAlert.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMModal\TMModalContents.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
