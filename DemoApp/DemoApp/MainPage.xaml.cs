@@ -27,9 +27,9 @@ namespace DemoApp
                 "ProgressBar",
                 "RadioButton",
                 "SegmentedControl",
+                "Slider",
                 "Spinner",
                 "Switch",
-                "Slider",
                 "TabbedPage",
                 "Toast"
             };
