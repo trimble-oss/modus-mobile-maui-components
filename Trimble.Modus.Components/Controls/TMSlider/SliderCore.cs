@@ -25,7 +25,7 @@ namespace Trimble.Modus.Components.Controls
         #region Bindable Property
         public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0,  propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderCore), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), (double)1, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), 0.01, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderCore), SliderSize.Medium, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderCore), null, propertyChanged: OnTitleTextPropertyChanged);
         public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderCore), null);

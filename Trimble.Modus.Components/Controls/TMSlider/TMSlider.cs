@@ -106,12 +106,24 @@ namespace Trimble.Modus.Components
 
             // Perform initial setup based on other properties
             OnIsEnabledChanged();
+            SliderContainer.BatchCommitted += OnSliderContainerCommitted;
             OnLayoutPropertyChanged();
         }
 
         #endregion
 
         #region Private methods
+        private void OnSliderContainerCommitted(object sender, Microsoft.Maui.Controls.Internals.EventArg<VisualElement> e)
+        {
+            if (!ShowSteps || !ShowToolTip)
+            {
+                Track.WidthRequest = _trackWidth + _thumbSize / 4;
+            }
+            else
+            {
+                Track.WidthRequest = -1;
+            }
+        }
         /// <summary>
         /// Update Lower / Upper value
         /// </summary>
@@ -293,6 +305,7 @@ namespace Trimble.Modus.Components
         {
             Value = SliderHelper.CoerceValue(Value, StepValue, MinimumValue, MaximumValue);
             BuildStepper();
+            LastLabel.Text = MaximumValue.ToString();
             OnLowerUpperValuePropertyChanged();
         }
 
@@ -321,39 +334,29 @@ namespace Trimble.Modus.Components
             _labelMaxHeight = maxHeight;
             OnLayoutPropertyChanged();
         }
-
         protected override void OnShowStepsPropertyChanged()
         {
-            OnLayoutPropertyChanged();
+            SliderContainer.Children.Remove(StepContainer);
+            SliderContainer.Children.Remove(LastStepContainer);
+            LastStepContainer.Children.Remove(LastStepLine);
+            LastStepContainer.Children.Remove(LastLabel);
             if (ShowSteps)
             {
                 SliderContainer.Children.Add(StepContainer);
                 LastStepContainer.Children.Add(LastStepLine);
                 LastStepContainer.Children.Add(LastLabel);
                 SliderContainer.Children.Add(LastStepContainer);
-                OnLayoutPropertyChanged();
-            }
-            else
-            {
-                SliderContainer.Children.Remove(StepContainer);
-                SliderContainer.Children.Remove(LastStepContainer);
-                LastStepContainer.Children.Remove(LastStepLine);
-                LastStepContainer.Children.Remove(LastLabel);
             }
         }
 
         protected override void OnShowToolTipPropertyChanged()
         {
+            SliderContainer.Children.Remove(ValueHolder);
             if (ShowToolTip)
             {
                 SliderContainer.Children.Add(ValueHolder);
             }
-            else
-            {
-                SliderContainer.Children.Remove(ValueHolder);
-            }
             OnTitleTextPropertyChanged(SliderTitle.Text);
-            OnLayoutPropertyChanged();
         }
 
         protected override void OnTitleTextPropertyChanged(string newValue)

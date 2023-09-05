@@ -153,6 +153,7 @@ namespace Trimble.Modus.Components
             RightThumbIcon.SizeChanged += OnViewSizeChanged;
             LowerValueLabel.SizeChanged += OnViewSizeChanged;
             UpperValueLabel.SizeChanged += OnViewSizeChanged;
+            SliderContainer.BatchCommitted += OnSliderContainerCommitted;
             OnIsEnabledChanged();
             OnLayoutPropertyChanged();
         }
@@ -170,7 +171,17 @@ namespace Trimble.Modus.Components
             var slider = (TMRangeSlider)bindable;
             return SliderHelper.CoerceValue((double)value, slider.StepValue, slider.MinimumValue, slider.MaximumValue);
         }
-
+        void OnSliderContainerCommitted(object sender, Microsoft.Maui.Controls.Internals.EventArg<VisualElement> e)
+        {
+            if (!ShowSteps || !ShowToolTip)
+            {
+                Track.WidthRequest = _trackWidth + 1.25 * _thumbSize;
+            }
+            else
+            {
+                Track.WidthRequest = -1;
+            }
+        }
         /// <summary>
         /// Update slider when lower or upper value is changed
         /// </summary>
@@ -230,6 +241,7 @@ namespace Trimble.Modus.Components
             LowerValue = SliderHelper.CoerceValue(LowerValue, StepValue, MinimumValue, MaximumValue);
             UpperValue = SliderHelper.CoerceValue(UpperValue, StepValue, MinimumValue, MaximumValue);
             BuildStepper();
+            LastLabel.Text = MaximumValue.ToString();
             OnLowerUpperValuePropertyChanged();
         }
 
@@ -394,6 +406,10 @@ namespace Trimble.Modus.Components
 
         protected override void OnShowStepsPropertyChanged()
         {
+            SliderContainer.Children.Remove(StepContainer);
+            SliderContainer.Children.Remove(LastStepContainer);
+            LastStepContainer.Children.Remove(LastStepLine);
+            LastStepContainer.Children.Remove(LastLabel);
             if (ShowSteps)
             {
                 SliderContainer.Children.Add(StepContainer);
@@ -401,14 +417,6 @@ namespace Trimble.Modus.Components
                 LastStepContainer.Children.Add(LastLabel);
                 SliderContainer.Children.Add(LastStepContainer);
             }
-            else
-            {
-                SliderContainer.Children.Remove(StepContainer);
-                SliderContainer.Children.Remove(LastStepContainer);
-                LastStepContainer.Children.Remove(LastStepLine);
-                LastStepContainer.Children.Remove(LastLabel);
-            }
-            OnLayoutPropertyChanged();
         }
 
         protected override void OnLeftIconSourceChanged()
@@ -443,18 +451,14 @@ namespace Trimble.Modus.Components
 
         protected override void OnShowToolTipPropertyChanged()
         {
+            SliderContainer.Children.Remove(LowerValueHolder);
+            SliderContainer.Children.Remove(UpperValueHolder);
             if (ShowToolTip)
             {
                 SliderContainer.Children.Add(LowerValueHolder);
                 SliderContainer.Children.Add(UpperValueHolder);
             }
-            else
-            {
-                SliderContainer.Children.Remove(LowerValueHolder);
-                SliderContainer.Children.Remove(UpperValueHolder);
-            }
             OnTitleTextPropertyChanged(SliderTitle.Text);
-            OnLayoutPropertyChanged();
         }
 
         protected override void OnTitleTextPropertyChanged(string newValue)

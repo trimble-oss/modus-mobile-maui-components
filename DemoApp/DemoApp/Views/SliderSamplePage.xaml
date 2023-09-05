@@ -29,12 +29,14 @@
                         IsChecked="{Binding ShowTooltip, Mode=TwoWay}" />
       <modus:TMCheckBox Text="IsEnable"
                         IsChecked="{Binding IsEnabled, Mode=TwoWay}" />
+      <Label FontSize="Medium" FontAttributes="Bold" Text="Range Slider"/>
       <modus:TMRangeSlider MaximumValue="{Binding MaximumValue}"
                            MinimumValue="{Binding MinimumValue}"
                            Size="{Binding Source={RelativeSource AncestorType={x:Type local:SliderViewModel}}, Path=Size}"
                            ShowSteps="{Binding ShowSteps}"
                            ShowToolTip="{Binding ShowTooltip}"
                            IsEnabled="{Binding IsEnabled}"
+                           StepValue="1"
                            RightIconSource="placeholder.png"
                            LeftIconSource="placeholder.png"
                            Padding="0,15" />
@@ -44,9 +46,18 @@
                       ShowSteps="{Binding ShowSteps}"
                       ShowToolTip="{Binding ShowTooltip}"
                       IsEnabled="{Binding IsEnabled}"
+                      StepValue="1"
                       RightIconSource="placeholder.png"
                       LeftIconSource="placeholder.png"
                       Padding="0,15" />
+      <Label FontSize="Medium" FontAttributes="Bold" Text="Continuous Slider" Padding="0,15"/>
+      <modus:TMSlider MaximumValue="{Binding MaximumValue}"
+                      MinimumValue="{Binding MinimumValue}"
+                      Size="{Binding Source={RelativeSource AncestorType={x:Type local:SliderViewModel}}, Path=Size}"
+                      ShowSteps="false"
+                      ShowToolTip="false"
+                      IsEnabled="{Binding IsEnabled}"
+                      Padding="0,5" />
     </StackLayout>
   </ScrollView>
 </ContentPage>

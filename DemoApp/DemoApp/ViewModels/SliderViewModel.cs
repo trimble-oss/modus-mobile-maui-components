@@ -16,7 +16,7 @@ namespace DemoApp.ViewModels
         [ObservableProperty]
         private double _maximumValue = 10;
         [ObservableProperty]
-        private bool _showSteps = false;
+        private bool _showSteps = true;
         [ObservableProperty]
         private bool _showTooltip = true;
         [ObservableProperty]
