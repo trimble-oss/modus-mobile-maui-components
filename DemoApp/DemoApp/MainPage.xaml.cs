@@ -18,6 +18,7 @@ namespace DemoApp
                 "CheckBox",
                 "Chips",
                 "DataGrid",
+                "Display Alert",
                 "Input",
                 "MultiLineInput",
                 "NumberInput",
@@ -30,8 +31,10 @@ namespace DemoApp
                 "Spinner",
                 "Switch",
                 "TabbedPage",
-                "Toast"
-
+                "Accordion",
+                "Chips",
+                "Switch",
+                "ProgressBar",
             };
             BindingContext = this;
         }
@@ -100,6 +103,9 @@ namespace DemoApp
                         break;
                     case "Switch":
                         Navigation.PushAsync(new SwitchSamplePage());
+                        break;
+                    case "Display Alert":
+                        Navigation.PushAsync(new DisplayAlertSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
