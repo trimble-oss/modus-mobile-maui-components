@@ -87,6 +87,7 @@
 	<ItemGroup>
 	  <None Remove="Images\cancel_circle.svg" />
 	  <None Remove="Images\check.svg" />
+	  <None Remove="Images\slider_thumb.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
@@ -95,6 +96,7 @@
 	  <MauiImage Include="Images\check.svg" />
 	  <MauiImage Include="Images\chevron_down_icon.svg" />
 	  <MauiImage Include="Images\minus_icon.svg" />
+	  <MauiImage Include="Images\slider_thumb.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
 	</ItemGroup>
 
@@ -158,6 +160,9 @@
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
       <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -190,6 +195,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
+	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
 	    <Generator>MSBuild:Compile</Generator>

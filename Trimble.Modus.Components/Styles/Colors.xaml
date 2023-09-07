@@ -27,6 +27,10 @@
   <Color x:Key="PrimaryFloatingButtonClicked">#0E416C</Color>
   <Color x:Key="SecondaryFloatingButtonClicked">#DCEDF9</Color>
   <Color x:Key="TrimbleNeutralGray">#585C65</Color>
+  <Color x:Key="TrimbleGray8">#464b52</Color>
+  <Color x:Key="TrimbleGray3">#a3a6b1</Color>
+  <Color x:Key="BlueLightColor">#217CBB</Color>
+
   <!-- ToastColors -->
   <Color x:Key="DangerToastColor">#FBD4D7</Color>
   <Color x:Key="WarningToastColor">#FFF5E4</Color>
@@ -42,12 +46,14 @@
   <!-- Table -->
   <Color x:Key="TableHeaderColor">#F1F1F6</Color>
   <Color x:Key="TableDividerColor">#B7B9C3</Color>
-  <Color x:Key="TableHeaderTextColor">#464b52</Color>
   
-  <Color x:Key="AccordionTitleColor">#FF252A2E</Color>
   <Color x:Key="AccordionDescriptionColor">#FF7D808D</Color>
   <!-- Chip -->
   <Color x:Key="ChipSelectedBackground">#A1BFD2</Color>
+
+  <!-- Sldier -->
+  <Color x:Key="SliderThumbBorderDisabledColor">#C3C4C9</Color>
+
   <!-- Switch -->
   <Color x:Key="SwitchSelected">#217CBB</Color>
   <Color x:Key="SwitchUnselected">#90939f</Color>

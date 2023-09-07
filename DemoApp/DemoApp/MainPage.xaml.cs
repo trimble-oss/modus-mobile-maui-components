@@ -28,13 +28,11 @@ namespace DemoApp
                 "ProgressBar",
                 "RadioButton",
                 "SegmentedControl",
+                "Slider",
                 "Spinner",
                 "Switch",
                 "TabbedPage",
-                "Accordion",
-                "Chips",
-                "Switch",
-                "ProgressBar",
+                "Toast"
             };
             BindingContext = this;
         }
@@ -101,6 +99,9 @@ namespace DemoApp
                     case "Chips":
                         Navigation.PushAsync(new ChipsSamplePage());
                         break;
+                    case "Slider":
+                        Navigation.PushAsync(new SliderSamplePage());
+                        break; 
                     case "Switch":
                         Navigation.PushAsync(new SwitchSamplePage());
                         break;
