@@ -5,8 +5,7 @@
                       x:Class="Trimble.Modus.Components.BooleanColumn">
   <modus:DataGridColumn.CellTemplate>
     <DataTemplate>
-      <Switch IsToggled="{Binding}"
-              HorizontalOptions="Center" />
+      <modus:TMSwitch HorizontalOptions="Center" />
     </DataTemplate>
   </modus:DataGridColumn.CellTemplate>
 </modus:DataGridColumn>

@@ -98,8 +98,8 @@ internal sealed class DataGridRow : Grid
             }
             else if(col is BooleanColumn booleanColumn)
             {
-                var switchElement = (cell as ContentView)?.Content as Switch;
-                switchElement?.SetBinding(Switch.IsToggledProperty, new Binding(booleanColumn.PropertyName, source: BindingContext));
+                var switchElement = (cell as ContentView)?.Content as TMSwitch;
+                switchElement?.SetBinding(TMSwitch.IsToggledProperty, new Binding(booleanColumn.PropertyName, source: BindingContext));
             }
         }
         else
