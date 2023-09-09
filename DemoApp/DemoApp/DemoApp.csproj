@@ -47,7 +47,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#0063a3" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0063a3"  BaseSize="128,128"/>
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0063a3" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -155,6 +155,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\DropDownSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ProgressBarSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

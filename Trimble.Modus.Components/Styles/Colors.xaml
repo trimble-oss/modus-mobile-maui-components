@@ -51,4 +51,7 @@
   <!-- Switch -->
   <Color x:Key="SwitchSelected">#217CBB</Color>
   <Color x:Key="SwitchUnselected">#90939f</Color>
+  <!--DropDown-->
+  <Color x:Key="DropDownListBorder">#217CBB</Color>
+  <Color x:Key="DropDownItemSelected">#DCEDF9</Color>
 </ResourceDictionary>

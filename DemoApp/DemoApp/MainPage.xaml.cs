@@ -18,6 +18,7 @@ namespace DemoApp
                 "CheckBox",
                 "Chips",
                 "DataGrid",
+                "DropDown",
                 "Input",
                 "MultiLineInput",
                 "NumberInput",
@@ -100,6 +101,9 @@ namespace DemoApp
                         break;
                     case "Switch":
                         Navigation.PushAsync(new SwitchSamplePage());
+                        break;
+                    case "DropDown":
+                        Navigation.PushAsync(new DropDownSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

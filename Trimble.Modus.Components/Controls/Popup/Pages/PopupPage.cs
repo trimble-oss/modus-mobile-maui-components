@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components;
 public class PopupPage : ContentPage
 {
     #region Private fields
-    private readonly Components.Enums.ModalPosition _position;
+    public Components.Enums.ModalPosition _position;
     private readonly View _anchorView;
     private double _popupHeight = -1;
     private double _popupWidth = -1;

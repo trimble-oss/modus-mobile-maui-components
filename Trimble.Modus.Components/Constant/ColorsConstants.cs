@@ -43,4 +43,6 @@ internal class ColorsConstants
     public const string AccordionDescriptionColor = "AccordionDescriptionColor";
     public const string SwitchSelected = "SwitchSelected";
     public const string SwitchUnselected = "SwitchUnselected";
+    public const string DropDownListBorder = "DropDownListBorder"; 
+    public const string DropDownItemSelected = "DropDownItemSelected";
 }
