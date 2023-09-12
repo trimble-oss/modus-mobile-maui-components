@@ -40,7 +40,12 @@ public static class MauiProgram
 ```
 Now you can use the controls in your app.\
 For more information check out the [Getting Started page](https://happy-pond-034b3b40f.3.azurestaticapps.net/).
-
+### Usage
+Step 1: Add the NuGet to the project as discussed in the above reference section.  
+Step 2: Add the namespace as shown in the following code sample: ```xmlns:modus="http://modus.trimble.com/components"```    
+Step 3: Use the controls inside the ContentPage.
+Eg ```<modus:Button Text=""Tap Me">```  
+For more details about controls, visit each control's respective documentation : https://happy-pond-034b3b40f.3.azurestaticapps.net/
 # Contributing
 
 Curious about contributing? We've got a [contributing guide](CONTRIBUTING.md) to help get you going.
