@@ -26,6 +26,7 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0,  propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderCore), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), 0.01, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty TickValueProperty = BindableProperty.Create(nameof(TickValue), typeof(double), typeof(SliderCore), 10.0, defaultBindingMode: BindingMode.TwoWay);
         public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderCore), SliderSize.Medium, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderCore), null, propertyChanged: OnTitleTextPropertyChanged);
         public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderCore), null);
@@ -111,6 +112,11 @@ namespace Trimble.Modus.Components.Controls
             get => (double)GetValue(StepValueProperty);
             set => SetValue(StepValueProperty, value);
         }
+        public double TickValue
+        {
+            get => (double)GetValue(TickValueProperty);
+            set => SetValue(TickValueProperty, value);
+        }
         #endregion
 
         #region UI Elements
@@ -181,6 +187,7 @@ namespace Trimble.Modus.Components.Controls
         };
         internal AbsoluteLayout SliderContainer = new AbsoluteLayout();
         internal StackLayout SliderHolderLayout = new StackLayout();
+        private bool alternateValue = true;
         #endregion
 
         #region Constructor
@@ -292,15 +299,19 @@ namespace Trimble.Modus.Components.Controls
             StepContainer.Children.Clear();
 
             StepContainer.WidthRequest = SliderContainer.Width - _thumbSize;
-            for (var i = MinimumValue; StepValue != 0 && i < MaximumValue; i += StepValue)
+            for (var i = MinimumValue; TickValue != 0 && i < MaximumValue; i += (MaximumValue - MinimumValue) / TickValue)
             {
                 var stack = SliderHelper.CreateStepLabelContainer();
                 var box = SliderHelper.CreateStepLine(Size);
                 stack.Children.Add(box);
 
-                var label = SliderHelper.CreateStepLabel(Size);
-                label.Text = i.ToString();
-                stack.Children.Add(label);
+                if (!alternateValue)
+                {
+                    var label = SliderHelper.CreateStepLabel(Size);
+                    label.Text = Math.Round(i, 2).ToString();
+                    stack.Children.Add(label);
+                }
+                alternateValue = !alternateValue;
                 StepContainer.Children.Add(stack);
             }
         }
