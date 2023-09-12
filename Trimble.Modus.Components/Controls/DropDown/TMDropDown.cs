@@ -1,5 +1,4 @@
-﻿using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Controls.Shapes;
+﻿using Microsoft.Maui.Controls.Shapes;
 using System.Collections;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
@@ -18,7 +17,13 @@ public class TMDropDown : ContentView
     private bool isVisible;
     private int radius = 15;
     private IEnumerable items;
-    private int count = 0, margin = 96;
+    private int count = 0;
+#if WINDOWS
+    private Thickness margin = new Thickness(-4, 166, 0,0);
+
+#else
+    private Thickness margin = new Thickness(0,112,0,0);
+#endif
     private uint AnimationDuration { get; set; } = 250;
     public IEnumerable ItemsSource
     {
@@ -67,7 +72,7 @@ public class TMDropDown : ContentView
         };
         var chevronIcon = new Image
         {
-            Source = ImageConstants.ChevronDownIconWhite, 
+            Source = ImageConstants.ChevronDownIconWhite,
             HeightRequest = 32,
             WidthRequest = 32,
             HorizontalOptions = LayoutOptions.Center,
@@ -101,7 +106,7 @@ public class TMDropDown : ContentView
         {
             Orientation = StackOrientation.Horizontal,
             HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center,          
+            VerticalOptions = LayoutOptions.Center,
             Spacing = 2,
         };
         stack.Children.Add(label);
@@ -143,7 +148,7 @@ public class TMDropDown : ContentView
         label.Text = e.SelectedItem.ToString();
         if (count > 0 && PopupService.Instance.PopupStack.Count > 0)
         {
-            
+
             PopupService.Instance?.DismissAsync();
             Close();
         }
@@ -204,8 +209,9 @@ public class TMDropDown : ContentView
         };
         var border = new Border()
         {
-            Margin = new Thickness(0, margin, 0, 0),
+            Margin = margin,
             Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DropDownListBorder),
+            BackgroundColor = Colors.White,
             HorizontalOptions = LayoutOptions.Start,
             VerticalOptions = LayoutOptions.Start,
             StrokeThickness = 4,
@@ -222,7 +228,7 @@ public class TMDropDown : ContentView
 
         border.HeightRequest = desiredHeight;
         border.WidthRequest = WidthRequest;
-        var popup = new PopupPage(innerBorder, Enums.ModalPosition.Bottom)
+        var popup = new PopupPage(innerBorder.Content, Enums.ModalPosition.Bottom)
         {
             Content = border,
             BackgroundColor = Colors.Transparent,
@@ -234,7 +240,10 @@ public class TMDropDown : ContentView
         if (height - loc.Y < desiredHeight)
         {
             popup._position = Enums.ModalPosition.Top;
-            border.Margin = new Thickness(0,-15,0,0);
+            border.Margin = new Thickness(0, -30, 0, 0);
+#if WINDOWS
+            border.Margin = new Thickness(-6,4,10,0);
+#endif
         }
         await Task.WhenAll(
             indicatorButton.RotateTo(-180, AnimationDuration)
@@ -302,7 +311,10 @@ public class TMDropDown : ContentView
             if (itemCount < 4)
             {
                 desiredHeight = itemCount * 56;
-                margin = ((itemCount - 1) * 56) - 28;
+                margin = new Thickness(0, ((itemCount - 1) * 56) - 14, 10, 0);
+#if WINDOWS
+                margin = new Thickness(-6, ((itemCount - 1) * 56) + 42, 10, 0);
+#endif
             }
         }
     }
