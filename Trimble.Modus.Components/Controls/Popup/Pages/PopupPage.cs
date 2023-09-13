@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components;
 public class PopupPage : ContentPage
 {
     #region Private fields
-    public Components.Enums.ModalPosition _position;
+    internal Components.Enums.ModalPosition Position;
     private readonly View _anchorView;
     private double _popupHeight = -1;
     private double _popupWidth = -1;
@@ -125,7 +125,7 @@ public class PopupPage : ContentPage
     public PopupPage(View anchorView, Trimble.Modus.Components.Enums.ModalPosition position)
     {
         _anchorView = anchorView;
-        _position = position;
+        Position = position;
         SizeChanged += OnSizeChanged;
     }
 
@@ -317,7 +317,7 @@ public class PopupPage : ContentPage
                 double translationY = 0;
                 double translationX = 0;
 
-                switch (_position)
+                switch (Position)
                 {
                     case Components.Enums.ModalPosition.Top:
                         translationY = loc.Top - _popupHeight - loc.Height / 2;

@@ -239,7 +239,7 @@ public class TMDropDown : ContentView
         var height = Application.Current.MainPage.Window.Height;
         if (height - loc.Y < desiredHeight)
         {
-            popup._position = Enums.ModalPosition.Top;
+            popup.Position = Enums.ModalPosition.Top;
             border.Margin = new Thickness(0, -30, 0, 0);
 #if WINDOWS
             border.Margin = new Thickness(-6,4,10,0);
