@@ -10,6 +10,7 @@ using StackLayout = Microsoft.Maui.Controls.StackLayout;
 namespace Trimble.Modus.Components;
 public class TMDropDown : ContentView
 {
+    #region Private fields
     private double desiredHeight;
     private Label label;
     private Border innerBorder;
@@ -25,6 +26,8 @@ public class TMDropDown : ContentView
     private Thickness margin = new Thickness(0,112,0,0);
 #endif
     private uint AnimationDuration { get; set; } = 250;
+    #endregion
+    #region Public Properties
     public IEnumerable ItemsSource
     {
         get { return (IEnumerable)GetValue(ItemsSourceProperty); }
@@ -45,7 +48,8 @@ public class TMDropDown : ContentView
         get { return (int)GetValue(SelectedIndexProperty); }
         set { SetValue(SelectedIndexProperty, value); }
     }
-
+    #endregion
+    #region Bindable Properties
     public static readonly BindableProperty SelectedIndexProperty =
         BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMDropDown), 0, propertyChanged: OnSelectedIndexChanged);
 
@@ -57,7 +61,8 @@ public class TMDropDown : ContentView
 
     public static readonly BindableProperty SelectedItemsProperty =
         BindableProperty.Create(nameof(SelectedItems), typeof(List<object>), typeof(TMDropDown));
-
+    #endregion
+    #region Constructor
     public TMDropDown()
     {
         SelectedItems = new List<object> { };
@@ -136,7 +141,8 @@ public class TMDropDown : ContentView
         PopupService.Instance.Dismissed += OnPopupRemoved;
         Content = innerBorder;
     }
-
+    #endregion
+    #region Private Methods
     private void OnSelected(object sender, SelectedItemChangedEventArgs e, ListView list)
     {
         if (SelectedItems != null)
@@ -336,4 +342,5 @@ public class TMDropDown : ContentView
             }
         }
     }
+    #endregion
 }
