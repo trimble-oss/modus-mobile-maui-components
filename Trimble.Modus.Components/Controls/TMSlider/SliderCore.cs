@@ -23,10 +23,10 @@ namespace Trimble.Modus.Components.Controls
         #endregion
 
         #region Bindable Property
-        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0,  propertyChanged: OnMinimumMaximumValuePropertyChanged);
+        public static BindableProperty MinimumValueProperty = BindableProperty.Create(nameof(MinimumValue), typeof(double), typeof(SliderCore), .0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty MaximumValueProperty = BindableProperty.Create(nameof(MaximumValue), typeof(double), typeof(SliderCore), 1.0, propertyChanged: OnMinimumMaximumValuePropertyChanged);
         public static BindableProperty StepValueProperty = BindableProperty.Create(nameof(StepValue), typeof(double), typeof(SliderCore), 0.01, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnMinimumMaximumValuePropertyChanged);
-        public static BindableProperty TickValueProperty = BindableProperty.Create(nameof(TickValue), typeof(double), typeof(SliderCore), 10.0, defaultBindingMode: BindingMode.TwoWay);
+        public static BindableProperty TickValueProperty = BindableProperty.Create(nameof(TickValue), typeof(double), typeof(SliderCore), 10.0, defaultBindingMode: BindingMode.TwoWay, coerceValue: TickCoerceValue);
         public static BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SliderSize), typeof(SliderCore), SliderSize.Medium, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnLayoutPropertyChanged);
         public static BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(SliderCore), null, propertyChanged: OnTitleTextPropertyChanged);
         public static BindableProperty LeftTextProperty = BindableProperty.Create(nameof(LeftText), typeof(string), typeof(SliderCore), null);
@@ -34,12 +34,12 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty LeftIconProperty = BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnLeftIconSourceChanged);
         public static BindableProperty RightIconProperty = BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnRightIconSourceChanged);
         public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowStepsPropertyChanged);
-        public static BindableProperty ShowToolTipProperty= BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowToolTipPropertyChanged);
+        public static BindableProperty ShowToolTipProperty = BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowToolTipPropertyChanged);
         #endregion
 
         #region Property change methods
         static void OnTitleTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-            => ((SliderCore)bindable).OnTitleTextPropertyChanged((string) newValue);
+            => ((SliderCore)bindable).OnTitleTextPropertyChanged((string)newValue);
         static void OnShowStepsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderCore)bindable).OnShowStepsPropertyChanged();
         static void OnShowToolTipPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -303,6 +303,7 @@ namespace Trimble.Modus.Components.Controls
             {
                 var stack = SliderHelper.CreateStepLabelContainer();
                 var box = SliderHelper.CreateStepLine(Size);
+                box.VerticalOptions = LayoutOptions.Start;
                 stack.Children.Add(box);
 
                 if (!alternateValue)
@@ -394,6 +395,29 @@ namespace Trimble.Modus.Components.Controls
         /// </summary>
         /// <param name="newValue"></param>
         protected abstract void OnTitleTextPropertyChanged(string newValue);
+        #endregion
+        #region Private Methods
+        private static object TickCoerceValue(BindableObject bindable, object value)
+        {
+            var slider = (bindable as TMSlider);
+            return CoerceValue((double)value);
+
+        }
+        private static object CoerceValue(double value)
+        {
+            if (value < 1 && value > 0)
+            {
+                return 1;
+            }
+            if (value > 50)
+            {
+                return 50;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         #endregion
     }
 }
