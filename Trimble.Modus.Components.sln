@@ -30,4 +30,7 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3EF226E-6E58-48AE-9399-A438CF3E5F47}
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		description = The One Trimble Design System. The Modus design system is part of the evolving Trimble Operating System
+	EndGlobalSection
 EndGlobal

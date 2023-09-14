@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.SliderSamplePage"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:local="clr-namespace:DemoApp.ViewModels"
+             Title="Slider">
+  <ScrollView Margin="4">
+    <StackLayout Orientation="Vertical">
+      <modus:TMInput Text="{Binding MinimumValueText, Mode=TwoWay}"
+                     Placeholder="Enter minimum value"
+                     TitleText="Minimum value" />
+      <modus:TMInput Text="{Binding MaximumValueText, Mode=TwoWay}"
+                     Placeholder="Enter Maximum value"
+                     TitleText="Maximum value" />
+      <modus:TMRadioButtonGroup x:Name="SliderSize"
+                                SelectedIndex="1"
+                                SelectedRadioButtonChangedCommand="{Binding SizeRadioButtonCommand}">
+        <modus:TMRadioButton Text="Small"
+                             Value="0" />
+        <modus:TMRadioButton Text="Medium"
+                             Value="1" />
+        <modus:TMRadioButton Text="Large"
+                             Value="2" />
+      </modus:TMRadioButtonGroup>
+      <modus:TMCheckBox Text="Show Steps"
+                        IsChecked="{Binding ShowSteps, Mode=TwoWay}" />
+      <modus:TMCheckBox Text="Show ToolTips"
+                        IsChecked="{Binding ShowTooltip, Mode=TwoWay}" />
+      <modus:TMCheckBox Text="IsEnable"
+                        IsChecked="{Binding IsEnabled, Mode=TwoWay}" />
+      <Label FontSize="Medium" FontAttributes="Bold" Text="Range Slider"/>
+      <modus:TMRangeSlider MaximumValue="{Binding MaximumValue}"
+                           MinimumValue="{Binding MinimumValue}"
+                           Size="{Binding Source={RelativeSource AncestorType={x:Type local:SliderViewModel}}, Path=Size}"
+                           ShowSteps="{Binding ShowSteps}"
+                           ShowToolTip="{Binding ShowTooltip}"
+                           IsEnabled="{Binding IsEnabled}"
+                           StepValue="1"
+                           RightIconSource="placeholder.png"
+                           LeftIconSource="placeholder.png"
+                           Padding="0,15" />
+      <modus:TMSlider MaximumValue="{Binding MaximumValue}"
+                      MinimumValue="{Binding MinimumValue}"
+                      Size="{Binding Source={RelativeSource AncestorType={x:Type local:SliderViewModel}}, Path=Size}"
+                      ShowSteps="{Binding ShowSteps}"
+                      ShowToolTip="{Binding ShowTooltip}"
+                      IsEnabled="{Binding IsEnabled}"
+                      StepValue="1"
+                      RightIconSource="placeholder.png"
+                      LeftIconSource="placeholder.png"
+                      Padding="0,15" />
+      <Label FontSize="Medium" FontAttributes="Bold" Text="Continuous Slider" Padding="0,15"/>
+      <modus:TMSlider MaximumValue="{Binding MaximumValue}"
+                      MinimumValue="{Binding MinimumValue}"
+                      Size="{Binding Source={RelativeSource AncestorType={x:Type local:SliderViewModel}}, Path=Size}"
+                      ShowSteps="false"
+                      ShowToolTip="false"
+                      IsEnabled="{Binding IsEnabled}"
+                      Padding="0,5" />
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

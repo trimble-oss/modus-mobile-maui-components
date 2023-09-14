@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMButton"
+             x:Name="tmButton"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             HorizontalOptions="Start">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Border Padding="0"
+          HorizontalOptions="{Binding Source={x:Reference tmButton}, Path=HorizontalOptions}"
+          BindingContext="{x:Reference tmButton}"
+          x:Name="buttonFrame"
+          StrokeShape="RoundRectangle 4,4"
+          >
+    <HorizontalStackLayout x:Name="buttonStackLayout"
+                           Spacing="8"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="Center">
+      <Image x:Name="leftIcon"
+             Source="{Binding LeftIconSource}"
+             IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+             HeightRequest="16"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             WidthRequest="16" />
+      <Label x:Name="buttonLabel"
+             Text="{Binding Title}"
+             IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+             HeightRequest="48"
+             FontFamily="OpenSansSemibold"
+             HorizontalTextAlignment="Center"
+             VerticalTextAlignment="Center" />
+      <Image x:Name="rightIcon"
+             Source="{Binding RightIconSource}"
+             IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+             HeightRequest="16"
+             WidthRequest="16"
+             VerticalOptions="Center"
+             HorizontalOptions="Center" />
+    </HorizontalStackLayout>
+  </Border>
+</ContentView>

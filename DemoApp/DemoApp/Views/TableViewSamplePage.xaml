@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="http://modus.trimble.com/components"
+             x:Class="DemoApp.TableViewSamplePage"
+             Title="TableViewSamplePage">
+  <Grid RowDefinitions="Auto, Auto, *">
+    <StackLayout Orientation="Vertical"
+                 Padding="10,0">
+      <Label Text="Selection Mode"
+             Padding="0,0,0,5"
+             FontAttributes="Bold"/>
+      <modus:TMRadioButtonGroup Grid.Row="0"
+                              x:Name="RadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="{Binding SelectionModeRadioOption}">
+        <modus:TMRadioButton Text="None" />
+        <modus:TMRadioButton Text="Single" />
+        <modus:TMRadioButton Text="Multiple" />
+      </modus:TMRadioButtonGroup>
+    </StackLayout>
+    <HorizontalStackLayout Grid.Row="1"
+                           Padding="10,0">
+      <Label Text="Show Divider"
+             VerticalOptions="Center"
+             FontAttributes="Bold"/>
+      <Switch IsToggled="{Binding DividerToggled}"
+              VerticalOptions="Center" />
+    </HorizontalStackLayout>
+    <modus:DataGrid Grid.Row="2"
+                    ItemsSource="{Binding Users}"
+                    IsSortable="True"
+                    ShowDivider="{Binding DividerToggled, Mode=OneWay}"
+                    SelectionMode="{Binding SelectionMode}"
+                    x:Name="ModusDataGrid">
+      <modus:DataGrid.Columns>
+        <!-- Image column -->
+        <modus:ImageColumn Title="Logo"
+                           PropertyName="ProfilePic"
+                           Width="0.4*" />
+        <!-- Text Column -->
+        <modus:TextColumn Title="Team"
+                          PropertyName="Name"
+                          DescriptionProperty="Gender"
+                          Width="*"
+                          HorizontalContentAlignment="Start" />
+        <!-- Custom Column -->
+        <modus:DataGridColumn Title="Score"
+                              Width="0.4*"
+                              PropertyName="Score">
+          <modus:DataGridColumn.CellTemplate>
+            <DataTemplate>
+              <Border HeightRequest="60"
+                      WidthRequest="60"
+                      VerticalOptions="Center"
+                      Stroke="{Binding Color}"
+                      StrokeShape="RoundRectangle 40"
+                      StrokeThickness="8"
+                      Margin="0,0,0,0">
+                <Label Text="{Binding Score}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="Black" />
+              </Border>
+            </DataTemplate>
+          </modus:DataGridColumn.CellTemplate>
+        </modus:DataGridColumn>
+        <!-- Boolean column -->
+        <modus:BooleanColumn Title="Verified"
+                             PropertyName="IsVerified"
+                             Width="100" />
+      </modus:DataGrid.Columns>
+    </modus:DataGrid>
+  </Grid>
+</ContentPage>

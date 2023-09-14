@@ -1,24 +1,40 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using DemoApp.ViewModels;
+using DemoApp.Views;
+using Microsoft.Extensions.Logging;
+using Trimble.Modus.Components.Hosting;
 
 namespace DemoApp;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
-
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .UseTrimbleModus()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
+        RegisterViewModel(builder);
+        RegisterPages(builder);
 
-		return builder.Build();
-	}
+        return builder.Build();
+    }
+    public static void RegisterViewModel(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<ProgressBarSamplePageViewModel>();
+    }
+
+    public static void RegisterPages(MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<ProgressBarSamplePage>();
+    }
 }

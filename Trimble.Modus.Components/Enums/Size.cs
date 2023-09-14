@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Trimble.Modus.Components.Enums;
 
-namespace Trimble.Modus.Components.Enums
+public enum Size
 {
-    public enum Size
-    {
-        Empty,
-        XSmall,
-        Small,
-        Default,
-        Large
-    }
+    XSmall,
+    Small,
+    Default,
+    Large
 }

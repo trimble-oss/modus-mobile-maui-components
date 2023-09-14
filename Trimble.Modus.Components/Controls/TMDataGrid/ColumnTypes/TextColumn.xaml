@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modus:DataGridColumn xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:modus="clr-namespace:Trimble.Modus.Components"
+                      x:Class="Trimble.Modus.Components.TextColumn">
+  <modus:DataGridColumn.CellTemplate>
+    <DataTemplate>
+      <Grid RowSpacing="2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               FontFamily="OpenSansRegular"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Center"
+               Padding="16,0"
+               FontSize="16"
+               LineBreakMode="WordWrap" />
+        <Label Grid.Row="1"
+               FontFamily="OpenSansRegular"
+               HorizontalTextAlignment="Start"
+               VerticalTextAlignment="Center"
+               Padding="16,0"
+               FontSize="14"
+               LineBreakMode="WordWrap" />
+      </Grid>
+    </DataTemplate>
+  </modus:DataGridColumn.CellTemplate>
+</modus:DataGridColumn>

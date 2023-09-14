@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="http://modus.trimble.com/components"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             BackgroundColor="White"
+             x:Class="DemoApp.Views.TabViewItems.TabViewTwo">
+  <VerticalStackLayout BackgroundColor="Tan"
+                       Spacing="50"
+                       Padding="10">
+    <Label Text="Determinate Spinner"/>
+    <modus:TMSpinner SpinnerType="Determinate"
+                     SpinnerColor="{Binding SpinnerColor}"/>
+    <Label Text="InDeterminate Spinner"/>
+    <modus:TMSpinner SpinnerType="InDeterminate"
+                     SpinnerColor="{Binding SpinnerColor}"/>
+    <modus:TMRadioButtonGroup x:Name="RadioGroup"
+                              SelectedIndex="0"
+                              Orientation="Horizontal"
+                              GroupTitle="Spinner Color"
+                              HorizontalOptions="Center"
+                              SelectedRadioButtonChangedCommand="{Binding SpinnerCommand}"
+                              ItemsSource="{Binding RadioButtons}">
+      <modus:TMRadioButton Text="Primary"
+                           Value="Primary"/>
+      <modus:TMRadioButton Text="Secondary"
+                           Value="Secondary"/>
+    </modus:TMRadioButtonGroup>
+  </VerticalStackLayout>
+</ContentView>
+

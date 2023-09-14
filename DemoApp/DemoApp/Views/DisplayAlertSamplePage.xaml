@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="http://modus.trimble.com/components"
+             x:Class="DemoApp.Views.DisplayAlertSamplePage"
+             Title="DisplayAlertSamplePage">
+  <VerticalStackLayout Spacing="10" Padding="10">
+    <modus:TMButton Title="Show Display Alert"
+                    Command="{Binding ShowAlertCommand}"
+                    HorizontalOptions="Center" />
+    <modus:TMInput Placeholder="Title"
+                   Text="{Binding Title}" />
+    <modus:TMInput Placeholder="Message"
+                   Text="{Binding Message}" />
+    <modus:TMInput Placeholder="Primary text"
+                   Text="{Binding PrimaryButtonText}" />
+    <modus:TMInput Placeholder="Secondary text"
+                   Text="{Binding SecondaryButtonText}" />
+  </VerticalStackLayout>
+</ContentPage>

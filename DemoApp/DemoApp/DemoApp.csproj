@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -30,12 +30,24 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <MtouchLink>SdkOnly</MtouchLink>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#0063a3" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0063a3"  BaseSize="128,128"/>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -47,13 +59,174 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\Images\account_icon.svg" />
+	  <None Remove="Resources\Images\arrow_down.svg" />
+	  <None Remove="Resources\Images\arrow_left.svg" />
+	  <None Remove="Resources\Images\arrow_right.svg" />
+	  <None Remove="Resources\Images\arrow_up.svg" />
+	  <None Remove="Resources\Images\contact_icon.svg" />
+	  <None Remove="Resources\Images\dark_gallery_icon.svg" />
+	  <None Remove="Resources\Images\email.svg" />
+	  <None Remove="Resources\Images\gallery_icon.svg" />
+	  <None Remove="Resources\Images\green_icon.svg" />
+	  <None Remove="Resources\Images\icon_placeholder.svg" />
+	  <None Remove="Resources\Images\phone.svg" />
+	  <None Remove="Resources\Images\placeholder.svg" />
+	  <None Remove="Resources\Images\placeholder_white.svg" />
+	  <None Remove="Resources\Images\search_icon.svg" />
+	  <None Remove="Views\TabViewItems\" />
+	  <None Remove="Helpers\" />
+	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
+	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TabViewItems\TabViewFour.xaml.cs">
+	    <DependentUpon>TabViewFour.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TabViewItems\TabViewThree.xaml.cs">
+	    <DependentUpon>TabViewThree.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TabViewItems\TabViewTwo.xaml.cs">
+	    <DependentUpon>TabViewTwo.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TabbedPageDemo.xaml.cs">
+	    <DependentUpon>TabbedPageDemo.xaml</DependentUpon>
+		</Compile>
+	  <Compile Update="Views\PopupSamples\SampleToolTip.xaml.cs">
+	    <DependentUpon>SampleToolTip.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\PopupSamples\SamplePopupPage.xaml.cs">
+	    <DependentUpon>SamplePopupPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TableViewSamplePage.xaml.cs">
+	    <DependentUpon>TableViewSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\BadgeSamplePage.xaml.cs">
+	    <DependentUpon>BadgeSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CardSamplePage.xaml.cs">
+	    <DependentUpon>CardSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ListViewSamplePage.xaml.cs">
+	    <DependentUpon>ListViewSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ModalSamplePage.xaml.cs">
+	    <DependentUpon>ModalSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CheckBoxSamplePage.xaml.cs">
+	    <SubType>Code</SubType>
+	    <DependentUpon>CheckBoxSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MultiLineInputSamplePage.xaml.cs">
+	    <DependentUpon>MultiLineInputSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\InputSamplePage.xaml.cs">
+	    <DependentUpon>InputSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ButtonSamplePage.xaml.cs">
+	    <DependentUpon>ButtonSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\NumberInputSamplePage.xaml.cs">
+	    <DependentUpon>NumberInputSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\RadioButtonSamplePage.xaml.cs">
+	    <DependentUpon>RadioButtonSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SpinnerSamplePage.xaml.cs">
+	    <DependentUpon>SpinnerSamplePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ToastSamplePage.xaml.cs">
+	    <DependentUpon>ToastSamplePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\SliderSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DisplayAlertSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProgressBarSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TabViewItems\TabViewFour.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TabViewItems\TabViewThree.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TabViewItems\TabViewTwo.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AccordionSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopupSamples\SampleCustomPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopupSamples\SampleToolTip.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PopupSamples\SamplePopupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TableViewSamplePage.xaml">	    
+	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BadgeSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ListViewSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ModalSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ButtonSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CardSamplePage.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CheckBoxSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MultiLineInputSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\InputSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NumberInputSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RadioButtonSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChipsSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SpinnerSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Helpers\" />
+	</ItemGroup>
 </Project>

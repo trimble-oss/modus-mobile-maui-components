@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:DemoApp.Constant"
+             xmlns:modus="http://modus.trimble.com/components"
+             x:Class="DemoApp.ButtonPage"
+             Title="Button">
+
+  <ScrollView BackgroundColor="White">
+    <StackLayout x:Name="layout"
+                 Spacing="20"
+                 Padding="10">
+      <Label Text="Floating Buttons"></Label>
+      <StackLayout Orientation="Vertical"
+                   Spacing="10">
+        <modus:TMFloatingButton x:Name="floatingTextWithLeftIconButton"
+                               Title="Floating Button"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonColor="Primary"
+                               LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
+                               Size="{Binding SelectedFontSize}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+
+        <modus:TMFloatingButton x:Name="floatingTextWithRightIconButton"
+                               Title="Floating Button"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonColor="Primary"
+                               Size="{Binding SelectedFontSize}"
+                               ButtonStyle="Fill"
+                               RightIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+        <modus:TMFloatingButton x:Name="floatingIconButton"
+                               ButtonColor="Primary"
+                               IsDisabled="{Binding IsDisabled}"
+                               Size="{Binding SelectedFontSize}"
+                               LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+        <modus:TMFloatingButton x:Name="floatingButtonWithBothIcons"
+                               ButtonColor="Primary"
+                               ButtonStyle="Fill"
+                               IsDisabled="{Binding IsDisabled}"
+                               Size="{Binding SelectedFontSize}"
+                               LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
+                               RightIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+        <modus:TMFloatingButton x:Name="floatingTextWithSecondaryLeftIconButton"
+                               Title="Floating Button"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonColor="Secondary"
+                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                               Size="{Binding SelectedFontSize}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+
+        <modus:TMFloatingButton x:Name="floatingTextWithSecondaryRightIconButton"
+                               Title="Floating Button"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonColor="Secondary"
+                               Size="{Binding SelectedFontSize}"
+                               ButtonStyle="Fill"
+                               RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+        <modus:TMFloatingButton x:Name="floatingIconSecondaryButton"
+                               ButtonColor="Secondary"
+                               IsDisabled="{Binding IsDisabled}"
+                               Size="{Binding SelectedFontSize}"
+                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+        <modus:TMFloatingButton x:Name="floatingSecondaryButtonWithBothIcons"
+                               ButtonColor="Secondary"
+                               ButtonStyle="Fill"
+                               IsDisabled="{Binding IsDisabled}"
+                               Size="{Binding SelectedFontSize}"
+                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                               RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+      </StackLayout>
+      <Label Text="Buttons with Images" />
+      <StackLayout Orientation="Vertical"
+                   Spacing="10">
+        <modus:TMButton x:Name="primaryleftIconButton"
+                               Title="Primary"
+                               HorizontalOptions="{Binding FullWidthAlignment}"
+                               ButtonColor="Primary"
+                               LeftIconSource="{Binding LeftIconSource}"
+                               RightIconSource="{Binding RightIconSource}"
+                               Command="{Binding MyCommand}"
+                               IsDisabled="{Binding IsDisabled}"
+                               Size="{Binding SelectedFontSize}"
+                               ButtonStyle="{Binding SelectedButtonStyle}"
+                               CommandParameter="Button5" />
+        <modus:TMButton x:Name="secondaryBothIconButton"
+                               Title="Secondary"
+                               HorizontalOptions="{Binding FullWidthAlignment}"
+                               ButtonColor="Secondary"
+                               Size="{Binding SelectedFontSize}"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonStyle="{Binding SelectedButtonStyle}"
+                               LeftIconSource="{Binding LeftIconSource}"
+                               RightIconSource="{Binding RightIconSource}"
+                               Command="{Binding MyCommand}"
+                               CommandParameter="Button5" />
+        <StackLayout Orientation="Horizontal">
+          <modus:TMButton x:Name="tertiaryLeftIconButton"
+                                 Title="Tertiary"
+                                 HorizontalOptions="{Binding FullWidthAlignment}"
+                                 ButtonColor="Tertiary"
+                                 Size="{Binding SelectedFontSize}"
+                                 IsDisabled="{Binding IsDisabled}"
+                                 ButtonStyle="{Binding SelectedButtonStyle}"
+                                 LeftIconSource="{Binding LeftIconSource}"
+                                 RightIconSource="{Binding RightIconSource}"
+                                 Command="{Binding MyCommand}"
+                                 CommandParameter="Button5" />
+          <modus:TMButton x:Name="dangerRightIconButton"
+                                 Title="Danger"
+                                 HorizontalOptions="{Binding FullWidthAlignment}"
+                                 LeftIconSource="{Binding LeftIconSource}"
+                                 RightIconSource="{Binding RightIconSource}"
+                                 Size="{Binding SelectedFontSize}"
+                                 IsDisabled="{Binding IsDisabled}"
+                                 ButtonStyle="{Binding SelectedButtonStyle}"
+                                 ButtonColor="Danger"
+                                 Command="{Binding MyCommand}"
+                                 CommandParameter="Button5" />
+        </StackLayout>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <RadioButton Content="None"
+                     Value="None"
+                     IsChecked="True"
+                     GroupName="ImagePosition"
+                     CheckedChanged="ImagePositionChanged" />
+        <RadioButton Content="Left"
+                     Value="Left"
+                     GroupName="ImagePosition"
+                     CheckedChanged="ImagePositionChanged" />
+        <RadioButton Content="Right"
+                     Value="Right"
+                     GroupName="ImagePosition"
+                     CheckedChanged="ImagePositionChanged" />
+        <RadioButton Content="Both"
+                     Value="Both"
+                     GroupName="ImagePosition"
+                     CheckedChanged="ImagePositionChanged" />
+      </StackLayout>
+
+
+      <StackLayout Orientation="Horizontal">
+        <RadioButton Content="XSmall"
+                     Value="XSmall"
+                     GroupName="ButtonSize"
+                     CheckedChanged="Size_Changed" />
+        <RadioButton Content="Small"
+                     Value="Small"
+                     GroupName="ButtonSize"
+                     CheckedChanged="Size_Changed" />
+        <RadioButton Content="Default"
+                     IsChecked="True"
+                     Value="Default"
+                     GroupName="ButtonSize"
+                     CheckedChanged="Size_Changed" />
+        <RadioButton Content="Large"
+                     Value="Large"
+                     GroupName="ButtonSize"
+                     CheckedChanged="Size_Changed" />
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <RadioButton Content="Fill"
+                     IsChecked="True"
+                     Value="Fill"
+                     GroupName="ButtonStyle"
+                     CheckedChanged="Style_Changed" />
+        <RadioButton Content="Outline"
+                     Value="Outline"
+                     GroupName="ButtonStyle"
+                     CheckedChanged="Style_Changed" />
+        <RadioButton Content="BorderLess"
+                     Value="BorderLess"
+                     GroupName="ButtonStyle"
+                     CheckedChanged="Style_Changed" />
+      </StackLayout>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0"
+               Text="IsDisabled"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Switch Grid.Column="1"
+                x:Name="isDisabled"
+                IsToggled="{Binding IsDisabled}"
+                Toggled="isDisabled_Toggled" />
+      </Grid>
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0"
+               Text="IsFullWidth"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Switch Grid.Column="1"
+                x:Name="IsFullWidth"
+                Toggled="FullWidthToggled" />
+      </Grid>
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

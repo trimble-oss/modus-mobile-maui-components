@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             HorizontalOptions="Start"
+             VerticalOptions="Start"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+             x:Class="Trimble.Modus.Components.TMChips">
+  <Border x:Name="frame"
+          HorizontalOptions="Start"
+          VerticalOptions="Center"
+          Stroke="Transparent">
+    <HorizontalStackLayout x:Name="chipContent"
+                           VerticalOptions="Center">
+      <Image x:Name="lefticon"
+             HeightRequest="24"
+             WidthRequest="24"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"/>
+      <Label x:Name="label"
+             VerticalTextAlignment="Center"
+             FontFamily="OpenSansSemibold"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"/>
+      <StackLayout>
+        <StackLayout.GestureRecognizers>
+          <TapGestureRecognizer Tapped="OnRightIconTapped"/>
+        </StackLayout.GestureRecognizers>
+        <Image x:Name="righticon"
+             Source="{Static constants:ImageConstants.CancelCircle}"
+             HeightRequest="24"
+             WidthRequest="24"
+             HorizontalOptions="Center"
+             VerticalOptions="Center"/>
+      </StackLayout>
+    </HorizontalStackLayout>
+  </Border>
+</ContentView>
