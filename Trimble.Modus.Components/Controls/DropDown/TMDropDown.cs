@@ -258,6 +258,10 @@ public class TMDropDown : ContentView
             }
         }
         created = true;
+#if WINDOWS
+        // FIXME: For windows the UI elements are populated every time it opens
+        created = false;
+#endif
         await Task.WhenAll(
             indicatorButton.RotateTo(-180, AnimationDuration)
         );
