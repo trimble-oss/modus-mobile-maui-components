@@ -184,76 +184,84 @@ public class TMDropDown : ContentView
         isVisible = false;
     }
 
+    bool created = false;
+    ListView listview;
+    PopupPage popup;
     private async void Open()
     {
-        var dataTemplate = new DataTemplate(() =>
+        if (!created)
         {
-            var customCell = new DropDownViewCell();
-            customCell.SetBinding(DropDownViewCell.TextProperty, ".");
-            return customCell;
-        });
-        var listview = new ListView() { ItemsSource = ItemsSource, RowHeight = 48, ItemTemplate = dataTemplate };
-        listview.ItemSelected += (sender, e) => OnSelected(sender, e, listview);
-        listview.SelectedItem = listview.ItemsSource.Cast<object>().ToList()[SelectedIndex];
-        Point offset = new Point(-1, 1);
-        if (DeviceInfo.Platform == DevicePlatform.iOS)
-        {
-            radius = 3;
-            offset = new Point(0, 2);
-        }
-        else if (DeviceInfo.Platform == DevicePlatform.WinUI)
-        {
-            radius = 3;
-        }
-
-        var _shadow = new Shadow
-        {
-            Brush = Colors.Black,
-            Radius = radius,
-            Opacity = 0.6F,
-            Offset = offset
-        };
-        var border = new Border()
-        {
-            Margin = margin,
-            Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DropDownListBorder),
-            BackgroundColor = Colors.White,
-            HorizontalOptions = LayoutOptions.Start,
-            VerticalOptions = LayoutOptions.Start,
-            StrokeThickness = 4,
-            Shadow = _shadow,
-            Padding = new Thickness(8),
-            WidthRequest = 240,
-            StrokeShape = new RoundRectangle
+            var dataTemplate = new DataTemplate(() =>
             {
-                CornerRadius = new CornerRadius(4)
-            },
-            Content = listview,
-            IsVisible = true
-        };
+                var customCell = new DropDownViewCell();
+                customCell.SetBinding(DropDownViewCell.TextProperty, ".");
+                return customCell;
+            });
+            listview = new ListView() { ItemsSource = ItemsSource, RowHeight = 48, ItemTemplate = dataTemplate };
+            listview.ItemSelected += (sender, e) => OnSelected(sender, e, listview);
+            listview.SelectedItem = listview.ItemsSource.Cast<object>().ToList()[SelectedIndex];
+            Point offset = new Point(-1, 1);
+            if (DeviceInfo.Platform == DevicePlatform.iOS)
+            {
+                radius = 3;
+                offset = new Point(0, 2);
+            }
+            else if (DeviceInfo.Platform == DevicePlatform.WinUI)
+            {
+                radius = 3;
+            }
 
-        border.HeightRequest = desiredHeight;
-        border.WidthRequest = WidthRequest;
-        var popup = new PopupPage(innerBorder.Content, Enums.ModalPosition.Bottom)
-        {
-            Content = border,
-            BackgroundColor = Colors.Transparent,
-            Animation = new RevealAnimation(desiredHeight),
-        };
-        var locationFetcher = new LocationFetcher();
-        var loc = locationFetcher.GetCoordinates(this);
-        var height = Application.Current.MainPage.Window.Height;
-        if (height - loc.Y < desiredHeight)
-        {
-            popup.Position = Enums.ModalPosition.Top;
-            border.Margin = new Thickness(0, -30, 0, 0);
+            var _shadow = new Shadow
+            {
+                Brush = Colors.Black,
+                Radius = radius,
+                Opacity = 0.6F,
+                Offset = offset
+            };
+            var border = new Border()
+            {
+                Margin = margin,
+                Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DropDownListBorder),
+                BackgroundColor = Colors.White,
+                HorizontalOptions = LayoutOptions.Start,
+                VerticalOptions = LayoutOptions.Start,
+                StrokeThickness = 4,
+                Shadow = _shadow,
+                Padding = new Thickness(8),
+                WidthRequest = 240,
+                StrokeShape = new RoundRectangle
+                {
+                    CornerRadius = new CornerRadius(4)
+                },
+                Content = listview,
+                IsVisible = true
+            };
+
+            border.HeightRequest = desiredHeight;
+            border.WidthRequest = WidthRequest;
+            popup = new PopupPage(innerBorder.Content, Enums.ModalPosition.Bottom)
+            {
+                Content = border,
+                BackgroundColor = Colors.Transparent,
+                Animation = new RevealAnimation(desiredHeight),
+            };
+            var locationFetcher = new LocationFetcher();
+            var loc = locationFetcher.GetCoordinates(this);
+            var height = Application.Current.MainPage.Window.Height;
+            if (height - loc.Y < desiredHeight)
+            {
+                popup.Position = Enums.ModalPosition.Top;
+                border.Margin = new Thickness(0, -30, 0, 0);
 #if WINDOWS
             border.Margin = new Thickness(-6,4,10,0);
 #endif
+            }
         }
+        created = true;
         await Task.WhenAll(
             indicatorButton.RotateTo(-180, AnimationDuration)
         );
+
         await PopupService.Instance?.PresentAsync(popup, true);
         if (count == 0)
         {
