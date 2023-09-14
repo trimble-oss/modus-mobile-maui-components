@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+             x:Class="Trimble.Modus.Components.TMDropDown">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <color:Colors />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Border
+      x:Name="innerBorder"
+      BackgroundColor="{x:StaticResource TrimbleBlue}"
+      HeightRequest="48"
+      WidthRequest="240"
+      HorizontalOptions="Start"
+      VerticalOptions="Start"
+      Padding="0">
+    <Border.StrokeShape>
+      <RoundRectangle CornerRadius="4"/>
+    </Border.StrokeShape>
+    <StackLayout Orientation="Horizontal" HorizontalOptions = "Center"
+            VerticalOptions = "Center">
+      <Label x:Name="label"
+             Text="DropDown"
+             FontSize="16"
+             HorizontalOptions="Center"
+             FontFamily="OpenSansSemibold"
+             TextColor="{x:StaticResource White}"
+             VerticalOptions="Center" />
+      <StackLayout x:Name="indicatorButton"
+                   Orientation="Horizontal"
+                   IsVisible="true"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Spacing="2">
+        <Image Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
+               HeightRequest="32"
+               WidthRequest="32"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+      </StackLayout>
+    </StackLayout>
+  </Border>
+</ContentView>

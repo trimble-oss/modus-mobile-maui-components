@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Controls.Shapes;
 using System.Collections;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
@@ -8,19 +8,19 @@ using Grid = Microsoft.Maui.Controls.Grid;
 using StackLayout = Microsoft.Maui.Controls.StackLayout;
 
 namespace Trimble.Modus.Components;
-public class TMDropDown : ContentView
+public partial class TMDropDown : ContentView
 {
     #region Private fields
     private double desiredHeight;
-    private Label label;
-    private Border innerBorder;
-    private StackLayout indicatorButton;
+    //private Label label;
+    //private Border innerBorder;
+    //private StackLayout indicatorButton;
     private bool isVisible;
     private int radius = 15;
     private IEnumerable items;
     private int count = 0;
 #if WINDOWS
-    private Thickness margin = new Thickness(-4, 166, 0,0);
+    private Thickness margin = new Thickness(-4, 166, 0, 0);
 
 #else
     private Thickness margin = new Thickness(0,112,0,0);
@@ -66,76 +66,9 @@ public class TMDropDown : ContentView
     public TMDropDown()
     {
         SelectedItems = new List<object> { };
-        label = new Label
-        {
-            Text = "DropDown",
-            FontSize = 16,
-            HorizontalOptions = LayoutOptions.Center,
-            FontFamily = "OpenSansSemibold",
-            TextColor = Colors.White,
-            VerticalOptions = LayoutOptions.Center
-        };
-        var chevronIcon = new Image
-        {
-            Source = ImageConstants.ChevronDownIconWhite,
-            HeightRequest = 32,
-            WidthRequest = 32,
-            HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center,
-        };
-        indicatorButton = new StackLayout()
-        {
-            Padding = new Thickness(0)
-        };
-        indicatorButton.Children.Add(chevronIcon);
-        var grid = new Grid
-        {
-            ColumnDefinitions = new ColumnDefinitionCollection
-            {
-                new ColumnDefinition { Width = GridLength.Star },
-                new ColumnDefinition { Width = GridLength.Auto }
-            },
-            RowDefinitions = new RowDefinitionCollection
-            {
-                new RowDefinition { Height = GridLength.Auto },
-            },
-            ColumnSpacing = 2,
-            HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center
-
-        };
-
-        grid.Add(label, 0, 0);
-        grid.Add(indicatorButton, 1, 0);
-        var stack = new StackLayout
-        {
-            Orientation = StackOrientation.Horizontal,
-            HorizontalOptions = LayoutOptions.Center,
-            VerticalOptions = LayoutOptions.Center,
-            Spacing = 2,
-        };
-        stack.Children.Add(label);
-        stack.Children.Add(indicatorButton);
-        innerBorder = new Border
-        {
-            Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue),
-            StrokeThickness = 4,
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue),
-            HeightRequest = 48,
-            WidthRequest = 240,
-            StrokeShape = new RoundRectangle
-            {
-                CornerRadius = new CornerRadius(4)
-            },
-            Content = stack,
-            HorizontalOptions = LayoutOptions.Start,
-            VerticalOptions = LayoutOptions.Start,
-
-            Padding = new Thickness(0)
-        };
+        InitializeComponent();
         var tapGestureRecognizer = new TapGestureRecognizer();
         tapGestureRecognizer.Tapped += OnTapped;
-
         innerBorder.GestureRecognizers.Add(tapGestureRecognizer);
         indicatorButton.GestureRecognizers.Add(tapGestureRecognizer);
         PopupService.Instance.Dismissed += OnPopupRemoved;
@@ -253,7 +186,7 @@ public class TMDropDown : ContentView
                 popup.Position = Enums.ModalPosition.Top;
                 border.Margin = new Thickness(0, -30, 0, 0);
 #if WINDOWS
-            border.Margin = new Thickness(-6,4,10,0);
+                border.Margin = new Thickness(-6, 4, 10, 0);
 #endif
             }
         }
