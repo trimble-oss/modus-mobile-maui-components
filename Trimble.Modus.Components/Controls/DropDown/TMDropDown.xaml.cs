@@ -121,11 +121,10 @@ public partial class TMDropDown : ContentView
     {
         if (!created)
         {
-            EventHandler<SelectedItemChangedEventArgs> eventHandler = OnSelected;
             var locationFetcher = new LocationFetcher();
             var loc = locationFetcher.GetCoordinates(this);
             var height = Application.Current.MainPage.Window.Height;
-            popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom, margin, ItemsSource, desiredHeight, WidthRequest, eventHandler, SelectedIndex, loc.Y, height);
+            popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom, margin, ItemsSource, desiredHeight, WidthRequest, OnSelected, SelectedIndex, loc.Y, height);
         }
         created = true;
 #if WINDOWS
