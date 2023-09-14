@@ -1,11 +1,8 @@
-using Microsoft.Maui.Controls.Shapes;
 using System.Collections;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Animations;
 using Trimble.Modus.Components.Popup.Services;
-using Grid = Microsoft.Maui.Controls.Grid;
-using StackLayout = Microsoft.Maui.Controls.StackLayout;
 
 namespace Trimble.Modus.Components;
 public partial class TMDropDown : ContentView
@@ -20,10 +17,10 @@ public partial class TMDropDown : ContentView
     private IEnumerable items;
     private int count = 0;
 #if WINDOWS
-    private Thickness margin = new Thickness(-4, 166, 0, 0);
+    private Thickness margin = new Thickness(0, 154, 0, 0);
 
 #else
-    private Thickness margin = new Thickness(0,112,0,0);
+    private Thickness margin = new Thickness(0,98,0,0);
 #endif
     private uint AnimationDuration { get; set; } = 250;
     #endregion
@@ -76,13 +73,13 @@ public partial class TMDropDown : ContentView
     }
     #endregion
     #region Private Methods
-    private void OnSelected(object sender, SelectedItemChangedEventArgs e, ListView list)
+    private void OnSelected(object sender, SelectedItemChangedEventArgs e)
     {
         if (SelectedItems != null)
         {
             SelectedItems.Clear();
             SelectedItems.Add(e.SelectedItem);
-            UpdateCellColor(list);
+            UpdateCellColor((ListView)sender);
         }
         label.Text = e.SelectedItem.ToString();
         if (count > 0 && PopupService.Instance.PopupStack.Count > 0)
@@ -124,71 +121,11 @@ public partial class TMDropDown : ContentView
     {
         if (!created)
         {
-            var dataTemplate = new DataTemplate(() =>
-            {
-                var customCell = new DropDownViewCell();
-                customCell.SetBinding(DropDownViewCell.TextProperty, ".");
-                return customCell;
-            });
-            listview = new ListView() { ItemsSource = ItemsSource, RowHeight = 48, ItemTemplate = dataTemplate };
-            listview.ItemSelected += (sender, e) => OnSelected(sender, e, listview);
-            listview.SelectedItem = listview.ItemsSource.Cast<object>().ToList()[SelectedIndex];
-            Point offset = new Point(-1, 1);
-            if (DeviceInfo.Platform == DevicePlatform.iOS)
-            {
-                radius = 3;
-                offset = new Point(0, 2);
-            }
-            else if (DeviceInfo.Platform == DevicePlatform.WinUI)
-            {
-                radius = 3;
-            }
-
-            var _shadow = new Shadow
-            {
-                Brush = Colors.Black,
-                Radius = radius,
-                Opacity = 0.6F,
-                Offset = offset
-            };
-            var border = new Border()
-            {
-                Margin = margin,
-                Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DropDownListBorder),
-                BackgroundColor = Colors.White,
-                HorizontalOptions = LayoutOptions.Start,
-                VerticalOptions = LayoutOptions.Start,
-                StrokeThickness = 4,
-                Shadow = _shadow,
-                Padding = new Thickness(8),
-                WidthRequest = 240,
-                StrokeShape = new RoundRectangle
-                {
-                    CornerRadius = new CornerRadius(4)
-                },
-                Content = listview,
-                IsVisible = true
-            };
-
-            border.HeightRequest = desiredHeight;
-            border.WidthRequest = WidthRequest;
-            popup = new PopupPage(innerBorder.Content, Enums.ModalPosition.Bottom)
-            {
-                Content = border,
-                BackgroundColor = Colors.Transparent,
-                Animation = new RevealAnimation(desiredHeight),
-            };
+            EventHandler<SelectedItemChangedEventArgs> eventHandler = OnSelected;
             var locationFetcher = new LocationFetcher();
             var loc = locationFetcher.GetCoordinates(this);
             var height = Application.Current.MainPage.Window.Height;
-            if (height - loc.Y < desiredHeight)
-            {
-                popup.Position = Enums.ModalPosition.Top;
-                border.Margin = new Thickness(0, -30, 0, 0);
-#if WINDOWS
-                border.Margin = new Thickness(-6, 4, 10, 0);
-#endif
-            }
+            popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom, margin, ItemsSource, desiredHeight, WidthRequest, eventHandler, SelectedIndex, loc.Y, height);
         }
         created = true;
 #if WINDOWS
@@ -262,16 +199,15 @@ public partial class TMDropDown : ContentView
             if (itemCount < 4)
             {
                 desiredHeight = itemCount * 56;
-                margin = new Thickness(0, ((itemCount - 1) * 56) - 14, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56) - 28, 10, 0);
 #if WINDOWS
-                margin = new Thickness(-6, ((itemCount - 1) * 56) + 42, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56) + 28, 10, 0);
 #endif
             }
         }
     }
     private void UpdateCellColor(ListView list)
     {
-
         foreach (var item in list.TemplatedItems)
         {
             if (item is DropDownViewCell textCell)

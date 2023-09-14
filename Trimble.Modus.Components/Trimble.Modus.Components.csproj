@@ -133,6 +133,9 @@
 	  <Compile Update="Controls\Button\TMButton.xaml.cs">
 	    <DependentUpon>TMButton.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
+	    <DependentUpon>DropDownContents.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
@@ -158,6 +161,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\DropDownContents.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\DropDown\TMDropDown.xaml">
