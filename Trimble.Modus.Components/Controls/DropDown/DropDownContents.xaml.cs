@@ -7,16 +7,14 @@ namespace Trimble.Modus.Components;
 
 public partial class DropDownContents : PopupPage
 {
-	public DropDownContents(View anchorView,Enums.ModalPosition position, Thickness margin,IEnumerable itemSource,double desiredHeight,double widthRequest,EventHandler<SelectedItemChangedEventArgs> eventHandler,int selectedIndex,double Y,double height): base(anchorView, position)
-	{
+    public DropDownContents(View anchorView, Enums.ModalPosition position, Thickness margin, double desiredHeight, double widthRequest, EventHandler<SelectedItemChangedEventArgs> eventHandler, int selectedIndex, double Y, double height) : base(anchorView, position)
+    {
         InitializeComponent();
         Animation = new RevealAnimation(desiredHeight);
         border.Margin = margin;
         border.HeightRequest = desiredHeight;
         border.WidthRequest = widthRequest;
-        listView.ItemsSource = itemSource;
         listView.ItemSelected += eventHandler;
-        listView.SelectedItem = itemSource?.Cast<object>()?.ToList()[selectedIndex];
         if (height - Y < desiredHeight)
         {
             this.Position = Enums.ModalPosition.Top;
@@ -24,6 +22,15 @@ public partial class DropDownContents : PopupPage
 #if WINDOWS
             border.Margin = new Thickness(0, 24, 10, 0);
 #endif
+        }
+        //listView.SelectedItem = value?.Cast<object>()?.ToList()[selectedIndex];
+    }
+
+    public IEnumerable ItemSource
+    {
+        set
+        {
+            listView.ItemsSource = value;
         }
     }
 }

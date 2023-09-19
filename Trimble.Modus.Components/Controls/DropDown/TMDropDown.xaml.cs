@@ -66,10 +66,10 @@ public partial class TMDropDown : ContentView
         InitializeComponent();
         var tapGestureRecognizer = new TapGestureRecognizer();
         tapGestureRecognizer.Tapped += OnTapped;
-        innerBorder.GestureRecognizers.Add(tapGestureRecognizer);
+        ContentLayout.GestureRecognizers.Add(tapGestureRecognizer);
         indicatorButton.GestureRecognizers.Add(tapGestureRecognizer);
         PopupService.Instance.Dismissed += OnPopupRemoved;
-        Content = innerBorder;
+        //Content = innerBorder;
     }
     #endregion
     #region Private Methods
@@ -115,7 +115,6 @@ public partial class TMDropDown : ContentView
     }
 
     bool created = false;
-    ListView listview;
     PopupPage popup;
     private async void Open()
     {
@@ -124,11 +123,15 @@ public partial class TMDropDown : ContentView
             var locationFetcher = new LocationFetcher();
             var loc = locationFetcher.GetCoordinates(this);
             var height = Application.Current.MainPage.Window.Height;
-            popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom, margin, ItemsSource, desiredHeight, WidthRequest, OnSelected, SelectedIndex, loc.Y, height);
+            popup = new DropDownContents(ContentLayout, Enums.ModalPosition.Bottom, margin, desiredHeight, ContentLayout.Width, OnSelected, SelectedIndex, loc.Y, height)
+            {
+                ItemSource = this.ItemsSource
+            };
         }
-        created = true;
-#if WINDOWS
-        // FIXME: For windows the UI elements are populated every time it opens
+
+#if WINDOWS || IOS
+        // FIXME: For windows and iOS the UI elements are populated every time it opens
+        // This is to fix the vertical position issue 
         created = false;
 #endif
         await Task.WhenAll(
@@ -136,12 +139,6 @@ public partial class TMDropDown : ContentView
         );
 
         await PopupService.Instance?.PresentAsync(popup, true);
-        if (count == 0)
-        {
-            var list = listview.ItemsSource.Cast<object>().ToList();
-            var item = list[SelectedIndex];
-            listview.SelectedItem = (object)item;
-        }
         count = 1;
     }
 
@@ -169,7 +166,7 @@ public partial class TMDropDown : ContentView
     {
         if (bindable is TMDropDown dropDown && dropDown != null)
         {
-            dropDown.innerBorder.WidthRequest = (double)newValue;
+            dropDown.ContentLayout.WidthRequest = (double)newValue;
         }
     }
 
