@@ -115,7 +115,7 @@ public partial class TMDropDown : ContentView
     }
 
     bool created = false;
-    PopupPage popup;
+    DropDownContents popup;
     private async void Open()
     {
         if (!created)
@@ -123,10 +123,18 @@ public partial class TMDropDown : ContentView
             var locationFetcher = new LocationFetcher();
             var loc = locationFetcher.GetCoordinates(this);
             var height = Application.Current.MainPage.Window.Height;
-            popup = new DropDownContents(ContentLayout, Enums.ModalPosition.Bottom, margin, desiredHeight, ContentLayout.Width, OnSelected, SelectedIndex, loc.Y, height)
+            popup = new DropDownContents(ContentLayout, Enums.ModalPosition.Bottom)
             {
-                ItemSource = this.ItemsSource
+                ItemSource = this.ItemsSource,
+                SelectedIndex = this.SelectedIndex,
+                Margin = margin,
+                DesiredHeight = desiredHeight,
+                WidthRequest = ContentLayout.Width,
+                SelectedEventHandler = OnSelected,
+                YPosition = loc.Y,
+                Height = height
             };
+            popup.Build();
         }
 
 #if WINDOWS || IOS
