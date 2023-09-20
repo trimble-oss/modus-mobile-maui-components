@@ -37,6 +37,7 @@
                            ShowToolTip="{Binding ShowTooltip}"
                            IsEnabled="{Binding IsEnabled}"
                            StepValue="1"
+                           TickValue="10"
                            RightIconSource="placeholder.png"
                            LeftIconSource="placeholder.png"
                            Padding="0,15" />
@@ -47,6 +48,7 @@
                       ShowToolTip="{Binding ShowTooltip}"
                       IsEnabled="{Binding IsEnabled}"
                       StepValue="1"
+                      TickValue="1"
                       RightIconSource="placeholder.png"
                       LeftIconSource="placeholder.png"
                       Padding="0,15" />
