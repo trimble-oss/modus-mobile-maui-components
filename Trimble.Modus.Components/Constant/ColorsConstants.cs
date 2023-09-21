@@ -36,11 +36,13 @@ internal class ColorsConstants
     public const string ModalShadowColor = "ModalShadowColor";
     public const string TableHeaderColor = "TableHeaderColor";
     public const string TableDividerColor = "TableDividerColor";
-    public const string TableHeaderTextColor = "TableHeaderTextColor";
+    public const string TrimbleGray8 = "TrimbleGray8";
+    public const string TrimbleGray3 = "TrimbleGray3";
     public const string ChipSelectedBackground = "ChipSelectedBackground";
     public const string TrimbleNeutralGray = "TrimbleNeutralGray";
-    public const string AccordionTitleColor = "AccordionTitleColor";
     public const string AccordionDescriptionColor = "AccordionDescriptionColor";
+    public const string BlueLightColor = "BlueLightColor";
+    public const string SliderThumbBorderDisabledColor = "SliderThumbBorderDisabledColor";
     public const string SwitchSelected = "SwitchSelected";
     public const string SwitchUnselected = "SwitchUnselected";
     public const string DropDownListBorder = "DropDownListBorder"; 

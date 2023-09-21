@@ -18,6 +18,7 @@ namespace DemoApp
                 "CheckBox",
                 "Chips",
                 "DataGrid",
+                "Display Alert",
                 "DropDown",
                 "Input",
                 "MultiLineInput",
@@ -28,11 +29,11 @@ namespace DemoApp
                 "ProgressBar",
                 "RadioButton",
                 "SegmentedControl",
+                "Slider",
                 "Spinner",
                 "Switch",
                 "TabbedPage",
                 "Toast"
-
             };
             BindingContext = this;
         }
@@ -99,8 +100,14 @@ namespace DemoApp
                     case "Chips":
                         Navigation.PushAsync(new ChipsSamplePage());
                         break;
+                    case "Slider":
+                        Navigation.PushAsync(new SliderSamplePage());
+                        break; 
                     case "Switch":
                         Navigation.PushAsync(new SwitchSamplePage());
+                        break;
+                    case "Display Alert":
+                        Navigation.PushAsync(new DisplayAlertSamplePage());
                         break;
                     case "DropDown":
                         Navigation.PushAsync(new DropDownSamplePage());
