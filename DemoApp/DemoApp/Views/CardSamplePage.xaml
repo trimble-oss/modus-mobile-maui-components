@@ -91,7 +91,7 @@
           <StackLayout BackgroundColor="Transparent"
                        HorizontalOptions="End"
                        Padding="0,10,0,10">
-            <modus:TMButton Title="Button"></modus:TMButton>
+            <modus:TMButton Text="Button"></modus:TMButton>
           </StackLayout>
         </StackLayout>
       </modus:TMCard>
@@ -124,7 +124,7 @@
           <!-- Footer -->
           <StackLayout BackgroundColor="Transparent"
                        Padding="0,10,0,10">
-            <modus:TMButton Title="Button"
+            <modus:TMButton Text="Button"
                     HorizontalOptions="FillAndExpand" />
           </StackLayout>
         </StackLayout>
@@ -172,10 +172,10 @@
           <StackLayout BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="15">
-            <modus:TMButton Title="Button"
+            <modus:TMButton Text="Button"
                             ButtonStyle="Outline">
             </modus:TMButton>
-            <modus:TMButton Title="Button"
+            <modus:TMButton Text="Button"
                             ButtonStyle="Fill"></modus:TMButton>
 
           </StackLayout>
@@ -229,10 +229,10 @@
                        BackgroundColor="Transparent"
                        Orientation="Horizontal"
                        Spacing="15">
-            <modus:TMButton Title="Button"
+            <modus:TMButton Text="Button"
                             ButtonStyle="Outline">
             </modus:TMButton>
-            <modus:TMButton Title="Button"
+            <modus:TMButton Text="Button"
                             ButtonStyle="Fill"></modus:TMButton>
 
           </StackLayout>

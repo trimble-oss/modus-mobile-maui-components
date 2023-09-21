@@ -87,7 +87,7 @@
                        Grid.Row="4"
                        TitleText="Danger Button Title" />
       </Grid>
-      <modus:TMButton Title="Show Modal"
+      <modus:TMButton Text="Show Modal"
                       Clicked="ShowModalClicked"
                            Size="Default"
                            HorizontalOptions="Center"

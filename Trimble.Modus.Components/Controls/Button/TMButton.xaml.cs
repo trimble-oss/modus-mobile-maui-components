@@ -21,8 +21,8 @@ public partial class TMButton : ContentView
 
     #region Bindable Properties
 
-    public static readonly BindableProperty TitleProperty =
-        BindableProperty.Create(nameof(Title), typeof(string), typeof(TMButton));
+    public static readonly BindableProperty TextProperty =
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(TMButton));
 
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMButton));
@@ -84,10 +84,10 @@ public partial class TMButton : ContentView
         get => (ButtonColor)GetValue(ButtonColorProperty);
         set => SetValue(ButtonColorProperty, value);
     }
-    public string Title
+    public string Text
     {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
     public ImageSource LeftIconSource
     {
@@ -247,7 +247,7 @@ public partial class TMButton : ContentView
         }
         else
         {
-            if (tmButton.Title != null)
+            if (tmButton.Text != null)
             {
                 tmButton.buttonStackLayout.Padding = new Thickness(16, 0);
             }

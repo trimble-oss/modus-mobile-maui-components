@@ -6,7 +6,7 @@
              BackgroundColor="White"
              x:Class="DemoApp.Views.TabViewItems.TabViewThree">
   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <modus:TMButton Clicked="TMButtonClicked" Title="Navigate to Button Page"/>
+    <modus:TMButton Clicked="TMButtonClicked" Text="Navigate to Button Page"/>
   </StackLayout>
 </ContentView>
 

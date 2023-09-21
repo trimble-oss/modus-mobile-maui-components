@@ -14,7 +14,7 @@
       <StackLayout Orientation="Vertical"
                    Spacing="10">
         <modus:TMFloatingButton x:Name="floatingTextWithLeftIconButton"
-                               Title="Floating Button"
+                               Text="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
                                ButtonColor="Primary"
                                LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
@@ -23,7 +23,7 @@
                                CommandParameter="Button5" />
 
         <modus:TMFloatingButton x:Name="floatingTextWithRightIconButton"
-                               Title="Floating Button"
+                               Text="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
                                ButtonColor="Primary"
                                Size="{Binding SelectedFontSize}"
@@ -48,7 +48,7 @@
                                Command="{Binding MyCommand}"
                                CommandParameter="Button5" />
         <modus:TMFloatingButton x:Name="floatingTextWithSecondaryLeftIconButton"
-                               Title="Floating Button"
+                               Text="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
                                ButtonColor="Secondary"
                                LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
@@ -57,7 +57,7 @@
                                CommandParameter="Button5" />
 
         <modus:TMFloatingButton x:Name="floatingTextWithSecondaryRightIconButton"
-                               Title="Floating Button"
+                               Text="Floating Button"
                                IsDisabled="{Binding IsDisabled}"
                                ButtonColor="Secondary"
                                Size="{Binding SelectedFontSize}"
@@ -86,7 +86,7 @@
       <StackLayout Orientation="Vertical"
                    Spacing="10">
         <modus:TMButton x:Name="primaryleftIconButton"
-                               Title="Primary"
+                               Text="Primary"
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Primary"
                                LeftIconSource="{Binding LeftIconSource}"
@@ -97,7 +97,7 @@
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                CommandParameter="Button5" />
         <modus:TMButton x:Name="secondaryBothIconButton"
-                               Title="Secondary"
+                               Text="Secondary"
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Secondary"
                                Size="{Binding SelectedFontSize}"
@@ -109,7 +109,7 @@
                                CommandParameter="Button5" />
         <StackLayout Orientation="Horizontal">
           <modus:TMButton x:Name="tertiaryLeftIconButton"
-                                 Title="Tertiary"
+                                 Text="Tertiary"
                                  HorizontalOptions="{Binding FullWidthAlignment}"
                                  ButtonColor="Tertiary"
                                  Size="{Binding SelectedFontSize}"
@@ -120,7 +120,7 @@
                                  Command="{Binding MyCommand}"
                                  CommandParameter="Button5" />
           <modus:TMButton x:Name="dangerRightIconButton"
-                                 Title="Danger"
+                                 Text="Danger"
                                  HorizontalOptions="{Binding FullWidthAlignment}"
                                  LeftIconSource="{Binding LeftIconSource}"
                                  RightIconSource="{Binding RightIconSource}"

@@ -203,7 +203,7 @@ public partial class TMModalContents
         }
         if (_dangerButtonAdded)
         {
-            _dangerButton.Title = title;
+            _dangerButton.Text = title;
             DangerButtonClicked = clickAction;
         }
         else
@@ -299,7 +299,7 @@ public partial class TMModalContents
         {
             _primaryButton = new TMButton
             {
-                Title = primaryText,
+                Text = primaryText,
                 Size = Enums.Size.Small,
                 ButtonColor = ButtonColor.Primary,
                 HorizontalOptions = FullWidthButton ? LayoutOptions.FillAndExpand : LayoutOptions.Start
@@ -332,7 +332,7 @@ public partial class TMModalContents
         {
             _secondaryButton = new TMButton
             {
-                Title = secondaryText,
+                Text = secondaryText,
                 ButtonColor = ButtonColor.Secondary,
                 ButtonStyle = ButtonStyle.Outline,
                 Size = Enums.Size.Small,
@@ -367,7 +367,7 @@ public partial class TMModalContents
         {
             _tertiaryButton = new TMButton
             {
-                Title = tertiaryText,
+                Text = tertiaryText,
                 ButtonColor = ButtonColor.Tertiary,
                 ButtonStyle = ButtonStyle.BorderLess,
                 Size = Enums.Size.Small,
@@ -403,7 +403,7 @@ public partial class TMModalContents
         {
             _dangerButton = new TMButton
             {
-                Title = destructiveText,
+                Text = destructiveText,
                 ButtonColor = ButtonColor.Danger,
                 Size = Enums.Size.Small,
                 HorizontalOptions = FullWidthButton ? LayoutOptions.FillAndExpand : LayoutOptions.Start
