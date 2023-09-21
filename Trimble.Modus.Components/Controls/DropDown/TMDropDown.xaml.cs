@@ -129,7 +129,7 @@ public partial class TMDropDown : ContentView
                 SelectedIndex = this.SelectedIndex,
                 Margin = margin,
                 DesiredHeight = desiredHeight,
-                WidthRequest = ContentLayout.Width,
+                WidthRequest = innerBorder.Width,
                 SelectedEventHandler = OnSelected,
                 YPosition = loc.Y,
                 Height = height
@@ -174,7 +174,7 @@ public partial class TMDropDown : ContentView
     {
         if (bindable is TMDropDown dropDown && dropDown != null)
         {
-            dropDown.ContentLayout.WidthRequest = (double)newValue;
+            dropDown.innerBorder.WidthRequest = (double)newValue;
         }
     }
 
