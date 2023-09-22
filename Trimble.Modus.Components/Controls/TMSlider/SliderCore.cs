@@ -399,12 +399,15 @@ namespace Trimble.Modus.Components.Controls
         #region Private Methods
         private static object TickCoerceValue(BindableObject bindable, object value)
         {
-            var slider = (bindable as TMSlider);
             return CoerceValue((double)value);
 
         }
         private static object CoerceValue(double value)
         {
+            if (value < 0)
+            {
+                return 0;
+            }
             if (value < 1 && value > 0)
             {
                 return 1;
@@ -415,7 +418,7 @@ namespace Trimble.Modus.Components.Controls
             }
             else
             {
-                return 0;
+                return value;
             }
         }
         #endregion
