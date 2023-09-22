@@ -19,7 +19,7 @@
                      Keyboard="Numeric"
                      Text="0"/>
       <modus:TMButton x:Name="SetMinValue"
-                      Title="Set Min Value"
+                      Text="Set Min Value"
                       Clicked="SetMinValueClicked"
                       VerticalOptions="End"
                       Padding="0,5,0,0"/>
@@ -31,7 +31,7 @@
                      Keyboard="Numeric"
                      Text="100"/>
       <modus:TMButton x:Name="SetMaxValue"
-                      Title="Set Max Value"
+                      Text="Set Max Value"
                       Clicked="SetMaxValueClicked"
                       VerticalOptions="End"
                       Padding="0,5,0,0"/>
@@ -43,7 +43,7 @@
                      Keyboard="Numeric"
                      Text="0"/>
       <modus:TMButton x:Name="SetValue"
-                      Title="Set Value"
+                      Text="Set Value"
                       Clicked="SetValueClicked"
                       VerticalOptions="End"
                       Padding="0,5,0,0"/>
@@ -55,13 +55,13 @@
                      Keyboard="Numeric"
                      Text="1"/>
       <modus:TMButton x:Name="SetStepValue"
-                      Title="Set Step Value"
+                      Text="Set Step Value"
                       Clicked="SetStepValueClicked"
                       VerticalOptions="End"
                       Padding="0,5,0,0"/>
     </HorizontalStackLayout>
     <modus:TMButton x:Name="ShowValue"
-                    Title="Show Value"
+                    Text="Show Value"
                     Clicked="ShowValueClicked"
                     Padding="0,5,0,0"/>
     <Label x:Name="ValueChange" />

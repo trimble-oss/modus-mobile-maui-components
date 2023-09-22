@@ -48,7 +48,7 @@
       </modus:TMButton.Behaviors>
     </modus:TMButton>
     <modus:TMButton x:Name="CenterButton" 
-                    Title="Custom Popup"
+                    Text="Custom Popup"
                     AbsoluteLayout.LayoutBounds="125,325" >
       <modus:TMButton.Behaviors>
         <toolkit:EventToCommandBehavior
