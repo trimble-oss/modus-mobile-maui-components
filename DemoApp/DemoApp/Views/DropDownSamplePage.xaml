@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="http://modus.trimble.com/components"
+             x:Class="DemoApp.Views.DropDownSamplePage"
+             Title="DropDownSamplePage">
+  <StackLayout HorizontalOptions="Start" Padding="10" Spacing="20">
+
+    <Label Text="Equipment Type:"/>
+    <modus:TMDropDown ItemsSource="{Binding DropdownSource}"
+                      SelectedIndex="{Binding SelectedIndex}"
+                      WidthRequest="250"/>
+    <Label Text="Color"/>
+    <modus:TMDropDown ItemsSource="{Binding ColorSource}" />
+
+  </StackLayout>
+</ContentPage>

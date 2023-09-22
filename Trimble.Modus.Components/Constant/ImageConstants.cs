@@ -28,5 +28,6 @@ namespace Trimble.Modus.Components.Constant
         public const string CancelCircle = "cancel_circle.png";
         public const string ChevronDownIcon = "chevron_down_icon.png";
         public const string SliderThumbIcon = "slider_thumb.png";
+        public const string ChevronDownIconWhite = "chevron_down_icon_white.png";
     }
 }

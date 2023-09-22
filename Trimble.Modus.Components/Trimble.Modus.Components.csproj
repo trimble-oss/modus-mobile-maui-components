@@ -88,6 +88,7 @@
 	  <None Remove="Images\cancel_circle.svg" />
 	  <None Remove="Images\check.svg" />
 	  <None Remove="Images\slider_thumb.svg" />
+	  <None Remove="Images\chevron_down_icon_white.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
@@ -95,6 +96,7 @@
 	  <MauiImage Include="Images\caret_down_bold.svg" />
 	  <MauiImage Include="Images\check.svg" />
 	  <MauiImage Include="Images\chevron_down_icon.svg" />
+	  <MauiImage Include="Images\chevron_down_icon_white.svg" />
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\slider_thumb.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
@@ -133,6 +135,9 @@
 	  <Compile Update="Controls\Button\TMButton.xaml.cs">
 	    <DependentUpon>TMButton.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
+	    <DependentUpon>DropDownContents.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
@@ -161,6 +166,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\DropDownContents.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\TMDropDown.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">

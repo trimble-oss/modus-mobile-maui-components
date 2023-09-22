@@ -45,4 +45,6 @@ internal class ColorsConstants
     public const string SliderThumbBorderDisabledColor = "SliderThumbBorderDisabledColor";
     public const string SwitchSelected = "SwitchSelected";
     public const string SwitchUnselected = "SwitchUnselected";
+    public const string DropDownListBorder = "DropDownListBorder"; 
+    public const string DropDownItemSelected = "DropDownItemSelected";
 }

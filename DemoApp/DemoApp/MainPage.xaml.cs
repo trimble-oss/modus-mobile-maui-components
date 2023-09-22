@@ -19,6 +19,7 @@ namespace DemoApp
                 "Chips",
                 "DataGrid",
                 "Display Alert",
+                "DropDown",
                 "Input",
                 "MultiLineInput",
                 "NumberInput",
@@ -107,6 +108,9 @@ namespace DemoApp
                         break;
                     case "Display Alert":
                         Navigation.PushAsync(new DisplayAlertSamplePage());
+                        break;
+                    case "DropDown":
+                        Navigation.PushAsync(new DropDownSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
