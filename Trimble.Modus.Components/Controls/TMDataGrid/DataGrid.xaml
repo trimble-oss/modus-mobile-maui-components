@@ -19,7 +19,7 @@
         <Setter Property="VerticalOptions"
                 Value="Center" />
         <Setter Property="TextColor"
-                Value="{x:StaticResource TableHeaderTextColor}" />
+                Value="{x:StaticResource TrimbleGray}" />
         <Setter Property="LineBreakMode"
                 Value="WordWrap" />
         <Setter Property="Padding"
