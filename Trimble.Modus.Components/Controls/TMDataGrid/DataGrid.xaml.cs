@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.DataGridControl;
 using Trimble.Modus.Components.Helpers;
@@ -136,28 +135,9 @@ public partial class DataGrid
     /// <param name="sortData">Contains the column index and sorting order</param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    private IList<object> GetSortedItems(IEnumerable<object> unsortedItems, DataGridSortInfo sortData)
+    private IList<object> GetSortedItems(IList<object> unsortedItems, DataGridSortInfo sortData)
     {
         var columnToSort = Columns[sortData.Index];
-
-        IList<object> items;
-
-        switch (sortData.Order)
-        {
-            case SortingOrder.Ascendant:
-                items = unsortedItems.OrderBy(x => ReflectionUtils.GetValueByPath(x, columnToSort.PropertyName)).ToList();
-                _ = columnToSort.SortingIcon.RotateTo(0, 300, easing: Easing.Linear);
-                break;
-            case SortingOrder.Descendant:
-                items = unsortedItems.OrderByDescending(x => ReflectionUtils.GetValueByPath(x, columnToSort.PropertyName)).ToList();
-                _ = columnToSort.SortingIcon.RotateTo(180, 300, easing: Easing.Linear);
-                break;
-            case SortingOrder.None:
-                items = unsortedItems.ToList();
-                break;
-            default:
-                throw new NotImplementedException();
-        }
 
         foreach (var column in Columns)
         {
@@ -172,8 +152,25 @@ public partial class DataGrid
                 column.SortingIconContainer.IsVisible = false;
             }
         }
+        IEnumerable<object> items;
 
-        return items;
+        switch (sortData.Order)
+        {
+            case SortingOrder.Ascendant:
+                items = unsortedItems.OrderBy(x => ReflectionUtils.GetValueByPath(x, columnToSort.PropertyName)).ToList();
+                _ = columnToSort.SortingIcon.RotateTo(0, 300, easing: Easing.Linear);
+                break;
+            case SortingOrder.Descendant:
+                items = unsortedItems.OrderByDescending(x => ReflectionUtils.GetValueByPath(x, columnToSort.PropertyName)).ToList();
+                _ = columnToSort.SortingIcon.RotateTo(180, 300, easing: Easing.Linear);
+                break;
+            case SortingOrder.None:
+                return unsortedItems;
+            default:
+                throw new NotImplementedException();
+        }
+
+        return items.ToList();
     }
 
     private void SortColumn(DataGridSortInfo? sortData = null)
@@ -189,7 +186,7 @@ public partial class DataGrid
 
         IList<object> sortedItems;
 
-        if (CanSort(sortData))
+        if (sortData != null && CanSort(sortData))
         {
             sortedItems = GetSortedItems(originalItems, sortData);
         }
@@ -232,7 +229,10 @@ public partial class DataGrid
     {
         var self = (DataGrid)bindable;
         var sortData = (DataGridSortInfo)value;
-
+        if (!self.IsLoaded)
+        {
+            return true;
+        }
         return (self.CanSort(sortData));
     }
     private static void OnColumnSortingInfoChanged(BindableObject bindable, object oldValue, object newValue)
@@ -377,14 +377,12 @@ public partial class DataGrid
 
     private void HandleItemsSourceCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if (sender is IEnumerable items)
+        SortColumn();
+
+        if (SelectedItem != null && InternalItems?.Contains(SelectedItem) != true)
         {
-            InternalItems = items.Cast<object>().ToList();
-            if (SelectedItem != null && !InternalItems.Contains(SelectedItem) || SelectedItems.Count > 0)
-            {
-                SelectedItem = null;
-                SelectedItems.Clear();
-            }
+            SelectedItem = null;
+            SelectedItems.Clear();
         }
     }
 
@@ -416,9 +414,11 @@ public partial class DataGrid
         get => _internalItems;
         set
         {
-            _internalItems = value;
-
-            _collectionView.ItemsSource = _internalItems;
+            if (_internalItems != value)
+            {
+                _internalItems = value;
+                _collectionView.ItemsSource = _internalItems;
+            }
         }
     }
 
@@ -496,32 +496,26 @@ public partial class DataGrid
 
         if (SelectionMode != SelectionMode.None)
         {
-            if (Parent is null)
-            {
-                _collectionView.SelectionChanged -= OnSelectionChanged;
-            }
-            else
-            {
-                _collectionView.SelectionChanged += OnSelectionChanged;
-            }
+            _collectionView.SelectionChanged -= OnSelectionChanged;
+            _collectionView.SelectionChanged += OnSelectionChanged;
         }
 
-        if (Parent is null)
-        {
-            Columns.CollectionChanged -= OnColumnsChanged;
-
-            foreach (var column in Columns)
-            {
-                column.SizeChanged -= OnColumnSizeChanged;
-            }
-        }
-        else
+        if (Parent != null)
         {
             Columns.CollectionChanged += OnColumnsChanged;
 
             foreach (var column in Columns)
             {
                 column.SizeChanged += OnColumnSizeChanged;
+            }
+        }
+        else
+        {
+            Columns.CollectionChanged -= OnColumnsChanged;
+
+            foreach (var column in Columns)
+            {
+                column.SizeChanged -= OnColumnSizeChanged;
             }
         }
     }
@@ -573,51 +567,51 @@ public partial class DataGrid
     {
         column.HeaderLabel.Style = _defaultHeaderStyle;
         Grid.SetColumnSpan(column.HeaderLabel, 2);
-        if (IsSortable && column.SortingEnabled && column.IsSortable(this))
+        if (!IsSortable || !column.SortingEnabled || !column.IsSortable(this))
         {
-            column.SortingIconContainer.HeightRequest = 32;
-            column.SortingIconContainer.WidthRequest = 32;
-
-            var grid = new Grid
+            return new ContentView
             {
-                ColumnSpacing = 0,
-                Padding = new(0, 0, 0, 0),
-                ColumnDefinitions = HeaderColumnDefinitions,
-                Children = { column.HeaderLabel, column.SortingIconContainer },
-                GestureRecognizers =
-                {
-                    new TapGestureRecognizer
-                    {
-                        Command = new Command(() =>
-                        {
-                            var order = SortingOrder.None;
-                            switch (column.SortingOrder)
-                            {
-                                case SortingOrder.None:
-                                    order = SortingOrder.Ascendant;
-                                    break;
-                                case SortingOrder.Ascendant:
-                                    order = SortingOrder.Descendant;
-                                    break;
-                                case SortingOrder.Descendant:
-                                    order = SortingOrder.None;
-                                    break;
-                            }
-
-                            ColumnSortingInfo = new(index, order);
-                        }, () => column.SortingEnabled)
-                    }
-                }
+                Content = column.HeaderLabel
             };
-
-            Grid.SetColumn(column.SortingIconContainer, 1);
-            return grid;
         }
+        column.SortingIconContainer.HeightRequest = 32;
+        column.SortingIconContainer.WidthRequest = 32;
 
-        return new ContentView
+        var grid = new Grid
         {
-            Content = column.HeaderLabel
+            ColumnSpacing = 0,
+            Padding = new(0, 0, 0, 0),
+            ColumnDefinitions = HeaderColumnDefinitions,
+            Children = { column.HeaderLabel, column.SortingIconContainer },
+            GestureRecognizers =
+            {
+                new TapGestureRecognizer
+                {
+                    Command = new Command(() =>
+                    {
+                        var order = SortingOrder.None;
+                        switch (column.SortingOrder)
+                        {
+                            case SortingOrder.None:
+                                order = SortingOrder.Ascendant;
+                                break;
+                            case SortingOrder.Ascendant:
+                                order = SortingOrder.Descendant;
+                                break;
+                            case SortingOrder.Descendant:
+                                order = SortingOrder.None;
+                                break;
+                        }
+
+                        ColumnSortingInfo = new(index, order);
+                        column.SortingOrder = order;
+                    }, () => column.SortingEnabled)
+                }
+            }
         };
+
+        Grid.SetColumn(column.SortingIconContainer, 1);
+        return grid;
     }
 
     /// <summary>
@@ -644,6 +638,8 @@ public partial class DataGrid
             var col = Columns[i];
 
             col.ColumnDefinition ??= new(col.Width);
+
+            col.DataGrid ??= this;
 
             _headerView.ColumnDefinitions.Add(col.ColumnDefinition);
 
