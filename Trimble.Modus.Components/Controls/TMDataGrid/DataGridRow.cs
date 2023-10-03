@@ -10,6 +10,7 @@ internal sealed class DataGridRow : Grid
     private Color? _bgColor;
     private readonly Color? _textColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
     private bool _hasSelected;
+    private List<int> SelectedIndexes = new List<int>();
 
     #endregion Fields
 
@@ -47,8 +48,6 @@ internal sealed class DataGridRow : Grid
     /// </summary>
     private void CreateView()
     {
-        //if (Children.Count > 0)
-        //    return;
         ColumnDefinitions.Clear();
         Children.Clear();
 
@@ -161,7 +160,7 @@ internal sealed class DataGridRow : Grid
             return;
         }
 
-        _bgColor = DataGrid.SelectionMode != SelectionMode.None && _hasSelected
+        _bgColor = (DataGrid.SelectionMode != SelectionMode.None && _hasSelected && SelectedIndexes.Contains(rowIndex))
                 ? DataGrid.ActiveRowColor
                 : Colors.White;
         foreach (var v in Children)
@@ -197,6 +196,10 @@ internal sealed class DataGridRow : Grid
         {
             DataGrid.ItemSelected -= DataGrid_ItemSelected;
         }
+        else
+        {
+            DataGrid.ItemSelected += DataGrid_ItemSelected;
+        }
     }
     private int GetRowIndex()
     {
@@ -220,17 +223,19 @@ internal sealed class DataGridRow : Grid
             if (deselectedItem == BindingContext)
             {
                 _hasSelected = false;
+                SelectedIndexes.Remove(GetRowIndex());
                 UpdateBackgroundColor();
                 return;
             }
         }
         if (_hasSelected || (e.CurrentSelection.Count > 0))
         {
-            foreach(var item in e.CurrentSelection)
+            foreach (var item in e.CurrentSelection)
             {
                 if (item == BindingContext)
                 {
                     _hasSelected = true;
+                    SelectedIndexes.Add(GetRowIndex());
                     UpdateBackgroundColor();
                     return;
                 }
