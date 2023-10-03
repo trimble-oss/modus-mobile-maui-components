@@ -9,7 +9,6 @@ internal sealed class DataGridRow : Grid
 
     private Color? _bgColor;
     private readonly Color? _textColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-    private bool _hasSelected;
     private List<int> SelectedIndexes = new List<int>();
 
     #endregion Fields
@@ -160,7 +159,7 @@ internal sealed class DataGridRow : Grid
             return;
         }
 
-        _bgColor = (DataGrid.SelectionMode != SelectionMode.None && _hasSelected && SelectedIndexes.Contains(rowIndex))
+        _bgColor = (DataGrid.SelectionMode != SelectionMode.None && SelectedIndexes.Contains(rowIndex))
                 ? DataGrid.ActiveRowColor
                 : Colors.White;
         foreach (var v in Children)
@@ -213,6 +212,7 @@ internal sealed class DataGridRow : Grid
     /// <param name="e"></param>
     private void DataGrid_ItemSelected(object? sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
+        var rowIndex = GetRowIndex();
         if (DataGrid.SelectionMode == SelectionMode.None)
         {
             return;
@@ -222,20 +222,18 @@ internal sealed class DataGridRow : Grid
         {
             if (deselectedItem == BindingContext)
             {
-                _hasSelected = false;
-                SelectedIndexes.Remove(GetRowIndex());
+                SelectedIndexes.Remove(rowIndex);
                 UpdateBackgroundColor();
                 return;
             }
         }
-        if (_hasSelected || (e.CurrentSelection.Count > 0))
+        if (!SelectedIndexes.Contains(rowIndex) && (e.CurrentSelection.Count > 0))
         {
             foreach (var item in e.CurrentSelection)
             {
                 if (item == BindingContext)
                 {
-                    _hasSelected = true;
-                    SelectedIndexes.Add(GetRowIndex());
+                    SelectedIndexes.Add(rowIndex);
                     UpdateBackgroundColor();
                     return;
                 }
