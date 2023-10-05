@@ -5,7 +5,7 @@
        xmlns:local="clr-namespace:Trimble.Modus.Components"
        xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
        xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
-       BackgroundColor="Transparent"
+       BackgroundColor="{StaticResource Transparent}"
        StrokeThickness="0"
        x:Name="ItemContainer"
        Padding="0">
@@ -47,7 +47,7 @@
         <Label.Style>
           <Style TargetType="Label">
             <Setter Property="TextColor"
-                  Value="Black" />
+                    Value="{StaticResource Gray9}" />
             <Style.Triggers>
               <DataTrigger TargetType="Label"
                          Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
@@ -59,7 +59,7 @@
                          Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
                          Value="False">
                 <Setter Property="TextColor"
-                      Value="Black" />
+                        Value="{StaticResource Gray9}" />
               </DataTrigger>
             </Style.Triggers>
           </Style>
@@ -71,7 +71,7 @@
              HorizontalOptions="Start"
              IsVisible="{Binding Source={x:Reference ItemContainer}, Path=ShowSeparator}"
              Margin="0,8"
-             Color="{x:StaticResource TertiaryButtonClicked}"
+             Color="{x:StaticResource Gray2}"
              VerticalOptions="FillAndExpand"
              WidthRequest="1.4" />
   </Grid>

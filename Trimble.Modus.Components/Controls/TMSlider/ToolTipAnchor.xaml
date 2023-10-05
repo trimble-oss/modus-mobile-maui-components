@@ -10,5 +10,12 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentView.Resources>
-  <Polygon Points="{OnIdiom '0 32,15 15,30 32',Phone='0,30 15,15 30,30'}" Fill="{x:StaticResource TrimbleNeutralGray}" StrokeThickness="1" Stroke="{x:StaticResource TrimbleNeutralGray}" StrokeLineJoin="Miter" ScaleX="0.4" ScaleY="0.4" TranslationY="13"/>
+  <Polygon Points="{OnIdiom '0 32,15 15,30 32',Phone='0,30 15,15 30,30'}"
+           Fill="{x:StaticResource Gray7}"
+           StrokeThickness="1"
+           Stroke="{x:StaticResource Gray7}"
+           StrokeLineJoin="Miter"
+           ScaleX="0.4"
+           ScaleY="0.4"
+           TranslationY="13" />
 </ContentView>

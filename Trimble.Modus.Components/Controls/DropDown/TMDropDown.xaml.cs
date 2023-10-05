@@ -222,7 +222,7 @@ public partial class TMDropDown : ContentView
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(Colors.White, false);
+                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White), false);
                 }
             }
         }

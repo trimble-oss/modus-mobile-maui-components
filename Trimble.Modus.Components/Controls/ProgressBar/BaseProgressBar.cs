@@ -81,7 +81,7 @@ internal class BaseProgressBar : SKCanvasView
             Style = SKPaintStyle.StrokeAndFill,
             StrokeWidth = 5,
             IsStroke = true,
-            Color = Helpers.ResourcesDictionary.ColorsDictionary(Constant.ColorsConstants.TrimbleNeutralGray).ToSKColor(),
+            Color = Helpers.ResourcesDictionary.ColorsDictionary(Constant.ColorsConstants.Gray7).ToSKColor(),
             IsAntialias = true
         });
     }

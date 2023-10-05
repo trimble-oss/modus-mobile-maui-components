@@ -2,50 +2,48 @@ namespace Trimble.Modus.Components.Constant;
 internal class ColorsConstants
 {
     // Blue
-    public const string BluePale = "BluePale";
-    public const string ChipSelectedBackground = "ChipSelectedBackground";
+    public const string TrimbleBlueDark = "TrimbleBlueDark";
     public const string TrimbleBlue = "TrimbleBlue";
-    public const string BlueLightColor = "BlueLightColor";
-    public const string TrimbleBlueClicked = "TrimbleBlueClicked";
+    public const string Blue = "Blue";
+    public const string BlueDark = "BlueDark";
+    public const string BlueLight = "BlueLight";
+    public const string HighlightBlue = "HighlightBlue";
+    public const string BluePale = "BluePale";
 
     // Black
-    public const string Black = "Black";
     public const string TrimbleGray = "TrimbleGray";
-    public const string SecondaryButtonClicked = "SecondaryButtonClicked";
+    public const string Gray10 = "Gray10";
+    public const string Gray9 = "Gray9";
+    public const string Gray8 = "Gray8";
+    public const string Gray7 = "Gray7";
+    public const string Gray6 = "Gray6";
+    public const string Gray5 = "Gray5";
+    public const string Gray4 = "Gray4";
+    public const string Gray3 = "Gray3";
+    public const string Gray2 = "Gray2";
+    public const string Gray1 = "Gray1";
+    public const string Gray0 = "Gray0";
+    public const string LightGray = "LightGray";
+    public const string White = "White";
 
     // Orange
-    public const string TrimbleYellow = "TrimbleYellow";
-    public const string WarningToastColor = "WarningToastColor";
-
-    // White
-    public const string White = "White";
-    public const string TableHeaderColor = "TableHeaderColor";
+    public const string YellowDark = "YellowDark";
+    public const string Yellow = "Yellow";
+    public const string YellowLight = "YellowLight";
+    public const string YellowPale = "YellowPale";
 
     // Red
-    public const string DangerRed = "DangerRed";
-    public const string DangerRedClicked = "DangerRedClicked";
-    public const string DangerToastColor = "DangerToastColor";
-
-    // Grey
-    public const string TertiaryButton = "TertiaryButton";
-    public const string GrayPlaceholder = "GrayPlaceholder";
-    public const string TertiaryButtonClicked = "TertiaryButtonClicked";
-    public const string NeutralGray = "NeutralGray";
-    public const string TrimbleNeutralGray = "TrimbleNeutralGray";
-    public const string TrimbleGray8 = "TrimbleGray8";
-    public const string TrimbleGray3 = "TrimbleGray3";
-    public const string SegmentBorderColor = "SegmentBorderColor";
-    public const string SliderThumbBorderDisabledColor = "SliderThumbBorderDisabledColor";
-    public const string AccordionDescriptionColor = "AccordionDescriptionColor";
-    public const string CardPressed = "CardPressed";
+    public const string RedDark = "RedDark";
+    public const string Red = "Red";
+    public const string RedLight = "RedLight";
+    public const string RedPale = "RedPale";
 
     // Green
+    public const string GreenDark = "GreenDark";
     public const string Green = "Green";
-    public const string SuccessToastColor = "SuccessToastColor";
-
+    public const string GreenLight = "GreenLight";
+    public const string GreenPale = "GreenPale";
 
     // Transparent
     public const string Transparent = "Transparent";
-    public const string ModalShadowColor = "ModalShadowColor";
-    public const string ModalGraySemiTransparent = "ModalGraySemiTransparent";
 }

@@ -79,7 +79,7 @@ namespace Trimble.Modus.Components
             ValueToolTipShape.RotateTo(180);
 
             // Configure the ValueLabel
-            ValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleNeutralGray);
+            ValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray7);
             ValueBorder.Content = ValueLabel;
             ValueHolder.Children.Add(ValueBorder);
             ValueHolder.Children.Add(ValueToolTipShape);
@@ -229,11 +229,11 @@ namespace Trimble.Modus.Components
             LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
 
-            Track.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray3);
+            Track.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray3);
             Track.StrokeThickness = 0;
             TrackHighlight.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
             TrackHighlight.StrokeThickness = 0;
-            ValueLabel.TextColor = Colors.White;
+            ValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
             var trackSize = 8;
             _thumbSize = 24;
             var thumbStrokeThickness = 3;

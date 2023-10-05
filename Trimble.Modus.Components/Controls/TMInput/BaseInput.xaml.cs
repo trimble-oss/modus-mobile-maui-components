@@ -323,7 +323,7 @@ public partial class BaseInput : ContentView
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
             }
@@ -357,14 +357,14 @@ public partial class BaseInput : ContentView
             {
                 tmInput.HelperLayout.IsVisible = true;
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
             }
             else if (tmInput.IsRequired && string.IsNullOrEmpty(tmInput.Text))
             {
                 tmInput.HelperLayout.IsVisible = true;
                 tmInput.HelperLabel.Text = "Field is Required";
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
                     
             }
@@ -374,14 +374,14 @@ public partial class BaseInput : ContentView
                 {
                     tmInput.HelperLayout.IsVisible = true;
                     tmInput.HelperLabel.Text = tmInput.HelperText;
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                     tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
 
                 }
                 else
                 {
 
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                     tmInput.HelperLayout.IsVisible = false;
                 }
             }
@@ -406,7 +406,7 @@ public partial class BaseInput : ContentView
             if (tmInput.IsEnabled)
             {
                 tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
@@ -421,8 +421,8 @@ public partial class BaseInput : ContentView
     }
     private static void SetReadOnlyStyles(BaseInput tmInput)
     {
-        tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
-        tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
+        tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0);
+        tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0);
         tmInput.InputBorder.StrokeThickness = 0;
         tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
     }

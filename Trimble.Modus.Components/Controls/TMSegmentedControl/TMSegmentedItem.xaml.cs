@@ -15,9 +15,9 @@ public partial class TMSegmentedItem
     public static readonly BindableProperty ShowSeparatorProperty = BindableProperty.Create(nameof(ShowSeparator), typeof(bool), typeof(TMSegmentedItem), true);
     public static readonly BindableProperty ColorThemeProperty = BindableProperty.Create(nameof(ColorTheme), typeof(SegmentColorTheme), typeof(TMSegmentedItem), SegmentColorTheme.Primary, propertyChanged: OnColorThemeChanged);
     public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(TMSegmentedItem), null, propertyChanged: OnSegmentedItemPropertyChanged);
-    internal static readonly BindablePropertyKey CurrentBackgroundColorPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), Colors.Transparent);
+    internal static readonly BindablePropertyKey CurrentBackgroundColorPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent));
     public static readonly BindableProperty CurrentBackgroundColorProperty = CurrentBackgroundColorPropertyKey.BindableProperty;
-    public static readonly BindableProperty SizeProperty= BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedItem), SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
+    public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedItem), SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
 
     #endregion
 
@@ -121,17 +121,17 @@ public partial class TMSegmentedItem
     /// </summary>
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if(bindable is TMSegmentedItem segmentedItem)
+        if (bindable is TMSegmentedItem segmentedItem)
         {
-            if(segmentedItem.Size == SegmentedControlSize.Small)
+            if (segmentedItem.Size == SegmentedControlSize.Small)
             {
                 segmentedItem.TextLabel.FontSize = 12;
             }
-            else if(segmentedItem.Size == SegmentedControlSize.Medium || segmentedItem.Size == SegmentedControlSize.Large)
+            else if (segmentedItem.Size == SegmentedControlSize.Medium || segmentedItem.Size == SegmentedControlSize.Large)
             {
                 segmentedItem.TextLabel.FontSize = 16;
             }
-            else if(segmentedItem.Size == SegmentedControlSize.XLarge)
+            else if (segmentedItem.Size == SegmentedControlSize.XLarge)
             {
                 segmentedItem.TextLabel.FontSize = 20;
             }
@@ -147,10 +147,10 @@ public partial class TMSegmentedItem
             segmentedItem.SelectedBackgroundColor =
                 segmentedItem.ColorTheme == SegmentColorTheme.Primary
                     ? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue)
-                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.SegmentBorderColor);
+                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
             segmentedItem.CurrentBackgroundColor = segmentedItem.IsSelected
                 ? segmentedItem.SelectedBackgroundColor
-                : Colors.Transparent;
+                : ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         }
     }
 
@@ -202,7 +202,7 @@ public partial class TMSegmentedItem
             SegmentIcon.Behaviors.Clear();
             var behavior = new IconTintColorBehavior
             {
-                TintColor = IsSelected ? Colors.White : Colors.Black
+                TintColor = IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.White) : ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9)
             };
             SegmentIcon.Behaviors.Add(behavior);
         }

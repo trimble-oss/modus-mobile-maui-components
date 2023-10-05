@@ -4,7 +4,7 @@
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                  xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                  x:Class="Trimble.Modus.Components.DropDownContents"
-                 BackgroundColor="Transparent"
+                 BackgroundColor="{StaticResource Transparent}"
                  Title="DropDownPopupPage">
   <Modus:PopupPage.Resources>
     <ResourceDictionary>
@@ -16,15 +16,15 @@
   <Border x:Name="border"
           VerticalOptions="Start"
           HorizontalOptions="Start"
-          Stroke="{StaticResource BlueLightColor}"
+          Stroke="{StaticResource BlueLight}"
           StrokeThickness="4"
           Padding="8"
-          BackgroundColor="White">
+          BackgroundColor="{StaticResource White}">
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="4" />
     </Border.StrokeShape>
     <Border.Shadow>
-      <Shadow Brush="Black"
+      <Shadow Brush="{StaticResource Gray9}"
               Radius="3"
               Opacity="0.6">
         <Shadow.Offset>

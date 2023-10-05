@@ -6,7 +6,7 @@
                  xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                  x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
                  Title="MyPopupPage"
-                 BackgroundColor="Transparent"
+                 BackgroundColor="{StaticResource Transparent}"
                  CloseWhenBackgroundIsClicked="False"
                  BackgroundInputTransparent="True">
   <ContentPage.Resources>
@@ -24,7 +24,7 @@
 
     <Border  VerticalOptions="CenterAndExpand"
              HorizontalOptions="FillAndExpand"
-             BackgroundColor="Transparent">
+             BackgroundColor="{StaticResource Transparent}">
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="4" />
       </Border.StrokeShape>
@@ -67,7 +67,7 @@
                      HorizontalOptions="End"
                      VerticalOptions="Center"
                      Clicked="CloseButtonClicked"
-                     BackgroundColor="Transparent"/>
+                     BackgroundColor="{StaticResource Transparent}"/>
       </StackLayout>
 
     </Border>

@@ -31,7 +31,7 @@ public partial class TMFloatingButton : TMButton
         }
     }
 
-    private Color GetOnClickColor(Color backgroundColor)
+    private Color GetOnClickColor()
     {
         switch (ButtonColor)
         {
@@ -39,17 +39,19 @@ public partial class TMFloatingButton : TMButton
                 return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
             case ButtonColor.Primary:
             default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark);
         }
     }
+
     #endregion
+
     #region Public Methods
     public new void RaisePressed()
     {
         if (_buttonFrame.BackgroundColor != null)
         {
             activeColor = _buttonFrame.BackgroundColor;
-            _buttonFrame.BackgroundColor = GetOnClickColor(_buttonFrame.BackgroundColor);
+            _buttonFrame.BackgroundColor = GetOnClickColor();
         }
     }
     public new void RaiseReleased()
@@ -69,4 +71,5 @@ public partial class TMFloatingButton : TMButton
         }
     }
     #endregion
+
 }

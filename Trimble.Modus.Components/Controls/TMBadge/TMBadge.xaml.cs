@@ -127,23 +127,23 @@ public partial class TMBadge : ContentView
         switch(tmBadge.Color)
         {
             case BadgeColor.Secondary:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleNeutralGray);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray7);
                 tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             case BadgeColor.Tertiary:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
             case BadgeColor.Success:
                 tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
                 tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             case BadgeColor.Warning:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleYellow);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Yellow);
+                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
             case BadgeColor.Error:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             case BadgeColor.Primary:
