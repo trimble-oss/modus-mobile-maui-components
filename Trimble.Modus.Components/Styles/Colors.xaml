@@ -2,62 +2,53 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Styles.Colors">
+  <!--Blue-->
+  <Color x:Key="BluePale">#DCEDF9</Color>
+  <Color x:Key="ChipSelectedBackground">#A1BFD2</Color>
   <Color x:Key="TrimbleBlue">#0063a3</Color>
-  <Color x:Key="TrimbleBlueDark">#004f83</Color>
-  <Color x:Key="TrimbleYellow">#fbad26</Color>
-  <Color x:Key="TrimbleGray">#252a2e</Color>
-  <Color x:Key="TrimbleDisabledColor">#CEDEEB</Color>
+  <Color x:Key="BlueLightColor">#217CBB</Color>
+  <Color x:Key="TrimbleBlueClicked">#0E416C</Color>
+
+  <!--Black-->
   <Color x:Key="Black">#353a40</Color>
+  <Color x:Key="TrimbleGray">#252a2e</Color>
+  <Color x:Key="SecondaryButtonClicked">#171C1E</Color>
+
+  <!--Orange-->
+
+  <Color x:Key="TrimbleYellow">#fbad26</Color>
+  <Color x:Key="WarningToastColor">#FFF5E4</Color>
+
+  <!--White-->
+
   <Color x:Key="White">#FFFFFF</Color>
+  <Color x:Key="TableHeaderColor">#F1F1F6</Color>
+
+  <!--Red-->
   <Color x:Key="DangerRed">#DA212C</Color>
-  <Color x:Key="SecondaryButton">#353A40</Color>
+  <Color x:Key="DangerRedClicked">#AB1F26</Color>
+  <Color x:Key="DangerToastColor">#FBD4D7</Color>
+
+  <!--Grey-->
   <Color x:Key="TertiaryButton">#CBCDD6</Color>
   <Color x:Key="GrayPlaceholder">#90939f</Color>
-  <Color x:Key="FocusBlue">#019aeb</Color>
-  <Color x:Key="TrimbleReadOnlyGray">#e0e1e9</Color>
-  <Color x:Key="DangerRedClicked">#AB1F26</Color>
-  <Color x:Key="SecondaryButtonClicked">#171C1E</Color>
   <Color x:Key="TertiaryButtonClicked">#B7B9C3</Color>
-  <Color x:Key="TrimbleBlueClicked">#0E416C</Color>
-  <Color x:Key="BluePale">#DCEDF9</Color>
   <Color x:Key="NeutralGray">#E0E1E9</Color>
-  <Color x:Key="Green">#1E8A44</Color>
-  <Color x:Key="Transparent">transparent</Color>
-  <Color x:Key="CardPressed">#C9CACF</Color>
-  <Color x:Key="PrimaryFloatingButtonClicked">#0E416C</Color>
-  <Color x:Key="SecondaryFloatingButtonClicked">#DCEDF9</Color>
   <Color x:Key="TrimbleNeutralGray">#585C65</Color>
   <Color x:Key="TrimbleGray8">#464b52</Color>
   <Color x:Key="TrimbleGray3">#a3a6b1</Color>
-  <Color x:Key="BlueLightColor">#217CBB</Color>
-
-  <!-- ToastColors -->
-  <Color x:Key="DangerToastColor">#FBD4D7</Color>
-  <Color x:Key="WarningToastColor">#FFF5E4</Color>
-  <Color x:Key="SuccessToastColor">#E0ECCF</Color>
-  <Color x:Key="ToastTextBlue">#0063A3</Color>
-  <!-- Modal -->
-  <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
-  <!-- Segmented Control -->
-  <Color x:Key="SegmentSecondaryColor">#FF353A40</Color>
-  <Color x:Key="SegmentBackgroundColor">#B7B9C3</Color>
   <Color x:Key="SegmentBorderColor">#FF353A40</Color>
-  <Color x:Key="ModalShadowColor">#22000000</Color>
-  <!-- Table -->
-  <Color x:Key="TableHeaderColor">#F1F1F6</Color>
-  <Color x:Key="TableDividerColor">#B7B9C3</Color>
-  
-  <Color x:Key="AccordionDescriptionColor">#FF7D808D</Color>
-  <!-- Chip -->
-  <Color x:Key="ChipSelectedBackground">#A1BFD2</Color>
-
-  <!-- Sldier -->
   <Color x:Key="SliderThumbBorderDisabledColor">#C3C4C9</Color>
+  <Color x:Key="AccordionDescriptionColor">#FF7D808D</Color>
+  <Color x:Key="CardPressed">#C9CACF</Color>
 
-  <!-- Switch -->
-  <Color x:Key="SwitchSelected">#217CBB</Color>
-  <Color x:Key="SwitchUnselected">#90939f</Color>
-  <!--DropDown-->
-  <Color x:Key="DropDownListBorder">#217CBB</Color>
-  <Color x:Key="DropDownItemSelected">#DCEDF9</Color>
+  <!--Green-->
+  <Color x:Key="Green">#1E8A44</Color>
+  <Color x:Key="SuccessToastColor">#E0ECCF</Color>
+
+  <!-- Transparent -->
+  <Color x:Key="Transparent">transparent</Color>
+  <Color x:Key="ModalShadowColor">#22000000</Color>
+  <Color x:Key="ModalGraySemiTransparent">#80000000</Color>
+
 </ResourceDictionary>

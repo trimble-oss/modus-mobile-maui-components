@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
-             x:Class="Trimble.Modus.Components.DropDownContents"
-             BackgroundColor="Transparent"
-             Title="DropDownPopupPage">
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:Modus="clr-namespace:Trimble.Modus.Components"
+                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+                 x:Class="Trimble.Modus.Components.DropDownContents"
+                 BackgroundColor="Transparent"
+                 Title="DropDownPopupPage">
   <Modus:PopupPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -14,12 +14,12 @@
     </ResourceDictionary>
   </Modus:PopupPage.Resources>
   <Border x:Name="border"
-             VerticalOptions="Start"            
-             HorizontalOptions="Start"
-             Stroke="{StaticResource DropDownListBorder}"
-             StrokeThickness="4"
-             Padding="8"
-             BackgroundColor="White">
+          VerticalOptions="Start"
+          HorizontalOptions="Start"
+          Stroke="{StaticResource BlueLightColor}"
+          StrokeThickness="4"
+          Padding="8"
+          BackgroundColor="White">
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="4" />
     </Border.StrokeShape>
@@ -28,13 +28,16 @@
               Radius="3"
               Opacity="0.6">
         <Shadow.Offset>
-          <OnPlatform x:TypeArguments="Point" Default="-1,1">
-            <On Platform="iOS" Value="0,2" />
+          <OnPlatform x:TypeArguments="Point"
+                      Default="-1,1">
+            <On Platform="iOS"
+                Value="0,2" />
           </OnPlatform>
         </Shadow.Offset>
       </Shadow>
     </Border.Shadow>
-    <ListView x:Name="listView" RowHeight="48">
+    <ListView x:Name="listView"
+              RowHeight="48">
       <ListView.ItemTemplate>
         <DataTemplate>
           <Modus:DropDownViewCell Text="{Binding}"></Modus:DropDownViewCell>

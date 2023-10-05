@@ -421,8 +421,8 @@ public partial class BaseInput : ContentView
     }
     private static void SetReadOnlyStyles(BaseInput tmInput)
     {
-        tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
-        tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleReadOnlyGray);
+        tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
+        tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
         tmInput.InputBorder.StrokeThickness = 0;
         tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
     }

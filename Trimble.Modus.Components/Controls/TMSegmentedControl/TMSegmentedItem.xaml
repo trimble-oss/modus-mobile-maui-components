@@ -71,7 +71,7 @@
              HorizontalOptions="Start"
              IsVisible="{Binding Source={x:Reference ItemContainer}, Path=ShowSeparator}"
              Margin="0,8"
-             Color="{x:StaticResource SegmentBackgroundColor}"
+             Color="{x:StaticResource TertiaryButtonClicked}"
              VerticalOptions="FillAndExpand"
              WidthRequest="1.4" />
   </Grid>

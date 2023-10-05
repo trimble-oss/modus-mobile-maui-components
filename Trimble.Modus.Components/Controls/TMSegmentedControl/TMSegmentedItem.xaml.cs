@@ -147,7 +147,7 @@ public partial class TMSegmentedItem
             segmentedItem.SelectedBackgroundColor =
                 segmentedItem.ColorTheme == SegmentColorTheme.Primary
                     ? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue)
-                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.SegmentSecondaryColor);
+                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.SegmentBorderColor);
             segmentedItem.CurrentBackgroundColor = segmentedItem.IsSelected
                 ? segmentedItem.SelectedBackgroundColor
                 : Colors.Transparent;

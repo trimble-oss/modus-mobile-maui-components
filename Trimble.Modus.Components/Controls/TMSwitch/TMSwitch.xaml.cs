@@ -169,7 +169,7 @@ public partial class TMSwitch : ContentView
                 { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.circleMargin,tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicIn);
-        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchSelected);
+        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor);
     }
 
     private static void OnSwitchUnSelected(TMSwitch tMSwitch)
@@ -186,7 +186,7 @@ public partial class TMSwitch : ContentView
                 { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin, tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicInOut);
-        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.SwitchUnselected);
+        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayPlaceholder);
     }
 }
 

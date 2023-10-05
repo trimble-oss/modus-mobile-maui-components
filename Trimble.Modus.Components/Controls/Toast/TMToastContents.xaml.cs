@@ -56,7 +56,7 @@ public partial class TMToastContents : PopupPage
                 ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.BlueInfoIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ToastTextBlue);
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
 
             case ToastTheme.Secondary:
