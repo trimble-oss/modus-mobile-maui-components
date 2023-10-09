@@ -69,12 +69,12 @@ public partial class TMCard : ContentView
         if ((bool)newValue)
         {
             card._border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
+            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark);
         }
         else
         {
-            card._border.BackgroundColor = Colors.White;
-            card._border.Stroke = Colors.Transparent;
+            card._border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            card._border.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         }
     }
     private static void OnPaddingPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -102,7 +102,7 @@ public partial class TMCard : ContentView
 
         _shadow = new Shadow
         {
-            Brush = Colors.Black,
+            Brush = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9),
             Radius = radius,
             Opacity = 0.6F,
             Offset = offset
@@ -111,8 +111,8 @@ public partial class TMCard : ContentView
         {
             Padding = Padding,
             Shadow = _shadow,
-            BackgroundColor = Colors.White,
-            Stroke = Colors.Transparent,
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White),
+            Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
             StrokeShape = new Rectangle
             {
                 RadiusX = _borderRadius,
@@ -133,11 +133,11 @@ public partial class TMCard : ContentView
     {
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, e);
-        _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.CardPressed);
+        _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
         _border.Content.Opacity = 0.3;
         this.Dispatcher.StartTimer(TimeSpan.FromMilliseconds(100), () =>
         {
-            _border.BackgroundColor = Colors.White;
+            _border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
             _border.Content.Opacity = 1;
             return false;
         });

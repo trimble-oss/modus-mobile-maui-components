@@ -65,7 +65,7 @@ public partial class TMTabbedPage : ContentPage
 
         contentContainer = new CarouselView
         {
-            BackgroundColor = Colors.LightGray,
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.LightGray),
             ItemsSource = TabItems,
             ItemTemplate = new DataTemplate(() =>
             {
@@ -89,8 +89,8 @@ public partial class TMTabbedPage : ContentPage
         };
 
         mainContainer = new Grid
-        {
-            BackgroundColor = Colors.Red,
+        {   
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red),
             HorizontalOptions = LayoutOptions.FillAndExpand,
             VerticalOptions = LayoutOptions.FillAndExpand,
             Children = { contentContainer, tabStripContainer },

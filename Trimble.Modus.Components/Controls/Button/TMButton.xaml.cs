@@ -272,11 +272,11 @@ public partial class TMButton : ContentView
                 {
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 }
                 else
                 {
-                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 }
@@ -284,13 +284,13 @@ public partial class TMButton : ContentView
                 break;
 
             case ButtonColor.Tertiary:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
 
             case ButtonColor.Danger:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
@@ -308,8 +308,8 @@ public partial class TMButton : ContentView
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
             case ButtonColor.Primary:
             default:
@@ -344,7 +344,7 @@ public partial class TMButton : ContentView
         switch (ButtonColor)
         {
             case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0);
             case ButtonColor.Primary:
             default:
                 return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
@@ -356,13 +356,13 @@ public partial class TMButton : ContentView
         switch (ButtonColor)
         {
             case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButtonClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray10);
             case ButtonColor.Tertiary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButtonClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2);
             case ButtonColor.Danger:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRedClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.RedDark);
             default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
+                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark);
         }
     }
     #endregion

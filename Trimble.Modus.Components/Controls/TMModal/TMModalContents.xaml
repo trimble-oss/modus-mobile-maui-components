@@ -8,7 +8,7 @@
                  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
                  Title="TMModalContents"
-                 BackgroundColor="{x:StaticResource ModalGraySemiTransparent}">
+                 BackgroundColor="{x:StaticResource Transparent}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -24,7 +24,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="{x:StaticResource ModalShadowColor}"
+          BackgroundColor="{x:StaticResource Transparent}"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">
@@ -33,11 +33,11 @@
             VerticalOptions="Center"
             HorizontalOptions="Fill"
             StrokeShape="RoundRectangle 4"
-            Stroke="{x:StaticResource Black}"
+            Stroke="{x:StaticResource Gray9}"
             StrokeThickness="0"
-            BackgroundColor="White">
+            BackgroundColor="{StaticResource White}">
       <Border.Shadow>
-        <Shadow Brush="{x:StaticResource Black}"
+        <Shadow Brush="{x:StaticResource Gray9}"
                 Offset="0,0"
                 Opacity="0.2"
                 Radius="8" />
@@ -67,7 +67,7 @@
                  VerticalOptions="Center"
                  FontFamily="OpenSansSemibold"
                  FontSize="16"
-                 TextColor="{StaticResource Black}"
+                 TextColor="{StaticResource Gray9}"
                  Padding="0,0,8,0"
                  Grid.Column="1"
                  Grid.Row="0" />
@@ -78,7 +78,7 @@
                  HeightRequest="16"
                  WidthRequest="16"
                  Margin="2"
-                 BackgroundColor="Transparent"
+                 BackgroundColor="{StaticResource Transparent}"
                  HorizontalOptions="End">
             <Image.GestureRecognizers>
               <TapGestureRecognizer Tapped="CloseModal" />
@@ -96,7 +96,7 @@
                  IsVisible="{Binding Message,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="StartAndExpand"
                  FontSize="14"
-                 TextColor="{x:StaticResource Black}"
+                 TextColor="{x:StaticResource Gray9}"
                  LineBreakMode="WordWrap" />
         </StackLayout>
         <StackLayout x:Name="ButtonContainer"

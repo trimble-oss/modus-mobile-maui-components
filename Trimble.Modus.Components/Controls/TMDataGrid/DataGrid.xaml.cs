@@ -33,7 +33,7 @@ public partial class DataGrid
     /// Border color
     /// Default Value is Black
     /// </summary>
-    internal Color BorderColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TableDividerColor);
+    internal Color BorderColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2);
     /// <summary>
     /// Border thickness for header &amp; each cell
     /// </summary>
@@ -302,8 +302,8 @@ public partial class DataGrid
         dataGrid.BorderThickness = (bool)newValue ? new(0.5) : new(0, 0, 0, 1);
         dataGrid._headerView.Padding = new(0, 0, 0, 0);
         dataGrid._headerView.ColumnSpacing = dataGrid.BorderThickness.HorizontalThickness;
-        dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.TableHeaderColor);
-        dataGrid._collectionView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : Colors.White;
+        dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.LightGray);
+        dataGrid._collectionView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
         dataGrid.Reload();
     }
     /// <summary>
@@ -656,7 +656,7 @@ public partial class DataGrid
         }
         foreach (var child in _headerView.Children.OfType<View>())
         {
-            child.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TableHeaderColor);
+            child.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.LightGray);
         }
     }
 

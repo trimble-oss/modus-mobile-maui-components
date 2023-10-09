@@ -142,7 +142,7 @@
                    VerticalOptions="Center"
                    Margin="16,0,0,0"
                    FontSize="10"
-                   TextColor="{x:StaticResource AccordionDescriptionColor}"
+                   TextColor="{x:StaticResource Gray5}"
                    IsVisible="{Binding Source={x:Reference accordionView}, Path=AccordionSubtitle, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" />
           </StackLayout>
           <Image VerticalOptions="Center"

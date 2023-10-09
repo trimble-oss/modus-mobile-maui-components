@@ -135,7 +135,7 @@ namespace Trimble.Modus.Components.Controls
         internal Label SliderTitle = new Label
         {
             FontSize = 12,
-            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray8)
+            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray8)
         };
         internal Label LeftLabel = new Label
         {
@@ -232,9 +232,9 @@ namespace Trimble.Modus.Components.Controls
                 else if (child is Border)
                 {
                     (child as Border).Stroke = IsEnabled
-                        ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor)
+                        ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight)
                         : ResourcesDictionary.ColorsDictionary(
-                            ColorsConstants.SliderThumbBorderDisabledColor
+                            ColorsConstants.Gray1
                         );
                 }
             }
@@ -250,12 +250,12 @@ namespace Trimble.Modus.Components.Controls
         {
             border.StrokeThickness = thumbStrokeThickness;
             border.Stroke = IsEnabled
-                ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLightColor)
+                ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight)
                 : ResourcesDictionary.ColorsDictionary(
-                    ColorsConstants.SliderThumbBorderDisabledColor
+                    ColorsConstants.Gray1
                 );
             border.Margin = new Thickness(0);
-            border.BackgroundColor = Colors.White;
+            border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
             border.StrokeShape = new Ellipse()
             {
                 WidthRequest = thumbSize,

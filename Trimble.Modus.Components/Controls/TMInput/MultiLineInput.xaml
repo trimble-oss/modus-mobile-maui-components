@@ -5,6 +5,7 @@
                 xmlns:base="clr-namespace:Trimble.Modus.Components.Controls.BaseInput"
                 xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                 x:Class="Trimble.Modus.Components.MultiLineInput"
+                xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                 xmlns:controls="clr-namespace:Trimble.Modus.Components"
                 x:Name="multiLineInput">
 
@@ -12,6 +13,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="InputTemplateResourceDictionary.xaml" />
+        <color:Colors />
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
@@ -29,7 +31,7 @@
                                Placeholder="{Binding Placeholder}"
                                Text="{Binding Text}"
                                AutoSize="Disabled"
-                               BackgroundColor="Transparent"
+                               BackgroundColor="{StaticResource Transparent}"
                                MinimumHeightRequest="44"
                                IsReadOnly="{Binding IsReadOnly}"
                                MaxLength="{Binding MaxLength}"

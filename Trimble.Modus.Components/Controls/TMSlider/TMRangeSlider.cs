@@ -118,7 +118,7 @@ namespace Trimble.Modus.Components
             UpperValueToolTipShape.TranslationY = 0;
             UpperValueToolTipShape.RotateTo(180);
             UpperValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(
-                ColorsConstants.TrimbleNeutralGray
+                ColorsConstants.Gray7
             );
             UpperValueBorder.Content = UpperValueLabel;
             UpperValueHolder.Children.Add(UpperValueBorder);
@@ -128,7 +128,7 @@ namespace Trimble.Modus.Components
             LowerValueToolTipShape.TranslationY = 0;
             LowerValueToolTipShape.RotateTo(180);
             LowerValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(
-                ColorsConstants.TrimbleNeutralGray
+                ColorsConstants.Gray7
             );
             LowerValueBorder.Content = LowerValueLabel;
             LowerValueHolder.Children.Add(LowerValueBorder);
@@ -293,12 +293,12 @@ namespace Trimble.Modus.Components
             LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
 
-            Track.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray3);
+            Track.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray3);
             Track.StrokeThickness = 0;
             TrackHighlight.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
             TrackHighlight.StrokeThickness = 0;
-            UpperValueLabel.TextColor = Colors.White;
-            LowerValueLabel.TextColor = Colors.White;
+            UpperValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            LowerValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
 
             var trackSize = 8;
             _thumbSize = 24;

@@ -1,4 +1,7 @@
-﻿namespace Trimble.Modus.Components;
+﻿using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
+
+namespace Trimble.Modus.Components;
 
 public class DropDownViewCell : ViewCell
 {
@@ -16,9 +19,9 @@ public class DropDownViewCell : ViewCell
     {
         label = new Label
         {
-            TextColor = Colors.Black,
+            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9),
             FontAttributes = FontAttributes.None,
-            BackgroundColor = Colors.Transparent,
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
             VerticalOptions = LayoutOptions.Center,
             HorizontalOptions = LayoutOptions.Start,
             Padding = new Thickness(8, 12)
@@ -28,8 +31,9 @@ public class DropDownViewCell : ViewCell
 
         View = new StackLayout
         {
-            Children = { label },
-            BackgroundColor = Colors.Transparent,
+            Children = { label
+},
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
         };
     }
     internal void UpdateBackgroundColor(Color backgroundColor, bool textAttribute)
