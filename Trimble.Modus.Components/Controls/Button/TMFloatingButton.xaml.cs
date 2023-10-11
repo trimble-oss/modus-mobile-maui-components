@@ -33,14 +33,11 @@ public partial class TMFloatingButton : TMButton
 
     private Color GetOnClickColor()
     {
-        switch (ButtonColor)
+        return ButtonColor switch
         {
-            case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-            case ButtonColor.Primary:
-            default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark);
-        }
+            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark),
+        };
     }
 
     #endregion

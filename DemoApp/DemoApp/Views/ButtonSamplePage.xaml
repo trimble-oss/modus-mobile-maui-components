@@ -201,7 +201,7 @@
         <Switch Grid.Column="1"
                 x:Name="isDisabled"
                 IsToggled="{Binding IsDisabled}"
-                Toggled="isDisabled_Toggled" />
+                Toggled="IsDisabled_Toggled" />
       </Grid>
       <Grid>
         <Grid.ColumnDefinitions>
