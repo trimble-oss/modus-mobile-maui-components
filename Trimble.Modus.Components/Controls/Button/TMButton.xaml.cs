@@ -151,41 +151,41 @@ public partial class TMButton : ContentView
 
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            SetPadding(tmButton);
+            SetPadding(button);
         }
     }
     private static void OnButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            UpdateButtonStyle(tmButton);
+            UpdateButtonStyle(button);
         }
     }
 
     private static void OnIsDisabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
             if ((bool)newValue)
             {
-                tmButton.Opacity = 0.5;
-                tmButton.GestureRecognizers.Clear();
+                button.Opacity = 0.5;
+                button.GestureRecognizers.Clear();
             }
             else
             {
-                UpdateButtonStyle(tmButton);
-                tmButton.Opacity = 1;
+                UpdateButtonStyle(button);
+                button.Opacity = 1;
             }
         }
     }
 
     private static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            UpdateButtonStyle(tmButton);
+            UpdateButtonStyle(button);
         }
     }
 
@@ -209,7 +209,6 @@ public partial class TMButton : ContentView
             {
                 case Enums.ButtonStyle.BorderLess:
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                    tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                     break;
@@ -247,7 +246,6 @@ public partial class TMButton : ContentView
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 56;
                     break;
-                case Enums.Size.Default:
                 default:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
@@ -283,14 +281,12 @@ public partial class TMButton : ContentView
                 if (tmButton.IsFloatingButton)
                 {
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                    tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 }
                 else
                 {
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-                    tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 }
@@ -299,21 +295,18 @@ public partial class TMButton : ContentView
 
             case ButtonColor.Tertiary:
                 tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
-                tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
 
             case ButtonColor.Danger:
                 tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
-                tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
             default:
-                tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmButton.buttonFrame.SetAppThemeColor(BackgroundColorProperty, ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue), ResourcesDictionary.ColorsDictionary(ColorsConstants.HighlightBlue));
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsBasedOnTheme(ColorsConstants.Primary);
+                tmButton.buttonFrame.SetDynamicResource(BackgroundColorProperty, ThemeColorConstants.Blue);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsFromResources(ThemeColorConstants.Blue);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
         }
@@ -322,12 +315,17 @@ public partial class TMButton : ContentView
     private static void UpdateOutlineStyleColors(TMButton tmButton)
     {
         tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-        tmButton.buttonStackLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                break;
+            case ButtonColor.Tertiary:
+            case ButtonColor.Danger:
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
             default:
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
@@ -336,51 +334,34 @@ public partial class TMButton : ContentView
         }
     }
 
-    private Color GetOnClickColor(Color color)
+    private Color GetOnClickColor()
     {
-        switch (ButtonStyle)
+        return ButtonStyle switch
         {
-            case ButtonStyle.Outline:
-                color = GetOnClickOutline();
-                break;
-            case ButtonStyle.BorderLess:
-                color = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                break;
-            case ButtonStyle.Fill:
-                color = GetOnClickFill();
-                break;
-            default:
-                break;
-        }
-
-        return color;
+            ButtonStyle.Outline => GetOnClickOutline(),
+            ButtonStyle.BorderLess => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+            _ => GetOnClickFill(),
+        };
     }
 
     private Color GetOnClickOutline()
     {
-        switch (ButtonColor)
+        return ButtonColor switch
         {
-            case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0);
-            case ButtonColor.Primary:
-            default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-        }
+            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0),
+            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+        };
     }
 
     private Color GetOnClickFill()
     {
-        switch (ButtonColor)
+        return ButtonColor switch
         {
-            case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray10);
-            case ButtonColor.Tertiary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2);
-            case ButtonColor.Danger:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.RedDark);
-            default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark);
-        }
+            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray10),
+            ButtonColor.Tertiary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2),
+            ButtonColor.Danger => ResourcesDictionary.ColorsDictionary(ColorsConstants.RedDark),
+            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark),
+        };
     }
     #endregion
     #region Public Methods
@@ -390,8 +371,7 @@ public partial class TMButton : ContentView
         if (buttonFrame.BackgroundColor != null)
         {
             activeColor = buttonFrame.BackgroundColor;
-            buttonFrame.BackgroundColor = GetOnClickColor(buttonFrame.BackgroundColor);
-            buttonStackLayout.BackgroundColor=buttonFrame.BackgroundColor;
+            buttonFrame.BackgroundColor = GetOnClickColor();
         }
     }
     public void RaiseReleased()
@@ -399,7 +379,6 @@ public partial class TMButton : ContentView
         if (activeColor != null)
         {
             buttonFrame.BackgroundColor = activeColor;
-            buttonStackLayout.BackgroundColor = activeColor;
         }
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, EventArgs.Empty);
@@ -409,7 +388,6 @@ public partial class TMButton : ContentView
         if (activeColor != null)
         {
             buttonFrame.BackgroundColor = activeColor;
-            buttonStackLayout.BackgroundColor = activeColor;
         }
     }
 

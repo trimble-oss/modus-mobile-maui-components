@@ -14,6 +14,8 @@ namespace Trimble.Modus.Components.Hosting;
 public static class AppBuilderExtensions
 {
     internal static AppTheme CurrentRequestedTheme { get; set; }
+    public static ResourceDictionary SelectedLightTheme { get; private set; }
+    public static ResourceDictionary SelectedDarkTheme { get; private set; }
 
     /// <summary>
     /// Initializes the Trimble Modus Library
@@ -112,14 +114,64 @@ public static class AppBuilderExtensions
         }
     }
 
-    public static void UseModusTheme()
+    public static void UseModusTheme(ResourceDictionary lightTheme = null, ResourceDictionary darkTheme = null)
     {
         CurrentRequestedTheme = Application.Current.RequestedTheme;
+        if (lightTheme != null)
+        {
+            SelectedLightTheme = lightTheme;
+        }
+        else
+        {
+            SelectedLightTheme = new Styles.LightTheme();
+        }
+        if (darkTheme != null)
+        {
+            SelectedDarkTheme = darkTheme;
+        }
+        else
+        {
+            SelectedDarkTheme = new Styles.DarkTheme();
+        }
+        UpdateTheme();
         Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
+
     }
 
     private static void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
     {
         CurrentRequestedTheme = e.RequestedTheme;
+        UpdateTheme();
+    }
+
+    private static void UpdateTheme()
+    {
+        CheckAndUpdateResources(new Styles.Colors());
+        if (CurrentRequestedTheme == AppTheme.Dark)
+        {
+            CheckAndUpdateResources(SelectedLightTheme, false);
+            CheckAndUpdateResources(SelectedDarkTheme);
+        }
+        else
+        {
+            CheckAndUpdateResources(SelectedDarkTheme, false);
+            CheckAndUpdateResources(SelectedLightTheme);
+        }
+    }
+
+    private static void CheckAndUpdateResources(ResourceDictionary keyValuePairs, bool needToAdd = true)
+    {
+        var colorsExists = Application.Current.Resources.MergedDictionaries.Contains(keyValuePairs);
+        if (!colorsExists)
+        {
+            if (needToAdd)
+            {
+                Application.Current.Resources.MergedDictionaries.Add(keyValuePairs);
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(keyValuePairs);
+            }
+        }
     }
 }

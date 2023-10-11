@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Styles.LightTheme">
   
-  <Color x:Key="Primary">#004f83</Color>
-  <Color x:Key="Secondary">#0063a3</Color>
-  
+  <Color x:Key="Blue">#004f83</Color>
+  <Color x:Key="DarkBlue">#0063a3</Color>
+  <Color x:Key="LightBlue">#0063a3</Color>
+
 </ResourceDictionary>

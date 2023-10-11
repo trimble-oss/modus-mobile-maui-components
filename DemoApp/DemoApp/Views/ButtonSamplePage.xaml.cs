@@ -39,7 +39,7 @@ public partial class ButtonSamplePage : ContentPage
         }
     }
 
-    private void isDisabled_Toggled(object sender, ToggledEventArgs e)
+    private void IsDisabled_Toggled(object sender, ToggledEventArgs e)
     {
         _buttonPageViewModel.IsDisabled = e.Value;
     }

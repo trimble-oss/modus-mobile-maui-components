@@ -20,4 +20,17 @@ public static class ResourcesDictionary
             return (Color)new Styles.LightTheme()[styleKey];
         }
     }
+
+    public static Color ColorsFromResources(string key)
+    {
+        // Retrieve the Primary color value which is in the page's resource dictionary
+        var hasValue = Application.Current.Resources.TryGetValue(key, out object primaryColor);
+
+        if (hasValue)
+        {
+            return (Color)primaryColor;
+        }
+
+        return Colors.White;
+    }
 }
