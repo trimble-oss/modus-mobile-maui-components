@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMButton"
              x:Name="tmButton"
+             xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              HorizontalOptions="Start">
@@ -10,14 +11,16 @@
     <ResourceDictionary>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+      <styles:DarkTheme x:Key="dark" />
+      <styles:LightTheme  x:Key="light" />
+      <styles:Colors  x:Key="colors" />
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
           HorizontalOptions="{Binding Source={x:Reference tmButton}, Path=HorizontalOptions}"
           BindingContext="{x:Reference tmButton}"
           x:Name="buttonFrame"
-          StrokeShape="RoundRectangle 4,4"
-          >
+          StrokeShape="RoundRectangle 4,4">
     <HorizontalStackLayout x:Name="buttonStackLayout"
                            Spacing="8"
                            VerticalOptions="FillAndExpand"

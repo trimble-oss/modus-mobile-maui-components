@@ -46,4 +46,9 @@ internal class ColorsConstants
 
     // Transparent
     public const string Transparent = "Transparent";
+
+
+    public const string Primary = "Primary";
+    public const string Secondary = "Secondary";
+
 }

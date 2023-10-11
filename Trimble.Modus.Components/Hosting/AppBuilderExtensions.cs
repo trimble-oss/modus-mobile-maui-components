@@ -13,6 +13,8 @@ namespace Trimble.Modus.Components.Hosting;
 /// </summary>
 public static class AppBuilderExtensions
 {
+    internal static AppTheme CurrentRequestedTheme { get; set; }
+
     /// <summary>
     /// Initializes the Trimble Modus Library
     /// </summary>
@@ -42,7 +44,7 @@ public static class AppBuilderExtensions
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSansSemibold");
             });
-
+        CurrentRequestedTheme = AppTheme.Light;
         return builder;
     }
 
@@ -108,5 +110,16 @@ public static class AppBuilderExtensions
                 handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
 #endif
         }
+    }
+
+    public static void UseModusTheme()
+    {
+        CurrentRequestedTheme = Application.Current.RequestedTheme;
+        Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
+    }
+
+    private static void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+    {
+        CurrentRequestedTheme = e.RequestedTheme;
     }
 }

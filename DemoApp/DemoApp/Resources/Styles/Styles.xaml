@@ -497,7 +497,7 @@
     <Setter Property="Padding"
             Value="0" />
     <Setter Property="BackgroundColor"
-            Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+            Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" />
   </Style>
 
   <Style TargetType="Shell"
