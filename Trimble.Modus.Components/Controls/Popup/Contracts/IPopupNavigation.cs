@@ -1,5 +1,6 @@
 ﻿using Trimble.Modus.Components.Popup.Events;
 using Trimble.Modus.Components;
+using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components.Popup.Interfaces;
 
@@ -16,6 +17,8 @@ public interface IPopupNavigation
     IReadOnlyList<PopupPage> PopupStack { get; }
 
     Task PresentAsync(PopupPage page, bool animate = true);
+
+    Task PresentAsync(PopupPage page, View anchorView, ModalPosition position);
 
     Task DismissAsync(bool animate = true);
 

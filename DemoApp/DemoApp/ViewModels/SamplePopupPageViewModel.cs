@@ -12,7 +12,8 @@ namespace DemoApp.ViewModels
         [RelayCommand]
         private void ArrowUpClicked(TMButton sender)
         {
-            PopupService.Instance.PresentAsync(new SampleToolTip(sender, Trimble.Modus.Components.Enums.ModalPosition.Top));
+            //PopupService.Instance.PresentAsync(new SampleToolTip(sender, Trimble.Modus.Components.Enums.ModalPosition.Top));
+            PopupService.Instance.PresentAsync(new SampleCustomPopup(sender, Trimble.Modus.Components.Enums.ModalPosition.Left));
         }
         [RelayCommand]
         private void ArrowDownClicked(TMButton sender)
@@ -32,7 +33,7 @@ namespace DemoApp.ViewModels
         [RelayCommand]
         private void CenterButtonClicked(TMButton sender)
         {
-            PopupService.Instance.PresentAsync(new SampleCustomPopup());
+            PopupService.Instance.PresentAsync(new SampleCustomPopup(sender, Trimble.Modus.Components.Enums.ModalPosition.Left));
         }
     }
 }

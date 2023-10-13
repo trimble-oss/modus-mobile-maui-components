@@ -1,6 +1,7 @@
 ﻿using Trimble.Modus.Components.Popup.Events;
 using Trimble.Modus.Components.Popup.Interfaces;
 using Trimble.Modus.Components;
+using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components.Popup.Services;
 
@@ -52,8 +53,6 @@ internal class PopupNavigation : IPopupNavigation
         }
     }
 
-
-
     public Task PresentAsync(PopupPage page, bool animate = true)
     {
         Presenting?.Invoke(this, new PopupNavigationEventArgs(page, animate));
@@ -78,6 +77,11 @@ internal class PopupNavigation : IPopupNavigation
             await page.AppearingAnimation();
             Presented?.Invoke(this, new PopupNavigationEventArgs(page, animate));
         };
+    }
+
+    public Task PresentAsync(PopupPage page, View anchorView, ModalPosition position)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task PresentAllAsync(bool animate = true)

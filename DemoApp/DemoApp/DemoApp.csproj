@@ -87,10 +87,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
 	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
 	  </Compile>
@@ -231,5 +227,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
 	</ItemGroup>
 </Project>

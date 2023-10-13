@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
-
+using Microsoft.Maui.Controls.Shapes;
+using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Animations;
 using Trimble.Modus.Components.Popup.Animations.Base;
 using Trimble.Modus.Components.Popup.Enums;
@@ -10,8 +11,8 @@ namespace Trimble.Modus.Components;
 public class PopupPage : ContentPage
 {
     #region Private fields
-    internal Components.Enums.ModalPosition Position;
-    private readonly View _anchorView;
+    public ModalPosition Position { get; set; }
+    public View _anchorView;
     private double _popupHeight = -1;
     private double _popupWidth = -1;
     private double _padding = 10;
@@ -122,7 +123,7 @@ public class PopupPage : ContentPage
     {
         //BackgroundColor = Color.FromArgb("#80000000");
     }
-    public PopupPage(View anchorView, Trimble.Modus.Components.Enums.ModalPosition position)
+    public PopupPage(View anchorView, ModalPosition position)
     {
         _anchorView = anchorView;
         Position = position;
@@ -154,12 +155,12 @@ public class PopupPage : ContentPage
         }
     }
 
-    protected override Size ArrangeOverride(Rect bounds)
+    protected override Microsoft.Maui.Graphics.Size ArrangeOverride(Rect bounds)
     {
         return base.ArrangeOverride(bounds);
     }
 
-    protected override Size MeasureOverride(double widthConstraint, double heightConstraint)
+    protected override Microsoft.Maui.Graphics.Size MeasureOverride(double widthConstraint, double heightConstraint)
     {
         return base.MeasureOverride(widthConstraint, heightConstraint);
     }
@@ -319,29 +320,40 @@ public class PopupPage : ContentPage
 
                 switch (Position)
                 {
-                    case Components.Enums.ModalPosition.Top:
+                    case ModalPosition.Top:
                         translationY = loc.Top - _popupHeight - loc.Height / 2;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
-                    case Components.Enums.ModalPosition.Bottom:
+                    case ModalPosition.Bottom:
                         translationY = loc.Bottom - _popupHeight + loc.Height / 2;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
-                    case Components.Enums.ModalPosition.Left:
+                    case ModalPosition.Left:
                         translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Left - _popupWidth;
                         break;
 
-                    case Components.Enums.ModalPosition.Right:
+                    case ModalPosition.Right:
                         translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Right;
                         break;
                 }
 
+                var screenHeightInPixels = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
+                translationY = Math.Min(translationY, screenHeightInPixels - _popupHeight - 50);
+                translationY = Math.Max(translationY, 0);
+
+                var screenWidthInPixels = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density;
+                translationX = Math.Min(translationX, screenWidthInPixels - _popupWidth);
+                translationX = Math.Max(translationX, 0);
+
                 popupPage.Content.TranslationY = translationY;
                 popupPage.Content.TranslationX = translationX;
+
+                //Polygon polygon = new Polygon(new PointCollection() { new Point(0, 0), new Point(15, 15), new Point(0, 30) });
+
             }
         }
         catch (Exception ex)
