@@ -208,9 +208,8 @@ public partial class TMButton : ContentView
             switch (tmButton.ButtonStyle)
             {
                 case Enums.ButtonStyle.BorderLess:
-                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                    tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultBorderless);
+                    tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
                     break;
                 case Enums.ButtonStyle.Fill:
                     UpdateFillStyleColors(tmButton);
@@ -280,87 +279,82 @@ public partial class TMButton : ContentView
             case ButtonColor.Secondary:
                 if (tmButton.IsFloatingButton)
                 {
-                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                    tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryBorder);
+                    tmButton.buttonLabel.SetAppThemeColor(StyleProperty,
+                        ResourcesDictionary.LightThemeColor(ThemeColorConstants.Black),
+                        ResourcesDictionary.DarkThemeColor(ThemeColorConstants.White));
                 }
                 else
                 {
-                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                    tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryBorder);
+                    tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
                 }
 
                 break;
 
             case ButtonColor.Tertiary:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.TertiaryBorder);
+                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
                 break;
 
             case ButtonColor.Danger:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DangerBorder);
+                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
                 break;
             default:
-                tmButton.buttonFrame.SetDynamicResource(BackgroundColorProperty, ThemeColorConstants.Blue);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsFromResources(ThemeColorConstants.Blue);
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryBorder);
+                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
                 break;
         }
     }
 
     private static void UpdateOutlineStyleColors(TMButton tmButton)
     {
-        tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
+                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryOutlineBorder);
                 break;
             case ButtonColor.Tertiary:
             case ButtonColor.Danger:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultOutlineBorder);
+                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
                 break;
             default:
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryOutlineBorder);
+                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
                 break;
         }
     }
 
-    private Color GetOnClickColor()
+    private string GetOnClickColor()
     {
         return ButtonStyle switch
         {
             ButtonStyle.Outline => GetOnClickOutline(),
-            ButtonStyle.BorderLess => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+            ButtonStyle.BorderLess => ThemeColorConstants.LightBlue,
             _ => GetOnClickFill(),
         };
     }
 
-    private Color GetOnClickOutline()
+    private string GetOnClickOutline()
     {
         return ButtonColor switch
         {
-            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0),
-            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+            ButtonColor.Secondary => ThemeColorConstants.LightGray,
+            _ => ThemeColorConstants.LightBlue,
         };
     }
 
-    private Color GetOnClickFill()
+    private string GetOnClickFill()
     {
         return ButtonColor switch
         {
-            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray10),
-            ButtonColor.Tertiary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2),
-            ButtonColor.Danger => ResourcesDictionary.ColorsDictionary(ColorsConstants.RedDark),
-            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark),
+            ButtonColor.Secondary => ThemeColorConstants.Black,
+            ButtonColor.Tertiary => ThemeColorConstants.Gray,
+            ButtonColor.Danger => ThemeColorConstants.DarkRed,
+            _ => ThemeColorConstants.DarkBlue,
         };
     }
     #endregion
@@ -371,7 +365,7 @@ public partial class TMButton : ContentView
         if (buttonFrame.BackgroundColor != null)
         {
             activeColor = buttonFrame.BackgroundColor;
-            buttonFrame.BackgroundColor = GetOnClickColor();
+            buttonFrame.SetDynamicResource(BackgroundColorProperty, GetOnClickColor());
         }
     }
     public void RaiseReleased()

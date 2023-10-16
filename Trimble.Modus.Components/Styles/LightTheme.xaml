@@ -2,9 +2,21 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Styles.LightTheme">
-  
-  <Color x:Key="Blue">#004f83</Color>
-  <Color x:Key="DarkBlue">#0063a3</Color>
-  <Color x:Key="LightBlue">#0063a3</Color>
 
+  <Color x:Key="Blue">#0063a3</Color>
+  <Color x:Key="DarkBlue">#004f83</Color>
+  <Color x:Key="LightBlue">#DCEDF9</Color>
+
+  <Color x:Key="White">#FFFFFF</Color>
+
+
+  <Color x:Key="Red">#da212c</Color>
+  <Color x:Key="LightRed">#FBD4D7</Color>
+  <Color x:Key="DarkRed">#AB1F26</Color>
+  
+  <Color x:Key="Gray">#353a40</Color>
+  <Color x:Key="LightGray">#e0e1e9</Color>
+  <Color x:Key="Black">#252a2e</Color>
+  
+  <Color x:Key="Transparent">transparent</Color>
 </ResourceDictionary>

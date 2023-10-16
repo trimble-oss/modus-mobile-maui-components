@@ -13,13 +13,24 @@ public static class ResourcesDictionary
     {
         if (AppBuilderExtensions.CurrentRequestedTheme == AppTheme.Dark)
         {
-            return (Color)new Styles.DarkTheme()[styleKey];
+            return DarkThemeColor(styleKey);
         }
         else
         {
-            return (Color)new Styles.LightTheme()[styleKey];
+            return LightThemeColor(styleKey);
         }
     }
+
+    public static Color DarkThemeColor(string styleKey)
+    {
+        return (Color)new Styles.DarkTheme()[styleKey];
+    }
+
+    public static Color LightThemeColor(string styleKey)
+    {
+        return (Color)new Styles.LightTheme()[styleKey];
+    }
+
 
     public static Color ColorsFromResources(string key)
     {
@@ -32,5 +43,17 @@ public static class ResourcesDictionary
         }
 
         return Colors.White;
+    }
+
+    public static Style? StylesFromResources(string key)
+    {
+        // Retrieve the Primary color value which is in the page's resource dictionary
+        var hasValue = Application.Current.Resources.TryGetValue(key, out object primaryColor);
+
+        if (hasValue)
+        {
+            return (Style)primaryColor;
+        }
+        return null;
     }
 }

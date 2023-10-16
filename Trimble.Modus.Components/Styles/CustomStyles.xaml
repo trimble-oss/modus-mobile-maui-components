@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Styles.CustomStyles">
+  <Style TargetType="Border"
+         x:Key="PrimaryBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource Blue}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Blue}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="DangerBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource Red}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Transparent}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="TertiaryBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource LightGray}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Transparent}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="SecondaryBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource Gray}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Gray}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="WhiteBorder">
+    <Setter Property="BackgroundColor"
+            Value="{AppThemeBinding Light={StaticResource White},Dark={StaticResource Black}}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Transparent}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="SecondaryOutlineBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource Transparent}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Gray}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="DefaultOutlineBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource LightGray}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Transparent}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="PrimaryOutlineBorder">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource Transparent}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Blue}" />
+  </Style>
+
+  <Style TargetType="Border"
+         x:Key="DefaultBorderless">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource Transparent}" />
+    <Setter Property="Stroke"
+            Value="{DynamicResource Transparent}" />
+  </Style>
+
+  <Style TargetType="Label"
+         x:Key="BlueText">
+    <Setter Property="TextColor"
+            Value="{DynamicResource Blue}" />
+  </Style>
+
+  <Style TargetType="Label"
+         x:Key="GrayText">
+    <Setter Property="TextColor"
+            Value="{DynamicResource Gray}" />
+  </Style>
+
+  <Style TargetType="Label"
+         x:Key="WhiteText">
+    <Setter Property="TextColor"
+            Value="{DynamicResource White}" />
+  </Style>
+
+</ResourceDictionary>

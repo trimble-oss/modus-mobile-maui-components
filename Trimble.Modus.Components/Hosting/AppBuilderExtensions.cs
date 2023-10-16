@@ -157,12 +157,13 @@ public static class AppBuilderExtensions
             CheckAndUpdateResources(SelectedDarkTheme, false);
             CheckAndUpdateResources(SelectedLightTheme);
         }
+        CheckAndUpdateResources(new Styles.CustomStyles());
     }
 
     private static void CheckAndUpdateResources(ResourceDictionary keyValuePairs, bool needToAdd = true)
     {
-        var colorsExists = Application.Current.Resources.MergedDictionaries.Contains(keyValuePairs);
-        if (!colorsExists)
+        var dictionaryExists = Application.Current.Resources.MergedDictionaries.Contains(keyValuePairs);
+        if (!dictionaryExists)
         {
             if (needToAdd)
             {

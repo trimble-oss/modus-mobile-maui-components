@@ -7,7 +7,7 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-        AppBuilderExtensions.UseModusTheme(new Resources.Styles.CustomThemeLight(), new Resources.Styles.CustomThemeDark());
+        AppBuilderExtensions.UseModusTheme();
         MainPage = new AppShell();
     }
 }

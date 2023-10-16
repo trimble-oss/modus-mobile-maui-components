@@ -5,6 +5,18 @@
 
   <Color x:Key="Blue">#019aeb</Color>
   <Color x:Key="DarkBlue">#0063a3</Color>
-  <Color x:Key="LightBlue">#0063a3</Color>
+  <Color x:Key="LightBlue">#DCEDF9</Color>
+  
+  <Color x:Key="White">#FFFFFF</Color>
+
+  <Color x:Key="Red">#da212c</Color>
+  <Color x:Key="LightRed">#FBD4D7</Color>
+  <Color x:Key="DarkRed">#AB1F26</Color>
+  
+  <Color x:Key="Gray">#a3a6b1</Color>
+  <Color x:Key="LightGray">#353a40</Color>
+  <Color x:Key="Black">#252a2e</Color>
+  
+  <Color x:Key="Transparent">transparent</Color>
 
 </ResourceDictionary>
