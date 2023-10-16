@@ -33,7 +33,8 @@ namespace DemoApp
                 "Spinner",
                 "Switch",
                 "TabbedPage",
-                "Toast"
+                "Toast",
+                "Message"
             };
             BindingContext = this;
         }
@@ -111,6 +112,9 @@ namespace DemoApp
                         break;
                     case "DropDown":
                         Navigation.PushAsync(new DropDownSamplePage());
+                        break;
+                    case "Message":
+                        Navigation.PushAsync(new MessageSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");

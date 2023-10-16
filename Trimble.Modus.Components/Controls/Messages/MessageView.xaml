@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.MessageView"
+             x:Name="messageView">
+
+
+  <VerticalStackLayout x:Name="toastLayout"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="End">
+
+    <Border x:Name="contentBorder"
+            VerticalOptions="CenterAndExpand"
+            BindingContext="{x:Reference messageView}"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource Transparent}">
+      <Border.StrokeShape>
+        <RoundRectangle CornerRadius="4" />
+      </Border.StrokeShape>
+
+      <StackLayout x:Name="contentLayout"
+                   VerticalOptions="Center"
+                   Spacing="8"
+                   HorizontalOptions="FillAndExpand"
+                   Orientation="Horizontal">
+        <Image x:Name="leftIconImage"
+               Source="{Binding IconSource}"
+               HorizontalOptions="Start"
+               VerticalOptions="CenterAndExpand" />
+        <Label x:Name="titleLabel"
+               FontFamily="OpenSansRegular"
+               Text="{Binding Message}"
+               LineBreakMode="TailTruncation"
+               MaxLines="3"
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand" />        
+      </StackLayout>
+    </Border>
+  </VerticalStackLayout>
+</ContentView>
+
