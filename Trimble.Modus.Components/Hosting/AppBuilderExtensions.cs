@@ -114,25 +114,12 @@ public static class AppBuilderExtensions
         }
     }
 
-    public static void UseModusTheme(ResourceDictionary lightTheme = null, ResourceDictionary darkTheme = null)
+    public static void UseModusTheme()
     {
         CurrentRequestedTheme = Application.Current.RequestedTheme;
-        if (lightTheme != null)
-        {
-            SelectedLightTheme = lightTheme;
-        }
-        else
-        {
-            SelectedLightTheme = new Styles.LightTheme();
-        }
-        if (darkTheme != null)
-        {
-            SelectedDarkTheme = darkTheme;
-        }
-        else
-        {
-            SelectedDarkTheme = new Styles.DarkTheme();
-        }
+        SelectedLightTheme = new Styles.LightTheme();
+        SelectedDarkTheme = new Styles.DarkTheme();
+
         UpdateTheme();
         Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
 
