@@ -65,7 +65,7 @@ public partial class TMTabbedPage : ContentPage
 
         contentContainer = new CarouselView
         {
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.LightGray),
+            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight),
             ItemsSource = TabItems,
             ItemTemplate = new DataTemplate(() =>
             {
