@@ -13,7 +13,7 @@
             VerticalOptions="CenterAndExpand"
             BindingContext="{x:Reference messageView}"
             HorizontalOptions="FillAndExpand"
-            BackgroundColor="{StaticResource Transparent}">
+            BackgroundColor="Transparent">
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="4" />
       </Border.StrokeShape>

@@ -9,7 +9,7 @@ namespace DemoApp
         public MainPage()
         {
             InitializeComponent();
-            ControlNames = new ObservableCollection<string>
+            var items = new List<string>
             {
                 "Accordion",
                 "Badge",
@@ -36,6 +36,7 @@ namespace DemoApp
                 "Toast",
                 "Message"
             };
+            ControlNames = new ObservableCollection<string>(items.OrderBy(item => item));
             BindingContext = this;
         }
         private void ItemTapped(object sender, ItemTappedEventArgs e)

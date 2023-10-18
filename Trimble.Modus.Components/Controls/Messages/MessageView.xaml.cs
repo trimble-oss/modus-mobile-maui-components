@@ -5,20 +5,6 @@ using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
-public enum MessageTheme
-{
-    Primary,
-    Secondary
-}
-
-public enum MessageSize
-{
-    Default,
-    Small,
-    Large,
-    XLarge
-}
-
 public partial class MessageView : ContentView
 {
     #region Bindable Properties

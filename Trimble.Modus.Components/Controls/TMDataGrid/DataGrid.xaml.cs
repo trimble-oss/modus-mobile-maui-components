@@ -302,7 +302,7 @@ public partial class DataGrid
         dataGrid.BorderThickness = (bool)newValue ? new(0.5) : new(0, 0, 0, 1);
         dataGrid._headerView.Padding = new(0, 0, 0, 0);
         dataGrid._headerView.ColumnSpacing = dataGrid.BorderThickness.HorizontalThickness;
-        dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.LightGray);
+        dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight);
         dataGrid._collectionView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
         dataGrid.Reload();
     }
@@ -656,7 +656,7 @@ public partial class DataGrid
         }
         foreach (var child in _headerView.Children.OfType<View>())
         {
-            child.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.LightGray);
+            child.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight);
         }
     }
 

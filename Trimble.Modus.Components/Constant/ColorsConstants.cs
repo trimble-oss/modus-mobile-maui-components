@@ -23,7 +23,7 @@ internal class ColorsConstants
     public const string Gray2 = "Gray2";
     public const string Gray1 = "Gray1";
     public const string Gray0 = "Gray0";
-    public const string LightGray = "LightGray";
+    public const string GrayLight = "GrayLight";
     public const string White = "White";
 
     // Orange
