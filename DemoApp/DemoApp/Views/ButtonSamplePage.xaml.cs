@@ -64,4 +64,9 @@ public partial class ButtonSamplePage : ContentPage
         }
 
     }
+
+    private void isLoading_Toggled(object sender, ToggledEventArgs e)
+    {
+        _buttonPageViewModel.IsLoading = e.Value;
+    }
 }

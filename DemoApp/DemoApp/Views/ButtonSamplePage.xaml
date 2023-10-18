@@ -93,6 +93,7 @@
                                LeftIconSource="{Binding LeftIconSource}"
                                RightIconSource="{Binding RightIconSource}"
                                Command="{Binding MyCommand}"
+                               IsLoading="{Binding IsLoading}"
                                IsDisabled="{Binding IsDisabled}"
                                Size="{Binding SelectedFontSize}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
@@ -102,6 +103,7 @@
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Secondary"
                                Size="{Binding SelectedFontSize}"
+                               IsLoading="{Binding IsLoading}"
                                IsDisabled="{Binding IsDisabled}"
                                ButtonStyle="{Binding SelectedButtonStyle}"
                                LeftIconSource="{Binding LeftIconSource}"
@@ -114,6 +116,7 @@
                                  HorizontalOptions="{Binding FullWidthAlignment}"
                                  ButtonColor="Tertiary"
                                  Size="{Binding SelectedFontSize}"
+                                 IsLoading="{Binding IsLoading}"
                                  IsDisabled="{Binding IsDisabled}"
                                  ButtonStyle="{Binding SelectedButtonStyle}"
                                  LeftIconSource="{Binding LeftIconSource}"
@@ -126,6 +129,7 @@
                                  LeftIconSource="{Binding LeftIconSource}"
                                  RightIconSource="{Binding RightIconSource}"
                                  Size="{Binding SelectedFontSize}"
+                                 IsLoading="{Binding IsLoading}"
                                  IsDisabled="{Binding IsDisabled}"
                                  ButtonStyle="{Binding SelectedButtonStyle}"
                                  ButtonColor="Danger"
@@ -192,6 +196,8 @@
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto" />
           <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0"
@@ -202,6 +208,14 @@
                 x:Name="isDisabled"
                 IsToggled="{Binding IsDisabled}"
                 Toggled="IsDisabled_Toggled" />
+        <Label Grid.Column="2"
+               Text="IsLoading"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        <Switch Grid.Column="3"
+                x:Name="isLoading"
+                IsToggled="{Binding IsLoading}"
+                Toggled="isLoading_Toggled" />
       </Grid>
       <Grid>
         <Grid.ColumnDefinitions>

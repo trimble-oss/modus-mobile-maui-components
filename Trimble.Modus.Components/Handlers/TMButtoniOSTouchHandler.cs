@@ -16,7 +16,7 @@ public class TMButtoniOSTouchHandler : VisualElementRenderer<TMButton>
     public override void TouchesBegan(NSSet touches, UIEvent evt)
     {
         base.TouchesBegan(touches, evt);
-        if (!Element.IsDisabled)
+        if (!Element.IsDisabled && !Element.IsLoading)
         {
             Element?.RaisePressed();
         }
@@ -25,7 +25,7 @@ public class TMButtoniOSTouchHandler : VisualElementRenderer<TMButton>
     public override void TouchesCancelled(NSSet touches, UIEvent evt)
     {
         base.TouchesCancelled(touches, evt);
-        if (!Element.IsDisabled)
+        if (!Element.IsDisabled && !Element.IsLoading)
         {
             Element?.RaiseCancel();
         }
@@ -34,7 +34,7 @@ public class TMButtoniOSTouchHandler : VisualElementRenderer<TMButton>
     public override void TouchesEnded(NSSet touches, UIEvent evt)
     {
         base.TouchesEnded(touches, evt);
-        if (!Element.IsDisabled)
+        if (!Element.IsDisabled && !Element.IsLoading)
         {
             Element?.RaiseReleased();
         }
