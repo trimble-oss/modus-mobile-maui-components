@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modus="http://modus.trimble.com/components"
+             x:Class="DemoApp.Views.MessageSamplePage"             
+             Title="MessageSamplePage">
+    <VerticalStackLayout Padding="8" Spacing="8">
+      <modus:MessageView Message="{Binding Source={x:Reference messageInput}, Path=Text}"
+                         IconSource="placeholder.png"
+                         MessageSize="{Binding MessageSize}"/>
+      <modus:MessageView Message="{Binding Source={x:Reference messageInput}, Path=Text}"
+                         Theme="Secondary"
+                         IconSource="placeholder.png"
+                         MessageSize="{Binding MessageSize}"/>
+
+      <modus:TMRadioButtonGroup x:Name="SizeRadioButton"
+                                SelectedIndex="0"
+                                SelectedRadioButtonChangedCommand="{Binding SizeChangedCommand}"
+                                Orientation="Vertical"
+                                GroupTitle="Size">
+        <modus:TMRadioButton Text="Default" />
+        <modus:TMRadioButton Text="Small" />
+        <modus:TMRadioButton Text="Large" />
+        <modus:TMRadioButton Text="X-Large" />
+      </modus:TMRadioButtonGroup>
+
+      <modus:MultiLineInput x:Name="messageInput"
+                     TitleText="Edit this message"
+                     Text="This is a message."/>
+
+  </VerticalStackLayout>
+</ContentPage>
+

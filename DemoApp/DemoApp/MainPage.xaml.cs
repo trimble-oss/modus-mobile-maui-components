@@ -9,7 +9,7 @@ namespace DemoApp
         public MainPage()
         {
             InitializeComponent();
-            ControlNames = new ObservableCollection<string>
+            var items = new List<string>
             {
                 "Accordion",
                 "Badge",
@@ -33,8 +33,10 @@ namespace DemoApp
                 "Spinner",
                 "Switch",
                 "TabbedPage",
-                "Toast"
+                "Toast",
+                "Message"
             };
+            ControlNames = new ObservableCollection<string>(items.OrderBy(item => item));
             BindingContext = this;
         }
         private void ItemTapped(object sender, ItemTappedEventArgs e)
@@ -111,6 +113,9 @@ namespace DemoApp
                         break;
                     case "DropDown":
                         Navigation.PushAsync(new DropDownSamplePage());
+                        break;
+                    case "Message":
+                        Navigation.PushAsync(new MessageSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
