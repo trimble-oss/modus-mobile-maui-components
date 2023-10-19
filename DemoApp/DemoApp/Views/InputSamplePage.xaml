@@ -63,30 +63,32 @@
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
                        Text="Filled" />
-
-        <modus:TMInput x:Name="rightIcon"
-                       TitleText="Right Icon"
-                       Placeholder="Text Input"
-                       RightIconSource="{x:Static constants:ImageConstants.PasswordIcon}"
-                       IsEnabled="{Binding IsEnabled}"
-                       IsReadOnly="{Binding IsReadOnly}"
-                       RightIconCommand="{Binding ShowPasswordCommand}"
-                       IsPassword="{Binding ShowPassword}" />
-
         <modus:TMInput x:Name="leftIcon"
-                       TitleText="Left Icon"
-                       LeftIconSource="{x:Static constants:ImageConstants.SearchIcon}"
+                       TitleText="Both Icons"
                        IsEnabled="{Binding IsEnabled}"
                        IsReadOnly="{Binding IsReadOnly}"
-                       Placeholder="Text Input" />
-
+                       Placeholder="Text Input" >
+          <modus:TMInput.LeftView>
+            <Image Source="{x:Static constants:ImageConstants.SearchIcon}" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0"/>
+          </modus:TMInput.LeftView>
+              <modus:TMInput.RightView>
+            <Image Source="{x:Static constants:ImageConstants.PasswordIcon}" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"/>
+          </modus:TMInput.RightView>
+        </modus:TMInput>
         <modus:TMInput x:Name="bothIcon"
-                       TitleText="Both Icon"
-                       LeftIconSource="{x:Static constants:ImageConstants.AccountIcon}"
+                       TitleText="Antenna height"
+                       HelperText="Antenna type"
+                       Text="2.0"
                        Placeholder="Text Input"
                        IsEnabled="{Binding IsEnabled}"
-                       IsReadOnly="{Binding IsReadOnly}"
-                       RightIconSource="{x:Static constants:ImageConstants.ContactIcon}" />
+                       IsReadOnly="{Binding IsReadOnly}">
+          <modus:TMInput.RightView>
+            <Label Text="Meters"
+                   Padding="0,0,10,0"
+                   VerticalOptions="Center"
+                   Opacity="0.5"/>
+          </modus:TMInput.RightView>
+        </modus:TMInput>
       </StackLayout>
     </VerticalStackLayout>
   </ScrollView>
