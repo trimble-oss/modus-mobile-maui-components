@@ -179,7 +179,7 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton button)
         {
-            disableButton((bool)newValue,button);
+            SetDisabledState((bool)newValue, button);
         }
     }
     private static void OnIsLoadingChanged(BindableObject bindable, object oldValue, object newValue)
@@ -197,12 +197,12 @@ public partial class TMButton : ContentView
                 // Hide the first column by setting its width to 0.
                button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(0);
             }
-            disableButton(isLoading, button);           
+            SetDisabledState(isLoading, button);
         }
     }
-    private static void disableButton(bool toggleDisable,TMButton button)
+    private static void SetDisabledState(bool disable, TMButton button)
     {
-        if (toggleDisable)
+        if (disable)
         {
             button.Opacity = 0.5;
             button.GestureRecognizers.Clear();
