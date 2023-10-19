@@ -23,7 +23,7 @@ public partial class ButtonSamplePage : ContentPage
 
     private void Style_Changed(object sender, CheckedChangedEventArgs e)
     {
-        if (sender is RadioButton radioButton && radioButton.IsChecked)
+        if (sender is TMRadioButton radioButton && radioButton.IsSelected)
         {
             var selectedStyle = radioButton.Value.ToString();
             _buttonPageViewModel.SelectedButtonStyle = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<ButtonStyle>(selectedStyle);
@@ -32,27 +32,27 @@ public partial class ButtonSamplePage : ContentPage
 
     private void Size_Changed(object sender, CheckedChangedEventArgs e)
     {
-        if (sender is RadioButton radioButton && radioButton.IsChecked)
+        if (sender is TMRadioButton radioButton && radioButton.IsSelected)
         {
             var selectedSize = radioButton.Value.ToString();
             _buttonPageViewModel.SelectedFontSize = Trimble.Modus.Components.Helpers.AppDataHelper.ParseEnum<Size>(selectedSize);
         }
     }
 
-    private void IsDisabled_Toggled(object sender, ToggledEventArgs e)
+    private void IsDisabled_Toggled(object sender, TMSwitchEventArgs e)
     {
         _buttonPageViewModel.IsDisabled = e.Value;
     }
 
     private void ImagePositionChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (sender is RadioButton radioButton && radioButton.IsChecked)
+        if (sender is TMRadioButton radioButton && radioButton.IsSelected)
         {
             _buttonPageViewModel.SelectedImageOption = radioButton.Value.ToString();
         }
     }
 
-    private void FullWidthToggled(object sender, ToggledEventArgs e)
+    private void FullWidthToggled(object sender, TMSwitchEventArgs e)
     {
         if (e.Value)
         {
@@ -63,5 +63,10 @@ public partial class ButtonSamplePage : ContentPage
             _buttonPageViewModel.FullWidthAlignment = LayoutOptions.Start;
         }
 
+    }
+
+    private void isLoading_Toggled(object sender, TMSwitchEventArgs e)
+    {
+        _buttonPageViewModel.IsLoading = e.Value;
     }
 }

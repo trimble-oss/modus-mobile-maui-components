@@ -15,9 +15,9 @@ public class TMButtonAndroidTouchHandler : VisualElementRenderer<TMButton>
 
     private void Control_Touch(object sender, TouchEventArgs e)
     {
-        if (!Element.IsDisabled)
+        if (!Element.IsDisabled && !Element.IsLoading)
         {
-            switch (e.Event.Action)
+          switch (e.Event.Action)
             {
                 case MotionEventActions.Down:
                     Element?.RaisePressed();

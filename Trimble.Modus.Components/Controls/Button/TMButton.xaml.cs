@@ -51,6 +51,10 @@ public partial class TMButton : ContentView
     public static readonly BindableProperty IsDisabledProperty =
         BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsDisabledChanged);
 
+    public static readonly BindableProperty IsLoadingProperty =
+        BindableProperty.Create(nameof(IsLoading), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsLoadingChanged);
+
+
     public static readonly BindableProperty ClickedEventProperty =
             BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMButton));
     #endregion
@@ -119,6 +123,12 @@ public partial class TMButton : ContentView
         set { SetValue(IsDisabledProperty, value); }
     }
 
+    public bool IsLoading
+    {
+        get { return (bool)GetValue(IsLoadingProperty); }
+        set { SetValue(IsLoadingProperty, value); }
+    }
+
     public new Color BackgroundColor
     {
         get { return (Color)GetValue(BackgroundColorProperty); }
@@ -169,16 +179,38 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton button)
         {
-            if ((bool)newValue)
+            SetDisabledState((bool)newValue, button);
+        }
+    }
+    private static void OnIsLoadingChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        bool isLoading = (bool)newValue;
+        if (bindable is TMButton button)
+        {
+            if (isLoading)
             {
-                button.Opacity = 0.5;
-                button.GestureRecognizers.Clear();
+                // Make the first column visible by setting its width to Auto.
+               button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Auto);
             }
             else
             {
-                UpdateButtonStyle(button);
-                button.Opacity = 1;
+                // Hide the first column by setting its width to 0.
+               button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(0);
             }
+            SetDisabledState(isLoading, button);
+        }
+    }
+    private static void SetDisabledState(bool disable, TMButton button)
+    {
+        if (disable)
+        {
+            button.Opacity = 0.5;
+            button.GestureRecognizers.Clear();
+        }
+        else
+        {
+            UpdateButtonStyle(button);
+            button.Opacity = 1;
         }
     }
 

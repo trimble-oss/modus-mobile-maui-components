@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMButton"
              x:Name="tmButton"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              HorizontalOptions="Start">
@@ -20,14 +21,23 @@
           ColumnDefinitions="auto,*,auto"
           ColumnSpacing="8"
           Padding="0,8">
+      <StackLayout Grid.Column="0"
+                   Spacing="8"
+                   Orientation="Horizontal">
+      <local:TMSpinner WidthRequest="24"
+                      HeightRequest="24"
+                      SpinnerColor="Secondary"
+                      SpinnerType="InDeterminate"
+                      IsVisible="{Binding IsLoading}"/>
       <Image x:Name="leftIcon"
-             Grid.Column="0"
+             Grid.Column="1"
              Source="{Binding LeftIconSource}"
              IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"
              VerticalOptions="Center"
              HorizontalOptions="Center"
              WidthRequest="16" />
+      </StackLayout>
       <Label x:Name="buttonLabel"
              Grid.Column="1"
              Text="{Binding Text}"
