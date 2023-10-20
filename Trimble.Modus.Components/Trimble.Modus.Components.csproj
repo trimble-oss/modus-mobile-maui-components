@@ -69,6 +69,7 @@
 	  <None Remove="Images\valid_icon.svg" />
 	  <None Remove="Images\warning_icon.svg" />
     <None Remove="Controls\TabBar\" />
+    <None Remove="Controls\Messages\" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="../README.md" Pack="true" PackagePath="" />
@@ -234,5 +235,8 @@
 	  <MauiXaml Update="Styles\LightTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Controls\Messages\" />
 	</ItemGroup>
 </Project>
