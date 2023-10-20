@@ -188,8 +188,8 @@ public partial class TMInput : BaseInput
     /// </summary>
     internal void ToggleRightIconState(bool enabledState)
     {
-        //inputRightIcon.IsEnabled = enabledState;
-        //inputRightIcon.Opacity = enabledState ? 1 : disabledOpacity;
+        rightCustomView.IsEnabled = enabledState;
+        rightCustomView.Opacity = enabledState ? 1 : disabledOpacity;
     }
 
     /// <summary>
@@ -198,8 +198,8 @@ public partial class TMInput : BaseInput
     /// </summary>
     internal void ToggleLeftIconState(bool enabledState)
     {
-        //inputLeftIcon.IsEnabled = enabledState;
-        //inputLeftIcon.Opacity = enabledState ? 1 : disabledOpacity;
+        leftCustomView.IsEnabled = enabledState;
+        leftCustomView.Opacity = enabledState ? 1 : disabledOpacity;
     }
 
     /// <summary>

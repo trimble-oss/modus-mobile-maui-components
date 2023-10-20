@@ -32,7 +32,10 @@
                  Grid.Column="0"
                  Grid.Row="0"
                  HeightRequest="40"
-                 Content="{Binding LeftCustomContent}">
+                 Content="{Binding LeftView}">
+      <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding LeftIconCommand}" CommandParameter="{Binding LeftIconCommandParameter}" />
+      </ContentView.GestureRecognizers>
     </ContentView>
     <controls:BorderlessEntry x:Name="inputBorderlessEntry"
                               FontFamily="OpenSansRegular"
@@ -67,7 +70,10 @@
                  Grid.Row="0"
                  Grid.Column="2"
                  HeightRequest="40"
-                 Content="{Binding RightCustomContent}">
+                 Content="{Binding RightView}">
+      <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding RightIconCommand}" CommandParameter="{Binding RightIconCommandParameter}" />
+      </ContentView.GestureRecognizers>
     </ContentView>
   </Grid>
 </base:BaseInput>
