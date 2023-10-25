@@ -9,6 +9,8 @@ namespace DemoApp.ViewModels
     {
         public ICommand ShowPasswordCommand { get; set; }
         [ObservableProperty]
+        private bool _isPassword;
+        [ObservableProperty]
         private bool _showPassword;
         [ObservableProperty]
         private bool _isEnabled;
@@ -40,6 +42,7 @@ namespace DemoApp.ViewModels
             IsEnabled = true;
             IsReadOnly = false;
             IsAutoSize = true;
+            IsPassword = true;
         }
         private void ChangeShowPasswordState(object obj)
         {
@@ -97,6 +100,11 @@ namespace DemoApp.ViewModels
         private void UnFocused(object obj)
         {
             Console.WriteLine("UnFocused " + ((FocusEventArgs)obj).IsFocused);
+        }
+        [RelayCommand]
+        private void TogglePasswordIcon(object obj)
+        {
+            IsPassword = !IsPassword;
         }
     }
 }

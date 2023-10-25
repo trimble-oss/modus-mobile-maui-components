@@ -65,8 +65,11 @@
                        Text="Filled" />
         <modus:TMInput x:Name="leftIcon"
                        TitleText="Both Icons"
+                       Text="password123"
                        IsEnabled="{Binding IsEnabled}"
+                       IsPassword="{Binding IsPassword}"
                        IsReadOnly="{Binding IsReadOnly}"
+                       RightIconCommand="{Binding TogglePasswordIconCommand}"
                        Placeholder="Text Input" >
           <modus:TMInput.LeftView>
             <Image Source="{x:Static constants:ImageConstants.SearchIcon}" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0"/>
