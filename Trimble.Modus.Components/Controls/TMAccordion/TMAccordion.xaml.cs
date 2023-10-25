@@ -135,6 +135,12 @@ public partial class TMAccordion : ContentView
     /// </summary>
     private async void Open()
     {
+        if (this.Parent.Parent is ListView)
+        {
+#if IOS || MACCATALYST
+			throw new NotSupportedException($"{nameof(TMAccordion)} is not yet supported in {Parent.Parent.GetType().Name}");
+#endif
+        }
         _accContent.IsVisible = true;
         await Task.WhenAll(
             _accContent.TranslateTo(0, 10, AnimationDuration),
