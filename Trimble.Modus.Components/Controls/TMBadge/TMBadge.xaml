@@ -4,10 +4,14 @@
              x:Name="tmBadge"
              VerticalOptions="Fill"
              x:Class="Trimble.Modus.Components.TMBadge">
-  <Border x:Name="frame"
-          HorizontalOptions="Center"
-          VerticalOptions="Center"
-          Stroke="Transparent">
+  <StackLayout BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start">
+
+
+    <Border x:Name="frame"
+            ZIndex="2"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Stroke="Transparent">
     <Label x:Name="label"
            BindingContext="{x:Reference tmBadge}"
            Text="{Binding Text}"
@@ -16,4 +20,8 @@
            VerticalOptions="Center"
            HorizontalOptions="Center"/>
   </Border>
+    <ContentView x:Name="content" IsVisible="false" ZIndex="1">
+
+    </ContentView>
+  </StackLayout>
 </ContentView>
