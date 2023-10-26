@@ -4,6 +4,7 @@ using SkiaSharp.Views.Maui.Controls;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Enums;
+using Size = Trimble.Modus.Components.Enums.Size;
 
 namespace Trimble.Modus.Components
 {
@@ -17,6 +18,7 @@ namespace Trimble.Modus.Components
         private float _sweepAngle = 180f;
         private float _rotationAngle = 0f;
         private Timer _animationTimer;
+        private int _strokeWidth;
         #endregion
         #region Binding Properties
         public static readonly BindableProperty SpinnerTypeProperty =
@@ -24,6 +26,10 @@ namespace Trimble.Modus.Components
 
         public static readonly BindableProperty SpinnerColorProperty =
             BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Primary, propertyChanged: OnSpinnerColorChanged);
+
+        public static readonly BindableProperty SpinnerSizeProperty =
+            BindableProperty.Create(nameof(SpinnerSize), typeof(Size), typeof(TMSpinner), defaultValue: Size.Default, propertyChanged: OnSpinnerSizeChanged);
+
         #endregion
         #region Public Properties
         public SpinnerType SpinnerType
@@ -36,12 +42,33 @@ namespace Trimble.Modus.Components
             get => (SpinnerColor)GetValue(SpinnerColorProperty);
             set => SetValue(SpinnerColorProperty, value);
         }
+        internal Size SpinnerSize
+        {
+            get => (Size)GetValue(SpinnerSizeProperty);
+            set => SetValue(SpinnerSizeProperty, value);
+        }
+
         #endregion
         public TMSpinner()
         {
+#if WINDOWS
+            _strokeWidth = 5;
+            minWidth = 34;
+            minHeight = 34;
+#else
+            _strokeWidth = 15;
+            minWidth = 32;
+            minHeight = 32;
+#endif
+            createSpinner();
+        }
+        private void createSpinner()
+        {
+
             WidthRequest = minWidth;
             HeightRequest = minHeight;
             IgnorePixelScaling = false;
+            _animationTimer?.Dispose();
             StartAnimation();
         }
         #region Protected Methods
@@ -53,6 +80,64 @@ namespace Trimble.Modus.Components
         }
         #endregion
         #region Private Methods
+        private static void OnSpinnerSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is TMSpinner tmSpinner)
+            {
+                Console.WriteLine("Spinner Size Changed", (Size)newValue);
+                switch ((Size)newValue)
+                {
+                    case Size.XSmall:
+#if WINDOWS
+                        tmSpinner.minWidth = 26;
+                        tmSpinner.minHeight = 26;
+                        tmSpinner._strokeWidth = 3;
+#else
+                        tmSpinner.minWidth = 22;
+                        tmSpinner.minHeight = 22;
+                        tmSpinner._strokeWidth = 8;
+#endif
+                        break;
+                    case Size.Small:
+#if WINDOWS
+                        tmSpinner.minWidth = 30;
+                        tmSpinner.minHeight = 30;
+                        tmSpinner._strokeWidth = 4;
+#else
+                        tmSpinner.minWidth = 26;
+                        tmSpinner.minHeight = 26;
+                        tmSpinner._strokeWidth = 12;
+#endif
+                        break;
+                    case Size.Large:
+#if WINDOWS
+                        tmSpinner.minWidth = 38;
+                        tmSpinner.minHeight = 38;
+                        tmSpinner._strokeWidth = 5;
+#else
+                        tmSpinner.minWidth = 36;
+                        tmSpinner.minHeight = 36;
+                        tmSpinner._strokeWidth = 15;
+#endif
+                        break;
+                    default:
+                    case Size.Default:
+#if WINDOWS
+                        tmSpinner.minWidth = 34;
+                        tmSpinner.minHeight = 34;
+                        tmSpinner._strokeWidth = 5;
+#else
+                        tmSpinner.minWidth = 32;
+                        tmSpinner.minHeight = 32;
+                        tmSpinner._strokeWidth = 15;
+#endif
+                        break;
+                }
+                tmSpinner.createSpinner();
+                
+            }
+        }
+
         private static void OnSpinnerColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is TMSpinner tmSpinner)
@@ -103,10 +188,6 @@ namespace Trimble.Modus.Components
 
             float height = Math.Max(info.Height, minHeight);
             float width = Math.Max(info.Width, minWidth);
-            if (height < minHeight || width < minWidth)
-            {
-                Console.WriteLine("Height or Width < 42");
-            }
             float diameter = Math.Min(width, height) - 15;
             float centerX = width / 2;
             float centerY = height / 2;
@@ -118,7 +199,7 @@ namespace Trimble.Modus.Components
             {
                 Style = SKPaintStyle.Stroke,
                 Color = _spinnerColor.ToSKColor(),
-                StrokeWidth = 15
+                StrokeWidth = _strokeWidth
             };
 
             if (_spinnerType == SpinnerType.InDeterminate)
@@ -139,6 +220,6 @@ namespace Trimble.Modus.Components
             }
             canvas.Flush();
         }
-        #endregion
+#endregion
     }
 }

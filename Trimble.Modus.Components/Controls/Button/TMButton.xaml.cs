@@ -257,21 +257,25 @@ public partial class TMButton : ContentView
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 6);
                     tmButton.HeightRequest = 32;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.XSmall;
                     break;
                 case Enums.Size.Small:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 8);
                     tmButton.HeightRequest = 40;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Small;
                     break;
                 case Enums.Size.Large:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 56;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Large;
                     break;
                 default:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 48;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Default;
                     break;
 
             }
