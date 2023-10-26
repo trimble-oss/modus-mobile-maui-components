@@ -135,10 +135,10 @@ public partial class TMAccordion : ContentView
     /// </summary>
     private async void Open()
     {
-        if (this.Parent.Parent is ListView)
+        if (this.Parent?.Parent != null && this.Parent?.Parent is ListView)
         {
 #if IOS || MACCATALYST
-			throw new NotSupportedException($"{nameof(TMAccordion)} is not yet supported in {Parent.Parent.GetType().Name}");
+			throw new NotSupportedException($"{nameof(TMAccordion)} is not yet supported in {Parent.Parent.GetType().Name}. Please use the BindableLayout.");
 #endif
         }
         _accContent.IsVisible = true;
