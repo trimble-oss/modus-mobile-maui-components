@@ -27,7 +27,7 @@ namespace Trimble.Modus.Components
         public static readonly BindableProperty SpinnerColorProperty =
             BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Primary, propertyChanged: OnSpinnerColorChanged);
 
-        public static readonly BindableProperty SpinnerSizeProperty =
+        internal static readonly BindableProperty SpinnerSizeProperty =
             BindableProperty.Create(nameof(SpinnerSize), typeof(Size), typeof(TMSpinner), defaultValue: Size.Default, propertyChanged: OnSpinnerSizeChanged);
 
         #endregion
