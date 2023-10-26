@@ -22,36 +22,24 @@
 
   <Grid ColumnDefinitions="auto,*,auto"
         ColumnSpacing="0"
-        RowSpacing="0" RowDefinitions="40"
+        RowSpacing="0"
+        RowDefinitions="40"
+        Padding="0"
         BindingContext="{x:Reference singleInput }" >
-    <Grid.Padding>
-      <OnIdiom Default="5,0"
-              Phone="16,0" />
-    </Grid.Padding>
-    <ImageButton x:Name="inputLeftIcon"
-                WidthRequest="20"
-                HeightRequest="20"
-                Source="{Binding LeftIconSource}"
-                Command="{Binding LeftIconCommand}"
-                CommandParameter="{Binding LeftIconCommandParameter}"
-                IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand"
-                Grid.Column="0"
-                Padding="2" >
-      <ImageButton.Padding>
-        <OnIdiom Desktop="10,8,10,10" />
-      </ImageButton.Padding>
-      <ImageButton.IsEnabled>
-        <MultiBinding Converter="{StaticResource AllTrueConverter}">
-          <Binding Path="IsEnabled" />
-          <Binding Path="IsReadOnly"
-                  Converter="{StaticResource InverseBoolConverter}" />
-        </MultiBinding>
-      </ImageButton.IsEnabled>
-    </ImageButton>
+    <ContentView x:Name="leftCustomView"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Grid.Column="0"
+                 Grid.Row="0"
+                 HeightRequest="40"
+                 Content="{Binding LeftView}">
+      <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding LeftIconCommand}" CommandParameter="{Binding LeftIconCommandParameter}" />
+      </ContentView.GestureRecognizers>
+    </ContentView>
     <controls:BorderlessEntry x:Name="inputBorderlessEntry"
                               FontFamily="OpenSansRegular"
+                              Grid.Row="0"
                               Grid.Column="1"
                               Focused="InputBorderlessEntry_Focused"
                               Unfocused="InputBorderlessEntry_Unfocused"
@@ -59,6 +47,7 @@
                               Text="{Binding Text}"
                               IsPassword="{Binding IsPassword}"
                               IsReadOnly="{Binding IsReadOnly}"
+                              Margin="10,0"
                               MaxLength="{Binding MaxLength}"
                               Keyboard="{Binding Keyboard}"
                               ReturnType="{Binding ReturnType}"
@@ -75,26 +64,16 @@
         </MultiBinding>
       </controls:BorderlessEntry.IsEnabled>
     </controls:BorderlessEntry>
-    <ImageButton x:Name="inputRightIcon"
-                WidthRequest="20"
-                HeightRequest="20"
-                IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-                Source="{Binding RightIconSource}"
-                Command="{Binding RightIconCommand}"
-                CommandParameter="{Binding RightIconCommandParameter}"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand"
-                Grid.Column="2">
-      <ImageButton.Padding>
-        <OnIdiom Desktop="10,8,10,10" />
-      </ImageButton.Padding>
-      <ImageButton.IsEnabled>
-        <MultiBinding Converter="{StaticResource AllTrueConverter}">
-          <Binding Path="IsEnabled" />
-          <Binding Path="IsReadOnly"
-                  Converter="{StaticResource InverseBoolConverter}" />
-        </MultiBinding>
-      </ImageButton.IsEnabled>
-    </ImageButton>
+    <ContentView x:Name="rightCustomView"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Grid.Row="0"
+                 Grid.Column="2"
+                 HeightRequest="40"
+                 Content="{Binding RightView}">
+      <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding RightIconCommand}" CommandParameter="{Binding RightIconCommandParameter}" />
+      </ContentView.GestureRecognizers>
+    </ContentView>
   </Grid>
 </base:BaseInput>
