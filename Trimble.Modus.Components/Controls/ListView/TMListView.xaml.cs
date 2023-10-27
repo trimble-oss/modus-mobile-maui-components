@@ -129,7 +129,7 @@ public partial class TMListView : ListView
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(Colors.White);
+                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White));
                 }
             }
             else if (item is TemplateCell templateCell)
@@ -140,7 +140,7 @@ public partial class TMListView : ListView
                 }
                 else
                 {
-                    templateCell.UpdateBackgroundColor(Colors.White);
+                    templateCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White));
                 }
             }
         }

@@ -7,7 +7,6 @@
   <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
   <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
   <converters:AllTrueConverter x:Key="AllTrueConverter" />
-
   <ControlTemplate x:Key="InputTemplate">
     <Grid x:Name="tmInputContainer"
           RowDefinitions="auto,auto,auto"

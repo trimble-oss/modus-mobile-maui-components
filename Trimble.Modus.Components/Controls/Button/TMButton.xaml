@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMButton"
              x:Name="tmButton"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              HorizontalOptions="Start">
@@ -13,36 +14,45 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
-          HorizontalOptions="{Binding Source={x:Reference tmButton}, Path=HorizontalOptions}"
           BindingContext="{x:Reference tmButton}"
           x:Name="buttonFrame"
-          StrokeShape="RoundRectangle 4,4"
-          >
-    <HorizontalStackLayout x:Name="buttonStackLayout"
-                           Spacing="8"
-                           VerticalOptions="FillAndExpand"
-                           HorizontalOptions="Center">
-      <Image x:Name="leftIcon"
+          StrokeShape="RoundRectangle 4,4">
+    <Grid x:Name="buttonStackLayout"
+          ColumnDefinitions="auto,*,auto"
+          ColumnSpacing="8"
+          Padding="0,8">
+      <StackLayout Grid.Column="0"
+                   Spacing="8"
+                   Orientation="Horizontal">
+        <local:TMSpinner x:Name="loadingSpinner"
+                      SpinnerColor="Secondary"
+                      SpinnerType="InDeterminate"
+                      IsVisible="{Binding IsLoading}"/>
+        <Image x:Name="leftIcon"
+             Grid.Column="1"
              Source="{Binding LeftIconSource}"
              IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"
              VerticalOptions="Center"
              HorizontalOptions="Center"
              WidthRequest="16" />
+      </StackLayout>
       <Label x:Name="buttonLabel"
-             Text="{Binding Title}"
-             IsVisible="{Binding Title,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+             Grid.Column="1"
+             Text="{Binding Text}"
+             IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
              HeightRequest="48"
              FontFamily="OpenSansSemibold"
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center" />
       <Image x:Name="rightIcon"
+             Grid.Column="2"
              Source="{Binding RightIconSource}"
              IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"
              WidthRequest="16"
              VerticalOptions="Center"
              HorizontalOptions="Center" />
-    </HorizontalStackLayout>
+    </Grid>
   </Border>
 </ContentView>

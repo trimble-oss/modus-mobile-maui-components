@@ -16,7 +16,7 @@ namespace Trimble.Modus.Components.Handlers
 
         private void Control_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            if (!Element.IsDisabled)
+            if (!Element.IsDisabled && !Element.IsLoading)
             {
                 Element?.RaisePressed();
             }
@@ -25,7 +25,7 @@ namespace Trimble.Modus.Components.Handlers
 
         private void Control_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            if (!Element.IsDisabled)
+            if (!Element.IsDisabled && !Element.IsLoading)
             {
                 Element?.RaiseReleased();
             }
@@ -33,7 +33,7 @@ namespace Trimble.Modus.Components.Handlers
 
         private void Control_PointerCanceled(object sender, PointerRoutedEventArgs e)
         {
-            if (!Element.IsDisabled)
+            if (!Element.IsDisabled && !Element.IsLoading)
             {
                 Element?.RaiseCancel();
             }

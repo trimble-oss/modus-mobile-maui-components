@@ -49,49 +49,49 @@ public partial class TMToastContents : PopupPage
                 ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDarkThemeIcon);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
-                TextColor = Colors.White;
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
 
             case ToastTheme.Primary:
                 ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.BlueInfoIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ToastTextBlue);
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 break;
 
             case ToastTheme.Secondary:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.SolidHelpIcon);
-                TextColor = Colors.Black;
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
 
             case ToastTheme.Danger:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerToastColor);
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.RedPale);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDangerIcon);
-                TextColor = Colors.Black;
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
 
             case ToastTheme.Warning:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.WarningToastColor);
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.YellowPale);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.WarningIcon);
-                TextColor = Colors.Black;
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
 
             case ToastTheme.Success:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.SuccessToastColor);
+                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.GreenPale);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.ValidIcon);
-                TextColor = Colors.Black;
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
                 
             default:
                 ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
                 LeftIconSource = ImageSource.FromFile(ImageConstants.GreyInfoIcon);
-                TextColor = Colors.Black;
+                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
         }
 

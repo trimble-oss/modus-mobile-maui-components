@@ -42,7 +42,8 @@ public partial class TabViewItem : ContentView
     public static readonly BindableProperty CurrentContentProperty = CurrentContentPropertyKey.BindableProperty;
 
     
-    internal static readonly BindablePropertyKey CurrentTextColorPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentTextColor), typeof(Color), typeof(TabViewItem), Colors.Black);
+    internal static readonly BindablePropertyKey CurrentTextColorPropertyKey =
+        BindableProperty.CreateReadOnly(nameof(CurrentTextColor), typeof(Color), typeof(TabViewItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9));
 
     public static readonly BindableProperty CurrentTextColorProperty = CurrentTextColorPropertyKey.BindableProperty;
 
@@ -145,7 +146,7 @@ public partial class TabViewItem : ContentView
         tabItem.Orientation = Orientation;
         icon.Behaviors.Add(behavior);
         text.TextColor = CurrentTextColor;
-        selectedBorder.BackgroundColor = !IsSelected ? Colors.Transparent : ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+        selectedBorder.BackgroundColor = !IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent) : ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
         UpdateCurrentContent();
     }
     private static void OnTabViewItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)

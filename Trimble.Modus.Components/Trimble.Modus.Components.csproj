@@ -25,7 +25,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Trimble.Modus.Components</PackageId>
 		<Title>Trimbel Modus</Title>
-		<Version>0.0.6-alpha</Version>
+		<Version>0.1.2-beta</Version>
 		<Authors>Trimble Inc</Authors>
 		<Company>Trimble Inc</Company>
 		<Product>Trimble.Modus.Components</Product>
@@ -38,7 +38,7 @@
 		<PackageTags>Trimble, Modus</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-		<PackageReleaseNotes>Test Release notes</PackageReleaseNotes>
+		<PackageReleaseNotes>Visit https://github.com/trimble-oss/modus-mobile-maui-components/releases</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
@@ -69,9 +69,10 @@
 	  <None Remove="Images\valid_icon.svg" />
 	  <None Remove="Images\warning_icon.svg" />
     <None Remove="Controls\TabBar\" />
+    <None Remove="Controls\Messages\" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="" />
+		<None Include="../README.md" Pack="true" PackagePath="" />
 		<None Include="LICENSE.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
@@ -88,6 +89,7 @@
 	  <None Remove="Images\cancel_circle.svg" />
 	  <None Remove="Images\check.svg" />
 	  <None Remove="Images\slider_thumb.svg" />
+	  <None Remove="Images\chevron_down_icon_white.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <MauiImage Include="Images\add_icon.svg" />
@@ -95,6 +97,7 @@
 	  <MauiImage Include="Images\caret_down_bold.svg" />
 	  <MauiImage Include="Images\check.svg" />
 	  <MauiImage Include="Images\chevron_down_icon.svg" />
+	  <MauiImage Include="Images\chevron_down_icon_white.svg" />
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\slider_thumb.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
@@ -133,6 +136,9 @@
 	  <Compile Update="Controls\Button\TMButton.xaml.cs">
 	    <DependentUpon>TMButton.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
+	    <DependentUpon>DropDownContents.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
@@ -161,6 +167,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\DropDownContents.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\TMDropDown.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
@@ -214,5 +226,8 @@
 	  <MauiXaml Update="Styles\Colors.xaml">
 	    <Generator></Generator>
 	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Controls\Messages\" />
 	</ItemGroup>
 </Project>

@@ -19,7 +19,7 @@
         <Setter Property="VerticalOptions"
                 Value="Center" />
         <Setter Property="TextColor"
-                Value="{x:StaticResource TableHeaderTextColor}" />
+                Value="{x:StaticResource TrimbleGray}" />
         <Setter Property="LineBreakMode"
                 Value="WordWrap" />
         <Setter Property="Padding"
@@ -37,14 +37,16 @@
           HeightRequest="48" />
     <CollectionView x:Name="_collectionView"
                     Grid.Row="1"
-                    WidthRequest="{Binding WidthRequest, Source={Reference self}, Mode=TwoWay}"
+                    WidthRequest="{Binding WidthRequest, Source={Reference self}}"
                     SelectedItem="{Binding SelectedItem, Source={Reference self}, Mode=TwoWay}"
                     SelectedItems="{Binding SelectedItems, Source={Reference self}, Mode=TwoWay}"
-                    SelectionMode="{Binding SelectionMode, Source={Reference self}, Mode=TwoWay}">
+                    SelectionMode="{Binding SelectionMode, Source={Reference self}, Mode=TwoWay}"
+                    ItemSizingStrategy="{OnPlatform MeasureFirstItem,Android=MeasureAllItems}">
       <CollectionView.ItemTemplate>
         <DataTemplate>
           <local:DataGridRow MinimumHeightRequest="48"
-                             Padding="0,0,0,1">
+                             Padding="0,0,0,1"
+                             DataGrid="{Reference self}">
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup Name="CommonStates">
                 <VisualState Name="Normal" />

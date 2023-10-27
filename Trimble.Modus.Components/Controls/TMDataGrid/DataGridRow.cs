@@ -1,7 +1,6 @@
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Controls.DataGridControl;
-using System.Collections.Generic;
 
 namespace Trimble.Modus.Components;
 internal sealed class DataGridRow : Grid
@@ -10,10 +9,37 @@ internal sealed class DataGridRow : Grid
 
     private Color? _bgColor;
     private readonly Color? _textColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-    private bool _hasSelected;
-    private DataGrid _dataGridReference;
+    private List<int> SelectedIndexes = new List<int>();
 
     #endregion Fields
+
+    #region Properties
+
+    public DataGrid DataGrid
+    {
+        get => (DataGrid)GetValue(DataGridProperty);
+        set => SetValue(DataGridProperty, value);
+    }
+
+    #endregion Properties
+
+    public static readonly BindableProperty DataGridProperty = BindableProperty.Create(nameof(DataGrid), typeof(DataGrid), typeof(DataGridRow), defaultBindingMode: BindingMode.OneTime, propertyChanged: OnDataGridPropertyChanged);
+
+    private static void OnDataGridPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var self = (DataGridRow)bindable;
+
+        if (oldValue is DataGrid oldDataGrid)
+        {
+            oldDataGrid.ItemSelected -= self.DataGrid_ItemSelected;
+        }
+
+        if (newValue is DataGrid newDataGrid && newDataGrid.SelectionMode != SelectionMode.None)
+        {
+            newDataGrid.ItemSelected += self.DataGrid_ItemSelected;
+        }
+    }
+
     #region Methods
 
     /// <summary>
@@ -21,16 +47,14 @@ internal sealed class DataGridRow : Grid
     /// </summary>
     private void CreateView()
     {
-        if (Children.Count > 0)
-            return;
         ColumnDefinitions.Clear();
         Children.Clear();
 
         SetStyling();
 
-        for (var i = 0; i < _dataGridReference.Columns.Count; i++)
+        for (var i = 0; i < DataGrid.Columns.Count; i++)
         {
-            var col = _dataGridReference.Columns[i];
+            var col = DataGrid.Columns[i];
 
             ColumnDefinitions.Add(col.ColumnDefinition);
 
@@ -44,7 +68,7 @@ internal sealed class DataGridRow : Grid
             SetColumn((BindableObject)cell, i);
             Children.Add(cell);
         }
-        if (DeviceInfo.Idiom == DeviceIdiom.Desktop && _dataGridReference.SelectionMode == SelectionMode.Multiple)
+        if (DeviceInfo.Idiom == DeviceIdiom.Desktop && DataGrid.SelectionMode == SelectionMode.Multiple)
         {
             Padding = new Thickness(-28.5, 0, 0, 0);
         }
@@ -55,8 +79,8 @@ internal sealed class DataGridRow : Grid
     private void SetStyling()
     {
         UpdateBackgroundColor();
-        BackgroundColor = _dataGridReference.BorderColor;
-        var borderThickness = _dataGridReference.ShowDivider? _dataGridReference.BorderThickness : new Thickness(0, 0, 0, 1);
+        BackgroundColor = DataGrid.BorderColor;
+        var borderThickness = DataGrid.ShowDivider? DataGrid.BorderThickness : new Thickness(0, 0, 0, 1);
         ColumnSpacing = borderThickness.HorizontalThickness;
     }
 
@@ -71,14 +95,14 @@ internal sealed class DataGridRow : Grid
 
         if (col.CellTemplate != null)
         {
-            cell = new ContentView
+            var contentView = new ContentView
             {
                 BackgroundColor = _bgColor,
                 Content = col.CellTemplate.CreateContent() as View
             };
-            if(col is TextColumn)
+            if (col is TextColumn)
             {
-                var grid = (cell as ContentView).Content as Grid;
+                var grid = contentView.Content as Grid;
                 if (grid != null)
                 {
                     if(!string.IsNullOrWhiteSpace((col as TextColumn).PropertyName))
@@ -93,14 +117,15 @@ internal sealed class DataGridRow : Grid
             }
             else if (col is ImageColumn imageColumn)
             {
-                var image = (cell as ContentView)?.Content as Image;
+                var image = contentView.Content as Image;
                 image?.SetBinding(Image.SourceProperty, new Binding(imageColumn.PropertyName, source: BindingContext));
             }
             else if(col is BooleanColumn booleanColumn)
             {
-                var switchElement = (cell as ContentView)?.Content as TMSwitch;
+                var switchElement = contentView.Content as TMSwitch;
                 switchElement?.SetBinding(TMSwitch.IsToggledProperty, new Binding(booleanColumn.PropertyName, source: BindingContext));
             }
+            cell = contentView;
         }
         else
         {
@@ -109,8 +134,6 @@ internal sealed class DataGridRow : Grid
                 TextColor = _textColor,
                 FontSize = 14,
                 BackgroundColor = _bgColor,
-                VerticalOptions = LayoutOptions.Fill,
-                HorizontalOptions = LayoutOptions.Fill,
                 VerticalTextAlignment = col.VerticalContentAlignment.ToTextAlignment(),
                 HorizontalTextAlignment = col.HorizontalContentAlignment.ToTextAlignment(),
                 LineBreakMode = col.LineBreakMode
@@ -136,30 +159,31 @@ internal sealed class DataGridRow : Grid
             return;
         }
 
-        _bgColor = _dataGridReference?.SelectionMode != SelectionMode.None && _hasSelected
-                ? _dataGridReference.ActiveRowColor
-                : Colors.White;
-        ChangeColor(_bgColor, _textColor);
-    }
-
-    /// <summary>
-    /// Change the color of the row
-    /// </summary>
-    /// <param name="bgColor"></param>
-    /// <param name="textColor"></param>
-    private void ChangeColor(Color? bgColor, Color? textColor)
-    {
+        _bgColor = (DataGrid.SelectionMode != SelectionMode.None && SelectedIndexes.Contains(rowIndex))
+                ? DataGrid.ActiveRowColor
+                : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
         foreach (var v in Children)
         {
             if (v is View view)
             {
-                view.BackgroundColor = bgColor;
+                view.BackgroundColor = _bgColor;
 
                 if (view is Label label)
                 {
-                    label.TextColor = textColor;
+                    label.TextColor = _textColor;
                 }
             }
+        }
+    }
+
+    /// <inheritdoc/>
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+
+        if (BindingContext != DataGrid.BindingContext)
+        {
+            CreateView();
         }
     }
 
@@ -167,35 +191,18 @@ internal sealed class DataGridRow : Grid
     protected override void OnParentSet()
     {
         base.OnParentSet();
-        
-        Element parent = this;
-        int iterations = 0;
-        while (parent != null && !(parent is DataGrid) && iterations < 4)
+        if (Parent == null)
         {
-            parent = parent.Parent;
-            iterations++;
+            DataGrid.ItemSelected -= DataGrid_ItemSelected;
         }
-
-        if (parent is DataGrid dataGrid)
+        else
         {
-            _dataGridReference = dataGrid;
-        }
-        CreateView();
-        if (_dataGridReference.SelectionMode != SelectionMode.None)
-        {
-            if (Parent != null)
-            {
-                _dataGridReference.ItemSelected += DataGrid_ItemSelected;
-            }
-            else
-            {
-                _dataGridReference.ItemSelected -= DataGrid_ItemSelected;
-            }
+            DataGrid.ItemSelected += DataGrid_ItemSelected;
         }
     }
     private int GetRowIndex()
     {
-        return _dataGridReference?.InternalItems?.IndexOf(BindingContext) ?? -1;
+        return DataGrid.InternalItems?.IndexOf(BindingContext) ?? -1;
     }
 
     /// <summary>
@@ -205,7 +212,8 @@ internal sealed class DataGridRow : Grid
     /// <param name="e"></param>
     private void DataGrid_ItemSelected(object? sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
-        if (_dataGridReference.SelectionMode == SelectionMode.None)
+        var rowIndex = GetRowIndex();
+        if (DataGrid.SelectionMode == SelectionMode.None)
         {
             return;
         }
@@ -214,18 +222,18 @@ internal sealed class DataGridRow : Grid
         {
             if (deselectedItem == BindingContext)
             {
-                _hasSelected = false;
+                SelectedIndexes.Remove(rowIndex);
                 UpdateBackgroundColor();
                 return;
             }
         }
-        if (_hasSelected || (e.CurrentSelection.Count > 0))
+        if (!SelectedIndexes.Contains(rowIndex) && (e.CurrentSelection.Count > 0))
         {
-            foreach(var item in e.CurrentSelection)
+            foreach (var item in e.CurrentSelection)
             {
                 if (item == BindingContext)
                 {
-                    _hasSelected = true;
+                    SelectedIndexes.Add(rowIndex);
                     UpdateBackgroundColor();
                     return;
                 }

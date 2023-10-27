@@ -21,7 +21,7 @@ public class DataGridColumn : BindableObject, IDefinition
 
     public DataGridColumn()
     {
-        HeaderLabel = new Label { Margin = new Thickness(0,0,0,0), FontFamily = "OpenSansRegular" };
+        HeaderLabel = new Label { Margin = new Thickness(0,0,0,0), FontFamily = "OpenSansSemibold" };
         SortingIcon = new Image {Source = ImageConstants.CaretDownImage};
         SortingIconContainer = new ContentView
         {
@@ -113,9 +113,9 @@ public class DataGridColumn : BindableObject, IDefinition
     /// <summary>
     /// Cell template. Default value is <c>Label</c> with binding <c>PropertyName</c>
     /// </summary>
-    public DataTemplate CellTemplate
+    public DataTemplate? CellTemplate
     {
-        get => (DataTemplate)GetValue(CellTemplateProperty);
+        get => (DataTemplate?)GetValue(CellTemplateProperty);
         set => SetValue(CellTemplateProperty, value);
     }
 
@@ -179,14 +179,6 @@ public class DataGridColumn : BindableObject, IDefinition
         {
             try
             {
-                Element parent = column.HeaderLabel.Parent;
-                int iterations = 0;
-                while (parent != null && !(parent is DataGrid) && iterations < 4)
-                {
-                    parent = parent.Parent;
-                    iterations++;
-                }
-                column.DataGrid ??= (DataGrid?)parent;
                 column.DataGrid?.Reload();
             }
             catch { }
@@ -201,7 +193,7 @@ public class DataGridColumn : BindableObject, IDefinition
     /// </summary>
     private static void OnWidthPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (oldValue != newValue && newValue is GridLength width && bindable is DataGridColumn self)
+        if (!oldValue.Equals(newValue) && newValue is GridLength width && bindable is DataGridColumn self)
         {
             self.ColumnDefinition = new(width);
             self.OnSizeChanged();
@@ -222,12 +214,19 @@ public class DataGridColumn : BindableObject, IDefinition
 
         try
         {
-            var listItemType = dataGrid.ItemsSource.GetType().GetGenericArguments().Single();
-            var columnDataType = listItemType.GetProperty(PropertyName)?.PropertyType;
-
-            if (columnDataType is not null)
+            if (dataGrid.ItemsSource is null)
             {
-                _isSortable = typeof(IComparable).IsAssignableFrom(columnDataType);
+                _isSortable = false;
+            }
+            else
+            {
+                var listItemType = dataGrid.ItemsSource.GetType().GetGenericArguments().Single();
+                var columnDataType = listItemType.GetProperty(PropertyName)?.PropertyType;
+
+                if (columnDataType is not null)
+                {
+                    _isSortable = typeof(IComparable).IsAssignableFrom(columnDataType);
+                }
             }
         }
         catch

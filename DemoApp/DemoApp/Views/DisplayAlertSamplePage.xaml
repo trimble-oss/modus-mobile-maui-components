@@ -5,7 +5,7 @@
              x:Class="DemoApp.Views.DisplayAlertSamplePage"
              Title="DisplayAlertSamplePage">
   <VerticalStackLayout Spacing="10" Padding="10">
-    <modus:TMButton Title="Show Display Alert"
+    <modus:TMButton Text="Show Display Alert"
                     Command="{Binding ShowAlertCommand}"
                     HorizontalOptions="Center" />
     <modus:TMInput Placeholder="Title"

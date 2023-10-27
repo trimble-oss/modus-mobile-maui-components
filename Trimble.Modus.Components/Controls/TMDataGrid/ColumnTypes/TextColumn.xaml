@@ -21,7 +21,7 @@
                FontFamily="OpenSansRegular"
                HorizontalTextAlignment="Start"
                VerticalTextAlignment="Center"
-               Padding="16,0"
+               Padding="16,0,16,4"
                FontSize="14"
                LineBreakMode="WordWrap" />
       </Grid>

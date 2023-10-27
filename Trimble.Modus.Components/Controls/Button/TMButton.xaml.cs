@@ -21,8 +21,8 @@ public partial class TMButton : ContentView
 
     #region Bindable Properties
 
-    public static readonly BindableProperty TitleProperty =
-        BindableProperty.Create(nameof(Title), typeof(string), typeof(TMButton));
+    public static readonly BindableProperty TextProperty =
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(TMButton));
 
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMButton));
@@ -50,6 +50,10 @@ public partial class TMButton : ContentView
 
     public static readonly BindableProperty IsDisabledProperty =
         BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsDisabledChanged);
+
+    public static readonly BindableProperty IsLoadingProperty =
+        BindableProperty.Create(nameof(IsLoading), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsLoadingChanged);
+
 
     public static readonly BindableProperty ClickedEventProperty =
             BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMButton));
@@ -84,10 +88,10 @@ public partial class TMButton : ContentView
         get => (ButtonColor)GetValue(ButtonColorProperty);
         set => SetValue(ButtonColorProperty, value);
     }
-    public string Title
+    public string Text
     {
-        get => (string)GetValue(TitleProperty);
-        set => SetValue(TitleProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
     public ImageSource LeftIconSource
     {
@@ -117,6 +121,12 @@ public partial class TMButton : ContentView
     {
         get { return (bool)GetValue(IsDisabledProperty); }
         set { SetValue(IsDisabledProperty, value); }
+    }
+
+    public bool IsLoading
+    {
+        get { return (bool)GetValue(IsLoadingProperty); }
+        set { SetValue(IsLoadingProperty, value); }
     }
 
     public new Color BackgroundColor
@@ -152,51 +162,73 @@ public partial class TMButton : ContentView
 
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            SetPadding(tmButton);
+            SetPadding(button);
         }
     }
     private static void OnButtonStyleChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            UpdateButtonStyle(tmButton);
+            UpdateButtonStyle(button);
         }
     }
 
     private static void OnIsDisabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            if ((bool)newValue)
+            SetDisabledState((bool)newValue, button);
+        }
+    }
+    private static void OnIsLoadingChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        bool isLoading = (bool)newValue;
+        if (bindable is TMButton button)
+        {
+            if (isLoading)
             {
-                tmButton.Opacity = 0.5;
-                tmButton.GestureRecognizers.Clear();
+                // Make the first column visible by setting its width to Auto.
+               button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Auto);
             }
             else
             {
-                UpdateButtonStyle(tmButton);
-                tmButton.Opacity = 1;
+                // Hide the first column by setting its width to 0.
+               button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(0);
             }
+            SetDisabledState(isLoading, button);
+        }
+    }
+    private static void SetDisabledState(bool disable, TMButton button)
+    {
+        if (disable)
+        {
+            button.Opacity = 0.5;
+            button.GestureRecognizers.Clear();
+        }
+        else
+        {
+            UpdateButtonStyle(button);
+            button.Opacity = 1;
         }
     }
 
     private static void OnButtonColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton button)
         {
-            UpdateButtonStyle(tmButton);
+            UpdateButtonStyle(button);
         }
     }
 
     private static void UpdateButtonStyle(TMButton tmButton)
     {
-        if( tmButton.IsFloatingButton && (tmButton.ButtonStyle == ButtonStyle.Outline || tmButton.ButtonStyle == ButtonStyle.BorderLess))
+        if (tmButton.IsFloatingButton && (tmButton.ButtonStyle == ButtonStyle.Outline || tmButton.ButtonStyle == ButtonStyle.BorderLess))
         {
             tmButton.ButtonStyle = ButtonStyle.Fill;
         }
-            switch (tmButton.ButtonStyle)
+        switch (tmButton.ButtonStyle)
         {
             case Enums.ButtonStyle.BorderLess:
                 tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
@@ -225,29 +257,32 @@ public partial class TMButton : ContentView
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 6);
                     tmButton.HeightRequest = 32;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.XSmall;
                     break;
                 case Enums.Size.Small:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 8);
                     tmButton.HeightRequest = 40;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Small;
                     break;
                 case Enums.Size.Large:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 56;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Large;
                     break;
-                case Enums.Size.Default:
                 default:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 48;
+                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Default;
                     break;
 
             }
         }
         else
         {
-            if (tmButton.Title != null)
+            if (tmButton.Text != null)
             {
                 tmButton.buttonStackLayout.Padding = new Thickness(16, 0);
             }
@@ -272,25 +307,25 @@ public partial class TMButton : ContentView
                 {
                     tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                     tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Black);
+                    tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 }
                 else
                 {
-                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                    tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                    tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                     tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 }
 
                 break;
 
             case ButtonColor.Tertiary:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButton);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 break;
 
             case ButtonColor.Danger:
-                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRed);
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
@@ -308,10 +343,15 @@ public partial class TMButton : ContentView
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
-                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButton);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
                 break;
-            case ButtonColor.Primary:
+            case ButtonColor.Tertiary:
+            case ButtonColor.Danger:
+                tmButton.buttonFrame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
+                tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                break;
             default:
                 tmButton.buttonLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 tmButton.buttonFrame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
@@ -319,51 +359,34 @@ public partial class TMButton : ContentView
         }
     }
 
-    private Color GetOnClickColor(Color color)
+    private Color GetOnClickColor()
     {
-        switch (ButtonStyle)
+        return ButtonStyle switch
         {
-            case ButtonStyle.Outline:
-                color = GetOnClickOutline(color);
-                break;
-            case ButtonStyle.BorderLess:
-                color = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                break;
-            case ButtonStyle.Fill:
-                color = GetOnClickFill();
-                break;
-            default:
-                break;
-        }
-
-        return color;
+            ButtonStyle.Outline => GetOnClickOutline(),
+            ButtonStyle.BorderLess => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+            _ => GetOnClickFill(),
+        };
     }
 
-    private Color GetOnClickOutline(Color color)
+    private Color GetOnClickOutline()
     {
-        switch (ButtonColor)
+        return ButtonColor switch
         {
-            case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.NeutralGray);
-            case ButtonColor.Primary:
-            default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-        }
+            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0),
+            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+        };
     }
 
     private Color GetOnClickFill()
     {
-        switch (ButtonColor)
+        return ButtonColor switch
         {
-            case ButtonColor.Secondary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.SecondaryButtonClicked);
-            case ButtonColor.Tertiary:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TertiaryButtonClicked);
-            case ButtonColor.Danger:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.DangerRedClicked);
-            default:
-                return ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlueClicked);
-        }
+            ButtonColor.Secondary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray10),
+            ButtonColor.Tertiary => ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2),
+            ButtonColor.Danger => ResourcesDictionary.ColorsDictionary(ColorsConstants.RedDark),
+            _ => ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueDark),
+        };
     }
     #endregion
     #region Public Methods
@@ -373,7 +396,7 @@ public partial class TMButton : ContentView
         if (buttonFrame.BackgroundColor != null)
         {
             activeColor = buttonFrame.BackgroundColor;
-            buttonFrame.BackgroundColor = GetOnClickColor(buttonFrame.BackgroundColor);
+            buttonFrame.BackgroundColor = GetOnClickColor();
         }
     }
     public void RaiseReleased()

@@ -162,12 +162,12 @@ public partial class TMChips : ContentView
                 label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
                 if (ChipStyle == ChipStyle.Fill)
                 {
-                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ChipSelectedBackground);
+                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                     frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
                 }
                 else
                 {
-                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.ChipSelectedBackground);
+                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
                     frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
                 }
                 if(ChipType == ChipType.Filter)
@@ -193,7 +193,7 @@ public partial class TMChips : ContentView
     private void UpdateChips(TMChips tMChips)
     {
         UpdateCornerRadius(tMChips);
-        tMChips.AssignStates(ColorsConstants.TertiaryButton, ColorsConstants.TrimbleGray);
+        tMChips.AssignStates(ColorsConstants.Gray1, ColorsConstants.TrimbleGray);
         UpdateLabelOnSize(tMChips);
     }
 
@@ -275,12 +275,12 @@ public partial class TMChips : ContentView
         switch (ChipState)
         {
             case ChipState.Error:
-                AssignStates(ColorsConstants.DangerToastColor, ColorsConstants.DangerRedClicked);
+                AssignStates(ColorsConstants.RedPale, ColorsConstants.RedDark);
                 GestureRecognizers.Clear();
                 break;
             case ChipState.Default:
             default:
-                AssignStates(ColorsConstants.TertiaryButton, ColorsConstants.TrimbleGray);
+                AssignStates(ColorsConstants.Gray1, ColorsConstants.TrimbleGray);
                 if (!GestureRecognizers.Contains(tapGestureRecognizer))
                 {
                     GestureRecognizers.Add(tapGestureRecognizer);

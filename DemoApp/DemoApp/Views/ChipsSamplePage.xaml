@@ -34,7 +34,7 @@
         </BindableLayout.ItemTemplate>
       </FlexLayout>
 
-      <modus:TMButton Title="Add Chip" Command="{Binding AddChipCommand}"/>
+      <modus:TMButton Text="Add Chip" Command="{Binding AddChipCommand}"/>
     </VerticalStackLayout>
     <Label Text="Filter Type Chips" FontSize="Large"/>
     

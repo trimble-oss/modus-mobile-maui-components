@@ -8,6 +8,8 @@ using UIKit;
 #elif WINDOWS
 using uiXaml = Microsoft.UI.Xaml;
 using Microsoft.Maui.Controls.Compatibility.Platform.UWP;
+using Microsoft.Maui.Controls;
+using Microsoft.UI.Xaml;
 #endif
 
 namespace Trimble.Modus.Components.Helpers
@@ -48,33 +50,22 @@ namespace Trimble.Modus.Components.Helpers
                 convertPoint.Height);
 #elif WINDOWS
             if (view?.Handler?.PlatformView is not uiXaml.FrameworkElement platformView)
-                return new Rect();
+                return Rect.Zero; 
 
-            if (platformView == null)
-                return new Rect();
+            var rootView = platformView.XamlRoot?.Content as uiXaml.FrameworkElement;
+            if (rootView == null)
+                return Rect.Zero;
 
-            var rootView = platformView.XamlRoot.Content;
-            if (platformView == rootView)
-            {
-                if (rootView is not uiXaml.FrameworkElement el)
-                    return new Rect();
+            var position = platformView.TransformToVisual(rootView).TransformPoint(new global::Windows.Foundation.Point());
 
-                return new Rect(0, 0, el.ActualWidth, el.ActualHeight);
-            }
+            result = new Rect(
+              position.X,
+              position.Y,
+              platformView.ActualWidth,
+              platformView.ActualHeight);
 
-            var topLeft = platformView.TransformToVisual(rootView).TransformPoint(new global::Windows.Foundation.Point());
-            var topRight = platformView.TransformToVisual(rootView).TransformPoint(new global::Windows.Foundation.Point(platformView.ActualWidth, 0));
-            var bottomLeft = platformView.TransformToVisual(rootView).TransformPoint(new global::Windows.Foundation.Point(0, platformView.ActualHeight));
-            var bottomRight = platformView.TransformToVisual(rootView).TransformPoint(new global::Windows.Foundation.Point(platformView.ActualWidth, platformView.ActualHeight));
-
-            var x1 = new[] { topLeft.X, topRight.X, bottomLeft.X, bottomRight.X }.Min();
-            var x2 = new[] { topLeft.X, topRight.X, bottomLeft.X, bottomRight.X }.Max();
-            var y1 = new[] { topLeft.Y, topRight.Y, bottomLeft.Y, bottomRight.Y }.Min();
-            var y2 = new[] { topLeft.Y, topRight.Y, bottomLeft.Y, bottomRight.Y }.Max();
-            result = new Rect();
 #endif
             return result;
         }
-
     }
 }
