@@ -24,12 +24,11 @@
       <StackLayout Grid.Column="0"
                    Spacing="8"
                    Orientation="Horizontal">
-      <local:TMSpinner WidthRequest="24"
-                      HeightRequest="24"
+        <local:TMSpinner x:Name="loadingSpinner"
                       SpinnerColor="Secondary"
                       SpinnerType="InDeterminate"
                       IsVisible="{Binding IsLoading}"/>
-      <Image x:Name="leftIcon"
+        <Image x:Name="leftIcon"
              Grid.Column="1"
              Source="{Binding LeftIconSource}"
              IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
