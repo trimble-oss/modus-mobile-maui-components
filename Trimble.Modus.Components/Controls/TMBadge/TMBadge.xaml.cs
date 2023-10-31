@@ -9,16 +9,16 @@ using Trimble.Modus.Components.Helpers;
 
 public partial class TMBadge : ContentView
 {
-    public static readonly BindableProperty BadgeTextProperty =
+    public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(TMBadge), "");
 
     public static readonly BindableProperty BadgeSizeProperty =
         BindableProperty.Create(nameof(BadgeSize), typeof(BadgeSize), typeof(TMBadge), BadgeSize.Medium, propertyChanged: OnSizeChanged);
 
-    public static readonly BindableProperty BadgeColorProperty =
+    public static readonly BindableProperty ColorProperty =
             BindableProperty.Create(nameof(Color), typeof(BadgeColor), typeof(TMBadge), BadgeColor.Primary, propertyChanged: OnBadgeColorChanged);
 
-    public static readonly BindableProperty BadgeShapeProperty =
+    public static readonly BindableProperty ShapeProperty =
         BindableProperty.Create(nameof(Shape), typeof(BadgeShape), typeof(TMBadge), BadgeShape.Rectangle, propertyChanged: OnBadgeShapePropertyChanged);
 
     public static readonly BindableProperty BadgeContentProperty =
@@ -32,8 +32,8 @@ public partial class TMBadge : ContentView
 
     public string Text
     {
-        get => (string)GetValue(BadgeTextProperty);
-        set => SetValue(BadgeTextProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
 
     public BadgeSize BadgeSize
@@ -44,13 +44,13 @@ public partial class TMBadge : ContentView
 
     public BadgeColor Color
     {
-        get => (BadgeColor)GetValue(BadgeColorProperty);
-        set => SetValue(BadgeColorProperty, value);
+        get => (BadgeColor)GetValue(ColorProperty);
+        set => SetValue(ColorProperty, value);
     }
     public BadgeShape Shape
     {
-        get => (BadgeShape)GetValue(BadgeShapeProperty);
-        set => SetValue(BadgeShapeProperty, value);
+        get => (BadgeShape)GetValue(ShapeProperty);
+        set => SetValue(ShapeProperty, value);
     }
 
     public TMBadge()
