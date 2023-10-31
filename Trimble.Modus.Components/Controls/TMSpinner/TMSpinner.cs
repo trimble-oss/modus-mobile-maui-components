@@ -174,10 +174,14 @@ namespace Trimble.Modus.Components
                     _startAngle = 0f;
                 }
             }
-            MainThread.BeginInvokeOnMainThread(() =>
+            if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
-                InvalidateSurface();
-            });
+                Application.Current!.Dispatcher.Dispatch(new Action(InvalidateSurface));
+            }
+            else
+            {
+                MainThread.BeginInvokeOnMainThread(InvalidateSurface);
+            }
         }
         private void DrawCircle(SKPaintSurfaceEventArgs e)
         {
