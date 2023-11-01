@@ -16,6 +16,7 @@ public partial class TMButton : ContentView
     protected Color activeColor;
     protected Border _buttonFrame;
     protected Label _buttonLabel;
+    private TMSpinner loadingSpinner;
 
     #endregion
 
@@ -189,13 +190,26 @@ public partial class TMButton : ContentView
         {
             if (isLoading)
             {
-                // Make the first column visible by setting its width to Auto.
-               button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Auto);
+                if (button.loadingSpinner == null)
+                {
+                    button.loadingSpinner = new TMSpinner
+                    {
+                        SpinnerColor = SpinnerColor.Secondary,
+                        SpinnerType = SpinnerType.InDeterminate
+                    };
+#if WINDOWS
+                    button.loadingSpinner.Behaviors.Add(new SpinnerDisposeBehavior());
+#endif
+                }
+
+                button.buttonStackLayout.Children.Insert(0, button.loadingSpinner);
             }
             else
             {
-                // Hide the first column by setting its width to 0.
-               button.buttonStackLayout.ColumnDefinitions[0].Width = new GridLength(0);
+                if (button.loadingSpinner != null)
+                {
+                    button.buttonStackLayout.Children.Remove(button.loadingSpinner);
+                }
             }
             SetDisabledState(isLoading, button);
         }
@@ -257,25 +271,29 @@ public partial class TMButton : ContentView
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.XSmall;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 6);
                     tmButton.HeightRequest = 32;
-                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.XSmall;
+                    if (tmButton.loadingSpinner != null && tmButton.IsLoading)
+                        tmButton.loadingSpinner.SpinnerSize = Enums.Size.XSmall;
                     break;
                 case Enums.Size.Small:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Small;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 8);
                     tmButton.HeightRequest = 40;
-                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Small;
+                    if (tmButton.loadingSpinner != null && tmButton.IsLoading)
+                        tmButton.loadingSpinner.SpinnerSize = Enums.Size.Small;
                     break;
                 case Enums.Size.Large:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Large;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 56;
-                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Large;
+                    if (tmButton.loadingSpinner != null && tmButton.IsLoading)
+                        tmButton.loadingSpinner.SpinnerSize = Enums.Size.Large;
                     break;
                 default:
                     tmButton.buttonLabel.FontSize = (double)Enums.FontSize.Default;
                     tmButton.buttonStackLayout.Padding = new Thickness(16, 12);
                     tmButton.HeightRequest = 48;
-                    tmButton.loadingSpinner.SpinnerSize = Enums.Size.Default;
+                    if (tmButton.loadingSpinner != null && tmButton.IsLoading)
+                        tmButton.loadingSpinner.SpinnerSize = Enums.Size.Default;
                     break;
 
             }

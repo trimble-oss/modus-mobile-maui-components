@@ -24,10 +24,6 @@
       <StackLayout Grid.Column="0"
                    Spacing="8"
                    Orientation="Horizontal">
-        <local:TMSpinner x:Name="loadingSpinner"
-                      SpinnerColor="Secondary"
-                      SpinnerType="InDeterminate"
-                      IsVisible="{Binding IsLoading}"/>
         <Image x:Name="leftIcon"
              Grid.Column="1"
              Source="{Binding LeftIconSource}"
