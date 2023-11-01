@@ -197,9 +197,8 @@ public partial class TMButton : ContentView
                         SpinnerColor = SpinnerColor.Secondary,
                         SpinnerType = SpinnerType.InDeterminate
                     };
-#if WINDOWS
                     button.loadingSpinner.Behaviors.Add(new SpinnerDisposeBehavior());
-#endif
+
                 }
 
                 button.buttonStackLayout.Children.Insert(0, button.loadingSpinner);
