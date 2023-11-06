@@ -5,6 +5,7 @@ using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Enums;
 using Size = Trimble.Modus.Components.Enums.Size;
+using System.Diagnostics;
 
 namespace Trimble.Modus.Components
 {
@@ -19,6 +20,7 @@ namespace Trimble.Modus.Components
         private float _rotationAngle = 0f;
         private Timer _animationTimer;
         private int _strokeWidth;
+        internal bool isDisposed;
         #endregion
         #region Binding Properties
         public static readonly BindableProperty SpinnerTypeProperty =
@@ -60,9 +62,10 @@ namespace Trimble.Modus.Components
             minWidth = 32;
             minHeight = 32;
 #endif
-            createSpinner();
+            CreateSpinner();
         }
-        private void createSpinner()
+
+        private void CreateSpinner()
         {
 
             WidthRequest = minWidth;
@@ -77,6 +80,19 @@ namespace Trimble.Modus.Components
             base.OnPaintSurface(e);
 
             DrawCircle(e);
+        }
+        protected override void OnParentSet()
+        {
+            base.OnParentSet();
+
+            if (Parent == null)
+            {
+                isDisposed = true;
+            }
+            else
+            {
+                isDisposed = false;
+            }
         }
         #endregion
         #region Private Methods
@@ -133,8 +149,8 @@ namespace Trimble.Modus.Components
 #endif
                         break;
                 }
-                tmSpinner.createSpinner();
-                
+                tmSpinner.CreateSpinner();
+
             }
         }
 
@@ -174,10 +190,20 @@ namespace Trimble.Modus.Components
                     _startAngle = 0f;
                 }
             }
-            MainThread.BeginInvokeOnMainThread(() =>
+            if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
-                InvalidateSurface();
-            });
+                if (!isDisposed)
+                {
+                    Dispatcher.Dispatch(InvalidateSurface);
+                }
+            }
+            else
+            {
+                if (!isDisposed)
+                {
+                    MainThread.BeginInvokeOnMainThread(InvalidateSurface);
+                }
+            }
         }
         private void DrawCircle(SKPaintSurfaceEventArgs e)
         {
@@ -220,6 +246,6 @@ namespace Trimble.Modus.Components
             }
             canvas.Flush();
         }
-#endregion
+        #endregion
     }
 }
