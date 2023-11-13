@@ -41,4 +41,22 @@
   <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
   <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
 
+  <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#DCEDF9</Color>  
+  <Color x:Key="PrimaryOutlineButtonTextColor">#0063A3</Color>
+  <Color x:Key="PrimaryOutlineIconTintColor">#0063A3</Color>
+  <Color x:Key="PrimaryOutlineButtonBorderColor">#0063A3</Color>  
+
+  <Color x:Key="SecondaryOutlineButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="SecondaryOutlineButtonSelectedBackgroundColor">#B7B9C3</Color>
+  <Color x:Key="SecondaryOutlineButtonTextColor">#353A40</Color>
+  <Color x:Key="SecondaryOutlineIconTintColor">#353A40</Color>
+  <Color x:Key="SecondaryOutlineButtonBorderColor">#353A40</Color>
+
+  <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#DCEDF9</Color>  
+  <Color x:Key="BorderlessButtonTextColor">#0063A3</Color>
+  <Color x:Key="BorderlessIconTintColor">#0063A3</Color>
+  <Color x:Key="BorderlessButtonBorderColor">Transparent</Color>
+  <Color x:Key="BorderlessButtonSelectedBorderColor">#0063A3</Color>
 </ResourceDictionary>

@@ -86,7 +86,7 @@
       <StackLayout Orientation="Vertical"
                    Spacing="10">
         <modus:TMButton x:Name="primaryleftIconButton"
-                               Text="Primary"
+                               Text="Primary"                        
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Primary"
                                LeftIconSource="{Binding LeftIconSource}"

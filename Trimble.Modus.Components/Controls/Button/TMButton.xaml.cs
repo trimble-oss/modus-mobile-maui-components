@@ -81,6 +81,15 @@ public partial class TMButton : ContentView
         null,
         OnIconTintColorPropertyChanged);
 
+    public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor),
+        typeof(Color),
+        typeof(TMButton),
+        Colors.Transparent,
+        BindingMode.Default,
+        null,
+        OnBorderColorPropertyChanged);
+
+
     #endregion
 
     #region Public Properties
@@ -169,6 +178,12 @@ public partial class TMButton : ContentView
     {
         get { return (Color)GetValue(IconTintColorProperty); }
         set { this.SetValue(IconTintColorProperty, value); }
+    }
+
+    internal Color BorderColor
+    {
+        get { return (Color)GetValue(BorderColorProperty); }
+        set { this.SetValue(BorderColorProperty, value); }
     }
 
     #endregion
@@ -261,7 +276,15 @@ public partial class TMButton : ContentView
         {
             tmButton.UpdateButtonIconColor();
         }
-    }    
+    }
+
+    private static void OnBorderColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMButton tmButton)
+        {
+            tmButton.UpdateOnBorderColor();
+        }
+    }
 
     private static void SetDisabledState(bool disable, TMButton button)
     {
@@ -304,8 +327,9 @@ public partial class TMButton : ContentView
             switch (tmButton.ButtonStyle)
             {
                 case Enums.ButtonStyle.BorderLess:
-                    tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultBorderless);
-                    tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
+                    tmButton.SetDynamicResource(StyleProperty, "Borderless");
+                    //tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultBorderless);
+                    //tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
                     break;
                 case Enums.ButtonStyle.Fill:
                     UpdateFillStyleColors(tmButton);
@@ -429,19 +453,28 @@ public partial class TMButton : ContentView
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
-                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
-                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryOutlineBorder);
-                break;
-            case ButtonColor.Tertiary:
-            case ButtonColor.Danger:
-                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultOutlineBorder);
-                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
+                tmButton.SetDynamicResource(StyleProperty, "SecondaryOutline");
                 break;
             default:
-                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryOutlineBorder);
-                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
+                tmButton.SetDynamicResource(StyleProperty, "PrimaryOutline");
                 break;
         }
+        //switch (tmButton.ButtonColor)
+        //{
+        //    case ButtonColor.Secondary:
+        //        tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
+        //        tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryOutlineBorder);
+        //        break;
+        //    case ButtonColor.Tertiary:
+        //    case ButtonColor.Danger:
+        //        tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultOutlineBorder);
+        //        tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
+        //        break;
+        //    default:
+        //        tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryOutlineBorder);
+        //        tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
+        //        break;
+        //}
     }
 
     private string GetOnClickColor()
@@ -477,7 +510,6 @@ public partial class TMButton : ContentView
     private void OnBackgroundColorPropertyChanged()
     {
         buttonFrame.BackgroundColor = this.BackgroundColor;
-        buttonFrame.Stroke = this.BackgroundColor;
     }
 
     private void OnTextColorPropertyChanged()
@@ -486,6 +518,11 @@ public partial class TMButton : ContentView
         {
             this.buttonLabel.TextColor = this.TextColor;
         }
+    }
+
+    private void UpdateOnBorderColor()
+    {
+        buttonFrame.Stroke = this.BorderColor;
     }
 
     #endregion
