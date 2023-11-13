@@ -1,6 +1,4 @@
-﻿using Trimble.Modus.Components.Hosting;
-
-namespace DemoApp;
+﻿namespace DemoApp;
 
 public partial class App : Application
 {

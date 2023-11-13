@@ -1,9 +1,6 @@
-using CommunityToolkit.Maui.Behaviors;
-using Microsoft.Maui.Graphics.Text;
 using System.Windows.Input;
-using Trimble.Modus.Components.Constant;
+using CommunityToolkit.Maui.Behaviors;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -45,7 +42,7 @@ public partial class TMButton : ContentView
        BindableProperty.Create(nameof(ButtonColor), typeof(ButtonColor), typeof(TMButton), Enums.ButtonColor.Primary, propertyChanged: OnButtonColorChanged);
 
     public static readonly BindableProperty IsFloatingButtonProperty =
-        BindableProperty.Create(nameof(IsFloatingButton), typeof(bool), typeof(TMButton), false, propertyChanged: FloatingProperyChanged);
+        BindableProperty.Create(nameof(IsFloatingButton), typeof(bool), typeof(TMButton), false, propertyChanged: IsFloatingButtonPropertyChanged);
 
     public static readonly BindableProperty IsDisabledProperty =
         BindableProperty.Create(nameof(IsDisabled), typeof(bool), typeof(TMButton), false, propertyChanged: OnIsDisabledChanged);
@@ -197,7 +194,7 @@ public partial class TMButton : ContentView
         OnTextChanged();
     }
 
-    private void UpdateButtonIconColor()
+    private void OnIconTintColorChanged()
     {
         leftIcon.Behaviors.Clear();
         rightIcon.Behaviors.Clear();
@@ -259,7 +256,7 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton tmButton)
         {
-            tmButton.OnBackgroundColorPropertyChanged();
+            tmButton.OnBackgroundColorChanged();
         }
     }
 
@@ -275,7 +272,7 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton tmButton)
         {
-            tmButton.OnTextColorPropertyChanged();
+            tmButton.OnTextColorChanged();
         }
     }
 
@@ -283,7 +280,7 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton tmButton)
         {
-            tmButton.UpdateButtonIconColor();
+            tmButton.OnIconTintColorChanged();
         }
     }
 
@@ -291,7 +288,7 @@ public partial class TMButton : ContentView
     {
         if (bindable is TMButton tmButton)
         {
-            tmButton.UpdateOnBorderColor();
+            tmButton.OnBorderColorChanged();
         }
     }
 
@@ -317,7 +314,7 @@ public partial class TMButton : ContentView
         }
     }
 
-    private static void FloatingProperyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void IsFloatingButtonPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is TMButton button)
         {
@@ -348,7 +345,7 @@ public partial class TMButton : ContentView
                     break;
             }
         }
-        tmButton.UpdateButtonIconColor();
+        tmButton.OnIconTintColorChanged();
     }
 
     private static void SetPadding(TMButton tmButton)
@@ -432,7 +429,7 @@ public partial class TMButton : ContentView
         }
     }
 
-    private void OnBackgroundColorPropertyChanged()
+    private void OnBackgroundColorChanged()
     {
         buttonFrame.BackgroundColor = this.BackgroundColor;
     }
@@ -449,7 +446,7 @@ public partial class TMButton : ContentView
         }
     }
 
-    private void OnTextColorPropertyChanged()
+    private void OnTextColorChanged()
     {
         if (this.buttonLabel != null)
         {
@@ -457,7 +454,7 @@ public partial class TMButton : ContentView
         }
     }
 
-    private void UpdateOnBorderColor()
+    private void OnBorderColorChanged()
     {
         buttonFrame.Stroke = this.BorderColor;
     }

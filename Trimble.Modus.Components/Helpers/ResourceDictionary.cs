@@ -1,6 +1,4 @@
-﻿using Trimble.Modus.Components.Hosting;
-
-namespace Trimble.Modus.Components.Helpers;
+﻿namespace Trimble.Modus.Components.Helpers;
 
 public static class ResourcesDictionary
 {
