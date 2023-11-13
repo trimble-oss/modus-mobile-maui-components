@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Behaviors;
+using Microsoft.Maui.Graphics.Text;
 using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
@@ -12,7 +13,6 @@ public partial class TMButton : ContentView
     #region Private Properties
 
     protected EventHandler _clicked;
-    protected Color activeColor;
     protected Border _buttonFrame;
     protected Label _buttonLabel;
 
@@ -56,6 +56,31 @@ public partial class TMButton : ContentView
 
     public static readonly BindableProperty ClickedEventProperty =
             BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMButton));
+
+    public static new readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor),
+        typeof(Color),
+        typeof(TMButton),
+        Colors.White,
+        BindingMode.Default,
+        null,
+        OnBackgroundColorPropertyChanged);
+
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor),
+        typeof(Color),
+        typeof(TMButton),
+        Colors.Black,
+        BindingMode.Default,
+        null,
+        OnTextColorPropertyChanged);
+
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor),
+        typeof(Color),
+        typeof(TMButton),
+        Colors.Black,
+        BindingMode.Default,
+        null,
+        OnIconTintColorPropertyChanged);
+
     #endregion
 
     #region Public Properties
@@ -128,10 +153,22 @@ public partial class TMButton : ContentView
         set { SetValue(IsLoadingProperty, value); }
     }
 
-    public new Color BackgroundColor
+    internal new Color BackgroundColor
     {
         get { return (Color)GetValue(BackgroundColorProperty); }
         set { SetValue(BackgroundColorProperty, value); }
+    }
+
+    internal Color TextColor
+    {
+        get { return (Color)GetValue(TextColorProperty); }
+        set { this.SetValue(TextColorProperty, value); }
+    }
+
+    internal Color IconTintColor
+    {
+        get { return (Color)GetValue(IconTintColorProperty); }
+        set { this.SetValue(IconTintColorProperty, value); }
     }
 
     #endregion
@@ -142,19 +179,21 @@ public partial class TMButton : ContentView
         _buttonLabel = buttonLabel;
         SetPadding(this);
         UpdateButtonStyle(this);
-        UpdateButtonIconColor();
     }
 
     private void UpdateButtonIconColor()
     {
         leftIcon.Behaviors.Clear();
         rightIcon.Behaviors.Clear();
-        var behavior = new IconTintColorBehavior
+        if (IconTintColor != null)
         {
-            TintColor = buttonLabel.TextColor
-        };
-        leftIcon.Behaviors.Add(behavior);
-        rightIcon.Behaviors.Add(behavior);
+            var behavior = new IconTintColorBehavior
+            {
+                TintColor = IconTintColor
+            };
+            leftIcon.Behaviors.Add(behavior);
+            rightIcon.Behaviors.Add(behavior);
+        }
     }
 
     #region Private Methods
@@ -199,6 +238,31 @@ public partial class TMButton : ContentView
             SetDisabledState(isLoading, button);
         }
     }
+
+    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMButton tmButton)
+        {
+            tmButton.OnBackgroundColorPropertyChanged();
+        }
+    }
+
+    private static void OnTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMButton tmButton)
+        {
+            tmButton.OnTextColorPropertyChanged();
+        }
+    }
+
+    private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMButton tmButton)
+        {
+            tmButton.UpdateButtonIconColor();
+        }
+    }    
+
     private static void SetDisabledState(bool disable, TMButton button)
     {
         if (disable)
@@ -306,6 +370,24 @@ public partial class TMButton : ContentView
         {
             tmButton.ButtonColor = ButtonColor.Primary;
         }
+
+        switch(tmButton.ButtonColor) {
+            case ButtonColor.Secondary:
+                tmButton.SetDynamicResource(StyleProperty, "SecondaryFill");
+                break;
+            case ButtonColor.Tertiary:
+                tmButton.SetDynamicResource(StyleProperty, "TertiaryFill");
+                break;
+            case ButtonColor.Danger:
+                tmButton.SetDynamicResource(StyleProperty, "DangerFill");
+                break;
+            default:
+                tmButton.SetDynamicResource(StyleProperty, "PrimaryFill");
+                break;
+
+        }
+
+        /*
         switch (tmButton.ButtonColor)
         {
             case ButtonColor.Secondary:
@@ -334,10 +416,12 @@ public partial class TMButton : ContentView
                 tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
                 break;
             default:
-                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryBorder);
+                tmButton.buttonFrame.SetDynamicResource(BackgroundColorProperty, "PrimaryButtonBackgroundColor");
+                //tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryBorder);
                 tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
                 break;
         }
+        */
     }
 
     private static void UpdateOutlineStyleColors(TMButton tmButton)
@@ -389,32 +473,37 @@ public partial class TMButton : ContentView
             _ => ThemeColorConstants.DarkBlue,
         };
     }
+
+    private void OnBackgroundColorPropertyChanged()
+    {
+        buttonFrame.BackgroundColor = this.BackgroundColor;
+        buttonFrame.Stroke = this.BackgroundColor;
+    }
+
+    private void OnTextColorPropertyChanged()
+    {
+        if (this.buttonLabel != null)
+        {
+            this.buttonLabel.TextColor = this.TextColor;
+        }
+    }
+
     #endregion
     #region Public Methods
 
     public void RaisePressed()
     {
-        if (buttonFrame.BackgroundColor != null)
-        {
-            activeColor = buttonFrame.BackgroundColor;
-            buttonFrame.SetDynamicResource(BackgroundColorProperty, GetOnClickColor());
-        }
+        VisualStateManager.GoToState(this, "Pressed");
     }
     public void RaiseReleased()
     {
-        if (activeColor != null)
-        {
-            buttonFrame.BackgroundColor = activeColor;
-        }
+        VisualStateManager.GoToState(this, "Normal");
         Command?.Execute(CommandParameter);
         _clicked?.Invoke(this, EventArgs.Empty);
     }
     public void RaiseCancel()
     {
-        if (activeColor != null)
-        {
-            buttonFrame.BackgroundColor = activeColor;
-        }
+        VisualStateManager.GoToState(this, "Normal");
     }
 
     #endregion

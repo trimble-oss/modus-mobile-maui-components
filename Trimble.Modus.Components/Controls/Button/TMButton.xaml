@@ -9,6 +9,9 @@
              HorizontalOptions="Start">
   <ContentView.Resources>
     <ResourceDictionary>
+             <ResourceDictionary.MergedDictionaries>
+               <local:TMButtonStyles></local:TMButtonStyles>
+             </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
     </ResourceDictionary>

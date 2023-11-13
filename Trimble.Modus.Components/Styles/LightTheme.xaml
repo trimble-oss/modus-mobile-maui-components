@@ -19,4 +19,26 @@
   <Color x:Key="Black">#252a2e</Color>
   
   <Color x:Key="Transparent">transparent</Color>
+
+  <!--Button-->
+  <Color x:Key="PrimaryFillButtonBackgroundColor">#0063A3</Color>
+  <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">#0E416C</Color>
+  <Color x:Key="PrimaryFillButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="PrimaryFillIconTintColor">#FFFFFF</Color>
+
+  <Color x:Key="SecondaryFillButtonBackgroundColor">#353A40</Color>
+  <Color x:Key="SecondaryFillButtonSelectedBackgroundColor">#171C1E</Color>
+  <Color x:Key="SecondaryFillButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="SecondaryFillIconTintColor">#FFFFFF</Color>
+
+  <Color x:Key="TertiaryFillButtonBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="TertiaryFillButtonSelectedBackgroundColor">#B7B9C3</Color>
+  <Color x:Key="TertiaryFillButtonTextColor">#252A2E</Color>
+  <Color x:Key="TertiaryFillIconTintColor">#252A2E</Color>
+
+  <Color x:Key="DangerFillButtonBackgroundColor">#DA212C</Color>
+  <Color x:Key="DangerFillButtonSelectedBackgroundColor">#AB1F26</Color>
+  <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
+
 </ResourceDictionary>

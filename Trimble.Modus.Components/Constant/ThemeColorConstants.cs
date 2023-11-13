@@ -30,5 +30,6 @@ internal class ThemeColorConstants
     public const string GrayText = "GrayText";
     public const string WhiteText = "WhiteText";
 
+    public const string PrimaryButtonBackgroundColor = "PrimaryButtonBackgroundColor";
 
 }

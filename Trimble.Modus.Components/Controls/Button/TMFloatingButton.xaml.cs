@@ -43,30 +43,8 @@ public partial class TMFloatingButton : TMButton
     #endregion
 
     #region Public Methods
-    public new void RaisePressed()
-    {
-        if (_buttonFrame.BackgroundColor != null)
-        {
-            activeColor = _buttonFrame.BackgroundColor;
-            _buttonFrame.BackgroundColor = GetOnClickColor();
-        }
-    }
-    public new void RaiseReleased()
-    {
-        if (activeColor != null)
-        {
-            _buttonFrame.BackgroundColor = activeColor;
-        }
-        Command?.Execute(CommandParameter);
-        _clicked?.Invoke(this, EventArgs.Empty);
-    }
-    public new void RaiseCancel()
-    {
-        if (activeColor != null)
-        {
-            _buttonFrame.BackgroundColor = activeColor;
-        }
-    }
+
+
     #endregion
 
 }
