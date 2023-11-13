@@ -1,64 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trimble.Modus.Components.TMButton"
-             x:Name="tmButton"
-             xmlns:local="clr-namespace:Trimble.Modus.Components"
-             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
-             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
-             HorizontalOptions="Start">
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="Trimble.Modus.Components.TMButton"
+  x:Name="tmButton"
+  xmlns:local="clr-namespace:Trimble.Modus.Components"
+  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+  HorizontalOptions="Start">
   <ContentView.Resources>
     <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-               <local:TMButtonStyles></local:TMButtonStyles>
-             </ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMButtonStyles></local:TMButtonStyles>
+      </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
   <Border Padding="0"
-          BindingContext="{x:Reference tmButton}"
-          x:Name="buttonFrame"
-          StrokeShape="RoundRectangle 4,4">
+    BindingContext="{x:Reference tmButton}"
+    x:Name="buttonFrame"
+    StrokeShape="RoundRectangle 4,4">
     <Grid x:Name="buttonStackLayout"
-          ColumnDefinitions="auto,*,auto"
-          VerticalOptions="Center"
-          ColumnSpacing="8"
-          Padding="0,8">
+      ColumnDefinitions="auto,*,auto"
+      VerticalOptions="Center"
+      ColumnSpacing="8"
+      Padding="0,8">
       <StackLayout Grid.Column="0"
-                   Spacing="8"
-                   VerticalOptions="Center"
-                   Orientation="Horizontal">
-      <local:TMSpinner WidthRequest="24"
-                      HeightRequest="24"
-                      SpinnerColor="Secondary"
-                      SpinnerType="InDeterminate"
-                      IsVisible="{Binding IsLoading}"/>
-      <Image x:Name="leftIcon"
-             Grid.Column="1"
-             Source="{Binding LeftIconSource}"
-             IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-             HeightRequest="16"
-             VerticalOptions="Center"
-             HorizontalOptions="Center"
-             WidthRequest="16" />
+        Spacing="8"
+        VerticalOptions="Center"
+        Orientation="Horizontal">
+        <local:TMSpinner WidthRequest="24"
+          HeightRequest="24"
+          SpinnerColor="Secondary"
+          SpinnerType="InDeterminate"
+          IsVisible="{Binding IsLoading}" />
+        <Image x:Name="leftIcon"
+          Grid.Column="1"
+          Source="{Binding LeftIconSource}"
+          IsVisible="{Binding LeftIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+          HeightRequest="16"
+          VerticalOptions="Center"
+          HorizontalOptions="Center"
+          WidthRequest="16" />
       </StackLayout>
       <Label x:Name="buttonLabel"
-             Grid.Column="1"
-             Text="{Binding Text}"
-             IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
-             HeightRequest="48"
-             FontFamily="OpenSansSemibold"
-             HorizontalTextAlignment="Center"
-             VerticalTextAlignment="Center" />
+        Grid.Column="1"
+        Text="{Binding Text}"
+        IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+        HeightRequest="48"
+        FontFamily="OpenSansSemibold"
+        HorizontalTextAlignment="Center"
+        VerticalTextAlignment="Center" />
       <Image x:Name="rightIcon"
-             Grid.Column="2"
-             Source="{Binding RightIconSource}"
-             IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-             HeightRequest="16"
-             WidthRequest="16"
-             VerticalOptions="Center"
-             HorizontalOptions="Center" />
+        Grid.Column="2"
+        Source="{Binding RightIconSource}"
+        IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+        HeightRequest="16"
+        WidthRequest="16"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
     </Grid>
   </Border>
 </ContentView>

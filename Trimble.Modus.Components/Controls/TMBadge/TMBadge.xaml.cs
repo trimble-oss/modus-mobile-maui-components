@@ -1,5 +1,6 @@
 namespace Trimble.Modus.Components;
 
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
@@ -8,22 +9,31 @@ using Trimble.Modus.Components.Helpers;
 
 public partial class TMBadge : ContentView
 {
-    public static readonly BindableProperty BadgeTextProperty =
+    public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(TMBadge), "");
 
     public static readonly BindableProperty BadgeSizeProperty =
         BindableProperty.Create(nameof(BadgeSize), typeof(BadgeSize), typeof(TMBadge), BadgeSize.Medium, propertyChanged: OnSizeChanged);
 
-    public static readonly BindableProperty BadgeColorProperty =
+    public static readonly BindableProperty ColorProperty =
             BindableProperty.Create(nameof(Color), typeof(BadgeColor), typeof(TMBadge), BadgeColor.Primary, propertyChanged: OnBadgeColorChanged);
 
-    public static readonly BindableProperty BadgeShapeProperty =
+    public static readonly BindableProperty ShapeProperty =
         BindableProperty.Create(nameof(Shape), typeof(BadgeShape), typeof(TMBadge), BadgeShape.Rectangle, propertyChanged: OnBadgeShapePropertyChanged);
+
+    public static readonly BindableProperty BadgeContentProperty =
+        BindableProperty.Create(nameof(BadgeContent),typeof(View),typeof(TMBadge),null,propertyChanged: OnContentPropertyChanged);
+
+    public View BadgeContent
+    {
+        get { return (View)GetValue(BadgeContentProperty); }
+        set { SetValue(BadgeContentProperty, value); }
+    }
 
     public string Text
     {
-        get => (string)GetValue(BadgeTextProperty);
-        set => SetValue(BadgeTextProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
 
     public BadgeSize BadgeSize
@@ -34,13 +44,13 @@ public partial class TMBadge : ContentView
 
     public BadgeColor Color
     {
-        get => (BadgeColor)GetValue(BadgeColorProperty);
-        set => SetValue(BadgeColorProperty, value);
+        get => (BadgeColor)GetValue(ColorProperty);
+        set => SetValue(ColorProperty, value);
     }
     public BadgeShape Shape
     {
-        get => (BadgeShape)GetValue(BadgeShapeProperty);
-        set => SetValue(BadgeShapeProperty, value);
+        get => (BadgeShape)GetValue(ShapeProperty);
+        set => SetValue(ShapeProperty, value);
     }
 
     public TMBadge()
@@ -54,6 +64,17 @@ public partial class TMBadge : ContentView
         UpdateColor(tMBadge);
         UpdateShape(tMBadge);
         UpdateLabelOnSize(tMBadge);
+    }
+    private static void OnContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMBadge contentView && newValue != null)
+        {
+            contentView.content.Content = (View)newValue;
+            contentView.content.IsVisible = true;
+            contentView.frame.Margin = new Thickness(0, 0, -10, -15);
+            contentView.frame.HorizontalOptions = LayoutOptions.End;
+            contentView.frame.VerticalOptions = LayoutOptions.Start;
+        }
     }
 
     private static void OnBadgeColorChanged(BindableObject bindable, object oldValue, object newValue)

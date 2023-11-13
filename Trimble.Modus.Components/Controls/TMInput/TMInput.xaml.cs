@@ -18,6 +18,32 @@ public partial class TMInput : BaseInput
     /// <summary>
     /// Gets or sets the image source for the left icon in the entry
     /// </summary>
+    ///
+    public View LeftView
+    {
+        get => (View)GetValue(LeftViewProperty);
+        set => SetValue(LeftViewProperty, value);
+    }
+
+    public static readonly BindableProperty LeftViewProperty =
+        BindableProperty.Create(
+            nameof(LeftView),
+            typeof(View),
+            typeof(TMInput),
+            null);
+    public View RightView
+    {
+        get => (View)GetValue(RightViewProperty);
+        set => SetValue(RightViewProperty, value);
+    }
+
+    public static readonly BindableProperty RightViewProperty =
+        BindableProperty.Create(
+            nameof(RightView),
+            typeof(View),
+            typeof(TMInput),
+            null);
+
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMInput), null);
 
@@ -162,8 +188,8 @@ public partial class TMInput : BaseInput
     /// </summary>
     internal void ToggleRightIconState(bool enabledState)
     {
-        inputRightIcon.IsEnabled = enabledState;
-        inputRightIcon.Opacity = enabledState ? 1 : disabledOpacity;
+        rightCustomView.IsEnabled = enabledState;
+        rightCustomView.Opacity = enabledState ? 1 : disabledOpacity;
     }
 
     /// <summary>
@@ -172,8 +198,8 @@ public partial class TMInput : BaseInput
     /// </summary>
     internal void ToggleLeftIconState(bool enabledState)
     {
-        inputLeftIcon.IsEnabled = enabledState;
-        inputLeftIcon.Opacity = enabledState ? 1 : disabledOpacity;
+        leftCustomView.IsEnabled = enabledState;
+        leftCustomView.Opacity = enabledState ? 1 : disabledOpacity;
     }
 
     /// <summary>

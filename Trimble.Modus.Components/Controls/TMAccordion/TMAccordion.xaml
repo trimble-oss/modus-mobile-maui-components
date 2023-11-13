@@ -27,6 +27,7 @@
                      Padding="0,0,0,20"
                      Grid.Row="1"
                      x:Name="_accContent"
+                     IsVisible="False"
                      BackgroundColor="{x:StaticResource White}"
                      Content="{Binding Source={x:Reference accordionView}, Path=AccordionContentView}">
           <ContentView.Triggers>

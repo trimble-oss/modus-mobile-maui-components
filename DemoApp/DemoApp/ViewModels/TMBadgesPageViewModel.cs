@@ -9,6 +9,12 @@ namespace DemoApp.Views
     {
         [ObservableProperty]
         private BadgeSize _badgeSize;
+        [ObservableProperty]
+        private string _primaryBadgeValue = "Primary";
+        [ObservableProperty]
+        private BadgeColor _primaryBadgeColor = BadgeColor.Primary;
+        [ObservableProperty]
+        private BadgeShape _primaryBadgeShape = BadgeShape.Rectangle;
 
         public BadgeSamplePageViewModel()
         {
