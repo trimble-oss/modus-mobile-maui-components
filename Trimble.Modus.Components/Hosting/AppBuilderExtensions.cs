@@ -1,6 +1,7 @@
 using Microsoft.Maui.LifecycleEvents;
 using SkiaSharp.Views.Maui.Handlers;
 using Trimble.Modus.Components;
+using Trimble.Modus.Components.Helpers;
 #if ANDROID
 using Trimble.Modus.Components.Popup.Pages;
 #endif
@@ -13,10 +14,6 @@ namespace Trimble.Modus.Components.Hosting;
 /// </summary>
 public static class AppBuilderExtensions
 {
-    internal static AppTheme CurrentRequestedTheme { get; set; }
-    public static ResourceDictionary SelectedLightTheme { get; private set; }
-    public static ResourceDictionary SelectedDarkTheme { get; private set; }
-
     /// <summary>
     /// Initializes the Trimble Modus Library
     /// </summary>
@@ -31,8 +28,37 @@ public static class AppBuilderExtensions
 #if ANDROID
                 lifecycle.AddAndroid(d =>
                 {
+                    d.OnApplicationCreate(del =>
+                    {
+                        ThemeManager.Initialize();
+                    });
                     d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed());
                 });
+#elif IOS
+                lifecycle.AddiOS(ios =>
+                {
+                    ios.FinishedLaunching((app, resources) =>
+                    {
+                        ThemeManager.Initialize();
+                        return true;
+                    });
+                });
+#elif MACCATALYST
+                lifecycle.AddiOS(mac =>
+                {
+                    mac.FinishedLaunching((app, resources) =>
+                    {
+                        ThemeManager.Initialize();
+                        return true;
+                    });
+                });
+#elif WINDOWS
+                    events.AddWindows(windows => {
+                        windows.OnLaunched((window, args) =>
+                        {
+                            ThemeManager.Initialize();
+                        });
+                    });
 
 #endif
             })
@@ -46,7 +72,6 @@ public static class AppBuilderExtensions
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSansSemibold");
             });
-        CurrentRequestedTheme = AppTheme.Light;
         return builder;
     }
 
@@ -63,11 +88,11 @@ public static class AppBuilderExtensions
             {
 #if ANDROID
                 lifecycle.AddAndroid(d =>
-                {
-
+                {                    
                     d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed(backPressHandler));
                 });
 #endif
+
             })
             .ConfigureMauiHandlers(handlers => SetHandlers(handlers))
             .ConfigureFonts(fonts =>
@@ -111,55 +136,6 @@ public static class AppBuilderExtensions
                 handlers.AddHandler(typeof(TMButton), typeof(TMButtonWindowsTouchHandler));
                 handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
 #endif
-        }
-    }
-
-    public static void UseModusTheme()
-    {
-        CurrentRequestedTheme = Application.Current.RequestedTheme;
-        SelectedLightTheme = new Styles.LightTheme();
-        SelectedDarkTheme = new Styles.DarkTheme();
-
-        UpdateTheme();
-        Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
-
-    }
-
-    private static void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
-    {
-        CurrentRequestedTheme = e.RequestedTheme;
-        UpdateTheme();
-    }
-
-    private static void UpdateTheme()
-    {
-        CheckAndUpdateResources(new Styles.Colors());
-        if (CurrentRequestedTheme == AppTheme.Dark)
-        {
-            CheckAndUpdateResources(SelectedLightTheme, false);
-            CheckAndUpdateResources(SelectedDarkTheme);
-        }
-        else
-        {
-            CheckAndUpdateResources(SelectedDarkTheme, false);
-            CheckAndUpdateResources(SelectedLightTheme);
-        }
-        CheckAndUpdateResources(new Styles.CustomStyles());
-    }
-
-    private static void CheckAndUpdateResources(ResourceDictionary keyValuePairs, bool needToAdd = true)
-    {
-        var dictionaryExists = Application.Current.Resources.MergedDictionaries.Contains(keyValuePairs);
-        if (!dictionaryExists)
-        {
-            if (needToAdd)
-            {
-                Application.Current.Resources.MergedDictionaries.Add(keyValuePairs);
-            }
-            else
-            {
-                Application.Current.Resources.MergedDictionaries.Remove(keyValuePairs);
-            }
         }
     }
 }
