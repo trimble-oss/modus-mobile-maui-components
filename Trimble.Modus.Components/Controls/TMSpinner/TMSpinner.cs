@@ -176,6 +176,10 @@ namespace Trimble.Modus.Components
 
         private void UpdateAnimation(object state)
         {
+            if (isDisposed)
+            {
+                _animationTimer?.Dispose();
+            }
             if (_spinnerType == SpinnerType.InDeterminate)
             {
                 _rotationAngle += 5f;
@@ -192,17 +196,11 @@ namespace Trimble.Modus.Components
             }
             if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
-                if (!isDisposed)
-                {
-                    Dispatcher.Dispatch(InvalidateSurface);
-                }
+                Dispatcher.Dispatch(InvalidateSurface);
             }
             else
             {
-                if (!isDisposed)
-                {
-                    MainThread.BeginInvokeOnMainThread(InvalidateSurface);
-                }
+                MainThread.BeginInvokeOnMainThread(InvalidateSurface);
             }
         }
         private void DrawCircle(SKPaintSurfaceEventArgs e)
