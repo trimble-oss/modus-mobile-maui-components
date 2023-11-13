@@ -22,10 +22,12 @@
           StrokeShape="RoundRectangle 4,4">
     <Grid x:Name="buttonStackLayout"
           ColumnDefinitions="auto,*,auto"
+          VerticalOptions="Center"
           ColumnSpacing="8"
           Padding="0,8">
       <StackLayout Grid.Column="0"
                    Spacing="8"
+                   VerticalOptions="Center"
                    Orientation="Horizontal">
       <local:TMSpinner WidthRequest="24"
                       HeightRequest="24"

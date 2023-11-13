@@ -21,7 +21,7 @@ public partial class TMButton : ContentView
     #region Bindable Properties
 
     public static readonly BindableProperty TextProperty =
-        BindableProperty.Create(nameof(Text), typeof(string), typeof(TMButton));
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(TMButton), defaultValue:null, propertyChanged: OnTextPropertyChanged);
 
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMButton));
@@ -189,11 +189,12 @@ public partial class TMButton : ContentView
     #endregion
     public TMButton()
     {
+        InitializeComponent();
         _buttonFrame = buttonFrame;
         _buttonLabel = buttonLabel;
-        InitializeComponent();
         SetPadding(this);
         UpdateButtonStyle(this);
+        OnTextChanged();
     }
 
     private void UpdateButtonIconColor()
@@ -259,6 +260,14 @@ public partial class TMButton : ContentView
         if (bindable is TMButton tmButton)
         {
             tmButton.OnBackgroundColorPropertyChanged();
+        }
+    }
+
+    private static void OnTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMButton tmButton)
+        {
+            tmButton.OnTextChanged();
         }
     }
 
@@ -426,6 +435,18 @@ public partial class TMButton : ContentView
     private void OnBackgroundColorPropertyChanged()
     {
         buttonFrame.BackgroundColor = this.BackgroundColor;
+    }
+
+    private void OnTextChanged()
+    {
+        if (string.IsNullOrEmpty(Text))
+        {
+            buttonStackLayout.ColumnSpacing = 0;
+        }
+        else
+        {
+            buttonStackLayout.ColumnSpacing = 8;
+        }
     }
 
     private void OnTextColorPropertyChanged()
