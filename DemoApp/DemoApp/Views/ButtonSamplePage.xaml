@@ -194,34 +194,11 @@
                      SelectionChanged="Style_Changed" />
         </modus:TMRadioButtonGroup>
       </StackLayout>
-      <Grid ColumnSpacing="5">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0"
-               Text="IsDisabled"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <modus:TMSwitch Grid.Column="1"
-                x:Name="isDisabled"
-                Toggled="IsDisabled_Toggled" />
-        <Label Grid.Column="2"
-               Text="IsLoading"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <modus:TMSwitch Grid.Column="3"
-                x:Name="isLoading"
-                Toggled="isLoading_Toggled" />
-      </Grid>
-      <Grid ColumnSpacing="5">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+      <HorizontalStackLayout Spacing="8">
+        <modus:TMSwitch Text="IsDisabled"
+                        x:Name="isDisabled"
+                        Toggled="IsDisabled_Toggled" />
 
         <Label Grid.Column="0"
                Text="IsFullWidth"

@@ -189,9 +189,9 @@ public partial class TMButton : ContentView
     #endregion
     public TMButton()
     {
-        InitializeComponent();
         _buttonFrame = buttonFrame;
         _buttonLabel = buttonLabel;
+        InitializeComponent();
         SetPadding(this);
         UpdateButtonStyle(this);
     }
@@ -328,8 +328,6 @@ public partial class TMButton : ContentView
             {
                 case Enums.ButtonStyle.BorderLess:
                     tmButton.SetDynamicResource(StyleProperty, "Borderless");
-                    //tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultBorderless);
-                    //tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
                     break;
                 case Enums.ButtonStyle.Fill:
                     UpdateFillStyleColors(tmButton);
@@ -410,42 +408,6 @@ public partial class TMButton : ContentView
                 break;
 
         }
-
-        /*
-        switch (tmButton.ButtonColor)
-        {
-            case ButtonColor.Secondary:
-                if (tmButton.IsFloatingButton)
-                {
-                    tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryBorder);
-                    tmButton.buttonLabel.SetAppThemeColor(StyleProperty,
-                        ResourcesDictionary.LightThemeColor(ThemeColorConstants.Black),
-                        ResourcesDictionary.DarkThemeColor(ThemeColorConstants.White));
-                }
-                else
-                {
-                    tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryBorder);
-                    tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
-                }
-
-                break;
-
-            case ButtonColor.Tertiary:
-                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.TertiaryBorder);
-                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
-                break;
-
-            case ButtonColor.Danger:
-                tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DangerBorder);
-                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
-                break;
-            default:
-                tmButton.buttonFrame.SetDynamicResource(BackgroundColorProperty, "PrimaryButtonBackgroundColor");
-                //tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryBorder);
-                tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.WhiteText);
-                break;
-        }
-        */
     }
 
     private static void UpdateOutlineStyleColors(TMButton tmButton)
@@ -459,52 +421,6 @@ public partial class TMButton : ContentView
                 tmButton.SetDynamicResource(StyleProperty, "PrimaryOutline");
                 break;
         }
-        //switch (tmButton.ButtonColor)
-        //{
-        //    case ButtonColor.Secondary:
-        //        tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
-        //        tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.SecondaryOutlineBorder);
-        //        break;
-        //    case ButtonColor.Tertiary:
-        //    case ButtonColor.Danger:
-        //        tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.DefaultOutlineBorder);
-        //        tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.GrayText);
-        //        break;
-        //    default:
-        //        tmButton.buttonFrame.SetDynamicResource(StyleProperty, ThemeColorConstants.PrimaryOutlineBorder);
-        //        tmButton.buttonLabel.SetDynamicResource(StyleProperty, ThemeColorConstants.BlueText);
-        //        break;
-        //}
-    }
-
-    private string GetOnClickColor()
-    {
-        return ButtonStyle switch
-        {
-            ButtonStyle.Outline => GetOnClickOutline(),
-            ButtonStyle.BorderLess => ThemeColorConstants.LightBlue,
-            _ => GetOnClickFill(),
-        };
-    }
-
-    private string GetOnClickOutline()
-    {
-        return ButtonColor switch
-        {
-            ButtonColor.Secondary => ThemeColorConstants.LightGray,
-            _ => ThemeColorConstants.LightBlue,
-        };
-    }
-
-    private string GetOnClickFill()
-    {
-        return ButtonColor switch
-        {
-            ButtonColor.Secondary => ThemeColorConstants.Black,
-            ButtonColor.Tertiary => ThemeColorConstants.Gray,
-            ButtonColor.Danger => ThemeColorConstants.DarkRed,
-            _ => ThemeColorConstants.DarkBlue,
-        };
     }
 
     private void OnBackgroundColorPropertyChanged()

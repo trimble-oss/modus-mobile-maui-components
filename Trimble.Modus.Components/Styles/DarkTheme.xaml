@@ -39,4 +39,26 @@
   <Color x:Key="DangerFillButtonSelectedBackgroundColor">#AB1F26</Color>
   <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
   <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
+
+   <!--Outline Button-->
+  <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#4D019AEB</Color>  
+  <Color x:Key="PrimaryOutlineButtonTextColor">#019AEB</Color>
+  <Color x:Key="PrimaryOutlineIconTintColor">#019AEB</Color>
+  <Color x:Key="PrimaryOutlineButtonBorderColor">#019AEB</Color>  
+
+  <Color x:Key="SecondaryOutlineButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="SecondaryOutlineButtonSelectedBackgroundColor">#B7B9C3</Color>
+  <Color x:Key="SecondaryOutlineButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="SecondaryOutlineIconTintColor">#FFFFFF</Color>
+  <Color x:Key="SecondaryOutlineButtonBorderColor">#FFFFFF</Color>
+  <Color x:Key="SecondaryOutlineButtonSelectedBorderColor">#B7B9C3</Color>
+
+  <!--Borderless Button-->
+  <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#4D019AEB</Color>  
+  <Color x:Key="BorderlessButtonTextColor">#019AEB</Color>
+  <Color x:Key="BorderlessIconTintColor">#019AEB</Color>
+  <Color x:Key="BorderlessButtonBorderColor">Transparent</Color>
+  <Color x:Key="BorderlessButtonSelectedBorderColor">#019AEB</Color>
 </ResourceDictionary>

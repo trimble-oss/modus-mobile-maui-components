@@ -21,6 +21,7 @@
   <Color x:Key="Transparent">transparent</Color>
 
   <!--Button-->
+  <!--Fill Button-->
   <Color x:Key="PrimaryFillButtonBackgroundColor">#0063A3</Color>
   <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">#0E416C</Color>
   <Color x:Key="PrimaryFillButtonTextColor">#FFFFFF</Color>
@@ -41,6 +42,7 @@
   <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
   <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
 
+  <!--Outline Button-->
   <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
   <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#DCEDF9</Color>  
   <Color x:Key="PrimaryOutlineButtonTextColor">#0063A3</Color>
@@ -53,6 +55,7 @@
   <Color x:Key="SecondaryOutlineIconTintColor">#353A40</Color>
   <Color x:Key="SecondaryOutlineButtonBorderColor">#353A40</Color>
 
+  <!--Borderless Button-->
   <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
   <Color x:Key="BorderlessButtonSelectedBackgroundColor">#DCEDF9</Color>  
   <Color x:Key="BorderlessButtonTextColor">#0063A3</Color>
