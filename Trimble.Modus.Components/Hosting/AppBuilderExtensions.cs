@@ -53,7 +53,7 @@ public static class AppBuilderExtensions
                     });
                 });
 #elif WINDOWS
-                    events.AddWindows(windows => {
+                    lifecycle.AddWindows(windows => {
                         windows.OnLaunched((window, args) =>
                         {
                             ThemeManager.Initialize();
