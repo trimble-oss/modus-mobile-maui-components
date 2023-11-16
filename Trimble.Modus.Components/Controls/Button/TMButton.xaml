@@ -9,9 +9,9 @@
              HorizontalOptions="Start">
   <ContentView.Resources>
     <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-               <local:TMButtonStyles></local:TMButtonStyles>
-             </ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMButtonStyles></local:TMButtonStyles>
+      </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
     </ResourceDictionary>
@@ -21,19 +21,15 @@
           x:Name="buttonFrame"
           StrokeShape="RoundRectangle 4,4">
     <Grid x:Name="buttonStackLayout"
-          ColumnDefinitions="auto,*,auto"
+          ColumnDefinitions="auto,auto,*,auto"
           VerticalOptions="Center"
           ColumnSpacing="8"
           Padding="0,8">
-      <StackLayout Grid.Column="0"
-                   Spacing="8"
-                   VerticalOptions="Center"
-                   Orientation="Horizontal">
-      <local:TMSpinner WidthRequest="24"
-                      HeightRequest="24"
-                      SpinnerColor="Secondary"
-                      SpinnerType="InDeterminate"
-                      IsVisible="{Binding IsLoading}"/>
+      <local:TMSpinner Grid.Column="0"
+                       x:Name="loadingSpinner"
+                       SpinnerColor="Secondary"
+                       SpinnerType="InDeterminate"
+                       IsVisible="{Binding IsLoading}"/>
       <Image x:Name="leftIcon"
              Grid.Column="1"
              Source="{Binding LeftIconSource}"
@@ -41,10 +37,9 @@
              HeightRequest="16"
              VerticalOptions="Center"
              HorizontalOptions="Center"
-             WidthRequest="16" />
-      </StackLayout>
+             MaximumWidthRequest="16"/>
       <Label x:Name="buttonLabel"
-             Grid.Column="1"
+             Grid.Column="2"
              Text="{Binding Text}"
              IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
              HeightRequest="48"
@@ -52,7 +47,7 @@
              HorizontalTextAlignment="Center"
              VerticalTextAlignment="Center" />
       <Image x:Name="rightIcon"
-             Grid.Column="2"
+             Grid.Column="3"
              Source="{Binding RightIconSource}"
              IsVisible="{Binding RightIconSource,Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
              HeightRequest="16"

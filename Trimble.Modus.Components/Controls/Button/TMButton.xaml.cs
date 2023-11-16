@@ -12,14 +12,13 @@ public partial class TMButton : ContentView
     protected EventHandler _clicked;
     protected Border _buttonFrame;
     protected Label _buttonLabel;
-    private TMSpinner loadingSpinner;
 
     #endregion
 
     #region Bindable Properties
 
     public static readonly BindableProperty TextProperty =
-        BindableProperty.Create(nameof(Text), typeof(string), typeof(TMButton), defaultValue:null, propertyChanged: OnTextPropertyChanged);
+        BindableProperty.Create(nameof(Text), typeof(string), typeof(TMButton), defaultValue: null, propertyChanged: OnTextPropertyChanged);
 
     public static readonly BindableProperty LeftIconSourceProperty =
         BindableProperty.Create(nameof(LeftIconSource), typeof(ImageSource), typeof(TMButton));
@@ -239,27 +238,9 @@ public partial class TMButton : ContentView
         bool isLoading = (bool)newValue;
         if (bindable is TMButton button)
         {
-            if (isLoading)
+            if (isLoading && button.loadingSpinner != null)
             {
-                if (button.loadingSpinner == null)
-                {
-                    button.loadingSpinner = new TMSpinner
-                    {
-                        SpinnerColor = SpinnerColor.Secondary,
-                        SpinnerType = SpinnerType.InDeterminate
-                    };
-                    button.loadingSpinner.Behaviors.Add(new SpinnerDisposeBehavior());
-
-                }
-
-                button.buttonStackLayout.Children.Insert(0, button.loadingSpinner);
-            }
-            else
-            {
-                if (button.loadingSpinner != null)
-                {
-                    button.buttonStackLayout.Children.Remove(button.loadingSpinner);
-                }
+                button.loadingSpinner.Behaviors.Add(new SpinnerDisposeBehavior());
             }
             SetDisabledState(isLoading, button);
         }
@@ -291,7 +272,7 @@ public partial class TMButton : ContentView
 
     private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMButton tmButton)
+        if (bindable is TMButton tmButton && DeviceInfo.Platform != DevicePlatform.WinUI)
         {
             tmButton.OnIconTintColorChanged();
         }
@@ -358,7 +339,10 @@ public partial class TMButton : ContentView
                     break;
             }
         }
-        tmButton.OnIconTintColorChanged();
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            tmButton.OnIconTintColorChanged();
+        }
     }
 
     private static void SetPadding(TMButton tmButton)
@@ -420,7 +404,8 @@ public partial class TMButton : ContentView
             tmButton.ButtonColor = ButtonColor.Primary;
         }
 
-        switch(tmButton.ButtonColor) {
+        switch (tmButton.ButtonColor)
+        {
             case ButtonColor.Secondary:
                 tmButton.SetDynamicResource(StyleProperty, "SecondaryFill");
                 break;
