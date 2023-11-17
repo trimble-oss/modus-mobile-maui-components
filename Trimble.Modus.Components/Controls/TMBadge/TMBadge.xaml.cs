@@ -193,25 +193,25 @@ public partial class TMBadge : ContentView
         switch (tmBadge.Color)
         {
             case BadgeColor.Secondary:
-                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "Secondary");
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "SecondaryBadgeStyle");
                 break;
             case BadgeColor.Tertiary:
-                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "Tertiary");
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "TertiaryBadgeStyle");
                 break;
             case BadgeColor.Success:
 
-                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "Success");
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "SuccessBadgeStyle");
                 break;
             case BadgeColor.Warning:
 
-                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "Warning");
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "WarningBadgeStyle");
                 break;
             case BadgeColor.Error:
-                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "Error");
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "ErrorBadgeStyle");
                 break;
             case BadgeColor.Primary:
             default:
-                tmBadge.SetDynamicResource(StyleProperty, "Primary");
+                tmBadge.SetDynamicResource(StyleProperty, "PrimaryBadgeStyle");
                 break;
         }
     }

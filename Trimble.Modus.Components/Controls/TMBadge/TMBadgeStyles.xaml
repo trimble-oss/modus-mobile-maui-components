@@ -4,32 +4,32 @@
                     xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                     x:Class="Trimble.Modus.Components.TMBadgeStyles">
 
-  <Style TargetType="local:TMBadge" x:Key="Primary">
+  <Style TargetType="local:TMBadge" x:Key="PrimaryBadgeStyle">
     <Setter Property="BackgroundColor" Value="{DynamicResource BadgePrimaryBackgroundColor}"/>
     <Setter Property="TextColor" Value="{DynamicResource BadgeTextColor}"/>
   </Style>
 
-  <Style TargetType="local:TMBadge" x:Key="Secondary">
+  <Style TargetType="local:TMBadge" x:Key="SecondaryBadgeStyle">
     <Setter Property="BackgroundColor" Value="{DynamicResource BadgeSecondaryBackgroundColor}"/>
     <Setter Property="TextColor" Value="{DynamicResource BadgeTextColor}"/>
   </Style>
 
-  <Style TargetType="local:TMBadge" x:Key="Tertiary">
+  <Style TargetType="local:TMBadge" x:Key="TertiaryBadgeStyle">
     <Setter Property="BackgroundColor" Value="{DynamicResource BadgeTertiaryBackgroundColor}"/>
     <Setter Property="TextColor" Value="{DynamicResource BadgeAlternateTextColor}"/>
   </Style>
 
-  <Style TargetType="local:TMBadge" x:Key="Success">
+  <Style TargetType="local:TMBadge" x:Key="SuccessBadgeStyle">
     <Setter Property="BackgroundColor" Value="{DynamicResource BadgeSuccessBackgroundColor}"/>
     <Setter Property="TextColor" Value="{DynamicResource BadgeTextColor}"/>
   </Style>
 
-  <Style TargetType="local:TMBadge" x:Key="Error">
+  <Style TargetType="local:TMBadge" x:Key="ErrorBadgeStyle">
     <Setter Property="BackgroundColor" Value="{DynamicResource BadgeErrorBackgroundColor}"/>
     <Setter Property="TextColor" Value="{DynamicResource BadgeTextColor}"/>
   </Style>
 
-  <Style TargetType="local:TMBadge" x:Key="Warning">
+  <Style TargetType="local:TMBadge" x:Key="WarningBadgeStyle">
     <Setter Property="BackgroundColor" Value="{DynamicResource BadgeWarningBackgroundColor}"/>
     <Setter Property="TextColor" Value="{DynamicResource BadgeAlternateTextColor}"/>
   </Style>
