@@ -11,6 +11,7 @@ namespace Trimble.Modus.Components
         {
             base.OnAttachedTo(bindable, platformView);
             bindable.isDisposed = false;
+            bindable.StartAnimation();
         }
         protected override void OnDetachedFrom(TMSpinner bindable, FrameworkElement platformView)
         {
@@ -22,6 +23,7 @@ namespace Trimble.Modus.Components
         {
             base.OnAttachedTo(bindable, platformView);
             bindable.isDisposed = false;
+            bindable.StartAnimation();
         }
         protected override void OnDetachedFrom(TMSpinner bindable, Android.Views.View platformView)
         {
@@ -33,6 +35,7 @@ namespace Trimble.Modus.Components
         {
             base.OnAttachedTo(bindable, platformView);
             bindable.isDisposed = false;
+            bindable.StartAnimation();
         }
         protected override void OnDetachedFrom(TMSpinner bindable, UIKit.UIView platformView)
         {

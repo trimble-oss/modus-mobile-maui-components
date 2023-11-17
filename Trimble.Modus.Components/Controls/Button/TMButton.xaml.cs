@@ -238,9 +238,12 @@ public partial class TMButton : ContentView
         bool isLoading = (bool)newValue;
         if (bindable is TMButton button)
         {
-            if (isLoading && button.loadingSpinner != null)
+            if (isLoading)
             {
                 button.loadingSpinner.Behaviors.Add(new SpinnerDisposeBehavior());
+            } else
+            {
+                button.loadingSpinner.Behaviors.Clear();
             }
             SetDisabledState(isLoading, button);
         }
@@ -444,11 +447,11 @@ public partial class TMButton : ContentView
     {
         if (string.IsNullOrEmpty(Text))
         {
-            buttonStackLayout.ColumnSpacing = 0;
+            buttonStackLayout.Spacing = 0;
         }
         else
         {
-            buttonStackLayout.ColumnSpacing = 8;
+            buttonStackLayout.Spacing = 8;
         }
     }
 
