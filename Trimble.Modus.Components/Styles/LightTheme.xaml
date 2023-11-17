@@ -13,11 +13,11 @@
   <Color x:Key="Red">#da212c</Color>
   <Color x:Key="LightRed">#FBD4D7</Color>
   <Color x:Key="DarkRed">#AB1F26</Color>
-  
+
   <Color x:Key="Gray">#353a40</Color>
   <Color x:Key="LightGray">#e0e1e9</Color>
   <Color x:Key="Black">#252a2e</Color>
-  
+
   <Color x:Key="Transparent">transparent</Color>
 
   <!--Button-->
@@ -44,10 +44,10 @@
 
   <!--Outline Button-->
   <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#DCEDF9</Color>  
+  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#DCEDF9</Color>
   <Color x:Key="PrimaryOutlineButtonTextColor">#0063A3</Color>
   <Color x:Key="PrimaryOutlineIconTintColor">#0063A3</Color>
-  <Color x:Key="PrimaryOutlineButtonBorderColor">#0063A3</Color>  
+  <Color x:Key="PrimaryOutlineButtonBorderColor">#0063A3</Color>
 
   <Color x:Key="SecondaryOutlineButtonBackgroundColor">Transparent</Color>
   <Color x:Key="SecondaryOutlineButtonSelectedBackgroundColor">#B7B9C3</Color>
@@ -57,9 +57,19 @@
 
   <!--Borderless Button-->
   <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#DCEDF9</Color>  
+  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#DCEDF9</Color>
   <Color x:Key="BorderlessButtonTextColor">#0063A3</Color>
   <Color x:Key="BorderlessIconTintColor">#0063A3</Color>
   <Color x:Key="BorderlessButtonBorderColor">Transparent</Color>
   <Color x:Key="BorderlessButtonSelectedBorderColor">#0063A3</Color>
+
+  <!--Badge-->
+  <Color x:Key="BadgePrimaryBackgroundColor">#0063a3</Color>
+  <Color x:Key="BadgeErrorBackgroundColor">#da212c</Color>
+  <Color x:Key="BadgeWarningBackgroundColor">#fbad26</Color>
+  <Color x:Key="BadgeSuccessBackgroundColor">#1E8A44</Color>
+  <Color x:Key="BadgeTertiaryBackgroundColor">#cbcdd6</Color>
+  <Color x:Key="BadgeSecondaryBackgroundColor">#585c65</Color>
+  <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
+  <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 </ResourceDictionary>

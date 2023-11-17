@@ -6,17 +6,17 @@
   <Color x:Key="Blue">#019aeb</Color>
   <Color x:Key="DarkBlue">#0063a3</Color>
   <Color x:Key="LightBlue">#DCEDF9</Color>
-  
+
   <Color x:Key="White">#FFFFFF</Color>
 
   <Color x:Key="Red">#da212c</Color>
   <Color x:Key="LightRed">#FBD4D7</Color>
   <Color x:Key="DarkRed">#AB1F26</Color>
-  
+
   <Color x:Key="Gray">#a3a6b1</Color>
   <Color x:Key="LightGray">#353a40</Color>
   <Color x:Key="Black">#252a2e</Color>
-  
+
   <Color x:Key="Transparent">transparent</Color>
 
   <!--Button-->
@@ -40,12 +40,12 @@
   <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
   <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
 
-   <!--Outline Button-->
+  <!--Outline Button-->
   <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#4D019AEB</Color>  
+  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#4D019AEB</Color>
   <Color x:Key="PrimaryOutlineButtonTextColor">#019AEB</Color>
   <Color x:Key="PrimaryOutlineIconTintColor">#019AEB</Color>
-  <Color x:Key="PrimaryOutlineButtonBorderColor">#019AEB</Color>  
+  <Color x:Key="PrimaryOutlineButtonBorderColor">#019AEB</Color>
 
   <Color x:Key="SecondaryOutlineButtonBackgroundColor">Transparent</Color>
   <Color x:Key="SecondaryOutlineButtonSelectedBackgroundColor">#B7B9C3</Color>
@@ -56,9 +56,20 @@
 
   <!--Borderless Button-->
   <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#4D019AEB</Color>  
+  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#4D019AEB</Color>
   <Color x:Key="BorderlessButtonTextColor">#019AEB</Color>
   <Color x:Key="BorderlessIconTintColor">#019AEB</Color>
   <Color x:Key="BorderlessButtonBorderColor">Transparent</Color>
   <Color x:Key="BorderlessButtonSelectedBorderColor">#019AEB</Color>
+
+
+  <!--Badge-->
+  <Color x:Key="BadgePrimaryBackgroundColor">#019AEB</Color>
+  <Color x:Key="BadgeErrorBackgroundColor">#DA212C</Color>
+  <Color x:Key="BadgeWarningBackgroundColor">#fbad26</Color>
+  <Color x:Key="BadgeSuccessBackgroundColor">#1E8A44</Color>
+  <Color x:Key="BadgeTertiaryBackgroundColor">#cbcdd6</Color>
+  <Color x:Key="BadgeSecondaryBackgroundColor">#6A6E79</Color>
+  <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
+  <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 </ResourceDictionary>
