@@ -225,6 +225,12 @@
       </MauiXaml>    
 	  <MauiXaml Update="Styles\Colors.xaml">
 	    <Generator></Generator>
+	  </MauiXaml>    
+	  <MauiXaml Update="Styles\DarkTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>    
+	  <MauiXaml Update="Styles\LightTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>

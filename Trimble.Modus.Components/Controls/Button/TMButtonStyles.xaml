@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                    x:Class="Trimble.Modus.Components.TMButtonStyles">
+
+  <Style TargetType="local:TMButton" x:Key="PrimaryFill">
+    <Setter Property="TextColor" Value="{DynamicResource PrimaryFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource PrimaryFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource PrimaryFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="SecondaryFill">
+    <Setter Property="TextColor" Value="{DynamicResource SecondaryFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource SecondaryFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource SecondaryFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="TertiaryFill">
+    <Setter Property="TextColor" Value="{DynamicResource TertiaryFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource TertiaryFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource TertiaryFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource TertiaryFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource TertiaryFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="DangerFill">
+    <Setter Property="TextColor" Value="{DynamicResource DangerFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource DangerFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource DangerFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DangerFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DangerFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="PrimaryOutline">
+    <Setter Property="TextColor" Value="{DynamicResource PrimaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource PrimaryOutlineIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource PrimaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryOutlineButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryOutlineButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="SecondaryOutline">
+    <Setter Property="TextColor" Value="{DynamicResource SecondaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource SecondaryOutlineIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource SecondaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryOutlineButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryOutlineButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="Borderless">
+    <Setter Property="TextColor" Value="{DynamicResource BorderlessButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource BorderlessIconTintColor}"></Setter>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource BorderlessButtonBackgroundColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource BorderlessButtonBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource BorderlessButtonSelectedBackgroundColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource BorderlessButtonSelectedBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>
+

@@ -1,6 +1,7 @@
 using Microsoft.Maui.LifecycleEvents;
 using SkiaSharp.Views.Maui.Handlers;
 using Trimble.Modus.Components;
+using Trimble.Modus.Components.Helpers;
 #if ANDROID
 using Trimble.Modus.Components.Popup.Pages;
 #endif
@@ -27,8 +28,37 @@ public static class AppBuilderExtensions
 #if ANDROID
                 lifecycle.AddAndroid(d =>
                 {
+                    d.OnApplicationCreate(del =>
+                    {
+                        ThemeManager.Initialize();
+                    });
                     d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed());
                 });
+#elif IOS
+                lifecycle.AddiOS(ios =>
+                {
+                    ios.FinishedLaunching((app, resources) =>
+                    {
+                        ThemeManager.Initialize();
+                        return true;
+                    });
+                });
+#elif MACCATALYST
+                lifecycle.AddiOS(mac =>
+                {
+                    mac.FinishedLaunching((app, resources) =>
+                    {
+                        ThemeManager.Initialize();
+                        return true;
+                    });
+                });
+#elif WINDOWS
+                    lifecycle.AddWindows(windows => {
+                        windows.OnLaunched((window, args) =>
+                        {
+                            ThemeManager.Initialize();
+                        });
+                    });
 
 #endif
             })
@@ -42,7 +72,6 @@ public static class AppBuilderExtensions
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSansSemibold");
             });
-
         return builder;
     }
 
@@ -59,11 +88,11 @@ public static class AppBuilderExtensions
             {
 #if ANDROID
                 lifecycle.AddAndroid(d =>
-                {
-
+                {                    
                     d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed(backPressHandler));
                 });
 #endif
+
             })
             .ConfigureMauiHandlers(handlers => SetHandlers(handlers))
             .ConfigureFonts(fonts =>

@@ -169,7 +169,8 @@ namespace Trimble.Modus.Components
                 tmSpinner._spinnerType = (SpinnerType)newValue;
             }
         }
-        private void StartAnimation()
+
+        internal void StartAnimation()
         {
             _animationTimer = new Timer(UpdateAnimation, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(animateTimerSeconds));
         }

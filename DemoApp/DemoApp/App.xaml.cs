@@ -1,7 +1,4 @@
-﻿using DemoApp.Views;
-using Trimble.Modus.Components;
-
-namespace DemoApp;
+﻿namespace DemoApp;
 
 public partial class App : Application
 {

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Styles.LightTheme">
+
+  <Color x:Key="Blue">#0063a3</Color>
+  <Color x:Key="DarkBlue">#004f83</Color>
+  <Color x:Key="LightBlue">#DCEDF9</Color>
+
+  <Color x:Key="White">#FFFFFF</Color>
+
+
+  <Color x:Key="Red">#da212c</Color>
+  <Color x:Key="LightRed">#FBD4D7</Color>
+  <Color x:Key="DarkRed">#AB1F26</Color>
+  
+  <Color x:Key="Gray">#353a40</Color>
+  <Color x:Key="LightGray">#e0e1e9</Color>
+  <Color x:Key="Black">#252a2e</Color>
+  
+  <Color x:Key="Transparent">transparent</Color>
+
+  <!--Button-->
+  <!--Fill Button-->
+  <Color x:Key="PrimaryFillButtonBackgroundColor">#0063A3</Color>
+  <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">#0E416C</Color>
+  <Color x:Key="PrimaryFillButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="PrimaryFillIconTintColor">#FFFFFF</Color>
+
+  <Color x:Key="SecondaryFillButtonBackgroundColor">#353A40</Color>
+  <Color x:Key="SecondaryFillButtonSelectedBackgroundColor">#171C1E</Color>
+  <Color x:Key="SecondaryFillButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="SecondaryFillIconTintColor">#FFFFFF</Color>
+
+  <Color x:Key="TertiaryFillButtonBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="TertiaryFillButtonSelectedBackgroundColor">#B7B9C3</Color>
+  <Color x:Key="TertiaryFillButtonTextColor">#252A2E</Color>
+  <Color x:Key="TertiaryFillIconTintColor">#252A2E</Color>
+
+  <Color x:Key="DangerFillButtonBackgroundColor">#DA212C</Color>
+  <Color x:Key="DangerFillButtonSelectedBackgroundColor">#AB1F26</Color>
+  <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
+
+  <!--Outline Button-->
+  <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#DCEDF9</Color>  
+  <Color x:Key="PrimaryOutlineButtonTextColor">#0063A3</Color>
+  <Color x:Key="PrimaryOutlineIconTintColor">#0063A3</Color>
+  <Color x:Key="PrimaryOutlineButtonBorderColor">#0063A3</Color>  
+
+  <Color x:Key="SecondaryOutlineButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="SecondaryOutlineButtonSelectedBackgroundColor">#B7B9C3</Color>
+  <Color x:Key="SecondaryOutlineButtonTextColor">#353A40</Color>
+  <Color x:Key="SecondaryOutlineIconTintColor">#353A40</Color>
+  <Color x:Key="SecondaryOutlineButtonBorderColor">#353A40</Color>
+
+  <!--Borderless Button-->
+  <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
+  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#DCEDF9</Color>  
+  <Color x:Key="BorderlessButtonTextColor">#0063A3</Color>
+  <Color x:Key="BorderlessIconTintColor">#0063A3</Color>
+  <Color x:Key="BorderlessButtonBorderColor">Transparent</Color>
+  <Color x:Key="BorderlessButtonSelectedBorderColor">#0063A3</Color>
+</ResourceDictionary>
