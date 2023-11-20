@@ -1,4 +1,5 @@
-﻿using Trimble.Modus.Components.Constant;
+﻿using CommunityToolkit.Maui.Behaviors;
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
@@ -70,6 +71,15 @@ namespace Trimble.Modus.Components
             set { SetValue(ValueProperty, value); }
         }
 
+        /// <summary>
+        /// Tint color for specific themes
+        /// </summary>
+        internal Color IconTintColor
+        {
+            get { return (Color)GetValue(IconTintColorProperty); }
+            set { this.SetValue(IconTintColorProperty, value); }
+        }
+
         #endregion
 
         #region Bindable Properties
@@ -88,6 +98,7 @@ namespace Trimble.Modus.Components
 
         public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(object), typeof(TMRadioButton), null);
 
+        public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMButton), Colors.Black,BindingMode.Default, propertyChanged: OnIconTintColorPropertyChanged);    
         #endregion
 
         #region Constructor
@@ -120,11 +131,31 @@ namespace Trimble.Modus.Components
             _tapGesture.Tapped += OnTapGestureTapped;
             GestureRecognizers.Add(_tapGesture);
             Margin = new Thickness(0, 0, 5, 5);
+
+            this.SetDynamicResource(IconTintColorProperty, "RadioButtonColor");
         }
 
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Update Tint color based on theme
+        /// </summary>
+        private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is TMRadioButton tmRadioButton && DeviceInfo.Platform != DevicePlatform.WinUI)
+            {
+                tmRadioButton._icon.Behaviors.Clear();
+                if (tmRadioButton.IconTintColor != null)
+                {
+                    var behavior = new IconTintColorBehavior
+                    {
+                        TintColor = tmRadioButton.IconTintColor
+                    };
+                    tmRadioButton._icon.Behaviors.Add(behavior);
+                }
+            }
+        }
 
         /// <summary>
         /// Change dimension and font size based on size property
