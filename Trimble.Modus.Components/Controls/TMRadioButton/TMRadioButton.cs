@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Maui.Behaviors;
+using CommunityToolkit.Maui.Behaviors;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 
@@ -143,6 +143,8 @@ namespace Trimble.Modus.Components
         /// </summary>
         private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
+            // FIXME: IconTintColorBehavior doesn't work properly on Windows, hence the DeviceInfo.Platform != DevicePlatform.WinUI check. 
+            // Remove this check once the issue is fixed.
             if (bindable is TMRadioButton tmRadioButton && DeviceInfo.Platform != DevicePlatform.WinUI)
             {
                 tmRadioButton._icon.Behaviors.Clear();
