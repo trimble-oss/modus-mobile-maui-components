@@ -145,6 +145,9 @@
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMChips\TMChipStyles.xaml.cs">
+	    <DependentUpon>TMChipStyles.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
 	    <DependentUpon>TextColumn.xaml</DependentUpon>
 	  </Compile>
@@ -170,6 +173,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMChips\TMChipStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">

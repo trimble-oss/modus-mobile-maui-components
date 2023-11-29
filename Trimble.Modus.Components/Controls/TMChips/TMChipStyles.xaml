@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                    x:Class="Trimble.Modus.Components.TMChipStyles">
+  
+  <Style TargetType="local:TMChips" x:Key="DefaultFill">
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DefaultChipBackgroundColor}"/>
+              <Setter Property="TextColor" Value="{DynamicResource DefaultChipTextColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DefaultChipSelectedBackgroundColor}"/>
+              <Setter Property="TextColor" Value="{DynamicResource DefaultChipSelectedTextColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMChips" x:Key="DefaultOutline">
+    <Setter Property="TextColor" Value="{DynamicResource DefaultOutlineChipTextColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DefaultOutlineChipBackgroundColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource DefaultOutlineChipBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DefaultOutlineChipSelectedBackgroundColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource DefaultOutlineChipSelectedBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMChips" x:Key="ErrorFill">
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource ErrorChipBackgroundColor}"/>
+              <Setter Property="TextColor" Value="{DynamicResource ErrorChipTextColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMChips" x:Key="ErrorOutline">
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource ErrorOutlineChipBackgroundColor}"/>
+              <Setter Property="TextColor" Value="{DynamicResource ErrorOutlineChipTextColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource ErrorOutlineChipBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

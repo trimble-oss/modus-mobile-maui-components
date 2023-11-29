@@ -3,9 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              HorizontalOptions="Start"
              VerticalOptions="Start"
+             x:Name="tmChip"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
              x:Class="Trimble.Modus.Components.TMChips">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMChipStyles></local:TMChipStyles>
+      </ResourceDictionary.MergedDictionaries>
+      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
   <Border x:Name="frame"
+          BindingContext="{x:Reference tmChip}"
           HorizontalOptions="Start"
           VerticalOptions="Center"
           Stroke="Transparent">
