@@ -308,7 +308,7 @@ public partial class TMAlert : ContentView
     /// <summary>
     /// Execute command when button is clicked
     /// </summary>
-    void actionButton_Clicked(System.Object sender, System.EventArgs e)
+    void ActionButtonClicked(System.Object sender, System.EventArgs e)
     {
         ButtonClickedCommand?.Execute(CommandParameter);
     }

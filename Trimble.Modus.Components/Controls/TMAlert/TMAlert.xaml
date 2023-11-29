@@ -84,7 +84,7 @@
                   BackgroundColor="Transparent"
                   TextColor="Black"
                   CommandParameter="{Binding CommandParameter}"
-                  Clicked="actionButton_Clicked"
+                  Clicked="ActionButtonClicked"
                   IsVisible="{Binding ButtonText, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"/>
           <Image x:Name="rightIconImage"
                  HorizontalOptions="End"
