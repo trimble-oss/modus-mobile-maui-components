@@ -74,7 +74,7 @@
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
   <!--ProgressBar-->
-  <Color x:Key="ProgressBarPrimaryBackgroundColor">#019aeb</Color>
-  <Color x:Key="ProgressBarPrimaryBaseColor">#ffffff</Color>
+  <Color x:Key="ProgressBarPrimaryBackgroundColor">#0063A3</Color>
+  <Color x:Key="ProgressBarPrimaryBaseColor">#a3a6b1</Color>
 
 </ResourceDictionary>
