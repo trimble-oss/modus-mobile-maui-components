@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:ClassModifier="internal"
@@ -8,7 +8,7 @@
                  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
                  Title="TMModalContents"
-                 BackgroundColor="{x:StaticResource Transparent}">
+                 BackgroundColor="#80000000">
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -24,7 +24,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="{x:StaticResource Transparent}"
+          BackgroundColor="#22000000"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">
@@ -34,8 +34,7 @@
             HorizontalOptions="Fill"
             StrokeShape="RoundRectangle 4"
             Stroke="{x:StaticResource Gray9}"
-            StrokeThickness="0"
-            BackgroundColor="{StaticResource White}">
+            StrokeThickness="0">
       <Border.Shadow>
         <Shadow Brush="{x:StaticResource Gray9}"
                 Offset="0,0"
@@ -66,12 +65,12 @@
                  IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="Center"
                  FontFamily="OpenSansSemibold"
-                 FontSize="16"
-                 TextColor="{StaticResource Gray9}"
+                 FontSize="18"
                  Padding="0,0,8,0"
                  Grid.Column="1"
                  Grid.Row="0" />
-          <Image Source="{x:Static constants:ImageConstants.CloseButtonImage}"
+          <Image x:Name="CloseButton"
+                 Source="{x:Static constants:ImageConstants.CloseButtonImage}"
                  Grid.Column="2"
                  Grid.Row="0"
                  VerticalOptions="Center"
@@ -96,7 +95,6 @@
                  IsVisible="{Binding Message,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="StartAndExpand"
                  FontSize="14"
-                 TextColor="{x:StaticResource Gray9}"
                  LineBreakMode="WordWrap" />
         </StackLayout>
         <StackLayout x:Name="ButtonContainer"

@@ -72,4 +72,8 @@
   <Color x:Key="BadgeSecondaryBackgroundColor">#585c65</Color>
   <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
+
+  <!--Modal-->
+  <Color x:Key="ModalTextAndImageColor">#252a2e</Color>
+  <Color x:Key="ModalBackgroundColor">#FFF</Color>
 </ResourceDictionary>
