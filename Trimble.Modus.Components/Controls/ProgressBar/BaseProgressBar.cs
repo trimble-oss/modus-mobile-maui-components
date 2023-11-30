@@ -1,6 +1,8 @@
+using Microsoft.Maui.Controls;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
+using System.Collections.Generic;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components;
@@ -25,6 +27,18 @@ internal class BaseProgressBar : SKCanvasView
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(
    nameof(Size), typeof(ProgressBarSize), typeof(BaseProgressBar), ProgressBarSize.Default, propertyChanged: OnSizeChangedProperty);
 
+    public new static readonly BindableProperty StyleProperty = BindableProperty.Create(
+        nameof(Style), typeof(Style), typeof(BaseProgressBar), propertyChanged: OnStyleChangedProperty);
+
+
+    public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(
+  nameof(ProgressColor), typeof(Color), typeof(BaseProgressBar), Colors.Red,
+        propertyChanged: OnProgressColorChangedProperty);
+
+    public static readonly BindableProperty BaseColorProperty = BindableProperty.Create(
+        nameof(BaseColor), typeof(Color), typeof(BaseProgressBar), Colors.White,
+        propertyChanged: OnBaseColorChangedProperty);
+
     public float Progress
     {
         get => (float)GetValue(ProgressProperty);
@@ -36,10 +50,34 @@ internal class BaseProgressBar : SKCanvasView
         get => (ProgressBarSize)GetValue(SizeProperty);
         set => SetValue(SizeProperty, value);
     }
+    public Color ProgressColor
+    {
+        get => (Color)GetValue(ProgressColorProperty);
+        set => SetValue(ProgressColorProperty, value);
+    }
+    public Color BaseColor
+    {
+        get => (Color)GetValue(BaseColorProperty);
+        set => SetValue(BaseColorProperty, value);
+    }
+
 
     public BaseProgressBar()
     {
         this.HeightRequest = _defaultHeightRequest;
+
+        ResourceDictionary resourceDictionary = new BaseProgressBarStyles();
+
+        //this.Resources = resourceDictionary;
+        //this.Style = (Style)Resources["PrimaryProgressBar"];
+
+        var dictionaryExists = this.Resources.MergedDictionaries.Contains(resourceDictionary);
+        if (!dictionaryExists)
+        {
+            this.Resources.MergedDictionaries.Add(resourceDictionary);
+        }
+        //this.Style = (Style)Resources["PrimaryProgressBar"];
+        this.SetDynamicResource(StyleProperty, "PrimaryProgressBar");       
     }
 
     protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
@@ -50,7 +88,6 @@ internal class BaseProgressBar : SKCanvasView
         _canvas.Clear(); // clears the canvas for every frame
         _info = e.Info;
         _drawRect = new SKRect(0, 0, _info.Width, _info.Height);
-
         DrawBase();
         DrawProgress();
     }
@@ -67,7 +104,7 @@ internal class BaseProgressBar : SKCanvasView
         {
             Style = SKPaintStyle.Fill,
             IsAntialias = true,
-            Color = Helpers.ResourcesDictionary.ColorsDictionary(Constant.ColorsConstants.TrimbleBlue).ToSKColor()
+            Color = ProgressColor.ToSKColor()
         });
     }
     private void DrawBase()
@@ -81,9 +118,19 @@ internal class BaseProgressBar : SKCanvasView
             Style = SKPaintStyle.StrokeAndFill,
             StrokeWidth = 5,
             IsStroke = true,
-            Color = Helpers.ResourcesDictionary.ColorsDictionary(Constant.ColorsConstants.Gray7).ToSKColor(),
+            Color = BaseColor.ToSKColor(),
             IsAntialias = true
         });
+    }
+
+    private static void OnStyleChangedProperty(BindableObject bindable, object oldValue, object newValue)
+    {
+        if(bindable is BaseProgressBar progressBar)
+        {
+            //progressBar.ProgressColor = (Color)((Style)newValue["ProgressBarPrimaryProgressColor"]);
+            //var styles = (Style)newValue;
+           
+        }
     }
 
     private static void OnBindablePropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -97,8 +144,23 @@ internal class BaseProgressBar : SKCanvasView
         {
             progressBar.HeightRequest = progressBar.Size == ProgressBarSize.Default ? progressBar._defaultHeightRequest : progressBar._smallHeightRequest;
             progressBar.InvalidateSurface();
+
         }
     }
 
+    private static void OnProgressColorChangedProperty(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseProgressBar progressBar)
+        {
+            progressBar.InvalidateSurface();
+        }
+    }
 
+    private static void OnBaseColorChangedProperty(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseProgressBar progressBar)
+        {
+            progressBar.InvalidateSurface();
+        }
+    }
 }

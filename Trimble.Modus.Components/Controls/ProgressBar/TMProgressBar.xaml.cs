@@ -14,7 +14,7 @@ public partial class TMProgressBar : ContentView
    nameof(Size), typeof(ProgressBarSize), typeof(TMProgressBar), ProgressBarSize.Default, propertyChanged: OnSizeChangedProperty);
 
     public static readonly BindableProperty TextProperty = BindableProperty.Create(
-  nameof(Text), typeof(string), typeof(TMProgressBar));
+      nameof(Text), typeof(string), typeof(TMProgressBar));
 
     public string Text
     {
