@@ -72,4 +72,10 @@
   <Color x:Key="BadgeSecondaryBackgroundColor">#6A6E79</Color>
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
+
+  <!--Switch-->
+  <Color x:Key="SwitchSelected">#019AEB</Color>
+  <Color x:Key="SwitchUnselected">#90939F</Color>
+  <Color x:Key="SwitchText">#FFFFFF</Color>
+  
 </ResourceDictionary>
