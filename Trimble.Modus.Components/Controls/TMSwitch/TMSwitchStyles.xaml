@@ -9,14 +9,14 @@
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">
-          <VisualState x:Name="Selected">
+          <VisualState x:Name="On">
             <VisualState.Setters>
-              <Setter Property="BackgroundColor" Value="{DynamicResource SwitchSelected}"/>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SwitchOnBackgroundColor}"/>
             </VisualState.Setters>
           </VisualState>
-          <VisualState x:Name="Unselected">
+          <VisualState x:Name="Off">
             <VisualState.Setters>
-              <Setter Property="BackgroundColor" Value="{DynamicResource SwitchUnselected}"/>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SwitchOffBackgroundColor}"/>
             </VisualState.Setters>
           </VisualState>                            
         </VisualStateGroup>

@@ -74,8 +74,8 @@
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
   <!--Switch-->
-  <Color x:Key="SwitchSelected">#019AEB</Color>
-  <Color x:Key="SwitchUnselected">#90939F</Color>
+  <Color x:Key="SwitchOnBackgroundColor">#019AEB</Color>
+  <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
   <Color x:Key="SwitchText">#FFFFFF</Color>
   
     <!--Radio button-->

@@ -75,7 +75,7 @@ public partial class TMSwitch : ContentView
     {
         InitializeComponent();
         UpdateSwitchSize(this);
-        UpdateSwitchStyle(this);
+        this.SetDynamicResource(StyleProperty, "SwitchStyle");
         Loaded += (sender, args) =>
         {
             hasLoaded = true;
@@ -194,10 +194,6 @@ public partial class TMSwitch : ContentView
         tMSwitch.border.CornerRadius = tMSwitch.border.HeightRequest / 2;
         tMSwitch.circle.CornerRadius = tMSwitch.circle.HeightRequest / 2;
     }
-    private static void UpdateSwitchStyle(TMSwitch tMSwitch)
-    {
-        tMSwitch.SetDynamicResource(StyleProperty, "SwitchStyle");
-    }
 
     private void OnSwitchTapped(object sender, TappedEventArgs e)
     {
@@ -221,8 +217,7 @@ public partial class TMSwitch : ContentView
                 { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.circleMargin,tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicIn);
-        VisualStateManager.GoToState(tMSwitch, "Selected");
-        UpdateSwitchStyle(tMSwitch);
+        VisualStateManager.GoToState(tMSwitch, "On");
     }
 
     private static void OnSwitchUnSelected(TMSwitch tMSwitch)
@@ -239,8 +234,7 @@ public partial class TMSwitch : ContentView
                 { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin, tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicInOut);
-        VisualStateManager.GoToState(tMSwitch, "Unselected");
-        UpdateSwitchStyle(tMSwitch);
+        VisualStateManager.GoToState(tMSwitch, "Off");
     }
 }
 
