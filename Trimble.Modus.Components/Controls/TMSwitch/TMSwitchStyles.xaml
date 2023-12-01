@@ -5,7 +5,7 @@
                     x:Class="Trimble.Modus.Components.TMSwitchStyles">
 
   <Style TargetType="local:TMSwitch" x:Key="SwitchStyle">
-    <Setter Property="TextColor" Value="{DynamicResource SwitchText}"/>
+    <Setter Property="TextColor" Value="{DynamicResource SwitchTextColor}"/>
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">
