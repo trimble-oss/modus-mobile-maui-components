@@ -72,4 +72,10 @@
   <Color x:Key="BadgeSecondaryBackgroundColor">#585c65</Color>
   <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
+
+  <!--Datagrid-->
+  <Color x:Key="DataGridHeaderColor">#f1f1f6</Color>
+  <Color x:Key="DataGridHeaderTextColor">#252a2e</Color>
+  <Color x:Key="DataGridActiveRowColor">#dcedf9</Color>
+  <Color x:Key="DataGridDefaultRowColor">#FFF</Color>
 </ResourceDictionary>
