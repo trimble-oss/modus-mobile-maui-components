@@ -95,5 +95,7 @@
   <Color x:Key="ErrorOutlineChipBackgroundColor">#FBD4D7</Color>
   <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
 
+  <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#0063A3</Color>
 
 </ResourceDictionary>

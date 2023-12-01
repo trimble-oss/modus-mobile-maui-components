@@ -73,6 +73,7 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
   <Color x:Key="DefaultChipSelectedBackgroundColor">#019AEB</Color>
@@ -94,6 +95,7 @@
   <Color x:Key="ErrorOutlineChipBorderColor">#AB1F26</Color>
   <Color x:Key="ErrorOutlineChipBackgroundColor">#FBD4D7</Color>
   <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
-
+    <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#019AEB</Color>
 
 </ResourceDictionary>
