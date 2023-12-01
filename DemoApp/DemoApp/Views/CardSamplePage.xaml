@@ -19,9 +19,9 @@
                Text="Selected"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
-        <Switch Grid.Column="1"
-                x:Name="isSelected"
-                Toggled="IsSelectedToggled" />
+        <modus:TMSwitch Grid.Column="1"
+                        x:Name="isSelected"
+                        Toggled="IsSelectedToggled" />
       </Grid>
       <modus:TMCard x:Name="card1"
                     Clicked="Card1Clicked">

@@ -17,7 +17,7 @@
     </Border.StrokeShape>
     <Border.Triggers>
       <DataTrigger TargetType="Border"
-                   Binding="{Binding IsSelected}"
+                   Binding="{Binding Source={x:Reference card}, Path=IsSelected}"
                    Value="false">
         <Setter Property="BackgroundColor"
                 Value="{DynamicResource CardBackgroundColor}" />
@@ -25,7 +25,7 @@
                 Value="{DynamicResource CardStrokeColor}" />
       </DataTrigger>
       <DataTrigger TargetType="Border"
-                   Binding="{Binding IsSelected}"
+                   Binding="{Binding Source={x:Reference card}, Path=IsSelected}"
                    Value="true">
         <Setter Property="BackgroundColor"
                 Value="{DynamicResource CardSelectedBackgroundColor}" />
