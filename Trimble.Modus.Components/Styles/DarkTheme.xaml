@@ -78,4 +78,7 @@
   <Color x:Key="SwitchUnselected">#90939F</Color>
   <Color x:Key="SwitchText">#FFFFFF</Color>
   
+    <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#019AEB</Color>
+  
 </ResourceDictionary>
