@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Controls.TMSegmentedControl.TMSegmentedItemStyles"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
+  <Style TargetType="local:TMSegmentedItem" x:Key="Primary">
+    <Setter Property="TextColor" Value="{DynamicResource SegmentItemTextColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemIconTintColor}"/>
+    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource Transparent}"/>
+  </Style>
+  <Style TargetType="local:TMSegmentedItem" x:Key="PrimarySelected">
+    <Setter Property="TextColor" Value="{DynamicResource SegmentItemSelectedTextColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemSelectedIconTintColor}"/>
+    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource SegmentItemPrimaryBackgroundColor}"/>
+  </Style>
+  <Style TargetType="local:TMSegmentedItem" x:Key="Secondary">
+    <Setter Property="TextColor" Value="{DynamicResource SegmentItemTextColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemIconTintColor}"/>
+    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource Transparent}"/>
+  </Style>
+  <Style TargetType="local:TMSegmentedItem" x:Key="SecondarySelected">
+    <Setter Property="TextColor" Value="{DynamicResource SegmentItemSelectedTextColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemSelectedIconTintColor}"/>
+    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource SegmentItemSecondaryBackgroundColor}"/>
+  </Style>
+</ResourceDictionary>
+
