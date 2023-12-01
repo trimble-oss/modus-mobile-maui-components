@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMCard"
+             x:Name="card">
+  <Border x:Name="border"
+          BindingContext="{x:Reference card}"
+          Padding="{Binding Padding}">
+    <Border.Shadow>
+      <Shadow Brush="{DynamicResource CardShadowColor}"
+              Radius="{OnPlatform Default=3,Android=15}"
+              Opacity="0.6" />
+    </Border.Shadow>
+    <Border.StrokeShape>
+      <Rectangle RadiusX="2"
+                 RadiusY="2" />
+    </Border.StrokeShape>
+    <Border.Triggers>
+      <DataTrigger TargetType="Border"
+                   Binding="{Binding IsSelected}"
+                   Value="false">
+        <Setter Property="BackgroundColor"
+                Value="{DynamicResource CardBackgroundColor}" />
+        <Setter Property="Stroke"
+                Value="{DynamicResource CardStrokeColor}" />
+      </DataTrigger>
+      <DataTrigger TargetType="Border"
+                   Binding="{Binding IsSelected}"
+                   Value="true">
+        <Setter Property="BackgroundColor"
+                Value="{DynamicResource CardSelectedBackgroundColor}" />
+        <Setter Property="Stroke"
+                Value="{DynamicResource CardSelectedStrokeColor}" />
+      </DataTrigger>
+    </Border.Triggers>
+    <Border.GestureRecognizers>
+      <TapGestureRecognizer Command="{Binding Command}"
+                            CommandParameter="{Binding CommandParameter}"
+                            Tapped="OnTapped"
+                            NumberOfTapsRequired="1" />
+    </Border.GestureRecognizers>
+  </Border>
+</ContentView>
