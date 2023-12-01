@@ -79,23 +79,29 @@
   <Color x:Key="DefaultChipSelectedBackgroundColor">#019AEB</Color>
   <Color x:Key="DefaultChipTextColor">#252A2E</Color>
   <Color x:Key="DefaultChipSelectedTextColor">#FFFFFF</Color>
-
+  <Color x:Key="DefaultChipIconTintColor">#252A2E</Color>
+  <Color x:Key="DefaultChipSelectedIconTintColor">#FFFFFF</Color>
+  
   <!--OutlineChip-->
   <Color x:Key="DefaultOutlineChipBorderColor">#B7B9C3</Color>
   <Color x:Key="DefaultOutlineChipSelectedBorderColor">#019AEB</Color>
   <Color x:Key="DefaultOutlineChipBackgroundColor">Transparent</Color>
   <Color x:Key="DefaultOutlineChipSelectedBackgroundColor">#66019AEB</Color>
   <Color x:Key="DefaultOutlineChipTextColor">#FFFFFF</Color>
+  <Color x:Key="DefaultOutlineChipIconTintColor">#FFFFFF</Color>
 
   <!--ErrorFillChip-->
   <Color x:Key="ErrorChipBackgroundColor">#FBD4D7</Color>
   <Color x:Key="ErrorChipTextColor">#AB1F26</Color>
+  <Color x:Key="ErrorChipIconTintColor">#AB1F26</Color>
 
   <!--ErrorOutlineChip-->
   <Color x:Key="ErrorOutlineChipBorderColor">#AB1F26</Color>
   <Color x:Key="ErrorOutlineChipBackgroundColor">#FBD4D7</Color>
   <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
-    <!--Radio button-->
+  <Color x:Key="ErrorOutlineChipIconTintColor">#AB1F26</Color>
+
+  <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
 
 </ResourceDictionary>

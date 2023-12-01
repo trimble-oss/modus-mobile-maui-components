@@ -71,6 +71,14 @@ public partial class TMChips : ContentView
         null,
         propertyChanged: OnBorderColorPropertyChanged);
 
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor),
+        typeof(Color),
+        typeof(TMChips),
+        Colors.Black,
+        BindingMode.Default,
+        null,
+        propertyChanged: OnIconTintColorPropertyChanged);
+
     #endregion
     #region Public Properties
     public ICommand CloseCommand
@@ -131,7 +139,7 @@ public partial class TMChips : ContentView
         set => SetValue(ChipStyleProperty, value);
     }
 
-    internal Color BackgroundColor
+    internal new Color BackgroundColor
     {
         get { return (Color)GetValue(BackgroundColorProperty); }
         set { SetValue(BackgroundColorProperty, value); }
@@ -147,6 +155,11 @@ public partial class TMChips : ContentView
     {
         get { return (Color)GetValue(BorderColorProperty); }
         set { this.SetValue(BorderColorProperty, value); }
+    }
+    internal Color IconTintColor
+    {
+        get { return (Color)GetValue(IconTintColorProperty); }
+        set { this.SetValue(IconTintColorProperty, value); }
     }
     #endregion
     #region Constructor
@@ -214,6 +227,14 @@ public partial class TMChips : ContentView
             tMChips.OnBorderColorChanged();
         }
     }
+    private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable != null && bindable is TMChips tMChips && DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            tMChips.OnIconTintColorChanged();
+        }
+    }
+
     private void OnRightIconTapped(object sender, EventArgs e)
     {
         CloseCommand?.Execute(this);
@@ -279,6 +300,21 @@ public partial class TMChips : ContentView
     private void OnBorderColorChanged()
     {
         frame.Stroke = this.BorderColor;
+    }
+
+    private void OnIconTintColorChanged()
+    {
+        lefticon.Behaviors.Clear();
+        righticon.Behaviors.Clear();
+        if (this.IconTintColor != null)
+        {
+            var behavior = new IconTintColorBehavior
+            {
+                TintColor = this.IconTintColor
+            };
+            lefticon.Behaviors.Add(behavior);
+            righticon.Behaviors.Add(behavior);
+        }
     }
 
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)

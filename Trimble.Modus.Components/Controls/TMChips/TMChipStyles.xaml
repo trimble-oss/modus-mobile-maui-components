@@ -12,12 +12,14 @@
             <VisualState.Setters>
               <Setter Property="BackgroundColor" Value="{DynamicResource DefaultChipBackgroundColor}"/>
               <Setter Property="TextColor" Value="{DynamicResource DefaultChipTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource DefaultChipIconTintColor}"/>
             </VisualState.Setters>
           </VisualState>
           <VisualState x:Name="Pressed">
             <VisualState.Setters>
               <Setter Property="BackgroundColor" Value="{DynamicResource DefaultChipSelectedBackgroundColor}"/>
               <Setter Property="TextColor" Value="{DynamicResource DefaultChipSelectedTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource DefaultChipSelectedIconTintColor}"/>
             </VisualState.Setters>
           </VisualState>
         </VisualStateGroup>
@@ -27,6 +29,7 @@
 
   <Style TargetType="local:TMChips" x:Key="DefaultOutline">
     <Setter Property="TextColor" Value="{DynamicResource DefaultOutlineChipTextColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource DefaultOutlineChipIconTintColor}"/>
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">
@@ -55,6 +58,7 @@
             <VisualState.Setters>
               <Setter Property="BackgroundColor" Value="{DynamicResource ErrorChipBackgroundColor}"/>
               <Setter Property="TextColor" Value="{DynamicResource ErrorChipTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource ErrorChipIconTintColor}"/>
             </VisualState.Setters>
           </VisualState>
         </VisualStateGroup>
@@ -70,6 +74,7 @@
             <VisualState.Setters>
               <Setter Property="BackgroundColor" Value="{DynamicResource ErrorOutlineChipBackgroundColor}"/>
               <Setter Property="TextColor" Value="{DynamicResource ErrorOutlineChipTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource ErrorOutlineChipIconTintColor}"/>
               <Setter Property="BorderColor" Value="{DynamicResource ErrorOutlineChipBorderColor}"/>
             </VisualState.Setters>
           </VisualState>
