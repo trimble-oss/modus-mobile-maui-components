@@ -15,22 +15,10 @@ public partial class TMSegmentedItem
     public static readonly BindableProperty ShowSeparatorProperty = BindableProperty.Create(nameof(ShowSeparator), typeof(bool), typeof(TMSegmentedItem), true);
     public static readonly BindableProperty ColorThemeProperty = BindableProperty.Create(nameof(ColorTheme), typeof(SegmentColorTheme), typeof(TMSegmentedItem), SegmentColorTheme.Primary, propertyChanged: OnColorThemeChanged);
     public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(TMSegmentedItem), null, propertyChanged: OnSegmentedItemPropertyChanged);
-    public static readonly BindableProperty CurrentBackgroundColorProperty = BindableProperty.Create(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
-        propertyChanged: (bindable, _, newValue) =>
-        {
-            (bindable as TMSegmentedItem).GridContainer.BackgroundColor = (Color)newValue;
-        });
+    public static readonly BindableProperty CurrentBackgroundColorProperty = BindableProperty.Create(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent), propertyChanged: OnCurrentBackgroundColorChanged);
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedItem), SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
-    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9),
-        propertyChanged: (bindable, _, newValue) =>
-        {
-            (bindable as TMSegmentedItem).TextLabel.TextColor = (Color)newValue;
-        });
-    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMSegmentedItem), Colors.Black,
-        propertyChanged: (bindable, _, newValue) =>
-        {
-            (bindable as TMSegmentedItem).UpdateIconBehavior();
-        });
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9), propertyChanged: OnTextColorChanged);
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMSegmentedItem), Colors.Black, propertyChanged: OnIconTintColorChanged);
     #endregion
 
     #region public properties
@@ -111,7 +99,7 @@ public partial class TMSegmentedItem
     internal Color CurrentBackgroundColor
     {
         get => (Color)GetValue(CurrentBackgroundColorProperty);
-        private set => SetValue(CurrentBackgroundColorProperty, value);
+        set => SetValue(CurrentBackgroundColorProperty, value);
     }
 
     /// <summary>
@@ -137,6 +125,31 @@ public partial class TMSegmentedItem
         set => SetValue(ColorThemeProperty, value);
     }
     #endregion
+
+    #region Property change handlers
+    /// <summary>
+    /// On current background color property changed
+    /// </summary>
+    private static void OnIconTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as TMSegmentedItem).UpdateIconBehavior();
+    }
+    /// <summary>
+    /// On current background color property changed
+    /// </summary>
+    private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as TMSegmentedItem).TextLabel.TextColor = (Color)newValue;
+    }
+
+    /// <summary>
+    /// On current background color property changed
+    /// </summary>
+    private static void OnCurrentBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        //(bindable as TMSegmentedItem).GridContainer.BackgroundColor = (Color)newValue;
+    }
+
     /// <summary>
     /// Update font size and height of the icon based on the size
     /// </summary>
@@ -163,19 +176,7 @@ public partial class TMSegmentedItem
     /// </summary>
     private static void OnColorThemeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMSegmentedItem segmentedItem)
-        {
-            string baseStyle = segmentedItem.ColorTheme == SegmentColorTheme.Primary ? "Primary" : "Secondary";
-            string selectedStyle = $"{baseStyle}Selected";
-
-            segmentedItem.SetDynamicResource(StyleProperty, baseStyle);
-
-            if (segmentedItem.IsSelected)
-            {
-                segmentedItem.SetDynamicResource(StyleProperty, selectedStyle);
-            }
-
-        }
+        (bindable as TMSegmentedItem).UpdateBackgroundColor();
     }
 
     /// <summary>
@@ -185,6 +186,8 @@ public partial class TMSegmentedItem
     {
         (bindable as TMSegmentedItem)?.UpdateCurrentItemStyle();
     }
+
+    #endregion
 
     #region Constructor
     public TMSegmentedItem()
@@ -205,19 +208,12 @@ public partial class TMSegmentedItem
     /// <summary>
     /// Update the background color of the segment based on the selection
     /// </summary>
-    void UpdateBackgroundColor()
+    internal void UpdateBackgroundColor()
     {
-
-        string baseStyle = (ColorTheme == SegmentColorTheme.Primary) ? "Primary" : "Secondary";
-        string selectedStyle = $"{baseStyle}Selected";
-
-        SetDynamicResource(StyleProperty, baseStyle);
-
-        if (IsSelected)
-        {
-            SetDynamicResource(StyleProperty, selectedStyle);
-        }
-
+        string baseStyle = ColorTheme == SegmentColorTheme.Primary ? "Primary" : "Secondary";
+        string selectedStyle = IsSelected ? "Selected" : "Normal";
+        this.SetDynamicResource(StyleProperty, baseStyle);
+        VisualStateManager.GoToState(this, selectedStyle);
     }
 
     /// <summary>

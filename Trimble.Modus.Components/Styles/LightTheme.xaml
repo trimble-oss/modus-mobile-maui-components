@@ -79,9 +79,7 @@
   <Color x:Key="SegmentItemSelectedTextColor">#FFF</Color>
   <Color x:Key="SegmentItemSelectedIconTintColor">#FFF</Color>
   <Color x:Key="SegmentItemIconTintColor">#252a2e</Color>
-
   <Color x:Key="SegmentItemPrimaryBackgroundColor">#0063a3</Color>
   <Color x:Key="SegmentItemSecondaryBackgroundColor">#353A40</Color>
-
   <Color x:Key="SegmentedControlBorderColor">#353A40</Color>
 </ResourceDictionary>

@@ -4,24 +4,48 @@
                     x:Class="Trimble.Modus.Components.Controls.TMSegmentedControl.TMSegmentedItemStyles"
                     xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
   <Style TargetType="local:TMSegmentedItem" x:Key="Primary">
-    <Setter Property="TextColor" Value="{DynamicResource SegmentItemTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemIconTintColor}"/>
-    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource Transparent}"/>
-  </Style>
-  <Style TargetType="local:TMSegmentedItem" x:Key="PrimarySelected">
-    <Setter Property="TextColor" Value="{DynamicResource SegmentItemSelectedTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemSelectedIconTintColor}"/>
-    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource SegmentItemPrimaryBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Selected">
+            <VisualState.Setters>
+              <Setter Property="TextColor" Value="{DynamicResource SegmentItemSelectedTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemSelectedIconTintColor}"/>
+              <Setter Property="CurrentBackgroundColor" Value="{DynamicResource SegmentItemPrimaryBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="TextColor" Value="{DynamicResource SegmentItemTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemIconTintColor}"/>
+              <Setter Property="CurrentBackgroundColor" Value="{DynamicResource Transparent}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
   </Style>
   <Style TargetType="local:TMSegmentedItem" x:Key="Secondary">
-    <Setter Property="TextColor" Value="{DynamicResource SegmentItemTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemIconTintColor}"/>
-    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource Transparent}"/>
-  </Style>
-  <Style TargetType="local:TMSegmentedItem" x:Key="SecondarySelected">
-    <Setter Property="TextColor" Value="{DynamicResource SegmentItemSelectedTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemSelectedIconTintColor}"/>
-    <Setter Property="CurrentBackgroundColor" Value="{DynamicResource SegmentItemSecondaryBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="TextColor" Value="{DynamicResource SegmentItemTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemIconTintColor}"/>
+              <Setter Property="CurrentBackgroundColor" Value="{DynamicResource Transparent}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Selected">
+            <VisualState.Setters>
+              <Setter Property="TextColor" Value="{DynamicResource SegmentItemSelectedTextColor}"/>
+              <Setter Property="IconTintColor" Value="{DynamicResource SegmentItemSelectedIconTintColor}"/>
+              <Setter Property="CurrentBackgroundColor" Value="{DynamicResource SegmentItemSecondaryBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>                            
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
   </Style>
 </ResourceDictionary>
 
