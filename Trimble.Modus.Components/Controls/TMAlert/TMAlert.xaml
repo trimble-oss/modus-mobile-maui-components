@@ -26,7 +26,7 @@
             BindingContext="{x:Reference alertView}"
             StrokeThickness="1"
             Margin="0"
-            Padding="0"
+            Padding="-1,-1,0,0"
             HeightRequest="56">
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="2" />
