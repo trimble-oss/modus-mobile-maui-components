@@ -49,21 +49,14 @@ public partial class TMModalContents
     /// Bindable property for text and image color for theme
     /// </summary>
     public static readonly BindableProperty TextAndImageColorProperty =
-        BindableProperty.Create(nameof(TextAndImageColor), typeof(Color), typeof(TMModal), null, BindingMode.Default,
-            propertyChanged: (bindable, _, newValue) => {
-                (bindable as TMModalContents).TitleLabel.TextColor = (Color)newValue;
-                (bindable as TMModalContents).MessageLabel.TextColor = (Color)newValue;
-                (bindable as TMModalContents).UpdateIconColor();
-            });
+        BindableProperty.Create(nameof(TextAndImageColor), typeof(Color), typeof(TMModal), null, BindingMode.Default, propertyChanged: OnTextAndImageColorChanged);
 
     /// <summary>
     /// Bindable property for modal background color based on theme
     /// </summary>
     public static readonly BindableProperty ModalBackgroundColorProperty =
-        BindableProperty.Create(nameof(ModalBackgroundColor), typeof(Color), typeof(TMModal), Colors.Black, BindingMode.Default,
-            propertyChanged: (bindable, _, newValue) => {
-                (bindable as TMModalContents).ParentContainer.BackgroundColor = (Color)newValue;
-        });
+        BindableProperty.Create(nameof(ModalBackgroundColor), typeof(Color), typeof(TMModal), Colors.Black, BindingMode.Default, propertyChanged: OnModalBackgroundColor);
+
     #endregion
 
     #region Public properties
@@ -160,8 +153,7 @@ public partial class TMModalContents
         BindingContext = this;
 
         // Bind color to dynamic resource
-        this.SetDynamicResource(TextAndImageColorProperty, "ModalTextAndImageColor");
-        this.SetDynamicResource(ModalBackgroundColorProperty, "ModalBackgroundColor");
+        this.SetDynamicResource(StyleProperty, "TMModalStyle");
     }
     #endregion
 
@@ -289,6 +281,24 @@ public partial class TMModalContents
     #endregion
 
     #region Private methods
+    /// <summary>
+    /// Update modal background color
+    /// </summary>
+    private static void OnModalBackgroundColor(BindableObject bindable, object _, object newValue)
+    {
+        (bindable as TMModalContents).ParentContainer.BackgroundColor = (Color)newValue;
+    }
+
+    /// <summary>
+    /// Update text and image color
+    /// </summary>
+    private static void OnTextAndImageColorChanged(BindableObject bindable, object _, object newValue)
+    {
+        TMModalContents modal = (TMModalContents)bindable;
+        modal.TitleLabel.TextColor = (Color)newValue;
+        modal.MessageLabel.TextColor = (Color)newValue;
+        modal.UpdateIconColor();
+    }
 
     /// <summary>
     /// Update Icon color when theme changes

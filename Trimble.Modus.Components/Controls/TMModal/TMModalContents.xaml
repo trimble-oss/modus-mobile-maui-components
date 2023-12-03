@@ -7,12 +7,14 @@
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+                 xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMModal"
                  Title="TMModalContents"
                  BackgroundColor="#80000000">
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <color:Colors />
+        <local:TMModalStyles/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
@@ -24,7 +26,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="#22000000"
+          BackgroundColor="#4D363545"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">
