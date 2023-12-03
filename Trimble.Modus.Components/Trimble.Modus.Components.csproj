@@ -107,12 +107,12 @@
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\slider_thumb.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
-	  <MauiImage Include="Images\alert_success_icon.svg" />
-	  <MauiImage Include="Images\alert_error_icon.svg" />
-	  <MauiImage Include="Images\alert_warning_icon.svg" />
-	  <MauiImage Include="Images\alert_primary_icon.svg" />
-	  <MauiImage Include="Images\alert_secondary_icon.svg" />
-	  <MauiImage Include="Images\alert_dark_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_success_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_error_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_warning_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_primary_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_secondary_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_dark_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
