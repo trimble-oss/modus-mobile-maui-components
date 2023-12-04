@@ -9,7 +9,7 @@
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
                  xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMModal"
                  Title="TMModalContents"
-                 BackgroundColor="#80000000">
+                 BackgroundColor="{x:StaticResource ModalDimmedBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -26,7 +26,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="#4D363545"
+          BackgroundColor="{x:StaticResource ModalShadow}"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">
