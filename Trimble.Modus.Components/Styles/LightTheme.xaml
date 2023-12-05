@@ -75,4 +75,10 @@
 
   <!--Radio button-->
   <Color x:Key="RadioButtonColor">#0063A3</Color>
+
+  <!--Accordion-->
+  <Color x:Key="AccordionBackgroundColor">#FFF</Color>
+  <Color x:Key="AccordionTitleColor">#252A2E</Color>
+  <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
+  <Color x:Key="AccordionIconTintColor">#252A2E</Color>
 </ResourceDictionary>
