@@ -26,7 +26,7 @@ public partial class TMSwitch : ContentView
     public static readonly BindableProperty TextColorProperty =
         BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Black, propertyChanged: OnTextColorPropertyChanged);
     public new static readonly BindableProperty BackgroundColorProperty =
-        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMSwitch), Colors.Black, propertyChanged: OnBackgroundColorPropertyChanged);
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMSwitch), Colors.Black);
 
     public string Text
     {
@@ -137,13 +137,6 @@ public partial class TMSwitch : ContentView
             TMSwitch.OnTextColorChanged();
         }
     }
-    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is TMSwitch TMSwitch)
-        {
-            TMSwitch.OnBackgroundColorChanged();
-        }
-    }
 
     private void OnTextColorChanged()
     {
@@ -151,11 +144,6 @@ public partial class TMSwitch : ContentView
         {
             this.switchText.TextColor = this.TextColor;
         }
-    }
-
-    private void OnBackgroundColorChanged()
-    {
-        this.border.Color = this.BackgroundColor;
     }
 
     private static void OnSwitchToggleChanged(BindableObject bindable, object oldValue, object newValue)

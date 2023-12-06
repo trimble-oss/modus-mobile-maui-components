@@ -25,7 +25,7 @@
     </Grid.GestureRecognizers>
     <BoxView x:Name="border"
                BackgroundColor="{StaticResource Transparent}"
-               Color="{Binding BackgroundColor}"
+               Color ="{Binding BackgroundColor}"
                HorizontalOptions="Start"
                VerticalOptions="Center" />
     <BoxView x:Name="circle"
