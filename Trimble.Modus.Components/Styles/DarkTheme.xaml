@@ -75,4 +75,14 @@
 
     <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
+
+  <!--Slider-->
+  <Color x:Key="SliderTooltipColor">#90939F</Color>
+  <Color x:Key="LabelTextColor">#FFF</Color>
+  <Color x:Key="SliderTitleTextColor">#FFF</Color>
+  <Color x:Key="SliderThumbColor">#019AEB</Color>
+  <Color x:Key="SliderTrackHighlightColor">#019AEB</Color>
+  <Color x:Key="SliderTrackBackgroundColor">#6A6E79</Color>
+  <Color x:Key="SliderIconTintColor">#FFF</Color>
+  <Color x:Key="SliderStepperColor">#E0E1E9</Color>
 </ResourceDictionary>
