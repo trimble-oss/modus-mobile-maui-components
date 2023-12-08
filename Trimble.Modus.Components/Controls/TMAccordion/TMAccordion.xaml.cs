@@ -21,7 +21,7 @@ public partial class TMAccordion : ContentView
     /// <summary>
     /// Update icon color based on theme
     /// </summary>
-    public Color IconTintColor
+    internal Color IconTintColor
     {
         get => (Color)GetValue(IconTintColorProperty);
         set => SetValue(IconTintColorProperty, value);
