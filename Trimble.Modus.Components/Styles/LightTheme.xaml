@@ -109,4 +109,7 @@
   <Color x:Key="AlertDarkBorderColor">#252A2E</Color>
   <Color x:Key="AlertDarkIconTintColor">#252A2E</Color>
   <Color x:Key="AlertDarkBackgroundColor">#FFFFFF</Color>
+  
+  <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#0063A3</Color>
 </ResourceDictionary>
