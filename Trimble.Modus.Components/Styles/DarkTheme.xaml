@@ -73,6 +73,11 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Switch-->
+  <Color x:Key="SwitchOnBackgroundColor">#019AEB</Color>
+  <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
+  <Color x:Key="SwitchTextColor">#FFFFFF</Color>
+
   <Color x:Key="AlertButtonColor">#FFF</Color>
   <!-- Alert Success -->
   <Color x:Key="AlertSuccessTextColor">#FFFFFF</Color>
@@ -112,4 +117,5 @@
   
     <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
+  
 </ResourceDictionary>
