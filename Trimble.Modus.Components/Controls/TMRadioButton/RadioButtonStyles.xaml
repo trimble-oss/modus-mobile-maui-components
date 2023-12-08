@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Controls.TMRadioButton.RadioButtonStyles"
              xmlns:local="clr-namespace:Trimble.Modus.Components">
-  <!--<Style TargetType="local:TMRadioButtonGroup" x:Key="RadioButtonGroupStyle">
+  <Style TargetType="local:TMRadioButtonGroup" x:Key="RadioButtonGroupStyle">
     <Setter Property="TextColor" Value="{DynamicResource RadioButtonTextColor}"/>
   </Style>
   <Style TargetType="local:TMRadioButton" x:Key="RadioButtonStyle">
     <Setter Property="TextColor" Value="{DynamicResource RadioButtonTextColor}"/>
     <Setter Property="IconTintColor" Value="{DynamicResource RadioButtonColor}"/>
-  </Style>-->
+  </Style>
 </ResourceDictionary>
