@@ -33,6 +33,11 @@
                Color="{StaticResource White}"
                HorizontalOptions="Start"
                VerticalOptions="Center" />
-    <Label x:Name="switchText" FontFamily="OpenSansRegular" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+    <Label x:Name="switchText"
+           FontFamily="OpenSansRegular"
+           TextColor="{Binding TextColor}"
+           Grid.Column="1"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"/>
   </Grid>
 </ContentView>

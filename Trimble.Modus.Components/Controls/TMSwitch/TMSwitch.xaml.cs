@@ -24,7 +24,7 @@ public partial class TMSwitch : ContentView
     public static readonly BindableProperty LabelTextProperty =
       BindableProperty.Create(nameof(Text), typeof(string), typeof(TMSwitch), "", propertyChanged: OnLabelTextChanged);
     public static readonly BindableProperty TextColorProperty =
-        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Black, propertyChanged: OnTextColorPropertyChanged);
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Black,);
     public new static readonly BindableProperty BackgroundColorProperty =
         BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMSwitch), Colors.Black);
 
@@ -127,22 +127,6 @@ public partial class TMSwitch : ContentView
         if (bindable != null && bindable is TMSwitch tMSwitch)
         {
             UpdateSwitchSize(tMSwitch);
-        }
-    }
-
-    private static void OnTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is TMSwitch TMSwitch)
-        {
-            TMSwitch.OnTextColorChanged();
-        }
-    }
-
-    private void OnTextColorChanged()
-    {
-        if (this.switchText != null)
-        {
-            this.switchText.TextColor = this.TextColor;
         }
     }
 
