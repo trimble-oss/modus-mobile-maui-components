@@ -77,4 +77,7 @@
   <Color x:Key="ProgressBarPrimaryBackgroundColor">#0063A3</Color>
   <Color x:Key="ProgressBarPrimaryBaseColor">#a3a6b1</Color>
 
+
+  <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#0063A3</Color>
 </ResourceDictionary>
