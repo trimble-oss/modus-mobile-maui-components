@@ -73,11 +73,79 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Segmented Control-->
+  <Color x:Key="SegmentSeparatorColor">#6A6E79</Color>
+  <Color x:Key="SegmentItemTextColor">#FFF</Color>
+  <Color x:Key="SegmentItemSelectedTextColor">#FFF</Color>
+  <Color x:Key="SegmentItemSelectedIconTintColor">#FFF</Color>
+  <Color x:Key="SegmentItemIconTintColor">#FFF</Color>
+  <Color x:Key="SegmentItemPrimaryBackgroundColor">#019aeb</Color>
+  <Color x:Key="SegmentItemSecondaryBackgroundColor">#6A6E79</Color>
+  <Color x:Key="SegmentedControlBorderColor">#6A6E79</Color>
+  
+  <!--Datagrid-->
+  <Color x:Key="DataGridHeaderColor">#464b52</Color>
+  <Color x:Key="DataGridHeaderTextColor">#e0e1e9</Color>
+  <Color x:Key="DataGridActiveRowColor">#019aeb</Color>
+  <Color x:Key="DataGridDefaultRowColor">#171c1e</Color>
+  
+  <!--Modal-->
+  <Color x:Key="ModalTextAndImageColor">#FFF</Color>
+  <Color x:Key="ModalBackgroundColor">#171C1E</Color>
+  
+  <!--Switch-->
+  <Color x:Key="SwitchOnBackgroundColor">#019AEB</Color>
+  <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
+  <Color x:Key="SwitchTextColor">#FFFFFF</Color>
+
+  <Color x:Key="AlertButtonColor">#FFF</Color>
+  <!-- Alert Success -->
+  <Color x:Key="AlertSuccessTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertSuccessBorderColor">#1E8A44</Color>
+  <Color x:Key="AlertSuccessIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertSuccessBackgroundColor">#801e8a44</Color>
+
+  <!-- Alert Error -->
+  <Color x:Key="AlertErrorTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertErrorBorderColor">#DA212C</Color>
+  <Color x:Key="AlertErrorIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertErrorBackgroundColor">#80DA212C</Color>
+
+  <!-- Alert Warning -->
+  <Color x:Key="AlertWarningTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertWarningBorderColor">#FBAD26</Color>
+  <Color x:Key="AlertWarningIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertWarningBackgroundColor">#80FBAD26</Color>
+
+  <!-- Alert Primary -->
+  <Color x:Key="AlertPrimaryTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertPrimaryBorderColor">#019AEB</Color>
+  <Color x:Key="AlertPrimaryIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertPrimaryBackgroundColor">#80019AEB</Color>
+
+  <!-- Alert Secondary -->
+  <Color x:Key="AlertSecondaryTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertSecondaryBorderColor">#6A6E79</Color>
+  <Color x:Key="AlertSecondaryIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertSecondaryBackgroundColor">#806A6E79</Color>
+
+  <!-- Alert Dark -->
+  <Color x:Key="AlertDarkTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertDarkBorderColor">#464B52</Color>
+  <Color x:Key="AlertDarkIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertDarkBackgroundColor">#80464B52</Color>
+  
     <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
 
   <!--Spinner-->
   <Color x:Key="SpinnerPrimaryFillColor">#019AEB</Color>
   <Color x:Key="SpinnerSecondaryFillColor">#F1F1F6</Color>
+
+  <!--Accordion-->
+  <Color x:Key="AccordionBackgroundColor">#464B52</Color>
+  <Color x:Key="AccordionTitleColor">#FFF</Color>
+  <Color x:Key="AccordionSubtitleColor">#B7B9C3</Color>
+  <Color x:Key="AccordionIconTintColor">#FFF</Color>
   
 </ResourceDictionary>

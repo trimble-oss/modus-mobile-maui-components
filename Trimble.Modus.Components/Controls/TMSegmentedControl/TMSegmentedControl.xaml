@@ -18,7 +18,7 @@
     <Border x:Name="FrameView"
            Padding="-1"
            HeightRequest="32"
-            Stroke="{x:StaticResource Gray9}">
+            Stroke="{x:DynamicResource SegmentedControlBorderColor}">
       <Border.Padding>
         <OnIdiom Default="-1"
                  Desktop="0" />
