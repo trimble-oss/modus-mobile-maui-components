@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Behaviors;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
@@ -44,9 +45,39 @@ public partial class TMModalContents
     public static readonly BindableProperty FullWidthButtonProperty =
         BindableProperty.Create(nameof(FullWidthButton), typeof(bool), typeof(TMModal), false, BindingMode.TwoWay ,propertyChanged: OnFullWidthButtonChanged);
 
+    /// <summary>
+    /// Bindable property for text and image color for theme
+    /// </summary>
+    public static readonly BindableProperty TextAndImageColorProperty =
+        BindableProperty.Create(nameof(TextAndImageColor), typeof(Color), typeof(TMModal), null, BindingMode.Default, propertyChanged: OnTextAndImageColorChanged);
+
+    /// <summary>
+    /// Bindable property for modal background color based on theme
+    /// </summary>
+    public static readonly BindableProperty ModalBackgroundColorProperty =
+        BindableProperty.Create(nameof(ModalBackgroundColor), typeof(Color), typeof(TMModal), Colors.Black, BindingMode.Default, propertyChanged: OnModalBackgroundColor);
+
     #endregion
 
     #region Public properties
+
+    /// <summary>
+    /// Background Color for specific themes
+    /// </summary>
+    internal Color ModalBackgroundColor
+    {
+        get { return (Color)GetValue(ModalBackgroundColorProperty); }
+        set { this.SetValue(ModalBackgroundColorProperty, value); }
+    }
+
+    /// <summary>
+    /// Text Color for specific themes
+    /// </summary>
+    internal Color TextAndImageColor
+    {
+        get { return (Color)GetValue(TextAndImageColorProperty); }
+        set { this.SetValue(TextAndImageColorProperty, value); }
+    }
 
     /// <summary>
     /// Gets or sets title text
@@ -120,6 +151,9 @@ public partial class TMModalContents
         FullWidthButton = fullWidthButton;
         Message = messageText;
         BindingContext = this;
+
+        // Bind color to dynamic resource
+        this.SetDynamicResource(StyleProperty, "TMModalStyle");
     }
     #endregion
 
@@ -247,6 +281,48 @@ public partial class TMModalContents
     #endregion
 
     #region Private methods
+    /// <summary>
+    /// Update modal background color
+    /// </summary>
+    private static void OnModalBackgroundColor(BindableObject bindable, object _, object newValue)
+    {
+        (bindable as TMModalContents).ParentContainer.BackgroundColor = (Color)newValue;
+    }
+
+    /// <summary>
+    /// Update text and image color
+    /// </summary>
+    private static void OnTextAndImageColorChanged(BindableObject bindable, object _, object newValue)
+    {
+        TMModalContents modal = (TMModalContents)bindable;
+        modal.TitleLabel.TextColor = (Color)newValue;
+        modal.MessageLabel.TextColor = (Color)newValue;
+        modal.UpdateIconColor();
+    }
+
+    /// <summary>
+    /// Update Icon color when theme changes
+    /// </summary>
+    private void UpdateIconColor()
+    {
+        // FIXME: IconTintColorBehavior doesn't work properly on Windows, hence the DeviceInfo.Platform != DevicePlatform.WinUI check. 
+        // Remove this check once the issue is fixed.
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            CloseButton.Behaviors.Clear();
+            IconImage.Behaviors.Clear();
+            if (TextAndImageColor != null)
+            {
+                var behavior = new IconTintColorBehavior
+                {
+                    TintColor = TextAndImageColor
+                };
+                CloseButton.Behaviors.Add(behavior);
+                IconImage.Behaviors.Add(behavior);
+            }
+        }
+    }
+
     /// <summary>
     /// Triggered when FullWidthButton option is changed
     /// </summary>
