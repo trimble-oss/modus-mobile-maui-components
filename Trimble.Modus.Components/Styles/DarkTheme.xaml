@@ -77,6 +77,43 @@
   <Color x:Key="SwitchOnBackgroundColor">#019AEB</Color>
   <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
   <Color x:Key="SwitchTextColor">#FFFFFF</Color>
+
+  <Color x:Key="AlertButtonColor">#FFF</Color>
+  <!-- Alert Success -->
+  <Color x:Key="AlertSuccessTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertSuccessBorderColor">#1E8A44</Color>
+  <Color x:Key="AlertSuccessIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertSuccessBackgroundColor">#801e8a44</Color>
+
+  <!-- Alert Error -->
+  <Color x:Key="AlertErrorTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertErrorBorderColor">#DA212C</Color>
+  <Color x:Key="AlertErrorIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertErrorBackgroundColor">#80DA212C</Color>
+
+  <!-- Alert Warning -->
+  <Color x:Key="AlertWarningTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertWarningBorderColor">#FBAD26</Color>
+  <Color x:Key="AlertWarningIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertWarningBackgroundColor">#80FBAD26</Color>
+
+  <!-- Alert Primary -->
+  <Color x:Key="AlertPrimaryTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertPrimaryBorderColor">#019AEB</Color>
+  <Color x:Key="AlertPrimaryIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertPrimaryBackgroundColor">#80019AEB</Color>
+
+  <!-- Alert Secondary -->
+  <Color x:Key="AlertSecondaryTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertSecondaryBorderColor">#6A6E79</Color>
+  <Color x:Key="AlertSecondaryIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertSecondaryBackgroundColor">#806A6E79</Color>
+
+  <!-- Alert Dark -->
+  <Color x:Key="AlertDarkTextColor">#FFFFFF</Color>
+  <Color x:Key="AlertDarkBorderColor">#464B52</Color>
+  <Color x:Key="AlertDarkIconTintColor">#FFFFFF</Color>
+  <Color x:Key="AlertDarkBackgroundColor">#80464B52</Color>
   
     <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
