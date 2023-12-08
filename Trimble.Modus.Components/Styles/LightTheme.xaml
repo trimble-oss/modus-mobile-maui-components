@@ -137,6 +137,7 @@
   
   <!--Radio button-->
   <Color x:Key="RadioButtonColor">#0063A3</Color>
+  <Color x:Key="RadioButtonTextColor">#252a2e</Color>
 
   <!--Accordion-->
   <Color x:Key="AccordionBackgroundColor">#FFF</Color>
