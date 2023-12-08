@@ -26,7 +26,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="{x:StaticResource ModalShadow}"
+          BackgroundColor="{x:StaticResource ModalShadowColor}"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">

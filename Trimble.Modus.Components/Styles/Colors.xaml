@@ -50,5 +50,5 @@
 
   <!--Modal colors-->
   <Color x:Key="ModalDimmedBackgroundColor">#80000000</Color>
-  <Color x:Key="ModalShadow">#4D363545</Color>
+  <Color x:Key="ModalShadowColor">#4D363545</Color>
 </ResourceDictionary>
