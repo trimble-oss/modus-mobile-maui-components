@@ -147,7 +147,7 @@ public partial class TMSegmentedItem
     /// </summary>
     private static void OnCurrentBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        //(bindable as TMSegmentedItem).GridContainer.BackgroundColor = (Color)newValue;
+        (bindable as TMSegmentedItem).GridContainer.BackgroundColor = (Color)newValue;
     }
 
     /// <summary>
