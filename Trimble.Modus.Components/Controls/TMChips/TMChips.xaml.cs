@@ -52,24 +52,21 @@ public partial class TMChips : ContentView
         typeof(TMChips),
         Colors.White,
         BindingMode.Default,
-        null,
-        propertyChanged: OnBackgroundColorPropertyChanged);
+        null);
 
     public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor),
         typeof(Color),
         typeof(TMChips),
         Colors.Black,
         BindingMode.Default,
-        null,
-        propertyChanged: OnTextColorPropertyChanged);
+        null);
 
     public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor),
         typeof(Color),
         typeof(TMChips),
         Colors.Transparent,
         BindingMode.Default,
-        null,
-        propertyChanged: OnBorderColorPropertyChanged);
+        null);
 
     public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor),
         typeof(Color),
@@ -139,19 +136,19 @@ public partial class TMChips : ContentView
         set => SetValue(ChipStyleProperty, value);
     }
 
-    internal new Color BackgroundColor
+    public new Color BackgroundColor
     {
         get { return (Color)GetValue(BackgroundColorProperty); }
         set { SetValue(BackgroundColorProperty, value); }
     }
 
-    internal Color TextColor
+    public Color TextColor
     {
         get { return (Color)GetValue(TextColorProperty); }
         set { this.SetValue(TextColorProperty, value); }
     }
 
-    internal Color BorderColor
+    public Color BorderColor
     {
         get { return (Color)GetValue(BorderColorProperty); }
         set { this.SetValue(BorderColorProperty, value); }
@@ -204,34 +201,21 @@ public partial class TMChips : ContentView
 
     }
 
-    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable != null && bindable is TMChips tMChips)
-        {
-            tMChips.OnBackgroundColorChanged();
-        }
-    }
-
-    private static void OnTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable != null && bindable is TMChips tMChips)
-        {
-            tMChips.OnTextColorChanged();
-        }
-    }
-
-    private static void OnBorderColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable != null && bindable is TMChips tMChips)
-        {
-            tMChips.OnBorderColorChanged();
-        }
-    }
     private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable != null && bindable is TMChips tMChips && DeviceInfo.Platform != DevicePlatform.WinUI)
         {
-            tMChips.OnIconTintColorChanged();
+            tMChips.lefticon.Behaviors.Clear();
+            tMChips.righticon.Behaviors.Clear();
+            if (tMChips.IconTintColor != null)
+            {
+                var behavior = new IconTintColorBehavior
+                {
+                    TintColor = tMChips.IconTintColor
+                };
+                tMChips.lefticon.Behaviors.Add(behavior);
+                tMChips.righticon.Behaviors.Add(behavior);
+            }
         }
     }
 
@@ -239,7 +223,6 @@ public partial class TMChips : ContentView
     {
         CloseCommand?.Execute(this);
     }
-
 
     private void OnTapped(object sender, EventArgs e)
     {
@@ -282,39 +265,6 @@ public partial class TMChips : ContentView
         {
             CornerRadius = new CornerRadius(tMChips.ChipSize == ChipSize.Small ? 16 : 24)
         };
-    }
-
-    private void OnBackgroundColorChanged()
-    {
-        frame.BackgroundColor = this.BackgroundColor;
-    }
-
-    private void OnTextColorChanged()
-    {
-        if (this.label != null)
-        {
-            this.label.TextColor = this.TextColor;
-        }
-    }
-
-    private void OnBorderColorChanged()
-    {
-        frame.Stroke = this.BorderColor;
-    }
-
-    private void OnIconTintColorChanged()
-    {
-        lefticon.Behaviors.Clear();
-        righticon.Behaviors.Clear();
-        if (this.IconTintColor != null)
-        {
-            var behavior = new IconTintColorBehavior
-            {
-                TintColor = this.IconTintColor
-            };
-            lefticon.Behaviors.Add(behavior);
-            righticon.Behaviors.Add(behavior);
-        }
     }
 
     private static void OnSizeChanged(BindableObject bindable, object oldValue, object newValue)

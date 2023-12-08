@@ -19,9 +19,10 @@
   </ContentView.Resources>
   <Border x:Name="frame"
           BindingContext="{x:Reference tmChip}"
+          BackgroundColor="{Binding BackgroundColor}"
+          Stroke="{Binding BorderColor}"
           HorizontalOptions="Start"
-          VerticalOptions="Center"
-          Stroke="Transparent">
+          VerticalOptions="Center">
     <HorizontalStackLayout x:Name="chipContent"
                            VerticalOptions="Center">
       <Image x:Name="lefticon"
@@ -30,6 +31,7 @@
              VerticalOptions="Center"
              HorizontalOptions="Center"/>
       <Label x:Name="label"
+             TextColor="{Binding TextColor}"
              VerticalTextAlignment="Center"
              FontFamily="OpenSansSemibold"
              VerticalOptions="Center"
