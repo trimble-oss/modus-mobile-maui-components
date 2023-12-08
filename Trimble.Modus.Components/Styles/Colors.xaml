@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Styles.Colors">
@@ -48,4 +48,7 @@
   <!-- Transparent -->
   <Color x:Key="Transparent">transparent</Color>
 
+  <!--Modal colors-->
+  <Color x:Key="ModalDimmedBackgroundColor">#80000000</Color>
+  <Color x:Key="ModalShadowColor">#4D363545</Color>
 </ResourceDictionary>
