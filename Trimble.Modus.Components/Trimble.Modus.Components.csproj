@@ -169,6 +169,9 @@
 	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
 	    <DependentUpon>TMModalContents.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
+	    <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
 	  </Compile>
@@ -234,6 +237,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
 	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
