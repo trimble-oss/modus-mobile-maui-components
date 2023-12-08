@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        x:Class="Trimble.Modus.Components.TMSegmentedItem"
-       xmlns:local="clr-namespace:Trimble.Modus.Components"
+       xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMSegmentedControl"
        xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
        xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
        BackgroundColor="{StaticResource Transparent}"
@@ -16,13 +16,14 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <color:Colors />
+        <local:TMSegmentedItemStyles/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
     </ResourceDictionary>
   </Border.Resources>
-  <Grid RowSpacing="0" BackgroundColor="{Binding Source={x:Reference ItemContainer}, Path=CurrentBackgroundColor}">
+  <Grid x:Name="GridContainer" RowSpacing="0">
     <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="10,0" HorizontalOptions="CenterAndExpand">
       <Image x:Name="SegmentIcon"
        HorizontalOptions="Center"
@@ -44,26 +45,6 @@
            IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
            FontAttributes="Bold"
            FontSize="12">
-        <Label.Style>
-          <Style TargetType="Label">
-            <Setter Property="TextColor"
-                    Value="{StaticResource Gray9}" />
-            <Style.Triggers>
-              <DataTrigger TargetType="Label"
-                         Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
-                         Value="True">
-                <Setter Property="TextColor"
-                      Value="White" />
-              </DataTrigger>
-              <DataTrigger TargetType="Label"
-                         Binding="{Binding Source={x:Reference ItemContainer}, Path=IsSelected}"
-                         Value="False">
-                <Setter Property="TextColor"
-                        Value="{StaticResource Gray9}" />
-              </DataTrigger>
-            </Style.Triggers>
-          </Style>
-        </Label.Style>
       </Label>
     </StackLayout>
     
@@ -71,7 +52,7 @@
              HorizontalOptions="Start"
              IsVisible="{Binding Source={x:Reference ItemContainer}, Path=ShowSeparator}"
              Margin="0,8"
-             Color="{x:StaticResource Gray2}"
+             Color="{x:DynamicResource Gray2}"
              VerticalOptions="FillAndExpand"
              WidthRequest="1.4" />
   </Grid>
