@@ -139,9 +139,6 @@
 	  <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
 	    <DependentUpon>DropDownContents.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Controls\ProgressBar\TMProgressBarStyles.xaml.cs">
-	    <DependentUpon>TMProgressBarStyles.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Controls\TMBadge\TMBadgeStyles.xaml.cs">
 	    <DependentUpon>TMBadgeStyles.xaml</DependentUpon>
 	  </Compile>
