@@ -73,6 +73,7 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
   <Color x:Key="DefaultChipSelectedBackgroundColor">#019AEB</Color>
@@ -101,6 +102,18 @@
   <Color x:Key="ErrorOutlineChipIconTintColor">#AB1F26</Color>
 
   <!--Radio button-->
+
+  <!--Datagrid-->
+  <Color x:Key="DataGridHeaderColor">#464b52</Color>
+  <Color x:Key="DataGridHeaderTextColor">#e0e1e9</Color>
+  <Color x:Key="DataGridActiveRowColor">#019aeb</Color>
+  <Color x:Key="DataGridDefaultRowColor">#171c1e</Color>
+  
+  <!--Modal-->
+  <Color x:Key="ModalTextAndImageColor">#FFF</Color>
+  <Color x:Key="ModalBackgroundColor">#171C1E</Color>
+  
+
   <!--Switch-->
   <Color x:Key="SwitchOnBackgroundColor">#019AEB</Color>
   <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
