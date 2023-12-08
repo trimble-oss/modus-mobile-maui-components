@@ -73,6 +73,10 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Modal-->
+  <Color x:Key="ModalTextAndImageColor">#FFF</Color>
+  <Color x:Key="ModalBackgroundColor">#171C1E</Color>
+  
   <!--Switch-->
   <Color x:Key="SwitchOnBackgroundColor">#019AEB</Color>
   <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
