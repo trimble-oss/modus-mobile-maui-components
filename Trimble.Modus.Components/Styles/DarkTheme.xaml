@@ -75,4 +75,9 @@
 
     <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
+
+  <!--Spinner-->
+  <Color x:Key="SpinnerPrimaryFillColor">#019AEB</Color>
+  <Color x:Key="SpinnerSecondaryFillColor">#F1F1F6</Color>
+  
 </ResourceDictionary>
