@@ -139,6 +139,16 @@
   <Color x:Key="RadioButtonColor">#0063A3</Color>
   <Color x:Key="RadioButtonTextColor">#252a2e</Color>
 
+  <!--Slider-->
+  <Color x:Key="SliderTooltipColor">#585c65</Color>
+  <Color x:Key="LabelTextColor">#252a2e</Color>
+  <Color x:Key="SliderTitleTextColor">#464B52</Color>
+  <Color x:Key="SliderThumbColor">#217cbb</Color>
+  <Color x:Key="SliderTrackHighlightColor">#0063A3</Color>
+  <Color x:Key="SliderTrackBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="SliderIconTintColor">#252A2E</Color>
+  <Color x:Key="SliderStepperColor">#171C1E</Color>
+  
   <!--Accordion-->
   <Color x:Key="AccordionBackgroundColor">#FFF</Color>
   <Color x:Key="AccordionTitleColor">#252A2E</Color>
