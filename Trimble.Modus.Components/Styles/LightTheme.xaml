@@ -78,4 +78,54 @@
   <Color x:Key="DataGridHeaderTextColor">#252a2e</Color>
   <Color x:Key="DataGridActiveRowColor">#dcedf9</Color>
   <Color x:Key="DataGridDefaultRowColor">#FFF</Color>
+  
+  <!--Modal-->
+  <Color x:Key="ModalTextAndImageColor">#252a2e</Color>
+  <Color x:Key="ModalBackgroundColor">#FFF</Color>
+  
+  <!--Switch-->
+  <Color x:Key="SwitchOnBackgroundColor">#217CBB</Color>
+  <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
+  <Color x:Key="SwitchTextColor">#252A2E</Color>
+
+  <Color x:Key="AlertButtonColor">#000</Color>
+  <!-- Alert Success-->
+  <Color x:Key="AlertSuccessTextColor">#006638</Color>
+  <Color x:Key="AlertSuccessBorderColor">#006638</Color>
+  <Color x:Key="AlertSuccessIconTintColor">#006638</Color>
+  <Color x:Key="AlertSuccessBackgroundColor">#FFFFFF</Color>
+
+  <!-- Alert Error -->
+  <Color x:Key="AlertErrorTextColor">#DA212C</Color>
+  <Color x:Key="AlertErrorBorderColor">#DA212C</Color>
+  <Color x:Key="AlertErrorIconTintColor">#DA212C</Color>
+  <Color x:Key="AlertErrorBackgroundColor">#FFFFFF</Color>
+
+  <!-- Alert Warning -->
+  <Color x:Key="AlertWarningTextColor">#252A2E</Color>
+  <Color x:Key="AlertWarningBorderColor">#E49325</Color>
+  <Color x:Key="AlertWarningIconTintColor">#252A2E</Color>
+  <Color x:Key="AlertWarningBackgroundColor">#FFFFFF</Color>
+
+  <!-- Alert Primary -->
+  <Color x:Key="AlertPrimaryTextColor">#0063A3</Color>
+  <Color x:Key="AlertPrimaryBorderColor">#0063A3</Color>
+  <Color x:Key="AlertPrimaryIconTintColor">#0063A3</Color>
+  <Color x:Key="AlertPrimaryBackgroundColor">#FFFFFF</Color>
+
+  <!-- Alert Secondary -->
+  <Color x:Key="AlertSecondaryTextColor">#6A6E79</Color>
+  <Color x:Key="AlertSecondaryBorderColor">#6A6E79</Color>
+  <Color x:Key="AlertSecondaryIconTintColor">#6A6E79</Color>
+  <Color x:Key="AlertSecondaryBackgroundColor">#FFFFFF</Color>
+
+  <!-- Alert Dark -->
+  <Color x:Key="AlertDarkTextColor">#252A2E</Color>
+  <Color x:Key="AlertDarkBorderColor">#252A2E</Color>
+  <Color x:Key="AlertDarkIconTintColor">#252A2E</Color>
+  <Color x:Key="AlertDarkBackgroundColor">#FFFFFF</Color>
+  
+  <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#0063A3</Color>
+
 </ResourceDictionary>
