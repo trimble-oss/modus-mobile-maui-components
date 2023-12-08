@@ -73,6 +73,12 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Datagrid-->
+  <Color x:Key="DataGridHeaderColor">#464b52</Color>
+  <Color x:Key="DataGridHeaderTextColor">#e0e1e9</Color>
+  <Color x:Key="DataGridActiveRowColor">#019aeb</Color>
+  <Color x:Key="DataGridDefaultRowColor">#171c1e</Color>
+  
   <!--Modal-->
   <Color x:Key="ModalTextAndImageColor">#FFF</Color>
   <Color x:Key="ModalBackgroundColor">#171C1E</Color>
