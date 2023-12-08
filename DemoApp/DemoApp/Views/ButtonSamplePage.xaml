@@ -10,7 +10,6 @@
     <StackLayout x:Name="layout"
                  Spacing="20"
                  Padding="10,10">
-      
       <Label Text="Buttons with Text" />
       <StackLayout Orientation="Vertical"
                    Spacing="10">
