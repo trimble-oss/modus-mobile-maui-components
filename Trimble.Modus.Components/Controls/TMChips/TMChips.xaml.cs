@@ -45,6 +45,37 @@ public partial class TMChips : ContentView
 
     public static readonly BindableProperty ClickedCommandProperty =
       BindableProperty.Create(nameof(ClickedCommand), typeof(ICommand), typeof(TMChips));
+
+    public new static readonly BindableProperty BackgroundColorProperty = BindableProperty
+        .Create(nameof(BackgroundColor),
+        typeof(Color),
+        typeof(TMChips),
+        Colors.White,
+        BindingMode.Default,
+        null);
+
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor),
+        typeof(Color),
+        typeof(TMChips),
+        Colors.Black,
+        BindingMode.Default,
+        null);
+
+    public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(nameof(BorderColor),
+        typeof(Color),
+        typeof(TMChips),
+        Colors.Transparent,
+        BindingMode.Default,
+        null);
+
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor),
+        typeof(Color),
+        typeof(TMChips),
+        Colors.Black,
+        BindingMode.Default,
+        null,
+        propertyChanged: OnIconTintColorPropertyChanged);
+
     #endregion
     #region Public Properties
     public ICommand CloseCommand
@@ -104,6 +135,29 @@ public partial class TMChips : ContentView
         get => (ChipStyle)GetValue(ChipStyleProperty);
         set => SetValue(ChipStyleProperty, value);
     }
+
+    public new Color BackgroundColor
+    {
+        get { return (Color)GetValue(BackgroundColorProperty); }
+        set { SetValue(BackgroundColorProperty, value); }
+    }
+
+    public Color TextColor
+    {
+        get { return (Color)GetValue(TextColorProperty); }
+        set { this.SetValue(TextColorProperty, value); }
+    }
+
+    public Color BorderColor
+    {
+        get { return (Color)GetValue(BorderColorProperty); }
+        set { this.SetValue(BorderColorProperty, value); }
+    }
+    internal Color IconTintColor
+    {
+        get { return (Color)GetValue(IconTintColorProperty); }
+        set { this.SetValue(IconTintColorProperty, value); }
+    }
     #endregion
     #region Constructor
 
@@ -146,11 +200,29 @@ public partial class TMChips : ContentView
         }
 
     }
+
+    private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable != null && bindable is TMChips tMChips && DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            tMChips.lefticon.Behaviors.Clear();
+            tMChips.righticon.Behaviors.Clear();
+            if (tMChips.IconTintColor != null)
+            {
+                var behavior = new IconTintColorBehavior
+                {
+                    TintColor = tMChips.IconTintColor
+                };
+                tMChips.lefticon.Behaviors.Add(behavior);
+                tMChips.righticon.Behaviors.Add(behavior);
+            }
+        }
+    }
+
     private void OnRightIconTapped(object sender, EventArgs e)
     {
         CloseCommand?.Execute(this);
     }
-
 
     private void OnTapped(object sender, EventArgs e)
     {
@@ -159,22 +231,12 @@ public partial class TMChips : ContentView
             isSelected = !isSelected;
             if (isSelected)
             {
-                label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-                if (ChipStyle == ChipStyle.Fill)
-                {
-                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                    frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-                }
-                else
-                {
-                    frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                    frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                }
-                if(ChipType == ChipType.Filter)
+                if (ChipType == ChipType.Filter)
                 {
                     tMChips.lefticon.IsVisible = true;
                     tMChips.lefticon.Source = ImageConstants.Check;
                 }
+                VisualStateManager.GoToState(this, "Pressed");
                 _clicked?.Invoke(this, EventArgs.Empty);
                 ClickedCommand?.Execute(this);
             }
@@ -193,7 +255,7 @@ public partial class TMChips : ContentView
     private void UpdateChips(TMChips tMChips)
     {
         UpdateCornerRadius(tMChips);
-        tMChips.AssignStates(ColorsConstants.Gray1, ColorsConstants.TrimbleGray);
+        tMChips.AssignStates(ChipState.Default);
         UpdateLabelOnSize(tMChips);
     }
 
@@ -275,32 +337,26 @@ public partial class TMChips : ContentView
         switch (ChipState)
         {
             case ChipState.Error:
-                AssignStates(ColorsConstants.RedPale, ColorsConstants.RedDark);
+                AssignStates(ChipState);
                 GestureRecognizers.Clear();
                 break;
             case ChipState.Default:
             default:
-                AssignStates(ColorsConstants.Gray1, ColorsConstants.TrimbleGray);
+                AssignStates(ChipState);
                 if (!GestureRecognizers.Contains(tapGestureRecognizer))
                 {
                     GestureRecognizers.Add(tapGestureRecognizer);
                 }
                 break;
         }
+        VisualStateManager.GoToState(this, "Normal");
     }
-    private void AssignStates(string backgroundColor, string textColor)
+    private void AssignStates(ChipState state)
     {
         if (ChipStyle == ChipStyle.Fill)
-        {
-            frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(backgroundColor);
-            frame.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-        }
+            this.SetDynamicResource(StyleProperty, state.ToString() + "Fill");
         else
-        {
-            frame.Stroke = ResourcesDictionary.ColorsDictionary(backgroundColor);
-            frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-        }
-        label.TextColor = ResourcesDictionary.ColorsDictionary(textColor);
+            this.SetDynamicResource(StyleProperty, state.ToString() + "Outline");
     }
     private static void UpdateLabelOnSize(TMChips tMChips)
     {
