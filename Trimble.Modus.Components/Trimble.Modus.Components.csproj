@@ -70,6 +70,12 @@
 	  <None Remove="Images\warning_icon.svg" />
     <None Remove="Controls\TabBar\" />
     <None Remove="Controls\Messages\" />
+    <None Remove="Controls\TMAlert\" />
+    <None Remove="Images\alert_warning_icon.svg" />
+    <None Remove="Images\alert_warning_icon.svg" />
+    <None Remove="Images\alert_primary_icon.svg" />
+    <None Remove="Images\alert_secondary_icon.svg" />
+    <None Remove="Images\alert_dark_icon.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="../README.md" Pack="true" PackagePath="" />
@@ -101,6 +107,12 @@
 	  <MauiImage Include="Images\minus_icon.svg" />
 	  <MauiImage Include="Images\slider_thumb.svg" />
 	  <MauiImage Include="Images\toast_danger_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_success_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_error_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_warning_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_primary_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_secondary_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_dark_icon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -156,6 +168,9 @@
 	  </Compile>
 	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
 	    <DependentUpon>TMModalContents.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
+	    <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
@@ -226,6 +241,9 @@
 	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
 	  	<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -250,5 +268,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Controls\Messages\" />
+	  <Folder Include="Controls\TMAlert\" />
 	</ItemGroup>
 </Project>

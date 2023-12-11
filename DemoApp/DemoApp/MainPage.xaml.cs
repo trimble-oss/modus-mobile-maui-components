@@ -34,7 +34,8 @@ namespace DemoApp
                 "Switch",
                 "TabbedPage",
                 "Toast",
-                "Message"
+                "Message",
+                "Alert"
             };
             ControlNames = new ObservableCollection<string>(items.OrderBy(item => item));
             BindingContext = this;
@@ -116,6 +117,9 @@ namespace DemoApp
                         break;
                     case "Message":
                         Navigation.PushAsync(new MessageSamplePage());
+                        break;
+                    case "Alert":
+                        Navigation.PushAsync(new AlertSamplePage());
                         break;
                     default:
                         Console.WriteLine("Default Case");
