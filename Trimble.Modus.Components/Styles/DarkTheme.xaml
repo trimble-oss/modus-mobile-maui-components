@@ -154,4 +154,38 @@
   <Color x:Key="AccordionTitleColor">#FFF</Color>
   <Color x:Key="AccordionSubtitleColor">#B7B9C3</Color>
   <Color x:Key="AccordionIconTintColor">#FFF</Color>
-  </ResourceDictionary>
+
+  <!--Toast-->
+  <Color x:Key="ToastDefaultBackgroundColor">#80585C65</Color>
+  <Color x:Key="ToastDarkBackgroundColor">#80171C1E</Color>
+  <Color x:Key="ToastPrimaryBackgroundColor">#80019AEB</Color>
+  <Color x:Key="ToastSecondaryBackgroundColor">#806A6E79</Color>
+  <Color x:Key="ToastDangerBackgroundColor">#80DA212C</Color>
+  <Color x:Key="ToastWarningBackgroundColor">#80FBAD26</Color>
+  <Color x:Key="ToastSuccessBackgroundColor">#801E8A44</Color>
+
+  <Color x:Key="ToastDefaultTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastDarkTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastPrimaryTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastSecondaryTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastDangerTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastWarningTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastSuccessTextColor">#FFFFFF</Color>
+
+  <Color x:Key="ToastDefaultRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastDarkRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastPrimaryRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastSecondaryRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastDangerRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastWarningRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastSuccessRightIconTintColor">#FFFFFF</Color>
+
+  <Color x:Key="ToastDefaultLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastDarkLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastPrimaryLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastSecondaryLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastDangerLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastWarningLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastSuccessLeftIconTintColor">#FFFFFF</Color>
+
+</ResourceDictionary>
