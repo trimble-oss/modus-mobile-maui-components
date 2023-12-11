@@ -135,6 +135,11 @@
   <Color x:Key="AlertDarkIconTintColor">#FFFFFF</Color>
   <Color x:Key="AlertDarkBackgroundColor">#80464B52</Color>
   
+  <!--ProgressBar--> 
+  <Color x:Key="ProgressBarPrimaryBackgroundColor">#019aeb</Color>
+  <Color x:Key="ProgressBarPrimaryBaseColor">#6A6E79</Color>
+  
+
     <!--Radio button-->
   <Color x:Key="RadioButtonColor">#019AEB</Color>
   <Color x:Key="RadioButtonTextColor">#FFF</Color>
