@@ -1,6 +1,8 @@
-﻿using Microsoft.Maui.Controls.Shapes;
+﻿using CommunityToolkit.Maui.Behaviors;
+using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.Slider;
+using Trimble.Modus.Components.Controls.TMSlider;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 
@@ -35,6 +37,13 @@ namespace Trimble.Modus.Components.Controls
         public static BindableProperty RightIconProperty = BindableProperty.Create(nameof(RightIconSource), typeof(ImageSource), typeof(SliderCore), null, propertyChanged: OnRightIconSourceChanged);
         public static BindableProperty ShowStepsProperty = BindableProperty.Create(nameof(ShowSteps), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowStepsPropertyChanged);
         public static BindableProperty ShowToolTipProperty = BindableProperty.Create(nameof(ShowToolTip), typeof(Boolean), typeof(SliderCore), false, defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnShowToolTipPropertyChanged);
+        public static BindableProperty LabelTextColorProperty = BindableProperty.Create(nameof(LabelTextColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnLabelTextColorChanged);
+        public static BindableProperty TitleTextColorProperty = BindableProperty.Create(nameof(TitleTextColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnTitleTextColorChanged);
+        public static BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnThumbColorChanged);
+        public static BindableProperty TrackBackgroundColorProperty = BindableProperty.Create(nameof(TrackBackgroundColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnTrackBackgroundColorChanged);
+        public static BindableProperty TrackHighlightColorProperty = BindableProperty.Create(nameof(TrackHighlightColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnTrackHighlightColorChanged);
+        public static BindableProperty IconImageTintColorProperty = BindableProperty.Create(nameof(IconImageTintColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnIconImageTintColorChanged);
+        public static BindableProperty ToolTipBackgroundColorProperty = BindableProperty.Create(nameof(ToolTipBackgroundColor), typeof(Color), typeof(SliderCore), Colors.Black, propertyChanged: OnToolTipBackgroundColorChanged);
         #endregion
 
         #region Property change methods
@@ -52,11 +61,87 @@ namespace Trimble.Modus.Components.Controls
             => ((SliderCore)bindable).OnLeftIconSourceChanged();
         static void OnRightIconSourceChanged(BindableObject bindable, object oldValue, object newValue)
             => ((SliderCore)bindable).OnRightIconSourceChanged();
+        static void OnToolTipBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderCore)bindable).OnToolTipBackgroundColorChanged((Color)newValue);
+        static void OnTrackBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderCore)bindable).OnTrackBackgroundColorChanged((Color)newValue);
+        static void OnTrackHighlightColorChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderCore)bindable).OnTrackHighlightColorChanged((Color)newValue);
+        static void OnThumbColorChanged(BindableObject bindable, object oldValue, object newValue)
+            => ((SliderCore)bindable).OnThumbColorPropertyChanged((Color)newValue);
+        private static void OnTitleTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var slider = (bindable as SliderCore);
+            if (slider.SliderTitle != null) slider.SliderTitle.TextColor = (Color)newValue;
+        }
+
+        private static void OnLabelTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var slider = (bindable as SliderCore);
+            if (slider.LeftLabel != null) slider.LeftLabel.TextColor = (Color)newValue;
+            if (slider.RightLabel != null) slider.RightLabel.TextColor = (Color)newValue;
+        }
+        static void OnIconImageTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var slider = bindable as SliderCore;
+            // FIXME: IconTintColorBehavior doesn't work properly on Windows, hence the DeviceInfo.Platform != DevicePlatform.WinUI check. 
+            // Remove this check once the issue is fixed.
+            if (DeviceInfo.Platform != DevicePlatform.WinUI)
+            {
+                slider.RightIcon.Behaviors.Clear();
+                slider.LeftIcon.Behaviors.Clear();
+                if (slider.IconImageTintColor != null)
+                {
+                    var behavior = new IconTintColorBehavior
+                    {
+                        TintColor = slider.IconImageTintColor
+                    };
+                    slider.RightIcon.Behaviors.Add(behavior);
+                    slider.LeftIcon.Behaviors.Add(behavior);
+                }
+            }
+
+        }
+
         #endregion
 
         #region Public Property
         const int _outerElementTopPadding = 30;
-
+        internal Color ToolTipBackgroundColor
+        {
+            get => (Color)GetValue(ToolTipBackgroundColorProperty);
+            set => SetValue(ToolTipBackgroundColorProperty, value);
+        }
+        internal Color IconImageTintColor
+        {
+            get => (Color)GetValue(IconImageTintColorProperty);
+            set => SetValue(IconImageTintColorProperty, value);
+        }
+        internal Color TrackBackgroundColor
+        {
+            get => (Color)GetValue(TrackBackgroundColorProperty);
+            set => SetValue(TrackBackgroundColorProperty, value);
+        }
+        internal Color TrackHighlightColor
+        {
+            get => (Color)GetValue(TrackHighlightColorProperty);
+            set => SetValue(TrackHighlightColorProperty, value);
+        }
+        internal Color ThumbColor
+        {
+            get => (Color)GetValue(ThumbColorProperty);
+            set => SetValue(ThumbColorProperty, value);
+        }
+        internal Color LabelTextColor
+        {
+            get => (Color)GetValue(LabelTextColorProperty);
+            set => SetValue(LabelTextColorProperty, value);
+        }
+        internal Color TitleTextColor
+        {
+            get => (Color)GetValue(LabelTextColorProperty);
+            set => SetValue(LabelTextColorProperty, value);
+        }
         public string Title
         {
             get => (string)GetValue(TitleProperty);
@@ -135,7 +220,6 @@ namespace Trimble.Modus.Components.Controls
         internal Label SliderTitle = new Label
         {
             FontSize = 12,
-            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray8)
         };
         internal Label LeftLabel = new Label
         {
@@ -146,7 +230,6 @@ namespace Trimble.Modus.Components.Controls
                 0,
                 0
             ),
-            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray),
             HorizontalOptions = LayoutOptions.Start,
             HorizontalTextAlignment = TextAlignment.Start,
             VerticalOptions = LayoutOptions.Center
@@ -180,7 +263,6 @@ namespace Trimble.Modus.Components.Controls
                 0,
                 0
             ),
-            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray),
             HorizontalOptions = LayoutOptions.End,
             HorizontalTextAlignment = TextAlignment.End,
             VerticalTextAlignment = TextAlignment.Center
@@ -199,6 +281,8 @@ namespace Trimble.Modus.Components.Controls
             );
             Children.Add(SliderHolderLayout);
             Grid.SetRow(SliderHolderLayout, 1);
+            Resources.Add(new TMSliderStyles());
+            this.SetDynamicResource(StyleProperty, "SliderCoreStyle");
         }
         #endregion
 
@@ -232,7 +316,7 @@ namespace Trimble.Modus.Components.Controls
                 else if (child is Border)
                 {
                     (child as Border).Stroke = IsEnabled
-                        ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight)
+                        ? ThumbColor
                         : ResourcesDictionary.ColorsDictionary(
                             ColorsConstants.Gray1
                         );
@@ -250,7 +334,7 @@ namespace Trimble.Modus.Components.Controls
         {
             border.StrokeThickness = thumbStrokeThickness;
             border.Stroke = IsEnabled
-                ? ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight)
+                ? ThumbColor
                 : ResourcesDictionary.ColorsDictionary(
                     ColorsConstants.Gray1
                 );
@@ -264,6 +348,18 @@ namespace Trimble.Modus.Components.Controls
             border.ZIndex = _thumbZindex;
         }
 
+        /// <summary>
+        /// Set thumb color based on theme and state
+        /// </summary>
+        /// <param name="border"></param>
+        internal void RefreshThumbColor(Border border)
+        {
+            border.Stroke = IsEnabled
+                ? ThumbColor
+                : ResourcesDictionary.ColorsDictionary(
+                    ColorsConstants.Gray1
+                );
+        }
         /// <summary>
         /// Triggered when a thumb is moved
         /// </summary>
@@ -311,17 +407,21 @@ namespace Trimble.Modus.Components.Controls
                     var label = SliderHelper.CreateStepLabel(Size);
                     label.Text = Math.Round(i, 2).ToString();
                     stack.Children.Add(label);
+                    label.SetDynamicResource(Label.TextColorProperty, "SliderStepperColor");
                 }
+                box.SetDynamicResource(BoxView.ColorProperty, "SliderStepperColor");
                 alternateValue = !alternateValue;
                 StepContainer.Children.Add(stack);
             }
+            LastLabel.SetDynamicResource(Label.TextColorProperty, "SliderStepperColor");
+            LastStepLine.SetDynamicResource(BoxView.ColorProperty, "SliderStepperColor");
         }
 
         /// <summary>
         /// Get the Pan shift value for thumb 
         /// </summary>
         protected double GetPanShiftValue(View view) =>
-            Device.RuntimePlatform == Device.Android ? view.TranslationX : _thumbPositionMap[view];
+            DeviceInfo.Platform == DevicePlatform.Android ? view.TranslationX : _thumbPositionMap[view];
 
         /// <summary>
         /// Add gesture recognizer for thumb
@@ -395,6 +495,26 @@ namespace Trimble.Modus.Components.Controls
         /// </summary>
         /// <param name="newValue"></param>
         protected abstract void OnTitleTextPropertyChanged(string newValue);
+        /// <summary>
+        /// Update thumb button color
+        /// </summary>
+        /// <param name="newValue">Color</param>
+        protected abstract void OnThumbColorPropertyChanged(Color newValue);
+        /// <summary>
+        /// Update track background color
+        /// </summary>
+        /// <param name="newValue">Color</param>
+        protected abstract void OnTrackBackgroundColorChanged(Color newValue);
+        /// <summary>
+        /// Update track highlight color
+        /// </summary>
+        /// <param name="newValue">Color</param>
+        protected abstract void OnTrackHighlightColorChanged(Color newValue);
+        /// <summary>
+        /// Update tooltip color
+        /// </summary>
+        /// <param name="newValue">Color</param>
+        protected abstract void OnToolTipBackgroundColorChanged(Color newValue);
         #endregion
         #region Private Methods
         private static object TickCoerceValue(BindableObject bindable, object value)
