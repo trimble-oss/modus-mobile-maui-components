@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Controls.TMSlider.TMSliderStyles"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                    xmlns:controls="clr-namespace:Trimble.Modus.Components.Controls">
+  <Style TargetType="controls:SliderCore" x:Key="SliderCoreStyle">
+    <Setter Property="ToolTipBackgroundColor" Value="{DynamicResource SliderTooltipColor}"/>
+    <Setter Property="LabelTextColor" Value="{DynamicResource SliderTooltipColor}"/>
+    <Setter Property="TitleTextColor" Value="{DynamicResource SliderTitleTextColor}"/>
+    <Setter Property="TrackBackgroundColor" Value="{DynamicResource SliderTrackBackgroundColor}"/>
+    <Setter Property="TrackHighlightColor" Value="{DynamicResource SliderTrackHighlightColor}"/>
+    <Setter Property="IconImageTintColor" Value="{DynamicResource SliderIconTintColor}"/>
+    <Setter Property="ThumbColor" Value="{DynamicResource SliderThumbColor}"/>
+  </Style>
+</ResourceDictionary>
+

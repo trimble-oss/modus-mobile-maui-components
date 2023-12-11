@@ -73,7 +73,6 @@
   <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
-
   <!--Chip-->
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
@@ -102,6 +101,16 @@
   <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
   <Color x:Key="ErrorOutlineChipIconTintColor">#AB1F26</Color>
 
+  <!--Segmented Control-->
+  <Color x:Key="SegmentSeparatorColor">#B7B9C3</Color>
+  <Color x:Key="SegmentItemTextColor">#353a40</Color>
+  <Color x:Key="SegmentItemSelectedTextColor">#FFF</Color>
+  <Color x:Key="SegmentItemSelectedIconTintColor">#FFF</Color>
+  <Color x:Key="SegmentItemIconTintColor">#252a2e</Color>
+  <Color x:Key="SegmentItemPrimaryBackgroundColor">#0063a3</Color>
+  <Color x:Key="SegmentItemSecondaryBackgroundColor">#353A40</Color>
+  <Color x:Key="SegmentedControlBorderColor">#353A40</Color>
+  
   <!--Datagrid-->
   <Color x:Key="DataGridHeaderColor">#f1f1f6</Color>
   <Color x:Key="DataGridHeaderTextColor">#252a2e</Color>
@@ -156,5 +165,21 @@
   
   <!--Radio button-->
   <Color x:Key="RadioButtonColor">#0063A3</Color>
+  <Color x:Key="RadioButtonTextColor">#252a2e</Color>
 
+  <!--Slider-->
+  <Color x:Key="SliderTooltipColor">#585c65</Color>
+  <Color x:Key="LabelTextColor">#252a2e</Color>
+  <Color x:Key="SliderTitleTextColor">#464B52</Color>
+  <Color x:Key="SliderThumbColor">#217cbb</Color>
+  <Color x:Key="SliderTrackHighlightColor">#0063A3</Color>
+  <Color x:Key="SliderTrackBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="SliderIconTintColor">#252A2E</Color>
+  <Color x:Key="SliderStepperColor">#171C1E</Color>
+  
+  <!--Accordion-->
+  <Color x:Key="AccordionBackgroundColor">#FFF</Color>
+  <Color x:Key="AccordionTitleColor">#252A2E</Color>
+  <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
+  <Color x:Key="AccordionIconTintColor">#252A2E</Color>
 </ResourceDictionary>
