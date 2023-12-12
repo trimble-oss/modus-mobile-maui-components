@@ -262,4 +262,276 @@
 	  <Folder Include="Controls\Messages\" />
 	  <Folder Include="Controls\TMAlert\" />
 	</ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
+			$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following
+		this: https://github.com/Samsung/Tizen.NET -->
+    <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+			14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+			21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+			10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+			10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">
+			6.5</SupportedOSPlatformVersion>
+
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>Trimble.Modus.Components</PackageId>
+		<Title>Trimbel Modus</Title>
+		<Version>0.1.2-beta</Version>
+		<Authors>Trimble Inc</Authors>
+		<Company>Trimble Inc</Company>
+		<Product>Trimble.Modus.Components</Product>
+		<Description>The One Trimble Design System. The Modus design system is part of the evolving
+			Trimble Operating System.</Description>
+		<Copyright>©Trimble 2023</Copyright>
+		<PackageProjectUrl>https://github.com/trimble-oss/modus-mobile-components</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/trimble-oss/modus-mobile-components</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Trimble, Modus</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageReleaseNotes>Visit https://github.com/trimble-oss/modus-mobile-maui-components/releases</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+		<CreatePackage>false</CreatePackage>
+		<MtouchLink>None</MtouchLink>
+		<MtouchUseLlvm>False</MtouchUseLlvm>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+		<MtouchLink>None</MtouchLink>
+	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Images\add_icon.svg" />
+	  <None Remove="Images\black_close_icon.svg" />
+	  <None Remove="Images\blue_close_icon.svg" />
+	  <None Remove="Images\blue_info_outline_icon.svg" />
+	  <None Remove="Images\blue_info_solid_icon.svg" />
+	  <None Remove="Images\caret_down_bold.svg" />
+	  <None Remove="Images\error_icon_outline.svg" />
+	  <None Remove="Images\grey_info_icon.svg" />
+	  <None Remove="Images\minus_icon.svg" />
+	  <None Remove="Images\radio_selected_icon.svg" />
+	  <None Remove="Images\radio_unselected_icon.svg" />
+	  <None Remove="Images\solid_help_icon.svg" />
+	  <None Remove="Images\success_icon_outline.svg" />
+	  <None Remove="Images\toast_danger_icon.svg" />
+	  <None Remove="Images\toast_dark_icon.svg" />
+	  <None Remove="Images\valid_icon.svg" />
+	  <None Remove="Images\warning_icon.svg" />
+    <None Remove="Controls\TabBar\" />
+    <None Remove="Controls\Messages\" />
+    <None Remove="Controls\TMAlert\" />
+    <None Remove="Images\alert_warning_icon.svg" />
+    <None Remove="Images\alert_warning_icon.svg" />
+    <None Remove="Images\alert_primary_icon.svg" />
+    <None Remove="Images\alert_secondary_icon.svg" />
+    <None Remove="Images\alert_dark_icon.svg" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="../README.md" Pack="true" PackagePath="" />
+		<None Include="LICENSE.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Trimble.Modus.Components.targets" Pack="True" PackagePath="buildTransitive\" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Images\*" Pack="True" PackagePath="buildTransitive\Resources\Modus\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Images\chevron_down_icon.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Images\cancel_circle.svg" />
+	  <None Remove="Images\check.svg" />
+	  <None Remove="Images\slider_thumb.svg" />
+	  <None Remove="Images\chevron_down_icon_white.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiImage Include="Images\add_icon.svg" />
+	  <MauiImage Include="Images\cancel_circle.svg" />
+	  <MauiImage Include="Images\caret_down_bold.svg" />
+	  <MauiImage Include="Images\check.svg" />
+	  <MauiImage Include="Images\chevron_down_icon.svg" />
+	  <MauiImage Include="Images\chevron_down_icon_white.svg" />
+	  <MauiImage Include="Images\minus_icon.svg" />
+	  <MauiImage Include="Images\slider_thumb.svg" />
+	  <MauiImage Include="Images\toast_danger_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_success_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_error_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_warning_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_primary_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_secondary_icon.svg" />
+	  <MauiImage Include="Images\modus_alert_dark_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiImage Include="Images\black_close_icon.svg" />
+		<MauiImage Include="Images\blue_close_icon.svg" />
+		<MauiImage Include="Images\blue_info_outline_icon.svg" />
+		<MauiImage Include="Images\blue_info_solid_icon.svg" />
+		<MauiImage Include="Images\checked_checkbox.svg" />
+		<MauiImage Include="Images\default_checkbox.svg" />
+		<MauiImage Include="Images\grey_info_icon.svg" />
+		<MauiImage Include="Images\indeterminate_checkbox.svg" />
+		<MauiImage Include="Images\modus_close_icon.svg" />
+		<MauiImage Include="Images\radio_selected_icon.svg" />
+		<MauiImage Include="Images\radio_unselected_icon.svg" />
+		<MauiImage Include="Images\solid_help_icon.svg" />
+		<MauiImage Include="Images\error_icon_outline.svg" />
+		<MauiImage Include="Images\success_icon_outline.svg" />
+		<MauiImage Include="Images\toast_dark_icon.svg" />
+		<MauiImage Include="Images\valid_icon.svg" />
+		<MauiImage Include="Images\drag_corner.svg" />
+		<MauiImage Include="Images\warning_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.76" />
+	</ItemGroup>
+  <ItemGroup>
+    <MauiFont Include="Fonts\*" />
+  </ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Controls\Button\TMButton.xaml.cs">
+	    <DependentUpon>TMButton.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
+	    <DependentUpon>DropDownContents.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMBadge\TMBadgeStyles.xaml.cs">
+	    <DependentUpon>TMBadgeStyles.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
+	    <DependentUpon>asas.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMChips\TMChipStyles.xaml.cs">
+	    <DependentUpon>TMChipStyles.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
+	    <DependentUpon>TextColumn.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
+	    <DependentUpon>TMInput.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
+	    <DependentUpon>TMModalContents.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
+	    <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
+	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+	  </Compile>
+	  <Compile Update="Controls\ListView\TemplateCell.xaml.cs">
+	    <DependentUpon>TemplateCell.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Controls\Button\TMButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ProgressBar\TMProgressBarStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMChips\TMChipStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\DropDownContents.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\DropDown\TMDropDown.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
+      <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ProgressBar\TMProgressBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMBadge\TMBadge.xaml">
+	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMAccordion\TMAccordion.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\BooleanColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\ImageColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMModal\TMModalContents.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedItem.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
+	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Styles\Colors.xaml">
+	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\ListView\TextCell.xaml">
+      	<Generator>MSBuild:Compile</Generator>
+      </MauiXaml>    
+	  <MauiXaml Update="Styles\Colors.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>    
+	  <MauiXaml Update="Styles\DarkTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>    
+	  <MauiXaml Update="Styles\LightTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Controls\Messages\" />
+	  <Folder Include="Controls\TMAlert\" />
+	</ItemGroup>
 </Project>

@@ -73,6 +73,34 @@
   <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Chip-->
+  <!--FillChip-->
+  <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="DefaultChipSelectedBackgroundColor">#4D0063A3</Color>
+  <Color x:Key="DefaultChipTextColor">#252A2E</Color>
+  <Color x:Key="DefaultChipSelectedTextColor">#252A2E</Color>
+  <Color x:Key="DefaultChipIconTintColor">#252A2E</Color>
+  <Color x:Key="DefaultChipSelectedIconTintColor">#252A2E</Color>
+
+  <!--OutlineChip-->
+  <Color x:Key="DefaultOutlineChipBorderColor">#90939F</Color>
+  <Color x:Key="DefaultOutlineChipSelectedBorderColor">#0063A3</Color>
+  <Color x:Key="DefaultOutlineChipBackgroundColor">Transparent</Color>
+  <Color x:Key="DefaultOutlineChipSelectedBackgroundColor">#4C0063A3</Color>
+  <Color x:Key="DefaultOutlineChipTextColor">#252A2E</Color>
+  <Color x:Key="DefaultOutlineChipIconTintColor">#252A2E</Color>
+
+  <!--ErrorFillChip-->
+  <Color x:Key="ErrorChipBackgroundColor">#FBD4D7</Color>
+  <Color x:Key="ErrorChipTextColor">#AB1F26</Color>
+  <Color x:Key="ErrorChipIconTintColor">#AB1F26</Color>
+
+  <!--ErrorOutlineChip-->
+  <Color x:Key="ErrorOutlineChipBorderColor">#AB1F26</Color>
+  <Color x:Key="ErrorOutlineChipBackgroundColor">#FBD4D7</Color>
+  <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
+  <Color x:Key="ErrorOutlineChipIconTintColor">#AB1F26</Color>
+
   <!--Segmented Control-->
   <Color x:Key="SegmentSeparatorColor">#B7B9C3</Color>
   <Color x:Key="SegmentItemTextColor">#353a40</Color>
@@ -135,6 +163,11 @@
   <Color x:Key="AlertDarkIconTintColor">#252A2E</Color>
   <Color x:Key="AlertDarkBackgroundColor">#FFFFFF</Color>
   
+  <!--ProgressBar-->
+  <Color x:Key="ProgressBarPrimaryBackgroundColor">#0063A3</Color>
+  <Color x:Key="ProgressBarPrimaryBaseColor">#a3a6b1</Color>
+
+
   <!--Radio button-->
   <Color x:Key="RadioButtonColor">#0063A3</Color>
   <Color x:Key="RadioButtonTextColor">#252a2e</Color>
