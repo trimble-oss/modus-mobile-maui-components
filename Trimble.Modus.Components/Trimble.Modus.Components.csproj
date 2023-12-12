@@ -120,11 +120,14 @@
 		<MauiImage Include="Images\blue_close_icon.svg" />
 		<MauiImage Include="Images\blue_info_outline_icon.svg" />
 		<MauiImage Include="Images\blue_info_solid_icon.svg" />
-		<MauiImage Include="Images\checked_checkbox.svg" />
-		<MauiImage Include="Images\default_checkbox.svg" />
-		<MauiImage Include="Images\grey_info_icon.svg" />
-		<MauiImage Include="Images\indeterminate_checkbox.svg" />
-		<MauiImage Include="Images\modus_close_icon.svg" />
+    <MauiImage Include="Images\checked_checkbox.svg" />
+    <MauiImage Include="Images\checked_checkbox_dark.svg" />
+    <MauiImage Include="Images\default_checkbox.svg" />
+    <MauiImage Include="Images\default_checkbox_dark.svg" />
+    <MauiImage Include="Images\grey_info_icon.svg" />
+    <MauiImage Include="Images\indeterminate_checkbox.svg" />
+    <MauiImage Include="Images\indeterminate_checkbox_dark.svg" />
+    <MauiImage Include="Images\modus_close_icon.svg" />
 		<MauiImage Include="Images\radio_selected_icon.svg" />
 		<MauiImage Include="Images\radio_unselected_icon.svg" />
 		<MauiImage Include="Images\solid_help_icon.svg" />
@@ -132,7 +135,8 @@
 		<MauiImage Include="Images\success_icon_outline.svg" />
 		<MauiImage Include="Images\toast_dark_icon.svg" />
 		<MauiImage Include="Images\valid_icon.svg" />
-		<MauiImage Include="Images\drag_corner.svg" />
+    <MauiImage Include="Images\white_close_icon.svg" />
+    <MauiImage Include="Images\drag_corner.svg" />
 		<MauiImage Include="Images\warning_icon.svg" />
 	</ItemGroup>
 

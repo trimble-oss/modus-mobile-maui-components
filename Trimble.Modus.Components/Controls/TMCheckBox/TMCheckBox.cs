@@ -119,12 +119,14 @@ namespace Trimble.Modus.Components
             if (customCheckboxView.IsIndeterminate)
             {
                 customCheckboxView.IsChecked = false;
-                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.IndeterminateCheckBoxButton);
+                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
+                    Image.SourceProperty, ImageConstants.IndeterminateCheckBoxButton, ImageConstants.IndeterminateCheckBoxButtonDark);
 
             }
             else
             {
-                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton);
+                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
+                    Image.SourceProperty, ImageConstants.DefaultCheckBoxButton, ImageConstants.DefaultCheckBoxButtonDark);
             }
 
         }
@@ -140,14 +142,14 @@ namespace Trimble.Modus.Components
             var customCheckboxView = (TMCheckBox)bindable;
             if (customCheckboxView.IsChecked)
             {
-                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.CheckedCheckBoxButton);
-
+                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
+                    Image.SourceProperty, ImageConstants.CheckedCheckBoxButton, ImageConstants.CheckedCheckBoxButtonDark);
             }
             else
             {
-                customCheckboxView._checkbox.Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton);
+                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
+                    Image.SourceProperty, ImageConstants.DefaultCheckBoxButton, ImageConstants.DefaultCheckBoxButtonDark);
             }
-
         }
 
         private static void OnTextChanged(BindableObject bindable, object oldValue, object newValue)
@@ -160,7 +162,9 @@ namespace Trimble.Modus.Components
         public TMCheckBox()
         {
             _label = new Label() { FontSize = _defaultFontSize, VerticalOptions = LayoutOptions.Center, FontFamily = "OpenSansRegular" };
-            _checkbox = new Image { Source = ImageSource.FromFile(ImageConstants.DefaultCheckBoxButton), VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
+            _checkbox = new Image {VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
+            _checkbox.SetAppTheme<FileImageSource>(
+                    Image.SourceProperty, ImageConstants.DefaultCheckBoxButton, ImageConstants.DefaultCheckBoxButtonDark);
             Content = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
