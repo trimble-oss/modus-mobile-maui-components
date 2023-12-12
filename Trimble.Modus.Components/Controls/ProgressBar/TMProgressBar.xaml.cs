@@ -14,8 +14,7 @@ public partial class TMProgressBar : ContentView
    nameof(Size), typeof(ProgressBarSize), typeof(TMProgressBar), ProgressBarSize.Default, propertyChanged: OnSizeChangedProperty);
 
     public static readonly BindableProperty TextProperty = BindableProperty.Create(
-  nameof(Text), typeof(string), typeof(TMProgressBar));
-
+      nameof(Text), typeof(string), typeof(TMProgressBar));
     public string Text
     {
         get => (string)GetValue(TextProperty);
@@ -37,6 +36,8 @@ public partial class TMProgressBar : ContentView
     {
         InitializeComponent();
         this.progressBarIndicatorText.FontSize = _defaultFontSize;
+        this.baseProgressBar.SetDynamicResource(BaseProgressBar.ProgressColorProperty, "ProgressBarPrimaryBackgroundColor");
+        this.baseProgressBar.SetDynamicResource(BaseProgressBar.BaseColorProperty, "ProgressBarPrimaryBaseColor");
     }
 
     private static void OnSizeChangedProperty(BindableObject bindable, object oldValue, object newValue)
