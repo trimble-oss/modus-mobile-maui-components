@@ -189,4 +189,9 @@
   <Color x:Key="AccordionTitleColor">#FFF</Color>
   <Color x:Key="AccordionSubtitleColor">#B7B9C3</Color>
   <Color x:Key="AccordionIconTintColor">#FFF</Color>
-  </ResourceDictionary>
+
+  <!--List-->
+  <Color x:Key="CellDefaultBackgroundColor">#171C1E</Color>
+  <Color x:Key="CellSelectedBackgroundColor">#4D019AEB</Color>
+  
+</ResourceDictionary>

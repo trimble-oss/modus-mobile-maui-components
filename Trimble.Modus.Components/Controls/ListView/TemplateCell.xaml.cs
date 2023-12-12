@@ -5,11 +5,19 @@
         #region Bindable Properties
         public static readonly BindableProperty ContentProperty =
             BindableProperty.Create(nameof(Content), typeof(View), typeof(TemplateCell));
+        public static readonly BindableProperty BackgrondColorProperty =
+           BindableProperty.Create(nameof(BackgrondColor), typeof(Color), typeof(TextCell), Colors.White,
+               propertyChanged: OnBackgroundColorChanged);
 
         public View Content
         {
             get => (View)GetValue(ContentProperty);
             set => SetValue(ContentProperty, value);
+        }
+        public Color BackgrondColor
+        {
+            get => (Color)GetValue(BackgrondColorProperty);
+            set => SetValue(BackgrondColorProperty, value);
         }
         #endregion
 
@@ -19,12 +27,15 @@
             InitializeComponent();
         }
         #endregion
-        #region Internal Methods
-
-        internal void UpdateBackgroundColor(Color backgroundColor)
+        #region Private Methods
+        private static void OnBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            grid.BackgroundColor = backgroundColor;
+            if (bindable != null && bindable is TemplateCell cell)
+            {
+                cell.grid.BackgroundColor = (Color)newValue;
+            }
         }
+
+        #endregion
     }
-    #endregion
 }
