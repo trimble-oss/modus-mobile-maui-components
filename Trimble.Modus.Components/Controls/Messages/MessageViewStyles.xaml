@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Controls.Messages.MessageViewStyles"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
+  <Style TargetType="local:MessageView" x:Key="Primary">
+    <Setter Property="BackgroundColor" Value="{DynamicResource MessageViewPrimaryBackgroundColor}"/>
+    <Setter Property="TextAndIconColor" Value="{DynamicResource MessageViewPrimaryTextColor}"/>
+    <Setter Property="BorderColor" Value="{DynamicResource MessageViewPrimaryBorderColor}"/>
+  </Style>
+  <Style TargetType="local:MessageView" x:Key="Secondary">
+    <Setter Property="BackgroundColor" Value="{DynamicResource MessageViewSecondaryBackgroundColor}"/>
+    <Setter Property="TextAndIconColor" Value="{DynamicResource MessageViewSecondaryTextColor}"/>
+    <Setter Property="BorderColor" Value="{DynamicResource MessageViewSecondaryBorderColor}"/>
+  </Style>
+</ResourceDictionary>
+
