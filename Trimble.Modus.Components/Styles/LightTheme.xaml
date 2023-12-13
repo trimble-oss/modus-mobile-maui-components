@@ -188,11 +188,19 @@
   <Color x:Key="SliderTrackBackgroundColor">#CBCDD6</Color>
   <Color x:Key="SliderIconTintColor">#252A2E</Color>
   <Color x:Key="SliderStepperColor">#171C1E</Color>
-  
+
   <!--Accordion-->
   <Color x:Key="AccordionBackgroundColor">#FFF</Color>
   <Color x:Key="AccordionTitleColor">#252A2E</Color>
   <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
   <Color x:Key="AccordionIconTintColor">#252A2E</Color>
+
+  <!-- MessageView-->
+  <Color x:Key="MessageViewPrimaryBackgroundColor">#DCEDF9</Color>
+  <Color x:Key="MessageViewSecondaryBackgroundColor">#F1F1F6</Color>
+  <Color x:Key="MessageViewSecondaryTextColor">#252A2E</Color>
+  <Color x:Key="MessageViewPrimaryTextColor">#0063A3</Color>
+  <Color x:Key="MessageViewPrimaryBorderColor">#217CBB</Color>
+  <Color x:Key="MessageViewSecondaryBorderColor">#353A40</Color>
 
 </ResourceDictionary>
