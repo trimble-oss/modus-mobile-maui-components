@@ -117,9 +117,7 @@ namespace Trimble.Modus.Components
             UpperValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             UpperValueToolTipShape.TranslationY = 0;
             UpperValueToolTipShape.RotateTo(180);
-            UpperValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(
-                ColorsConstants.Gray7
-            );
+
             UpperValueBorder.Content = UpperValueLabel;
             UpperValueHolder.Children.Add(UpperValueBorder);
             UpperValueHolder.Children.Add(UpperValueToolTipShape);
@@ -127,9 +125,7 @@ namespace Trimble.Modus.Components
             LowerValueToolTipShape.VerticalOptions = LayoutOptions.Start;
             LowerValueToolTipShape.TranslationY = 0;
             LowerValueToolTipShape.RotateTo(180);
-            LowerValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(
-                ColorsConstants.Gray7
-            );
+
             LowerValueBorder.Content = LowerValueLabel;
             LowerValueHolder.Children.Add(LowerValueBorder);
             LowerValueHolder.Children.Add(LowerValueToolTipShape);
@@ -293,9 +289,7 @@ namespace Trimble.Modus.Components
             LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
 
-            Track.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray3);
             Track.StrokeThickness = 0;
-            TrackHighlight.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
             TrackHighlight.StrokeThickness = 0;
             UpperValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
             LowerValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
@@ -383,7 +377,7 @@ namespace Trimble.Modus.Components
 			var maxHeight = Max(LowerValueLabel.Height, UpperValueLabel.Height);
 			if ((sender == LowerValueLabel || sender == UpperValueLabel) && _labelMaxHeight == maxHeight)
 			{
-				Device.BeginInvokeOnMainThread(OnValueLabelTranslationChanged);
+				MainThread.BeginInvokeOnMainThread(OnValueLabelTranslationChanged);
 				return;
 			}
 
@@ -476,6 +470,25 @@ namespace Trimble.Modus.Components
             }
 
             OnLayoutPropertyChanged();
+        }
+
+        protected override void OnThumbColorPropertyChanged(Color newValue)
+        {
+            RefreshThumbColor(LeftThumbIcon);
+            RefreshThumbColor(RightThumbIcon);
+        }
+        protected override void OnTrackBackgroundColorChanged(Color newValue)
+        {
+            Track.BackgroundColor = newValue;
+        }
+        protected override void OnTrackHighlightColorChanged(Color newValue)
+        {
+            TrackHighlight.BackgroundColor = newValue;
+        }
+        protected override void OnToolTipBackgroundColorChanged(Color newValue)
+        {
+            if (LowerValueLabel != null) LowerValueLabel.BackgroundColor = newValue;
+            if (UpperValueLabel != null) UpperValueLabel.BackgroundColor = newValue;
         }
         #endregion
     }

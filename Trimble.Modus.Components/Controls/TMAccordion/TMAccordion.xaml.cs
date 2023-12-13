@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Behaviors;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components;
@@ -14,8 +15,18 @@ public partial class TMAccordion : ContentView
     public static readonly BindableProperty AccordionSubtitleProperty = BindableProperty.Create(nameof(AccordionSubtitle), typeof(string), typeof(TMAccordion), default(string));
     public static readonly BindableProperty AccordionTitleProperty = BindableProperty.Create(nameof(AccordionTitle), typeof(string), typeof(TMAccordion), string.Empty);
     public static readonly BindableProperty IsOpenBindablePropertyProperty = BindableProperty.Create(nameof(IsOpen), typeof(bool), typeof(TMAccordion), false, propertyChanged: IsOpenChanged);
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMAccordion), null, BindingMode.Default, propertyChanged: OnIconTintColorChanged);
     #endregion
     #region Public Property
+    /// <summary>
+    /// Update icon color based on theme
+    /// </summary>
+    internal Color IconTintColor
+    {
+        get => (Color)GetValue(IconTintColorProperty);
+        set => SetValue(IconTintColorProperty, value);
+    }
+
     /// <summary>
     /// Define the size of the accordion
     /// </summary>
@@ -90,6 +101,7 @@ public partial class TMAccordion : ContentView
         InitializeComponent();
         Close();
         IsOpen = false;
+        this.SetDynamicResource(StyleProperty, "TMAccordionStyle");
     }
     #endregion
 
@@ -156,6 +168,42 @@ public partial class TMAccordion : ContentView
         if (IsEnabled)
         {
             IsOpen = !IsOpen;
+        }
+    }
+
+    /// <summary>
+    /// Update icon color
+    /// </summary>
+    /// <param name="bindable"></param>
+    /// <param name="oldValue"></param>
+    /// <param name="newValue"></param>
+    private static void OnIconTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as TMAccordion).UpdateIconColor();
+    }
+
+    /// <summary>
+    /// Update Icon color when theme changes
+    /// </summary>
+    private void UpdateIconColor()
+    {
+        // FIXME: IconTintColorBehavior doesn't work properly on Windows, hence the DeviceInfo.Platform != DevicePlatform.WinUI check. 
+        // Remove this check once the issue is fixed.
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            _indicatorContainer.Behaviors.Clear();
+            _rightIcon.Behaviors.Clear();
+            _leftIcon.Behaviors.Clear();
+            if (IconTintColor != null)
+            {
+                var behavior = new IconTintColorBehavior
+                {
+                    TintColor = IconTintColor
+                };
+                _indicatorContainer.Behaviors.Add(behavior);
+                _rightIcon.Behaviors.Add(behavior);
+                _leftIcon.Behaviors.Add(behavior);
+            }
         }
     }
     #endregion

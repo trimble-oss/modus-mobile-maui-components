@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Styles.LightTheme">
@@ -73,6 +73,59 @@
   <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Chip-->
+  <!--FillChip-->
+  <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="DefaultChipSelectedBackgroundColor">#4D0063A3</Color>
+  <Color x:Key="DefaultChipTextColor">#252A2E</Color>
+  <Color x:Key="DefaultChipSelectedTextColor">#252A2E</Color>
+  <Color x:Key="DefaultChipIconTintColor">#252A2E</Color>
+  <Color x:Key="DefaultChipSelectedIconTintColor">#252A2E</Color>
+
+  <!--OutlineChip-->
+  <Color x:Key="DefaultOutlineChipBorderColor">#90939F</Color>
+  <Color x:Key="DefaultOutlineChipSelectedBorderColor">#0063A3</Color>
+  <Color x:Key="DefaultOutlineChipBackgroundColor">Transparent</Color>
+  <Color x:Key="DefaultOutlineChipSelectedBackgroundColor">#4C0063A3</Color>
+  <Color x:Key="DefaultOutlineChipTextColor">#252A2E</Color>
+  <Color x:Key="DefaultOutlineChipIconTintColor">#252A2E</Color>
+
+  <!--ErrorFillChip-->
+  <Color x:Key="ErrorChipBackgroundColor">#FBD4D7</Color>
+  <Color x:Key="ErrorChipTextColor">#AB1F26</Color>
+  <Color x:Key="ErrorChipIconTintColor">#AB1F26</Color>
+
+  <!--ErrorOutlineChip-->
+  <Color x:Key="ErrorOutlineChipBorderColor">#AB1F26</Color>
+  <Color x:Key="ErrorOutlineChipBackgroundColor">#FBD4D7</Color>
+  <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
+  <Color x:Key="ErrorOutlineChipIconTintColor">#AB1F26</Color>
+
+  <!--Segmented Control-->
+  <Color x:Key="SegmentSeparatorColor">#B7B9C3</Color>
+  <Color x:Key="SegmentItemTextColor">#353a40</Color>
+  <Color x:Key="SegmentItemSelectedTextColor">#FFF</Color>
+  <Color x:Key="SegmentItemSelectedIconTintColor">#FFF</Color>
+  <Color x:Key="SegmentItemIconTintColor">#252a2e</Color>
+  <Color x:Key="SegmentItemPrimaryBackgroundColor">#0063a3</Color>
+  <Color x:Key="SegmentItemSecondaryBackgroundColor">#353A40</Color>
+  <Color x:Key="SegmentedControlBorderColor">#353A40</Color>
+  
+  <!--Datagrid-->
+  <Color x:Key="DataGridHeaderColor">#f1f1f6</Color>
+  <Color x:Key="DataGridHeaderTextColor">#252a2e</Color>
+  <Color x:Key="DataGridActiveRowColor">#dcedf9</Color>
+  <Color x:Key="DataGridDefaultRowColor">#FFF</Color>
+  
+  <!--Modal-->
+  <Color x:Key="ModalTextAndImageColor">#252a2e</Color>
+  <Color x:Key="ModalBackgroundColor">#FFF</Color>
+  
+  <!--Switch-->
+  <Color x:Key="SwitchOnBackgroundColor">#217CBB</Color>
+  <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
+  <Color x:Key="SwitchTextColor">#252A2E</Color>
+
   <Color x:Key="AlertButtonColor">#000</Color>
   <!-- Alert Success-->
   <Color x:Key="AlertSuccessTextColor">#006638</Color>
@@ -109,4 +162,29 @@
   <Color x:Key="AlertDarkBorderColor">#252A2E</Color>
   <Color x:Key="AlertDarkIconTintColor">#252A2E</Color>
   <Color x:Key="AlertDarkBackgroundColor">#FFFFFF</Color>
+
+  <!--ProgressBar-->
+  <Color x:Key="ProgressBarPrimaryBackgroundColor">#0063A3</Color>
+  <Color x:Key="ProgressBarPrimaryBaseColor">#a3a6b1</Color>
+
+
+  <!--Radio button-->
+  <Color x:Key="RadioButtonColor">#0063A3</Color>
+  <Color x:Key="RadioButtonTextColor">#252a2e</Color>
+
+  <!--Slider-->
+  <Color x:Key="SliderTooltipColor">#585c65</Color>
+  <Color x:Key="LabelTextColor">#252a2e</Color>
+  <Color x:Key="SliderTitleTextColor">#464B52</Color>
+  <Color x:Key="SliderThumbColor">#217cbb</Color>
+  <Color x:Key="SliderTrackHighlightColor">#0063A3</Color>
+  <Color x:Key="SliderTrackBackgroundColor">#CBCDD6</Color>
+  <Color x:Key="SliderIconTintColor">#252A2E</Color>
+  <Color x:Key="SliderStepperColor">#171C1E</Color>
+  
+  <!--Accordion-->
+  <Color x:Key="AccordionBackgroundColor">#FFF</Color>
+  <Color x:Key="AccordionTitleColor">#252A2E</Color>
+  <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
+  <Color x:Key="AccordionIconTintColor">#252A2E</Color>
 </ResourceDictionary>

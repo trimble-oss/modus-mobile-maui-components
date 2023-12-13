@@ -15,13 +15,32 @@ public partial class TMSegmentedItem
     public static readonly BindableProperty ShowSeparatorProperty = BindableProperty.Create(nameof(ShowSeparator), typeof(bool), typeof(TMSegmentedItem), true);
     public static readonly BindableProperty ColorThemeProperty = BindableProperty.Create(nameof(ColorTheme), typeof(SegmentColorTheme), typeof(TMSegmentedItem), SegmentColorTheme.Primary, propertyChanged: OnColorThemeChanged);
     public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(TMSegmentedItem), null, propertyChanged: OnSegmentedItemPropertyChanged);
-    internal static readonly BindablePropertyKey CurrentBackgroundColorPropertyKey = BindableProperty.CreateReadOnly(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent));
-    public static readonly BindableProperty CurrentBackgroundColorProperty = CurrentBackgroundColorPropertyKey.BindableProperty;
+    public static readonly BindableProperty CurrentBackgroundColorProperty = BindableProperty.Create(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent), propertyChanged: OnCurrentBackgroundColorChanged);
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedItem), SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
-
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9), propertyChanged: OnTextColorChanged);
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMSegmentedItem), Colors.Black, propertyChanged: OnIconTintColorChanged);
     #endregion
 
     #region public properties
+
+    /// <summary>
+    /// IconTintColor for different themes
+    /// </summary>
+    internal Color IconTintColor
+    {
+        get { return (Color)GetValue(IconTintColorProperty); }
+        set { this.SetValue(IconTintColorProperty, value); }
+    }
+
+    /// <summary>
+    /// Text color for different themes
+    /// </summary>
+    internal Color TextColor
+    {
+        get { return (Color)GetValue(TextColorProperty); }
+        set { this.SetValue(TextColorProperty, value); }
+    }
+
     public int ItemIndex { get; internal set; }
     /// <summary>
     /// Size of segment
@@ -77,21 +96,11 @@ public partial class TMSegmentedItem
         Browsable(false),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
     ]
-    public Color CurrentBackgroundColor
+    internal Color CurrentBackgroundColor
     {
         get => (Color)GetValue(CurrentBackgroundColorProperty);
-        private set => SetValue(CurrentBackgroundColorPropertyKey, value);
+        set => SetValue(CurrentBackgroundColorProperty, value);
     }
-
-    /// <summary>
-    /// Background color of the segment when selected
-    /// </summary>
-    [
-        EditorBrowsable(EditorBrowsableState.Never),
-        Browsable(false),
-        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)
-    ]
-    public Color SelectedBackgroundColor { get; internal set; }
 
     /// <summary>
     /// Toggledthe separator visibility
@@ -116,6 +125,31 @@ public partial class TMSegmentedItem
         set => SetValue(ColorThemeProperty, value);
     }
     #endregion
+
+    #region Property change handlers
+    /// <summary>
+    /// On current background color property changed
+    /// </summary>
+    private static void OnIconTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as TMSegmentedItem).UpdateIconBehavior();
+    }
+    /// <summary>
+    /// On current background color property changed
+    /// </summary>
+    private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as TMSegmentedItem).TextLabel.TextColor = (Color)newValue;
+    }
+
+    /// <summary>
+    /// On current background color property changed
+    /// </summary>
+    private static void OnCurrentBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as TMSegmentedItem).GridContainer.BackgroundColor = (Color)newValue;
+    }
+
     /// <summary>
     /// Update font size and height of the icon based on the size
     /// </summary>
@@ -142,16 +176,7 @@ public partial class TMSegmentedItem
     /// </summary>
     private static void OnColorThemeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMSegmentedItem segmentedItem)
-        {
-            segmentedItem.SelectedBackgroundColor =
-                segmentedItem.ColorTheme == SegmentColorTheme.Primary
-                    ? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue)
-                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-            segmentedItem.CurrentBackgroundColor = segmentedItem.IsSelected
-                ? segmentedItem.SelectedBackgroundColor
-                : ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
-        }
+        (bindable as TMSegmentedItem).UpdateBackgroundColor();
     }
 
     /// <summary>
@@ -161,6 +186,8 @@ public partial class TMSegmentedItem
     {
         (bindable as TMSegmentedItem)?.UpdateCurrentItemStyle();
     }
+
+    #endregion
 
     #region Constructor
     public TMSegmentedItem()
@@ -181,12 +208,12 @@ public partial class TMSegmentedItem
     /// <summary>
     /// Update the background color of the segment based on the selection
     /// </summary>
-    void UpdateBackgroundColor()
+    internal void UpdateBackgroundColor()
     {
-        CurrentBackgroundColor = !IsSelected
-            ? ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent)
-            : SelectedBackgroundColor
-                ?? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+        string baseStyle = ColorTheme == SegmentColorTheme.Primary ? "Primary" : "Secondary";
+        string selectedStyle = IsSelected ? "Selected" : "Normal";
+        this.SetDynamicResource(StyleProperty, baseStyle);
+        VisualStateManager.GoToState(this, selectedStyle);
     }
 
     /// <summary>
@@ -197,12 +224,12 @@ public partial class TMSegmentedItem
         // FIXME: IconTintColorBehavior is not working on windows, so we are removing the behavior for now
         // https://github.com/CommunityToolkit/Maui/issues/1212 - Issue about the same
         // This should be updated in the next release of the toolkit and we can remove this code
-        if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
         {
             SegmentIcon.Behaviors.Clear();
             var behavior = new IconTintColorBehavior
             {
-                TintColor = IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.White) : ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9)
+                TintColor = IconTintColor
             };
             SegmentIcon.Behaviors.Add(behavior);
         }

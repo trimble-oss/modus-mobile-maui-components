@@ -1,5 +1,7 @@
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics.Text;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
@@ -21,12 +23,28 @@ public partial class TMSwitch : ContentView
       BindableProperty.Create(nameof(ToggledCommand), typeof(ICommand), typeof(TMSwitch), null);
     public static readonly BindableProperty LabelTextProperty =
       BindableProperty.Create(nameof(Text), typeof(string), typeof(TMSwitch), "", propertyChanged: OnLabelTextChanged);
+    public static readonly BindableProperty TextColorProperty =
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Black);
+    public new static readonly BindableProperty BackgroundColorProperty =
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMSwitch), Colors.Black);
 
     public string Text
     {
         get => (string)GetValue(LabelTextProperty);
         set => SetValue(LabelTextProperty, value);
     }
+    public Color TextColor
+    {
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
+    }
+
+    public new Color BackgroundColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
+
     public ICommand ToggledCommand
     {
         get => (ICommand)GetValue(ToggledCommandProperty);
@@ -57,7 +75,7 @@ public partial class TMSwitch : ContentView
     {
         InitializeComponent();
         UpdateSwitchSize(this);
-
+        this.SetDynamicResource(StyleProperty, "SwitchStyle");
         Loaded += (sender, args) =>
         {
             hasLoaded = true;
@@ -70,7 +88,7 @@ public partial class TMSwitch : ContentView
                 OnSwitchUnSelected(this);
             }
         };
-
+        
     }
     private static void OnIsEnabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -111,6 +129,7 @@ public partial class TMSwitch : ContentView
             UpdateSwitchSize(tMSwitch);
         }
     }
+
     private static void OnSwitchToggleChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable != null && bindable is TMSwitch tMSwitch)
@@ -154,6 +173,7 @@ public partial class TMSwitch : ContentView
             return;
         IsToggled = !IsToggled;
     }
+
     private static void OnSwitchSelected(TMSwitch tMSwitch)
     {
         if (!tMSwitch.hasLoaded)
@@ -169,7 +189,7 @@ public partial class TMSwitch : ContentView
                 { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.circleMargin,tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicIn);
-        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight);
+        VisualStateManager.GoToState(tMSwitch, "On");
     }
 
     private static void OnSwitchUnSelected(TMSwitch tMSwitch)
@@ -186,7 +206,7 @@ public partial class TMSwitch : ContentView
                 { 0, 1, new Animation(v => tMSwitch.circle.TranslationX = v, tMSwitch.border.WidthRequest - tMSwitch.circle.WidthRequest - tMSwitch.circleMargin, tMSwitch.circleMargin) }
             },
             length: 250, easing: Easing.CubicInOut);
-        tMSwitch.border.Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray4);
+        VisualStateManager.GoToState(tMSwitch, "Off");
     }
 }
 
