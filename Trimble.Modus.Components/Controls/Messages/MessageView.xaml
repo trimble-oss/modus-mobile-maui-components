@@ -2,8 +2,15 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.MessageView"
+             xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.Messages"
              x:Name="messageView">
-
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:MessageViewStyles/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
 
   <VerticalStackLayout x:Name="toastLayout"
                        HorizontalOptions="Fill"
@@ -33,7 +40,7 @@
                LineBreakMode="TailTruncation"
                MaxLines="3"
                VerticalOptions="Center"
-               HorizontalOptions="FillAndExpand" />        
+               HorizontalOptions="FillAndExpand"/>        
       </StackLayout>
     </Border>
   </VerticalStackLayout>
