@@ -27,7 +27,7 @@ public partial class TMBadge : ContentView
     public static readonly BindableProperty TextColorProperty =
     BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMBadge), Colors.Black, propertyChanged: OnTextColorPropertyChanged);
 
-    public static readonly BindableProperty BackgroundColorProperty =
+    public static new readonly BindableProperty BackgroundColorProperty =
         BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMBadge), Colors.Black, propertyChanged: OnBackgroundColorPropertyChanged);
 
     internal Color TextColor

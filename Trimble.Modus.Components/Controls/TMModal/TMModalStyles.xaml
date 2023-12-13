@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Controls.TMModal.TMModalStyles"
+             xmlns:local="clr-namespace:Trimble.Modus.Components.Modal">
+  <Style TargetType="local:TMModalContents" x:Key="TMModalStyle">
+    <Setter Property="TextAndImageColor" Value="{DynamicResource ModalTextAndImageColor}"/>
+    <Setter Property="ModalBackgroundColor" Value="{DynamicResource ModalBackgroundColor}"/>
+  </Style>
+</ResourceDictionary>
+

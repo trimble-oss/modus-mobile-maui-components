@@ -2,6 +2,7 @@ using System.Collections.Specialized;
 using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.Layouts;
+using Trimble.Modus.Components.Controls.TMRadioButton;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
 
@@ -10,7 +11,7 @@ namespace Trimble.Modus.Components;
 public class TMRadioButtonGroup : StackLayout, IDisposable
 {
     #region Private fields
-    private readonly Label _label = new Label() { IsVisible = false, FontSize = 14, Margin = new Thickness(0, 0, 0, 4), TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray) };
+    private readonly Label _label = new Label() { IsVisible = false, FontSize = 14, Margin = new Thickness(0, 0, 0, 4) };
     private readonly WrapLayout _buttonContainer = new WrapLayout();
     private readonly List<TMRadioButton> _radioButtons = new List<TMRadioButton>();
     #endregion
@@ -29,6 +30,8 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMRadioButtonGroup), -1, BindingMode.TwoWay, propertyChanged: OnSelectedIndexChanged);
 
     public static readonly BindableProperty SelectedRadioButtonChangedCommandProperty = BindableProperty.Create(nameof(SelectedRadioButtonChangedCommand), typeof(ICommand), typeof(TMRadioButtonGroup));
+
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMRadioButtonGroup), Colors.Black, BindingMode.Default, propertyChanged: OnTextColorChanged);
 
     #endregion
 
@@ -103,6 +106,14 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
         set => SetValue(GroupTitleProperty, value);
     }
 
+    /// <summary>
+    /// Text color for title
+    /// </summary>
+    internal Color TextColor
+    {
+        get { return (Color)GetValue(TextColorProperty); }
+        set { this.SetValue(TextColorProperty, value); }
+    }
     #endregion
 
     #region Constructor
@@ -111,6 +122,8 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
         this.Children.Add(_label);
         this.Children.Add(_buttonContainer);
         _buttonContainer.SetBinding(WrapLayout.OrientationProperty, new Binding(nameof(Orientation), source: this));
+        Resources.Add(new RadioButtonStyles());
+        this.SetDynamicResource(StyleProperty, "RadioButtonGroupStyle");
     }
 
     /// <summary>
@@ -261,6 +274,14 @@ public class TMRadioButtonGroup : StackLayout, IDisposable
     #endregion
 
     #region private methods
+    /// <summary>
+    /// Update text color based on theme
+    /// </summary>
+    private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var buttonGroup = bindable as TMRadioButtonGroup;
+        buttonGroup._label.TextColor = (Color)newValue;
+    }
 
     /// <summary>
     /// Update the selection state of the radio buttons in the group

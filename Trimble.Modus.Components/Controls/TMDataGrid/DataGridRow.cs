@@ -161,7 +161,7 @@ internal sealed class DataGridRow : Grid
 
         _bgColor = (DataGrid.SelectionMode != SelectionMode.None && SelectedIndexes.Contains(rowIndex))
                 ? DataGrid.ActiveRowColor
-                : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                : DataGrid.DefaultRowColor;
         foreach (var v in Children)
         {
             if (v is View view)

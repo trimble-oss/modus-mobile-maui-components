@@ -157,6 +157,9 @@
 	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
 	    <DependentUpon>asas.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Controls\TMChips\TMChipStyles.xaml.cs">
+	    <DependentUpon>TMChipStyles.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
 	    <DependentUpon>TextColumn.xaml</DependentUpon>
 	  </Compile>
@@ -165,6 +168,9 @@
 	  </Compile>
 	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
 	    <DependentUpon>TMModalContents.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
+	    <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
 	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
@@ -181,7 +187,13 @@
 	  <MauiXaml Update="Controls\Button\TMButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\ProgressBar\TMProgressBarStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMChips\TMChipStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
@@ -228,6 +240,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
 	  	<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
