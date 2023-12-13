@@ -170,6 +170,13 @@
 
   <!--Radio button-->
   <Color x:Key="RadioButtonColor">#0063A3</Color>
+
+
+  <!--Spinner-->
+  <Color x:Key="SpinnerPrimaryFillColor">#0063A3</Color>
+  <Color x:Key="SpinnerSecondaryFillColor">#F1F1F6</Color>
+
+
   <Color x:Key="RadioButtonTextColor">#252a2e</Color>
 
   <!--Slider-->
@@ -220,6 +227,5 @@
   <Color x:Key="ToastDangerRightIconTintColor">#252A2E</Color>
   <Color x:Key="ToastWarningRightIconTintColor">#252A2E</Color>
   <Color x:Key="ToastSuccessRightIconTintColor">#252A2E</Color>
-
 
 </ResourceDictionary>
