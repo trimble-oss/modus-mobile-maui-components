@@ -78,7 +78,6 @@
   <ItemGroup>
     <MauiFont Include="Fonts\*" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Controls\Button\TMButton.xaml.cs">
       <DependentUpon>TMButton.xaml</DependentUpon>
@@ -122,13 +121,10 @@
     <MauiXaml Update="Controls\Button\TMButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
-    <MauiXaml Update="Controls\ProgressBar\TMProgressBarStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
     <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
-    <MauiXaml Update="Controls\TMChips\TMChipStyles.xaml">
+    <MauiXaml Update="Controls\TMCheckBox\TMCheckBoxStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">

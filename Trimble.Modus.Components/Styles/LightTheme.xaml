@@ -195,6 +195,11 @@
   <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
   <Color x:Key="AccordionIconTintColor">#252A2E</Color>
 
+  <!--Checkbox-->
+  <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
+  <x:String x:Key="CheckedCheckBoxImage">checked_checkbox.png</x:String>
+  <x:String x:Key="DefaultCheckBoxImage">default_checkbox.png</x:String>
+
   <!--Toast-->
   <Color x:Key="ToastDefaultBackgroundColor">#FFFFFF</Color>
   <Color x:Key="ToastDarkBackgroundColor">#252A2E</Color>
