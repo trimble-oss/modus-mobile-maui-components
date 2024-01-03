@@ -29,6 +29,9 @@ namespace Trimble.Modus.Components
         public static readonly BindableProperty SpinnerColorProperty =
             BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Primary, propertyChanged: OnSpinnerColorChanged);
 
+        internal static readonly BindableProperty FillColorProperty =
+            BindableProperty.Create(nameof(FillColor), typeof(Color), typeof(TMSpinner), defaultValue: Colors.White, propertyChanged: OnFillColorChanged);
+
         internal static readonly BindableProperty SpinnerSizeProperty =
             BindableProperty.Create(nameof(SpinnerSize), typeof(Size), typeof(TMSpinner), defaultValue: Size.Default, propertyChanged: OnSpinnerSizeChanged);
 
@@ -43,6 +46,11 @@ namespace Trimble.Modus.Components
         {
             get => (SpinnerColor)GetValue(SpinnerColorProperty);
             set => SetValue(SpinnerColorProperty, value);
+        }
+        internal Color FillColor
+        {
+            get => (Color)GetValue(FillColorProperty);
+            set => SetValue(FillColorProperty, value);
         }
         internal Size SpinnerSize
         {
@@ -158,10 +166,25 @@ namespace Trimble.Modus.Components
         {
             if (bindable is TMSpinner tmSpinner)
             {
-                tmSpinner._spinnerColor = ((SpinnerColor)newValue == SpinnerColor.Secondary) ? ResourcesDictionary.ColorsDictionary(ColorsConstants.White)
-                    : ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                if(tmSpinner.SpinnerColor == SpinnerColor.Primary)
+                {
+                    tmSpinner.SetDynamicResource(TMSpinner.FillColorProperty, "SpinnerPrimaryFillColor");
+                }
+                else
+                {
+                    tmSpinner.SetDynamicResource(TMSpinner.FillColorProperty, "SpinnerSecondaryFillColor");
+                }
             }
         }
+
+        private static void OnFillColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is TMSpinner tmSpinner)
+            {
+                tmSpinner._spinnerColor = (Color)newValue;
+            }
+        }
+
         private static void OnSpinnerTypeChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (bindable is TMSpinner tmSpinner)
