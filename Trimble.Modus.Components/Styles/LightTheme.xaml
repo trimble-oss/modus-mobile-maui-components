@@ -187,4 +187,8 @@
   <Color x:Key="AccordionTitleColor">#252A2E</Color>
   <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
   <Color x:Key="AccordionIconTintColor">#252A2E</Color>
+  <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
+  <x:String x:Key="CheckedCheckBoxImage">checked_checkbox.png</x:String>
+  <x:String x:Key="DefaultCheckBoxImage">default_checkbox.png</x:String>
+
 </ResourceDictionary>

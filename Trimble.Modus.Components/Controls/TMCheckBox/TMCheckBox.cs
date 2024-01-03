@@ -36,6 +36,11 @@ namespace Trimble.Modus.Components
             get => (string)GetValue(TextProperty);
             set => SetValue(TextProperty, value);
         }
+       public string CheckBoxImage
+        {
+            get => (string)GetValue(CheckBoxImageProperty);
+            set => SetValue(CheckBoxImageProperty, value);
+        }
         public bool IsChecked
         {
             get => (bool)GetValue(IsCheckedProperty);
@@ -74,6 +79,13 @@ namespace Trimble.Modus.Components
                string.Empty,
                propertyChanged: OnTextChanged);
 
+        public static readonly BindableProperty CheckBoxImageProperty =
+           BindableProperty.Create(
+               nameof(CheckBoxImage),
+               typeof(string),
+               typeof(TMCheckBox),
+               defaultValue: string.Empty,
+               propertyChanged: OnCheckBoxImageChanged);
 
         public static readonly BindableProperty IsCheckedProperty =
             BindableProperty.Create(
@@ -119,14 +131,11 @@ namespace Trimble.Modus.Components
             if (customCheckboxView.IsIndeterminate)
             {
                 customCheckboxView.IsChecked = false;
-                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
-                    Image.SourceProperty, ImageConstants.IndeterminateCheckBoxButton, ImageConstants.IndeterminateCheckBoxButtonDark);
-
+                VisualStateManager.GoToState(customCheckboxView, "Indeterminate");
             }
             else
             {
-                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
-                    Image.SourceProperty, ImageConstants.DefaultCheckBoxButton, ImageConstants.DefaultCheckBoxButtonDark);
+                VisualStateManager.GoToState(customCheckboxView, "Default");
             }
 
         }
@@ -142,13 +151,11 @@ namespace Trimble.Modus.Components
             var customCheckboxView = (TMCheckBox)bindable;
             if (customCheckboxView.IsChecked)
             {
-                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
-                    Image.SourceProperty, ImageConstants.CheckedCheckBoxButton, ImageConstants.CheckedCheckBoxButtonDark);
+                VisualStateManager.GoToState(customCheckboxView, "Checked");
             }
             else
             {
-                customCheckboxView._checkbox.SetAppTheme<FileImageSource>(
-                    Image.SourceProperty, ImageConstants.DefaultCheckBoxButton, ImageConstants.DefaultCheckBoxButtonDark);
+                VisualStateManager.GoToState(customCheckboxView, "Default");
             }
         }
 
@@ -157,14 +164,31 @@ namespace Trimble.Modus.Components
             var customCheckboxView = (TMCheckBox)bindable;
             customCheckboxView._label.Text = (string)newValue;
         }
+        private static void OnCheckBoxImageChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var customCheckboxView = (TMCheckBox)bindable;
+            string imagePath = (string)newValue;
+
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                customCheckboxView._checkbox.Source = ImageSource.FromFile(imagePath);
+            }
+            else
+            {
+                customCheckboxView._checkbox.Source = null; 
+            }
+        }
         #endregion
 
         public TMCheckBox()
         {
             _label = new Label() { FontSize = _defaultFontSize, VerticalOptions = LayoutOptions.Center, FontFamily = "OpenSansRegular" };
             _checkbox = new Image {VerticalOptions = LayoutOptions.Center, HeightRequest = _defaultHeight, WidthRequest = _defaultWidth, Margin = new Thickness(0, 0, 4, 0) };
-            _checkbox.SetAppTheme<FileImageSource>(
-                    Image.SourceProperty, ImageConstants.DefaultCheckBoxButton, ImageConstants.DefaultCheckBoxButtonDark);
+
+            Application.Current.Resources.Add(new TMCheckBoxStyles());
+            this.SetDynamicResource(TMCheckBox.StyleProperty, "TMCheckBoxStyle");
+            VisualStateManager.GoToState(this, "Default");
+
             Content = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
