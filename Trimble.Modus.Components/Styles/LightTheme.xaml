@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Styles.LightTheme">
@@ -162,7 +162,7 @@
   <Color x:Key="AlertDarkBorderColor">#252A2E</Color>
   <Color x:Key="AlertDarkIconTintColor">#252A2E</Color>
   <Color x:Key="AlertDarkBackgroundColor">#FFFFFF</Color>
-  
+
   <!--ProgressBar-->
   <Color x:Key="ProgressBarPrimaryBackgroundColor">#0063A3</Color>
   <Color x:Key="ProgressBarPrimaryBaseColor">#a3a6b1</Color>
@@ -170,6 +170,13 @@
 
   <!--Radio button-->
   <Color x:Key="RadioButtonColor">#0063A3</Color>
+
+
+  <!--Spinner-->
+  <Color x:Key="SpinnerPrimaryFillColor">#0063A3</Color>
+  <Color x:Key="SpinnerSecondaryFillColor">#F1F1F6</Color>
+
+
   <Color x:Key="RadioButtonTextColor">#252a2e</Color>
 
   <!--Slider-->
@@ -181,7 +188,7 @@
   <Color x:Key="SliderTrackBackgroundColor">#CBCDD6</Color>
   <Color x:Key="SliderIconTintColor">#252A2E</Color>
   <Color x:Key="SliderStepperColor">#171C1E</Color>
-  
+
   <!--Accordion-->
   <Color x:Key="AccordionBackgroundColor">#FFF</Color>
   <Color x:Key="AccordionTitleColor">#252A2E</Color>
@@ -192,5 +199,46 @@
   <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
   <x:String x:Key="CheckedCheckBoxImage">checked_checkbox.png</x:String>
   <x:String x:Key="DefaultCheckBoxImage">default_checkbox.png</x:String>
+
+  <!--Toast-->
+  <Color x:Key="ToastDefaultBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="ToastDarkBackgroundColor">#252A2E</Color>
+  <Color x:Key="ToastPrimaryBackgroundColor">#DCEDF9</Color>
+  <Color x:Key="ToastSecondaryBackgroundColor">#6A6E79</Color>
+  <Color x:Key="ToastDangerBackgroundColor">#FBD4D7</Color>
+  <Color x:Key="ToastWarningBackgroundColor">#FFF5E4</Color>
+  <Color x:Key="ToastSuccessBackgroundColor">#E0ECCF</Color>
+
+  <Color x:Key="ToastDefaultTextColor">#252A2E</Color>
+  <Color x:Key="ToastDarkTextColor">#FFFFFF</Color>
+  <Color x:Key="ToastPrimaryTextColor">#0063A3</Color>
+  <Color x:Key="ToastSecondaryTextColor">#252A2E</Color>
+  <Color x:Key="ToastDangerTextColor">#252A2E</Color>
+  <Color x:Key="ToastWarningTextColor">#252A2E</Color>
+  <Color x:Key="ToastSuccessTextColor">#252A2E</Color>
+
+  <Color x:Key="ToastDefaultLeftIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastDarkLeftIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastPrimaryLeftIconTintColor">#0063A3</Color>
+  <Color x:Key="ToastSecondaryLeftIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastDangerLeftIconTintColor">#AB1F26</Color>
+  <Color x:Key="ToastWarningLeftIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastSuccessLeftIconTintColor">#006638</Color>
+
+  <Color x:Key="ToastDefaultRightIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastDarkRightIconTintColor">#FFFFFF</Color>
+  <Color x:Key="ToastPrimaryRightIconTintColor">#0063A3</Color>
+  <Color x:Key="ToastSecondaryRightIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastDangerRightIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastWarningRightIconTintColor">#252A2E</Color>
+  <Color x:Key="ToastSuccessRightIconTintColor">#252A2E</Color>
+
+  <!-- MessageView-->
+  <Color x:Key="MessageViewPrimaryBackgroundColor">#DCEDF9</Color>
+  <Color x:Key="MessageViewSecondaryBackgroundColor">#F1F1F6</Color>
+  <Color x:Key="MessageViewSecondaryTextColor">#252A2E</Color>
+  <Color x:Key="MessageViewPrimaryTextColor">#0063A3</Color>
+  <Color x:Key="MessageViewPrimaryBorderColor">#217CBB</Color>
+  <Color x:Key="MessageViewSecondaryBorderColor">#353A40</Color>
 
 </ResourceDictionary>
