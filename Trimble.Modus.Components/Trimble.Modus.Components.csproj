@@ -35,8 +35,10 @@
     <Authors>Trimble Inc</Authors>
     <Company>Trimble Inc</Company>
     <Product>Trimble.Modus.Components</Product>
-		<Description>The One Trimble Design System. The Modus design system is part of the evolving
-			Trimble Operating System.</Description>
+    <Description>
+      The One Trimble Design System. The Modus design system is part of the evolving
+      Trimble Operating System.
+    </Description>
     <Copyright>©Trimble 2023</Copyright>
     <PackageProjectUrl>https://github.com/trimble-oss/modus-mobile-components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/trimble-oss/modus-mobile-components</RepositoryUrl>
@@ -76,131 +78,131 @@
   <ItemGroup>
     <MauiFont Include="Fonts\*" />
   </ItemGroup>
-  
-	<ItemGroup>
-	  <Compile Update="Controls\Button\TMButton.xaml.cs">
-	    <DependentUpon>TMButton.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
-	    <DependentUpon>DropDownContents.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMBadge\TMBadgeStyles.xaml.cs">
-	    <DependentUpon>TMBadgeStyles.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMCard\TMCard.xaml.cs">
-	    <DependentUpon>asas.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMChips\TMChipStyles.xaml.cs">
-	    <DependentUpon>TMChipStyles.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
-	    <DependentUpon>TextColumn.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMInput\TMInput.xaml.cs">
-	    <DependentUpon>TMInput.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
-	    <DependentUpon>TMModalContents.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
-	    <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
-	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-	  </Compile>
-	  <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
-	    <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
-	  </Compile>
-	  <Compile Update="Controls\ListView\TemplateCell.xaml.cs">
-	    <DependentUpon>TemplateCell.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
 
-	<ItemGroup>
-	  <MauiXaml Update="Controls\Button\TMButton.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\ProgressBar\TMProgressBarStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMChips\TMChipStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\DropDown\DropDownContents.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\DropDown\TMDropDown.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMChips\TMChips.xaml">
+  <ItemGroup>
+    <Compile Update="Controls\Button\TMButton.xaml.cs">
+      <DependentUpon>TMButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
+      <DependentUpon>DropDownContents.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMBadge\TMBadgeStyles.xaml.cs">
+      <DependentUpon>TMBadgeStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMCard\TMCard.xaml.cs">
+      <DependentUpon>asas.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMChips\TMChipStyles.xaml.cs">
+      <DependentUpon>TMChipStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
+      <DependentUpon>TextColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMInput\TMInput.xaml.cs">
+      <DependentUpon>TMInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
+      <DependentUpon>TMModalContents.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
+      <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
+      <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+    </Compile>
+    <Compile Update="Handlers\TMButtonAndroidTouchHandler.cs">
+      <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
+    </Compile>
+    <Compile Update="Controls\ListView\TemplateCell.xaml.cs">
+      <DependentUpon>TemplateCell.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Controls\Button\TMButton.xaml">
       <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\ProgressBar\TMProgressBar.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMBadge\TMBadge.xaml">
-	  	<Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMAccordion\TMAccordion.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\BooleanColumn.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\ImageColumn.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMInput\TMInput.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMModal\TMModalContents.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedItem.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
-	  	<Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Styles\Colors.xaml">
-	  	<Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\ListView\TextCell.xaml">
-      	<Generator>MSBuild:Compile</Generator>
-      </MauiXaml>    
-	  <MauiXaml Update="Styles\Colors.xaml">
-	    <Generator></Generator>
-	  </MauiXaml>    
-	  <MauiXaml Update="Styles\DarkTheme.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>    
-	  <MauiXaml Update="Styles\LightTheme.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Controls\Messages\" />
-	  <Folder Include="Controls\TMAlert\" />
-	</ItemGroup>
+    </MauiXaml>
+    <MauiXaml Update="Controls\ProgressBar\TMProgressBarStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMChips\TMChipStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\DropDown\DropDownContents.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\DropDown\TMDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMChips\TMChips.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\ProgressBar\TMProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMBadge\TMBadge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMAccordion\TMAccordion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\BooleanColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\ImageColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMInput\TMInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMModal\TMModalContents.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMSegmentedControl\TMSegmentedItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMNumberInput\TMNumberInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\ListView\TextCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\Colors.xaml">
+      <Generator></Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Messages\" />
+    <Folder Include="Controls\TMAlert\" />
+  </ItemGroup>
 </Project>

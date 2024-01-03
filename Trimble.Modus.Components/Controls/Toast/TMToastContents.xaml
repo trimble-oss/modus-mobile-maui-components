@@ -9,15 +9,16 @@
                  BackgroundColor="{StaticResource Transparent}"
                  CloseWhenBackgroundIsClicked="False"
                  BackgroundInputTransparent="True">
+  
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <color:Colors />
+        <local:TMToastStyles></local:TMToastStyles>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentPage.Resources>
   
-
   <VerticalStackLayout x:Name="toastLayout"
                        HorizontalOptions="Fill"
                        VerticalOptions="End">
@@ -31,7 +32,7 @@
 
       <StackLayout x:Name="contentLayout"
                    VerticalOptions="Center"
-                   BackgroundColor="{Binding ToastBackground}"
+                   BackgroundColor="{Binding ToastBackgroundColor}"
                    HorizontalOptions="FillAndExpand"
                    Orientation="Horizontal">
         <Image x:Name="leftIconImage"
