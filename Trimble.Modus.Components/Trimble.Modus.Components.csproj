@@ -97,6 +97,9 @@
     <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
       <DependentUpon>TextColumn.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\TMInput\TMInputStyles.xaml.cs">
+      <DependentUpon>TMInputStyles.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Controls\TMInput\TMInput.xaml.cs">
       <DependentUpon>TMInput.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMCheckBox\TMCheckBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMInput\TMInputStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
