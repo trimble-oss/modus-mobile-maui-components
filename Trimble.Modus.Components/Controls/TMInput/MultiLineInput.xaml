@@ -4,6 +4,7 @@
                 ControlTemplate="{StaticResource InputTemplate}"
                 xmlns:base="clr-namespace:Trimble.Modus.Components.Controls.BaseInput"
                 xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+                xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                 x:Class="Trimble.Modus.Components.MultiLineInput"
                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                 xmlns:controls="clr-namespace:Trimble.Modus.Components"
@@ -13,6 +14,7 @@
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="InputTemplateResourceDictionary.xaml" />
+        <local:TMInputStyles></local:TMInputStyles>
         <color:Colors />
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
