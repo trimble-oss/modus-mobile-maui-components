@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.nuget.org/packages/Trimble.Modus.Components/0.0.7-alpha">
+  <a href="https://www.nuget.org/packages/Trimble.Modus.Components/">
     <img src="https://img.shields.io/nuget/v/Trimble.Modus.Components" alt/>
   </a>
 </p>
