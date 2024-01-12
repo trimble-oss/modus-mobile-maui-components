@@ -43,7 +43,13 @@ public partial class TMCard : ContentView
        BindableProperty.Create(nameof(Padding), typeof(Thickness), typeof(TMCard), defaultValue: new Thickness(16));
 
     public static readonly BindableProperty IsSelectedProperty =
-        BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TMCard), defaultValue: false);
+        BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TMCard), defaultValue: true, propertyChanged: OnSelectedPropertyChanged);
+
+    public static new readonly BindableProperty BackgroundColorProperty =
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMCard), defaultValue: Colors.Green, propertyChanged: OnBackgroundColorPropertyChanged);
+
+    public static readonly BindableProperty StrokeColorProperty =
+        BindableProperty.Create(nameof(StrokeColor), typeof(Color), typeof(TMCard), defaultValue: Colors.Blue, propertyChanged: OnStrokeColorPropertyChanged);
 
     public static readonly BindableProperty ClickedEventProperty =
           BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMCard));
@@ -55,9 +61,23 @@ public partial class TMCard : ContentView
         BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TMCard), null);
 
     #endregion
+
+    public new Color BackgroundColor
+    {
+        get { return (Color)GetValue(BackgroundColorProperty); }
+        set { SetValue(BackgroundColorProperty, value); }
+    }
+    public Color StrokeColor
+    {
+        get { return (Color)GetValue(StrokeColorProperty); }
+        set { SetValue(StrokeColorProperty, value); }
+    }
+
     public TMCard()
     {
         InitializeComponent();
+        this.SetDynamicResource(StyleProperty, "CardStyles");
+        VisualStateManager.GoToState(this, "Normal");
         this.border.Shadow.Offset = DeviceInfo.Platform == DevicePlatform.iOS ? new Point(0, 2) : new Point(-1, 1);
     }
 
@@ -73,6 +93,31 @@ public partial class TMCard : ContentView
         }
     }
     #endregion
+    private static void OnSelectedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMCard tmCard)
+        {
+            if (tmCard.IsSelected)
+                VisualStateManager.GoToState(tmCard, "Selected");
+            else
+                VisualStateManager.GoToState(tmCard, "Normal");
+        }
+    }
+    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if(bindable is TMCard tmCard)
+        {
+            tmCard.border.BackgroundColor = (Color)newValue;
+        }
+    }
+
+    private static void OnStrokeColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMCard tmCard)
+        {
+            tmCard.border.Stroke = (Color)newValue;
+        }
+    }
 
     private void OnTapped(object sender, TappedEventArgs e)
     {
