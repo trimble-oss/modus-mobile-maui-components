@@ -292,7 +292,7 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// Gets or sets the border color
     /// </summary>
-    public Color BorderColor
+    internal Color BorderColor
     {
         get => (Color)GetValue(BorderColorProperty);
         set => SetValue(BorderColorProperty, value);
@@ -300,7 +300,7 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// Gets or sets the background color
     /// </summary>
-    public new Color BackgroundColor
+    internal new Color BackgroundColor
     {
         get => (Color)GetValue(BackgroundColorProperty);
         set => SetValue(BackgroundColorProperty, value);
@@ -308,7 +308,7 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// Gets or sets the text color
     /// </summary>
-    public Color TextColor
+    internal Color TextColor
     {
         get => (Color)GetValue(TextColorProperty);
         set => SetValue(TextColorProperty, value);
@@ -316,7 +316,7 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// Gets or sets the helper icon image
     /// </summary>
-    public string HelperIconImage
+    internal string HelperIconImage
     {
         get => (string)GetValue(HelperIconImageProperty);
         set => SetValue(HelperIconImageProperty, value);
@@ -324,7 +324,7 @@ public partial class BaseInput : ContentView
     /// <summary>
     /// Gets or sets the helper layout background
     /// </summary>
-    public Color HelperLayoutBackground
+    internal Color HelperLayoutBackground
     {
         get => (Color)GetValue(HelperLayoutBackgroundProperty);
         set => SetValue(HelperLayoutBackgroundProperty, value);
