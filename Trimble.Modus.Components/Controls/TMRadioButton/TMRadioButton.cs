@@ -1,4 +1,7 @@
-﻿using Trimble.Modus.Components.Constant;
+using CommunityToolkit.Maui.Behaviors;
+using Microsoft.Maui.Graphics.Text;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Controls.TMRadioButton;
 using Trimble.Modus.Components.Enums;
 
 namespace Trimble.Modus.Components
@@ -70,6 +73,23 @@ namespace Trimble.Modus.Components
             set { SetValue(ValueProperty, value); }
         }
 
+        /// <summary>
+        /// Tint color for specific themes
+        /// </summary>
+        internal Color IconTintColor
+        {
+            get { return (Color)GetValue(IconTintColorProperty); }
+            set { this.SetValue(IconTintColorProperty, value); }
+        }
+
+        /// <summary>
+        /// Text color for labels
+        /// </summary>
+        internal Color TextColor
+        {
+            get { return (Color)GetValue(TextColorProperty); }
+            set { this.SetValue(TextColorProperty, value); }
+        }
         #endregion
 
         #region Bindable Properties
@@ -87,6 +107,10 @@ namespace Trimble.Modus.Components
         public static readonly BindableProperty SizeProperty = SizePropertyKey.BindableProperty;
 
         public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(object), typeof(TMRadioButton), null);
+
+        public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMRadioButton), Colors.Black,BindingMode.Default, propertyChanged: OnIconTintColorPropertyChanged);
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMRadioButton), Colors.Black, BindingMode.Default, propertyChanged: OnTextColorChanged);
 
         #endregion
 
@@ -120,11 +144,30 @@ namespace Trimble.Modus.Components
             _tapGesture.Tapped += OnTapGestureTapped;
             GestureRecognizers.Add(_tapGesture);
             Margin = new Thickness(0, 0, 5, 5);
+
+            Resources.Add(new RadioButtonStyles());
+            this.SetDynamicResource(StyleProperty, "RadioButtonStyle");
         }
 
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Update text color based on theme
+        /// </summary>
+        private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var buttonGroup = bindable as TMRadioButton;
+            buttonGroup._label.TextColor = (Color)newValue;
+        }
+
+        /// <summary>
+        /// Update Tint color based on theme
+        /// </summary>
+        private static void OnIconTintColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            (bindable as TMRadioButton).UpdateIconTintColor();
+        }
 
         /// <summary>
         /// Change dimension and font size based on size property
@@ -181,6 +224,7 @@ namespace Trimble.Modus.Components
             radioButton._icon.Source = radioButton.IsSelected
                 ? ImageSource.FromFile(ImageConstants.SelectedRadioButton)
                 : ImageSource.FromFile(ImageConstants.DefaultRadioButton);
+            radioButton.UpdateIconTintColor();
         }
 
         /// <summary>
@@ -204,6 +248,24 @@ namespace Trimble.Modus.Components
             _icon.IsEnabled = IsEnabled;
             _label.IsEnabled = IsEnabled;
             Opacity = IsEnabled ? 1 : 0.5;
+        }
+
+        private void UpdateIconTintColor()
+        {
+            // FIXME: IconTintColorBehavior doesn't work properly on Windows, hence the DeviceInfo.Platform != DevicePlatform.WinUI check. 
+            // Remove this check once the issue is fixed.
+            if (DeviceInfo.Platform != DevicePlatform.WinUI)
+            {
+                _icon.Behaviors.Clear();
+                if (IconTintColor != null)
+                {
+                    var behavior = new IconTintColorBehavior
+                    {
+                        TintColor = IconTintColor
+                    };
+                    _icon.Behaviors.Add(behavior);
+                }
+            }
         }
 
         public void Dispose()

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.Toast"
+                    x:Class="Trimble.Modus.Components.TMToastStyles">
+
+  <Style TargetType="local:TMToastContents" x:Key="Default">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastDefaultBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastDefaultTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastDefaultLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastDefaultRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="local:TMToastContents" x:Key="Dark">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastDarkBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastDarkTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastDarkLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastDarkRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="local:TMToastContents" x:Key="Primary">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastPrimaryBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastPrimaryTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastPrimaryLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastPrimaryRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="local:TMToastContents" x:Key="Secondary">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastSecondaryBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastSecondaryTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastSecondaryLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastSecondaryRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="local:TMToastContents" x:Key="Danger">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastDangerBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastDangerTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastDangerLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastDangerRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="local:TMToastContents" x:Key="Warning">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastWarningBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastWarningTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastWarningLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastWarningRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="local:TMToastContents" x:Key="Success">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastSuccessBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastSuccessTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastSuccessLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastSuccessRightIconTintColor}"/>
+  </Style>
+
+</ResourceDictionary>
+

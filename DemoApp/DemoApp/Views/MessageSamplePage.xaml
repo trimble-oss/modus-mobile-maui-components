@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modus="http://modus.trimble.com/components"
              x:Class="DemoApp.Views.MessageSamplePage"             
-             Title="MessageSamplePage">
+             Title="Message">
     <VerticalStackLayout Padding="8" Spacing="8">
       <modus:MessageView Message="{Binding Source={x:Reference messageInput}, Path=Text}"
                          IconSource="placeholder.png"

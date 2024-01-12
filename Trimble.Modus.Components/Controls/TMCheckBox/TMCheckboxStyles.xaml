@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                    x:Class="Trimble.Modus.Components.TMCheckBoxStyles">
+
+  <Style TargetType="local:TMCheckBox" x:Key="TMCheckBoxStyle">
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Default">
+            <VisualState.Setters>
+              <Setter Property="CheckBoxImage" Value="{DynamicResource DefaultCheckBoxImage}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Checked">
+            <VisualState.Setters>
+              <Setter Property="CheckBoxImage" Value="{DynamicResource CheckedCheckBoxImage}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <VisualState.Setters>
+              <Setter Property="CheckBoxImage" Value="{DynamicResource IndeterminateCheckBoxImage}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+</ResourceDictionary>
+
