@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.TopNavbar.TopNavbarMainSamplePage"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
+  <NavigationPage.TitleView>
+      <modus:TMTitleBar AllowSearch="{Binding AllowSearch}" Title="Title"/>
+  </NavigationPage.TitleView>
+    <VerticalStackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Allow Search" FontSize="Medium"/>
+        <modus:TMSwitch IsToggled="{Binding AllowSearch, Mode=TwoWay}"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Add right content" FontSize="Medium"/>
+        <modus:TMSwitch/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Add left content" FontSize="Medium"/>
+        <modus:TMSwitch/>
+      </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>
+

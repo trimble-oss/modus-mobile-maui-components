@@ -60,6 +60,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controls\TMTopNavbar\" />
+    <None Remove="Images\modus_hamburger_icon.svg" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath="" />
     <None Include="LICENSE.md" Pack="true" PackagePath="" />
   </ItemGroup>
@@ -200,5 +204,6 @@
   <ItemGroup>
     <Folder Include="Controls\Messages\" />
     <Folder Include="Controls\TMAlert\" />
+    <Folder Include="Controls\TMTopNavbar\" />
   </ItemGroup>
 </Project>

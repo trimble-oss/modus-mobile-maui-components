@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMTitleBar"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components"
+             VerticalOptions="Center"
+             x:Name="mainContentView">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Center">
+
+    <StackLayout x:Name="searchBarSpace" IsVisible="false" Orientation="Horizontal" HorizontalOptions="Fill" BindingContext="{x:Reference mainContentView }">
+        <modus:TMInput Placeholder="Search" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+          <modus:TMInput.LeftView>
+            <Image Source="search_icon.png" HeightRequest="20" WidthRequest="20" />
+          </modus:TMInput.LeftView>
+        </modus:TMInput>
+        <Image Source="black_close_icon.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="End">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="SearchBarCloseIconClicked"/>
+          </Image.GestureRecognizers>
+        </Image>
+    </StackLayout>
+
+    <StackLayout x:Name="mmbar" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BindingContext="{x:Reference mainContentView }">
+        <ContentView x:Name="leftContentView" BackgroundColor="Transparent" HorizontalOptions="Start" Content="{Binding LeftSideContent}" />
+        <Label Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" FontSize="20"/>
+        <Image x:Name="searchIcon" HeightRequest="30" WidthRequest="30" HorizontalOptions="EndAndExpand"  >
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Tapped="SearchIconClicked"/>
+          </Image.GestureRecognizers>
+        </Image>
+        <ContentView x:Name="rightContentView" BackgroundColor="Transparent" HorizontalOptions="End" Content="{Binding RightSideContent}" />
+    </StackLayout>
+  </StackLayout>
+</ContentView>
+
