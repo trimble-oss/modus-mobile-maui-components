@@ -240,5 +240,23 @@
   <Color x:Key="MessageViewPrimaryTextColor">#FFF</Color>
   <Color x:Key="MessageViewPrimaryBorderColor">#019AEB</Color>
   <Color x:Key="MessageViewSecondaryBorderColor">#6A6E79</Color>
-  
+
+  <!--Input-->
+  <Color x:Key="InputDefaultBorderColor">#464B52</Color>
+  <Color x:Key="InputPrimaryBorderColor">#019AEB</Color>
+  <Color x:Key="InputErrorBorderColor">#DA212C</Color>
+  <Color x:Key="InputSuccessBorderColor">#1E8A44</Color>
+  <Color x:Key="InputReadOnlyBorderColor">Transparent</Color>
+  <Color x:Key="InputDefaultHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputPrimaryHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputErrorHelperLayoutBackgroundColor">#DA212C</Color>
+  <Color x:Key="InputSuccessHelperLayoutBackgroundColor">#1E8A44</Color>
+  <Color x:Key="InputReadOnlyHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputTextColor">#FFFFFF</Color>
+  <Color x:Key="InputDefaultBackgroundColor">#171C1E</Color>
+  <Color x:Key="InputReadOnlyBackgroundColor">#353A40</Color>
+  <x:String x:Key="InputBlueInfoOutlineIcon">blue_info_outline_icon.png</x:String>
+  <x:String x:Key="InputErrorOutlineIcon">white_error_icon_outline.png</x:String>
+  <x:String x:Key="InputSuccessOutlineIcon">white_success_icon_outline.png</x:String>
+
 </ResourceDictionary>
