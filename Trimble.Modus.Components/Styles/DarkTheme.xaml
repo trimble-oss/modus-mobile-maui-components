@@ -73,6 +73,14 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Card-->
+  <Color x:Key="CardBackgroundColor">#6A6E79</Color>
+  <Color x:Key="CardStrokeColor">Transparent</Color>
+  <Color x:Key="CardSelectedBackgroundColor">#6A6E79</Color>
+  <Color x:Key="CardSelectedStrokeColor">#019aeb</Color>
+  <Color x:Key="CardShadowColor">#353a40</Color>
+  <Color x:Key="CardHoverBackgroundColor">#6A6E79</Color>
+
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
   <Color x:Key="DefaultChipSelectedBackgroundColor">#019AEB</Color>

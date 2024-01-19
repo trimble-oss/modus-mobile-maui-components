@@ -19,9 +19,9 @@
                Text="Selected"
                HorizontalOptions="Center"
                VerticalOptions="Center" />
-        <Switch Grid.Column="1"
-                x:Name="isSelected"
-                Toggled="IsSelectedToggled" />
+        <modus:TMSwitch Grid.Column="1"
+                        x:Name="isSelected"
+                        Toggled="IsSelectedToggled" />
       </Grid>
       <modus:TMCard x:Name="card1"
                     Clicked="Card1Clicked">
@@ -124,8 +124,7 @@
           <!-- Footer -->
           <StackLayout BackgroundColor="Transparent"
                        Padding="0,10,0,10">
-            <modus:TMButton Text="Button"
-                    HorizontalOptions="FillAndExpand" />
+            <modus:TMButton Text="Button" />
           </StackLayout>
         </StackLayout>
       </modus:TMCard>
@@ -203,7 +202,8 @@
           </StackLayout>
         </StackLayout>
       </modus:TMCard>
-      <modus:TMCard x:Name="card6" Padding="0">
+      <modus:TMCard x:Name="card6"
+                    Padding="0">
         <StackLayout>
           <!-- Header -->
           <StackLayout BackgroundColor="Transparent"
@@ -215,12 +215,12 @@
           </StackLayout>
 
           <!-- Content -->
-          
-            <Image Source="{x:Static constants:ImageConstants.IconPlaceHolder}"
-                     HorizontalOptions="FillAndExpand"
-                     VerticalOptions="FillAndExpand"
-                     Aspect="AspectFill" />
-          
+
+          <Image Source="{x:Static constants:ImageConstants.IconPlaceHolder}"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand"
+                 Aspect="AspectFill" />
+
 
 
           <!-- Footer -->
