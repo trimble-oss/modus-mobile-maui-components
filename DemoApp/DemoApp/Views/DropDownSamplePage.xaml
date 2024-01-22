@@ -9,9 +9,12 @@
     <Label Text="Equipment Type:"/>
     <modus:TMDropDown ItemsSource="{Binding DropdownSource}"
                       SelectedIndex="{Binding SelectedIndex}"
+                      SelectionChangedCommand="{Binding ItemSelectedCommand}"
                       WidthRequest="250"/>
     <Label Text="Color"/>
-    <modus:TMDropDown ItemsSource="{Binding ColorSource}" />
+    <modus:TMDropDown ItemsSource="{Binding ColorSource}"
+                      SelectedIndex="{Binding SelectedIndex}"
+                      SelectionChangedCommand="{Binding ItemSelectedCommand}"/>
 
   </StackLayout>
 </ContentPage>
