@@ -241,4 +241,13 @@
   <Color x:Key="MessageViewPrimaryBorderColor">#217CBB</Color>
   <Color x:Key="MessageViewSecondaryBorderColor">#353A40</Color>
 
+  <!--Dropdown-->
+  <Color x:Key="DropDownButtonBackgroundColor">#0063A3</Color>
+  <Color x:Key="DropDownCellSelectedBackgroundColor">#DCEDF9</Color>
+  <Color x:Key="DropDownCellDefaultBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="DropDownButtonTextColor">#FFFFFF</Color>
+  <Color x:Key="DropDownListStrokeColor">#217CBB</Color>
+  <Color x:Key="DropDownListBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="DropDownListTextColor">#353a40</Color>
+  
 </ResourceDictionary>

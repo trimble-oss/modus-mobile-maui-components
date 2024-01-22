@@ -1,3 +1,4 @@
+using Microsoft.Maui.Graphics.Text;
 using System.Collections;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
@@ -45,6 +46,22 @@ public partial class TMDropDown : ContentView
         get { return (int)GetValue(SelectedIndexProperty); }
         set { SetValue(SelectedIndexProperty, value); }
     }
+    public Color ButtonBackgroundColor
+    {
+        get { return (Color)GetValue(ButtonBackgroundColorProperty); }
+        set { SetValue(ButtonBackgroundColorProperty, value); }
+    }
+    public Color CellBackgroundColor
+    {
+        get { return (Color)GetValue(CellBackgroundColorProperty); }
+        set { SetValue(CellBackgroundColorProperty, value); }
+    }
+    public Color TextColor
+    {
+        get { return (Color)GetValue(TextColorProperty); }
+        set { SetValue(TextColorProperty, value); }
+    }
+
     #endregion
     #region Bindable Properties
     public static readonly BindableProperty SelectedIndexProperty =
@@ -58,6 +75,16 @@ public partial class TMDropDown : ContentView
 
     public static readonly BindableProperty SelectedItemsProperty =
         BindableProperty.Create(nameof(SelectedItems), typeof(List<object>), typeof(TMDropDown));
+
+    public static readonly BindableProperty ButtonBackgroundColorProperty =
+        BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(Color), typeof(TMDropDown),Colors.Blue, propertyChanged: OnButtonBackgroundColorChanged);
+
+    public static readonly BindableProperty CellBackgroundColorProperty =
+        BindableProperty.Create(nameof(CellBackgroundColor), typeof(Color), typeof(TMDropDown), Colors.Blue, propertyChanged: OnCellBackgroundColorChanged);
+
+    public static readonly BindableProperty TextColorProperty =
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMDropDown), Colors.Blue, propertyChanged: OnTextColorChanged);
+
     #endregion
     #region Constructor
     public TMDropDown()
@@ -69,6 +96,7 @@ public partial class TMDropDown : ContentView
         ContentLayout.GestureRecognizers.Add(tapGestureRecognizer);
         indicatorButton.GestureRecognizers.Add(tapGestureRecognizer);
         PopupService.Instance.Dismissed += OnPopupRemoved;
+        this.SetDynamicResource(StyleProperty, "DropDownStyle");
         //Content = innerBorder;
     }
     #endregion
@@ -185,6 +213,28 @@ public partial class TMDropDown : ContentView
             label.Text = items.Cast<object>().ElementAt(selectedIndex).ToString();
         }
     }
+    private static void OnButtonBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown)
+        {
+            dropDown.innerBorder.BackgroundColor = (Color)newValue;
+        }
+    }
+
+    private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown)
+        {
+            dropDown.label.TextColor = (Color)newValue;
+        }
+    }
+    private static void OnCellBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown)
+        {
+            dropDown.label.TextColor = (Color)newValue;
+        }
+    }
 
     private void UpdateListViewItemsSource(IEnumerable items)
     {
@@ -218,11 +268,13 @@ public partial class TMDropDown : ContentView
             {
                 if (SelectedItems.Contains(textCell.BindingContext))
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale), true);
+                    textCell.SetDynamicResource(DropDownViewCell.BackgroundColorProperty, "DropDownCellSelectedBackgroundColor");
+                    textCell.TextAttribute = true;
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White), false);
+                    textCell.SetDynamicResource(DropDownViewCell.BackgroundColorProperty, "DropDownCellDefaultBackgroundColor");
+                    textCell.TextAttribute = false;
                 }
             }
         }

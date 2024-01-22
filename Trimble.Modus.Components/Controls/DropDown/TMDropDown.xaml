@@ -4,12 +4,13 @@
              xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
              HorizontalOptions="Start"
              VerticalOptions="Start"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              x:Class="Trimble.Modus.Components.TMDropDown">
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
+        <local:TMDropDownStyles></local:TMDropDownStyles>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentView.Resources>
@@ -18,7 +19,6 @@
       MinimumWidthRequest="150"
       HorizontalOptions="Start"
       VerticalOptions="Center"
-      BackgroundColor="{x:StaticResource TrimbleBlue}"
       Padding="0">
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="4"/>

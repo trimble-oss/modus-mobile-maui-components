@@ -16,10 +16,10 @@
   <Border x:Name="border"
           VerticalOptions="Start"
           HorizontalOptions="Start"
-          Stroke="{StaticResource BlueLight}"
+          Stroke="{DynamicResource DropDownListStrokeColor}"
           StrokeThickness="4"
           Padding="8"
-          BackgroundColor="{StaticResource White}">
+          BackgroundColor="{DynamicResource DropDownListBackgroundColor}">
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="4" />
     </Border.StrokeShape>
