@@ -6,15 +6,10 @@
              xmlns:modus="clr-namespace:Trimble.Modus.Components"
              VerticalOptions="Center"
              x:Name="mainContentView">
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
-    </ResourceDictionary>
-  </ContentView.Resources>
   <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Center">
 
     <StackLayout x:Name="searchBarSpace" IsVisible="false" Orientation="Horizontal" HorizontalOptions="Fill" BindingContext="{x:Reference mainContentView }">
-        <modus:TMInput Placeholder="Search" HorizontalOptions="FillAndExpand" BackgroundColor="White">
+        <modus:TMInput x:Name="searchBar" Placeholder="Search" HorizontalOptions="FillAndExpand" BackgroundColor="White">
           <modus:TMInput.LeftView>
             <Image Source="search_icon.png" HeightRequest="20" WidthRequest="20" />
           </modus:TMInput.LeftView>

@@ -19,9 +19,9 @@ public partial class TMTitleBar : ContentView
         typeof(bool),
         typeof(TMTitleBar),
         propertyChanged: AllowSearchPropertyChanged);
-        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title),
-            typeof(string),
-            typeof(TMTitleBar));
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title),
+        typeof(string),
+        typeof(TMTitleBar));
     #endregion
 
     #region Public Properties
@@ -71,6 +71,9 @@ public partial class TMTitleBar : ContentView
         titleBar.searchIcon.IsVisible = (bool)newValue;
     }
 
+    /// <summary>
+    /// Animation to display search bar
+    /// </summary>
     void SearchIconClicked(System.Object sender, System.EventArgs e)
     {
         searchBarSpace.FadeTo(1, 300);
@@ -79,12 +82,23 @@ public partial class TMTitleBar : ContentView
         searchBarSpace.IsVisible = true;
     }
 
+    /// <summary>
+    /// Search bar close animation
+    /// </summary>
     void SearchBarCloseIconClicked(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
     {
         searchBarSpace.FadeTo(0, 300);
         mmbar.FadeTo(1, 300);
         mmbar.IsVisible = true;
         searchBarSpace.IsVisible = false;
+    }
+
+    /// <summary>
+    /// Expose SearchBar to user
+    /// </summary>
+    public TMInput GetSearchBar()
+    {
+        return searchBar;
     }
 }
 

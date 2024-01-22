@@ -19,8 +19,45 @@ namespace DemoApp.ViewModels
         [ObservableProperty]
         bool _allowSearch;
 
-        public TopNavbarMainPageViewModel()
+        [ObservableProperty]
+        bool _showRightContent;
+
+        [ObservableProperty]
+        bool _showLeftContent;
+
+        [ObservableProperty]
+        ContentView _rightContentView;
+
+        [ObservableProperty]
+        ContentView _leftContentView;
+
+        partial void OnShowRightContentChanged(bool oldValue, bool newValue)
         {
+            if(newValue)
+            {
+                var newContentView = new ContentView();
+                var newImage = new Image() { Source = "account_icon.png" };
+                newContentView.Content = newImage;
+                RightContentView = newContentView;
+            }
+            else
+            {
+                RightContentView = null;
+            }
+        }
+        partial void OnShowLeftContentChanged(bool oldValue, bool newValue)
+        {
+            if (newValue)
+            {
+                var newContentView = new ContentView();
+                var newImage = new Image() { Source = "contact_icon.png" };
+                newContentView.Content = newImage;
+                LeftContentView = newContentView;
+            }
+            else
+            {
+                LeftContentView = null;
+            }
         }
     }
 }

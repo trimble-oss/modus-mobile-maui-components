@@ -4,7 +4,11 @@
              x:Class="DemoApp.Views.TopNavbar.TopNavbarMainSamplePage"
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
   <NavigationPage.TitleView>
-      <modus:TMTitleBar AllowSearch="{Binding AllowSearch}" Title="Title"/>
+      <modus:TMTitleBar AllowSearch="{Binding AllowSearch}"
+                        Title="Title"
+                        x:Name="titleBar"
+                        RightSideContent="{Binding RightContentView}"
+                        LeftSideContent="{Binding LeftContentView}"/>
   </NavigationPage.TitleView>
     <VerticalStackLayout>
       <StackLayout Orientation="Horizontal">
@@ -13,11 +17,11 @@
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="Add right content" FontSize="Medium"/>
-        <modus:TMSwitch/>
+        <modus:TMSwitch IsToggled="{Binding ShowRightContent, Mode=TwoWay}"/>
       </StackLayout>
       <StackLayout Orientation="Horizontal">
         <Label Text="Add left content" FontSize="Medium"/>
-        <modus:TMSwitch/>
+        <modus:TMSwitch IsToggled="{Binding ShowLeftContent, Mode=TwoWay}"/>
       </StackLayout>
     </VerticalStackLayout>
 </ContentPage>
