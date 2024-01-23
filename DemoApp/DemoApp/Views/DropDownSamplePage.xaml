@@ -7,11 +7,14 @@
   <StackLayout HorizontalOptions="Start" Padding="10" Spacing="20">
 
     <Label Text="Equipment Type:"/>
-    <modus:TMDropDown ItemsSource="{Binding DropdownSource}"
-                      SelectedIndex="{Binding SelectedIndex}"
+    <modus:TMDropDown ItemsSource="{Binding EquipmentSource}"
+                      SelectedIndex="{Binding SelectedIndexOfEquipment}"
+                      SelectionChangedCommand="{Binding ItemSelectedCommand}"
                       WidthRequest="250"/>
     <Label Text="Color"/>
-    <modus:TMDropDown ItemsSource="{Binding ColorSource}" />
+    <modus:TMDropDown ItemsSource="{Binding ColorSource}"
+                      SelectedIndex="{Binding SelectedIndexOfColor}"
+                      SelectionChangedCommand="{Binding ItemSelectedCommand}"/>
 
   </StackLayout>
 </ContentPage>

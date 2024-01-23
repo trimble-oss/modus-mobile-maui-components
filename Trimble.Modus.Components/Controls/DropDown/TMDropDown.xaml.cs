@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Animations;
@@ -23,16 +24,19 @@ public partial class TMDropDown : ContentView
     private Thickness margin = new Thickness(0,98,0,0);
 #endif
     private uint AnimationDuration { get; set; } = 250;
+    private object previousSelection;
+
     #endregion
     #region Public Properties
+    public event EventHandler<DropDownSelectionChangedEventArgs> SelectionChanged;
     public IEnumerable ItemsSource
     {
         get { return (IEnumerable)GetValue(ItemsSourceProperty); }
         set { SetValue(ItemsSourceProperty, value); }
     }
-    public List<object> SelectedItems
+    public object SelectedItem
     {
-        get => (List<object>)GetValue(SelectedItemsProperty);
+        get => (object)GetValue(SelectedItemsProperty);
         set => SetValue(SelectedItemsProperty, value);
     }
     public new double WidthRequest
@@ -44,6 +48,11 @@ public partial class TMDropDown : ContentView
     {
         get { return (int)GetValue(SelectedIndexProperty); }
         set { SetValue(SelectedIndexProperty, value); }
+    }
+    public ICommand SelectionChangedCommand
+    {
+        get => (ICommand)GetValue(SelectionChangedCommandProperty);
+        set => SetValue(SelectionChangedCommandProperty, value);
     }
     #endregion
     #region Bindable Properties
@@ -57,12 +66,17 @@ public partial class TMDropDown : ContentView
         BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMDropDown), null, propertyChanged: OnItemsSourceChanged);
 
     public static readonly BindableProperty SelectedItemsProperty =
-        BindableProperty.Create(nameof(SelectedItems), typeof(List<object>), typeof(TMDropDown));
+        BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(TMDropDown));
+
+    public static readonly BindableProperty SelectionChangedCommandProperty =
+         BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(TMDropDown));
+
     #endregion
     #region Constructor
     public TMDropDown()
     {
-        SelectedItems = new List<object> { };
+        SelectedItem = new object { };
+        previousSelection = null;
         InitializeComponent();
         var tapGestureRecognizer = new TapGestureRecognizer();
         tapGestureRecognizer.Tapped += OnTapped;
@@ -75,10 +89,12 @@ public partial class TMDropDown : ContentView
     #region Private Methods
     private void OnSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        if (SelectedItems != null)
+        previousSelection = SelectedItem;
+
+        if (SelectedItem != null)
         {
-            SelectedItems.Clear();
-            SelectedItems.Add(e.SelectedItem);
+            SelectedItem = e.SelectedItem;
+            RaiseSelectionChangedEvent(previousSelection, e.SelectedItemIndex);
             UpdateCellColor((ListView)sender);
         }
         label.Text = e.SelectedItem.ToString();
@@ -154,7 +170,18 @@ public partial class TMDropDown : ContentView
     {
         Close();
     }
+    private void RaiseSelectionChangedEvent(object previousSelection, int index)
+    {
+        DropDownSelectionChangedEventArgs args = new DropDownSelectionChangedEventArgs
+        {
+            PreviousSelection = previousSelection,
+            CurrentSelection = SelectedItem,
+            SelectedIndex = index
+        };
 
+        SelectionChanged?.Invoke(this, args);
+        SelectionChangedCommand?.Execute(args);
+    }
     private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var dropDown = (TMDropDown)bindable;
@@ -216,7 +243,7 @@ public partial class TMDropDown : ContentView
         {
             if (item is DropDownViewCell textCell)
             {
-                if (SelectedItems.Contains(textCell.BindingContext))
+                if (SelectedItem == textCell.BindingContext)
                 {
                     textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale), true);
                 }
