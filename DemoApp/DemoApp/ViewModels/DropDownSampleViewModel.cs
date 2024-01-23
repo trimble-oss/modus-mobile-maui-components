@@ -14,16 +14,19 @@ namespace DemoApp.ViewModels
     public partial class DropDownSampleViewModel : ObservableObject
     {
         [ObservableProperty]
-        private int selectedIndex;
+        private int selectedIndexOfEquipment;
         [ObservableProperty]
-        private List<string> dropdownSource;
+        private int selectedIndexOfColor;
+        [ObservableProperty]
+        private List<string> equipmentSource;
         [ObservableProperty]
         public List<string> colorSource;
         public DropDownSampleViewModel()
         {
-            DropdownSource = new List<string>() { "Excavator", "Bulldozer", "Loader", "Grader", "Trencher", "Backhoe", "Compactors", "Crane" };
+            EquipmentSource = new List<string>() { "Excavator", "Bulldozer", "Loader", "Grader", "Trencher", "Backhoe", "Compactors", "Crane" };
             ColorSource = new List<string>() { "Red", "Yellow", "Black" };
-            SelectedIndex = 6; ;
+            selectedIndexOfEquipment = 6;
+            selectedIndexOfColor = 2;
         }
         [RelayCommand]
         private void ItemSelected(DropDownSelectionChangedEventArgs e)
