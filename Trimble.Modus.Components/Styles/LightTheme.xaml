@@ -203,6 +203,10 @@
   <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
   <Color x:Key="AccordionIconTintColor">#252A2E</Color>
 
+  <!--List-->
+  <Color x:Key="CellDefaultBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="CellSelectedBackgroundColor">#DCEDF9</Color>
+  
   <!--Checkbox-->
   <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
   <x:String x:Key="CheckedCheckBoxImage">checked_checkbox.png</x:String>

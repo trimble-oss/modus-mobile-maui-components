@@ -125,22 +125,22 @@ public partial class TMListView : ListView
             {
                 if (SelectableItems.Contains(textCell.BindingContext))
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale));
+                    textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White));
+                    textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
                 }
             }
             else if (item is TemplateCell templateCell)
             {
                 if (SelectableItems.Contains(templateCell.BindingContext))
                 {
-                    templateCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale));
+                    templateCell.SetDynamicResource(TemplateCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
                 }
                 else
                 {
-                    templateCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White));
+                    templateCell.SetDynamicResource(TemplateCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
                 }
             }
         }

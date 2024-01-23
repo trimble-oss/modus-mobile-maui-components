@@ -15,6 +15,9 @@ public partial class TextCell : ViewCell
     public static readonly BindableProperty DescriptionProperty =
         BindableProperty.Create(nameof(Description), typeof(string), typeof(TextCell), default(string));
 
+    public static readonly BindableProperty BackgrondColorProperty =
+       BindableProperty.Create(nameof(BackgrondColor), typeof(Color), typeof(TextCell), Colors.White,
+           propertyChanged: OnBackgroundColorChanged);   
 
     #endregion
     #region Public Fields
@@ -34,6 +37,11 @@ public partial class TextCell : ViewCell
         get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
+    public Color BackgrondColor
+    {
+        get => (Color)GetValue(BackgrondColorProperty);
+        set => SetValue(BackgrondColorProperty, value);
+    }
     public string Description
     {
         get => (string)GetValue(DescriptionProperty);
@@ -47,10 +55,14 @@ public partial class TextCell : ViewCell
         InitializeComponent();
     }
     #endregion
-    #region Internal Methods
-    internal void UpdateBackgroundColor(Color backgroundColor)
+    #region Private Methods
+    private static void OnBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        grid.BackgroundColor = backgroundColor;
+        if (bindable!=null && bindable is TextCell cell)
+        {
+            cell.grid.BackgroundColor = (Color)newValue;
+        }
     }
+
     #endregion
 }
