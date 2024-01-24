@@ -21,9 +21,56 @@ public partial class TMFlyoutPage : FlyoutPage
     public TMFlyoutPage()
     {
         InitializeComponent();
-        flyoutMenu.collectionView.SelectionChanged += OnSelectionChanged;
+        if(flyoutMenu != null && flyoutMenu.collectionView != null)
+            flyoutMenu.collectionView.SelectionChanged += OnSelectionChanged;
     }
 
+    /// <summary>
+    /// Find Titlebar and send reference to this flyout page to titlebar
+    /// </summary>
+    /// <param name="child"></param>
+    protected override void OnChildAdded(Element child)
+    {
+        base.OnChildAdded(child);
+        if(child is NavigationPage)
+        {
+            ContentPage contentPage = ((NavigationPage)child).CurrentPage as ContentPage;
+            var titleBar = FindTMTitleBar(contentPage.Content);
+            if(titleBar != null)
+                titleBar.flyoutPageReference = this;
+        }
+    }
+
+    /// <summary>
+    /// Fiind title bar among children
+    /// </summary>
+    private TMTitleBar FindTMTitleBar(Element element)
+    {
+        if (element is TMTitleBar titleBar)
+        {
+            return titleBar;
+        }
+
+        if (element is Layout layout)
+        {
+            foreach (var child in layout.Children)
+            {
+                var result = FindTMTitleBar((Element)child);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Navigate to page based on selection
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnSelectionChanged(object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
         var item = e.CurrentSelection.FirstOrDefault() as TMFlyoutMenuItem;

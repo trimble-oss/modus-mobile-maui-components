@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Controls.TMTopNavbar.TMTopNavbarStyles"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
+  <Style TargetType="local:TMTitleBar" x:Key="TitleBarPrimaryStyle">
+    <Setter Property="TitleBarBackgroundColor" Value="{DynamicResource TitleBarBackgroundPrimaryColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource TitleBarIconTintPrimaryColor}"/>
+    <Setter Property="SearchBarColor" Value="{DynamicResource SearchBarPrimaryColor}"/>
+    <Setter Property="SearchBarIconColor" Value="{DynamicResource SearchBarIconPrimaryColor}"/>
+  </Style>
+  <Style TargetType="local:TMTitleBar" x:Key="TitleBarSecondaryStyle">
+    <Setter Property="TitleBarBackgroundColor" Value="{DynamicResource TitleBarBackgroundColor}"/>
+    <Setter Property="IconTintColor" Value="{DynamicResource TitleBarIconTintSecondaryColor}"/>
+    <Setter Property="SearchBarColor" Value="{DynamicResource SearchBarSecondaryColor}"/>
+    <Setter Property="SearchBarIconColor" Value="{DynamicResource SearchBarIconSecondaryColor}"/>
+  </Style>
+</ResourceDictionary>
+

@@ -11,6 +11,7 @@
 // -------------------------------------------------------------------------
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
@@ -24,6 +25,12 @@ namespace DemoApp.ViewModels
 
         [ObservableProperty]
         bool _showLeftContent;
+
+        [ObservableProperty]
+        bool _toggleSecondaryTheme = false;
+
+        [ObservableProperty]
+        TopNavBarThemes _colorTheme = TopNavBarThemes.Primary;
 
         [ObservableProperty]
         ContentView _rightContentView;
@@ -57,6 +64,18 @@ namespace DemoApp.ViewModels
             else
             {
                 LeftContentView = null;
+            }
+        }
+
+        partial void OnToggleSecondaryThemeChanged(bool value)
+        {
+            if(value)
+            {
+                ColorTheme = TopNavBarThemes.Secondary;
+            }
+            else
+            {
+                ColorTheme = TopNavBarThemes.Primary;
             }
         }
     }
