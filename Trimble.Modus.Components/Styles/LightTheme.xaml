@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trimble.Modus.Components.Styles.LightTheme">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Styles.LightTheme">
 
   <Color x:Key="Blue">#0063a3</Color>
   <Color x:Key="DarkBlue">#004f83</Color>
@@ -73,6 +73,14 @@
   <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Card-->
+  <Color x:Key="CardBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="CardStrokeColor">Transparent</Color>
+  <Color x:Key="CardSelectedBackgroundColor">#DCEDF9</Color>
+  <Color x:Key="CardSelectedStrokeColor">#0E416C</Color>
+  <Color x:Key="CardShadowColor">#353a40</Color>
+  <Color x:Key="CardHoverBackgroundColor">#cbcdd6</Color>
+  
   <!--Chip-->
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
@@ -195,6 +203,10 @@
   <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
   <Color x:Key="AccordionIconTintColor">#252A2E</Color>
 
+  <!--List-->
+  <Color x:Key="CellDefaultBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="CellSelectedBackgroundColor">#DCEDF9</Color>
+  
   <!--Checkbox-->
   <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
   <x:String x:Key="CheckedCheckBoxImage">checked_checkbox.png</x:String>
@@ -250,4 +262,24 @@
   <Color x:Key="SearchBarSecondaryColor">#FFF</Color>
   <Color x:Key="SearchBarIconPrimaryColor">#90939F</Color>
   <Color x:Key="SearchBarIconSecondaryColor">#90939F</Color>
+  
+  <!--Input-->
+  <Color x:Key="InputDefaultBorderColor">#464B52</Color>
+  <Color x:Key="InputPrimaryBorderColor">#217CBB</Color>
+  <Color x:Key="InputErrorBorderColor">#DA212C</Color>
+  <Color x:Key="InputSuccessBorderColor">#006638</Color>
+  <Color x:Key="InputDefaultHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputPrimaryHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputErrorHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputSuccessHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputReadOnlyHelperLayoutBackgroundColor">Transparent</Color>
+
+  <Color x:Key="InputReadOnlyBorderColor">Transparent</Color>
+  <Color x:Key="InputTextColor">#252A2E</Color>
+  <Color x:Key="InputDefaultBackgroundColor">#FFFFFF</Color>
+  <Color x:Key="InputReadOnlyBackgroundColor">#E0E1E9</Color>
+  <x:String x:Key="InputBlueInfoOutlineIcon">blue_info_outline_icon.png</x:String>
+  <x:String x:Key="InputErrorOutlineIcon">error_icon_outline.png</x:String>
+  <x:String x:Key="InputSuccessOutlineIcon">success_icon_outline.png</x:String>
+
 </ResourceDictionary>

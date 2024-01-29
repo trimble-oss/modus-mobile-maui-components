@@ -93,13 +93,16 @@
       <DependentUpon>TMBadgeStyles.xaml</DependentUpon>
     </Compile>
     <Compile Update="Controls\TMCard\TMCard.xaml.cs">
-      <DependentUpon>asas.xaml</DependentUpon>
+      <DependentUpon>TMCard.xaml</DependentUpon>
     </Compile>
     <Compile Update="Controls\TMChips\TMChipStyles.xaml.cs">
       <DependentUpon>TMChipStyles.xaml</DependentUpon>
     </Compile>
     <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
       <DependentUpon>TextColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\TMInput\TMInputStyles.xaml.cs">
+      <DependentUpon>TMInputStyles.xaml</DependentUpon>
     </Compile>
     <Compile Update="Controls\TMInput\TMInput.xaml.cs">
       <DependentUpon>TMInput.xaml</DependentUpon>
@@ -128,7 +131,13 @@
     <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Controls\TMCard\TMCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Controls\TMCheckBox\TMCheckBoxStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\TMInput\TMInputStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">

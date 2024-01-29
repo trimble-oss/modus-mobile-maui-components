@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                    x:Class="Trimble.Modus.Components.TMCardStyles">
+
+  <Style TargetType="local:TMCard" x:Key="CardStyles">
+    <Setter Property="Shadow" Value="{DynamicResource CardShadowColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource CardBackgroundColor}"/>
+              <Setter Property="StrokeColor" Value="{DynamicResource CardStrokeColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Selected">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource CardSelectedBackgroundColor}"/>
+              <Setter Property="StrokeColor" Value="{DynamicResource CardSelectedStrokeColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+  
+</ResourceDictionary>
+

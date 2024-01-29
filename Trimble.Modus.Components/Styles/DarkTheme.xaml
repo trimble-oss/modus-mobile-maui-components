@@ -73,6 +73,14 @@
   <Color x:Key="BadgeAlternateTextColor">#252A2E</Color>
   <Color x:Key="BadgeTextColor">#FFFFFF</Color>
 
+  <!--Card-->
+  <Color x:Key="CardBackgroundColor">#6A6E79</Color>
+  <Color x:Key="CardStrokeColor">Transparent</Color>
+  <Color x:Key="CardSelectedBackgroundColor">#6A6E79</Color>
+  <Color x:Key="CardSelectedStrokeColor">#019aeb</Color>
+  <Color x:Key="CardShadowColor">#353a40</Color>
+  <Color x:Key="CardHoverBackgroundColor">#6A6E79</Color>
+
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
   <Color x:Key="DefaultChipSelectedBackgroundColor">#019AEB</Color>
@@ -194,6 +202,10 @@
   <Color x:Key="AccordionTitleColor">#FFF</Color>
   <Color x:Key="AccordionSubtitleColor">#B7B9C3</Color>
   <Color x:Key="AccordionIconTintColor">#FFF</Color>
+
+  <!--List-->
+  <Color x:Key="CellDefaultBackgroundColor">#171C1E</Color>
+  <Color x:Key="CellSelectedBackgroundColor">#4D019AEB</Color>
   
   <!--Checkbox-->
   <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox_dark.png</x:String>
@@ -250,4 +262,23 @@
   <Color x:Key="SearchBarSecondaryColor">#464B52</Color>
   <Color x:Key="SearchBarIconPrimaryColor">#90939F</Color>
   <Color x:Key="SearchBarIconSecondaryColor">#B7B9C3</Color>
+  
+  <!--Input-->
+  <Color x:Key="InputDefaultBorderColor">#464B52</Color>
+  <Color x:Key="InputPrimaryBorderColor">#019AEB</Color>
+  <Color x:Key="InputErrorBorderColor">#DA212C</Color>
+  <Color x:Key="InputSuccessBorderColor">#1E8A44</Color>
+  <Color x:Key="InputReadOnlyBorderColor">Transparent</Color>
+  <Color x:Key="InputDefaultHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputPrimaryHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputErrorHelperLayoutBackgroundColor">#DA212C</Color>
+  <Color x:Key="InputSuccessHelperLayoutBackgroundColor">#1E8A44</Color>
+  <Color x:Key="InputReadOnlyHelperLayoutBackgroundColor">Transparent</Color>
+  <Color x:Key="InputTextColor">#FFFFFF</Color>
+  <Color x:Key="InputDefaultBackgroundColor">#171C1E</Color>
+  <Color x:Key="InputReadOnlyBackgroundColor">#353A40</Color>
+  <x:String x:Key="InputBlueInfoOutlineIcon">blue_info_outline_icon.png</x:String>
+  <x:String x:Key="InputErrorOutlineIcon">white_error_icon_outline.png</x:String>
+  <x:String x:Key="InputSuccessOutlineIcon">white_success_icon_outline.png</x:String>
+
 </ResourceDictionary>
