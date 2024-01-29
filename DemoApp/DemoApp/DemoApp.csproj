@@ -83,6 +83,7 @@
 	  <None Remove="Resources\Images\search_icon.svg" />
 	  <None Remove="Views\TabViewItems\" />
 	  <None Remove="Helpers\" />
+	  <None Remove="Views\TopNavbar\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -237,5 +238,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
+	  <Folder Include="Views\TopNavbar\" />
 	</ItemGroup>
 </Project>

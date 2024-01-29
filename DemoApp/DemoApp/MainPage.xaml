@@ -4,7 +4,6 @@
              xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              Title="Controls Page"
              x:Class="DemoApp.MainPage">
-
   <modus:TMListView ItemsSource="{Binding ControlNames}"
                     ItemTapped="ItemTapped">
     <modus:TMListView.ItemTemplate>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.TopNavbar.TopNavbarMainSamplePage"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components" xmlns:viewmodels="clr-namespace:DemoApp.ViewModels"
+             x:DataType="viewmodels:TopNavbarMainPageViewModel"
+             NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout>
+      <modus:TMTitleBar AllowSearch="{Binding AllowSearch}"
+                        Title="Title"
+                        x:Name="titleBar"
+                        RightSideContent="{Binding RightContentView}"
+                        LeftSideContent="{Binding LeftContentView}"
+                        TopNavBarTheme="{Binding ColorTheme}"/>
+      <VerticalStackLayout Spacing="10" Margin="10">
+          <StackLayout Orientation="Horizontal" Spacing="4">
+              <Label Text="Allow Search" FontSize="Medium" VerticalOptions="Center" />
+              <modus:TMSwitch IsToggled="{Binding AllowSearch, Mode=TwoWay}" VerticalOptions="Center" />
+          </StackLayout>
+
+          <StackLayout Orientation="Horizontal" Spacing="4">
+              <Label Text="Add Right Content" FontSize="Medium" VerticalOptions="Center" />
+              <modus:TMSwitch IsToggled="{Binding ShowRightContent, Mode=TwoWay}" VerticalOptions="Center" />
+          </StackLayout>
+
+          <StackLayout Orientation="Horizontal" Spacing="4">
+              <Label Text="Add Left Content" FontSize="Medium" VerticalOptions="Center" />
+              <modus:TMSwitch IsToggled="{Binding ShowLeftContent, Mode=TwoWay}" VerticalOptions="Center" />
+          </StackLayout>
+
+          <StackLayout Orientation="Horizontal" Spacing="4">
+              <Label Text="Use Secondary Theme" FontSize="Medium" VerticalOptions="Center" />
+              <modus:TMSwitch IsToggled="{Binding ToggleSecondaryTheme, Mode=TwoWay}" VerticalOptions="Center" />
+          </StackLayout>
+      </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
+

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.Styles.DarkTheme">
@@ -253,6 +253,16 @@
   <Color x:Key="MessageViewPrimaryBorderColor">#019AEB</Color>
   <Color x:Key="MessageViewSecondaryBorderColor">#6A6E79</Color>
 
+  <!--Top nav bar-->
+  <Color x:Key="TitleBarBackgroundPrimaryColor">#004f83</Color>
+  <Color x:Key="TitleBarBackgroundColor">#171C1E</Color>
+  <Color x:Key="TitleBarIconTintPrimaryColor">#FFF</Color>
+  <Color x:Key="TitleBarIconTintSecondaryColor">#FFF</Color>
+  <Color x:Key="SearchBarPrimaryColor">#FFF</Color>
+  <Color x:Key="SearchBarSecondaryColor">#464B52</Color>
+  <Color x:Key="SearchBarIconPrimaryColor">#90939F</Color>
+  <Color x:Key="SearchBarIconSecondaryColor">#B7B9C3</Color>
+  
   <!--Input-->
   <Color x:Key="InputDefaultBorderColor">#464B52</Color>
   <Color x:Key="InputPrimaryBorderColor">#019AEB</Color>

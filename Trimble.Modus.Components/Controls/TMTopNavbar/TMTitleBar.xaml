@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMTitleBar"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMTopNavbar"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components"
+             VerticalOptions="Center"
+             x:Name="mainContentView">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMTopNavbarStyles/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="64">
+    <StackLayout x:Name="searchBarSpace" IsVisible="false" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BindingContext="{x:Reference mainContentView }">
+      <Border StrokeShape="RoundRectangle 10" StrokeThickness="1" HorizontalOptions="FillAndExpand" Margin="10,10,10,12" Padding="0" >
+          <modus:TMInput x:Name="searchBar" Placeholder="Search" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding SearchBarColor, Source={Reference mainContentView}}" Margin="-2,0,-2,0" Padding="0">
+            <modus:TMInput.LeftView>
+              <Image Source="search_icon.png" x:Name="searchBarIcon" HeightRequest="20" WidthRequest="20" Margin="2,0,0,0" />
+            </modus:TMInput.LeftView>
+          </modus:TMInput>
+      </Border>
+          <Image x:Name="closeIcon" Source="black_close_icon.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="End" Margin="12">
+            <Image.GestureRecognizers>
+              <TapGestureRecognizer Tapped="SearchBarCloseIconClicked"/>
+            </Image.GestureRecognizers>
+          </Image>
+    </StackLayout>
+
+    <Grid x:Name="mmbar" ColumnSpacing="4" HorizontalOptions="FillAndExpand" VerticalOptions="Center" BindingContext="{x:Reference mainContentView }">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      <Image Source="modus_hamburger_icon.png" Grid.Column="0" x:Name="hamburgerIcon" HeightRequest="36" WidthRequest="36" Margin="8" VerticalOptions="Center">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Tapped="ShowFlyoutMenu"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <ContentView x:Name="leftContentView" Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="Start" Content="{Binding LeftSideContent}"/>
+      <Label Text="{Binding Title}" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{Binding IconTintColor, Source={Reference mainContentView}}" FontSize="20"/>
+      <Image x:Name="searchIcon" HeightRequest="24" Grid.Column="3" WidthRequest="24" HorizontalOptions="End" Margin="8,12">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Tapped="SearchIconClicked"/>
+        </Image.GestureRecognizers>
+      </Image>
+      <ContentView x:Name="rightContentView" Grid.Column="4" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Content="{Binding RightSideContent}" Margin="0,8,8,8"/>
+    </Grid>
+  </StackLayout>
+</ContentView>
+
