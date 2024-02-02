@@ -4,7 +4,7 @@ internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
 {
     public LabelHandler()
     {
-#if WINDOWS
+#if !WINDOWS
         Label.ControlsLabelMapper.AppendToMapping(
           nameof(Label.LineBreakMode), UpdateMaxLines);
 
