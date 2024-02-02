@@ -4,11 +4,13 @@ internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
 {
     public LabelHandler()
     {
+#if WINDOWS
         Label.ControlsLabelMapper.AppendToMapping(
           nameof(Label.LineBreakMode), UpdateMaxLines);
 
         Label.ControlsLabelMapper.AppendToMapping(
           nameof(Label.MaxLines), UpdateMaxLines);
+#endif
     }
     static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
     {
