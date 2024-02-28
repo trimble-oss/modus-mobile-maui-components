@@ -27,6 +27,7 @@ internal partial class EntryHandler : Microsoft.Maui.Handlers.EntryHandler
         
             entryHandler.PlatformView.BorderBrush = null;
             entryHandler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+            entryHandler.PlatformView.Padding = new Microsoft.UI.Xaml.Thickness(0);
 #endif
         }
     }

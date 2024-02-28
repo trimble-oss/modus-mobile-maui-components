@@ -29,7 +29,8 @@
       </HorizontalStackLayout>
       <Border x:Name="inputBorder"
               VerticalOptions="FillAndExpand"
-              Grid.Row="1">
+              Grid.Row="1"
+              Padding="0">
         <Border.StrokeShape>
           <Rectangle RadiusX="4"
                      RadiusY="4" />
