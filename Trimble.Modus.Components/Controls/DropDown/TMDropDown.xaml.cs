@@ -80,8 +80,7 @@ public partial class TMDropDown : ContentView
         InitializeComponent();
         var tapGestureRecognizer = new TapGestureRecognizer();
         tapGestureRecognizer.Tapped += OnTapped;
-        ContentLayout.GestureRecognizers.Add(tapGestureRecognizer);
-        indicatorButton.GestureRecognizers.Add(tapGestureRecognizer);
+        innerBorder.GestureRecognizers.Add(tapGestureRecognizer);
         PopupService.Instance.Dismissed += OnPopupRemoved;
         //Content = innerBorder;
     }
