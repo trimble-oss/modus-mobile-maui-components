@@ -52,7 +52,7 @@ public partial class TMListView : ListView
     {
         HasUnevenRows = true;
         ItemTapped += ListViewItemTapped;
-        (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.None);  
+        (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.Single);  
         SelectableItems = new List<object> { };
     }
     #endregion

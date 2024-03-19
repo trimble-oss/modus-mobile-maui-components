@@ -5,6 +5,9 @@
     xmlns:maui="using:Microsoft.Maui"
     xmlns:local="using:DemoApp.WinUI">
     <maui:MauiWinUIApplication.Resources>
+        <StaticResource x:Key="ListViewItemBackgroundSelectedPointerOver" ResourceKey="ListViewItemBackgroundColor" />
+        <StaticResource x:Key="ListViewItemBackgroundSelected" ResourceKey="ListViewItemBackgroundColor" />
+        <SolidColorBrush x:Key="ListViewItemBackgroundColor"  Color="#DCEDF9" />
         <Thickness x:Key="TextControlBorderThemeThickness">0</Thickness>
         <Thickness x:Key="TextControlBorderThemeThicknessFocused">0</Thickness>
     </maui:MauiWinUIApplication.Resources>
