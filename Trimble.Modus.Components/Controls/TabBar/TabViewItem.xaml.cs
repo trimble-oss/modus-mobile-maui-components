@@ -19,7 +19,7 @@ public partial class TabViewItem : ContentView
         BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(TabViewItem), null);
 
     public static readonly BindableProperty ContentViewProperty =
-        BindableProperty.Create(nameof(ContentPage), typeof(View), typeof(TabViewItem));
+        BindableProperty.Create(nameof(ContentView), typeof(View), typeof(TabViewItem));
 
     public static readonly BindableProperty IsSelectedProperty =
         BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TabViewItem), false, propertyChanged: OnIsSelectedChanged);

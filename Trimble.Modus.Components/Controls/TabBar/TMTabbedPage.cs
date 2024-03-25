@@ -13,6 +13,7 @@ public partial class TMTabbedPage : ContentPage
     private Grid mainContainer;
     private Grid tabStripContainer;
     private CarouselView contentContainer;
+    private ContentView contentViewContainer;
     private ObservableCollection<TabViewItem>? contentTabItems;
     #endregion
     #region Public Fields
@@ -63,24 +64,6 @@ public partial class TMTabbedPage : ContentPage
     {
         InitializeComponent();
 
-        contentContainer = new CarouselView
-        {
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight),
-            ItemsSource = TabItems,
-            ItemTemplate = new DataTemplate(() =>
-            {
-                var contentView = new ContentView();
-                contentView.SetBinding(ContentView.ContentProperty, "ContentView");
-                return contentView;
-            }),
-            IsSwipeEnabled = true,
-            IsScrollAnimated = true,
-            Loop = false,
-            HorizontalScrollBarVisibility = ScrollBarVisibility.Never,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Never,
-
-        };
-
         tabStripContainer = new Grid
         {
             BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue),
@@ -89,25 +72,58 @@ public partial class TMTabbedPage : ContentPage
         };
 
         mainContainer = new Grid
-        {   
+        {
             BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red),
-            HorizontalOptions = LayoutOptions.FillAndExpand,
-            VerticalOptions = LayoutOptions.FillAndExpand,
-            Children = { contentContainer, tabStripContainer },
             RowSpacing = 0
         };
 
         mainContainer.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
         mainContainer.RowDefinitions.Add(new RowDefinition { Height = 70 });
 
-        Grid.SetRow(contentContainer, 0);
+        // TODO: Having issue with caursel view. So fixed the tabbed page to work with content view.
+        var isCurrentDevicePlatformIsWindows = DeviceInfo.Current.Platform == DevicePlatform.WinUI;
+        if (isCurrentDevicePlatformIsWindows)
+        {
+            contentViewContainer = new ContentView
+            {
+                BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight)
+            };
+            Grid.SetRow(contentViewContainer, 0);
+            mainContainer.Children.Add(contentViewContainer);
+        }
+        else
+        {
+            contentContainer = new CarouselView
+            {
+                BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight),
+                ItemsSource = TabItems,
+                ItemTemplate = new DataTemplate(() =>
+                {
+                    var contentView = new ContentView();
+                    contentView.SetBinding(ContentView.ContentProperty, "ContentView");
+                    return contentView;
+                }),
+                IsSwipeEnabled = true,
+                IsScrollAnimated = true,
+                Loop = false,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Never,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Never,
+
+            };
+
+            contentContainer.PropertyChanged += OnContentContainerPropertyChanged;
+            contentContainer.Scrolled += OnContentContainerScrolled;
+            Grid.SetRow(contentContainer, 0);
+            mainContainer.Children.Add(contentContainer);
+        }
+
+        mainContainer.Children.Add(tabStripContainer);
         Grid.SetRow(tabStripContainer, 1);
 
         Content = mainContainer;
 
         TabItems.CollectionChanged += TabItems_CollectionChanged;
-        contentContainer.PropertyChanged += OnContentContainerPropertyChanged;
-        contentContainer.Scrolled += OnContentContainerScrolled;
+
 
     }
     #endregion
@@ -123,7 +139,7 @@ public partial class TMTabbedPage : ContentPage
                 return;
             }
             if ((int)oldValue != selectedIndex)
-                tabView.UpdateSelectedIndex(selectedIndex);
+                tabView.UpdateSelectedIndex((int)oldValue, selectedIndex);
         }
     }
     private static void OnTabColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -160,7 +176,7 @@ public partial class TMTabbedPage : ContentPage
             var selectedIndex = contentContainer.Position;
             if (SelectedIndex != selectedIndex)
             {
-                UpdateSelectedIndex(selectedIndex, true);
+                SelectedIndex = selectedIndex;
             }
         }
     }
@@ -187,7 +203,7 @@ public partial class TMTabbedPage : ContentPage
         }
     }
 
-   private void AddTabViewItem(TabViewItem item, int index = -1)
+    private void AddTabViewItem(TabViewItem tabViewItem, int index = -1)
     {
         var tabItem = new Grid()
         {
@@ -211,12 +227,12 @@ public partial class TMTabbedPage : ContentPage
         {
             Width = GridLength.Star
         });
-        item.TabColor = TabColor;
-        item.Orientation = Orientation;
-        tabStripContainer.Add(item, index, 0);
-        AddSelectionTapRecognizer(item);
-        if (SelectedIndex != 0)
-            UpdateSelectedIndex(0);
+        tabViewItem.TabColor = TabColor;
+        tabViewItem.Orientation = Orientation;
+        tabStripContainer.Add(tabViewItem, index, 0);
+        AddSelectionTapRecognizer(tabViewItem);
+        if (SelectedIndex < 0)
+            SelectedIndex = 0;
     }
     private void AddSelectionTapRecognizer(View view)
     {
@@ -237,9 +253,9 @@ public partial class TMTabbedPage : ContentPage
             if (CanUpdateSelectedIndex(capturedIndex))
             {
                 if (SelectedIndex != capturedIndex)
-                    UpdateSelectedIndex(capturedIndex);
+                    SelectedIndex = capturedIndex;
             }
-       
+
         };
 
         view.GestureRecognizers.Add(tapGestureRecognizer);
@@ -262,41 +278,32 @@ public partial class TMTabbedPage : ContentPage
         return true;
     }
 
-    private void UpdateSelectedIndex(int position, bool hasCurrentItem = false)
+    private void UpdateSelectedIndex(int oldValue, int newValue)
     {
-        if (position < 0)
-            return;
-        var oldposition = SelectedIndex;
-
-        var newPosition = position;
-
         MainThread.BeginInvokeOnMainThread(() =>
         {
             if (contentTabItems == null || contentTabItems.Count != TabItems.Count)
                 contentTabItems = new ObservableCollection<TabViewItem>(TabItems.Where(t => t.Content != null));
 
-            var contentIndex = position;
-            var tabStripIndex = position;
-
+            //var contentIndex = newValue;
+            //var tabStripIndex = newValue;
+            //TabViewItem? currentitem = null;
+            //TabViewItem? tabViewItem = null;
             if (TabItems.Count > 0)
             {
-                TabViewItem? currentItem = null;
 
-                if (hasCurrentItem)
-                    currentItem = (TabViewItem)contentContainer.CurrentItem;
+                //tabViewItem = TabItems[newValue];
 
-                var tabViewItem = TabItems[position];
+                //contentIndex = contentTabItems.IndexOf(tabViewItem);
+                //tabStripIndex = TabItems.IndexOf(tabViewItem);
 
-                contentIndex = contentTabItems.IndexOf(tabViewItem);
-                tabStripIndex = TabItems.IndexOf(tabViewItem);
-
-                position = tabStripIndex;
+                //newValue = tabStripIndex;
 
                 for (var index = 0; index < TabItems.Count; index++)
                 {
-                    if (index == position)
+                    if (index == newValue)
                     {
-                        TabItems[position].IsSelected = true;
+                        TabItems[newValue].IsSelected = true;
                     }
                     else
                     {
@@ -304,20 +311,26 @@ public partial class TMTabbedPage : ContentPage
                     }
                 }
             }
-            
-            if (contentIndex >= 0)
-                contentContainer.Position = contentIndex;
 
-            if (tabStripContainer.Children.Count > 0)
-                contentContainer.ScrollTo(tabStripIndex, 1, ScrollToPosition.MakeVisible, false);
+            // TODO: Having issue with caursel view. So fixed the tabbed page to work with content view.
+            if (contentViewContainer != null)
+            {
+                contentViewContainer.Content = TabItems[newValue].ContentView;
+            }
+            if (contentContainer != null)
+            {
+                if (tabStripContainer.Children.Count > 0)
+                    contentContainer.ScrollTo(newValue, 1, ScrollToPosition.MakeVisible, false);
 
-            SelectedIndex = position;
-            if (oldposition != SelectedIndex)
+                    contentContainer.Position = newValue;
+            }
+
+            if (oldValue != SelectedIndex)
             {
                 var selectionChangedArgs = new TabSelectionChangedEventArgs()
                 {
-                    NewPosition = newPosition,
-                    OldPosition = oldposition
+                    NewPosition = newValue,
+                    OldPosition = oldValue
                 };
 
                 OnTabSelectionChanged(selectionChangedArgs);
