@@ -13,7 +13,7 @@ public partial class TabViewItem : ContentView
     #endregion
     #region Bindable Properties
     public static readonly BindableProperty TabColorProperty =
-        BindableProperty.Create(nameof(TabColor), typeof(TabColor), typeof(TabViewItem), TabColor.Primary, propertyChanged: OnTabColorChanged);
+        BindableProperty.Create(nameof(TabColor), typeof(TabColor), typeof(TabViewItem), TabColor.Primary);
 
     public static readonly BindableProperty TapCommandProperty =
         BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(TabViewItem), null);
@@ -41,7 +41,7 @@ public partial class TabViewItem : ContentView
 
     public static readonly BindableProperty CurrentContentProperty = CurrentContentPropertyKey.BindableProperty;
 
-    
+
     internal static readonly BindablePropertyKey CurrentTextColorPropertyKey =
         BindableProperty.CreateReadOnly(nameof(CurrentTextColor), typeof(Color), typeof(TabViewItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9));
 
@@ -120,50 +120,32 @@ public partial class TabViewItem : ContentView
     {
         InitializeComponent();
         BindingContext = this;
+        UpdateTabColor();
+        tabItem.Orientation = Orientation;
 
     }
     #endregion
     #region Private Methods
-    private void UpdateCurrent()
+
+    private void UpdateTabColor()
     {
-        icon.Behaviors.Clear();
-        var iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+        var trimbleBlueColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+        var selectedColor = trimbleBlueColor;
         if (TabColor == TabColor.Primary)
         {
-            iconColor = IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue) : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-            CurrentTextColor = IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue) : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            selectedColor = IsSelected ? trimbleBlueColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
         }
-        else
-        {
-            iconColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-            CurrentTextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+        text.TextColor = selectedColor;
+        icon.Behaviors.Clear();
+        icon.Behaviors.Add(new IconTintColorBehavior { TintColor = selectedColor });
 
-        }
-        var behavior = new IconTintColorBehavior
-        {
-            TintColor = iconColor
-        };
-        tabItem.Orientation = Orientation;
-        icon.Behaviors.Add(behavior);
-        text.TextColor = CurrentTextColor;
         selectedBorder.BackgroundColor = !IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent) : ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-        UpdateCurrentContent();
     }
     private static void OnTabViewItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        (bindable as TabViewItem)?.UpdateCurrent();
+        (bindable as TabViewItem)?.UpdateCurrentContent();
     }
-    private static void OnTabColorChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable != null && bindable is TabViewItem item)
-        {
-            if (newValue is TabColor)
-            {
-                item.UpdateCurrent();
-            }
 
-        }
-    }
     private static void OnOrientationPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable != null && bindable is TabViewItem item)
@@ -185,7 +167,7 @@ public partial class TabViewItem : ContentView
     {
         if (bindable is TabViewItem tabViewItem)
         {
-            tabViewItem.UpdateCurrent();
+            tabViewItem.UpdateTabColor();
         }
     }
 
