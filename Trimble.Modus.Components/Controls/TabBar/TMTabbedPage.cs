@@ -103,8 +103,9 @@ public partial class TMTabbedPage : ContentPage
                     contentView.SetBinding(ContentView.ContentProperty, "ContentView");
                     return contentView;
                 }),
-                IsSwipeEnabled = true,
-                IsScrollAnimated = true,
+                // TODO: Disbaled Swipe and Scroll animation. While scrolling tabs updating wrong content.
+                IsSwipeEnabled = false,
+                IsScrollAnimated = false,
                 Loop = false,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Never,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Never,
@@ -112,7 +113,8 @@ public partial class TMTabbedPage : ContentPage
             };
 
             contentContainer.PropertyChanged += OnContentContainerPropertyChanged;
-            contentContainer.Scrolled += OnContentContainerScrolled;
+            // TODO: Disbaled Swipe and Scroll animation. While scrolling tabs updating wrong content.
+            //contentContainer.Scrolled += OnContentContainerScrolled;
             Grid.SetRow(contentContainer, 0);
             mainContainer.Children.Add(contentContainer);
         }
@@ -285,19 +287,10 @@ public partial class TMTabbedPage : ContentPage
             if (contentTabItems == null || contentTabItems.Count != TabItems.Count)
                 contentTabItems = new ObservableCollection<TabViewItem>(TabItems.Where(t => t.Content != null));
 
-            //var contentIndex = newValue;
-            //var tabStripIndex = newValue;
-            //TabViewItem? currentitem = null;
-            //TabViewItem? tabViewItem = null;
             if (TabItems.Count > 0)
             {
 
-                //tabViewItem = TabItems[newValue];
-
-                //contentIndex = contentTabItems.IndexOf(tabViewItem);
-                //tabStripIndex = TabItems.IndexOf(tabViewItem);
-
-                //newValue = tabStripIndex;
+              
 
                 for (var index = 0; index < TabItems.Count; index++)
                 {
