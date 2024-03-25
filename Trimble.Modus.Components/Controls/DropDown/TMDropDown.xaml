@@ -26,8 +26,8 @@
     <StackLayout x:Name="ContentLayout"
                  Orientation="Horizontal"
                  HeightRequest="48"
-                 Padding="8,0"
-                 HorizontalOptions="Center"
+                 Padding="12,0"
+                 HorizontalOptions="Fill"
                  VerticalOptions="Center">
       <Label x:Name="label"
              Text="DropDown"
@@ -39,7 +39,7 @@
       <StackLayout x:Name="indicatorButton"
                    Orientation="Horizontal"
                    IsVisible="true"
-                   HorizontalOptions="End"
+                   HorizontalOptions="EndAndExpand"
                    VerticalOptions="Center">
         <Image Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
                HeightRequest="32"

@@ -22,10 +22,10 @@
           StrokeShape="RoundRectangle 4,4">
     <StackLayout x:Name="buttonStackLayout"
                  Orientation="Horizontal"
-                 HorizontalOptions="Center"
+                 HorizontalOptions="Fill"
                  VerticalOptions="Center"
                  Padding="0,8">
-      <StackLayout HorizontalOptions="Fill"
+      <StackLayout HorizontalOptions="CenterAndExpand"
                    VerticalOptions="Center"
                    Spacing="8"
                    Orientation="Horizontal">

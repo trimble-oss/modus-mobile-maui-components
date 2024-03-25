@@ -21,7 +21,7 @@ public partial class TMDropDown : ContentView
     private Thickness margin = new Thickness(0, 154, 0, 0);
 
 #else
-    private Thickness margin = new Thickness(0,98,0,0);
+    private Thickness margin = new Thickness(0,128,0,0);
 #endif
     private uint AnimationDuration { get; set; } = 250;
     private object previousSelection;
@@ -138,7 +138,7 @@ public partial class TMDropDown : ContentView
             var locationFetcher = new LocationFetcher();
             var loc = locationFetcher.GetCoordinates(this);
             var height = Application.Current.MainPage.Window.Height;
-            popup = new DropDownContents(ContentLayout, Enums.ModalPosition.Bottom)
+            popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom)
             {
                 ItemSource = this.ItemsSource,
                 SelectedIndex = this.SelectedIndex,
@@ -229,9 +229,9 @@ public partial class TMDropDown : ContentView
             if (itemCount < 4)
             {
                 desiredHeight = itemCount * 56;
-                margin = new Thickness(0, ((itemCount - 1) * 56) - 28, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56) + 4, 10, 0);
 #if WINDOWS
-                margin = new Thickness(0, ((itemCount - 1) * 56) + 28, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56) + 30, 10, 0);
 #endif
             }
         }
