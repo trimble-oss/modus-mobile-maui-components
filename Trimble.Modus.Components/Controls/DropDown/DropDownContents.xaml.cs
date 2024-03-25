@@ -33,8 +33,8 @@ public partial class DropDownContents : PopupPage
         border.HeightRequest = DesiredHeight;
         border.WidthRequest = WidthRequest;
         listView.ItemsSource = ItemSource;
-        listView.ItemSelected += SelectedEventHandler;
         listView.SelectedItem = ItemSource?.Cast<object>()?.ToList()[SelectedIndex];
+        listView.ItemSelected += SelectedEventHandler;        
         if (Height - YPosition < DesiredHeight)
         {
             this.Position = Enums.ModalPosition.Top;
