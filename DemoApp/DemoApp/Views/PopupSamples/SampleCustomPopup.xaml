@@ -13,14 +13,15 @@
       <modus:TextCell Title="{Binding .}" />
     </DataTemplate>
   </ContentPage.Resources>
-  <Border Padding="16"
+  <Border 
           Margin="20"
           HeightRequest="300">
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="30" />
     </Border.StrokeShape>
     <ScrollView>
-      <VerticalStackLayout>
+      <VerticalStackLayout Padding="16">
+        <modus:TMDropDown ItemsSource="{Binding UpcomingControls}"/>
         <Label Text="Upcoming Controls"
                FontSize="22"
                FontAttributes="Bold"
