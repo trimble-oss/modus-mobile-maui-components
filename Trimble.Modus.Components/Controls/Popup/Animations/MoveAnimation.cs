@@ -5,7 +5,7 @@ using Trimble.Modus.Components;
 
 namespace Trimble.Modus.Components.Popup.Animations;
 
-internal class MoveAnimation : FadeBackgroundAnimation
+public class MoveAnimation : FadeBackgroundAnimation
 {
     private double _defaultTranslationX;
     private double _defaultTranslationY;

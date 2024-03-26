@@ -52,7 +52,7 @@ public interface IPopupAnimation
     Task Appearing(View content, PopupPage page);
     Task Disappearing(View content, PopupPage page);
 }
-internal abstract class BaseAnimation : IPopupAnimation
+public abstract class BaseAnimation : IPopupAnimation
 {
     private const uint DefaultDuration = 200;
 

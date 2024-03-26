@@ -2,7 +2,7 @@
 
 namespace Trimble.Modus.Components.Popup.Animations.Base;
 
-internal abstract class FadeBackgroundAnimation : BaseAnimation
+public abstract class FadeBackgroundAnimation : BaseAnimation
 {
     private Color? _backgroundColor;
 

@@ -40,7 +40,7 @@ public class PopupPage : ContentPage
 
     public static readonly BindableProperty AnimationProperty = BindableProperty.Create(nameof(Animation), typeof(IPopupAnimation), typeof(PopupPage), new ScaleAnimation());
 
-    internal IPopupAnimation Animation
+    public IPopupAnimation Animation
     {
         get => (IPopupAnimation)GetValue(AnimationProperty);
         set => SetValue(AnimationProperty, value);

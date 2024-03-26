@@ -1,6 +1,6 @@
 ﻿namespace Trimble.Modus.Components.Popup.Enums;
 
-internal enum MoveAnimationOptions
+public enum MoveAnimationOptions
 {
     Center,
     Left,
