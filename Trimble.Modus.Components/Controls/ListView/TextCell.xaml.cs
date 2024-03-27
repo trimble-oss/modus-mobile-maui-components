@@ -1,7 +1,7 @@
 namespace Trimble.Modus.Components;
 
 public partial class TextCell : ViewCell
-{ 
+{
     #region Bindable Properties
     public static readonly BindableProperty TitleProperty =
         BindableProperty.Create(nameof(Title), typeof(string), typeof(TextCell), default(string));
@@ -15,9 +15,8 @@ public partial class TextCell : ViewCell
     public static readonly BindableProperty DescriptionProperty =
         BindableProperty.Create(nameof(Description), typeof(string), typeof(TextCell), default(string));
 
-    public static readonly BindableProperty BackgrondColorProperty =
-       BindableProperty.Create(nameof(BackgrondColor), typeof(Color), typeof(TextCell), Colors.White,
-           propertyChanged: OnBackgroundColorChanged);   
+    public static readonly BindableProperty BackgroundColorProperty =
+       BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TextCell), Colors.White, propertyChanged: OnBackgroundColorChanged);
 
     #endregion
     #region Public Fields
@@ -37,10 +36,10 @@ public partial class TextCell : ViewCell
         get => (string)GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
     }
-    public Color BackgrondColor
+    public Color BackgroundColor
     {
-        get => (Color)GetValue(BackgrondColorProperty);
-        set => SetValue(BackgrondColorProperty, value);
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
     }
     public string Description
     {
@@ -53,16 +52,26 @@ public partial class TextCell : ViewCell
     public TextCell()
     {
         InitializeComponent();
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            UpdateBackgroundColor();
+        }
     }
     #endregion
     #region Private Methods
+
     private static void OnBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable!=null && bindable is TextCell cell)
+        if (bindable != null && bindable is TextCell cell)
         {
-            cell.grid.BackgroundColor = (Color)newValue;
+            cell.UpdateBackgroundColor();
         }
     }
 
+
+    private void UpdateBackgroundColor()
+    {
+        grid.BackgroundColor = BackgroundColor;
+    }
     #endregion
 }

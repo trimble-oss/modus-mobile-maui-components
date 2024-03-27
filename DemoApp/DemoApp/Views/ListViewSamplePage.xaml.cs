@@ -20,11 +20,14 @@ namespace DemoApp.Views
         #region Private Methods
         private void OnCellGroupButtonChanged(object sender, TMRadioButtonEventArgs e)
         {
-            textCellList.ItemTemplate = e.RadioButtonIndex switch
+            if (e.RadioButtonIndex == 0)
             {
-                1 => ViewCell,
-                _ => TextCell
-            };
+                textCellList.ItemTemplate = TextCell;
+            }
+            else
+            {
+                textCellList.ItemTemplate = ViewCell;
+            }
         }
         #endregion
     }
