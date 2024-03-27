@@ -1,42 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
-             xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
-             xmlns:helpers="clr-namespace:Trimble.Modus.Components.Helpers"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Name="textCell"
-             x:Class="Trimble.Modus.Components.TextCell">
-
-  <Grid x:Name="grid" >
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+          xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
+          xmlns:helpers="clr-namespace:Trimble.Modus.Components.Helpers"
+          xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+          x:Name="textCell"
+          x:Class="Trimble.Modus.Components.TextCell">
+  <Grid x:Name="grid"
+        BindingContext="{Binding Source={x:Reference textCell}}"
+        HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}"
+        ColumnSpacing="12"
+        ColumnDefinitions="auto,*,auto"
+        Padding="12,6">
     <Grid.Resources>
       <ResourceDictionary>
         <toolkit:IsNotNullConverter x:Key="ImageNullOrEmptyBoolConverter" />
         <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
         <converters:DescriptionToRowHeightConverter x:Key="DescriptionToRowHeightConverter" />
-        </ResourceDictionary>
+      </ResourceDictionary>
     </Grid.Resources>
 
-    <Grid BindingContext="{Binding Source={x:Reference textCell}}" HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}" ColumnSpacing="12" Padding="12,6" >
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
+    <Image Source="{Binding LeftIconSource}"
+           IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+           WidthRequest="24"
+           HeightRequest="24"
+           VerticalOptions="Center"
+           HorizontalOptions="Start" />
 
-      <Image Source="{Binding LeftIconSource}"  IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-           WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Start"/>
+    <StackLayout Grid.Column="1"
+                 Spacing="4"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center"
+                 Orientation="Vertical">
+      <Label Text="{Binding Title}"
+             FontFamily="OpenSansRegular"
+             IsVisible="{Binding Title, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+             FontSize="16"
+             VerticalOptions="StartAndExpand" />
+      <Label Text="{Binding Description}"
+             FontFamily="OpenSansRegular"
+             IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+             FontSize="14"
+             LineBreakMode="TailTruncation"
+             MaxLines="1" />
+    </StackLayout>
 
-      <StackLayout Grid.Column="1" Spacing="4"  HorizontalOptions="Start" VerticalOptions="Center" Orientation="Vertical">
-        <Label Text="{Binding Title}" FontFamily="OpenSansRegular" IsVisible="{Binding Title, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
-               FontSize="16" VerticalOptions="StartAndExpand" />
-        <Label Text="{Binding Description}" FontFamily="OpenSansRegular" IsVisible="{Binding Description, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
-               FontSize="14" LineBreakMode="TailTruncation" MaxLines="1" />
-      </StackLayout>
-
-      <Image Grid.Column="2" Source="{Binding RightIconSource}" HorizontalOptions="End" IsVisible="{Binding RightIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
-           WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
-    </Grid>
+    <Image Grid.Column="2"
+           Source="{Binding RightIconSource}"
+           HorizontalOptions="End"
+           IsVisible="{Binding RightIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
+           WidthRequest="24"
+           HeightRequest="24"
+           VerticalOptions="Center" />
   </Grid>
-
 </ViewCell>
