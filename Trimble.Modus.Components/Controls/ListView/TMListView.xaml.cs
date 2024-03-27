@@ -139,11 +139,11 @@ public partial class TMListView : ListView
             {
                 if (SelectableItems.Contains(templateCell.BindingContext))
                 {
-                    templateCell.SetDynamicResource(TemplateCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
+                    templateCell.SetDynamicResource(TemplateCell.BackgroundColorProperty, "CellSelectedBackgroundColor");
                 }
                 else
                 {
-                    templateCell.SetDynamicResource(TemplateCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
+                    templateCell.SetDynamicResource(TemplateCell.BackgroundColorProperty, "CellDefaultBackgroundColor");
                 }
             }
         }
