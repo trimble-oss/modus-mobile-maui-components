@@ -206,7 +206,8 @@
   <!--List-->
   <Color x:Key="CellDefaultBackgroundColor">#FFFFFF</Color>
   <Color x:Key="CellSelectedBackgroundColor">#DCEDF9</Color>
-  
+  <Color x:Key="SeparatorColor">#CBCDD6</Color>
+
   <!--Checkbox-->
   <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
   <x:String x:Key="CheckedCheckBoxImage">checked_checkbox.png</x:String>

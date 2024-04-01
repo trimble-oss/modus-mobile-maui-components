@@ -4,14 +4,18 @@
           x:Name="CustomViewCell"
           xmlns:constant="clr-namespace:Trimble.Modus.Components.Constant"
           x:Class="Trimble.Modus.Components.TemplateCell">
-  <Grid x:Name="grid"
-        VerticalOptions="FillAndExpand"
-        HorizontalOptions="FillAndExpand">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-    <ContentView Content="{Binding Source={x:Reference CustomViewCell}, Path=Content}">
-    </ContentView>
-  </Grid>
+  <VerticalStackLayout>
+    <Grid x:Name="grid"
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <ContentView Content="{Binding Source={x:Reference CustomViewCell}, Path=Content}">
+      </ContentView>
+    </Grid>
+    <BoxView HeightRequest="0.4"
+             Color="{DynamicResource SeparatorColor}" />
+  </VerticalStackLayout>
 </ViewCell>
 
