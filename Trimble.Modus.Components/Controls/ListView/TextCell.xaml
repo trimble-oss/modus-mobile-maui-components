@@ -7,25 +7,20 @@
           xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
           x:Name="textCell"
           x:Class="Trimble.Modus.Components.TextCell">
-
-  <Grid x:Name="grid">
-    <Grid.Resources>
-      <ResourceDictionary>
-        <toolkit:IsNotNullConverter x:Key="ImageNullOrEmptyBoolConverter" />
-        <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
-        <converters:DescriptionToRowHeightConverter x:Key="DescriptionToRowHeightConverter" />
-      </ResourceDictionary>
-    </Grid.Resources>
-
-    <Grid BindingContext="{Binding Source={x:Reference textCell}}"
-          HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}"
+  <VerticalStackLayout x:Name="grid"
+                       BindingContext="{Binding Source={x:Reference textCell}}"
+                       Padding="0">
+    <Grid HeightRequest="{Binding Description, Converter={StaticResource DescriptionToRowHeightConverter}}"
           ColumnSpacing="12"
+          ColumnDefinitions="auto,*,auto"
           Padding="12,6">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
+      <Grid.Resources>
+        <ResourceDictionary>
+          <toolkit:IsNotNullConverter x:Key="ImageNullOrEmptyBoolConverter" />
+          <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+          <converters:DescriptionToRowHeightConverter x:Key="DescriptionToRowHeightConverter" />
+        </ResourceDictionary>
+      </Grid.Resources>
 
       <Image Source="{Binding LeftIconSource}"
              IsVisible="{Binding LeftIconSource, Converter={StaticResource ImageNullOrEmptyBoolConverter}}"
@@ -60,6 +55,7 @@
              HeightRequest="24"
              VerticalOptions="Center" />
     </Grid>
-  </Grid>
-
+    <BoxView HeightRequest="0.4"
+             Color="{DynamicResource SeparatorColor}" />
+  </VerticalStackLayout>
 </ViewCell>

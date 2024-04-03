@@ -48,15 +48,6 @@ namespace DemoApp.ViewModels
             {
                 Console.WriteLine("null");
             }
-
-            //foreach(var item in e.PreviousSelection)
-            //{
-            //    Console.WriteLine(" PreviousSelections " + ((User)item).Name +" Index "+ e.SelectedIndex);
-            //}
-            //foreach (var item in e.CurrentSelection)
-            //{
-            //    Console.WriteLine(" CurrentSelections " + ((User)item).Name + " Index " + e.SelectedIndex);
-            //}
         }
 
         [RelayCommand]
@@ -81,7 +72,7 @@ namespace DemoApp.ViewModels
             }
             else if (value == ListSelectionMode.Multiple)
             {
-                SelectedItems = new ObservableCollection<object>() { ItemSource[5], ItemSource[6], };
+                SelectedItems = new ObservableCollection<object>() { ItemSource[2], ItemSource[3], };
             }
         }
 

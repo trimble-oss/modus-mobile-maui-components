@@ -6,118 +6,108 @@
              xmlns:constants="clr-namespace:DemoApp.Constant"
              xmlns:modus="http://modus.trimble.com/components"
              Title="ListViewSamplePage">
-  <ContentPage.Resources>
-    <DataTemplate x:Name="TextCell"
-                  x:Key="textCellKey">
-      <modus:TextCell Title="{Binding Name}"
-                      Description="{Binding Address}"
-                      LeftIconSource="{Binding ProfilePic}"
-                      RightIconSource="{Binding ProfilePic}">
-      </modus:TextCell>
-    </DataTemplate>
-    <DataTemplate x:Name="ViewCell"
-                  x:Key="viewCellKey">
-      <modus:TemplateCell>
-        <modus:TemplateCell.Content>
-          <Grid RowSpacing="10"
-                Padding="10">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto" />
-              <RowDefinition Height="Auto" />
-              <RowDefinition Height="Auto" />
-              <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="*" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <ContentPage.Resources>
+        <DataTemplate x:Name="TextCell"
+                      x:Key="textCellKey">
+            <modus:TextCell Title="{Binding Name}"
+                            Description="{Binding Address}"
+                            LeftIconSource="{Binding ProfilePic}"
+                            RightIconSource="{Binding ProfilePic}">
+            </modus:TextCell>
+        </DataTemplate>
+        <DataTemplate x:Name="ViewCell"
+                      x:Key="viewCellKey">
+            <modus:TemplateCell>
+                <modus:TemplateCell.Content>
+                    <Grid RowSpacing="10"
+                          RowDefinitions="auto,auto,auto,auto"
+                          ColumnDefinitions="auto,*,*"
+                          Padding="10">
+                        <Border HeightRequest="80"
+                                WidthRequest="80"
+                                VerticalOptions="Center"
+                                Stroke="{Binding Color}"
+                                StrokeShape="RoundRectangle 40"
+                                StrokeThickness="8"
+                                Grid.RowSpan="3"
+                                Margin="0,0,0,0">
+                            <Image Source="{Binding ProfilePic}"
+                                   Margin="10,0,10,0"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   HeightRequest="80"
+                                   WidthRequest="80" />
 
-            <Border HeightRequest="80"
-                    WidthRequest="80"
-                    VerticalOptions="Center"
-                    Stroke="{Binding Color}"
-                    StrokeShape="RoundRectangle 40"
-                    StrokeThickness="8"
-                    Grid.RowSpan="3"
-                    Margin="0,0,0,0">
-              <Image Source="{Binding ProfilePic}"
-                     Margin="10,0,10,0"
-                     VerticalOptions="Center"
-                     HorizontalOptions="Center"
-                     HeightRequest="80"
-                     WidthRequest="80" />
+                        </Border>
 
-            </Border>
+                        <Label Text="{Binding Name}"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               FontSize="Medium" />
+                        <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               FontSize="Small" />
+                        <Label Text="{Binding Address}"
+                               Grid.Row="2"
+                               Grid.Column="1"
+                               FontSize="Micro" />
+                        <StackLayout Grid.Column="2"
+                                     Grid.Row="1"
+                                     HorizontalOptions="Center"
+                                     Orientation="Horizontal"
+                                     Spacing="5"
+                                     VerticalOptions="Center">
+                            <ImageButton Source="{x:Static constants:ImageConstants.Email}"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Command="{Binding EmailClickedCommand}" />
+                            <ImageButton Source="{x:Static constants:ImageConstants.Phone}"
+                                         HeightRequest="20"
+                                         WidthRequest="20"
+                                         Command="{Binding PhoneClickedCommand}" />
+                        </StackLayout>
 
-            <Label Text="{Binding Name}"
-                   Grid.Row="0"
-                   Grid.Column="1"
-                   FontSize="Medium" />
-            <Label Text="{Binding DateofBirth, StringFormat='DateofBirth: {0:dd/MM/yyyy}'}"
-                   Grid.Row="1"
-                   Grid.Column="1"
-                   FontSize="Small" />
-            <Label Text="{Binding Address}"
-                   Grid.Row="2"
-                   Grid.Column="1"
-                   FontSize="Micro" />
-            <StackLayout Grid.Column="2"
-                         Grid.Row="1"
-                         HorizontalOptions="Center"
-                         Orientation="Horizontal"
-                         Spacing="5"
-                         VerticalOptions="Center">
-              <ImageButton Source="{x:Static constants:ImageConstants.Email}"
-                           HeightRequest="20"
-                           WidthRequest="20"
-                           Command="{Binding EmailClickedCommand}" />
-              <ImageButton Source="{x:Static constants:ImageConstants.Phone}"
-                           HeightRequest="20"
-                           WidthRequest="20"
-                           Command="{Binding PhoneClickedCommand}" />
-            </StackLayout>
+                    </Grid>
+                </modus:TemplateCell.Content>
+            </modus:TemplateCell>
+        </DataTemplate>
 
-          </Grid>
-        </modus:TemplateCell.Content>
-      </modus:TemplateCell>
-    </DataTemplate>
+    </ContentPage.Resources>
+    <StackLayout Orientation="Vertical">
+        <Label Text="Select View Type"
+               FontSize="Medium"
+               Padding="10"></Label>
+        <modus:TMRadioButtonGroup x:Name="CellGroup"
+                                  Padding="10"
+                                  SelectedIndex="0"
+                                  HorizontalOptions="Center"
+                                  SelectedRadioButtonChanged="OnCellGroupButtonChanged"
+                                  Orientation="Horizontal">
+            <modus:TMRadioButton Text="Text Cell" />
+            <modus:TMRadioButton Text="Template Cell" />
+        </modus:TMRadioButtonGroup>
+        <Label Text="Selection Mode"
+               FontSize="Medium"
+               Padding="10"></Label>
+        <modus:TMRadioButtonGroup x:Name="SelectionGroup"
+                                  Padding="10"
+                                  SelectedIndex="0"
+                                  HorizontalOptions="Center"
+                                  SelectedRadioButtonChangedCommand="{Binding SelectionGroupCommand}"
+                                  Orientation="Horizontal">
+            <modus:TMRadioButton Text="Single" />
+            <modus:TMRadioButton Text="Multiple" />
+            <modus:TMRadioButton Text="None" />
+        </modus:TMRadioButtonGroup>
+        <modus:TMListView x:Name="textCellList"
+                          IsVisible="True"
+                          SelectionMode="{Binding SelectionMode}"
+                          SelectionChangedCommand="{Binding ItemSelectedCommand}"
+                          ItemsSource="{Binding ItemSource}"
+                          SelectedItem="{Binding SelectedItem}"
+                          SelectedItems="{Binding SelectedItems}">
+        </modus:TMListView>
 
-  </ContentPage.Resources>
-  <StackLayout Orientation="Vertical">
-    <Label Text="Select View Type"
-           FontSize="Medium"
-           Padding="10"></Label>
-    <modus:TMRadioButtonGroup x:Name="CellGroup"
-                              Padding="10"
-                              SelectedIndex="0"
-                              HorizontalOptions="Center"
-                              SelectedRadioButtonChanged="OnCellGroupButtonChanged"
-                              Orientation="Horizontal">
-      <modus:TMRadioButton Text="Text Cell" />
-      <modus:TMRadioButton Text="Template Cell" />
-    </modus:TMRadioButtonGroup>
-    <Label Text="Selection Mode"
-           FontSize="Medium"
-           Padding="10"></Label>
-    <modus:TMRadioButtonGroup x:Name="SelectionGroup"
-                              Padding="10"
-                              SelectedIndex="0"
-                              HorizontalOptions="Center"
-                              SelectedRadioButtonChangedCommand="{Binding SelectionGroupCommand}"
-                              Orientation="Horizontal">
-      <modus:TMRadioButton Text="Single" />
-      <modus:TMRadioButton Text="Multiple" />
-      <modus:TMRadioButton Text="None" />
-    </modus:TMRadioButtonGroup>
-    <modus:TMListView x:Name="textCellList"
-                      IsVisible="True"
-                      ItemsSource="{Binding ItemSource}"
-                      SelectionMode="{Binding SelectionMode}"
-                      SelectionChangedCommand="{Binding ItemSelectedCommand}"
-                      SelectedItem="{Binding SelectedItem}"
-                      SelectedItems="{Binding SelectedItems}">
-    </modus:TMListView>
-
-  </StackLayout>
+    </StackLayout>
 </ContentPage>

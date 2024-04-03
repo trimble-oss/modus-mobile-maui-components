@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Windows.Input;
 using Trimble.Modus.Components.Enums;
@@ -60,6 +61,11 @@ public partial class TMListView : ListView
     public TMListView()
     {
         HasUnevenRows = true;
+        if (DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            SetDynamicResource(BackgroundColorProperty, "CellDefaultBackgroundColor");
+        }
+        SeparatorVisibility = SeparatorVisibility.None;
         ItemTapped += ListViewItemTapped;
         (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.Single);
     }
@@ -75,7 +81,9 @@ public partial class TMListView : ListView
         switch (SelectionMode)
         {
             case ListSelectionMode.Multiple:
-                var previousSelections = SelectedItems;
+                string serialized = JsonConvert.SerializeObject(SelectedItems);
+                var copy = JsonConvert.DeserializeObject<IList<object>>(serialized);
+                var previousSelections = copy;
                 if (SelectedItems.Contains(newValue))
                 {
                     SelectedItems.Remove(newValue);
@@ -174,38 +182,47 @@ public partial class TMListView : ListView
     {
         foreach (var item in this.TemplatedItems)
         {
-            Updated(item as ViewCell);
+            if (item is TextCell textCell)
+            {
+                Updated(textCell, TextCell.BackgroundColorProperty);
+            }
+            else if (item is TemplateCell templateCell)
+            {
+                Updated(templateCell, TemplateCell.BackgroundColorProperty);
+
+            }
         }
     }
 
-    private void Updated(ViewCell textCell)
+    private void Updated(ViewCell textCell, BindableProperty bindableProperty)
     {
         if (SelectionMode == ListSelectionMode.Single)
         {
             if (SelectedItem != null && SelectedItem.Equals(textCell.BindingContext))
             {
-                textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
+                textCell.SetDynamicResource(bindableProperty, "CellSelectedBackgroundColor");
             }
             else
             {
-                textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
+                textCell.SetDynamicResource(bindableProperty, "CellDefaultBackgroundColor");
             }
         }
         else if (SelectionMode == ListSelectionMode.Multiple)
         {
             if (SelectedItems != null && SelectedItems.Contains(textCell.BindingContext))
             {
-                textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
+                textCell.SetDynamicResource(bindableProperty, "CellSelectedBackgroundColor");
             }
             else
             {
-                textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
+                textCell.SetDynamicResource(bindableProperty, "CellDefaultBackgroundColor");
             }
         }
         else
         {
-            textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
+            textCell.SetDynamicResource(bindableProperty, "CellDefaultBackgroundColor");
         }
     }
+
     #endregion
 }
