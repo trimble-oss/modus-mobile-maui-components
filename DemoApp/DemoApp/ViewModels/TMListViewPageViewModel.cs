@@ -1,13 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using DemoApp.Models;
-using Newtonsoft.Json;
-using Trimble.Modus.Components.Enums;
-using System.Collections;
 using CommunityToolkit.Mvvm.Input;
-using Trimble.Modus.Components;
-using System.Collections.ObjectModel;
-using SelectionChangedEventArgs = Trimble.Modus.Components.SelectionChangedEventArgs;
 using DemoApp.Helper;
+using DemoApp.Models;
+using System.Collections.ObjectModel;
+using Trimble.Modus.Components;
+using Trimble.Modus.Components.Enums;
+using SelectionChangedEventArgs = Trimble.Modus.Components.SelectionChangedEventArgs;
 
 namespace DemoApp.ViewModels
 {
@@ -18,7 +16,13 @@ namespace DemoApp.ViewModels
         private ListSelectionMode selectionMode;
 
         [ObservableProperty]
-        private IEnumerable itemSource;
+        private ObservableCollection<User> itemSource;
+
+        [ObservableProperty]
+        private User selectedItem;
+
+        [ObservableProperty]
+        private ObservableCollection<object> selectedItems;
         #endregion
 
         #region Constructor
@@ -30,27 +34,31 @@ namespace DemoApp.ViewModels
 
         #endregion
         #region Private Methods
+
         private async void InitialzeUsers()
         {
             ItemSource = await UserDataCreator.LoadData();
+            SelectionMode = ListSelectionMode.Single;
         }
+
         [RelayCommand]
         private void ItemSelected(SelectionChangedEventArgs e)
         {
-            if(e.PreviousSelection == null)
+            if (e.PreviousSelection == null)
             {
                 Console.WriteLine("null");
             }
-           
-            foreach(var item in e.PreviousSelection)
-            {
-                Console.WriteLine(" PreviousSelections " + ((User)item).Name +" Index "+ e.SelectedIndex);
-            }
-            foreach (var item in e.CurrentSelection)
-            {
-                Console.WriteLine(" CurrentSelections " + ((User)item).Name + " Index " + e.SelectedIndex);
-            }
+
+            //foreach(var item in e.PreviousSelection)
+            //{
+            //    Console.WriteLine(" PreviousSelections " + ((User)item).Name +" Index "+ e.SelectedIndex);
+            //}
+            //foreach (var item in e.CurrentSelection)
+            //{
+            //    Console.WriteLine(" CurrentSelections " + ((User)item).Name + " Index " + e.SelectedIndex);
+            //}
         }
+
         [RelayCommand]
         private void SelectionGroup(TMRadioButtonEventArgs parameter)
         {
@@ -64,6 +72,19 @@ namespace DemoApp.ViewModels
                 };
             }
         }
+
+        partial void OnSelectionModeChanged(ListSelectionMode value)
+        {
+            if (value == ListSelectionMode.Single)
+            {
+                SelectedItem = ItemSource[0];
+            }
+            else if (value == ListSelectionMode.Multiple)
+            {
+                SelectedItems = new ObservableCollection<object>() { ItemSource[5], ItemSource[6], };
+            }
+        }
+
         [RelayCommand]
         private void PhoneClicked()
         {
