@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Windows.Input;
-using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -13,13 +11,13 @@ public partial class TMListView : ListView
     #endregion
     #region Bindable Properties  
     public static new readonly BindableProperty SelectionModeProperty =
-             BindableProperty.Create(nameof(SelectionMode), typeof(ListSelectionMode), typeof(TMListView),propertyChanged: OnSelectionModeChanged);
+             BindableProperty.Create(nameof(SelectionMode), typeof(ListSelectionMode), typeof(TMListView), propertyChanged: OnSelectionModeChanged);
 
     public static readonly BindableProperty SelectionChangedCommandProperty =
              BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(TMListView));
 
     public static readonly BindableProperty SelectableItemsProperty =
-            BindableProperty.Create(nameof(SelectableItems), typeof(List<object>), typeof(TMListView),propertyChanged: OnSelectableItemsChanged);
+            BindableProperty.Create(nameof(SelectableItems), typeof(List<object>), typeof(TMListView), propertyChanged: OnSelectableItemsChanged);
 
     #endregion
     #region Public properties  
@@ -33,13 +31,13 @@ public partial class TMListView : ListView
     {
         get => (List<object>)GetValue(SelectableItemsProperty);
         set => SetValue(SelectableItemsProperty, value);
-        
+
     }
     public new ListSelectionMode SelectionMode
     {
         get => (ListSelectionMode)GetValue(SelectionModeProperty);
         set => SetValue(SelectionModeProperty, value);
-        
+
     }
     public new IEnumerable ItemsSource
     {
@@ -51,8 +49,13 @@ public partial class TMListView : ListView
     public TMListView()
     {
         HasUnevenRows = true;
+        if (DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            SetDynamicResource(BackgroundColorProperty, "CellDefaultBackgroundColor");
+        }
+        SeparatorVisibility = SeparatorVisibility.None;
         ItemTapped += ListViewItemTapped;
-        (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.Single);  
+        (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.Single);
         SelectableItems = new List<object> { };
     }
     #endregion
@@ -125,22 +128,22 @@ public partial class TMListView : ListView
             {
                 if (SelectableItems.Contains(textCell.BindingContext))
                 {
-                    textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
+                    textCell.SetDynamicResource(TextCell.BackgroundColorProperty, "CellSelectedBackgroundColor");
                 }
                 else
                 {
-                    textCell.SetDynamicResource(TextCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
+                    textCell.SetDynamicResource(TextCell.BackgroundColorProperty, "CellDefaultBackgroundColor");
                 }
             }
             else if (item is TemplateCell templateCell)
             {
                 if (SelectableItems.Contains(templateCell.BindingContext))
                 {
-                    templateCell.SetDynamicResource(TemplateCell.BackgrondColorProperty, "CellSelectedBackgroundColor");
+                    templateCell.SetDynamicResource(TemplateCell.BackgroundColorProperty, "CellSelectedBackgroundColor");
                 }
                 else
                 {
-                    templateCell.SetDynamicResource(TemplateCell.BackgrondColorProperty, "CellDefaultBackgroundColor");
+                    templateCell.SetDynamicResource(TemplateCell.BackgroundColorProperty, "CellDefaultBackgroundColor");
                 }
             }
         }
