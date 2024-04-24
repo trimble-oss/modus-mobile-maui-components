@@ -7,6 +7,7 @@
   <StackLayout HorizontalOptions="Start" Padding="10" Spacing="20">
 
     <Label Text="Equipment Type:"/>
+    <modus:TMDropDown WidthRequest="250"/>
     <modus:TMDropDown ItemsSource="{Binding EquipmentSource}"
                       SelectedIndex="{Binding SelectedIndexOfEquipment}"
                       SelectionChangedCommand="{Binding ItemSelectedCommand}"

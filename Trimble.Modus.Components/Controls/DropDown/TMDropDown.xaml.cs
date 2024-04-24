@@ -13,10 +13,7 @@ public partial class TMDropDown : ContentView
     //private Label label;
     //private Border innerBorder;
     //private StackLayout indicatorButton;
-    private bool isVisible;
-    private int radius = 15;
     private IEnumerable items;
-    private int count = 0;
 #if WINDOWS
     private Thickness margin = new Thickness(0, 154, 0, 0);
 
@@ -97,27 +94,17 @@ public partial class TMDropDown : ContentView
             UpdateCellColor((ListView)sender);
         }
         label.Text = e.SelectedItem.ToString();
-        if (count > 0 && PopupService.Instance.PopupStack.Count > 0)
+        if (PopupService.Instance.PopupStack.Count > 0)
         {
-
             PopupService.Instance?.DismissAsync();
             Close();
         }
         SelectedIndex = e.SelectedItemIndex;
-        count = 1;
     }
 
     private void OnTapped(object sender, EventArgs e)
     {
-        isVisible = !isVisible;
-        if (isVisible)
-        {
-            Open();
-        }
-        else
-        {
-            Close();
-        }
+        Open();        
     }
 
     private async void Close()
@@ -126,43 +113,32 @@ public partial class TMDropDown : ContentView
 
             indicatorButton.RotateTo(0, AnimationDuration)
         );
-        isVisible = false;
     }
 
-    bool created = false;
+    
     DropDownContents popup;
     private async void Open()
     {
-        if (!created)
+        var locationFetcher = new LocationFetcher();
+        var loc = locationFetcher.GetCoordinates(this);
+        var height = Application.Current.MainPage.Window.Height;
+        popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom)
         {
-            var locationFetcher = new LocationFetcher();
-            var loc = locationFetcher.GetCoordinates(this);
-            var height = Application.Current.MainPage.Window.Height;
-            popup = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom)
-            {
-                ItemSource = this.ItemsSource,
-                SelectedIndex = this.SelectedIndex,
-                Margin = margin,
-                DesiredHeight = desiredHeight,
-                WidthRequest = innerBorder.Width,
-                SelectedEventHandler = OnSelected,
-                YPosition = loc.Y,
-                Height = height
-            };
-            popup.Build();
-        }
-
-#if WINDOWS || IOS
-        // FIXME: For windows and iOS the UI elements are populated every time it opens
-        // This is to fix the vertical position issue 
-        created = false;
-#endif
+            ItemSource = this.ItemsSource,
+            SelectedIndex = this.SelectedIndex,
+            Margin = margin,
+            DesiredHeight = desiredHeight,
+            WidthRequest = innerBorder.Width,
+            SelectedEventHandler = OnSelected,
+            YPosition = loc.Y,
+            Height = height
+        };
+        popup.Build();
         await Task.WhenAll(
             indicatorButton.RotateTo(-180, AnimationDuration)
         );
 
         await PopupService.Instance?.PresentAsync(popup, true);
-        count = 1;
     }
 
     private void OnPopupRemoved(object sender, EventArgs e)
