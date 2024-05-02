@@ -30,7 +30,6 @@
                  HorizontalOptions="Fill"
                  VerticalOptions="Center">
       <Label x:Name="label"
-             Text="DropDown"
              FontSize="16"
              HorizontalOptions="Center"
              FontFamily="OpenSansSemibold"
