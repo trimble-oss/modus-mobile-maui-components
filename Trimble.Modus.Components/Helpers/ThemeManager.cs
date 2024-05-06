@@ -7,10 +7,59 @@ namespace Trimble.Modus.Components.Helpers
         private static ResourceDictionary DarkThemeResourceDictionary { get; set; }
         internal static AppTheme CurrentTheme { get; private set; }
 
-        public static void Initialize()
+        public static void Initialize(ResourceDictionary lightTheme = null, ResourceDictionary darkTheme = null, bool useDarkThemeAsLightTheme = false)
         {
-            LightThemeResourceDictionary = new Styles.LightTheme();
-            DarkThemeResourceDictionary = new Styles.DarkTheme();
+            var defaultLightTheme = new Styles.LightTheme();
+            var defaultDarkTheme = new Styles.DarkTheme();
+            if (lightTheme != null && lightTheme.Count > 0)
+            {
+                LightThemeResourceDictionary = lightTheme;
+                var notExistsInDictionary = defaultLightTheme.Where(x => !lightTheme.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                foreach (var item in notExistsInDictionary)
+                {
+                    var keyExists = LightThemeResourceDictionary.ContainsKey(item.Key);
+                    if (keyExists)
+                    {
+                        LightThemeResourceDictionary[item.Key] = item.Value;
+                    }
+                    else
+                    {
+                        LightThemeResourceDictionary.Add(item.Key, item.Value);
+                    }
+                }
+            }
+            else
+            {
+                LightThemeResourceDictionary = defaultLightTheme;
+            }
+            if (useDarkThemeAsLightTheme)
+            {
+                DarkThemeResourceDictionary = LightThemeResourceDictionary;
+            }
+            else
+            {
+                if (darkTheme != null && darkTheme.Count > 0)
+                {
+                    DarkThemeResourceDictionary = darkTheme;
+                    var notExistsInDictionary = defaultDarkTheme.Where(x => !darkTheme.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                    foreach (var item in notExistsInDictionary)
+                    {
+                        var keyExists = DarkThemeResourceDictionary.ContainsKey(item.Key);
+                        if (keyExists)
+                        {
+                            DarkThemeResourceDictionary[item.Key] = item.Value;
+                        }
+                        else
+                        {
+                            DarkThemeResourceDictionary.Add(item.Key, item.Value);
+                        }
+                    }
+                }
+                else
+                {
+                    DarkThemeResourceDictionary = defaultDarkTheme;
+                }
+            }
 
             UpdateTheme(Application.Current.RequestedTheme);
 
