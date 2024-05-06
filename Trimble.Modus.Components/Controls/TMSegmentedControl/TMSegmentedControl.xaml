@@ -4,16 +4,8 @@
              x:Class="Trimble.Modus.Components.TMSegmentedControl"
              xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.Layouts"
              xmlns:component="clr-namespace:Trimble.Modus.Components"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Name="SegmentedControl">
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </ContentView.Resources>
   <ContentView.Content>
     <Border x:Name="FrameView"
            Padding="-1"

@@ -3,7 +3,6 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:ClassModifier="internal"
                  x:Class="Trimble.Modus.Components.Modal.TMModalContents"
-                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
@@ -13,7 +12,6 @@
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
         <local:TMModalStyles/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />

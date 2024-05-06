@@ -4,7 +4,6 @@
        x:Class="Trimble.Modus.Components.TMSegmentedItem"
        xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMSegmentedControl"
        xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
-       xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
        BackgroundColor="{StaticResource Transparent}"
        StrokeThickness="0"
        x:Name="ItemContainer"
@@ -15,7 +14,6 @@
   <Border.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
         <local:TMSegmentedItemStyles/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />

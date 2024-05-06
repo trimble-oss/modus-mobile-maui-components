@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMAccordion"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMAccordion"
              x:Name="accordionView">
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
         <local:TMAccordionStyle/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
