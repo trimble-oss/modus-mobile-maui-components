@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
                     x:Class="Trimble.Modus.Components.Styles.LightTheme">
 
   <Color x:Key="PrimaryColor">#0063a3</Color>
@@ -22,7 +23,8 @@
 
   <!--Button-->
   <!--Fill Button-->
-  <styles:ReferenceColor x:Key="PrimaryFillButtonBackgroundColor" Color="{StaticResource PrimaryColor}"/>
+  <styles:ReferenceColor x:Key="PrimaryFillButtonBackgroundColor"
+                         Color="{StaticResource PrimaryColor}" />
   <!--<Color x:Key="PrimaryFillButtonBackgroundColor">#0063a3</Color>-->
   <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">#0E416C</Color>
   <Color x:Key="PrimaryFillButtonTextColor">#FFFFFF</Color>
@@ -81,7 +83,7 @@
   <Color x:Key="CardSelectedStrokeColor">#0E416C</Color>
   <Color x:Key="CardShadowColor">#353a40</Color>
   <Color x:Key="CardHoverBackgroundColor">#cbcdd6</Color>
-  
+
   <!--Chip-->
   <!--FillChip-->
   <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
@@ -119,17 +121,17 @@
   <Color x:Key="SegmentItemPrimaryBackgroundColor">#0063a3</Color>
   <Color x:Key="SegmentItemSecondaryBackgroundColor">#353A40</Color>
   <Color x:Key="SegmentedControlBorderColor">#353A40</Color>
-  
+
   <!--Datagrid-->
   <Color x:Key="DataGridHeaderColor">#f1f1f6</Color>
   <Color x:Key="DataGridHeaderTextColor">#252a2e</Color>
   <Color x:Key="DataGridActiveRowColor">#dcedf9</Color>
   <Color x:Key="DataGridDefaultRowColor">#FFF</Color>
-  
+
   <!--Modal-->
   <Color x:Key="ModalTextAndImageColor">#252a2e</Color>
   <Color x:Key="ModalBackgroundColor">#FFF</Color>
-  
+
   <!--Switch-->
   <Color x:Key="SwitchOnBackgroundColor">#217CBB</Color>
   <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
@@ -264,7 +266,7 @@
   <Color x:Key="SearchBarSecondaryColor">#FFF</Color>
   <Color x:Key="SearchBarIconPrimaryColor">#90939F</Color>
   <Color x:Key="SearchBarIconSecondaryColor">#90939F</Color>
-  
+
   <!--Input-->
   <Color x:Key="InputDefaultBorderColor">#464B52</Color>
   <Color x:Key="InputPrimaryBorderColor">#217CBB</Color>
