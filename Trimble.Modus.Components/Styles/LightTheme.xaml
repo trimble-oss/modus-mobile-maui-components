@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
                     x:Class="Trimble.Modus.Components.Styles.LightTheme">
 
-  <Color x:Key="Blue">#0063a3</Color>
+  <Color x:Key="PrimaryColor">#0063a3</Color>
   <Color x:Key="DarkBlue">#004f83</Color>
   <Color x:Key="LightBlue">#DCEDF9</Color>
 
@@ -22,7 +22,8 @@
 
   <!--Button-->
   <!--Fill Button-->
-  <Color x:Key="PrimaryFillButtonBackgroundColor">#0063A3</Color>
+  <styles:ReferenceColor x:Key="PrimaryFillButtonBackgroundColor" Color="{StaticResource PrimaryColor}"/>
+  <!--<Color x:Key="PrimaryFillButtonBackgroundColor">#0063a3</Color>-->
   <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">#0E416C</Color>
   <Color x:Key="PrimaryFillButtonTextColor">#FFFFFF</Color>
   <Color x:Key="PrimaryFillIconTintColor">#FFFFFF</Color>

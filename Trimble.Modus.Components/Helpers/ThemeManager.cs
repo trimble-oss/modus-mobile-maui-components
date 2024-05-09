@@ -13,20 +13,26 @@ namespace Trimble.Modus.Components.Helpers
             var defaultDarkTheme = new Styles.DarkTheme();
             if (lightTheme != null && lightTheme.Count > 0)
             {
-                LightThemeResourceDictionary = lightTheme;
-                var notExistsInDictionary = defaultLightTheme.Where(x => !lightTheme.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
-                foreach (var item in notExistsInDictionary)
-                {
-                    var keyExists = LightThemeResourceDictionary.ContainsKey(item.Key);
-                    if (keyExists)
-                    {
-                        LightThemeResourceDictionary[item.Key] = item.Value;
-                    }
-                    else
-                    {
-                        LightThemeResourceDictionary.Add(item.Key, item.Value);
-                    }
-                }
+
+                LightThemeResourceDictionary = new ResourceDictionary();
+                // Add lightTheme and LightThemeResourceDictionary to the MergedDictionaries of the new ResourceDictionary
+                LightThemeResourceDictionary.MergedDictionaries.Add(defaultLightTheme);
+                LightThemeResourceDictionary.MergedDictionaries.Add(lightTheme);
+
+                // LightThemeResourceDictionary = lightTheme;
+                // var notExistsInDictionary = defaultLightTheme.Where(x => !lightTheme.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+                // foreach (var item in notExistsInDictionary)
+                // {
+                //     var keyExists = LightThemeResourceDictionary.ContainsKey(item.Key);
+                //     if (keyExists)
+                //     {
+                //         LightThemeResourceDictionary[item.Key] = item.Value;
+                //     }
+                //     else
+                //     {
+                //         LightThemeResourceDictionary.Add(item.Key, item.Value);
+                //     }
+                // }
             }
             else
             {
