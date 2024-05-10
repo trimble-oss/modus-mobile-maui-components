@@ -3,37 +3,37 @@ namespace Trimble.Modus.Components.Helpers
 {
     public class ThemeManager
     {
-        private static ResourceDictionary LightThemeResourceDictionary { get; set; }
-        private static ResourceDictionary DarkThemeResourceDictionary { get; set; }
+        private static ResourceDictionary LightThemeColorResourceDictionary { get; set; }
+        private static ResourceDictionary DarkThemeColorResourceDictionary { get; set; }
         internal static AppTheme CurrentTheme { get; private set; }
 
-        public static void Initialize(ResourceDictionary lightTheme = null, ResourceDictionary darkTheme = null)
+        public static void Initialize(ResourceDictionary lightThemeColors = null, ResourceDictionary darkThemeColors = null)
         {
-            var defaultLightTheme = new Styles.LightTheme();
-            var defaultDarkTheme = new Styles.DarkTheme();
+            var defaultLightThemeColors = new Styles.LightThemeColors();
+            var defaultDarkThemeColors = new Styles.DarkThemeColors();
             IncludeFromResources(new Styles.Colors());
-            if (lightTheme != null && lightTheme.Count > 0)
+            if (lightThemeColors != null && lightThemeColors.Count > 0)
             {
-                LightThemeResourceDictionary = UpdateDefaulThemeWithCustomTheme(defaultLightTheme, lightTheme);
+                LightThemeColorResourceDictionary = UpdateDefaulThemeWithCustomTheme(defaultLightThemeColors, lightThemeColors);
             }
             else
             {
-                LightThemeResourceDictionary = defaultLightTheme;
+                LightThemeColorResourceDictionary = defaultLightThemeColors;
             }
 
-            if (darkTheme != null && darkTheme.Count > 0)
+            if (darkThemeColors != null && darkThemeColors.Count > 0)
             {
-                DarkThemeResourceDictionary = UpdateDefaulThemeWithCustomTheme(defaultDarkTheme, darkTheme);
+                DarkThemeColorResourceDictionary = UpdateDefaulThemeWithCustomTheme(defaultDarkThemeColors, darkThemeColors);
             }
             else
             {
-                if (lightTheme != null && lightTheme.Count > 0)
+                if (lightThemeColors != null && lightThemeColors.Count > 0)
                 {
-                    DarkThemeResourceDictionary = LightThemeResourceDictionary;
+                    DarkThemeColorResourceDictionary = LightThemeColorResourceDictionary;
                 }
                 else
                 {
-                    DarkThemeResourceDictionary = defaultDarkTheme;
+                    DarkThemeColorResourceDictionary = defaultDarkThemeColors;
                 }
             }
 
@@ -71,15 +71,17 @@ namespace Trimble.Modus.Components.Helpers
         {
             CurrentTheme = Application.Current.RequestedTheme;
 
-            RemoveFromResources(LightThemeResourceDictionary);
-            RemoveFromResources(DarkThemeResourceDictionary);
+            RemoveFromResources(LightThemeColorResourceDictionary);
+            RemoveFromResources(DarkThemeColorResourceDictionary);
             if (theme == AppTheme.Dark)
             {
-                IncludeFromResources(DarkThemeResourceDictionary);
+                IncludeFromResources(DarkThemeColorResourceDictionary);
+                IncludeFromResources(new Styles.DarkTheme());
             }
             else
             {
-                IncludeFromResources(LightThemeResourceDictionary);
+                IncludeFromResources(LightThemeColorResourceDictionary);
+                IncludeFromResources(new Styles.LightTheme());
             }
         }
 

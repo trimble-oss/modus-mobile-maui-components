@@ -98,6 +98,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\Styles\DarkThemeColors.xaml.cs">
+	    <DependentUpon>DarkThemeColors.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Styles\LightThemeColors.xaml.cs">
+	    <DependentUpon>LightThemeColors.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
 	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
 	  </Compile>
@@ -162,10 +168,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Resources\Styles\DarkTheme.xaml">
+	  <MauiXaml Update="Resources\Styles\DarkThemeColors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\LightTheme.xaml">
+	  <MauiXaml Update="Resources\Styles\LightThemeColors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SliderSamplePage.xaml">

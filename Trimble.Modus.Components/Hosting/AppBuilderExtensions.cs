@@ -20,8 +20,8 @@ public static class AppBuilderExtensions
     /// <param name="options"><see cref="Options"/></param>
     /// <returns><see cref="MauiAppBuilder"/> initialized for <see cref="CommunityToolkit.Maui"/></returns>
     public static MauiAppBuilder UseTrimbleModus(this MauiAppBuilder builder,
-                                                 ResourceDictionary lightTheme = null,
-                                                 ResourceDictionary darkTheme = null)
+                                                 ResourceDictionary lightThemeColors = null,
+                                                 ResourceDictionary darkThemeColors = null)
     {
         builder
             .ConfigureLifecycleEvents(lifecycle =>
@@ -31,7 +31,7 @@ public static class AppBuilderExtensions
                 {
                     d.OnApplicationCreate(del =>
                     {
-                        ThemeManager.Initialize(lightTheme, darkTheme);
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
                     });
                     d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed());
                 });
@@ -40,7 +40,7 @@ public static class AppBuilderExtensions
                 {
                     ios.FinishedLaunching((app, resources) =>
                     {
-                        ThemeManager.Initialize(lightTheme, darkTheme);
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
                         return true;
                     });
                 });
@@ -49,7 +49,7 @@ public static class AppBuilderExtensions
                 {
                     mac.FinishedLaunching((app, resources) =>
                     {
-                        ThemeManager.Initialize(lightTheme, darkTheme);
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
                         return true;
                     });
                 });
@@ -57,7 +57,7 @@ public static class AppBuilderExtensions
                     lifecycle.AddWindows(windows => {
                         windows.OnLaunched((window, args) =>
                         {
-                            ThemeManager.Initialize(lightTheme, darkTheme);
+                            ThemeManager.Initialize(lightThemeColors, darkThemeColors);
                         });
                     });
 
