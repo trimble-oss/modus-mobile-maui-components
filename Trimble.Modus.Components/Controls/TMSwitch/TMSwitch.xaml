@@ -10,7 +10,7 @@
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <local:TMSwitchStyles/>
+        <local:TMSwitchStyles />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentView.Resources>
@@ -22,20 +22,20 @@
       <TapGestureRecognizer Tapped="OnSwitchTapped" />
     </Grid.GestureRecognizers>
     <BoxView x:Name="border"
-               BackgroundColor="{StaticResource Transparent}"
-               Color ="{Binding BackgroundColor}"
-               HorizontalOptions="Start"
-               VerticalOptions="Center" />
+             BackgroundColor="{DynamicResource Transparent}"
+             Color="{Binding BackgroundColor}"
+             HorizontalOptions="Start"
+             VerticalOptions="Center" />
     <BoxView x:Name="circle"
-               BackgroundColor="{StaticResource Transparent}"
-               Color="{StaticResource White}"
-               HorizontalOptions="Start"
-               VerticalOptions="Center" />
+             BackgroundColor="{DynamicResource Transparent}"
+             Color="White"
+             HorizontalOptions="Start"
+             VerticalOptions="Center" />
     <Label x:Name="switchText"
            FontFamily="OpenSansRegular"
            TextColor="{Binding TextColor}"
            Grid.Column="1"
            HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+           VerticalOptions="Center" />
   </Grid>
 </ContentView>

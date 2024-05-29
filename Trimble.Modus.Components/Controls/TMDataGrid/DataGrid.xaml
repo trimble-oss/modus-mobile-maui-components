@@ -10,7 +10,7 @@
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <style:DataGridStyle/>
+        <style:DataGridStyle />
       </ResourceDictionary.MergedDictionaries>
       <Style x:Key="DefaultHeaderStyle"
              TargetType="Label">
@@ -34,6 +34,8 @@
     </Grid.RowDefinitions>
     <Grid Grid.Row="0"
           x:Name="_headerView"
+          Padding="1"
+          ColumnSpacing="1"
           HeightRequest="48" />
     <CollectionView x:Name="_collectionView"
                     Grid.Row="1"

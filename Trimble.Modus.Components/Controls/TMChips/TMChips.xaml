@@ -23,30 +23,31 @@
           Stroke="{Binding BorderColor}"
           HorizontalOptions="Start"
           VerticalOptions="Center">
-    <HorizontalStackLayout x:Name="chipContent"
-                           VerticalOptions="Center">
+    <Grid x:Name="chipContent"
+          ColumnSpacing="4"
+          VerticalOptions="FillAndExpand"
+          ColumnDefinitions="auto,*,auto">
       <Image x:Name="lefticon"
-             HeightRequest="24"
-             WidthRequest="24"
+             Grid.Column="0"
              VerticalOptions="Center"
-             HorizontalOptions="Center"/>
+             HorizontalOptions="Center" />
       <Label x:Name="label"
              TextColor="{Binding TextColor}"
              VerticalTextAlignment="Center"
+             Grid.Column="1"
              FontFamily="OpenSansSemibold"
-             VerticalOptions="Center"
-             HorizontalOptions="Center"/>
-      <StackLayout>
-        <StackLayout.GestureRecognizers>
-          <TapGestureRecognizer Tapped="OnRightIconTapped"/>
-        </StackLayout.GestureRecognizers>
-        <Image x:Name="righticon"
-             Source="{Static constants:ImageConstants.CancelCircle}"
-             HeightRequest="24"
-             WidthRequest="24"
-             HorizontalOptions="Center"
-             VerticalOptions="Center"/>
-      </StackLayout>
-    </HorizontalStackLayout>
+             VerticalOptions="CenterAndExpand"
+             HorizontalOptions="Center" />
+
+      <ImageButton x:Name="righticon"
+                   Grid.Column="2"
+                   Source="{Static constants:ImageConstants.CancelCircle}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+        <ImageButton.GestureRecognizers>
+          <TapGestureRecognizer Tapped="OnRightIconTapped" />
+        </ImageButton.GestureRecognizers>
+      </ImageButton>
+    </Grid>
   </Border>
 </ContentView>

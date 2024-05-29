@@ -1,5 +1,4 @@
-﻿using System;
-namespace Trimble.Modus.Components.Helpers
+﻿namespace Trimble.Modus.Components.Helpers
 {
     public class ThemeManager
     {

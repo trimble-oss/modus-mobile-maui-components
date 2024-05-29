@@ -5,15 +5,14 @@
              VerticalOptions="Start"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              x:Class="Trimble.Modus.Components.TMDropDown">
-  <Border
-      x:Name="innerBorder"
-      MinimumWidthRequest="150"
-      HorizontalOptions="Start"
-      VerticalOptions="Center"
-      BackgroundColor="{x:StaticResource TrimbleBlue}"
-      Padding="0">
+  <Border x:Name="innerBorder"
+          MinimumWidthRequest="150"
+          HorizontalOptions="Start"
+          VerticalOptions="Center"
+          BackgroundColor="{DynamicResource Primary}"
+          Padding="0">
     <Border.StrokeShape>
-      <RoundRectangle CornerRadius="4"/>
+      <RoundRectangle CornerRadius="4" />
     </Border.StrokeShape>
     <StackLayout x:Name="ContentLayout"
                  Orientation="Horizontal"
@@ -25,7 +24,7 @@
              FontSize="16"
              HorizontalOptions="Center"
              FontFamily="OpenSansSemibold"
-             TextColor="{x:StaticResource White}"
+             TextColor="{DynamicResource White}"
              VerticalOptions="Center" />
       <StackLayout x:Name="indicatorButton"
                    Orientation="Horizontal"

@@ -121,7 +121,7 @@ public partial class BaseInput : ContentView
     /// Gets or sets the text color
     /// </summary>
     public static readonly BindableProperty TextColorProperty =
-        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BaseInput), Colors.Gray,
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
             propertyChanged: OnTextColorPropertyChanged);
     /// <summary>
     /// Gets or sets background color

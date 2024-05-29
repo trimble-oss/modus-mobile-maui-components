@@ -3,196 +3,322 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
                     x:Class="Trimble.Modus.Components.Styles.LightTheme">
+  <!--Label-->
+  <styles:ReferenceColor x:Key="LabelTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!--Button-->
   <!--Fill Button-->
   <styles:ReferenceColor x:Key="PrimaryFillButtonBackgroundColor"
-                         Color="{StaticResource PrimaryColor}" />
-  <!--<Color x:Key="PrimaryFillButtonBackgroundColor">#0063a3</Color>-->
-  <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">#0E416C</Color>
-  <Color x:Key="PrimaryFillButtonTextColor">#FFFFFF</Color>
-  <Color x:Key="PrimaryFillIconTintColor">#FFFFFF</Color>
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="PrimaryFillButtonSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryDark}" />
+  <styles:ReferenceColor x:Key="PrimaryFillButtonTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="PrimaryFillIconTintColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
-  <Color x:Key="SecondaryFillButtonBackgroundColor">#353A40</Color>
-  <Color x:Key="SecondaryFillButtonSelectedBackgroundColor">#171C1E</Color>
-  <Color x:Key="SecondaryFillButtonTextColor">#FFFFFF</Color>
-  <Color x:Key="SecondaryFillIconTintColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="SecondaryFillButtonBackgroundColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SecondaryFillButtonSelectedBackgroundColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="SecondaryFillButtonTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SecondaryFillIconTintColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
-  <Color x:Key="TertiaryFillButtonBackgroundColor">#CBCDD6</Color>
-  <Color x:Key="TertiaryFillButtonSelectedBackgroundColor">#B7B9C3</Color>
-  <Color x:Key="TertiaryFillButtonTextColor">#252A2E</Color>
-  <Color x:Key="TertiaryFillIconTintColor">#252A2E</Color>
+  <styles:ReferenceColor x:Key="TertiaryFillButtonBackgroundColor"
+                         Color="{StaticResource Tertiary}" />
+  <styles:ReferenceColor x:Key="TertiaryFillButtonSelectedBackgroundColor"
+                         Color="{StaticResource TertiaryDark}" />
+  <styles:ReferenceColor x:Key="TertiaryFillButtonTextColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="TertiaryFillIconTintColor"
+                         Color="{StaticResource SecondaryDark}" />
 
-  <Color x:Key="DangerFillButtonBackgroundColor">#DA212C</Color>
-  <Color x:Key="DangerFillButtonSelectedBackgroundColor">#AB1F26</Color>
-  <Color x:Key="DangerFillButtonTextColor">#FFFFFF</Color>
-  <Color x:Key="DangerFillIconTintColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="DangerFillButtonBackgroundColor"
+                         Color="{StaticResource Danger}" />
+  <styles:ReferenceColor x:Key="DangerFillButtonSelectedBackgroundColor"
+                         Color="{StaticResource DangerDark}" />
+  <styles:ReferenceColor x:Key="DangerFillButtonTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="DangerFillIconTintColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!--Outline Button-->
-  <Color x:Key="PrimaryOutlineButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="PrimaryOutlineButtonSelectedBackgroundColor">#DCEDF9</Color>
-  <Color x:Key="PrimaryOutlineButtonTextColor">#0063A3</Color>
-  <Color x:Key="PrimaryOutlineIconTintColor">#0063A3</Color>
-  <Color x:Key="PrimaryOutlineButtonBorderColor">#0063A3</Color>
 
-  <Color x:Key="SecondaryOutlineButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="SecondaryOutlineButtonSelectedBackgroundColor">#B7B9C3</Color>
-  <Color x:Key="SecondaryOutlineButtonTextColor">#353A40</Color>
-  <Color x:Key="SecondaryOutlineIconTintColor">#353A40</Color>
-  <Color x:Key="SecondaryOutlineButtonBorderColor">#353A40</Color>
+  <styles:ReferenceColor x:Key="PrimaryOutlineButtonBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="PrimaryOutlineButtonSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="PrimaryOutlineButtonTextColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="PrimaryOutlineIconTintColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="PrimaryOutlineButtonBorderColor"
+                         Color="{StaticResource Primary}" />
+
+  <styles:ReferenceColor x:Key="SecondaryOutlineButtonBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="SecondaryOutlineButtonSelectedBackgroundColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="SecondaryOutlineButtonTextColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SecondaryOutlineIconTintColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SecondaryOutlineButtonBorderColor"
+                         Color="{StaticResource Secondary}" />
 
   <!--Borderless Button-->
-  <Color x:Key="BorderlessButtonBackgroundColor">Transparent</Color>
-  <Color x:Key="BorderlessButtonSelectedBackgroundColor">#DCEDF9</Color>
-  <Color x:Key="BorderlessButtonTextColor">#0063A3</Color>
-  <Color x:Key="BorderlessIconTintColor">#0063A3</Color>
-  <Color x:Key="BorderlessButtonBorderColor">Transparent</Color>
-  <Color x:Key="BorderlessButtonSelectedBorderColor">#0063A3</Color>
+
+  <styles:ReferenceColor x:Key="BorderlessButtonBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="BorderlessButtonSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="BorderlessButtonTextColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="BorderlessIconTintColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="BorderlessButtonBorderColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="BorderlessButtonSelectedBorderColor"
+                         Color="{StaticResource Primary}" />
 
   <!--Badge-->
-  <Color x:Key="BadgePrimaryBackgroundColor">#0063a3</Color>
-  <Color x:Key="BadgeErrorBackgroundColor">#da212c</Color>
-  <Color x:Key="BadgeWarningBackgroundColor">#fbad26</Color>
-  <Color x:Key="BadgeSuccessBackgroundColor">#1E8A44</Color>
-  <Color x:Key="BadgeTertiaryBackgroundColor">#cbcdd6</Color>
-  <Color x:Key="BadgeSecondaryBackgroundColor">#585c65</Color>
-  <Color x:Key="BadgeAlternateTextColor">#353a40</Color>
-  <Color x:Key="BadgeTextColor">#FFFFFF</Color>
+
+  <styles:ReferenceColor x:Key="BadgePrimaryBackgroundColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="BadgeErrorBackgroundColor"
+                         Color="{StaticResource Danger}" />
+  <styles:ReferenceColor x:Key="BadgeWarningBackgroundColor"
+                         Color="{StaticResource Warning}" />
+  <styles:ReferenceColor x:Key="BadgeSuccessBackgroundColor"
+                         Color="{StaticResource Success}" />
+  <styles:ReferenceColor x:Key="BadgeTertiaryBackgroundColor"
+                         Color="{StaticResource Tertiary}" />
+  <styles:ReferenceColor x:Key="BadgeSecondaryBackgroundColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="BadgeAlternateTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="BadgeTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!--Card-->
-  <Color x:Key="CardBackgroundColor">#FFFFFF</Color>
-  <Color x:Key="CardStrokeColor">Transparent</Color>
-  <Color x:Key="CardSelectedBackgroundColor">#DCEDF9</Color>
-  <Color x:Key="CardSelectedStrokeColor">#0E416C</Color>
-  <Color x:Key="CardShadowColor">#353a40</Color>
-  <Color x:Key="CardHoverBackgroundColor">#cbcdd6</Color>
+  <styles:ReferenceColor x:Key="CardBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="CardStrokeColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="CardSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="CardSelectedStrokeColor"
+                         Color="{StaticResource PrimaryDark}" />
+  <styles:ReferenceColor x:Key="CardShadowColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="CardHoverBackgroundColor"
+                         Color="{StaticResource Tertiary}" />
 
   <!--Chip-->
   <!--FillChip-->
-  <Color x:Key="DefaultChipBackgroundColor">#CBCDD6</Color>
-  <Color x:Key="DefaultChipSelectedBackgroundColor">#4D0063A3</Color>
-  <Color x:Key="DefaultChipTextColor">#252A2E</Color>
-  <Color x:Key="DefaultChipSelectedTextColor">#252A2E</Color>
-  <Color x:Key="DefaultChipIconTintColor">#252A2E</Color>
-  <Color x:Key="DefaultChipSelectedIconTintColor">#252A2E</Color>
+  <styles:ReferenceColor x:Key="DefaultChipBackgroundColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="DefaultChipSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="DefaultChipTextColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="DefaultChipSelectedTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="DefaultChipIconTintColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="DefaultChipSelectedIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!--OutlineChip-->
-  <Color x:Key="DefaultOutlineChipBorderColor">#90939F</Color>
-  <Color x:Key="DefaultOutlineChipSelectedBorderColor">#0063A3</Color>
-  <Color x:Key="DefaultOutlineChipBackgroundColor">Transparent</Color>
-  <Color x:Key="DefaultOutlineChipSelectedBackgroundColor">#4C0063A3</Color>
-  <Color x:Key="DefaultOutlineChipTextColor">#252A2E</Color>
-  <Color x:Key="DefaultOutlineChipIconTintColor">#252A2E</Color>
+  <styles:ReferenceColor x:Key="DefaultOutlineChipBorderColor"
+                         Color="{StaticResource TertiaryDark}" />
+  <styles:ReferenceColor x:Key="DefaultOutlineChipSelectedBorderColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="DefaultOutlineChipBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="DefaultOutlineChipSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="DefaultOutlineChipTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="DefaultOutlineChipIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!--ErrorFillChip-->
-  <Color x:Key="ErrorChipBackgroundColor">#FBD4D7</Color>
-  <Color x:Key="ErrorChipTextColor">#AB1F26</Color>
-  <Color x:Key="ErrorChipIconTintColor">#AB1F26</Color>
+  <styles:ReferenceColor x:Key="ErrorChipBackgroundColor"
+                         Color="{StaticResource DangerLight}" />
+  <styles:ReferenceColor x:Key="ErrorChipTextColor"
+                         Color="{StaticResource DangerDark}" />
+  <styles:ReferenceColor x:Key="ErrorChipIconTintColor"
+                         Color="{StaticResource DangerDark}" />
 
   <!--ErrorOutlineChip-->
-  <Color x:Key="ErrorOutlineChipBorderColor">#AB1F26</Color>
-  <Color x:Key="ErrorOutlineChipBackgroundColor">#FBD4D7</Color>
-  <Color x:Key="ErrorOutlineChipTextColor">#AB1F26</Color>
-  <Color x:Key="ErrorOutlineChipIconTintColor">#AB1F26</Color>
+  <styles:ReferenceColor x:Key="ErrorOutlineChipBorderColor"
+                         Color="{StaticResource DangerDark}" />
+  <styles:ReferenceColor x:Key="ErrorOutlineChipBackgroundColor"
+                         Color="{StaticResource DangerLight}" />
+  <styles:ReferenceColor x:Key="ErrorOutlineChipTextColor"
+                         Color="{StaticResource DangerDark}" />
+  <styles:ReferenceColor x:Key="ErrorOutlineChipIconTintColor"
+                         Color="{StaticResource DangerDark}" />
 
   <!--Segmented Control-->
-  <Color x:Key="SegmentSeparatorColor">#B7B9C3</Color>
-  <Color x:Key="SegmentItemTextColor">#353a40</Color>
-  <Color x:Key="SegmentItemSelectedTextColor">#FFF</Color>
-  <Color x:Key="SegmentItemSelectedIconTintColor">#FFF</Color>
-  <Color x:Key="SegmentItemIconTintColor">#252a2e</Color>
-  <Color x:Key="SegmentItemPrimaryBackgroundColor">#0063a3</Color>
-  <Color x:Key="SegmentItemSecondaryBackgroundColor">#353A40</Color>
-  <Color x:Key="SegmentedControlBorderColor">#353A40</Color>
+  <styles:ReferenceColor x:Key="SegmentSeparatorColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SegmentItemTextColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SegmentItemSelectedTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SegmentItemSelectedIconTintColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SegmentItemIconTintColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SegmentItemPrimaryBackgroundColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="SegmentItemSecondaryBackgroundColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SegmentedControlBorderColor"
+                         Color="{StaticResource Secondary}" />
 
   <!--Datagrid-->
-  <Color x:Key="DataGridHeaderColor">#f1f1f6</Color>
-  <Color x:Key="DataGridHeaderTextColor">#252a2e</Color>
-  <Color x:Key="DataGridActiveRowColor">#dcedf9</Color>
-  <Color x:Key="DataGridDefaultRowColor">#FFF</Color>
+  <styles:ReferenceColor x:Key="DataGridHeaderColor"
+                         Color="{StaticResource TertiaryLight}" />
+  <styles:ReferenceColor x:Key="DataGridHeaderTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="DataGridActiveRowColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="DataGridDefaultRowColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!--Modal-->
-  <Color x:Key="ModalTextAndImageColor">#252a2e</Color>
-  <Color x:Key="ModalBackgroundColor">#FFF</Color>
+  <styles:ReferenceColor x:Key="ModalTextAndImageColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="ModalBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+
 
   <!--Switch-->
-  <Color x:Key="SwitchOnBackgroundColor">#217CBB</Color>
-  <Color x:Key="SwitchOffBackgroundColor">#90939F</Color>
-  <Color x:Key="SwitchTextColor">#252A2E</Color>
+  <styles:ReferenceColor x:Key="SwitchOnBackgroundColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="SwitchOffBackgroundColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="SwitchTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
-  <Color x:Key="AlertButtonColor">#000</Color>
   <!-- Alert Success-->
-  <Color x:Key="AlertSuccessTextColor">#006638</Color>
-  <Color x:Key="AlertSuccessBorderColor">#006638</Color>
-  <Color x:Key="AlertSuccessIconTintColor">#006638</Color>
-  <Color x:Key="AlertSuccessBackgroundColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="AlertButtonColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="AlertSuccessTextColor"
+                         Color="{StaticResource SuccessDark}" />
+  <styles:ReferenceColor x:Key="AlertSuccessBorderColor"
+                         Color="{StaticResource SuccessDark}" />
+  <styles:ReferenceColor x:Key="AlertSuccessIconTintColor"
+                         Color="{StaticResource SuccessDark}" />
+  <styles:ReferenceColor x:Key="AlertSuccessBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!-- Alert Error -->
-  <Color x:Key="AlertErrorTextColor">#DA212C</Color>
-  <Color x:Key="AlertErrorBorderColor">#DA212C</Color>
-  <Color x:Key="AlertErrorIconTintColor">#DA212C</Color>
-  <Color x:Key="AlertErrorBackgroundColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="AlertErrorTextColor"
+                         Color="{StaticResource Danger}" />
+  <styles:ReferenceColor x:Key="AlertErrorBorderColor"
+                         Color="{StaticResource Danger}" />
+  <styles:ReferenceColor x:Key="AlertErrorIconTintColor"
+                         Color="{StaticResource Danger}" />
+  <styles:ReferenceColor x:Key="AlertErrorBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!-- Alert Warning -->
-  <Color x:Key="AlertWarningTextColor">#252A2E</Color>
-  <Color x:Key="AlertWarningBorderColor">#E49325</Color>
-  <Color x:Key="AlertWarningIconTintColor">#252A2E</Color>
-  <Color x:Key="AlertWarningBackgroundColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="AlertWarningTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="AlertWarningBorderColor"
+                         Color="{StaticResource Warning}" />
+  <styles:ReferenceColor x:Key="AlertWarningIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="AlertWarningBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!-- Alert Primary -->
-  <Color x:Key="AlertPrimaryTextColor">#0063A3</Color>
-  <Color x:Key="AlertPrimaryBorderColor">#0063A3</Color>
-  <Color x:Key="AlertPrimaryIconTintColor">#0063A3</Color>
-  <Color x:Key="AlertPrimaryBackgroundColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="AlertPrimaryTextColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="AlertPrimaryBorderColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="AlertPrimaryIconTintColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="AlertPrimaryBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!-- Alert Secondary -->
-  <Color x:Key="AlertSecondaryTextColor">#6A6E79</Color>
-  <Color x:Key="AlertSecondaryBorderColor">#6A6E79</Color>
-  <Color x:Key="AlertSecondaryIconTintColor">#6A6E79</Color>
-  <Color x:Key="AlertSecondaryBackgroundColor">#FFFFFF</Color>
-
+  <styles:ReferenceColor x:Key="AlertSecondaryTextColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="AlertSecondaryBorderColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="AlertSecondaryIconTintColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="AlertSecondaryBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
   <!-- Alert Dark -->
-  <Color x:Key="AlertDarkTextColor">#252A2E</Color>
-  <Color x:Key="AlertDarkBorderColor">#252A2E</Color>
-  <Color x:Key="AlertDarkIconTintColor">#252A2E</Color>
-  <Color x:Key="AlertDarkBackgroundColor">#FFFFFF</Color>
+  <styles:ReferenceColor x:Key="AlertDarkTextColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="AlertDarkBorderColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="AlertDarkIconTintColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="AlertDarkBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!--ProgressBar-->
-  <Color x:Key="ProgressBarPrimaryBackgroundColor">#0063A3</Color>
-  <Color x:Key="ProgressBarPrimaryBaseColor">#a3a6b1</Color>
+  <styles:ReferenceColor x:Key="ProgressBarPrimaryBackgroundColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="ProgressBarPrimaryBaseColor"
+                         Color="{StaticResource SecondaryLight}" />
 
 
   <!--Radio button-->
-  <Color x:Key="RadioButtonColor">#0063A3</Color>
-
+  <styles:ReferenceColor x:Key="RadioButtonColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="RadioButtonTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!--Spinner-->
-  <Color x:Key="SpinnerPrimaryFillColor">#0063A3</Color>
-  <Color x:Key="SpinnerSecondaryFillColor">#F1F1F6</Color>
-
-
-  <Color x:Key="RadioButtonTextColor">#252a2e</Color>
+  <styles:ReferenceColor x:Key="SpinnerPrimaryFillColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="SpinnerSecondaryFillColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!--Slider-->
-  <Color x:Key="SliderTooltipColor">#585c65</Color>
-  <Color x:Key="LabelTextColor">#252a2e</Color>
-  <Color x:Key="SliderTitleTextColor">#464B52</Color>
-  <Color x:Key="SliderThumbColor">#217cbb</Color>
-  <Color x:Key="SliderTrackHighlightColor">#0063A3</Color>
-  <Color x:Key="SliderTrackBackgroundColor">#CBCDD6</Color>
-  <Color x:Key="SliderIconTintColor">#252A2E</Color>
-  <Color x:Key="SliderStepperColor">#171C1E</Color>
+  <styles:ReferenceColor x:Key="SliderTooltipColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="SliderTitleTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="SliderThumbColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="SliderTrackHighlightColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="SliderTrackBackgroundColor"
+                         Color="{StaticResource TertiaryLight}" />
+  <styles:ReferenceColor x:Key="SliderIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="SliderStepperColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!--Accordion-->
-  <Color x:Key="AccordionBackgroundColor">#FFF</Color>
-  <Color x:Key="AccordionTitleColor">#252A2E</Color>
-  <Color x:Key="AccordionSubtitleColor">#7D808D</Color>
-  <Color x:Key="AccordionIconTintColor">#252A2E</Color>
-
+  <styles:ReferenceColor x:Key="AccordionBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="AccordionTitleColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="AccordionSubtitleColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="AccordionIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
   <!--List-->
-  <Color x:Key="CellDefaultBackgroundColor">#FFFFFF</Color>
-  <Color x:Key="CellSelectedBackgroundColor">#DCEDF9</Color>
-  <Color x:Key="SeparatorColor">#CBCDD6</Color>
+  <styles:ReferenceColor x:Key="CellDefaultBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="CellSelectedBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="SeparatorColor"
+                         Color="{StaticResource Tertiary}" />
 
   <!--Checkbox-->
   <x:String x:Key="IndeterminateCheckBoxImage">indeterminate_checkbox.png</x:String>
@@ -200,71 +326,151 @@
   <x:String x:Key="DefaultCheckBoxImage">default_checkbox.png</x:String>
 
   <!--Toast-->
-  <Color x:Key="ToastDefaultBackgroundColor">#FFFFFF</Color>
-  <Color x:Key="ToastDarkBackgroundColor">#252A2E</Color>
-  <Color x:Key="ToastPrimaryBackgroundColor">#DCEDF9</Color>
-  <Color x:Key="ToastSecondaryBackgroundColor">#6A6E79</Color>
-  <Color x:Key="ToastDangerBackgroundColor">#FBD4D7</Color>
-  <Color x:Key="ToastWarningBackgroundColor">#FFF5E4</Color>
-  <Color x:Key="ToastSuccessBackgroundColor">#E0ECCF</Color>
+  <!--Default-->
+  <styles:ReferenceColor x:Key="ToastDefaultBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="ToastDefaultTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="ToastDefaultRightIconTintColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="ToastDefaultLeftIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
-  <Color x:Key="ToastDefaultTextColor">#252A2E</Color>
-  <Color x:Key="ToastDarkTextColor">#FFFFFF</Color>
-  <Color x:Key="ToastPrimaryTextColor">#0063A3</Color>
-  <Color x:Key="ToastSecondaryTextColor">#252A2E</Color>
-  <Color x:Key="ToastDangerTextColor">#252A2E</Color>
-  <Color x:Key="ToastWarningTextColor">#252A2E</Color>
-  <Color x:Key="ToastSuccessTextColor">#252A2E</Color>
+  <!--Dark-->
+  <styles:ReferenceColor x:Key="ToastDarkBackgroundColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="ToastDarkTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="ToastDarkRightIconTintColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="ToastDarkLeftIconTintColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
-  <Color x:Key="ToastDefaultLeftIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastDarkLeftIconTintColor">#FFFFFF</Color>
-  <Color x:Key="ToastPrimaryLeftIconTintColor">#0063A3</Color>
-  <Color x:Key="ToastSecondaryLeftIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastDangerLeftIconTintColor">#AB1F26</Color>
-  <Color x:Key="ToastWarningLeftIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastSuccessLeftIconTintColor">#006638</Color>
+  <!--Primary-->
+  <styles:ReferenceColor x:Key="ToastPrimaryBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="ToastPrimaryTextColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="ToastPrimaryRightIconTintColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="ToastPrimaryLeftIconTintColor"
+                         Color="{StaticResource Primary}" />
 
-  <Color x:Key="ToastDefaultRightIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastDarkRightIconTintColor">#FFFFFF</Color>
-  <Color x:Key="ToastPrimaryRightIconTintColor">#0063A3</Color>
-  <Color x:Key="ToastSecondaryRightIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastDangerRightIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastWarningRightIconTintColor">#252A2E</Color>
-  <Color x:Key="ToastSuccessRightIconTintColor">#252A2E</Color>
+  <!--Secondary-->
+  <styles:ReferenceColor x:Key="ToastSecondaryBackgroundColor"
+                         Color="{StaticResource TertiaryDark}" />
+  <styles:ReferenceColor x:Key="ToastSecondaryTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="ToastSecondaryRightIconTintColor"
+                         Color="{StaticResource SecondaryDark}" />
+  <styles:ReferenceColor x:Key="ToastSecondaryLeftIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
+
+  <!--Danger-->
+  <styles:ReferenceColor x:Key="ToastDangerBackgroundColor"
+                         Color="{StaticResource DangerLight}" />
+  <styles:ReferenceColor x:Key="ToastDangerTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="ToastDangerRightIconTintColor"
+                         Color="{StaticResource DangerDark}" />
+  <styles:ReferenceColor x:Key="ToastDangerLeftIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
+
+  <!--Warning-->
+  <styles:ReferenceColor x:Key="ToastWarningBackgroundColor"
+                         Color="{StaticResource WarningLight}" />
+  <styles:ReferenceColor x:Key="ToastWarningTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="ToastWarningRightIconTintColor"
+                         Color="{StaticResource WarningDark}" />
+  <styles:ReferenceColor x:Key="ToastWarningLeftIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
+
+  <!--Success-->
+  <styles:ReferenceColor x:Key="ToastSuccessBackgroundColor"
+                         Color="{StaticResource SuccessLight}" />
+  <styles:ReferenceColor x:Key="ToastSuccessTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="ToastSuccessRightIconTintColor"
+                         Color="{StaticResource SuccessDark}" />
+  <styles:ReferenceColor x:Key="ToastSuccessLeftIconTintColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!-- MessageView-->
-  <Color x:Key="MessageViewPrimaryBackgroundColor">#DCEDF9</Color>
-  <Color x:Key="MessageViewSecondaryBackgroundColor">#F1F1F6</Color>
-  <Color x:Key="MessageViewSecondaryTextColor">#252A2E</Color>
-  <Color x:Key="MessageViewPrimaryTextColor">#0063A3</Color>
-  <Color x:Key="MessageViewPrimaryBorderColor">#217CBB</Color>
-  <Color x:Key="MessageViewSecondaryBorderColor">#353A40</Color>
+  <!--Primary-->
+  <styles:ReferenceColor x:Key="MessageViewPrimaryBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="MessageViewPrimaryTextColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="MessageViewPrimaryBorderColor"
+                         Color="{StaticResource Primary}" />
+
+  <!--Secondary-->
+  <styles:ReferenceColor x:Key="MessageViewSecondaryBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="MessageViewSecondaryTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="MessageViewSecondaryBorderColor"
+                         Color="{StaticResource SecondaryDark}" />
 
   <!--Top nav bar-->
-  <Color x:Key="TitleBarBackgroundPrimaryColor">#004f83</Color>
-  <Color x:Key="TitleBarBackgroundColor">#FFF</Color>
-  <Color x:Key="TitleBarIconTintPrimaryColor">#FFF</Color>
-  <Color x:Key="TitleBarIconTintSecondaryColor">#252A2E</Color>
-  <Color x:Key="SearchBarPrimaryColor">#FFF</Color>
-  <Color x:Key="SearchBarSecondaryColor">#FFF</Color>
-  <Color x:Key="SearchBarIconPrimaryColor">#90939F</Color>
-  <Color x:Key="SearchBarIconSecondaryColor">#90939F</Color>
+  <!--Title Bar-->
+  <styles:ReferenceColor x:Key="TitleBarBackgroundPrimaryColor"
+                         Color="{StaticResource PrimaryDark}" />
+  <styles:ReferenceColor x:Key="TitleBarBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="TitleBarIconTintPrimaryColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="TitleBarIconTintSecondaryColor"
+                         Color="{StaticResource AlternateTextColor}" />
+
+  <!--Search Bar-->
+  <styles:ReferenceColor x:Key="SearchBarPrimaryColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SearchBarSecondaryColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SearchBarIconPrimaryColor"
+                         Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="SearchBarIconSecondaryColor"
+                         Color="{StaticResource SecondaryLight}" />
 
   <!--Input-->
-  <Color x:Key="InputDefaultBorderColor">#464B52</Color>
-  <Color x:Key="InputPrimaryBorderColor">#217CBB</Color>
-  <Color x:Key="InputErrorBorderColor">#DA212C</Color>
-  <Color x:Key="InputSuccessBorderColor">#006638</Color>
-  <Color x:Key="InputDefaultHelperLayoutBackgroundColor">Transparent</Color>
-  <Color x:Key="InputPrimaryHelperLayoutBackgroundColor">Transparent</Color>
-  <Color x:Key="InputErrorHelperLayoutBackgroundColor">Transparent</Color>
-  <Color x:Key="InputSuccessHelperLayoutBackgroundColor">Transparent</Color>
-  <Color x:Key="InputReadOnlyHelperLayoutBackgroundColor">Transparent</Color>
+  <!--Default-->
+  <styles:ReferenceColor x:Key="InputDefaultBorderColor"
+                         Color="{StaticResource Secondary}" />
+  <styles:ReferenceColor x:Key="InputDefaultHelperLayoutBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="InputDefaultBackgroundColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="InputTextColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
-  <Color x:Key="InputReadOnlyBorderColor">Transparent</Color>
-  <Color x:Key="InputTextColor">#252A2E</Color>
-  <Color x:Key="InputDefaultBackgroundColor">#FFFFFF</Color>
-  <Color x:Key="InputReadOnlyBackgroundColor">#E0E1E9</Color>
+  <!--Primary-->
+  <styles:ReferenceColor x:Key="InputPrimaryBorderColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="InputPrimaryHelperLayoutBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+
+  <!--Error-->
+  <styles:ReferenceColor x:Key="InputErrorBorderColor"
+                         Color="{StaticResource Danger}" />
+  <styles:ReferenceColor x:Key="InputErrorHelperLayoutBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+
+  <!--Success-->
+  <styles:ReferenceColor x:Key="InputSuccessBorderColor"
+                         Color="{StaticResource SuccessDark}" />
+  <styles:ReferenceColor x:Key="InputSuccessHelperLayoutBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+
+  <!--ReadOnly-->
+  <styles:ReferenceColor x:Key="InputReadOnlyBorderColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="InputReadOnlyHelperLayoutBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="InputReadOnlyBackgroundColor"
+                         Color="{StaticResource TertiaryLight}" />
+
   <x:String x:Key="InputBlueInfoOutlineIcon">blue_info_outline_icon.png</x:String>
   <x:String x:Key="InputErrorOutlineIcon">error_icon_outline.png</x:String>
   <x:String x:Key="InputSuccessOutlineIcon">success_icon_outline.png</x:String>

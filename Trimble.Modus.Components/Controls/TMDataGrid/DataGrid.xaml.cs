@@ -299,8 +299,6 @@ public partial class DataGrid
     {
         var dataGrid = (DataGrid)bindable;
         dataGrid.BorderThickness = (bool)newValue ? new(0.5) : new(0, 0, 0, 1);
-        dataGrid._headerView.Padding = new(0, 0, 0, 0);
-        dataGrid._headerView.ColumnSpacing = dataGrid.BorderThickness.HorizontalThickness;
         dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : dataGrid.HeaderBackgroundColor;
         dataGrid._collectionView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : dataGrid.DefaultRowColor;
         dataGrid.Reload();
@@ -649,9 +647,6 @@ public partial class DataGrid
         _headerView.Children.Clear();
         _headerView.ColumnDefinitions.Clear();
         ResetSortingOrders();
-
-        _headerView.Padding = new(BorderThickness.Left, BorderThickness.Top, BorderThickness.Right, 0);
-        _headerView.ColumnSpacing = BorderThickness.HorizontalThickness;
 
         if (Columns == null)
         {

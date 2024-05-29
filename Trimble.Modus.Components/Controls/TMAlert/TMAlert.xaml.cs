@@ -41,7 +41,7 @@ public partial class TMAlert : ContentView
         Colors.White,
         BindingMode.Default,
         null,
-        (bindable, _, newValue) => (bindable as TMAlert).alertLayout.BackgroundColor = (Color)newValue);
+        (bindable, _, newValue) => (bindable as TMAlert).contentBorder.BackgroundColor = (Color)newValue);
 
     public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor),
         typeof(Color),
@@ -211,7 +211,7 @@ public partial class TMAlert : ContentView
     protected override void OnParentChanging(ParentChangingEventArgs args)
     {
         base.OnParentChanging(args);
-        if (_parent == null) return ;
+        if (_parent == null) return;
         this.FadeTo(1, 500, Easing.SpringOut);
         this.TranslateTo(0, 0, 500, Easing.SpringOut);
     }

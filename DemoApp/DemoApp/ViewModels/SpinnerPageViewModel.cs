@@ -1,34 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 using Trimble.Modus.Components;
 using Trimble.Modus.Components.Enums;
 
 namespace DemoApp.ViewModels
 {
-    public class SpinnerSamplePageViewModel : ObservableObject
+    public partial class SpinnerSamplePageViewModel : ObservableObject
     {
-        public ICommand SpinnerCommand { get; set; }
-        private SpinnerColor _spinnerColor;
-        public SpinnerColor SpinnerColor {
-            get
-            {
-                return _spinnerColor;
-            }
-            set
-            {
-                _spinnerColor = value;
-                OnPropertyChanged(nameof(SpinnerColor));
-            }
-        }
+
+        [ObservableProperty] private SpinnerColor spinnerColor;
         public SpinnerSamplePageViewModel()
         {
             SpinnerColor = SpinnerColor.Primary;
-            SpinnerCommand = new Command(methodsCommand);        }
-
-        private void methodsCommand(object obj)
+        }
+      
+        [RelayCommand]
+        private void SpinnerSelectionChanged(TMRadioButtonEventArgs e)
         {
-            TMRadioButtonEventArgs e = (TMRadioButtonEventArgs)obj;
-            SpinnerColor = ((string)e.Value == "Primary") ? SpinnerColor.Primary : SpinnerColor.Secondary;
+            SpinnerColor = e.RadioButtonIndex == 0 ? SpinnerColor.Primary : SpinnerColor.Secondary;
         }
     }
 }

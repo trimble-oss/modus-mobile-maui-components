@@ -30,7 +30,7 @@ namespace Trimble.Modus.Components
             BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Primary, propertyChanged: OnSpinnerColorChanged);
 
         internal static readonly BindableProperty FillColorProperty =
-            BindableProperty.Create(nameof(FillColor), typeof(Color), typeof(TMSpinner), defaultValue: Colors.White, propertyChanged: OnFillColorChanged);
+            BindableProperty.Create(nameof(FillColor), typeof(Color), typeof(TMSpinner), defaultValue: Colors.Transparent, propertyChanged: OnFillColorChanged);
 
         internal static readonly BindableProperty SpinnerSizeProperty =
             BindableProperty.Create(nameof(SpinnerSize), typeof(Size), typeof(TMSpinner), defaultValue: Size.Default, propertyChanged: OnSpinnerSizeChanged);
