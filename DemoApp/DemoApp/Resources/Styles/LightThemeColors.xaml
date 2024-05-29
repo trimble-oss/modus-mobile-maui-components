@@ -2,5 +2,5 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="DemoApp.Resources.Styles.LightThemeColors">
-  <Color x:Key="PrimaryColor">#FFC400</Color>  
+  <Color x:Key="Primary">#FFC400</Color>  
 </ResourceDictionary>
