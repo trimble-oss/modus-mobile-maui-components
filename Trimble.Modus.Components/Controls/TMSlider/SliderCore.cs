@@ -315,11 +315,7 @@ namespace Trimble.Modus.Components.Controls
                 }
                 else if (child is Border)
                 {
-                    (child as Border).Stroke = IsEnabled
-                        ? ThumbColor
-                        : ResourcesDictionary.ColorsDictionary(
-                            ColorsConstants.Gray1
-                        );
+                    (child as Border).Stroke = IsEnabled ? ThumbColor : ResourcesDictionary.GetColor(ColorsConstants.Tertiary);
                 }
             }
         }
@@ -335,11 +331,11 @@ namespace Trimble.Modus.Components.Controls
             border.StrokeThickness = thumbStrokeThickness;
             border.Stroke = IsEnabled
                 ? ThumbColor
-                : ResourcesDictionary.ColorsDictionary(
-                    ColorsConstants.Gray1
+                : ResourcesDictionary.GetColor(
+                    ColorsConstants.Tertiary
                 );
             border.Margin = new Thickness(0);
-            border.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            border.BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.DefaultTextColor);
             border.StrokeShape = new Ellipse()
             {
                 WidthRequest = thumbSize,
@@ -356,8 +352,8 @@ namespace Trimble.Modus.Components.Controls
         {
             border.Stroke = IsEnabled
                 ? ThumbColor
-                : ResourcesDictionary.ColorsDictionary(
-                    ColorsConstants.Gray1
+                : ResourcesDictionary.GetColor(
+                    ColorsConstants.Tertiary
                 );
         }
         /// <summary>

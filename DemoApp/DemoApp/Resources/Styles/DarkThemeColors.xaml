@@ -3,5 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DemoApp.Resources.Styles.DarkThemeColors">
 
-  <Color x:Key="Primary">green</Color>
+  <Color x:Key="Primary">yellow</Color>
+  <Color x:Key="PrimaryLight">lightyellow</Color>
+  <Color x:Key="PrimaryDark">#ffeb3b</Color>
+
+  <Color x:Key="DefaultTextColor">#FFFFFF</Color>
+  <Color x:Key="AlternateTextColor">#252A2E</Color>
+
+  <Color x:Key="Danger">#d32f2f</Color>
+  <Color x:Key="DangerLight">#ef5350</Color>
+  <Color x:Key="DangerDark">#c62828</Color>
+
+  <Color x:Key="Tertiary">#3f51b5</Color>
+  <Color x:Key="TertiaryLight">#c5cae9</Color>
+  <Color x:Key="TertiaryDark">#1a237e</Color>
+
+  <Color x:Key="Warning">#ed6c02</Color>
+  <Color x:Key="WarningLight">#ff9800</Color>
+  <Color x:Key="WarningDark">#e65100</Color>
+
+  <Color x:Key="Success">#2e7d32</Color>
+  <Color x:Key="SuccessLight">#4caf50</Color>
+  <Color x:Key="SuccessDark">#1b5e20</Color>
+
+  <Color x:Key="Secondary">#9c27b0</Color>
+  <Color x:Key="SecondaryLight">#ba68c8</Color>
+  <Color x:Key="SecondaryDark">#7b1fa2</Color>
+
+  <Color x:Key="Transparent">transparent</Color>
 </ResourceDictionary>

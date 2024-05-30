@@ -28,7 +28,7 @@ public partial class DataGrid
     /// Border color
     /// Default Value is Black
     /// </summary>
-    internal Color BorderColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2);
+    internal Color BorderColor = ResourcesDictionary.GetColor(ColorsConstants.TertiaryDark);
     /// <summary>
     /// Border thickness for header &amp; each cell
     /// </summary>

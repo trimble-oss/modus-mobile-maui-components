@@ -45,7 +45,7 @@ public partial class MessageView : ContentView
         nameof(TextAndIconColor),
         typeof(Color),
         typeof(MessageView),
-        defaultValue: ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight),
+        defaultValue: ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight),
         propertyChanged: OnTextAndIconColorChanged);
 
     public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(

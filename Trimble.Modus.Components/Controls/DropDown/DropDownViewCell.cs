@@ -19,9 +19,9 @@ public class DropDownViewCell : ViewCell
     {
         label = new Label
         {
-            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9),
+            TextColor = ResourcesDictionary.GetColor(ColorsConstants.Secondary),
             FontAttributes = FontAttributes.None,
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
+            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent),
             VerticalOptions = LayoutOptions.Center,
             HorizontalOptions = LayoutOptions.Start,
             Padding = new Thickness(8, 12)
@@ -33,7 +33,7 @@ public class DropDownViewCell : ViewCell
         {
             Children = { label
 },
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
+            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent),
         };
     }
     internal void UpdateBackgroundColor(Color backgroundColor, bool textAttribute)

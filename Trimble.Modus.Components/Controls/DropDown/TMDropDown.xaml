@@ -24,7 +24,7 @@
              FontSize="16"
              HorizontalOptions="Center"
              FontFamily="OpenSansSemibold"
-             TextColor="{DynamicResource White}"
+             TextColor="{DynamicResource AlternateTextColor}"
              VerticalOptions="Center" />
       <StackLayout x:Name="indicatorButton"
                    Orientation="Horizontal"

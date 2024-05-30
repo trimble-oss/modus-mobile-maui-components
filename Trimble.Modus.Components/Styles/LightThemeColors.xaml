@@ -6,10 +6,10 @@
   <Color x:Key="Primary">#0063A3</Color>
   <Color x:Key="PrimaryLight">#DCEDF9</Color>
   <Color x:Key="PrimaryDark">#004f83</Color>
-
-  <Color x:Key="DefaultTextColor">#FFFFFF</Color>
-  <Color x:Key="AlternateTextColor">#252A2E</Color>
   
+  <Color x:Key="DefaultTextColor">#252A2E</Color>
+  <Color x:Key="AlternateTextColor">#FFFFFF</Color>
+
   <Color x:Key="Danger">#DA212C</Color>
   <Color x:Key="DangerLight">#FBD4D7</Color>
   <Color x:Key="DangerDark">#AB1F26</Color>

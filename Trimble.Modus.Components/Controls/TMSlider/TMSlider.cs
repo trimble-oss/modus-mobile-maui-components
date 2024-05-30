@@ -230,7 +230,7 @@ namespace Trimble.Modus.Components
 
             Track.StrokeThickness = 0;
             TrackHighlight.StrokeThickness = 0;
-            ValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            ValueLabel.TextColor = ResourcesDictionary.GetColor(ColorsConstants.AlternateTextColor);
             var trackSize = 8;
             _thumbSize = 24;
             var thumbStrokeThickness = 3;

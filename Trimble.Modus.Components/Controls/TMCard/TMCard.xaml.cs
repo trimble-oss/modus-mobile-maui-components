@@ -1,4 +1,6 @@
 using System.Windows.Input;
+using Trimble.Modus.Components.Constant;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -46,10 +48,10 @@ public partial class TMCard : ContentView
         BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(TMCard), defaultValue: true, propertyChanged: OnSelectedPropertyChanged);
 
     public static new readonly BindableProperty BackgroundColorProperty =
-        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMCard), defaultValue: Colors.Green, propertyChanged: OnBackgroundColorPropertyChanged);
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMCard), defaultValue: ResourcesDictionary.GetColor(ColorsConstants.TertiaryDark), propertyChanged: OnBackgroundColorPropertyChanged);
 
     public static readonly BindableProperty StrokeColorProperty =
-        BindableProperty.Create(nameof(StrokeColor), typeof(Color), typeof(TMCard), defaultValue: Colors.Blue, propertyChanged: OnStrokeColorPropertyChanged);
+        BindableProperty.Create(nameof(StrokeColor), typeof(Color), typeof(TMCard), defaultValue: ResourcesDictionary.GetColor(ColorsConstants.Primary), propertyChanged: OnStrokeColorPropertyChanged);
 
     public static readonly BindableProperty ClickedEventProperty =
           BindableProperty.Create(nameof(Clicked), typeof(EventHandler), typeof(TMCard));

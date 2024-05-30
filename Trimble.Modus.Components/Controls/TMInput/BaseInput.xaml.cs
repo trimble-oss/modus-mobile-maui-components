@@ -518,7 +518,7 @@ public partial class BaseInput : ContentView
             {
                 tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
                 tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
-                tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
             }
             else

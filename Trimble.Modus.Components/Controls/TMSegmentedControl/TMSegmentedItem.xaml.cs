@@ -20,11 +20,11 @@ public partial class TMSegmentedItem
 
     public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(ImageSource), typeof(TMSegmentedItem), null, propertyChanged: OnSegmentedItemPropertyChanged);
 
-    public static readonly BindableProperty CurrentBackgroundColorProperty = BindableProperty.Create(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent), propertyChanged: OnCurrentBackgroundColorChanged);
+    public static readonly BindableProperty CurrentBackgroundColorProperty = BindableProperty.Create(nameof(CurrentBackgroundColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.GetColor(ColorsConstants.Transparent), propertyChanged: OnCurrentBackgroundColorChanged);
 
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedItem), SegmentedControlSize.Small, propertyChanged: OnSizeChanged);
 
-    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9), propertyChanged: OnTextColorChanged);
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSegmentedItem), ResourcesDictionary.GetColor(ColorsConstants.Secondary), propertyChanged: OnTextColorChanged);
 
     public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMSegmentedItem), Colors.Black, propertyChanged: OnIconTintColorChanged);
     #endregion

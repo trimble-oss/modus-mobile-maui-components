@@ -33,10 +33,10 @@
             VerticalOptions="Center"
             HorizontalOptions="Fill"
             StrokeShape="RoundRectangle 4"
-            Stroke="{DynamicResource Gray9}"
+            Stroke="{DynamicResource Secondary}"
             StrokeThickness="0">
       <Border.Shadow>
-        <Shadow Brush="{DynamicResource Gray9}"
+        <Shadow Brush="{DynamicResource Secondary}"
                 Offset="0,0"
                 Opacity="0.2"
                 Radius="8" />

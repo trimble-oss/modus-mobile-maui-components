@@ -66,14 +66,14 @@ public partial class TMTabbedPage : ContentPage
 
         tabStripContainer = new Grid
         {
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue),
+            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Primary),
             HeightRequest = 70,
             VerticalOptions = LayoutOptions.Fill
         };
 
         mainContainer = new Grid
         {
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red),
+            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Danger),
             RowSpacing = 0
         };
 
@@ -86,7 +86,7 @@ public partial class TMTabbedPage : ContentPage
         {
             contentViewContainer = new ContentView
             {
-                BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight)
+                BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.TertiaryLight)
             };
             Grid.SetRow(contentViewContainer, 0);
             mainContainer.Children.Add(contentViewContainer);
@@ -95,7 +95,7 @@ public partial class TMTabbedPage : ContentPage
         {
             contentContainer = new CarouselView
             {
-                BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight),
+                BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.TertiaryLight),
                 ItemsSource = TabItems,
                 ItemTemplate = new DataTemplate(() =>
                 {
@@ -150,11 +150,11 @@ public partial class TMTabbedPage : ContentPage
         {
             if ((TabColor)newValue == TabColor.Primary)
             {
-                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Primary);
             }
             else
             {
-                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.SecondaryDark);
             }
         }
     }

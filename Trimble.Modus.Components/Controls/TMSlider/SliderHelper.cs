@@ -59,7 +59,7 @@ namespace Trimble.Modus.Components.Controls.Slider
             }
             return new Label
             {
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9),
+                TextColor = ResourcesDictionary.GetColor(ColorsConstants.Secondary),
                 FontSize = 8,
                 HorizontalTextAlignment = TextAlignment.Start,
                 LineBreakMode = LineBreakMode.NoWrap,
@@ -96,7 +96,7 @@ namespace Trimble.Modus.Components.Controls.Slider
                 Margin = new Thickness(leftPadding, 0, 0, 0),
                 WidthRequest = 1,
                 HeightRequest = 4,
-                Color = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9)
+                Color = ResourcesDictionary.GetColor(ColorsConstants.Secondary)
             };
         }
     }
