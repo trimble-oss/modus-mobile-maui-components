@@ -43,7 +43,7 @@ public partial class TabViewItem : ContentView
 
 
     internal static readonly BindablePropertyKey CurrentTextColorPropertyKey =
-        BindableProperty.CreateReadOnly(nameof(CurrentTextColor), typeof(Color), typeof(TabViewItem), ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9));
+        BindableProperty.CreateReadOnly(nameof(CurrentTextColor), typeof(Color), typeof(TabViewItem), ResourcesDictionary.GetColor(ColorsConstants.Secondary));
 
     public static readonly BindableProperty CurrentTextColorProperty = CurrentTextColorPropertyKey.BindableProperty;
 
@@ -129,17 +129,17 @@ public partial class TabViewItem : ContentView
 
     private void UpdateTabColor()
     {
-        var trimbleBlueColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+        var trimbleBlueColor = ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight);
         var selectedColor = trimbleBlueColor;
         if (TabColor == TabColor.Primary)
         {
-            selectedColor = IsSelected ? trimbleBlueColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            selectedColor = IsSelected ? trimbleBlueColor : ResourcesDictionary.GetColor(ColorsConstants.DefaultTextColor);
         }
         text.TextColor = selectedColor;
         icon.Behaviors.Clear();
         icon.Behaviors.Add(new IconTintColorBehavior { TintColor = selectedColor });
 
-        selectedBorder.BackgroundColor = !IsSelected ? ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent) : ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
+        selectedBorder.BackgroundColor = !IsSelected ? ResourcesDictionary.GetColor(ColorsConstants.Transparent) : ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight);
     }
     private static void OnTabViewItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {

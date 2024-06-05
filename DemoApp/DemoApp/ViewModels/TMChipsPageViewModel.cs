@@ -16,6 +16,18 @@ namespace DemoApp.ViewModels
         [ObservableProperty]
         private ChipSize chipSize;
 
+        [ObservableProperty]
+        private ChipState chipState;
+
+        [ObservableProperty]
+        private ChipStyle chipStyle;
+
+        [ObservableProperty]
+        private ChipType chipType;
+
+        [ObservableProperty]
+        private bool isEnabled = true;
+
         public ChipsSamplePageViewModel()
         {
             ChipsCollection.Add(new ChipsItem("Chips 1", ImageConstants.AccountIcon));
@@ -31,9 +43,33 @@ namespace DemoApp.ViewModels
         }
 
         [RelayCommand]
+        public void EnableSelectionChanged(TMRadioButtonEventArgs e)
+        {
+            IsEnabled = e.RadioButtonIndex == 0;
+        }
+
+        [RelayCommand]
+        public void StateSelectionChanged(TMRadioButtonEventArgs e)
+        {
+            ChipState = e.RadioButtonIndex == 0 ? ChipState.Default : ChipState.Error;
+        }
+
+        [RelayCommand]
+        public void StyleSelectionChanged(TMRadioButtonEventArgs e)
+        {
+            ChipStyle = e.RadioButtonIndex == 0 ? ChipStyle.Fill : ChipStyle.Outline;
+        }
+
+        [RelayCommand]
+        public void TypeSelectionChanged(TMRadioButtonEventArgs e)
+        {
+            ChipType = e.RadioButtonIndex == 0 ? ChipType.Filter : ChipType.Input;
+        }
+
+        [RelayCommand]
         public void ClickChip(object tMChips)
         {
-            Console.WriteLine("Clicked "+((TMChips)tMChips).Title);
+            Console.WriteLine("Clicked " + ((TMChips)tMChips).Title);
         }
 
         [RelayCommand]
@@ -45,7 +81,7 @@ namespace DemoApp.ViewModels
             {
                 ChipsCollection.Remove(chipToRemove);
             }
-        }        
+        }
         [RelayCommand]
         public void AddChip()
         {

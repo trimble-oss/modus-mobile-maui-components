@@ -4,21 +4,13 @@
              x:Class="Trimble.Modus.Components.TMSegmentedControl"
              xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.Layouts"
              xmlns:component="clr-namespace:Trimble.Modus.Components"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Name="SegmentedControl">
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </ContentView.Resources>
   <ContentView.Content>
     <Border x:Name="FrameView"
-           Padding="-1"
-           HeightRequest="32"
-            Stroke="{x:DynamicResource SegmentedControlBorderColor}">
+            HeightRequest="32"
+            Stroke="{DynamicResource SegmentedControlBorderColor}"
+            StrokeThickness="1">
       <Border.Padding>
         <OnIdiom Default="-1"
                  Desktop="0" />
@@ -39,8 +31,7 @@
                                        ShowSeparator="{Binding ShowSeparator}"
                                        IsSelected="{Binding IsSelected}"
                                        ColorTheme="{Binding ColorTheme}"
-                                       Size="{Binding Size}"
-                                       Margin="0">
+                                       Size="{Binding Size}">
               <Border.Margin>
                 <OnIdiom Default="0"
                          Desktop="-2,0" />

@@ -365,8 +365,12 @@ public partial class TMChips : ContentView
             case ChipSize.Small:
                 tMChips.label.FontSize = 14;
                 tMChips.label.FontFamily = "OpenSansSemibold";
-                tMChips.chipContent.Padding = new Thickness(12, 4);
+                tMChips.chipContent.Padding = new Thickness(12, 0);
                 tMChips.chipContent.HeightRequest = 32;
+                tMChips.righticon.HeightRequest = 16;
+                tMChips.righticon.WidthRequest = 16;
+                tMChips.lefticon.HeightRequest = 16;
+                tMChips.lefticon.WidthRequest = 16;
                 break;
             case ChipSize.Default:
             default:
@@ -374,6 +378,10 @@ public partial class TMChips : ContentView
                 tMChips.label.FontFamily = "OpenSansRegular";
                 tMChips.chipContent.Padding = new Thickness(12);
                 tMChips.chipContent.HeightRequest = 48;
+                tMChips.righticon.HeightRequest = 24;
+                tMChips.righticon.WidthRequest = 24;
+                tMChips.lefticon.HeightRequest = 24;
+                tMChips.lefticon.WidthRequest = 24;
                 break;
         }
     }

@@ -1,31 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                  xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                  x:Class=" Trimble.Modus.Components.Controls.Toast.TMToastContents"
                  Title="MyPopupPage"
-                 BackgroundColor="{StaticResource Transparent}"
+                 BackgroundColor="{DynamicResource Transparent}"
                  CloseWhenBackgroundIsClicked="False"
                  BackgroundInputTransparent="True">
-  
+
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
         <local:TMToastStyles></local:TMToastStyles>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentPage.Resources>
-  
+
   <VerticalStackLayout x:Name="toastLayout"
                        HorizontalOptions="Fill"
                        VerticalOptions="End">
 
     <Border  VerticalOptions="CenterAndExpand"
              HorizontalOptions="FillAndExpand"
-             BackgroundColor="{StaticResource Transparent}">
+             BackgroundColor="{DynamicResource Transparent}">
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="4" />
       </Border.StrokeShape>
@@ -68,7 +66,7 @@
                      HorizontalOptions="End"
                      VerticalOptions="Center"
                      Clicked="CloseButtonClicked"
-                     BackgroundColor="{StaticResource Transparent}"/>
+                     BackgroundColor="{DynamicResource Transparent}" />
       </StackLayout>
 
     </Border>

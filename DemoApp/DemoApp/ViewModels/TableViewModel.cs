@@ -1,8 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using DemoApp.Constant;
+using DemoApp.Helper;
 using DemoApp.Models;
-using Microsoft.Maui.Controls;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace DemoApp.ViewModels;
 public partial class TableViewModel : ObservableObject
@@ -10,7 +10,7 @@ public partial class TableViewModel : ObservableObject
     Random rnd = new Random();
 
     [ObservableProperty]
-    private List<User> _users;
+    private ObservableCollection<User> _users;
     [ObservableProperty]
     private User _selectedItem;
     [ObservableProperty]
@@ -27,8 +27,12 @@ public partial class TableViewModel : ObservableObject
 
     public TableViewModel()
     {
-        Users = new List<User>();
-        LoadData();
+        InitialzeUsers();
+    }
+
+    private async void InitialzeUsers()
+    {
+        Users = await UserDataCreator.LoadData();
     }
 
     private async void LoadData()

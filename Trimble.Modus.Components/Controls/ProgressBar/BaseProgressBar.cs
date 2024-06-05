@@ -1,7 +1,9 @@
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -26,10 +28,10 @@ internal class BaseProgressBar : SKCanvasView
         BindableProperty.Create(nameof(Size), typeof(ProgressBarSize), typeof(BaseProgressBar), ProgressBarSize.Default, propertyChanged: OnSizeChangedProperty);
 
     public static readonly BindableProperty ProgressColorProperty =
-        BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(BaseProgressBar), Colors.Blue, propertyChanged: OnProgressColorChangedProperty);
+        BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(BaseProgressBar), ResourcesDictionary.GetColor(ColorsConstants.Primary), propertyChanged: OnProgressColorChangedProperty);
 
     public static readonly BindableProperty BaseColorProperty =
-        BindableProperty.Create(nameof(BaseColor), typeof(Color), typeof(BaseProgressBar), Colors.DarkGray, propertyChanged: OnBaseColorChangedProperty);
+        BindableProperty.Create(nameof(BaseColor), typeof(Color), typeof(BaseProgressBar), ResourcesDictionary.GetColor(ColorsConstants.TertiaryDark), propertyChanged: OnBaseColorChangedProperty);
 
     public float Progress
     {

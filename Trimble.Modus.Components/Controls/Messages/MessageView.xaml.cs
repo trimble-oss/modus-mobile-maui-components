@@ -38,14 +38,14 @@ public partial class MessageView : ContentView
         nameof(BackgroundColor),
         typeof(Color),
         typeof(MessageView),
-        defaultValue: ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale),
+        Colors.Transparent,
         propertyChanged: (bindable, _, newValue) => (bindable as MessageView).contentLayout.BackgroundColor = (Color)newValue);
 
     public static readonly BindableProperty TextAndIconColorProperty = BindableProperty.Create(
         nameof(TextAndIconColor),
         typeof(Color),
         typeof(MessageView),
-        defaultValue: ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight),
+        defaultValue: ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight),
         propertyChanged: OnTextAndIconColorChanged);
 
     public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(

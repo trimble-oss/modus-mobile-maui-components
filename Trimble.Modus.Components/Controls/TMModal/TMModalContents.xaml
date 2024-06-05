@@ -3,17 +3,15 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:ClassModifier="internal"
                  x:Class="Trimble.Modus.Components.Modal.TMModalContents"
-                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
                  xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMModal"
                  Title="TMModalContents"
-                 BackgroundColor="{x:StaticResource ModalDimmedBackgroundColor}">
+                 BackgroundColor="{DynamicResource ModalDimmedBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
         <local:TMModalStyles/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
@@ -26,7 +24,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="{x:StaticResource ModalShadowColor}"
+          BackgroundColor="{DynamicResource ModalShadowColor}"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">
@@ -35,10 +33,10 @@
             VerticalOptions="Center"
             HorizontalOptions="Fill"
             StrokeShape="RoundRectangle 4"
-            Stroke="{x:StaticResource Gray9}"
+            Stroke="{DynamicResource Secondary}"
             StrokeThickness="0">
       <Border.Shadow>
-        <Shadow Brush="{x:StaticResource Gray9}"
+        <Shadow Brush="{DynamicResource Secondary}"
                 Offset="0,0"
                 Opacity="0.2"
                 Radius="8" />
@@ -79,7 +77,7 @@
                  HeightRequest="16"
                  WidthRequest="16"
                  Margin="2"
-                 BackgroundColor="{StaticResource Transparent}"
+                 BackgroundColor="{DynamicResource Transparent}"
                  HorizontalOptions="End">
             <Image.GestureRecognizers>
               <TapGestureRecognizer Tapped="CloseModal" />

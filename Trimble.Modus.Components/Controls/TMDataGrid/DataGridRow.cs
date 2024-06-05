@@ -8,7 +8,7 @@ internal sealed class DataGridRow : Grid
     #region Fields
 
     private Color? _bgColor;
-    private readonly Color? _textColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+    private readonly Color? _textColor = ResourcesDictionary.GetColor(ColorsConstants.AlternateTextColor);
     private List<int> SelectedIndexes = new List<int>();
 
     #endregion Fields

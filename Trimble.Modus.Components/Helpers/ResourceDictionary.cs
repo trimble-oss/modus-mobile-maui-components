@@ -2,8 +2,8 @@
 
 public static class ResourcesDictionary
 {
-    public static Color ColorsDictionary(string styleKey)
+    public static Color GetColor(string styleKey)
     {
-        return (Color)new Styles.Colors()[styleKey];
+        return Application.Current.Resources[styleKey] as Color;
     }
 }

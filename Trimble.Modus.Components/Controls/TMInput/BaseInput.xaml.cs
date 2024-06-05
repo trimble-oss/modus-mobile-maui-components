@@ -121,7 +121,7 @@ public partial class BaseInput : ContentView
     /// Gets or sets the text color
     /// </summary>
     public static readonly BindableProperty TextColorProperty =
-        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BaseInput), Colors.Gray,
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
             propertyChanged: OnTextColorPropertyChanged);
     /// <summary>
     /// Gets or sets background color
@@ -518,7 +518,7 @@ public partial class BaseInput : ContentView
             {
                 tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
                 tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
-                tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
             }
             else

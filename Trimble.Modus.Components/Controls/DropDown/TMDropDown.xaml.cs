@@ -220,11 +220,11 @@ public partial class TMDropDown : ContentView
             {
                 if (SelectedItem == textCell.BindingContext)
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale), true);
+                    textCell.UpdateBackgroundColor(ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight), true);
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White), false);
+                    textCell.UpdateBackgroundColor(ResourcesDictionary.GetColor(ColorsConstants.AlternateTextColor), false);
                 }
             }
         }

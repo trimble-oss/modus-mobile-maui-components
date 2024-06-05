@@ -4,15 +4,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
              xmlns:style="clr-namespace:Trimble.Modus.Components.Controls.TMDataGrid;assembly=Trimble.Modus.Components"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
              x:Class="Trimble.Modus.Components.DataGrid"
              x:DataType="local:DataGrid"
              CompressedLayout.IsHeadless="True">
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
-        <style:DataGridStyle/>
+        <style:DataGridStyle />
       </ResourceDictionary.MergedDictionaries>
       <Style x:Key="DefaultHeaderStyle"
              TargetType="Label">
@@ -36,6 +34,8 @@
     </Grid.RowDefinitions>
     <Grid Grid.Row="0"
           x:Name="_headerView"
+          Padding="1"
+          ColumnSpacing="1"
           HeightRequest="48" />
     <CollectionView x:Name="_collectionView"
                     Grid.Row="1"

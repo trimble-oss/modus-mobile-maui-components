@@ -31,7 +31,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Trimble.Modus.Components</PackageId>
     <Title>Trimbel Modus</Title>
-    <Version>1.0.2-beta</Version>
+    <Version>1.0.30-beta</Version>
     <Authors>Trimble Inc</Authors>
     <Company>Trimble Inc</Company>
     <Product>Trimble.Modus.Components</Product>
@@ -206,7 +206,16 @@
     <MauiXaml Update="Styles\DarkTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Styles\DarkThemeColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Styles\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\LightThemeColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
   </ItemGroup>

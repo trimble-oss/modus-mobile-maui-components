@@ -16,7 +16,7 @@ public partial class TextCell : ViewCell
         BindableProperty.Create(nameof(Description), typeof(string), typeof(TextCell), default(string));
 
     public static readonly BindableProperty BackgroundColorProperty =
-       BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TextCell), Colors.White, propertyChanged: OnBackgroundColorChanged);
+       BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TextCell), Colors.Transparent, propertyChanged: OnBackgroundColorChanged);
 
     #endregion
     #region Public Fields

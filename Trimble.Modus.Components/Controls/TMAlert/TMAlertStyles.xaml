@@ -3,76 +3,117 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Controls.TMAlert.TMAlertStyles"
                     xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components">
-  <Style TargetType="local:TMAlert" x:Key="Success">
-    <Setter Property="TextColor" Value="{DynamicResource AlertSuccessTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource AlertSuccessIconTintColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource AlertSuccessBackgroundColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource AlertSuccessBorderColor}"/>
-    <Setter Property="ButtonColor" Value="{DynamicResource AlertButtonColor}"/>
+  <Style TargetType="local:TMAlert"
+         x:Key="Success">
+    <Setter Property="TextColor"
+            Value="{DynamicResource AlertSuccessTextColor}" />
+    <Setter Property="IconTintColor"
+            Value="{DynamicResource AlertSuccessIconTintColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource AlertSuccessBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource AlertSuccessBorderColor}" />
+    <Setter Property="ButtonColor"
+            Value="{DynamicResource AlertButtonColor}" />
     <Setter Property="IconSource">
       <Setter.Value>
-            <FileImageSource File="alert_success_icon.png"/>
+        <FileImageSource File="alert_success_icon.png" />
       </Setter.Value>
     </Setter>
   </Style>
-  <Style TargetType="local:TMAlert" x:Key="Error">
-    <Setter Property="TextColor" Value="{DynamicResource AlertErrorTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource AlertErrorIconTintColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource AlertErrorBackgroundColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource AlertErrorBorderColor}"/>
-    <Setter Property="ButtonColor" Value="{DynamicResource AlertButtonColor}"/>
+  <Style TargetType="local:TMAlert"
+         x:Key="Error">
+    <Setter Property="TextColor"
+            Value="{DynamicResource AlertErrorTextColor}" />
+    <Setter Property="IconTintColor"
+            Value="{DynamicResource AlertErrorIconTintColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource AlertErrorBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource AlertErrorBorderColor}" />
+    <Setter Property="ButtonColor"
+            Value="{DynamicResource AlertButtonColor}" />
     <Setter Property="IconSource">
       <Setter.Value>
-            <FileImageSource File="alert_error_icon.png"/>
+        <FileImageSource File="alert_error_icon.png" />
       </Setter.Value>
-    </Setter>  </Style>
+    </Setter>
+  </Style>
 
-  <Style TargetType="local:TMAlert" x:Key="Warning">
-    <Setter Property="TextColor" Value="{DynamicResource AlertWarningTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource AlertWarningIconTintColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource AlertWarningBackgroundColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource AlertWarningBorderColor}"/>
-    <Setter Property="ButtonColor" Value="{DynamicResource AlertButtonColor}"/>
+  <Style TargetType="local:TMAlert"
+         x:Key="Warning">
+    <Setter Property="TextColor"
+            Value="{DynamicResource AlertWarningTextColor}" />
+    <Setter Property="IconTintColor"
+            Value="{DynamicResource AlertWarningIconTintColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource AlertWarningBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource AlertWarningBorderColor}" />
+    <Setter Property="ButtonColor"
+            Value="{DynamicResource AlertButtonColor}" />
     <Setter Property="IconSource">
       <Setter.Value>
-            <FileImageSource File="alert_warning_icon.png"/>
+        <FileImageSource File="alert_warning_icon.png" />
       </Setter.Value>
-    </Setter>  </Style>
+    </Setter>
+  </Style>
 
-  <Style TargetType="local:TMAlert" x:Key="Primary">
-    <Setter Property="TextColor" Value="{DynamicResource AlertPrimaryTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource AlertPrimaryIconTintColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource AlertPrimaryBackgroundColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource AlertPrimaryBorderColor}"/>
-    <Setter Property="ButtonColor" Value="{DynamicResource AlertButtonColor}"/>
+  <Style TargetType="local:TMAlert"
+         x:Key="Primary">
+    <Setter Property="TextColor"
+            Value="{DynamicResource AlertPrimaryTextColor}" />
+    <Setter Property="IconTintColor"
+            Value="{DynamicResource AlertPrimaryIconTintColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource AlertPrimaryBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource AlertPrimaryBorderColor}" />
+    <Setter Property="ButtonColor"
+            Value="{DynamicResource AlertButtonColor}" />
     <Setter Property="IconSource">
       <Setter.Value>
-            <FileImageSource File="alert_primary_icon.png"/>
+        <FileImageSource File="alert_primary_icon.png" />
       </Setter.Value>
-    </Setter>  </Style>
+    </Setter>
+  </Style>
 
-  <Style TargetType="local:TMAlert" x:Key="Secondary">
-    <Setter Property="TextColor" Value="{DynamicResource AlertSecondaryTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource AlertSecondaryIconTintColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource AlertSecondaryBackgroundColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource AlertSecondaryBorderColor}"/>
-    <Setter Property="ButtonColor" Value="{DynamicResource AlertButtonColor}"/>
+  <Style TargetType="local:TMAlert"
+         x:Key="Secondary">
+    <Setter Property="TextColor"
+            Value="{DynamicResource AlertSecondaryTextColor}" />
+    <Setter Property="IconTintColor"
+            Value="{DynamicResource AlertSecondaryIconTintColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource AlertSecondaryBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource AlertSecondaryBorderColor}" />
+    <Setter Property="ButtonColor"
+            Value="{DynamicResource AlertButtonColor}" />
     <Setter Property="IconSource">
       <Setter.Value>
-            <FileImageSource File="alert_secondary_icon.png"/>
+        <FileImageSource File="alert_secondary_icon.png" />
       </Setter.Value>
-    </Setter>  </Style>
+    </Setter>
+  </Style>
 
-  <Style TargetType="local:TMAlert" x:Key="Dark">
-    <Setter Property="TextColor" Value="{DynamicResource AlertDarkTextColor}"/>
-    <Setter Property="IconTintColor" Value="{DynamicResource AlertDarkIconTintColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource AlertDarkBackgroundColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource AlertDarkBorderColor}"/>
-    <Setter Property="ButtonColor" Value="{DynamicResource AlertButtonColor}"/>
+  <Style TargetType="local:TMAlert"
+         x:Key="Dark">
+    <Setter Property="TextColor"
+            Value="{DynamicResource AlertDarkTextColor}" />
+    <Setter Property="IconTintColor"
+            Value="{DynamicResource AlertDarkIconTintColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource AlertDarkBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource AlertDarkBorderColor}" />
+    <Setter Property="ButtonColor"
+            Value="{DynamicResource AlertButtonColor}" />
     <Setter Property="IconSource">
       <Setter.Value>
-            <FileImageSource File="alert_dark_icon.png"/>
+        <FileImageSource File="alert_dark_icon.png" />
       </Setter.Value>
-    </Setter>  </Style>
+    </Setter>
+  </Style>
 </ResourceDictionary>
 

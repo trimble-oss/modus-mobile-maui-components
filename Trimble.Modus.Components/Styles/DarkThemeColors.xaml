@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Trimble.Modus.Components.Styles.DarkThemeColors">
+  
+  <Color x:Key="Primary">#019aeb</Color>
+  <Color x:Key="PrimaryLight">#DCEDF9</Color>
+  <Color x:Key="PrimaryDark">#004f83</Color>
+
+  <Color x:Key="DefaultTextColor">#FFFFFF</Color>
+  <Color x:Key="AlternateTextColor">#252A2E</Color>
+
+  <Color x:Key="Danger">#DA212C</Color>
+  <Color x:Key="DangerLight">#FBD4D7</Color>
+  <Color x:Key="DangerDark">#AB1F26</Color>
+
+  <Color x:Key="Tertiary">#353A40</Color>
+  <Color x:Key="TertiaryLight">#E0E1E9</Color>
+  <Color x:Key="TertiaryDark">#171C1E</Color>
+
+  <Color x:Key="Warning">#FBAD26</Color>
+  <Color x:Key="WarningLight">#fff5e4</Color>
+  <Color x:Key="WarningDark">#e49325</Color>
+
+  <Color x:Key="Success">#1E8A44</Color>
+  <Color x:Key="SuccessLight">#E0ECCF</Color>
+  <Color x:Key="SuccessDark">#006638</Color>
+
+  <Color x:Key="Secondary">#6A6E79</Color>
+  <Color x:Key="SecondaryLight">#B7B9C3</Color>
+  <Color x:Key="SecondaryDark">#585C65</Color>
+
+  <Color x:Key="Transparent">transparent</Color>
+
+</ResourceDictionary>

@@ -6,8 +6,8 @@
              xmlns:viewmodels="clr-namespace:DemoApp.ViewModels"
              x:DataType="viewmodels:AlertSamplePageViewModel"
              Title="Alerts">
-    <VerticalStackLayout>
-      <VerticalStackLayout x:Name="alertLayout" />
+    <VerticalStackLayout Padding="10">
+      <VerticalStackLayout x:Name="alertLayout"/>
       <Label Text="Alert Type"
              FontAttributes="Bold"
              FontSize="Large"
