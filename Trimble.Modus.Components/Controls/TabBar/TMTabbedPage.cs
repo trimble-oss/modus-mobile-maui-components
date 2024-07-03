@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Trimble.Modus.Components.Constant;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -66,17 +65,16 @@ public partial class TMTabbedPage : ContentPage
 
         tabStripContainer = new Grid
         {
-            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Primary),
             HeightRequest = 70,
             VerticalOptions = LayoutOptions.Fill
         };
 
+        tabStripContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Primary);
         mainContainer = new Grid
         {
-            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Danger),
             RowSpacing = 0
         };
-
+        mainContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Danger);
         mainContainer.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
         mainContainer.RowDefinitions.Add(new RowDefinition { Height = 70 });
 
@@ -84,10 +82,8 @@ public partial class TMTabbedPage : ContentPage
         var isCurrentDevicePlatformIsWindows = DeviceInfo.Current.Platform == DevicePlatform.WinUI;
         if (isCurrentDevicePlatformIsWindows)
         {
-            contentViewContainer = new ContentView
-            {
-                BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.TertiaryLight)
-            };
+            contentViewContainer = new ContentView();
+            contentViewContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.TertiaryLight);
             Grid.SetRow(contentViewContainer, 0);
             mainContainer.Children.Add(contentViewContainer);
         }
@@ -95,7 +91,6 @@ public partial class TMTabbedPage : ContentPage
         {
             contentContainer = new CarouselView
             {
-                BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.TertiaryLight),
                 ItemsSource = TabItems,
                 ItemTemplate = new DataTemplate(() =>
                 {
@@ -103,6 +98,7 @@ public partial class TMTabbedPage : ContentPage
                     contentView.SetBinding(ContentView.ContentProperty, "ContentView");
                     return contentView;
                 }),
+
                 // TODO: Disbaled Swipe and Scroll animation. While scrolling tabs updating wrong content.
                 IsSwipeEnabled = false,
                 IsScrollAnimated = false,
@@ -112,6 +108,7 @@ public partial class TMTabbedPage : ContentPage
 
             };
 
+            contentContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.TertiaryLight);
             contentContainer.PropertyChanged += OnContentContainerPropertyChanged;
             // TODO: Disbaled Swipe and Scroll animation. While scrolling tabs updating wrong content.
             //contentContainer.Scrolled += OnContentContainerScrolled;
@@ -150,11 +147,11 @@ public partial class TMTabbedPage : ContentPage
         {
             if ((TabColor)newValue == TabColor.Primary)
             {
-                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Primary);
+                tabbedPage.tabStripContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Primary);
             }
             else
             {
-                tabbedPage.tabStripContainer.BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.SecondaryDark);
+                tabbedPage.tabStripContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.SecondaryDark);
             }
         }
     }

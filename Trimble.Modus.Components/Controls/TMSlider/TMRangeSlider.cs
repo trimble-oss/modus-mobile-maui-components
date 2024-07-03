@@ -5,7 +5,6 @@ using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls;
 using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 using static System.Math;
 
 namespace Trimble.Modus.Components
@@ -291,8 +290,8 @@ namespace Trimble.Modus.Components
 
             Track.StrokeThickness = 0;
             TrackHighlight.StrokeThickness = 0;
-            UpperValueLabel.TextColor = ResourcesDictionary.GetColor(ColorsConstants.DefaultTextColor);
-            LowerValueLabel.TextColor = ResourcesDictionary.GetColor(ColorsConstants.DefaultTextColor);
+            UpperValueLabel.SetDynamicResource(Label.TextColorProperty, ColorsConstants.DefaultTextColor);
+            LowerValueLabel.SetDynamicResource(Label.TextColorProperty, ColorsConstants.DefaultTextColor); 
 
             var trackSize = 8;
             _thumbSize = 24;

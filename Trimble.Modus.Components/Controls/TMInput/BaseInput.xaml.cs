@@ -1,9 +1,6 @@
-﻿using Microsoft.Maui.Graphics.Text;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls.BaseInput;
 
@@ -518,7 +515,7 @@ public partial class BaseInput : ContentView
             {
                 tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
                 tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
-                tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent);
+                tmInput.GetCoreContent().SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
             }
             else

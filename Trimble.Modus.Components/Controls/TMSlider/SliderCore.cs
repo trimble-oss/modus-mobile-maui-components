@@ -4,7 +4,6 @@ using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Controls.TMSlider;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls
 {
@@ -313,9 +312,16 @@ namespace Trimble.Modus.Components.Controls
                 {
                     child.Opacity = IsEnabled ? _enabledOpacity : _disabledOpacity;
                 }
-                else if (child is Border)
+                else if (child is Border border)
                 {
-                    (child as Border).Stroke = IsEnabled ? ThumbColor : ResourcesDictionary.GetColor(ColorsConstants.Tertiary);
+                    if (IsEnabled)
+                    {
+                        border.Stroke = ThumbColor;
+                    }
+                    else
+                    {
+                        border.Stroke.SetDynamicResource(Border.StrokeProperty, ColorsConstants.Tertiary);
+                    }
                 }
             }
         }
@@ -329,13 +335,17 @@ namespace Trimble.Modus.Components.Controls
         internal void SetThumbStyle(Border border, double thumbStrokeThickness, double thumbSize)
         {
             border.StrokeThickness = thumbStrokeThickness;
-            border.Stroke = IsEnabled
-                ? ThumbColor
-                : ResourcesDictionary.GetColor(
-                    ColorsConstants.Tertiary
-                );
+            if (IsEnabled)
+            {
+                border.Stroke = ThumbColor;
+            }
+            else
+            {
+                border.SetDynamicResource(Border.StrokeProperty, ColorsConstants.Tertiary);
+            }
+
             border.Margin = new Thickness(0);
-            border.BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.DefaultTextColor);
+            border.SetDynamicResource(BackgroundColorProperty, ColorsConstants.DefaultTextColor);
             border.StrokeShape = new Ellipse()
             {
                 WidthRequest = thumbSize,
@@ -350,11 +360,14 @@ namespace Trimble.Modus.Components.Controls
         /// <param name="border"></param>
         internal void RefreshThumbColor(Border border)
         {
-            border.Stroke = IsEnabled
-                ? ThumbColor
-                : ResourcesDictionary.GetColor(
-                    ColorsConstants.Tertiary
-                );
+            if (IsEnabled)
+            {
+                border.Stroke = ThumbColor;
+            }
+            else
+            {
+                border.SetDynamicResource(Border.StrokeProperty, ColorsConstants.Tertiary);
+            }
         }
         /// <summary>
         /// Triggered when a thumb is moved
