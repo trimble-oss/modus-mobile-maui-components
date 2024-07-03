@@ -1,7 +1,4 @@
-using CommunityToolkit.Mvvm.DependencyInjection;
-using System;
 using System.Collections;
-using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Animations;
 
 namespace Trimble.Modus.Components;
@@ -13,8 +10,8 @@ public partial class DropDownContents : PopupPage
 
     }
 
-    internal DropDownContents(View anchorView,Enums.ModalPosition position): base(anchorView, position)
-	{
+    internal DropDownContents(View anchorView, Enums.ModalPosition position) : base(anchorView, position)
+    {
         InitializeComponent();
     }
 
@@ -33,8 +30,15 @@ public partial class DropDownContents : PopupPage
         border.HeightRequest = DesiredHeight;
         border.WidthRequest = WidthRequest;
         listView.ItemsSource = ItemSource;
-        listView.SelectedItem = ItemSource?.Cast<object>()?.ToList()[SelectedIndex];
-        listView.ItemSelected += SelectedEventHandler;        
+        if (SelectedIndex < 0)
+        {
+            listView.SelectedItem = null;
+        }
+        else
+        {
+            listView.SelectedItem = ItemSource?.Cast<object>()?.ToList()[SelectedIndex];
+        }
+        listView.ItemSelected += SelectedEventHandler;
         if (Height - YPosition < DesiredHeight)
         {
             this.Position = Enums.ModalPosition.Top;

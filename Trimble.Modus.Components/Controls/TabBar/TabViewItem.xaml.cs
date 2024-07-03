@@ -1,7 +1,7 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Maui.Behaviors;
+using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
-using CommunityToolkit.Maui.Behaviors;
 
 namespace Trimble.Modus.Components;
 
@@ -139,7 +139,14 @@ public partial class TabViewItem : ContentView
         icon.Behaviors.Clear();
         icon.Behaviors.Add(new IconTintColorBehavior { TintColor = selectedColor });
 
-        selectedBorder.BackgroundColor = !IsSelected ? ResourcesDictionary.GetColor(ColorsConstants.Transparent) : ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight);
+        if (IsSelected)
+        {
+            selectedBorder.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
+        }
+        else
+        {
+            selectedBorder.SetDynamicResource(BackgroundColorProperty, ColorsConstants.PrimaryLight);
+        }
     }
     private static void OnTabViewItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {

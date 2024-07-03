@@ -1,5 +1,4 @@
 ﻿using Trimble.Modus.Components.Constant;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -19,26 +18,27 @@ public class DropDownViewCell : ViewCell
     {
         label = new Label
         {
-            TextColor = ResourcesDictionary.GetColor(ColorsConstants.Secondary),
             FontAttributes = FontAttributes.None,
-            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent),
             VerticalOptions = LayoutOptions.Center,
             HorizontalOptions = LayoutOptions.Start,
             Padding = new Thickness(8, 12)
         };
 
+        label.SetDynamicResource(Label.TextColorProperty, ColorsConstants.Secondary);
+        label.SetDynamicResource(Label.BackgroundColorProperty, ColorsConstants.Transparent);
+
         label.SetBinding(Label.TextProperty, new Binding("Text", source: this));
 
         View = new StackLayout
         {
-            Children = { label
-},
-            BackgroundColor = ResourcesDictionary.GetColor(ColorsConstants.Transparent),
+            Children = { label },
         };
+        View.SetDynamicResource(StackLayout.BackgroundColorProperty, ColorsConstants.Transparent);
     }
-    internal void UpdateBackgroundColor(Color backgroundColor, bool textAttribute)
+
+    internal void UpdateBackgroundColor(string backgroundColorKey, bool textAttribute)
     {
-        View.BackgroundColor = backgroundColor;
+        View.SetDynamicResource(View.BackgroundColorProperty, backgroundColorKey);
         label.FontAttributes = textAttribute ? FontAttributes.Bold : FontAttributes.None;
     }
 }

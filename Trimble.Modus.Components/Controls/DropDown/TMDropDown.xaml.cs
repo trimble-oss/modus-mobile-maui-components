@@ -2,7 +2,6 @@ using System.Collections;
 using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Helpers;
-using Trimble.Modus.Components.Popup.Animations;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components;
@@ -18,7 +17,7 @@ public partial class TMDropDown : ContentView
     private Thickness margin = new Thickness(0, 154, 0, 0);
 
 #else
-    private Thickness margin = new Thickness(0,128,0,0);
+    private Thickness margin = new Thickness(0, 128, 0, 0);
 #endif
     private uint AnimationDuration { get; set; } = 250;
     private object previousSelection;
@@ -104,7 +103,7 @@ public partial class TMDropDown : ContentView
 
     private void OnTapped(object sender, EventArgs e)
     {
-        Open();        
+        Open();
     }
 
     private async void Close()
@@ -115,7 +114,7 @@ public partial class TMDropDown : ContentView
         );
     }
 
-    
+
     DropDownContents popup;
     private async void Open()
     {
@@ -220,11 +219,11 @@ public partial class TMDropDown : ContentView
             {
                 if (SelectedItem == textCell.BindingContext)
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight), true);
+                    textCell.UpdateBackgroundColor(ColorsConstants.PrimaryLight, true);
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.GetColor(ColorsConstants.AlternateTextColor), false);
+                    textCell.UpdateBackgroundColor(ColorsConstants.AlternateTextColor, false);
                 }
             }
         }
