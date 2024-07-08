@@ -74,11 +74,7 @@ public partial class TMDropDown : ContentView
         SelectedItem = new object { };
         previousSelection = null;
         InitializeComponent();
-        var tapGestureRecognizer = new TapGestureRecognizer();
-        tapGestureRecognizer.Tapped += OnTapped;
-        innerBorder.GestureRecognizers.Add(tapGestureRecognizer);
         PopupService.Instance.Dismissed += OnPopupRemoved;
-        //Content = innerBorder;
     }
     #endregion
     #region Private Methods
@@ -103,7 +99,10 @@ public partial class TMDropDown : ContentView
 
     private void OnTapped(object sender, EventArgs e)
     {
-        Open();
+        if (ItemsSource.Cast<object>().Count() > 0)
+        {
+            Open();
+        }
     }
 
     private async void Close()
@@ -229,4 +228,12 @@ public partial class TMDropDown : ContentView
         }
     }
     #endregion
+
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        if (ItemsSource != null && ItemsSource.Cast<object>().Any())
+        {
+            Open();
+        }
+    }
 }

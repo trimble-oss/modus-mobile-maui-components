@@ -14,29 +14,30 @@
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="4" />
     </Border.StrokeShape>
-    <StackLayout x:Name="ContentLayout"
-                 Orientation="Horizontal"
-                 HeightRequest="48"
-                 Padding="12,0"
-                 HorizontalOptions="Fill"
-                 VerticalOptions="Center">
+    <Border.GestureRecognizers>
+      <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+    </Border.GestureRecognizers>
+    <Grid x:Name="ContentLayout"
+          ColumnDefinitions="*,auto"
+          HeightRequest="48"
+          Padding="12,0"
+          HorizontalOptions="Fill"
+          VerticalOptions="Center">
       <Label x:Name="label"
              FontSize="16"
+             Grid.Column="0"
              HorizontalOptions="Center"
              FontFamily="OpenSansSemibold"
              TextColor="{DynamicResource AlternateTextColor}"
              VerticalOptions="Center" />
-      <StackLayout x:Name="indicatorButton"
-                   Orientation="Horizontal"
-                   IsVisible="true"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalOptions="Center">
-        <Image Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
-               HeightRequest="32"
-               WidthRequest="32"
-               HorizontalOptions="End"
-               VerticalOptions="Center" />
-      </StackLayout>
-    </StackLayout>
+
+      <Image x:Name="indicatorButton"
+             Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
+             HorizontalOptions="EndAndExpand"
+             VerticalOptions="Center"
+             Grid.Column="1"
+             HeightRequest="32"
+             WidthRequest="32" />
+    </Grid>
   </Border>
 </ContentView>

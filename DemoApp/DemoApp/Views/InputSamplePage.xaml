@@ -16,12 +16,12 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch x:Name="isEnabled"
-                  IsToggled="{Binding IsEnabled}"/>
+                  IsToggled="{Binding IsEnabled}" />
           <Label Text="IsReadOnly"
                  HorizontalOptions="Center"
                  VerticalOptions="Center" />
           <Switch x:Name="isReadOnly"
-                  IsToggled="{Binding IsReadOnly}"/>
+                  IsToggled="{Binding IsReadOnly}" />
         </StackLayout>
 
         <modus:TMInput  x:Name="modusInput"
@@ -47,7 +47,7 @@
                        FocusedCommand="{Binding FocusedCommand}"
                        UnFocusedCommand="{Binding UnFocusedCommand}"
                        Placeholder="Text Input" />
-        
+
         <modus:TMInput x:Name="numbervalidationInput"
                        TitleText="Success/Error Input Without Helper Text"
                        IsEnabled="{Binding IsEnabled}"
@@ -70,12 +70,18 @@
                        IsPassword="{Binding IsPassword}"
                        IsReadOnly="{Binding IsReadOnly}"
                        RightIconCommand="{Binding TogglePasswordIconCommand}"
-                       Placeholder="Text Input" >
+                       Placeholder="Text Input">
           <modus:TMInput.LeftView>
-            <Image Source="{x:Static constants:ImageConstants.SearchIcon}" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0"/>
+            <Image Source="{x:Static constants:ImageConstants.SearchIcon}"
+                   HeightRequest="20"
+                   WidthRequest="20"
+                   Margin="10,0,0,0" />
           </modus:TMInput.LeftView>
-              <modus:TMInput.RightView>
-            <Image Source="{x:Static constants:ImageConstants.PasswordIcon}" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"/>
+          <modus:TMInput.RightView>
+            <Image Source="{x:Static constants:ImageConstants.PasswordIcon}"
+                   HeightRequest="20"
+                   WidthRequest="20"
+                   Margin="0,0,10,0" />
           </modus:TMInput.RightView>
         </modus:TMInput>
         <modus:TMInput x:Name="bothIcon"
@@ -89,7 +95,7 @@
             <Label Text="Meters"
                    Padding="0,0,10,0"
                    VerticalOptions="Center"
-                   Opacity="0.5"/>
+                   Opacity="0.5" />
           </modus:TMInput.RightView>
         </modus:TMInput>
       </StackLayout>
