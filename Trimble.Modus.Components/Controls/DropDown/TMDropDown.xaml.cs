@@ -32,8 +32,8 @@ public partial class TMDropDown : ContentView
     }
     public object SelectedItem
     {
-        get => (object)GetValue(SelectedItemsProperty);
-        private set => SetValue(SelectedItemsProperty, value);
+        get => GetValue(SelectedItemsProperty);
+        set => SetValue(SelectedItemsProperty, value);
     }
     public new double WidthRequest
     {

@@ -35,12 +35,6 @@
             StrokeShape="RoundRectangle 4"
             Stroke="{DynamicResource Secondary}"
             StrokeThickness="0">
-      <Border.Shadow>
-        <Shadow Brush="{DynamicResource Secondary}"
-                Offset="0,0"
-                Opacity="0.2"
-                Radius="8" />
-      </Border.Shadow>
       <Grid RowSpacing="16">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
