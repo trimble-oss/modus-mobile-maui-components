@@ -4,6 +4,8 @@
     {
         private static ResourceDictionary LightThemeColorResourceDictionary { get; set; }
         private static ResourceDictionary DarkThemeColorResourceDictionary { get; set; }
+        private static ResourceDictionary DarkThemeStylingResourceDictionary { get; set; }
+        private static ResourceDictionary LightThemeStylingResourceDictionary { get; set; }
         internal static AppTheme CurrentTheme { get; private set; }
 
         public static void Initialize(ResourceDictionary lightThemeColors = null, ResourceDictionary darkThemeColors = null)
@@ -42,6 +44,23 @@
         }
 
 
+        public static void UpdateStyling(ResourceDictionary lightThemeStyling = null, ResourceDictionary darkThemeStyling = null)
+        {
+            if (lightThemeStyling != null && lightThemeStyling.Any())
+            {
+                LightThemeStylingResourceDictionary = lightThemeStyling;
+            }
+            if (darkThemeStyling != null && darkThemeStyling.Any())
+            {
+                DarkThemeStylingResourceDictionary = darkThemeStyling;
+            }
+            else
+            {
+                DarkThemeStylingResourceDictionary = LightThemeStylingResourceDictionary;
+            }
+        }
+
+
         private static ResourceDictionary UpdateDefaulThemeWithCustomTheme(ResourceDictionary defaultTheme, ResourceDictionary customTheme)
         {
             var theme = customTheme;
@@ -66,21 +85,21 @@
             UpdateTheme(e.RequestedTheme);
         }
 
-        public static void UpdateTheme(AppTheme theme = AppTheme.Light)
+        private static void UpdateTheme(AppTheme theme = AppTheme.Light)
         {
             CurrentTheme = Application.Current.RequestedTheme;
 
-            RemoveFromResources(LightThemeColorResourceDictionary);
-            RemoveFromResources(DarkThemeColorResourceDictionary);
             if (theme == AppTheme.Dark)
             {
                 IncludeFromResources(DarkThemeColorResourceDictionary);
                 IncludeFromResources(new Styles.DarkTheme());
+                IncludeFromResources(DarkThemeStylingResourceDictionary);
             }
             else
             {
                 IncludeFromResources(LightThemeColorResourceDictionary);
                 IncludeFromResources(new Styles.LightTheme());
+                IncludeFromResources(LightThemeStylingResourceDictionary);
             }
         }
 
@@ -89,26 +108,16 @@
         /// </summary>
         /// <param name="keyValuePairs"></param>
         /// <param name="needToAdd"></param>
-        public static void IncludeFromResources(ResourceDictionary keyValuePairs)
-        {
-            var dictionaryExists = Application.Current.Resources.MergedDictionaries.Contains(keyValuePairs);
-            if (!dictionaryExists)
-            {
-                Application.Current.Resources.MergedDictionaries.Add(keyValuePairs);
-            }
-        }
-
-        /// <summary>
-        /// Removes the given resource dictionary from the Application.Current.Resources
-        /// </summary>
-        /// <param name="keyValuePairs"></param>
-        public static void RemoveFromResources(ResourceDictionary keyValuePairs)
+        private static void IncludeFromResources(ResourceDictionary keyValuePairs)
         {
             var dictionaryExists = Application.Current.Resources.MergedDictionaries.Contains(keyValuePairs);
             if (dictionaryExists)
             {
                 Application.Current.Resources.MergedDictionaries.Remove(keyValuePairs);
             }
+
+            Application.Current.Resources.MergedDictionaries.Add(keyValuePairs);
+
         }
     }
 }

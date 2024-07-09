@@ -54,12 +54,13 @@ public static class AppBuilderExtensions
                     });
                 });
 #elif WINDOWS
-                    lifecycle.AddWindows(windows => {
-                        windows.OnLaunched((window, args) =>
-                        {
-                            ThemeManager.Initialize(lightThemeColors, darkThemeColors);
-                        });
+                lifecycle.AddWindows(windows =>
+                {
+                    windows.OnLaunched((window, args) =>
+                    {
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
                     });
+                });
 
 #endif
             })
@@ -82,7 +83,10 @@ public static class AppBuilderExtensions
     /// <param name="builder"></param>
     /// <param name="backPressHandler"></param>
     /// <returns></returns>
-    public static MauiAppBuilder UseTrimbleModus(this MauiAppBuilder builder, Action? backPressHandler)
+    public static MauiAppBuilder UseTrimbleModus(this MauiAppBuilder builder,
+                                                      Action? backPressHandler,
+                                                      ResourceDictionary lightThemeColors = null,
+                                                      ResourceDictionary darkThemeColors = null)
     {
         builder
             .ConfigureLifecycleEvents(lifecycle =>
@@ -90,12 +94,42 @@ public static class AppBuilderExtensions
 #if ANDROID
                 lifecycle.AddAndroid(d =>
                 {
+                    d.OnApplicationCreate(del =>
+                    {
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
+                    });
                     d.OnBackPressed(activity => Droid.Implementation.AndroidPopups.SendBackPressed(backPressHandler));
                 });
-#endif
+#elif IOS
+                lifecycle.AddiOS(ios =>
+                {
+                    ios.FinishedLaunching((app, resources) =>
+                    {
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
+                        return true;
+                    });
+                });
+#elif MACCATALYST
+                lifecycle.AddiOS(mac =>
+                {
+                    mac.FinishedLaunching((app, resources) =>
+                    {
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
+                        return true;
+                    });
+                });
+#elif WINDOWS
+                lifecycle.AddWindows(windows =>
+                {
+                    windows.OnLaunched((window, args) =>
+                    {
+                        ThemeManager.Initialize(lightThemeColors, darkThemeColors);
+                    });
+                });
 
+#endif
             })
-            .ConfigureMauiHandlers(handlers => SetHandlers(handlers))
+            .ConfigureMauiHandlers(SetHandlers)
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Bold.ttf", "OpenSansBold");
@@ -134,9 +168,29 @@ public static class AppBuilderExtensions
 #endif
 #if WINDOWS
             handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
-                handlers.AddHandler(typeof(TMButton), typeof(TMButtonWindowsTouchHandler));
-                handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
+            handlers.AddHandler(typeof(TMButton), typeof(TMButtonWindowsTouchHandler));
+            handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
 #endif
         }
+
+
+    }
+
+    public static MauiAppBuilder ConfigureControlStyling(this MauiAppBuilder builder, List<ResourceDictionary>? styles)
+    {
+        if (styles == null || styles.Count == 0)
+        {
+            return builder;
+        }
+        switch (styles.Count)
+        {
+            case 1:
+                ThemeManager.UpdateStyling(styles[0]);
+                break;
+            case 2:
+                ThemeManager.UpdateStyling(styles[0], styles[1]);
+                break;
+        }
+        return builder;
     }
 }
