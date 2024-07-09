@@ -14,11 +14,10 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
-            .UseTrimbleModus()
-            .ConfigureControlStyling(new List<ResourceDictionary>
+            .UseTrimbleModus(new AppConfig()
             {
-            new Resources.Styles.LightThemeStyling(),
-            new Resources.Styles.DarkThemeStyling()
+                DarkThemeStyles = new Resources.Styles.DarkThemeStyling(),
+                LightThemeStyles = new Resources.Styles.LightThemeStyling(),
             })
             .ConfigureFonts(fonts =>
             {

@@ -1,4 +1,6 @@
-﻿namespace Trimble.Modus.Components.Helpers
+﻿using Trimble.Modus.Components.Hosting;
+
+namespace Trimble.Modus.Components.Helpers
 {
     public class ThemeManager
     {
@@ -8,55 +10,32 @@
         private static ResourceDictionary LightThemeStylingResourceDictionary { get; set; }
         internal static AppTheme CurrentTheme { get; private set; }
 
-        public static void Initialize(ResourceDictionary lightThemeColors = null, ResourceDictionary darkThemeColors = null)
+        public static void Initialize(AppConfig appConfig = null)
         {
             var defaultLightThemeColors = new Styles.LightThemeColors();
             var defaultDarkThemeColors = new Styles.DarkThemeColors();
-            IncludeFromResources(new Styles.Colors());
-            if (lightThemeColors != null && lightThemeColors.Count > 0)
-            {
-                LightThemeColorResourceDictionary = UpdateDefaulThemeWithCustomTheme(defaultLightThemeColors, lightThemeColors);
-            }
-            else
-            {
-                LightThemeColorResourceDictionary = defaultLightThemeColors;
-            }
 
-            if (darkThemeColors != null && darkThemeColors.Count > 0)
-            {
-                DarkThemeColorResourceDictionary = UpdateDefaulThemeWithCustomTheme(defaultDarkThemeColors, darkThemeColors);
-            }
-            else
-            {
-                if (lightThemeColors != null && lightThemeColors.Count > 0)
-                {
-                    DarkThemeColorResourceDictionary = LightThemeColorResourceDictionary;
-                }
-                else
-                {
-                    DarkThemeColorResourceDictionary = defaultDarkThemeColors;
-                }
-            }
+            IncludeFromResources(new Styles.Colors());
+      
+            LightThemeColorResourceDictionary = UpdateDictionary(appConfig.LightThemeColors, defaultLightThemeColors);
+            DarkThemeColorResourceDictionary = UpdateDictionary(appConfig.DarkThemeColors, defaultDarkThemeColors);
+            LightThemeStylingResourceDictionary = appConfig.LightThemeStyles;
+            DarkThemeStylingResourceDictionary = appConfig.DarkThemeStyles;
 
             UpdateTheme(Application.Current.RequestedTheme);
 
             Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
         }
 
-
-        public static void UpdateStyling(ResourceDictionary lightThemeStyling = null, ResourceDictionary darkThemeStyling = null)
+        private static ResourceDictionary UpdateDictionary(ResourceDictionary keyValuePairs, ResourceDictionary defaultKeyValuePairs)
         {
-            if (lightThemeStyling != null && lightThemeStyling.Any())
+            if (keyValuePairs != null && keyValuePairs.Count > 0)
             {
-                LightThemeStylingResourceDictionary = lightThemeStyling;
-            }
-            if (darkThemeStyling != null && darkThemeStyling.Any())
-            {
-                DarkThemeStylingResourceDictionary = darkThemeStyling;
+                return UpdateDefaulThemeWithCustomTheme(defaultKeyValuePairs, keyValuePairs);
             }
             else
             {
-                DarkThemeStylingResourceDictionary = LightThemeStylingResourceDictionary;
+                return defaultKeyValuePairs;
             }
         }
 
@@ -92,13 +71,13 @@
             if (theme == AppTheme.Dark)
             {
                 IncludeFromResources(DarkThemeColorResourceDictionary);
-                IncludeFromResources(new Styles.DarkTheme());
+                IncludeFromResources(new Styles.DarkThemeStyling());
                 IncludeFromResources(DarkThemeStylingResourceDictionary);
             }
             else
             {
                 IncludeFromResources(LightThemeColorResourceDictionary);
-                IncludeFromResources(new Styles.LightTheme());
+                IncludeFromResources(new Styles.LightThemeStyling());
                 IncludeFromResources(LightThemeStylingResourceDictionary);
             }
         }
