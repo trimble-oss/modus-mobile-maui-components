@@ -122,6 +122,12 @@
     <Compile Update="Controls\ListView\TemplateCell.xaml.cs">
       <DependentUpon>TemplateCell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Styles\DarkThemeStyling.xaml.cs">
+      <DependentUpon>DarkThemeStyling.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Styles\LightThemeStyling.xaml.cs">
+      <DependentUpon>LightThemeStyling.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -203,13 +209,13 @@
     <MauiXaml Update="Styles\Colors.xaml">
       <Generator></Generator>
     </MauiXaml>
-    <MauiXaml Update="Styles\DarkTheme.xaml">
+    <MauiXaml Update="Styles\DarkThemeStyling.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Styles\DarkThemeColors.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
-    <MauiXaml Update="Styles\LightTheme.xaml">
+    <MauiXaml Update="Styles\LightThemeStyling.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Styles\LightThemeColors.xaml">
