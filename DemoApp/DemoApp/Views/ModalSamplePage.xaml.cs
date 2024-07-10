@@ -35,19 +35,31 @@ public partial class ModalSamplePage : ContentPage
         {
             if (!string.IsNullOrEmpty(PrimaryButtonTitle.Text))
             {
-                tmModal.AddPrimaryAction(PrimaryButtonTitle.Text);
+                tmModal.AddPrimaryAction(PrimaryButtonTitle.Text, () =>
+                {
+                    Console.WriteLine("Primary Action");
+                });
             }
             if (!string.IsNullOrEmpty(SecondaryButtonTitle.Text))
             {
-                tmModal.AddSecondaryAction(SecondaryButtonTitle.Text);
+                tmModal.AddSecondaryAction(SecondaryButtonTitle.Text, () =>
+                {
+                    Console.WriteLine("Secondary Action");
+                });
             }
             if (!string.IsNullOrEmpty(TertiaryButtonTitle.Text))
             {
-                tmModal.AddTertiaryAction(TertiaryButtonTitle.Text);
+                tmModal.AddTertiaryAction(TertiaryButtonTitle.Text, () =>
+                {
+                    Console.WriteLine("Tertiary Action");
+                });
             }
             if (!string.IsNullOrEmpty(DangerButtonTitleEntry.Text))
             {
-                tmModal.AddDangerAction(DangerButtonTitleEntry.Text);
+                tmModal.AddDangerAction(DangerButtonTitleEntry.Text, () =>
+                {
+                    Console.WriteLine("Danger Action");
+                });
             }
             tmModal.Show();
         }
