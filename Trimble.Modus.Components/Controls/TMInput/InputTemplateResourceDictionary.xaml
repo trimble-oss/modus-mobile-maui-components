@@ -28,31 +28,31 @@
                TextColor="#DA212C" />
       </HorizontalStackLayout>
       <Border x:Name="inputBorder"
+              MinimumHeightRequest="48"
               VerticalOptions="FillAndExpand"
               Grid.Row="1"
               Padding="0">
         <Border.StrokeShape>
-          <Rectangle RadiusX="4"
-                     RadiusY="4" />
+          <RoundRectangle CornerRadius="4" />
         </Border.StrokeShape>
         <ContentPresenter VerticalOptions="FillAndExpand" />
       </Border>
-        <HorizontalStackLayout x:Name="inputHelperLayout"
-                       Grid.Row="2"
-                       HorizontalOptions="Start"
-                       Spacing="5"
-                       Margin="2"
-                       IsVisible="false"
-                       Padding="0,5,0,0">
-          <Image x:Name="inputHelperIcon"
-         WidthRequest="20"
-         HeightRequest="20" />
-          <Label  x:Name="inputHelperLabel"
-          FontFamily="OpenSansRegular"
-          LineBreakMode="WordWrap"
-          VerticalTextAlignment="Center" />
-        </HorizontalStackLayout>
+      <HorizontalStackLayout x:Name="inputHelperLayout"
+                             Grid.Row="2"
+                             HorizontalOptions="Start"
+                             Spacing="5"
+                             Margin="2"
+                             IsVisible="false"
+                             Padding="0,5,0,0">
+        <Image x:Name="inputHelperIcon"
+               WidthRequest="20"
+               HeightRequest="20" />
+        <Label  x:Name="inputHelperLabel"
+                FontFamily="OpenSansRegular"
+                LineBreakMode="WordWrap"
+                VerticalTextAlignment="Center" />
+      </HorizontalStackLayout>
     </Grid>
   </ControlTemplate>
-  
+
 </ResourceDictionary>

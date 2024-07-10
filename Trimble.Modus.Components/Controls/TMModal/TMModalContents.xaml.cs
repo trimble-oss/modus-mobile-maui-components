@@ -8,7 +8,6 @@ namespace Trimble.Modus.Components.Modal;
 public partial class TMModalContents
 {
     #region Private fields
-    private bool _dangerButtonAdded = false;
 
     private TMButton _primaryButton;
 
@@ -43,7 +42,7 @@ public partial class TMModalContents
     /// Gets or sets the button width option
     /// </summary>
     public static readonly BindableProperty FullWidthButtonProperty =
-        BindableProperty.Create(nameof(FullWidthButton), typeof(bool), typeof(TMModal), false, BindingMode.TwoWay ,propertyChanged: OnFullWidthButtonChanged);
+        BindableProperty.Create(nameof(FullWidthButton), typeof(bool), typeof(TMModal), false, BindingMode.TwoWay, propertyChanged: OnFullWidthButtonChanged);
 
     /// <summary>
     /// Bindable property for text and image color for theme
@@ -120,32 +119,12 @@ public partial class TMModalContents
     /// </summary>
     public Action OnModalClosing { get; set; }
 
-    /// <summary>
-    /// Action triggered when primary button is clicked
-    /// </summary>
-    public event Action PrimaryButtonClicked;
-
-    /// <summary>
-    /// Action triggered when secondary button is clicked
-    /// </summary>
-    public event Action SecondaryButtonClicked;
-
-    /// <summary>
-    /// Action triggered when Tertiary button is clicked
-    /// </summary>
-    public event Action TertiaryButtonClicked;
-
-    /// <summary>
-    /// Action triggered when Danger button is clicked
-    /// </summary>
-    public event Action DangerButtonClicked;
-
     #endregion
 
     #region Constructor
-	internal TMModalContents(string titleText, string messageText = null, ImageSource titleIconSource = null, bool fullWidthButton = false)
-	{
-		InitializeComponent();
+    internal TMModalContents(string titleText, string messageText = null, ImageSource titleIconSource = null, bool fullWidthButton = false)
+    {
+        InitializeComponent();
         Title = titleText;
         TitleIcon = titleIconSource;
         FullWidthButton = fullWidthButton;
@@ -235,15 +214,8 @@ public partial class TMModalContents
         {
             throw new InvalidOperationException(Constants.ButtonLimitError);
         }
-        if (_dangerButtonAdded)
-        {
-            _dangerButton.Text = title;
-            DangerButtonClicked = clickAction;
-        }
-        else
-        {
-            ConstructDangerButton(title, clickAction);
-        }
+
+        ConstructDangerButton(title, clickAction);
     }
 
     /// <summary>
@@ -370,7 +342,6 @@ public partial class TMModalContents
     /// <param name="primaryButtonClick"></param>
     private void ConstructPrimaryButton(string primaryText = null, Action primaryButtonClick = null)
     {
-        PrimaryButtonClicked = primaryButtonClick;
         if (!string.IsNullOrEmpty(primaryText))
         {
             _primaryButton = new TMButton
@@ -380,20 +351,13 @@ public partial class TMModalContents
                 ButtonColor = ButtonColor.Primary,
                 HorizontalOptions = FullWidthButton ? LayoutOptions.FillAndExpand : LayoutOptions.Start
             };
-            _primaryButton.Clicked += OnPrimaryButtonClicked;
+            _primaryButton.Clicked += (sender, args) =>
+            {
+                CloseModal(sender, args);
+                primaryButtonClick?.Invoke();
+            };
             ButtonContainer.Children.Insert(FullWidthButton ? ButtonContainer.Children.Count : 0, _primaryButton);
         }
-    }
-
-    /// <summary>
-    /// Invoke on click action and closes the modal
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnPrimaryButtonClicked(object sender, EventArgs e)
-    {
-        CloseModal(sender, e);
-        PrimaryButtonClicked?.Invoke();
     }
 
     /// <summary>
@@ -403,7 +367,6 @@ public partial class TMModalContents
     /// <param name="secondaryButtonClick"></param>
     private void ConstructSecondaryButton(string secondaryText, Action secondaryButtonClick = null)
     {
-        SecondaryButtonClicked = secondaryButtonClick;
         if (!string.IsNullOrEmpty(secondaryText))
         {
             _secondaryButton = new TMButton
@@ -414,21 +377,13 @@ public partial class TMModalContents
                 Size = Enums.Size.Small,
                 HorizontalOptions = FullWidthButton ? LayoutOptions.FillAndExpand : LayoutOptions.Start
             };
-
-            _secondaryButton.Clicked += OnSecondaryButtonClicked;
+            _secondaryButton.Clicked += (sender, args) =>
+            {
+                CloseModal(sender, args);
+                secondaryButtonClick?.Invoke();
+            };
             ButtonContainer.Children.Insert(FullWidthButton ? ButtonContainer.Children.Count : 0, _secondaryButton);
         }
-    }
-
-    /// <summary>
-    /// Invoke on click action and closes the modal
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnSecondaryButtonClicked(object sender, EventArgs e)
-    {
-        CloseModal(sender, e);
-        SecondaryButtonClicked?.Invoke();
     }
 
     /// <summary>
@@ -438,7 +393,6 @@ public partial class TMModalContents
     /// <param name="tertiaryButtonClick"></param>
     private void ConstructTertiaryButton(string tertiaryText = null, Action tertiaryButtonClick = null)
     {
-        TertiaryButtonClicked = tertiaryButtonClick;
         if (!string.IsNullOrEmpty(tertiaryText))
         {
             _tertiaryButton = new TMButton
@@ -449,21 +403,13 @@ public partial class TMModalContents
                 Size = Enums.Size.Small,
                 HorizontalOptions = FullWidthButton ? LayoutOptions.FillAndExpand : LayoutOptions.Start
             };
-
-            _tertiaryButton.Clicked += OnTertiaryButtonClicked;
+            _tertiaryButton.Clicked += (sender, args) =>
+            {
+                CloseModal(sender, args);
+                tertiaryButtonClick?.Invoke();
+            };
             ButtonContainer.Children.Insert(FullWidthButton ? ButtonContainer.Children.Count : 0, _tertiaryButton);
         }
-    }
-
-    /// <summary>
-    /// Invoke on click action and closes the modal
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnTertiaryButtonClicked(object sender, EventArgs e)
-    {
-        CloseModal(sender, e);
-        TertiaryButtonClicked?.Invoke();
     }
 
     /// <summary>
@@ -473,8 +419,6 @@ public partial class TMModalContents
     /// <param name="destructiveButtonClick"></param>
     private void ConstructDangerButton(string destructiveText = null, Action destructiveButtonClick = null)
     {
-        DangerButtonClicked = destructiveButtonClick;
-
         if (!string.IsNullOrEmpty(destructiveText))
         {
             _dangerButton = new TMButton
@@ -484,21 +428,13 @@ public partial class TMModalContents
                 Size = Enums.Size.Small,
                 HorizontalOptions = FullWidthButton ? LayoutOptions.FillAndExpand : LayoutOptions.Start
             };
-            _dangerButton.Clicked += OnDestructiveButtonClicked;
+            _dangerButton.Clicked += (sender, args) =>
+            {
+                CloseModal(sender, args);
+                destructiveButtonClick?.Invoke();
+            };
             ButtonContainer.Children.Insert(FullWidthButton ? 0 : ButtonContainer.Children.Count, _dangerButton);
-            _dangerButtonAdded = true;
         }
-    }
-
-    /// <summary>
-    /// Invoke on click action and closes the modal
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnDestructiveButtonClicked(object sender, EventArgs e)
-    {
-        CloseModal(sender, e);
-        DangerButtonClicked?.Invoke();
     }
 
     /// <summary>
