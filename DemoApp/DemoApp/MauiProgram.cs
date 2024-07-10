@@ -14,7 +14,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
-            .UseTrimbleModus(new AppConfig()
+            .UseTrimbleModus(new ModusConfig()
             {
                 DarkThemeStyles = new Resources.Styles.DarkThemeStyling(),
                 LightThemeStyles = new Resources.Styles.LightThemeStyling(),

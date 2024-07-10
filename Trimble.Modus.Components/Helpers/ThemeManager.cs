@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components.Helpers
         private static ResourceDictionary LightThemeStylingResourceDictionary { get; set; }
         internal static AppTheme CurrentTheme { get; private set; }
 
-        public static void Initialize(AppConfig appConfig = null)
+        public static void Initialize(ModusConfig appConfig = null)
         {
             var defaultLightThemeColors = new Styles.LightThemeColors();
             var defaultDarkThemeColors = new Styles.DarkThemeColors();

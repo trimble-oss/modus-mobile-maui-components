@@ -1,6 +1,6 @@
 ﻿namespace Trimble.Modus.Components.Hosting;
 
-public class AppConfig
+public class ModusConfig
 {
     public ResourceDictionary LightThemeColors { get; set; } = null;
     public ResourceDictionary DarkThemeColors { get; set; } = null;
