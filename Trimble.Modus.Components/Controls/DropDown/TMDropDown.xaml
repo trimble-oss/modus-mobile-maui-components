@@ -31,21 +31,18 @@
              FontFamily="OpenSansSemibold"
              TextColor="{DynamicResource AlternateTextColor}"
              VerticalOptions="Center" />
-      <StackLayout x:Name="indicatorButton"
-                   Orientation="Horizontal"
-                   IsVisible="true"
-                   HorizontalOptions="EndAndExpand"
-                   VerticalOptions="Center">
-        <Image Source="{Static constants:ImageConstants.ChevronDownIcon}"
-               HeightRequest="32"
-               WidthRequest="32"
-               HorizontalOptions="End"
-               VerticalOptions="Center">
-          <Image.Behaviors>
-            <toolkit:IconTintColorBehavior TintColor="{DynamicResource AlternateTextColor}"/>
-          </Image.Behaviors>
-        </Image>
-      </StackLayout>
-    </StackLayout>
+
+      <Image x:Name="indicatorButton"
+             Source="{Static constants:ImageConstants.ChevronDownIcon}"
+             HorizontalOptions="EndAndExpand"
+             VerticalOptions="Center"
+             Grid.Column="1"
+             HeightRequest="32"
+             WidthRequest="32">
+        <Image.Behaviors>
+          <toolkit:IconTintColorBehavior TintColor="{DynamicResource AlternateTextColor}" />
+        </Image.Behaviors>
+      </Image>
+    </Grid>
   </Border>
 </ContentView>
