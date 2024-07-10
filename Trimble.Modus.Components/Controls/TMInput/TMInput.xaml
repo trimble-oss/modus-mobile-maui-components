@@ -25,23 +25,21 @@
   <Grid ColumnDefinitions="auto,*,auto"
         ColumnSpacing="0"
         RowSpacing="0"
-        RowDefinitions="40"
+        RowDefinitions="48"
         Padding="0"
-        BindingContext="{x:Reference singleInput }" >
+        BindingContext="{x:Reference singleInput}">
     <ContentView x:Name="leftCustomView"
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
                  Grid.Column="0"
-                 Grid.Row="0"
-                 HeightRequest="40"
                  Content="{Binding LeftView}">
       <ContentView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding LeftIconCommand}" CommandParameter="{Binding LeftIconCommandParameter}" />
+        <TapGestureRecognizer Command="{Binding LeftIconCommand}"
+                              CommandParameter="{Binding LeftIconCommandParameter}" />
       </ContentView.GestureRecognizers>
     </ContentView>
     <controls:BorderlessEntry x:Name="inputBorderlessEntry"
                               FontFamily="OpenSansRegular"
-                              Grid.Row="0"
                               Grid.Column="1"
                               Focused="InputBorderlessEntry_Focused"
                               Unfocused="InputBorderlessEntry_Unfocused"
@@ -62,19 +60,18 @@
         <MultiBinding Converter="{StaticResource AllTrueConverter}">
           <Binding Path="IsEnabled" />
           <Binding Path="IsReadOnly"
-                  Converter="{StaticResource InverseBoolConverter}" />
+                   Converter="{StaticResource InverseBoolConverter}" />
         </MultiBinding>
       </controls:BorderlessEntry.IsEnabled>
     </controls:BorderlessEntry>
     <ContentView x:Name="rightCustomView"
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
-                 Grid.Row="0"
                  Grid.Column="2"
-                 HeightRequest="40"
                  Content="{Binding RightView}">
       <ContentView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding RightIconCommand}" CommandParameter="{Binding RightIconCommandParameter}" />
+        <TapGestureRecognizer Command="{Binding RightIconCommand}"
+                              CommandParameter="{Binding RightIconCommandParameter}" />
       </ContentView.GestureRecognizers>
     </ContentView>
   </Grid>
