@@ -201,6 +201,24 @@
   <styles:ReferenceColor x:Key="ModalBackgroundColor"
                          Color="{StaticResource AlternateTextColor}" />
 
+  <!--Tab Bar-->
+  <styles:ReferenceColor x:Key="PrimaryDefaultCellTextAndIconColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="PrimaryTabBackgroundColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="PrimarySelectedCellBackgroundColor"
+                         Color="{StaticResource PrimaryLight}" />
+  <styles:ReferenceColor x:Key="PrimarySelectedCellTextAndIconColor"
+                         Color="{StaticResource Primary}" />
+
+  <styles:ReferenceColor x:Key="SecondaryDefaultCellTextAndIconColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SecondaryTabBackgroundColor"
+                         Color="{StaticResource Tertiary}" />
+  <styles:ReferenceColor x:Key="SecondarySelectedCellBackgroundColor"
+                         Color="{StaticResource TertiaryLight}" />
+  <styles:ReferenceColor x:Key="SecondarySelectedCellTextAndIconColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!--Switch-->
   <styles:ReferenceColor x:Key="SwitchOnBackgroundColor"

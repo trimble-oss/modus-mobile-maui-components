@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Trimble.Modus.Components.Constant;
 
 namespace Trimble.Modus.Components;
 
@@ -69,12 +68,10 @@ public partial class TMTabbedPage : ContentPage
             VerticalOptions = LayoutOptions.Fill
         };
 
-        tabStripContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Primary);
         mainContainer = new Grid
         {
             RowSpacing = 0
         };
-        mainContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Danger);
         mainContainer.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
         mainContainer.RowDefinitions.Add(new RowDefinition { Height = 70 });
 
@@ -83,7 +80,6 @@ public partial class TMTabbedPage : ContentPage
         if (isCurrentDevicePlatformIsWindows)
         {
             contentViewContainer = new ContentView();
-            contentViewContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.TertiaryLight);
             Grid.SetRow(contentViewContainer, 0);
             mainContainer.Children.Add(contentViewContainer);
         }
@@ -107,15 +103,13 @@ public partial class TMTabbedPage : ContentPage
                 VerticalScrollBarVisibility = ScrollBarVisibility.Never,
 
             };
-
-            contentContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.TertiaryLight);
             contentContainer.PropertyChanged += OnContentContainerPropertyChanged;
             // TODO: Disbaled Swipe and Scroll animation. While scrolling tabs updating wrong content.
             //contentContainer.Scrolled += OnContentContainerScrolled;
             Grid.SetRow(contentContainer, 0);
             mainContainer.Children.Add(contentContainer);
         }
-
+        UpdateBackgroundColor(this);
         mainContainer.Children.Add(tabStripContainer);
         Grid.SetRow(tabStripContainer, 1);
 
@@ -145,14 +139,19 @@ public partial class TMTabbedPage : ContentPage
     {
         if (bindable is TMTabbedPage tabbedPage)
         {
-            if ((TabColor)newValue == TabColor.Primary)
-            {
-                tabbedPage.tabStripContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Primary);
-            }
-            else
-            {
-                tabbedPage.tabStripContainer.SetDynamicResource(BackgroundColorProperty, ColorsConstants.SecondaryDark);
-            }
+            UpdateBackgroundColor(tabbedPage);
+        }
+    }
+
+    private static void UpdateBackgroundColor(TMTabbedPage tabbedPage)
+    {
+        if (tabbedPage.TabColor == TabColor.Primary)
+        {
+            tabbedPage.SetDynamicResource(BackgroundColorProperty, "PrimaryTabBackgroundColor");
+        }
+        else
+        {
+            tabbedPage.tabStripContainer.SetDynamicResource(BackgroundColorProperty, "SecondaryTabBackgroundColor");
         }
     }
     private void OnContentContainerScrolled(object? sender, ItemsViewScrolledEventArgs args)
@@ -189,6 +188,7 @@ public partial class TMTabbedPage : ContentPage
         var tabItemsCount = items.Cast<object>().Count();
 
     }
+
     private void TabItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         TabItemsSource = TabItems;
@@ -227,11 +227,13 @@ public partial class TMTabbedPage : ContentPage
             Width = GridLength.Star
         });
         tabViewItem.TabColor = TabColor;
+      
         tabViewItem.Orientation = Orientation;
         tabStripContainer.Add(tabViewItem, index, 0);
         AddSelectionTapRecognizer(tabViewItem);
         if (SelectedIndex < 0)
             SelectedIndex = 0;
+        tabViewItem.UpdateTabColor(tabViewItem);
     }
     private void AddSelectionTapRecognizer(View view)
     {
@@ -285,10 +287,7 @@ public partial class TMTabbedPage : ContentPage
                 contentTabItems = new ObservableCollection<TabViewItem>(TabItems.Where(t => t.Content != null));
 
             if (TabItems.Count > 0)
-            {
-
-              
-
+            { 
                 for (var index = 0; index < TabItems.Count; index++)
                 {
                     if (index == newValue)
@@ -312,7 +311,7 @@ public partial class TMTabbedPage : ContentPage
                 if (tabStripContainer.Children.Count > 0)
                     contentContainer.ScrollTo(newValue, 1, ScrollToPosition.MakeVisible, false);
 
-                    contentContainer.Position = newValue;
+                contentContainer.Position = newValue;
             }
 
             if (oldValue != SelectedIndex)

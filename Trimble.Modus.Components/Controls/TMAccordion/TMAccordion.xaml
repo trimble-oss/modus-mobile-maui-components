@@ -160,6 +160,7 @@
                        Source="{x:Static constants:ImageConstants.ChevronDownIcon}"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
+                       BackgroundColor="{StaticResource Transparent}"
                        Padding="0"
                        Margin="0,8"
                        Clicked="TitleTapped">

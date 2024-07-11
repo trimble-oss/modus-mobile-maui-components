@@ -25,7 +25,7 @@
           
           <Label x:Name="text"
                  Text="{Binding Text}"
-                 FontFamily="OpenSansBold"
+                 FontFamily="OpenSans"
                  FontSize="12"
                  VerticalOptions="Center"
                  HorizontalOptions="Center" />

@@ -48,11 +48,8 @@ public partial class TMListView : ListView
     #region Constructor
     public TMListView()
     {
+        SetDynamicResource(BackgroundColorProperty, "CellDefaultBackgroundColor");
         HasUnevenRows = true;
-        if (DeviceInfo.Platform == DevicePlatform.WinUI)
-        {
-            SetDynamicResource(BackgroundColorProperty, "CellDefaultBackgroundColor");
-        }
         SeparatorVisibility = SeparatorVisibility.None;
         ItemTapped += ListViewItemTapped;
         (this as ListView)?.SetValue(ListView.SelectionModeProperty, ListViewSelectionMode.Single);

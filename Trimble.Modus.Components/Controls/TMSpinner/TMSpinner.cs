@@ -1,19 +1,14 @@
 ﻿using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
-using Trimble.Modus.Components.Constant;
-using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Enums;
 using Size = Trimble.Modus.Components.Enums.Size;
-using System.Diagnostics;
 
 namespace Trimble.Modus.Components
 {
     public class TMSpinner : SKCanvasView
     {
         #region Private Properties
-        private SpinnerType _spinnerType;
-        private Color _spinnerColor = ResourcesDictionary.GetColor(ColorsConstants.Primary);
         private float _startAngle = 0f;
         private int minWidth = 42, minHeight = 42, animateTimerSeconds = 10;
         private float _sweepAngle = 180f;
@@ -24,13 +19,13 @@ namespace Trimble.Modus.Components
         #endregion
         #region Binding Properties
         public static readonly BindableProperty SpinnerTypeProperty =
-            BindableProperty.Create(nameof(SpinnerType), typeof(SpinnerType), typeof(TMSpinner), defaultValue: SpinnerType.InDeterminate, propertyChanged: OnSpinnerTypeChanged);
+            BindableProperty.Create(nameof(SpinnerType), typeof(SpinnerType), typeof(TMSpinner), defaultValue: SpinnerType.InDeterminate);
 
         public static readonly BindableProperty SpinnerColorProperty =
             BindableProperty.Create(nameof(SpinnerColor), typeof(SpinnerColor), typeof(TMSpinner), defaultValue: SpinnerColor.Primary, propertyChanged: OnSpinnerColorChanged);
 
         internal static readonly BindableProperty FillColorProperty =
-            BindableProperty.Create(nameof(FillColor), typeof(Color), typeof(TMSpinner), defaultValue: Colors.Transparent, propertyChanged: OnFillColorChanged);
+            BindableProperty.Create(nameof(FillColor), typeof(Color), typeof(TMSpinner), defaultValue: Colors.Transparent);
 
         internal static readonly BindableProperty SpinnerSizeProperty =
             BindableProperty.Create(nameof(SpinnerSize), typeof(Size), typeof(TMSpinner), defaultValue: Size.Default, propertyChanged: OnSpinnerSizeChanged);
@@ -70,12 +65,12 @@ namespace Trimble.Modus.Components
             minWidth = 32;
             minHeight = 32;
 #endif
+            SetDynamicResource(FillColorProperty, "SpinnerPrimaryFillColor");
             CreateSpinner();
         }
 
         private void CreateSpinner()
         {
-
             WidthRequest = minWidth;
             HeightRequest = minHeight;
             IgnorePixelScaling = false;
@@ -177,22 +172,6 @@ namespace Trimble.Modus.Components
             }
         }
 
-        private static void OnFillColorChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is TMSpinner tmSpinner)
-            {
-                tmSpinner._spinnerColor = (Color)newValue;
-            }
-        }
-
-        private static void OnSpinnerTypeChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is TMSpinner tmSpinner)
-            {
-                tmSpinner._spinnerType = (SpinnerType)newValue;
-            }
-        }
-
         internal void StartAnimation()
         {
             _animationTimer = new Timer(UpdateAnimation, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(animateTimerSeconds));
@@ -204,11 +183,11 @@ namespace Trimble.Modus.Components
             {
                 _animationTimer?.Dispose();
             }
-            if (_spinnerType == SpinnerType.InDeterminate)
+            if (SpinnerType == SpinnerType.InDeterminate)
             {
                 _rotationAngle += 5f;
             }
-            else if (_spinnerType == SpinnerType.Determinate)
+            else if (SpinnerType == SpinnerType.Determinate)
             {
                 _startAngle += 5f;
                 _sweepAngle += 5f;
@@ -246,11 +225,11 @@ namespace Trimble.Modus.Components
             var arcPaint = new SKPaint
             {
                 Style = SKPaintStyle.Stroke,
-                Color = _spinnerColor.ToSKColor(),
+                Color = FillColor.ToSKColor(),
                 StrokeWidth = _strokeWidth
             };
 
-            if (_spinnerType == SpinnerType.InDeterminate)
+            if (SpinnerType == SpinnerType.InDeterminate)
             {
                 _sweepAngle = 270;
                 canvas.Save();
@@ -259,7 +238,7 @@ namespace Trimble.Modus.Components
                 canvas.Restore();
 
             }
-            else if (_spinnerType == SpinnerType.Determinate)
+            else if (SpinnerType == SpinnerType.Determinate)
             {
                 float startAngle = 270f;
                 float progress = 1f;
