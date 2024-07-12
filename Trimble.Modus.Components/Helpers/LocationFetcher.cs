@@ -14,9 +14,9 @@ using Microsoft.UI.Xaml;
 
 namespace Trimble.Modus.Components.Helpers
 {
-    internal class LocationFetcher
+    public class LocationFetcher
     {
-        internal Rect GetCoordinates(VisualElement view)
+        public Rect GetCoordinates(VisualElement view)
         {
             Rect result = new Rect();
 #if ANDROID

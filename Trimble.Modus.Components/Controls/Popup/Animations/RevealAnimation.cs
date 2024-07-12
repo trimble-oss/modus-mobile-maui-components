@@ -3,7 +3,7 @@ using Trimble.Modus.Components.Popup.Animations.Base;
 
 namespace Trimble.Modus.Components.Popup.Animations;
 
-internal class RevealAnimation : BaseAnimation
+public class RevealAnimation : BaseAnimation
 {
     private double desiredHeight;
     private double _defaultOpacity;
@@ -40,8 +40,8 @@ internal class RevealAnimation : BaseAnimation
     {
         if (HasBackgroundAnimation)
         {
-            
-            return RevealAnimations.HeightTo(content, desiredHeight);  
+
+            return RevealAnimations.HeightTo(content, desiredHeight);
         }
         if (content != null)
         {
