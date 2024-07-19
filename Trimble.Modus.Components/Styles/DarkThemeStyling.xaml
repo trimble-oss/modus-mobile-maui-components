@@ -201,6 +201,26 @@
   <styles:ReferenceColor x:Key="ModalBackgroundColor"
                          Color="{StaticResource AlternateTextColor}" />
 
+  <!--DropDown-->
+  <styles:ReferenceColor x:Key="DropDownBackgroundColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="DropDownTextAndIconColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="DropDownBorderColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="DropDownContentBorderColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="DropDownContentBackgroundColor"
+                         Color="{StaticResource AlternateTextColor}" />
+  <styles:ReferenceColor x:Key="DropDownContentHighLightColor"
+                         Color="{StaticResource Primary}" />
+  <styles:ReferenceColor x:Key="DropDownContentHighLightTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="DropDownContentDefaultBackgroundColor"
+                         Color="{StaticResource Transparent}" />
+  <styles:ReferenceColor x:Key="DropDownContentDefaultTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
+
   <!--Tab Bar-->
   <styles:ReferenceColor x:Key="PrimaryDefaultCellTextAndIconColor"
                          Color="{StaticResource AlternateTextColor}" />

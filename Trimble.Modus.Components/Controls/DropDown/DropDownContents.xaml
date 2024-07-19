@@ -2,16 +2,23 @@
 <Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
+                 xmlns:local="clr-namespace:Trimble.Modus.Components"
                  x:Class="Trimble.Modus.Components.DropDownContents"
                  BackgroundColor="{DynamicResource Transparent}"
                  Title="DropDownPopupPage">
+  <Modus:PopupPage.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:DropDownStyles />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Modus:PopupPage.Resources>
   <Border x:Name="border"
           VerticalOptions="Start"
           HorizontalOptions="Start"
-          Stroke="{DynamicResource PrimaryLight}"
           StrokeThickness="4"
           Padding="8"
-          BackgroundColor="White">
+          BackgroundColor="{DynamicResource DropDownContentBackgroundColor}">
     <Border.StrokeShape>
       <RoundRectangle CornerRadius="4" />
     </Border.StrokeShape>
@@ -29,6 +36,7 @@
       </Shadow>
     </Border.Shadow>
     <ListView x:Name="listView"
+              SelectedItem="{Binding SelectedItem}"
               RowHeight="48">
       <ListView.ItemTemplate>
         <DataTemplate>
