@@ -45,7 +45,11 @@
              VerticalOptions="Center"
              Grid.Column="1"
              HeightRequest="32"
-             WidthRequest="32" />
+             WidthRequest="32">
+        <Image.Behaviors>
+          <toolkit:IconTintColorBehavior TintColor="{DynamicResource AlternateTextColor}" />
+        </Image.Behaviors>
+      </Image>
     </Grid>
   </Border>
 </ContentView>

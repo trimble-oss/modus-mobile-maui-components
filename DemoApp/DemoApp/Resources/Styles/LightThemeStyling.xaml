@@ -2,15 +2,4 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="DemoApp.Resources.Styles.LightThemeStyling">
-
-  <Color x:Key="SecondaryDefaultCellTextAndIconColor">violet</Color>
-  <Color x:Key="SecondaryTabBackgroundColor">green</Color>
-  <Color x:Key="SecondarySelectedCellBackgroundColor">blue</Color>
-  <Color x:Key="SecondarySelectedCellTextAndIconColor">red</Color>
-
-  <Color x:Key="PrimaryDefaultCellTextAndIconColor">brown</Color>
-  <Color x:Key="PrimaryTabBackgroundColor">orange</Color>
-  <Color x:Key="PrimarySelectedCellBackgroundColor">lightblue</Color>
-  <Color x:Key="PrimarySelectedCellTextAndIconColor">teal</Color>
-  
 </ResourceDictionary>
