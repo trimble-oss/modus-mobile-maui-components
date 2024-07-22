@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components;
 public class PopupPage : ContentPage
 {
     #region Private fields
-    internal Components.Enums.ModalPosition Position;
+    public Components.Enums.ModalPosition Position;
     private readonly View _anchorView;
     private double _popupHeight = -1;
     private double _popupWidth = -1;
@@ -225,7 +225,7 @@ public class PopupPage : ContentPage
 
     internal async Task AppearingAnimation()
     {
-        if(_anchorView != null)
+        if (_anchorView != null)
         {
             Content.VerticalOptions = LayoutOptions.Start;
             Content.HorizontalOptions = LayoutOptions.Start;
