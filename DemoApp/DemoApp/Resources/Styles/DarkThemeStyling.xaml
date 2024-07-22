@@ -3,9 +3,4 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="DemoApp.Resources.Styles.DarkThemeStyling">
 
-  <Color x:Key="PrimaryFillButtonBackgroundColor">purple</Color>
-  <Color x:Key="PrimaryFillButtonSelectedBackgroundColor">red</Color>
-  <Color x:Key="PrimaryFillButtonTextColor">lightyellow</Color>
-  <Color x:Key="PrimaryFillIconTintColor">lightgray</Color>
-
 </ResourceDictionary>

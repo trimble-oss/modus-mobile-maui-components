@@ -24,21 +24,27 @@ public class DropDownViewCell : ViewCell
             Padding = new Thickness(8, 12)
         };
 
-        label.SetDynamicResource(Label.TextColorProperty, ColorsConstants.Secondary);
-        label.SetDynamicResource(Label.BackgroundColorProperty, ColorsConstants.Transparent);
-
         label.SetBinding(Label.TextProperty, new Binding("Text", source: this));
 
         View = new StackLayout
         {
             Children = { label },
         };
-        View.SetDynamicResource(StackLayout.BackgroundColorProperty, ColorsConstants.Transparent);
+        UpdateDefaultBackgroundColor();
     }
 
-    internal void UpdateBackgroundColor(string backgroundColorKey, bool textAttribute)
+    public void UpdateHighlightBackgroundColor()
     {
-        View.SetDynamicResource(View.BackgroundColorProperty, backgroundColorKey);
-        label.FontAttributes = textAttribute ? FontAttributes.Bold : FontAttributes.None;
+        label.FontAttributes = FontAttributes.Bold;
+        label.SetDynamicResource(VisualElement.BackgroundColorProperty,ColorsConstants.Transparent);
+        View.SetDynamicResource(VisualElement.BackgroundColorProperty, "DropDownContentHighLightColor");
+        label.SetDynamicResource(Label.TextColorProperty, "DropDownContentHighLightTextColor");
+    }
+    public void UpdateDefaultBackgroundColor()
+    {
+        label.FontAttributes = FontAttributes.None;
+        label.SetDynamicResource(VisualElement.BackgroundColorProperty, "DropDownContentDefaultBackgroundColor");
+        View.SetDynamicResource(VisualElement.BackgroundColorProperty, "DropDownContentDefaultBackgroundColor");
+        label.SetDynamicResource(Label.TextColorProperty, "DropDownContentDefaultTextColor");
     }
 }

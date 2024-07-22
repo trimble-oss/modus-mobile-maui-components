@@ -120,37 +120,50 @@ public partial class TabViewItem : ContentView
     {
         InitializeComponent();
         BindingContext = this;
-        UpdateTabColor();
+        UpdateTabColor(this);
         tabItem.Orientation = Orientation;
 
     }
     #endregion
     #region Private Methods
 
-    private void UpdateTabColor()
-    {
-        var trimbleBlueColor = ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight);
-        var selectedColor = trimbleBlueColor;
-        if (TabColor == TabColor.Primary)
-        {
-            selectedColor = IsSelected ? trimbleBlueColor : ResourcesDictionary.GetColor(ColorsConstants.DefaultTextColor);
-        }
-        text.TextColor = selectedColor;
-        icon.Behaviors.Clear();
-        icon.Behaviors.Add(new IconTintColorBehavior { TintColor = selectedColor });
-
-        if (IsSelected)
-        {
-            selectedBorder.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
-        }
-        else
-        {
-            selectedBorder.SetDynamicResource(BackgroundColorProperty, ColorsConstants.PrimaryLight);
-        }
-    }
     private static void OnTabViewItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         (bindable as TabViewItem)?.UpdateCurrentContent();
+    }
+
+    public void UpdateTabColor(TabViewItem tabViewItem)
+    {
+        if (tabViewItem.IsSelected)
+        {
+            if (tabViewItem.TabColor == TabColor.Primary)
+            {
+                tabViewItem.selectedBorder.SetDynamicResource(BackgroundColorProperty, "PrimarySelectedCellBackgroundColor");
+                tabViewItem.text.SetDynamicResource(Label.TextColorProperty, "PrimarySelectedCellTextAndIconColor");
+            }
+            else
+            {
+                tabViewItem.selectedBorder.SetDynamicResource(BackgroundColorProperty, "SecondarySelectedCellBackgroundColor");
+                tabViewItem.text.SetDynamicResource(Label.TextColorProperty, "SecondarySelectedCellTextAndIconColor");
+            }
+            tabViewItem.text.FontAttributes = FontAttributes.Bold;
+        }
+        else
+        {
+            if (tabViewItem.TabColor == TabColor.Primary)
+            {
+                tabViewItem.text.SetDynamicResource(Label.TextColorProperty, "PrimaryDefaultCellTextAndIconColor");
+            }
+            else
+            {
+                tabViewItem.text.SetDynamicResource(Label.TextColorProperty, "SecondaryDefaultCellTextAndIconColor");
+            }
+            tabViewItem.selectedBorder.SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
+            tabViewItem.text.FontAttributes = FontAttributes.None;
+        }
+
+        tabViewItem.icon.Behaviors.Clear();
+        tabViewItem.icon.Behaviors.Add(new IconTintColorBehavior { TintColor = tabViewItem.text.TextColor });
     }
 
     private static void OnOrientationPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -174,7 +187,7 @@ public partial class TabViewItem : ContentView
     {
         if (bindable is TabViewItem tabViewItem)
         {
-            tabViewItem.UpdateTabColor();
+            tabViewItem.UpdateTabColor(tabViewItem);
         }
     }
 
