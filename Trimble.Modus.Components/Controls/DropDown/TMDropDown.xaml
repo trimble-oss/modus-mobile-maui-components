@@ -40,16 +40,13 @@
              VerticalOptions="Center" />
 
       <Image x:Name="indicatorButton"
-             Source="{Static constants:ImageConstants.ChevronDownIcon}"
+             Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
              HorizontalOptions="EndAndExpand"
              VerticalOptions="Center"
              Grid.Column="1"
              HeightRequest="32"
-             WidthRequest="32">
-        <Image.Behaviors>
-          <toolkit:IconTintColorBehavior TintColor="{DynamicResource AlternateTextColor}" />
-        </Image.Behaviors>
-      </Image>
+             WidthRequest="32" />
+
     </Grid>
   </Border>
 </ContentView>

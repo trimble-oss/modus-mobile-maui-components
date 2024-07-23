@@ -233,4 +233,9 @@
     <Folder Include="Controls\TMAlert\" />
     <Folder Include="Controls\TMTopNavbar\" />
   </ItemGroup>
+  <ItemGroup>
+    <MauiImage Update="Images\chevron_down_icon.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </MauiImage>
+  </ItemGroup>
 </Project>
