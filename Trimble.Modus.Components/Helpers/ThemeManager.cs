@@ -14,6 +14,7 @@ namespace Trimble.Modus.Components.Helpers
         {
             IncludeFromResources(new Styles.Colors());
             UpdateColorsDictionary(appConfig);
+            UpdateStylingDictionary(appConfig);
             UpdateTheme(Application.Current.RequestedTheme);
 
             Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
@@ -46,6 +47,15 @@ namespace Trimble.Modus.Components.Helpers
             {
                 LightThemeColorResourceDictionary = defaultLightThemeColors;
                 DarkThemeColorResourceDictionary = defaultDarkThemeColors;
+            }
+        }
+
+        private static void UpdateStylingDictionary(ModusConfig appConfig = null)
+        {
+            if (appConfig != null)
+            {
+                LightThemeStylingResourceDictionary = appConfig.LightThemeStyles;
+                DarkThemeStylingResourceDictionary = appConfig.DarkThemeStyles;
             }
         }
 

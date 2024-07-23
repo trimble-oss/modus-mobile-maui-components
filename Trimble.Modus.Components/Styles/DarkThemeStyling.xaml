@@ -486,8 +486,12 @@
                          Color="{StaticResource Transparent}" />
   <styles:ReferenceColor x:Key="InputDefaultBackgroundColor"
                          Color="{StaticResource TertiaryDark}" />
+  <styles:ReferenceColor x:Key="InputHeaderTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
   <styles:ReferenceColor x:Key="InputTextColor"
                          Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="InputPlaceholderColor"
+                         Color="{StaticResource SecondaryLight}" />
 
   <!--Primary-->
   <styles:ReferenceColor x:Key="InputPrimaryBorderColor"

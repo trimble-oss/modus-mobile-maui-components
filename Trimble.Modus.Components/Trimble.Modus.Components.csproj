@@ -31,7 +31,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Trimble.Modus.Components</PackageId>
     <Title>Trimbel Modus</Title>
-    <Version>1.0.40-beta</Version>
+    <Version>1.0.3.2-beta</Version>
     <Authors>Trimble Inc</Authors>
     <Company>Trimble Inc</Company>
     <Product>Trimble.Modus.Components</Product>

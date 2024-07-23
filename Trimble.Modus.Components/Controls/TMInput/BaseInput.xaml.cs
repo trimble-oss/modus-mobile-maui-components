@@ -115,11 +115,12 @@ public partial class BaseInput : ContentView
         BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(BaseInput), Colors.Gray,
             propertyChanged: OnBorderColorPropertyChanged);
     /// <summary>
-    /// Gets or sets the text color
+    /// Gets or sets the header text color
     /// </summary>
-    public static readonly BindableProperty TextColorProperty =
-        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
-            propertyChanged: OnTextColorPropertyChanged);
+    public static readonly BindableProperty HeaderTextColorProperty =
+        BindableProperty.Create(nameof(HeaderTextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
+            propertyChanged: OnHeaderTextColorPropertyChanged);
+
     /// <summary>
     /// Gets or sets background color
     /// </summary>
@@ -303,13 +304,14 @@ public partial class BaseInput : ContentView
         set => SetValue(BackgroundColorProperty, value);
     }
     /// <summary>
-    /// Gets or sets the text color
+    /// Gets or sets the header text color
     /// </summary>
-    internal Color TextColor
+    internal Color HeaderTextColor
     {
-        get => (Color)GetValue(TextColorProperty);
-        set => SetValue(TextColorProperty, value);
+        get => (Color)GetValue(HeaderTextColorProperty);
+        set => SetValue(HeaderTextColorProperty, value);
     }
+
     /// <summary>
     /// Gets or sets the helper icon image
     /// </summary>
@@ -386,11 +388,12 @@ public partial class BaseInput : ContentView
         }
 
     }
-    private static void OnTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+
+    private static void OnHeaderTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is BaseInput tmInput)
         {
-            tmInput.InputLabel.TextColor = tmInput.TextColor;
+            tmInput.InputLabel.TextColor = tmInput.HeaderTextColor;
         }
     }
     private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
