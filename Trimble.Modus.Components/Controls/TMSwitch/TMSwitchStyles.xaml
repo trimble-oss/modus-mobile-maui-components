@@ -6,6 +6,8 @@
 
   <Style TargetType="local:TMSwitch" x:Key="SwitchStyle">
     <Setter Property="TextColor" Value="{DynamicResource SwitchTextColor}"/>
+    <Setter Property="ThumbColor"
+            Value="{DynamicResource SwitchThumbColor}"/>
     <Setter Property="VisualStateManager.VisualStateGroups">
       <VisualStateGroupList>
         <VisualStateGroup x:Name="CommonStates">

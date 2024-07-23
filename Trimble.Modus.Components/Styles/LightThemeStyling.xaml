@@ -245,6 +245,8 @@
                          Color="{StaticResource SecondaryLight}" />
   <styles:ReferenceColor x:Key="SwitchTextColor"
                          Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SwitchThumbColor"
+                         Color="{StaticResource AlternateTextColor}" />
 
   <!-- Alert Success-->
   <styles:ReferenceColor x:Key="AlertButtonColor"

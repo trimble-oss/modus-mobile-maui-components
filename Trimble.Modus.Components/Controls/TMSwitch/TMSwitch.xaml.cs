@@ -1,10 +1,5 @@
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics.Text;
-using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -24,25 +19,35 @@ public partial class TMSwitch : ContentView
     public static readonly BindableProperty LabelTextProperty =
       BindableProperty.Create(nameof(Text), typeof(string), typeof(TMSwitch), "", propertyChanged: OnLabelTextChanged);
     public static readonly BindableProperty TextColorProperty =
-        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Black);
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Transparent, propertyChanged: OnTextColorChanged);
+
     public new static readonly BindableProperty BackgroundColorProperty =
-        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMSwitch), Colors.Black);
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMSwitch), Colors.Transparent, propertyChanged: OnBackgroundColorChanged);
+
+    public static readonly BindableProperty ThumbColorProperty =
+       BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(TMSwitch), Colors.Transparent, propertyChanged: OnThumbColorChanged);
 
     public string Text
     {
         get => (string)GetValue(LabelTextProperty);
         set => SetValue(LabelTextProperty, value);
     }
-    public Color TextColor
+    internal Color TextColor
     {
         get => (Color)GetValue(TextColorProperty);
         set => SetValue(TextColorProperty, value);
     }
 
-    public new Color BackgroundColor
+    internal new Color BackgroundColor
     {
         get => (Color)GetValue(BackgroundColorProperty);
         set => SetValue(BackgroundColorProperty, value);
+    }
+
+    internal Color ThumbColor
+    {
+        get => (Color)GetValue(ThumbColorProperty);
+        set => SetValue(ThumbColorProperty, value);
     }
 
     public ICommand ToggledCommand
@@ -88,11 +93,11 @@ public partial class TMSwitch : ContentView
                 OnSwitchUnSelected(this);
             }
         };
-        
+
     }
     private static void OnIsEnabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable != null && bindable is TMSwitch tMSwitch)
+        if (bindable is TMSwitch tMSwitch)
         {
             if ((bool)newValue)
             {
@@ -107,7 +112,7 @@ public partial class TMSwitch : ContentView
     }
     private static void OnLabelTextChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable != null && bindable is TMSwitch tMSwitch)
+        if (bindable is TMSwitch tMSwitch)
         {
             if (string.IsNullOrEmpty((string)newValue))
             {
@@ -124,15 +129,39 @@ public partial class TMSwitch : ContentView
     }
     private static void OnSwitchSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable != null && bindable is TMSwitch tMSwitch)
+        if (bindable is TMSwitch tMSwitch)
         {
             UpdateSwitchSize(tMSwitch);
         }
     }
 
+    private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMSwitch tmSwitch)
+        {
+            tmSwitch.switchText.TextColor = (Color)newValue;
+        }
+    }
+
+    private static void OnBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMSwitch tmSwitch)
+        {
+            tmSwitch.border.Color = (Color)newValue;
+        }
+    }
+
+    private static void OnThumbColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMSwitch tmSwitch)
+        {
+            tmSwitch.circle.Color = (Color)newValue;
+        }
+    }
+
     private static void OnSwitchToggleChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable != null && bindable is TMSwitch tMSwitch)
+        if (bindable is TMSwitch tMSwitch)
         {
             if ((bool)newValue)
             {
@@ -143,7 +172,7 @@ public partial class TMSwitch : ContentView
                 OnSwitchUnSelected(tMSwitch);
             }
         }
-    }    
+    }
 
     private static void UpdateSwitchSize(TMSwitch tMSwitch)
     {
@@ -165,6 +194,14 @@ public partial class TMSwitch : ContentView
         }
         tMSwitch.border.CornerRadius = tMSwitch.border.HeightRequest / 2;
         tMSwitch.circle.CornerRadius = tMSwitch.circle.HeightRequest / 2;
+        if (tMSwitch.IsToggled)
+        {
+            OnSwitchSelected(tMSwitch);
+        }
+        else
+        {
+            OnSwitchUnSelected(tMSwitch);
+        }
     }
 
     private void OnSwitchTapped(object sender, TappedEventArgs e)
