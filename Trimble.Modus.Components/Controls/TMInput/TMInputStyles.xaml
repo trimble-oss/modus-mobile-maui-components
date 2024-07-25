@@ -3,45 +3,75 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                     x:Class="Trimble.Modus.Components.TMInputStyles">
-  
-  <Style TargetType="local:TMInput" x:Key="Default">
-    <Setter Property="HelperIconImage" Value="{DynamicResource InputBlueInfoOutlineIcon}"/>
-    <Setter Property="TextColor" Value="{DynamicResource InputTextColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource InputDefaultBorderColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource InputDefaultBackgroundColor}"/>
-    <Setter Property="HelperLayoutBackground" Value="{DynamicResource InputDefaultHelperLayoutBackgroundColor}"/>
+
+  <Style TargetType="local:TMInput"
+         x:Key="Default">
+    <Setter Property="HelperIconImage"
+            Value="{DynamicResource InputBlueInfoOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+            Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource InputDefaultBorderColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+            Value="{DynamicResource InputDefaultHelperLayoutBackgroundColor}" />
   </Style>
 
-  <Style TargetType="local:TMInput" x:Key="Primary">
-    <Setter Property="HelperIconImage" Value="{DynamicResource InputBlueInfoOutlineIcon}"/>
-    <Setter Property="TextColor" Value="{DynamicResource InputTextColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource InputPrimaryBorderColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource InputDefaultBackgroundColor}"/>
-    <Setter Property="HelperLayoutBackground" Value="{DynamicResource InputPrimaryHelperLayoutBackgroundColor}"/>
+  <Style TargetType="local:TMInput"
+         x:Key="Primary">
+    <Setter Property="HelperIconImage"
+            Value="{DynamicResource InputBlueInfoOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+            Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource InputPrimaryBorderColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+            Value="{DynamicResource InputPrimaryHelperLayoutBackgroundColor}" />
   </Style>
 
-  <Style TargetType="local:TMInput" x:Key="Success">
-    <Setter Property="HelperIconImage" Value="{DynamicResource InputSuccessOutlineIcon}"/>
-    <Setter Property="TextColor" Value="{DynamicResource InputTextColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource InputSuccessBorderColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource InputDefaultBackgroundColor}"/>
-    <Setter Property="HelperLayoutBackground" Value="{DynamicResource InputSuccessHelperLayoutBackgroundColor}"/>
+  <Style TargetType="local:TMInput"
+         x:Key="Success">
+    <Setter Property="HelperIconImage"
+            Value="{DynamicResource InputSuccessOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+            Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource InputSuccessBorderColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+            Value="{DynamicResource InputSuccessHelperLayoutBackgroundColor}" />
   </Style>
 
-  <Style TargetType="local:TMInput" x:Key="Error">
-    <Setter Property="HelperIconImage" Value="{DynamicResource InputErrorOutlineIcon}"/>
-    <Setter Property="TextColor" Value="{DynamicResource InputTextColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource InputErrorBorderColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource InputDefaultBackgroundColor}"/>
-    <Setter Property="HelperLayoutBackground" Value="{DynamicResource InputErrorHelperLayoutBackgroundColor}"/>
+  <Style TargetType="local:TMInput"
+         x:Key="Error">
+    <Setter Property="HelperIconImage"
+            Value="{DynamicResource InputErrorOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+            Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource InputErrorBorderColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+            Value="{DynamicResource InputErrorHelperLayoutBackgroundColor}" />
   </Style>
 
-  <Style TargetType="local:TMInput" x:Key="ReadOnly">
-    <Setter Property="HelperIconImage" Value="{DynamicResource DefaultCheckBoxImage}"/>
-    <Setter Property="TextColor" Value="{DynamicResource InputTextColor}"/>
-    <Setter Property="BorderColor" Value="{DynamicResource InputReadOnlyBorderColor}"/>
-    <Setter Property="BackgroundColor" Value="{DynamicResource InputReadOnlyBackgroundColor}"/>
-    <Setter Property="HelperLayoutBackground" Value="{DynamicResource InputReadOnlyHelperLayoutBackgroundColor}"/>
+  <Style TargetType="local:TMInput"
+         x:Key="ReadOnly">
+    <Setter Property="HelperIconImage"
+            Value="{DynamicResource DefaultCheckBoxImage}" />
+    <Setter Property="HeaderTextColor"
+            Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource InputReadOnlyBorderColor}" />
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource InputReadOnlyBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+            Value="{DynamicResource InputReadOnlyHelperLayoutBackgroundColor}" />
   </Style>
 
 </ResourceDictionary>

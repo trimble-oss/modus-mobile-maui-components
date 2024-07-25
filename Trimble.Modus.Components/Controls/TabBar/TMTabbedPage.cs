@@ -147,7 +147,7 @@ public partial class TMTabbedPage : ContentPage
     {
         if (tabbedPage.TabColor == TabColor.Primary)
         {
-            tabbedPage.SetDynamicResource(BackgroundColorProperty, "PrimaryTabBackgroundColor");
+            tabbedPage.tabStripContainer.SetDynamicResource(BackgroundColorProperty, "PrimaryTabBackgroundColor");
         }
         else
         {

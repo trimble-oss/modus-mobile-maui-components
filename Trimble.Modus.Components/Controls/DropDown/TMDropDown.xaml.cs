@@ -118,7 +118,7 @@ public partial class TMDropDown : ContentView
         {
             dropDown.label.TextColor = (Color)newValue;
             dropDown.indicatorButton.Behaviors.Clear();
-            dropDown.indicatorButton.Behaviors.Add(new IconTintColorBehavior { TintColor = (Color)newValue });
+            dropDown.indicatorButton.Behaviors.Add(new IconTintColorBehavior { TintColor = (Color)newValue});
         }
     }
 

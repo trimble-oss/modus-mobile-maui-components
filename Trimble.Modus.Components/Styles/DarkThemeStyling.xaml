@@ -247,6 +247,8 @@
                          Color="{StaticResource SecondaryLight}" />
   <styles:ReferenceColor x:Key="SwitchTextColor"
                          Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="SwitchThumbColor"
+                         Color="{StaticResource DefaultTextColor}" />
 
   <!-- Alert Success -->
   <styles:ReferenceColor x:Key="AlertButtonColor"
@@ -486,8 +488,12 @@
                          Color="{StaticResource Transparent}" />
   <styles:ReferenceColor x:Key="InputDefaultBackgroundColor"
                          Color="{StaticResource TertiaryDark}" />
+  <styles:ReferenceColor x:Key="InputHeaderTextColor"
+                         Color="{StaticResource DefaultTextColor}" />
   <styles:ReferenceColor x:Key="InputTextColor"
                          Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="InputPlaceholderColor"
+                         Color="{StaticResource SecondaryLight}" />
 
   <!--Primary-->
   <styles:ReferenceColor x:Key="InputPrimaryBorderColor"
