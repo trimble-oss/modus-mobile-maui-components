@@ -35,7 +35,7 @@
       <Label x:Name="label"
              FontSize="16"
              Grid.Column="0"
-             HorizontalOptions="Center"
+             HorizontalTextAlignment="Start"
              FontFamily="OpenSansSemibold"
              VerticalOptions="Center" />
 
