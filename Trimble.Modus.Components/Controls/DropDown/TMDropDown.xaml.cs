@@ -73,7 +73,7 @@ public partial class TMDropDown : ContentView
     #endregion
     #region Bindable Properties
     public static readonly BindableProperty SelectedIndexProperty =
-        BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMDropDown), 0, propertyChanged: OnSelectedIndexChanged);
+        BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMDropDown), -1, propertyChanged: OnSelectedIndexChanged);
 
     public new static readonly BindableProperty WidthRequestProperty =
         BindableProperty.Create(nameof(WidthRequest), typeof(double), typeof(TMDropDown), 240.0, propertyChanged: OnWidthRequestChanged);
@@ -82,7 +82,7 @@ public partial class TMDropDown : ContentView
         BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMDropDown), null, propertyChanged: OnItemsSourceChanged);
 
     public static readonly BindableProperty SelectedItemProperty =
-        BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(TMDropDown));
+        BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(TMDropDown), null, propertyChanged: OnSelectedItemChanged);
 
     public static readonly BindableProperty SelectionChangedCommandProperty =
          BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(TMDropDown));
@@ -111,11 +111,41 @@ public partial class TMDropDown : ContentView
 
     #region Private Methods
 
+    private static void UpdateSelectedIndexBasedOnSelectedItem(TMDropDown dropDown)
+    {
+        var index = dropDown.items.Cast<object>().ToList().IndexOf(dropDown.SelectedItem);
+        if (index != dropDown.SelectedIndex)
+        {
+            dropDown.SelectedIndex = index;
+        }
+    }
+
+    private static void UpdateSelectedItemBasedOnSelectedIndex(TMDropDown dropDown)
+    {
+        var list = dropDown.items.Cast<object>().ToList();
+        if (list.Count > 0 && dropDown.SelectedIndex >= 0)
+        {
+            var selectedItem = list[dropDown.SelectedIndex];
+            if (selectedItem != dropDown.SelectedItem)
+            {
+                dropDown.SelectedItem = selectedItem;
+            }
+        }
+    }
+
     private static void OnTextAndIconColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is TMDropDown dropDown)
         {
             dropDown.label.TextColor = (Color)newValue;
+        }
+    }
+
+    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown && dropDown.ItemsSource != null)
+        {
+            UpdateSelectedIndexBasedOnSelectedItem(dropDown);
         }
     }
 
@@ -218,16 +248,16 @@ public partial class TMDropDown : ContentView
         if (bindable is TMDropDown tmDropDown)
         {
             tmDropDown.items = newValue as IEnumerable;
-            tmDropDown.UpdateListViewItemsSource(tmDropDown.items);
+            tmDropDown.UpdateSelectedItemValue(tmDropDown);
             tmDropDown.UpdateListBorderHeight(tmDropDown.items);
         }
     }
 
     private static void OnSelectedIndexChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMDropDown dropDown && dropDown != null)
+        if (bindable is TMDropDown dropDown)
         {
-            dropDown.UpdateSelectedItem((int)newValue, dropDown.items);
+            dropDown.UpdateSelectedItemText(dropDown);
         }
     }
     private static void OnWidthRequestChanged(BindableObject bindable, object oldValue, object newValue)
@@ -238,19 +268,21 @@ public partial class TMDropDown : ContentView
         }
     }
 
-    private void UpdateSelectedItem(int selectedIndex, IEnumerable items)
+    private void UpdateSelectedItemText(TMDropDown dropDown)
     {
-        if (selectedIndex >= 0 && selectedIndex < items.Cast<object>().Count() && items != null)
+        if (dropDown.SelectedIndex >= 0 && dropDown.SelectedItem != null)
         {
-            label.Text = items.Cast<object>().ElementAt(selectedIndex).ToString();
+            label.Text = items.Cast<object>().ElementAt(dropDown.SelectedIndex).ToString();
         }
     }
 
-    private void UpdateListViewItemsSource(IEnumerable items)
+    private void UpdateSelectedItemValue(TMDropDown dropDown)
     {
-        if (items != null)
+        if (dropDown.items != null)
         {
-            UpdateSelectedItem(SelectedIndex, items);
+            UpdateSelectedIndexBasedOnSelectedItem(dropDown);
+            UpdateSelectedItemBasedOnSelectedIndex(dropDown);
+            UpdateSelectedItemText(dropDown);
         }
     }
     private void UpdateListBorderHeight(IEnumerable items)
