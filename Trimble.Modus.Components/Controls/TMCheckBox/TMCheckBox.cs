@@ -84,7 +84,7 @@ namespace Trimble.Modus.Components
                nameof(CheckBoxImage),
                typeof(string),
                typeof(TMCheckBox),
-               defaultValue: string.Empty,
+               defaultValue: "default_checkbox.png",
                propertyChanged: OnCheckBoxImageChanged);
 
         public static readonly BindableProperty IsCheckedProperty =

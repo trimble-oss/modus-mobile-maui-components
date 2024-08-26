@@ -4,18 +4,19 @@
              xmlns:modus="http://modus.trimble.com/components"
              x:Class="DemoApp.Views.DropDownSamplePage"
              Title="DropDownSamplePage">
-  <StackLayout HorizontalOptions="Start" Padding="10" Spacing="20">
+  <StackLayout HorizontalOptions="Start"
+               Padding="10"
+               Spacing="20">
 
-    <Label Text="Equipment Type:"/>
-    <modus:TMDropDown WidthRequest="250"/>
+    <Label Text="Equipment Type:" />
+    <modus:TMDropDown WidthRequest="250" />
     <modus:TMDropDown ItemsSource="{Binding EquipmentSource}"
                       SelectedIndex="{Binding SelectedIndexOfEquipment}"
                       SelectionChangedCommand="{Binding ItemSelectedCommand}"
-                      WidthRequest="250"/>
-    <Label Text="Color"/>
+                      WidthRequest="250" />
+    <Label Text="Color" />
     <modus:TMDropDown ItemsSource="{Binding ColorSource}"
-                      SelectedIndex="{Binding SelectedIndexOfColor}"
-                      SelectionChangedCommand="{Binding ItemSelectedCommand}"/>
-
+                      SelectedItem="{Binding SelectedItemOfColor}"
+                      SelectionChangedCommand="{Binding ItemSelectedCommand}" />
   </StackLayout>
 </ContentPage>
