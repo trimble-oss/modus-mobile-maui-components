@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Behaviors;
 using System.Windows.Input;
 
 namespace Trimble.Modus.Components;
@@ -18,6 +19,7 @@ public partial class TMNumberInput : ContentView
     public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(nameof(IsReadOnly), typeof(bool), typeof(TMNumberInput), false, propertyChanged: OnEnabledOrReadOnlyPropertyChanged);
     public static readonly BindableProperty ValueChangeCommandProperty = BindableProperty.Create(nameof(ValueChangeCommand), typeof(ICommand), typeof(TMNumberInput), null);
     public static readonly BindableProperty ValueChangeCommandParameterProperty = BindableProperty.Create(nameof(ValueChangeCommandParameter), typeof(object), typeof(TMNumberInput), null, BindingMode.OneWay, null);
+    public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMInput), propertyChanged: OnIconTintColorChanged);
     #endregion
 
     #region Public properties
@@ -93,6 +95,17 @@ public partial class TMNumberInput : ContentView
         set { SetValue(IsReadOnlyProperty, value); }
     }
 
+    /// <summary>
+    /// Gets or sets the tint color for the left and right icons.
+    /// </summary>
+    public Color IconTintColor
+    {
+        get => (Color)GetValue(IconTintColorProperty);
+        set
+        {
+            SetValue(IconTintColorProperty, value);
+        }
+    }
     #endregion
 
     #region Constructor
@@ -106,10 +119,23 @@ public partial class TMNumberInput : ContentView
         TMInputControl.SetCenterTextAlignment();
         TMInputControl.RightIconCommand = new Command(PlusCommand.Execute);
         TMInputControl.LeftIconCommand = new Command(MinusCommand.Execute);
+
+        SetDynamicResource(StyleProperty, "NumberInputDefault");
     }
 
     #endregion
     #region Private methods
+    /// <summary>
+    /// Called when the IconTintColor property changes.
+    /// </summary>
+    private static void OnIconTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMNumberInput input)
+        {
+            input.UpdateIconTintColor();
+        }
+    }
+
     /// <summary>
     /// Triggered when IsEnabled is changed
     /// </summary>
@@ -336,6 +362,21 @@ public partial class TMNumberInput : ContentView
     {
         tMInput.ToggleRightIconState(shouldEnable && Value < MaxValue);
         tMInput.ToggleLeftIconState(shouldEnable && Value > MinValue);
+    }
+
+    /// <summary>
+    /// Updates the tint color of the left and right icons.
+    /// </summary>
+    private void UpdateIconTintColor()
+    {
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            var behavior = new IconTintColorBehavior { TintColor = IconTintColor };
+            LeftImage.Behaviors.Clear();
+            RightImage.Behaviors.Clear();
+            LeftImage.Behaviors.Add(behavior);
+            RightImage.Behaviors.Add(behavior);
+        }
     }
     #endregion
 

@@ -30,6 +30,9 @@
   <Color x:Key="SecondaryLight">#B7B9C3</Color>
   <Color x:Key="SecondaryDark">#585C65</Color>
 
+  <Color x:Key="IconLight">#252A2E</Color>
+  <Color x:Key="IconDark">#90939F</Color>
+
   <Color x:Key="Transparent">transparent</Color>
 
 </ResourceDictionary>

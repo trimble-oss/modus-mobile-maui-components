@@ -149,6 +149,9 @@
     <MauiXaml Update="Controls\TMInput\TMInputStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Controls\TMInput\TMNumberInputStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Controls\TMSlider\ToolTipAnchor.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
