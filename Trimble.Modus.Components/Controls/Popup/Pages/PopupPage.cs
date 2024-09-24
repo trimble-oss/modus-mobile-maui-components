@@ -306,9 +306,10 @@ public class PopupPage : ContentPage
 
         try
         {
-            _popupHeight = popupPage.Content.Height;
-            _popupWidth = popupPage.Content.Width;
-
+            popupPage.Content.Measure(double.PositiveInfinity, double.PositiveInfinity);
+            _popupHeight = popupPage.Content.DesiredSize.Height;
+            _popupWidth = popupPage.Content.DesiredSize.Width;
+            popupPage.SystemPadding = 0;
             var locationFetcher = new Helpers.LocationFetcher();
             var loc = locationFetcher.GetCoordinates(_anchorView);
 
@@ -319,23 +320,23 @@ public class PopupPage : ContentPage
 
                 switch (Position)
                 {
-                    case Components.Enums.ModalPosition.Top:
-                        translationY = loc.Top - _popupHeight - loc.Height / 2;
+                    case Enums.ModalPosition.Top:
+                        translationY = loc.Top - _popupHeight;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
-                    case Components.Enums.ModalPosition.Bottom:
-                        translationY = loc.Bottom - _popupHeight + loc.Height / 2;
+                    case Enums.ModalPosition.Bottom:
+                        translationY = loc.Bottom;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
-                    case Components.Enums.ModalPosition.Left:
-                        translationY = loc.Y - _popupHeight / 2;
+                    case Enums.ModalPosition.Left:
+                        translationY = loc.Y;
                         translationX = loc.Left - _popupWidth;
                         break;
 
-                    case Components.Enums.ModalPosition.Right:
-                        translationY = loc.Y - _popupHeight / 2;
+                    case Enums.ModalPosition.Right:
+                        translationY = loc.Y;
                         translationX = loc.Right;
                         break;
                 }

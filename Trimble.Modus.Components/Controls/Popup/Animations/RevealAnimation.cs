@@ -59,11 +59,11 @@ public class RevealAnimation : BaseAnimation
 
         if (HasBackgroundAnimation)
         {
-            return RevealAnimations.HeightTo(content, 0);
+            return RevealAnimations.HeightTo(content, 0, 0);
         }
         if (content != null)
         {
-            return RevealAnimations.HeightTo(content, 0);
+            return RevealAnimations.HeightTo(content, 0, 0);
         }
 
         return Task.CompletedTask;

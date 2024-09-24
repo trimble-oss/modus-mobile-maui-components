@@ -184,14 +184,6 @@ public partial class TMDropDown : ContentView
         }
     }
 
-    private void OnTapped(object sender, EventArgs e)
-    {
-        if (ItemsSource.Cast<object>().Count() > 0)
-        {
-            Open();
-        }
-    }
-
     private async void Close()
     {
         await Task.WhenAll(
@@ -202,29 +194,36 @@ public partial class TMDropDown : ContentView
 
 
     DropDownContents dropDownContents;
+    private bool _isLoading;
+
     private async void Open()
     {
-        var locationFetcher = new LocationFetcher();
-        var loc = locationFetcher.GetCoordinates(this);
-        var height = Application.Current.MainPage.Window.Height;
-        dropDownContents = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom)
+        if (!_isLoading)
         {
-            ItemSource = this.ItemsSource,
-            SelectedIndex = this.SelectedIndex,
-            SelectedItem = this.SelectedItem,
-            Margin = margin,
-            DesiredHeight = desiredHeight,
-            WidthRequest = innerBorder.Width,
-            SelectedEventHandler = OnSelected,
-            YPosition = loc.Y,
-            Height = height
-        };
-        dropDownContents.Build();
-        await Task.WhenAll(
-            indicatorButton.RotateTo(-180, AnimationDuration)
-        );
+            _isLoading = true;
+            var locationFetcher = new LocationFetcher();
+            var loc = locationFetcher.GetCoordinates(this);
+            var height = Application.Current.MainPage.Window.Height;
+            dropDownContents = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom)
+            {
+                ItemSource = this.ItemsSource,
+                SelectedIndex = this.SelectedIndex,
+                SelectedItem = this.SelectedItem,
+                Margin = 0,
+                DesiredHeight = desiredHeight,
+                WidthRequest = innerBorder.Width,
+                SelectedEventHandler = OnSelected,
+                YPosition = loc.Y,
+                Height = height
+            };
+            dropDownContents.Build();
+            await Task.WhenAll(
+                indicatorButton.RotateTo(-180, AnimationDuration)
+            );
 
-        await PopupService.Instance?.PresentAsync(dropDownContents, true);
+            await PopupService.Instance?.PresentAsync(dropDownContents, true);
+            _isLoading = false;
+        }
     }
 
     private void OnPopupRemoved(object sender, EventArgs e)
@@ -273,6 +272,10 @@ public partial class TMDropDown : ContentView
         if (dropDown.SelectedIndex >= 0 && dropDown.SelectedItem != null)
         {
             label.Text = items.Cast<object>().ElementAt(dropDown.SelectedIndex).ToString();
+        }
+        else
+        {
+            label.Text = string.Empty;
         }
     }
 
