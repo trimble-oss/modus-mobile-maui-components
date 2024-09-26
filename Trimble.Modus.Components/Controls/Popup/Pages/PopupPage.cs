@@ -338,7 +338,6 @@ public class PopupPage : ContentPage
                         translationX = loc.Right;
                         break;
                 }
-            }
 
                 popupPage.Content.TranslationY = translationY;
                 popupPage.Content.TranslationX = translationX;
