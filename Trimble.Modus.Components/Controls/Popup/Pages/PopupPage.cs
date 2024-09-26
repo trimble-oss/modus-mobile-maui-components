@@ -306,10 +306,8 @@ public class PopupPage : ContentPage
 
         try
         {
-            popupPage.Content.Measure(double.PositiveInfinity, double.PositiveInfinity);
-            _popupHeight = popupPage.Content.DesiredSize.Height;
-            _popupWidth = popupPage.Content.DesiredSize.Width;
-            popupPage.SystemPadding = 0;
+            _popupHeight = popupPage.Content.Height;
+            _popupWidth = popupPage.Content.Width;
             var locationFetcher = new Helpers.LocationFetcher();
             var loc = locationFetcher.GetCoordinates(_anchorView);
 
@@ -321,25 +319,26 @@ public class PopupPage : ContentPage
                 switch (Position)
                 {
                     case Enums.ModalPosition.Top:
-                        translationY = loc.Top - _popupHeight;
+                        translationY = loc.Top - _popupHeight - loc.Height / 2;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
                     case Enums.ModalPosition.Bottom:
-                        translationY = loc.Bottom;
+                        translationY = loc.Bottom - _popupHeight + loc.Height / 2;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
                     case Enums.ModalPosition.Left:
-                        translationY = loc.Y;
+                        translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Left - _popupWidth;
                         break;
 
                     case Enums.ModalPosition.Right:
-                        translationY = loc.Y;
+                        translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Right;
                         break;
                 }
+            }
 
                 popupPage.Content.TranslationY = translationY;
                 popupPage.Content.TranslationX = translationX;

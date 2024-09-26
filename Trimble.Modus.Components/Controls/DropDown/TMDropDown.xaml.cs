@@ -209,7 +209,7 @@ public partial class TMDropDown : ContentView
                 ItemSource = this.ItemsSource,
                 SelectedIndex = this.SelectedIndex,
                 SelectedItem = this.SelectedItem,
-                Margin = 0,
+                Margin = margin,
                 DesiredHeight = desiredHeight,
                 WidthRequest = innerBorder.Width,
                 SelectedEventHandler = OnSelected,
