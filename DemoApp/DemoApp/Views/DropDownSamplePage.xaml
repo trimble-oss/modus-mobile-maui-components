@@ -7,15 +7,15 @@
   <StackLayout HorizontalOptions="Start"
                Padding="10"
                Spacing="20">
-
-    <Label Text="Equipment Type:" />
-    <modus:TMDropDown WidthRequest="250" />
+    <modus:TMDropDown WidthRequest="250"
+                      TitleText="{Binding EquipmentType}" />
     <modus:TMDropDown ItemsSource="{Binding EquipmentSource}"
                       SelectedIndex="{Binding SelectedIndexOfEquipment}"
                       SelectionChangedCommand="{Binding ItemSelectedCommand}"
                       WidthRequest="250" />
-    <Label Text="Color" />
     <modus:TMDropDown ItemsSource="{Binding ColorSource}"
+                      TitleText="Color"
+                      IsRequired="True"
                       SelectedItem="{Binding SelectedItemOfColor}"
                       SelectionChangedCommand="{Binding ItemSelectedCommand}" />
   </StackLayout>

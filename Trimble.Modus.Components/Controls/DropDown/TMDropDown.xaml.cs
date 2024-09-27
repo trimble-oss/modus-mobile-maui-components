@@ -31,6 +31,24 @@ public partial class TMDropDown : ContentView
         set { SetValue(ItemsSourceProperty, value); }
     }
 
+    /// <summary>
+    /// Gets or sets the title text
+    /// </summary>
+    public string TitleText
+    {
+        get => (string)GetValue(TitleTextProperty);
+        set => SetValue(TitleTextProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the required property
+    /// </summary>
+    public bool IsRequired
+    {
+        get => (bool)GetValue(IsRequiredProperty);
+        set => SetValue(IsRequiredProperty, value);
+    }
+
     public object SelectedItem
     {
         get => GetValue(SelectedItemProperty);
@@ -80,6 +98,18 @@ public partial class TMDropDown : ContentView
 
     public static readonly BindableProperty ItemsSourceProperty =
         BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMDropDown), null, propertyChanged: OnItemsSourceChanged);
+
+    /// <summary>
+    /// Gets or sets the text for the title label in the control
+    /// </summary>
+    public static readonly BindableProperty TitleTextProperty =
+        BindableProperty.Create(nameof(TitleText), typeof(string), typeof(TMDropDown), null);
+
+    /// <summary>
+    /// Gets or sets the required boolean for the label in the control
+    /// </summary>
+    public static readonly BindableProperty IsRequiredProperty =
+        BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(TMDropDown), false);
 
     public static readonly BindableProperty SelectedItemProperty =
         BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(TMDropDown), null, propertyChanged: OnSelectedItemChanged);

@@ -86,6 +86,9 @@
     <Compile Update="Controls\Button\TMButton.xaml.cs">
       <DependentUpon>TMButton.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\Label\ControlLabel.xaml.cs">
+      <DependentUpon>ControlLabel.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Controls\DropDown\DropDownContents.xaml.cs">
       <DependentUpon>DropDownContents.xaml</DependentUpon>
     </Compile>
@@ -134,7 +137,13 @@
     <MauiXaml Update="Controls\Button\TMButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
+    <MauiXaml Update="Controls\Label\ControlLabel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Controls\DropDown\DropDownStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Controls\Label\ControlLabelStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">

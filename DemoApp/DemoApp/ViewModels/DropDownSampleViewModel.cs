@@ -11,6 +11,10 @@ namespace DemoApp.ViewModels
         private int selectedIndexOfEquipment;
         [ObservableProperty]
         private string selectedItemOfColor;
+
+        [ObservableProperty]
+        private string equipmentType = "Equipment Type:";
+
         [ObservableProperty]
         private List<string> equipmentSource;
         [ObservableProperty]

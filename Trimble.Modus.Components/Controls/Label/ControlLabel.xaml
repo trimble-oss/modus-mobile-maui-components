@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             x:Class="Trimble.Modus.Components.ControlLabel"
+             x:Name="controlLabelView">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+      <ResourceDictionary.MergedDictionaries>
+        <local:ControlLabelStyles />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <HorizontalStackLayout Grid.Row="0"
+                         x:Name="view"
+                         BindingContext="{x:Reference controlLabelView}"
+                         Spacing="4"
+                         IsVisible="{Binding TitleText,Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+    <Label x:Name="inputLabel"
+           Padding="0,0,0,5"
+           FontFamily="OpenSansSemibold"
+           Text="{Binding TitleText}"
+           VerticalOptions="Center"
+           HorizontalOptions="Start" />
+    <Label Text="*"
+           IsVisible="{Binding IsRequired}"
+           FontFamily="OpenSansSemibold"
+           TextColor="#DA212C" />
+  </HorizontalStackLayout>
+</ContentView>

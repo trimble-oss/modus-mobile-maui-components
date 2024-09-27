@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              HorizontalOptions="Start"
              VerticalOptions="Start"
+             x:Name="dropDown"
              xmlns:local="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -14,39 +15,43 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentView.Resources>
-  <Border x:Name="innerBorder"
-          MinimumWidthRequest="150"
-          HorizontalOptions="Start"
-          StrokeThickness="2"
-          VerticalOptions="Center"
-          Padding="0">
-    <Border.StrokeShape>
-      <RoundRectangle CornerRadius="4" />
-    </Border.StrokeShape>
-    <Border.GestureRecognizers>
-      <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-    </Border.GestureRecognizers>
-    <Grid x:Name="ContentLayout"
-          ColumnDefinitions="*,auto"
-          HeightRequest="48"
-          Padding="12,0"
-          HorizontalOptions="Fill"
-          VerticalOptions="Center">
-      <Label x:Name="label"
-             FontSize="16"
-             Grid.Column="0"
-             HorizontalTextAlignment="Start"
-             FontFamily="OpenSansSemibold"
-             VerticalOptions="Center" />
+  <VerticalStackLayout BindingContext="{x:Reference dropDown}">
+    <local:ControlLabel TitleText="{Binding TitleText}"
+                        IsRequired="{Binding IsRequired}" />
+    <Border x:Name="innerBorder"
+            MinimumWidthRequest="150"
+            HorizontalOptions="Start"
+            StrokeThickness="2"
+            VerticalOptions="Center"
+            Padding="0">
+      <Border.StrokeShape>
+        <RoundRectangle CornerRadius="4" />
+      </Border.StrokeShape>
+      <Border.GestureRecognizers>
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+      </Border.GestureRecognizers>
+      <Grid x:Name="ContentLayout"
+            ColumnDefinitions="*,auto"
+            HeightRequest="48"
+            Padding="12,0"
+            HorizontalOptions="Fill"
+            VerticalOptions="Center">
+        <Label x:Name="label"
+               FontSize="16"
+               Grid.Column="0"
+               HorizontalTextAlignment="Start"
+               FontFamily="OpenSansSemibold"
+               VerticalOptions="Center" />
 
-      <Image x:Name="indicatorButton"
-             Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
-             HorizontalOptions="EndAndExpand"
-             VerticalOptions="Center"
-             Grid.Column="1"
-             HeightRequest="32"
-             WidthRequest="32" />
+        <Image x:Name="indicatorButton"
+               Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
+               HorizontalOptions="EndAndExpand"
+               VerticalOptions="Center"
+               Grid.Column="1"
+               HeightRequest="32"
+               WidthRequest="32" />
 
-    </Grid>
-  </Border>
+      </Grid>
+    </Border>
+  </VerticalStackLayout>
 </ContentView>

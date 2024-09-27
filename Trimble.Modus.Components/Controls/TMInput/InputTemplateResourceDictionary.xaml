@@ -2,6 +2,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Controls.TMInput.InputTemplateResourceDictionary"
+                    xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                     xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
   <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
   <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
@@ -13,20 +14,11 @@
           RowSpacing="0"
           Padding="0"
           BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
-      <HorizontalStackLayout Grid.Row="0"
-                             Spacing="4"
-                             IsVisible="{Binding TitleText,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}">
-        <Label x:Name="inputLabel"
-               Padding="0,0,0,5"
-               FontFamily="OpenSansSemibold"
-               Text="{Binding TitleText}"
-               VerticalOptions="Center"
-               HorizontalOptions="Start" />
-        <Label Text="*"
-               IsVisible="{Binding IsRequired}"
-               FontFamily="OpenSansSemibold"
-               TextColor="#DA212C" />
-      </HorizontalStackLayout>
+      <Modus:ControlLabel x:Name="controlLabel"
+                          IsEnabled="{Binding IsEnabled}"
+                          IsReadOnly="{Binding IsReadOnly}"
+                          TitleText="{Binding TitleText}"
+                          IsRequired="{Binding IsRequired}" />
       <Border x:Name="inputBorder"
               MinimumHeightRequest="48"
               VerticalOptions="FillAndExpand"

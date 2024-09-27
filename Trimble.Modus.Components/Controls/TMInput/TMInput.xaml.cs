@@ -156,7 +156,8 @@ public partial class TMInput : BaseInput
         HelperIcon = (Image)GetTemplateChild("inputHelperIcon");
         HelperLabel = (Label)GetTemplateChild("inputHelperLabel");
         HelperLayout = (HorizontalStackLayout)GetTemplateChild("inputHelperLayout");
-        InputLabel = (Label)GetTemplateChild("inputLabel");
+        ControlLabel = (ControlLabel)GetTemplateChild("controlLabel");
+
     }
 
     internal override View GetCoreContent()
