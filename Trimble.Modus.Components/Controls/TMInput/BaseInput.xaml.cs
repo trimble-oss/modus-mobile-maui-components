@@ -12,7 +12,7 @@ public partial class BaseInput : ContentView
     protected Border InputBorder { get; set; }
     protected Label HelperLabel { get; set; }
     protected Image HelperIcon { get; set; }
-    protected HorizontalStackLayout HelperLayout { get; set; }
+    protected Grid HelperLayout { get; set; }
     protected ControlLabel ControlLabel { get; set; }
 
     private ValidationResponse _validationResponse;

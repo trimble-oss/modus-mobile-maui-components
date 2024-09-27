@@ -29,21 +29,23 @@
         </Border.StrokeShape>
         <ContentPresenter VerticalOptions="FillAndExpand" />
       </Border>
-      <HorizontalStackLayout x:Name="inputHelperLayout"
-                             Grid.Row="2"
-                             HorizontalOptions="Start"
-                             Spacing="5"
-                             Margin="2"
-                             IsVisible="false"
-                             Padding="0,5,0,0">
+      <Grid x:Name="inputHelperLayout"
+            Grid.Row="2"
+            HorizontalOptions="Start"
+            ColumnSpacing="5"
+            ColumnDefinitions="auto,*"
+            Margin="2"
+            IsVisible="false"
+            Padding="0,5,0,0">
         <Image x:Name="inputHelperIcon"
+               Grid.Column="0"
                WidthRequest="20"
                HeightRequest="20" />
         <Label  x:Name="inputHelperLabel"
+                Grid.Column="1"
                 FontFamily="OpenSansRegular"
-                LineBreakMode="WordWrap"
-                VerticalTextAlignment="Center" />
-      </HorizontalStackLayout>
+                LineBreakMode="WordWrap" />
+      </Grid>
     </Grid>
   </ControlTemplate>
 

@@ -155,7 +155,7 @@ public partial class TMInput : BaseInput
         InputBorder = (Border)GetTemplateChild("inputBorder");
         HelperIcon = (Image)GetTemplateChild("inputHelperIcon");
         HelperLabel = (Label)GetTemplateChild("inputHelperLabel");
-        HelperLayout = (HorizontalStackLayout)GetTemplateChild("inputHelperLayout");
+        HelperLayout = (Grid)GetTemplateChild("inputHelperLayout");
         ControlLabel = (ControlLabel)GetTemplateChild("controlLabel");
 
     }
