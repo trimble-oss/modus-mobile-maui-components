@@ -17,14 +17,14 @@
   <Grid x:Name="container"
         HorizontalOptions="StartAndExpand"
         BindingContext="{x:Reference tmSwitch}"
-        ColumnDefinitions="*,auto,*"
-        ColumnSpacing="8">
+        ColumnDefinitions="*,auto,*">
     <Grid.GestureRecognizers>
       <TapGestureRecognizer Tapped="OnSwitchTapped" />
     </Grid.GestureRecognizers>
     <Label x:Name="switchLeftText"
            FontFamily="OpenSansRegular"
            Grid.Column="0"
+           Padding="0,0,8,0"
            Text="{Binding Text}"
            HorizontalOptions="Center"
            VerticalOptions="Center" />
@@ -41,6 +41,7 @@
     <Label x:Name="switchRightText"
            FontFamily="OpenSansRegular"
            Grid.Column="2"
+           Padding="8,0,0,0"
            Text="{Binding Text}"
            HorizontalOptions="Center"
            VerticalOptions="Center" />

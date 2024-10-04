@@ -17,7 +17,7 @@
         x:Name="view"
         BindingContext="{x:Reference controlLabelView}"
         ColumnSpacing="4"
-        ColumnDefinitions="*,auto"
+        ColumnDefinitions="auto,*"
         IsVisible="{Binding TitleText,Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
     <Label x:Name="inputLabel"
            Padding="0,0,0,5"

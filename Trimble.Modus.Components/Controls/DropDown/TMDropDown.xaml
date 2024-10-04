@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             HorizontalOptions="Start"
-             VerticalOptions="Start"
              x:Name="dropDown"
              xmlns:local="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
@@ -19,8 +17,7 @@
     <local:ControlLabel TitleText="{Binding TitleText}"
                         IsRequired="{Binding IsRequired}" />
     <Border x:Name="innerBorder"
-            MinimumWidthRequest="150"
-            HorizontalOptions="Start"
+            HorizontalOptions="Fill"
             StrokeThickness="2"
             VerticalOptions="Center"
             Padding="0">
