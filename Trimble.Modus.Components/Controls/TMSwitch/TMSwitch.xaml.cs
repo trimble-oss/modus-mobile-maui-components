@@ -16,7 +16,7 @@ public partial class TMSwitch : ContentView
       BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMSwitch), true, propertyChanged: OnIsEnabledChanged);
 
     public static readonly BindableProperty SwitchLabelPositionProperty =
-     BindableProperty.Create(nameof(SwitchLabelPosition), typeof(SwitchLabelPosition), typeof(TMSwitch), SwitchLabelPosition.Right, propertyChanged: OnSwitchLabelPositionChanged);
+     BindableProperty.Create(nameof(SwitchLabelPosition), typeof(TitlePosition), typeof(TMSwitch), TitlePosition.Right, propertyChanged: OnSwitchLabelPositionChanged);
 
     public static readonly BindableProperty ToggledCommandProperty =
       BindableProperty.Create(nameof(ToggledCommand), typeof(ICommand), typeof(TMSwitch), null);
@@ -39,9 +39,9 @@ public partial class TMSwitch : ContentView
         set => SetValue(TextProperty, value);
     }
 
-    public SwitchLabelPosition SwitchLabelPosition
+    public TitlePosition SwitchLabelPosition
     {
-        get => (SwitchLabelPosition)GetValue(SwitchLabelPositionProperty);
+        get => (TitlePosition)GetValue(SwitchLabelPositionProperty);
         set => SetValue(SwitchLabelPositionProperty, value);
     }
     internal Color TextColor
@@ -118,7 +118,7 @@ public partial class TMSwitch : ContentView
             tmSwitch.switchRightText.IsVisible = false;
             return;
         }
-        if (tmSwitch.SwitchLabelPosition == SwitchLabelPosition.Left)
+        if (tmSwitch.SwitchLabelPosition == TitlePosition.Left)
         {
             tmSwitch.container.ColumnDefinitions[0].Width = new GridLength(100, GridUnitType.Star);
             tmSwitch.container.ColumnDefinitions[2].Width = new GridLength(0);

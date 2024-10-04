@@ -1,6 +1,6 @@
 ﻿namespace Trimble.Modus.Components.Enums;
 
-public enum SwitchLabelPosition
+public enum TitlePosition
 {
     Right,
     Left
