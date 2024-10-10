@@ -27,6 +27,6 @@
     <Label Text="*"
            IsVisible="{Binding IsRequired}"
            FontFamily="OpenSansSemibold"
-           TextColor="{StaticResource Danger}" />
+           TextColor="{DynamicResource Danger}" />
   </HorizontalStackLayout>
 </ContentView>
