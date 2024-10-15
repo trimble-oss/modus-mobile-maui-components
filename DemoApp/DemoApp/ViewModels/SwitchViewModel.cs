@@ -10,6 +10,8 @@ namespace DemoApp.ViewModels
 
         [ObservableProperty] private bool isEnabled = true;
         [ObservableProperty] private SwitchSize switchSize;
+        [ObservableProperty] private TitlePosition switchLabelPosition;
+        [ObservableProperty] private string switchLabel = "Off at first";
         public SwitchSamplePageViewModel()
         {
 
@@ -25,6 +27,12 @@ namespace DemoApp.ViewModels
         public void SizeSelectionChanged(TMRadioButtonEventArgs e)
         {
             SwitchSize = e.RadioButtonIndex == 0 ? SwitchSize.Medium : SwitchSize.Large;
+        }
+
+        [RelayCommand]
+        public void PositionSelectionChanged(TMRadioButtonEventArgs e)
+        {
+            SwitchLabelPosition = e.RadioButtonIndex == 0 ? TitlePosition.Right : TitlePosition.Left;
         }
 
         [RelayCommand]

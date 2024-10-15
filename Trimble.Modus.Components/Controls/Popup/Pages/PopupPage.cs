@@ -308,7 +308,6 @@ public class PopupPage : ContentPage
         {
             _popupHeight = popupPage.Content.Height;
             _popupWidth = popupPage.Content.Width;
-
             var locationFetcher = new Helpers.LocationFetcher();
             var loc = locationFetcher.GetCoordinates(_anchorView);
 
@@ -319,22 +318,22 @@ public class PopupPage : ContentPage
 
                 switch (Position)
                 {
-                    case Components.Enums.ModalPosition.Top:
+                    case Enums.ModalPosition.Top:
                         translationY = loc.Top - _popupHeight - loc.Height / 2;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
-                    case Components.Enums.ModalPosition.Bottom:
+                    case Enums.ModalPosition.Bottom:
                         translationY = loc.Bottom - _popupHeight + loc.Height / 2;
                         translationX = loc.Center.X - _popupWidth / 2;
                         break;
 
-                    case Components.Enums.ModalPosition.Left:
+                    case Enums.ModalPosition.Left:
                         translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Left - _popupWidth;
                         break;
 
-                    case Components.Enums.ModalPosition.Right:
+                    case Enums.ModalPosition.Right:
                         translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Right;
                         break;

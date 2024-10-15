@@ -12,8 +12,8 @@ public partial class BaseInput : ContentView
     protected Border InputBorder { get; set; }
     protected Label HelperLabel { get; set; }
     protected Image HelperIcon { get; set; }
-    protected HorizontalStackLayout HelperLayout { get; set; }
-    protected Label InputLabel { get; set; }
+    protected Grid HelperLayout { get; set; }
+    protected ControlLabel ControlLabel { get; set; }
 
     private ValidationResponse _validationResponse;
 
@@ -118,8 +118,7 @@ public partial class BaseInput : ContentView
     /// Gets or sets the header text color
     /// </summary>
     public static readonly BindableProperty HeaderTextColorProperty =
-        BindableProperty.Create(nameof(HeaderTextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
-            propertyChanged: OnHeaderTextColorPropertyChanged);
+        BindableProperty.Create(nameof(HeaderTextColor), typeof(Color), typeof(BaseInput), Colors.Transparent, propertyChanged: OnHeaderTextColorPropertyChanged);
 
     /// <summary>
     /// Gets or sets background color
@@ -393,9 +392,10 @@ public partial class BaseInput : ContentView
     {
         if (bindable is BaseInput tmInput)
         {
-            tmInput.InputLabel.TextColor = tmInput.HeaderTextColor;
+            tmInput.ControlLabel.HeaderTextColor = tmInput.HeaderTextColor;
         }
     }
+
     private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is BaseInput tmInput)
@@ -516,7 +516,7 @@ public partial class BaseInput : ContentView
         {
             if (tmInput.IsEnabled)
             {
-                tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
+                tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = 1;
                 tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
                 tmInput.GetCoreContent().SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
@@ -525,15 +525,16 @@ public partial class BaseInput : ContentView
             {
                 tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
                 tmInput.InputBorder.StrokeThickness = 1;
-                tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = disabledOpacity;
+                tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = disabledOpacity;
             }
         }
     }
+
     private static void SetReadOnlyStyles(BaseInput tmInput)
     {
         tmInput.SetDynamicResource(BaseInput.StyleProperty, "ReadOnly");
         tmInput.InputBorder.StrokeThickness = 0;
-        tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
+        tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = 1;
     }
 
 

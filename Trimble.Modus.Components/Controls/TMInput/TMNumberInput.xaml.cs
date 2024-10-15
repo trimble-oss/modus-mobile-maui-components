@@ -20,6 +20,8 @@ public partial class TMNumberInput : ContentView
     public static readonly BindableProperty ValueChangeCommandProperty = BindableProperty.Create(nameof(ValueChangeCommand), typeof(ICommand), typeof(TMNumberInput), null);
     public static readonly BindableProperty ValueChangeCommandParameterProperty = BindableProperty.Create(nameof(ValueChangeCommandParameter), typeof(object), typeof(TMNumberInput), null, BindingMode.OneWay, null);
     public static readonly BindableProperty IconTintColorProperty = BindableProperty.Create(nameof(IconTintColor), typeof(Color), typeof(TMInput), propertyChanged: OnIconTintColorChanged);
+    public static readonly BindableProperty FocusedCommandProperty = BindableProperty.Create(nameof(FocusedCommand), typeof(ICommand), typeof(TMNumberInput), null);
+    public static readonly BindableProperty UnfocusedCommandProperty = BindableProperty.Create(nameof(UnfocusedCommand), typeof(ICommand), typeof(TMNumberInput), null);
     #endregion
 
     #region Public properties
@@ -34,6 +36,24 @@ public partial class TMNumberInput : ContentView
     {
         get => (ICommand)GetValue(ValueChangeCommandProperty);
         set => SetValue(ValueChangeCommandProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the Focused Command 
+    /// </summary>
+    public ICommand FocusedCommand
+    {
+        get => (ICommand)GetValue(FocusedCommandProperty);
+        set => SetValue(FocusedCommandProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the Unfocused Command
+    /// </summary>
+    public ICommand UnfocusedCommand
+    {
+        get => (ICommand)GetValue(UnfocusedCommandProperty);
+        set => SetValue(UnfocusedCommandProperty, value);
     }
 
     /// <summary>
@@ -119,7 +139,8 @@ public partial class TMNumberInput : ContentView
         TMInputControl.SetCenterTextAlignment();
         TMInputControl.RightIconCommand = new Command(PlusCommand.Execute);
         TMInputControl.LeftIconCommand = new Command(MinusCommand.Execute);
-
+        TMInputControl.FocusedCommand = new Command(() => FocusedCommand?.Execute(null));
+        TMInputControl.UnFocusedCommand = new Command(() => UnfocusedCommand?.Execute(null));
         SetDynamicResource(StyleProperty, "NumberInputDefault");
     }
 
@@ -223,6 +244,7 @@ public partial class TMNumberInput : ContentView
                 ValueChanged?.Invoke(this, new ValueChangedEventArgs(oldNumber, double.NaN));
                 ValueChangeCommand?.Execute(ValueChangeCommandParameter);
             }
+            ToggleLeftAndRightIcons(tMInput, IsEnabled && !IsReadOnly);
             return;
         }
 
@@ -309,35 +331,35 @@ public partial class TMNumberInput : ContentView
     }
     private void OnPlusCommandClicked()
     {
-        if (double.TryParse(TMInputControl.Text, out double number))
+        if (string.IsNullOrEmpty(TMInputControl.Text) || !double.TryParse(TMInputControl.Text, out double number))
         {
-            if (number >= MaxValue)
-            {
-                return;
-            }
-            double nearestValue;
-           
-            if (number != 0)
-            {
-                double numberRemainingValue = number % Step;
-                double previousStepNumber = number - numberRemainingValue;
+            number = MinValue - Step;
+        }
 
-                if (number < 0 && numberRemainingValue != 0)
-                {
-                    nearestValue = previousStepNumber;
-                }
-                else
-                {
-                    nearestValue = previousStepNumber + Step;
-                }
+        if (number >= MaxValue)
+        {
+            return;
+        }
+
+        double nearestValue;
+        if (number != 0)
+        {
+            double numberRemainingValue = number % Step;
+            double previousStepNumber = number - numberRemainingValue;
+            if (number < 0 && numberRemainingValue != 0)
+            {
+                nearestValue = previousStepNumber;
             }
             else
             {
-                nearestValue = Step;
+                nearestValue = previousStepNumber + Step;
             }
-            UpdateValue(number, nearestValue);
         }
-
+        else
+        {
+            nearestValue = Step;
+        }
+        UpdateValue(number, nearestValue);
     }
 
     /// <summary>
@@ -360,8 +382,8 @@ public partial class TMNumberInput : ContentView
     /// <param name="shouldEnable"></param>
     private void ToggleLeftAndRightIcons(TMInput tMInput, bool shouldEnable)
     {
-        tMInput.ToggleRightIconState(shouldEnable && Value < MaxValue);
-        tMInput.ToggleLeftIconState(shouldEnable && Value > MinValue);
+        tMInput.ToggleRightIconState(shouldEnable && (string.IsNullOrEmpty(TMInputControl.Text) || Value < MaxValue));
+        tMInput.ToggleLeftIconState(shouldEnable && !string.IsNullOrEmpty(TMInputControl.Text) && Value > MinValue);
     }
 
     /// <summary>

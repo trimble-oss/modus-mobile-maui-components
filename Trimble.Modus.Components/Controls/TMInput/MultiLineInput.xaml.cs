@@ -29,9 +29,9 @@ public partial class MultiLineInput : BaseInput
     }
     #endregion
     public MultiLineInput()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
     #region Methods
     protected override void RetrieveAndProcessChildElement()
     {
@@ -41,8 +41,8 @@ public partial class MultiLineInput : BaseInput
         InputBorder = (Border)GetTemplateChild("inputBorder");
         HelperIcon = (Image)GetTemplateChild("inputHelperIcon");
         HelperLabel = (Label)GetTemplateChild("inputHelperLabel");
-        HelperLayout = (HorizontalStackLayout)GetTemplateChild("inputHelperLayout");
-        InputLabel = (Label)GetTemplateChild("inputLabel");
+        HelperLayout = (Grid)GetTemplateChild("inputHelperLayout");
+        ControlLabel = (ControlLabel)GetTemplateChild("controlLabel");
     }
 
     internal override InputView GetCoreContent()
@@ -51,7 +51,7 @@ public partial class MultiLineInput : BaseInput
     }
     private static void OnAutoSizePropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if(bindable is MultiLineInput multiLineInput)
+        if (bindable is MultiLineInput multiLineInput)
         {
             multiLineInput.inputBorderlessEditor.AutoSize = multiLineInput.AutoSize ? (EditorAutoSizeOption)1 : (EditorAutoSizeOption)0;
         }
