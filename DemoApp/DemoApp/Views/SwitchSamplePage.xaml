@@ -25,16 +25,42 @@
       <modus:TMRadioButton Text="Medium" />
       <modus:TMRadioButton Text="Large" />
     </modus:TMRadioButtonGroup>
-    <Label Text="Medium Switches" />
-    <modus:TMSwitch Text="Off at first"
+
+    <Label Text="Position" />
+    <modus:TMRadioButtonGroup x:Name="PositionRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding PositionSelectionChangedCommand}">
+      <modus:TMRadioButton Text="Right" />
+      <modus:TMRadioButton Text="Left" />
+    </modus:TMRadioButtonGroup>
+
+    <modus:TMSwitch Text="{Binding SwitchLabel}"
                     Toggled="TMSwitch_Toggled"
                     IsToggled="false"
                     IsEnabled="{Binding IsEnabled}"
                     SwitchSize="{Binding SwitchSize}"
+                    SwitchLabelPosition="{Binding SwitchLabelPosition}"
                     ToggledCommand="{Binding SwitchCommand}" />
     <modus:TMSwitch Text="On at first"
                     Toggled="TMSwitch_Toggled"
                     IsToggled="True"
+                    SwitchLabelPosition="{Binding SwitchLabelPosition}"
+                    IsEnabled="{Binding IsEnabled}"
+                    SwitchSize="{Binding SwitchSize}"
+                    ToggledCommand="{Binding SwitchCommand}" />
+
+    <modus:TMSwitch Text="Left Side Label"
+                    Toggled="TMSwitch_Toggled"
+                    IsToggled="True"
+                    SwitchLabelPosition="Left"
+                    IsEnabled="{Binding IsEnabled}"
+                    SwitchSize="{Binding SwitchSize}"
+                    ToggledCommand="{Binding SwitchCommand}" />
+    <modus:TMSwitch Text="Right Side Label"
+                    Toggled="TMSwitch_Toggled"
+                    IsToggled="True"
+                    SwitchLabelPosition="Right"
                     IsEnabled="{Binding IsEnabled}"
                     SwitchSize="{Binding SwitchSize}"
                     ToggledCommand="{Binding SwitchCommand}" />

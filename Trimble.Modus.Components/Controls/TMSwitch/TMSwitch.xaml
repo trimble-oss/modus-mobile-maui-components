@@ -15,23 +15,34 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <Grid x:Name="container"
+        HorizontalOptions="StartAndExpand"
         BindingContext="{x:Reference tmSwitch}"
-        ColumnDefinitions="auto,auto"
-        ColumnSpacing="5">
+        ColumnDefinitions="*,auto,*">
     <Grid.GestureRecognizers>
       <TapGestureRecognizer Tapped="OnSwitchTapped" />
     </Grid.GestureRecognizers>
+    <Label x:Name="switchLeftText"
+           FontFamily="OpenSansRegular"
+           Grid.Column="0"
+           Padding="0,0,8,0"
+           Text="{Binding Text}"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
     <BoxView x:Name="border"
+             Grid.Column="1"
              BackgroundColor="{DynamicResource Transparent}"
              HorizontalOptions="Start"
              VerticalOptions="Center" />
     <BoxView x:Name="circle"
              BackgroundColor="{DynamicResource Transparent}"
              HorizontalOptions="Start"
+             Grid.Column="1"
              VerticalOptions="Center" />
-    <Label x:Name="switchText"
+    <Label x:Name="switchRightText"
            FontFamily="OpenSansRegular"
-           Grid.Column="1"
+           Grid.Column="2"
+           Padding="8,0,0,0"
+           Text="{Binding Text}"
            HorizontalOptions="Center"
            VerticalOptions="Center" />
   </Grid>

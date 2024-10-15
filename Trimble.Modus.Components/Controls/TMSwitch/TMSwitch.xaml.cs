@@ -14,10 +14,16 @@ public partial class TMSwitch : ContentView
        BindableProperty.Create(nameof(IsToggled), typeof(bool), typeof(TMSwitch), false, propertyChanged: OnSwitchToggleChanged);
     public new static readonly BindableProperty IsEnabledProperty =
       BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMSwitch), true, propertyChanged: OnIsEnabledChanged);
+
+    public static readonly BindableProperty SwitchLabelPositionProperty =
+     BindableProperty.Create(nameof(SwitchLabelPosition), typeof(TitlePosition), typeof(TMSwitch), TitlePosition.Right, propertyChanged: OnSwitchLabelPositionChanged);
+
     public static readonly BindableProperty ToggledCommandProperty =
       BindableProperty.Create(nameof(ToggledCommand), typeof(ICommand), typeof(TMSwitch), null);
-    public static readonly BindableProperty LabelTextProperty =
-      BindableProperty.Create(nameof(Text), typeof(string), typeof(TMSwitch), "", propertyChanged: OnLabelTextChanged);
+    public static readonly BindableProperty TextProperty =
+      BindableProperty.Create(nameof(Text), typeof(string), typeof(TMSwitch), null, propertyChanged: OnTextPropertyChanged
+          );
+
     public static readonly BindableProperty TextColorProperty =
         BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMSwitch), Colors.Transparent, propertyChanged: OnTextColorChanged);
 
@@ -29,8 +35,14 @@ public partial class TMSwitch : ContentView
 
     public string Text
     {
-        get => (string)GetValue(LabelTextProperty);
-        set => SetValue(LabelTextProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
+
+    public TitlePosition SwitchLabelPosition
+    {
+        get => (TitlePosition)GetValue(SwitchLabelPositionProperty);
+        set => SetValue(SwitchLabelPositionProperty, value);
     }
     internal Color TextColor
     {
@@ -94,6 +106,32 @@ public partial class TMSwitch : ContentView
             }
         };
 
+        UpdateTextBasedOnPosition(this);
+
+    }
+
+    private void UpdateTextBasedOnPosition(TMSwitch tmSwitch)
+    {
+        if (string.IsNullOrEmpty(tmSwitch.Text))
+        {
+            tmSwitch.switchLeftText.IsVisible = false;
+            tmSwitch.switchRightText.IsVisible = false;
+            return;
+        }
+        if (tmSwitch.SwitchLabelPosition == TitlePosition.Left)
+        {
+            tmSwitch.container.ColumnDefinitions[0].Width = new GridLength(100, GridUnitType.Star);
+            tmSwitch.container.ColumnDefinitions[2].Width = new GridLength(0);
+            tmSwitch.switchLeftText.IsVisible = true;
+            tmSwitch.switchRightText.IsVisible = false;
+        }
+        else
+        {
+            tmSwitch.container.ColumnDefinitions[2].Width = new GridLength(1, GridUnitType.Star);
+            tmSwitch.container.ColumnDefinitions[0].Width = new GridLength(0);
+            tmSwitch.switchLeftText.IsVisible = false;
+            tmSwitch.switchRightText.IsVisible = true;
+        }
     }
     private static void OnIsEnabledChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -110,23 +148,15 @@ public partial class TMSwitch : ContentView
 
         }
     }
-    private static void OnLabelTextChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is TMSwitch tMSwitch)
-        {
-            if (string.IsNullOrEmpty((string)newValue))
-            {
-                tMSwitch.switchText.IsVisible = false;
-                tMSwitch.switchText.Text = string.Empty;
-            }
-            else
-            {
-                tMSwitch.switchText.IsVisible = true;
-                tMSwitch.switchText.Text = (string)newValue;
-            }
 
+    private static void OnTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMSwitch tmSwitch)
+        {
+            tmSwitch.UpdateTextBasedOnPosition(tmSwitch);
         }
     }
+
     private static void OnSwitchSizeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is TMSwitch tMSwitch)
@@ -139,7 +169,16 @@ public partial class TMSwitch : ContentView
     {
         if (bindable is TMSwitch tmSwitch)
         {
-            tmSwitch.switchText.TextColor = (Color)newValue;
+            tmSwitch.switchLeftText.TextColor = (Color)newValue;
+            tmSwitch.switchRightText.TextColor = (Color)newValue;
+        }
+    }
+
+    private static void OnSwitchLabelPositionChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMSwitch tmSwitch)
+        {
+            tmSwitch.UpdateTextBasedOnPosition(tmSwitch);
         }
     }
 
