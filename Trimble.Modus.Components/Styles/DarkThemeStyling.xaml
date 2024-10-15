@@ -494,6 +494,8 @@
                          Color="{StaticResource DefaultTextColor}" />
   <styles:ReferenceColor x:Key="InputPlaceholderColor"
                          Color="{StaticResource SecondaryLight}" />
+  <styles:ReferenceColor x:Key="InputIconTintColor"
+                         Color="{StaticResource IconDark}" />
 
   <!--Primary-->
   <styles:ReferenceColor x:Key="InputPrimaryBorderColor"

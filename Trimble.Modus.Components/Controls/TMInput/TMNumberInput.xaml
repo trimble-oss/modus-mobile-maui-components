@@ -5,16 +5,23 @@
              xmlns:controls="clr-namespace:Trimble.Modus.Components"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant">
 
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <controls:TMNumberInputStyles/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
   <controls:TMInput x:Name="TMInputControl"
                     Keyboard="Numeric"
                     IsEnabled="{Binding IsEnabled}"
                     IsReadOnly="{Binding IsReadOnly}"
                     TextChanged="OnTextChanged" >
     <controls:TMInput.LeftView>
-      <Image Source="{x:Static constants:ImageConstants.MinusImage}" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0"/>
+      <Image x:Name="LeftImage"  Source="{x:Static constants:ImageConstants.MinusImage}" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0"/>
     </controls:TMInput.LeftView>
     <controls:TMInput.RightView>
-      <Image Source="{x:Static constants:ImageConstants.PlusImage}" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"/>
+      <Image x:Name="RightImage" Source="{x:Static constants:ImageConstants.PlusImage}" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"/>
     </controls:TMInput.RightView>
   </controls:TMInput>
 </ContentView>
