@@ -13,20 +13,23 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentView.Resources>
-  <HorizontalStackLayout Grid.Row="0"
-                         x:Name="view"
-                         BindingContext="{x:Reference controlLabelView}"
-                         Spacing="4"
-                         IsVisible="{Binding TitleText,Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+  <Grid x:Name="view"
+        BindingContext="{x:Reference controlLabelView}"
+        ColumnSpacing="4"
+        ColumnDefinitions="*,auto"
+        IsVisible="{Binding TitleText,Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
     <Label x:Name="inputLabel"
            Padding="0,0,0,5"
+           Grid.Column="0"
            FontFamily="OpenSansSemibold"
            Text="{Binding TitleText}"
            VerticalOptions="Center"
+           LineBreakMode="WordWrap"
            HorizontalOptions="Start" />
     <Label Text="*"
+           Grid.Column="1"
            IsVisible="{Binding IsRequired}"
            FontFamily="OpenSansSemibold"
            TextColor="{DynamicResource Danger}" />
-  </HorizontalStackLayout>
+  </Grid>
 </ContentView>
