@@ -2,7 +2,8 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Trimble.Modus.Components"
-             x:Class="Trimble.Modus.Components.Controls.BaseInput.BaseInput">
+             x:Class="Trimble.Modus.Components.Controls.BaseInput.BaseInput"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components">
 
   <ContentView.Resources>
     <ResourceDictionary>
@@ -10,6 +11,46 @@
         <local:TMInputStyles></local:TMInputStyles>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
+    <ControlTemplate x:Key="InputTemplate">
+      <Grid x:Name="tmInputContainer"
+        RowDefinitions="auto,auto,auto"
+        RowSpacing="0"
+        Padding="0"
+        BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+        <Modus:ControlLabel x:Name="controlLabel"
+                        IsEnabled="{Binding IsEnabled}"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        TitleText="{Binding TitleText}"
+                        IsRequired="{Binding IsRequired}" />
+        <Border x:Name="inputBorder"
+            MinimumHeightRequest="48"
+            VerticalOptions="FillAndExpand"
+            Grid.Row="1"
+            Padding="0">
+          <Border.StrokeShape>
+            <RoundRectangle CornerRadius="4" />
+          </Border.StrokeShape>
+          <ContentPresenter VerticalOptions="FillAndExpand" />
+        </Border>
+        <Grid x:Name="inputHelperLayout"
+          Grid.Row="2"
+          HorizontalOptions="Start"
+          ColumnSpacing="5"
+          ColumnDefinitions="auto,*"
+          Margin="2"
+          IsVisible="false"
+          Padding="0,5,0,0">
+          <Image x:Name="inputHelperIcon"
+             Grid.Column="0"
+             WidthRequest="20"
+             HeightRequest="20" />
+          <Label  x:Name="inputHelperLabel"
+              Grid.Column="1"
+              FontFamily="OpenSansRegular"
+              LineBreakMode="WordWrap" />
+        </Grid>
+      </Grid>
+    </ControlTemplate>
   </ContentView.Resources>
   
 </ContentView>

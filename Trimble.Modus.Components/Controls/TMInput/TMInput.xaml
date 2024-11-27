@@ -9,17 +9,11 @@
                 xmlns:controls="clr-namespace:Trimble.Modus.Components"
                 x:Name="singleInput">
 
-  <base:BaseInput.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="InputTemplateResourceDictionary.xaml" />
-        <local:TMInputStyles></local:TMInputStyles>
-      </ResourceDictionary.MergedDictionaries>
+  <base:BaseInput.Resources> 
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
-      <converters:AllTrueConverter x:Key="AllTrueConverter" />
-    </ResourceDictionary>
+      <converters:AllTrueConverter x:Key="AllTrueConverter" />   
   </base:BaseInput.Resources>
 
   <Grid ColumnDefinitions="auto,*,auto"
