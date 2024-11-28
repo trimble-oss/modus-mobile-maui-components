@@ -306,8 +306,8 @@ public class PopupPage : ContentPage
 
         try
         {
-            _popupHeight = popupPage.Content.Height;
-            _popupWidth = popupPage.Content.Width;
+            _popupHeight = popupPage.Content.HeightRequest;
+            _popupWidth = popupPage.Content.WidthRequest;
             var locationFetcher = new Helpers.LocationFetcher();
             var loc = locationFetcher.GetCoordinates(_anchorView);
 
