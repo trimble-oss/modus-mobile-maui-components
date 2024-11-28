@@ -5,7 +5,7 @@ using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components.Modal;
 
-public partial class TMModalContents
+internal partial class TMModalContents
 {
     #region Private fields
 
