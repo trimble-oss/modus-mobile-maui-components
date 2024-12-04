@@ -5,7 +5,7 @@
                     x:Class="Trimble.Modus.Components.Styles.DarkThemeStyling">
 
   <!--Label-->
-  <styles:ReferenceColor x:Key="LabelTextColor"
+  <styles:ReferenceColor x:Key="ControlLabelTextColor"
                          Color="{StaticResource DefaultTextColor}" />
 
   <!--Button-->

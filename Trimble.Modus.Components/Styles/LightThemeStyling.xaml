@@ -4,7 +4,7 @@
                     xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
                     x:Class="Trimble.Modus.Components.Styles.LightThemeStyling">
   <!--Label-->
-  <styles:ReferenceColor x:Key="LabelTextColor"
+  <styles:ReferenceColor x:Key="ControlLabelTextColor"
                          Color="{StaticResource DefaultTextColor}" />
 
   <!--Button-->
