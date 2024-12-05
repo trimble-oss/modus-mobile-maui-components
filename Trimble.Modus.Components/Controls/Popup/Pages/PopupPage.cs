@@ -320,12 +320,12 @@ public class PopupPage : ContentPage
                 {
                     case Enums.ModalPosition.Top:
                         translationY = loc.Top - _popupHeight - loc.Height / 2;
-                        translationX = loc.Center.X - _popupWidth / 2;
+                        translationX = loc.X;
                         break;
 
                     case Enums.ModalPosition.Bottom:
                         translationY = loc.Bottom - _popupHeight + loc.Height / 2;
-                        translationX = loc.Center.X - _popupWidth / 2;
+                        translationX = loc.X;
                         break;
 
                     case Enums.ModalPosition.Left:
