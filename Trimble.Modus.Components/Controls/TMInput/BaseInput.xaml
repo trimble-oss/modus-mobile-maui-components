@@ -45,7 +45,7 @@
              WidthRequest="20"
              HeightRequest="20" />
           <Label  x:Name="inputHelperLabel"
-              Grid.Column="1"
+              Grid.Column="1" TextColor="{DynamicResource ControlLabelTextColor}"
               FontFamily="OpenSansRegular"
               LineBreakMode="WordWrap" />
         </Grid>
