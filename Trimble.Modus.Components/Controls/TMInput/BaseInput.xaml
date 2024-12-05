@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Trimble.Modus.Components"
              x:Class="Trimble.Modus.Components.Controls.BaseInput.BaseInput"
-             xmlns:Modus="clr-namespace:Trimble.Modus.Components">
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
 
-  <ContentView.Resources>
+  <ContentView.Resources>  
+      
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <local:TMInputStyles></local:TMInputStyles>
       </ResourceDictionary.MergedDictionaries>
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
     </ResourceDictionary>
     <ControlTemplate x:Key="InputTemplate">
       <Grid x:Name="tmInputContainer"
@@ -21,7 +24,8 @@
                         IsEnabled="{Binding IsEnabled}"
                         IsReadOnly="{Binding IsReadOnly}"
                         TitleText="{Binding TitleText}"
-                        IsRequired="{Binding IsRequired}" />
+                        IsRequired="{Binding IsRequired}"
+                        IsVisible="{Binding TitleText, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"/>
         <Border x:Name="inputBorder"
             MinimumHeightRequest="48"
             VerticalOptions="FillAndExpand"
