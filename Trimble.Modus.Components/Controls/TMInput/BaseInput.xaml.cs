@@ -139,6 +139,13 @@ public partial class BaseInput : ContentView
     public static readonly BindableProperty HelperLayoutBackgroundProperty =
            BindableProperty.Create(nameof(HelperLayoutBackground), typeof(Color), typeof(BaseInput), Colors.Transparent,
                propertyChanged: OnHelperLayoutBackgroundChanged);
+
+    /// <summary>
+    /// Gets or sets helper text color
+    /// </summary>
+    public static readonly BindableProperty HelperTextColorProperty =
+           BindableProperty.Create(nameof(HelperTextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
+               propertyChanged: OnHelperTextColorChanged);
     #endregion
 
     #region Public Properties
@@ -327,6 +334,12 @@ public partial class BaseInput : ContentView
         get => (Color)GetValue(HelperLayoutBackgroundProperty);
         set => SetValue(HelperLayoutBackgroundProperty, value);
     }
+
+    internal Color HelperTextColor
+    {
+        get => (Color)GetValue(HelperTextColorProperty);
+        set => SetValue(HelperTextColorProperty, value);
+    }
     #endregion
     public BaseInput()
     {
@@ -408,6 +421,14 @@ public partial class BaseInput : ContentView
         if (bindable is BaseInput tmInput)
         {
             tmInput.HelperLayout.BackgroundColor = tmInput.HelperLayoutBackground;
+        }
+    }
+
+    private static void OnHelperTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            tmInput.HelperLabel.TextColor = tmInput.HelperTextColor;
         }
     }
 
