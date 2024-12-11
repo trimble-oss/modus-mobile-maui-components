@@ -4,7 +4,7 @@
                     xmlns:styles="clr-namespace:Trimble.Modus.Components.Styles"
                     x:Class="Trimble.Modus.Components.Styles.LightThemeStyling">
   <!--Label-->
-  <styles:ReferenceColor x:Key="LabelTextColor"
+  <styles:ReferenceColor x:Key="ControlLabelTextColor"
                          Color="{StaticResource DefaultTextColor}" />
 
   <!--Button-->
@@ -491,6 +491,8 @@
                          Color="{StaticResource SecondaryLight}" />
   <styles:ReferenceColor x:Key="InputIconTintColor"
                          Color="{StaticResource IconLight}" />
+  <styles:ReferenceColor x:Key="InputDefaultHelperTextColor"
+                        Color="{StaticResource DefaultTextColor}" />
 
   <!--Primary-->
   <styles:ReferenceColor x:Key="InputPrimaryBorderColor"

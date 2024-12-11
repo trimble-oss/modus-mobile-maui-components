@@ -4,9 +4,9 @@
                     xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                     x:Class="Trimble.Modus.Components.ControlLabelStyles">
   <Style TargetType="local:ControlLabel"
-         x:Key="Default">
+         x:Key="DefaultControlLabelStyle">
     <Setter Property="HeaderTextColor"
-            Value="{DynamicResource LabelTextColor}" />
+            Value="{DynamicResource ControlLabelTextColor}" />
   </Style>
 
 </ResourceDictionary>
