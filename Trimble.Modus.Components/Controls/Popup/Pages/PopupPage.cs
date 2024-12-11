@@ -320,11 +320,13 @@ public class PopupPage : ContentPage
                 {
                     case Enums.ModalPosition.Top:
                         translationY = loc.Top - _popupHeight - loc.Height / 2;
+                        //https://github.com/trimble-oss/modus-mobile-maui-components/issues/415 - the change to fix android dropdown popup misalignment 
                         translationX = loc.X;
                         break;
 
                     case Enums.ModalPosition.Bottom:
                         translationY = loc.Bottom - _popupHeight + loc.Height / 2;
+                        //https://github.com/trimble-oss/modus-mobile-maui-components/issues/415 - the change to fix android dropdown popup misalignment 
                         translationX = loc.X;
                         break;
 
