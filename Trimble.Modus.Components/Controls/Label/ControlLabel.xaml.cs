@@ -86,6 +86,7 @@ public partial class ControlLabel : ContentView
     public ControlLabel()
     {
         InitializeComponent();
+        this.SetDynamicResource(StyleProperty, "DefaultControlLabelStyle");
     }
 
     private static void OnHeaderTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)

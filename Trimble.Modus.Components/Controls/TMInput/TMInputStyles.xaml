@@ -16,6 +16,8 @@
             Value="{DynamicResource InputDefaultBackgroundColor}" />
     <Setter Property="HelperLayoutBackground"
             Value="{DynamicResource InputDefaultHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+            Value="{DynamicResource InputDefaultHelperTextColor}" />
   </Style>
 
   <Style TargetType="local:TMInput"
@@ -30,6 +32,8 @@
             Value="{DynamicResource InputDefaultBackgroundColor}" />
     <Setter Property="HelperLayoutBackground"
             Value="{DynamicResource InputPrimaryHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+            Value="{DynamicResource InputDefaultHelperTextColor}" />
   </Style>
 
   <Style TargetType="local:TMInput"
@@ -44,6 +48,8 @@
             Value="{DynamicResource InputDefaultBackgroundColor}" />
     <Setter Property="HelperLayoutBackground"
             Value="{DynamicResource InputSuccessHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+            Value="{DynamicResource InputDefaultHelperTextColor}" />
   </Style>
 
   <Style TargetType="local:TMInput"
@@ -58,6 +64,8 @@
             Value="{DynamicResource InputDefaultBackgroundColor}" />
     <Setter Property="HelperLayoutBackground"
             Value="{DynamicResource InputErrorHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+            Value="{DynamicResource InputDefaultHelperTextColor}" />
   </Style>
 
   <Style TargetType="local:TMInput"
@@ -72,6 +80,8 @@
             Value="{DynamicResource InputReadOnlyBackgroundColor}" />
     <Setter Property="HelperLayoutBackground"
             Value="{DynamicResource InputReadOnlyHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+            Value="{DynamicResource InputDefaultHelperTextColor}" />
   </Style>
 
 </ResourceDictionary>

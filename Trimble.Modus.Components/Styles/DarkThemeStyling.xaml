@@ -5,7 +5,7 @@
                     x:Class="Trimble.Modus.Components.Styles.DarkThemeStyling">
 
   <!--Label-->
-  <styles:ReferenceColor x:Key="LabelTextColor"
+  <styles:ReferenceColor x:Key="ControlLabelTextColor"
                          Color="{StaticResource DefaultTextColor}" />
 
   <!--Button-->
@@ -496,6 +496,8 @@
                          Color="{StaticResource SecondaryLight}" />
   <styles:ReferenceColor x:Key="InputIconTintColor"
                          Color="{StaticResource IconDark}" />
+  <styles:ReferenceColor x:Key="InputDefaultHelperTextColor"
+                      Color="{StaticResource DefaultTextColor}" />
 
   <!--Primary-->
   <styles:ReferenceColor x:Key="InputPrimaryBorderColor"
