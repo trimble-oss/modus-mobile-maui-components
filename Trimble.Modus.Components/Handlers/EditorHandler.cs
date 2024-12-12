@@ -22,7 +22,7 @@ namespace Trimble.Modus.Components.Handlers
 #if ANDROID
                 editorHandler.PlatformView.SetPadding(0, 0, 0, 0);
                 editorHandler.PlatformView.Background = null;
-                editorHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
+                editorHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
 #elif WINDOWS
                 editorHandler.PlatformView.Padding = new Microsoft.UI.Xaml.Thickness(0);
                 editorHandler.PlatformView.BorderBrush = null;
