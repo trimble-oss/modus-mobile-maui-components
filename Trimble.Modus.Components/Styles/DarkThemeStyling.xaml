@@ -525,7 +525,7 @@
   <styles:ReferenceColor x:Key="InputReadOnlyBackgroundColor"
                          Color="{StaticResource Tertiary}" />
 
-  <x:String x:Key="InputBlueInfoOutlineIcon">blue_info_outline_icon.png</x:String>
+  <x:String x:Key="InputBlueInfoOutlineIcon">white_info_outline_icon.png</x:String>
   <x:String x:Key="InputErrorOutlineIcon">white_error_icon_outline.png</x:String>
   <x:String x:Key="InputSuccessOutlineIcon">white_success_icon_outline.png</x:String>
 
