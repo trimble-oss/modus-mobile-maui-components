@@ -22,7 +22,7 @@ namespace DemoApp.ViewModels
         ObservableCollection<TMFlyoutMenuItem> flyoutMenuItems;
         public FlyoutPageSampleViewModel()
         {
-            FlyoutMenuItems = new ObservableCollection<TMFlyoutMenuItem>() { new TMFlyoutMenuItem() { IconSource = "account_icon.png", TargetType = typeof(MainPage), Title = "Home" } };
+            FlyoutMenuItems = new ObservableCollection<TMFlyoutMenuItem>() { new TMFlyoutMenuItem() { IconSource = "account_icon.png", TargetType = typeof(ModusControlsPage), Title = "Home" } };
         }
         
     }

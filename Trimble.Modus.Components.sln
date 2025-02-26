@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trimble.Modus.Components", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoApp", "DemoApp\DemoApp\DemoApp.csproj", "{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trimble.Modus.Components.Mobile.InField", "Trimble.In-Field.Mobile.Modus.Components\Trimble.Modus.Components.Mobile.InField.csproj", "{B6120376-9603-4ADC-ACE6-67208856D367}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD093582-AA4A-45E6-B5A3-E6CC54EACA68}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B6120376-9603-4ADC-ACE6-67208856D367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6120376-9603-4ADC-ACE6-67208856D367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6120376-9603-4ADC-ACE6-67208856D367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6120376-9603-4ADC-ACE6-67208856D367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

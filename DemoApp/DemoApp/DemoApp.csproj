@@ -94,6 +94,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\ModusControlsPage.xaml.cs">
+	    <DependentUpon>ModusControlsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\Styles\DarkThemeColors.xaml.cs">
 	    <DependentUpon>DarkThemeColors.xaml</DependentUpon>
 	  </Compile>
@@ -164,6 +167,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="InFieldViews\BatterySamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\DarkThemeColors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -174,6 +180,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\LightThemeStyling.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="InFieldViews\InFieldComponentsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SliderSamplePage.xaml">
@@ -255,6 +267,7 @@
 	  <Folder Include="Views\TopNavbar\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Trimble.In-Field.Mobile.Modus.Components\Trimble.Modus.Components.Mobile.InField.csproj" />
 	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
 	</ItemGroup>
 </Project>
