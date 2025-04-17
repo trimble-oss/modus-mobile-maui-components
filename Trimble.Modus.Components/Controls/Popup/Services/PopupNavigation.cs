@@ -119,11 +119,10 @@ internal class PopupNavigation : IPopupNavigation
             }
 
             Dismissing?.Invoke(this, new PopupNavigationEventArgs(page, animate));
-            await page.DisappearingAnimation();
-            page.SendDisappearing();
             await PopupPlatform.RemoveAsync(page);
+            await page.DisappearingAnimation();
+            page.SendDisappearing();            
             page.DisposingAnimation();
-
             _popupStack.Remove(page);
             Dismissed?.Invoke(this, new PopupNavigationEventArgs(page, animate));
         }
