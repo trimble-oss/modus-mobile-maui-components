@@ -488,6 +488,9 @@ public partial class BaseInput : ContentView
         else
         {
             tmInput.UnFocusedCommand?.Execute(new FocusEventArgs(tmInput, false));
+            // Allow hardcoded "Field is required" to be replaced in the UnFocusedCommand by rechecking ErrorText.
+            hasError = !string.IsNullOrEmpty(tmInput.ErrorText);
+                        
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
