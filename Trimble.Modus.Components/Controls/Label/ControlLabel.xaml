@@ -16,7 +16,7 @@
   <Grid x:Name="view"
         BindingContext="{x:Reference controlLabelView}"
         ColumnSpacing="6"
-        ColumnDefinitions="*,auto"
+        ColumnDefinitions="auto,auto"
         IsVisible="{Binding TitleText,Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
     <Label x:Name="inputLabel"
            Padding="0,0,0,5"
