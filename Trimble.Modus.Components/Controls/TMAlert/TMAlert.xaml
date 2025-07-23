@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMAlert"
+             xmlns:modus="clr-namespace:Trimble.Modus.Components"
+             xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMAlert"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             x:Name="alertView">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMAlertStyles />
+      </ResourceDictionary.MergedDictionaries>
+      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+  </ContentView.Resources>
+  <Border x:Name="contentBorder"
+          VerticalOptions="CenterAndExpand"
+          HorizontalOptions="FillAndExpand"
+          BindingContext="{x:Reference alertView}"
+          StrokeThickness="1"
+          HeightRequest="56">
+    <Border.StrokeShape>
+      <RoundRectangle CornerRadius="2" />
+    </Border.StrokeShape>
+
+    <Grid VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand"
+          ColumnSpacing="0"
+          Margin="0"
+          Padding="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <BoxView x:Name="VerticalSeparator"
+               VerticalOptions="FillAndExpand"
+               HorizontalOptions="FillAndExpand"
+               Grid.Column="0"
+               Margin="0"
+               WidthRequest="8" />
+
+      <Grid x:Name="contentLayout"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Column="1"
+            ColumnSpacing="8"
+            Margin="8,16,16,16">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="leftIconImage"
+               HorizontalOptions="Start"
+               VerticalOptions="CenterAndExpand"
+               Grid.Column="0"
+               BackgroundColor="Transparent"
+               IsVisible="{Binding HideLeftIcon, Converter={StaticResource InverseBoolConverter}}" />
+        <Label x:Name="titleLabel"
+               VerticalOptions="Center"
+               HorizontalOptions="FillAndExpand"
+               Grid.Column="1"
+               FontFamily="OpenSansBold"
+               Text="{Binding Text}"
+               LineBreakMode="TailTruncation"
+               MaxLines="3" />
+        <Button x:Name="actionButton"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Grid.Column="2"
+                FontFamily="OpenSansBold"
+                Text="{Binding ButtonText}"
+                BackgroundColor="Transparent"
+                TextColor="Black"
+                CommandParameter="{Binding CommandParameter}"
+                Clicked="ActionButtonClicked"
+                IsVisible="{Binding ButtonText, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}" />
+        <Image x:Name="rightIconImage"
+               HorizontalOptions="End"
+               VerticalOptions="CenterAndExpand"
+               Grid.Column="3"
+               Source="black_close_icon.png"
+               BackgroundColor="Transparent"
+               IsVisible="{Binding Dismissable}">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                  Tapped="CloseButtonClicked" />
+          </Image.GestureRecognizers>
+        </Image>
+      </Grid>
+    </Grid>
+  </Border>
+</ContentView>

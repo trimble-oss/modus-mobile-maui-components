@@ -5,13 +5,64 @@
              xmlns:modus="http://modus.trimble.com/components"
              xmlns:constants="clr-namespace:DemoApp.Constant"
              Title="SwitchSamplePage">
-  <StackLayout Spacing="20" Padding="10" HorizontalOptions="Start" VerticalOptions="Start" Orientation="Vertical">
-    <Label Text="Medium Switches"/>
-    <modus:TMSwitch Text="Off at first" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
-    <modus:TMSwitch Text="On at first" IsToggled="True" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
-    <modus:TMSwitch Text="Disabled" SwitchSize="Medium"  IsEnabled="False" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
-    <Label Text="Large Switches"/>
-    <modus:TMSwitch Text="Enabled" SwitchSize="Large"  IsEnabled="True" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
-    <modus:TMSwitch Text="Disabled" SwitchSize="Large"  IsEnabled="False" Toggled="TMSwitch_Toggled" ToggledCommand="{Binding SwitchCommand}"/>
-  </StackLayout>
+  <VerticalStackLayout Padding="10"
+                       Spacing="10"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start">
+    <Label Text="IsEnabled" />
+    <modus:TMRadioButtonGroup x:Name="IsEnabledRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding EnableSelectionChangedCommand}">
+      <modus:TMRadioButton Text="True" />
+      <modus:TMRadioButton Text="False" />
+    </modus:TMRadioButtonGroup>
+    <Label Text="Size" />
+    <modus:TMRadioButtonGroup x:Name="SizeRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding SizeSelectionChangedCommand}">
+      <modus:TMRadioButton Text="Medium" />
+      <modus:TMRadioButton Text="Large" />
+    </modus:TMRadioButtonGroup>
+
+    <Label Text="Position" />
+    <modus:TMRadioButtonGroup x:Name="PositionRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding PositionSelectionChangedCommand}">
+      <modus:TMRadioButton Text="Right" />
+      <modus:TMRadioButton Text="Left" />
+    </modus:TMRadioButtonGroup>
+
+    <modus:TMSwitch Text="{Binding SwitchLabel}"
+                    Toggled="TMSwitch_Toggled"
+                    IsToggled="false"
+                    IsEnabled="{Binding IsEnabled}"
+                    SwitchSize="{Binding SwitchSize}"
+                    SwitchLabelPosition="{Binding SwitchLabelPosition}"
+                    ToggledCommand="{Binding SwitchCommand}" />
+    <modus:TMSwitch Text="On at first"
+                    Toggled="TMSwitch_Toggled"
+                    IsToggled="True"
+                    SwitchLabelPosition="{Binding SwitchLabelPosition}"
+                    IsEnabled="{Binding IsEnabled}"
+                    SwitchSize="{Binding SwitchSize}"
+                    ToggledCommand="{Binding SwitchCommand}" />
+
+    <modus:TMSwitch Text="Left Side Label"
+                    Toggled="TMSwitch_Toggled"
+                    IsToggled="True"
+                    SwitchLabelPosition="Left"
+                    IsEnabled="{Binding IsEnabled}"
+                    SwitchSize="{Binding SwitchSize}"
+                    ToggledCommand="{Binding SwitchCommand}" />
+    <modus:TMSwitch Text="Right Side Label"
+                    Toggled="TMSwitch_Toggled"
+                    IsToggled="True"
+                    SwitchLabelPosition="Right"
+                    IsEnabled="{Binding IsEnabled}"
+                    SwitchSize="{Binding SwitchSize}"
+                    ToggledCommand="{Binding SwitchCommand}" />
+  </VerticalStackLayout>
 </ContentPage>

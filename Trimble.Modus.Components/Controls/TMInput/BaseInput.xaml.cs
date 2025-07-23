@@ -1,8 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components.Controls.BaseInput;
 
@@ -14,8 +12,8 @@ public partial class BaseInput : ContentView
     protected Border InputBorder { get; set; }
     protected Label HelperLabel { get; set; }
     protected Image HelperIcon { get; set; }
-    protected HorizontalStackLayout HelperLayout { get; set; }
-    protected Label InputLabel { get; set; }
+    protected Grid HelperLayout { get; set; }
+    protected ControlLabel ControlLabel { get; set; }
 
     private ValidationResponse _validationResponse;
 
@@ -110,6 +108,44 @@ public partial class BaseInput : ContentView
     /// </summary>
     public static readonly BindableProperty UnFocusedCommandProperty =
          BindableProperty.Create(nameof(UnFocusedCommand), typeof(ICommand), typeof(BaseInput), null);
+    /// <summary>
+    /// Gets or sets the border color
+    /// </summary>
+    public static readonly BindableProperty BorderColorProperty =
+        BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(BaseInput), Colors.Gray,
+            propertyChanged: OnBorderColorPropertyChanged);
+    /// <summary>
+    /// Gets or sets the header text color
+    /// </summary>
+    public static readonly BindableProperty HeaderTextColorProperty =
+        BindableProperty.Create(nameof(HeaderTextColor), typeof(Color), typeof(BaseInput), Colors.Transparent, propertyChanged: OnHeaderTextColorPropertyChanged);
+
+    /// <summary>
+    /// Gets or sets background color
+    /// </summary>
+    public static new readonly BindableProperty BackgroundColorProperty =
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(BaseInput), Colors.Gray,
+            propertyChanged: OnBackgroundColorPropertyChanged);
+    /// <summary>
+    /// Gets or sets helper icon image
+    /// </summary>
+    public static readonly BindableProperty HelperIconImageProperty =
+           BindableProperty.Create(nameof(HelperIconImage), typeof(string), typeof(BaseInput), defaultValue: string.Empty,
+               propertyChanged: OnHelperIconImageChanged);
+
+    /// <summary>
+    /// Gets or sets helper icon image
+    /// </summary>
+    public static readonly BindableProperty HelperLayoutBackgroundProperty =
+           BindableProperty.Create(nameof(HelperLayoutBackground), typeof(Color), typeof(BaseInput), Colors.Transparent,
+               propertyChanged: OnHelperLayoutBackgroundChanged);
+
+    /// <summary>
+    /// Gets or sets helper text color
+    /// </summary>
+    public static readonly BindableProperty HelperTextColorProperty =
+           BindableProperty.Create(nameof(HelperTextColor), typeof(Color), typeof(BaseInput), Colors.Transparent,
+               propertyChanged: OnHelperTextColorChanged);
     #endregion
 
     #region Public Properties
@@ -257,6 +293,53 @@ public partial class BaseInput : ContentView
         get => (ICommand)GetValue(UnFocusedCommandProperty);
         set => SetValue(UnFocusedCommandProperty, value);
     }
+    /// <summary>
+    /// Gets or sets the border color
+    /// </summary>
+    internal Color BorderColor
+    {
+        get => (Color)GetValue(BorderColorProperty);
+        set => SetValue(BorderColorProperty, value);
+    }
+    /// <summary>
+    /// Gets or sets the background color
+    /// </summary>
+    internal new Color BackgroundColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
+    /// <summary>
+    /// Gets or sets the header text color
+    /// </summary>
+    internal Color HeaderTextColor
+    {
+        get => (Color)GetValue(HeaderTextColorProperty);
+        set => SetValue(HeaderTextColorProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the helper icon image
+    /// </summary>
+    internal string HelperIconImage
+    {
+        get => (string)GetValue(HelperIconImageProperty);
+        set => SetValue(HelperIconImageProperty, value);
+    }
+    /// <summary>
+    /// Gets or sets the helper layout background
+    /// </summary>
+    internal Color HelperLayoutBackground
+    {
+        get => (Color)GetValue(HelperLayoutBackgroundProperty);
+        set => SetValue(HelperLayoutBackgroundProperty, value);
+    }
+
+    internal Color HelperTextColor
+    {
+        get => (Color)GetValue(HelperTextColorProperty);
+        set => SetValue(HelperTextColorProperty, value);
+    }
     #endregion
     public BaseInput()
     {
@@ -309,7 +392,62 @@ public partial class BaseInput : ContentView
             tmInput.TextChanged?.Invoke(tmInput, new TextChangedEventArgs((string)oldValue, (string)newValue));
         }
     }
+    private static void OnBorderColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            tmInput.InputBorder.Stroke = tmInput.BorderColor;
+        }
 
+    }
+
+    private static void OnHeaderTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            tmInput.ControlLabel.HeaderTextColor = tmInput.HeaderTextColor;
+        }
+    }
+
+    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            tmInput.InputBorder.BackgroundColor = tmInput.BackgroundColor;
+        }
+    }
+    private static void OnHelperLayoutBackgroundChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            tmInput.HelperLayout.BackgroundColor = tmInput.HelperLayoutBackground;
+        }
+    }
+
+    private static void OnHelperTextColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            tmInput.HelperLabel.TextColor = tmInput.HelperTextColor;
+        }
+    }
+
+    private static void OnHelperIconImageChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseInput tmInput)
+        {
+            string imagePath = (string)newValue;
+
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                tmInput.HelperIcon.Source = ImageSource.FromFile(imagePath);
+            }
+            else
+            {
+                tmInput.HelperIcon.Source = null;
+            }
+        }
+    }
     protected static void SetBorderColor(BaseInput tmInput)
     {
         bool isFocused = tmInput.GetCoreContent().IsFocused;
@@ -323,15 +461,13 @@ public partial class BaseInput : ContentView
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
-                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Error");
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
             }
             else if (hasSuccess)
             {
                 tmInput.HelperLayout.IsVisible = true;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
-                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Success_icon_outline);
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Success");
                 tmInput.HelperLabel.Text = tmInput.SuccessText;
             }
             else
@@ -344,8 +480,7 @@ public partial class BaseInput : ContentView
                 {
                     tmInput.HelperLayout.IsVisible = false;
                 }
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Primary");
                 tmInput.HelperLabel.Text = tmInput.HelperText;
             }
 
@@ -353,40 +488,40 @@ public partial class BaseInput : ContentView
         else
         {
             tmInput.UnFocusedCommand?.Execute(new FocusEventArgs(tmInput, false));
+            // Allow hardcoded "Field is required" to be replaced in the UnFocusedCommand by rechecking ErrorText.
+            hasError = !string.IsNullOrEmpty(tmInput.ErrorText);
+                        
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
-                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Error");
             }
             else if (tmInput.IsRequired && string.IsNullOrEmpty(tmInput.Text))
             {
                 tmInput.HelperLayout.IsVisible = true;
                 tmInput.HelperLabel.Text = "Field is Required";
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
-                tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.Error_icon_outline);
-                    
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Error");
+
             }
             else
             {
-                if(!string.IsNullOrEmpty(tmInput.HelperText))
+                if (!string.IsNullOrEmpty(tmInput.HelperText))
                 {
                     tmInput.HelperLayout.IsVisible = true;
                     tmInput.HelperLabel.Text = tmInput.HelperText;
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-                    tmInput.HelperIcon.Source = ImageSource.FromFile(ImageConstants.BlueInfoOutlineIcon);
+                    tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
 
                 }
                 else
                 {
-
-                    tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                    tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
                     tmInput.HelperLayout.IsVisible = false;
                 }
             }
         }
     }
+
 
     private static void OnInfoTextsChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -405,27 +540,27 @@ public partial class BaseInput : ContentView
         {
             if (tmInput.IsEnabled)
             {
-                tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
-                tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                tmInput.GetCoreContent().BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent);
+                tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = 1;
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
+                tmInput.GetCoreContent().SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
             }
             else
             {
-                tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
                 tmInput.InputBorder.StrokeThickness = 1;
-                tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = disabledOpacity;
+                tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = disabledOpacity;
             }
         }
     }
+
     private static void SetReadOnlyStyles(BaseInput tmInput)
     {
-        tmInput.InputBorder.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0);
-        tmInput.InputBorder.Stroke = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray0);
+        tmInput.SetDynamicResource(BaseInput.StyleProperty, "ReadOnly");
         tmInput.InputBorder.StrokeThickness = 0;
-        tmInput.InputBorder.Opacity = tmInput.InputLabel.Opacity = tmInput.HelperLayout.Opacity = 1;
+        tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = 1;
     }
+
 
 
     private static void OnEnabledPropertyChanged(BindableObject bindable, object oldValue, object newValue)

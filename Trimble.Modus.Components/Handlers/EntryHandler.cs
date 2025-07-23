@@ -22,11 +22,12 @@ internal partial class EntryHandler : Microsoft.Maui.Handlers.EntryHandler
             entryHandler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif ANDROID
             entryHandler.PlatformView.Background = null;
-            entryHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToAndroid());
+            entryHandler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
 #elif WINDOWS
         
             entryHandler.PlatformView.BorderBrush = null;
             entryHandler.PlatformView.BorderThickness = new Microsoft.UI.Xaml.Thickness(0);
+            entryHandler.PlatformView.Padding = new Microsoft.UI.Xaml.Thickness(0);
 #endif
         }
     }

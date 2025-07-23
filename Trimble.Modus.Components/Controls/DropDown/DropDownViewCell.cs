@@ -1,5 +1,4 @@
 ﻿using Trimble.Modus.Components.Constant;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -19,9 +18,7 @@ public class DropDownViewCell : ViewCell
     {
         label = new Label
         {
-            TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9),
             FontAttributes = FontAttributes.None,
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
             VerticalOptions = LayoutOptions.Center,
             HorizontalOptions = LayoutOptions.Start,
             Padding = new Thickness(8, 12)
@@ -31,14 +28,23 @@ public class DropDownViewCell : ViewCell
 
         View = new StackLayout
         {
-            Children = { label
-},
-            BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Transparent),
+            Children = { label },
         };
+        UpdateDefaultBackgroundColor();
     }
-    internal void UpdateBackgroundColor(Color backgroundColor, bool textAttribute)
+
+    public void UpdateHighlightBackgroundColor()
     {
-        View.BackgroundColor = backgroundColor;
-        label.FontAttributes = textAttribute ? FontAttributes.Bold : FontAttributes.None;
+        label.FontAttributes = FontAttributes.Bold;
+        label.SetDynamicResource(VisualElement.BackgroundColorProperty,ColorsConstants.Transparent);
+        View.SetDynamicResource(VisualElement.BackgroundColorProperty, "DropDownContentHighLightColor");
+        label.SetDynamicResource(Label.TextColorProperty, "DropDownContentHighLightTextColor");
+    }
+    public void UpdateDefaultBackgroundColor()
+    {
+        label.FontAttributes = FontAttributes.None;
+        label.SetDynamicResource(VisualElement.BackgroundColorProperty, "DropDownContentDefaultBackgroundColor");
+        View.SetDynamicResource(VisualElement.BackgroundColorProperty, "DropDownContentDefaultBackgroundColor");
+        label.SetDynamicResource(Label.TextColorProperty, "DropDownContentDefaultTextColor");
     }
 }

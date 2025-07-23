@@ -1,7 +1,6 @@
 using System.Collections;
-using Trimble.Modus.Components.Constant;
+using System.Windows.Input;
 using Trimble.Modus.Components.Helpers;
-using Trimble.Modus.Components.Popup.Animations;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components;
@@ -12,29 +11,68 @@ public partial class TMDropDown : ContentView
     //private Label label;
     //private Border innerBorder;
     //private StackLayout indicatorButton;
-    private bool isVisible;
-    private int radius = 15;
     private IEnumerable items;
-    private int count = 0;
+
 #if WINDOWS
     private Thickness margin = new Thickness(0, 154, 0, 0);
 
 #else
-    private Thickness margin = new Thickness(0,98,0,0);
+    private Thickness margin = new Thickness(0, 128, 0, 0);
 #endif
     private uint AnimationDuration { get; set; } = 250;
+    private object previousSelection;
+
     #endregion
     #region Public Properties
+    public event EventHandler<DropDownSelectionChangedEventArgs> SelectionChanged;
     public IEnumerable ItemsSource
     {
         get { return (IEnumerable)GetValue(ItemsSourceProperty); }
         set { SetValue(ItemsSourceProperty, value); }
     }
-    public List<object> SelectedItems
+
+    /// <summary>
+    /// Gets or sets the title text
+    /// </summary>
+    public string TitleText
     {
-        get => (List<object>)GetValue(SelectedItemsProperty);
-        set => SetValue(SelectedItemsProperty, value);
+        get => (string)GetValue(TitleTextProperty);
+        set => SetValue(TitleTextProperty, value);
     }
+
+    /// <summary>
+    /// Gets or sets the required property
+    /// </summary>
+    public bool IsRequired
+    {
+        get => (bool)GetValue(IsRequiredProperty);
+        set => SetValue(IsRequiredProperty, value);
+    }
+
+    public object SelectedItem
+    {
+        get => GetValue(SelectedItemProperty);
+        set => SetValue(SelectedItemProperty, value);
+    }
+
+    internal new Color BackgroundColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
+
+    internal Color BorderColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
+
+    internal Color TextAndIconColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
+
     public new double WidthRequest
     {
         get { return (double)GetValue(WidthRequestProperty); }
@@ -45,10 +83,15 @@ public partial class TMDropDown : ContentView
         get { return (int)GetValue(SelectedIndexProperty); }
         set { SetValue(SelectedIndexProperty, value); }
     }
+    public ICommand SelectionChangedCommand
+    {
+        get => (ICommand)GetValue(SelectionChangedCommandProperty);
+        set => SetValue(SelectionChangedCommandProperty, value);
+    }
     #endregion
     #region Bindable Properties
     public static readonly BindableProperty SelectedIndexProperty =
-        BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMDropDown), 0, propertyChanged: OnSelectedIndexChanged);
+        BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMDropDown), -1, propertyChanged: OnSelectedIndexChanged);
 
     public new static readonly BindableProperty WidthRequestProperty =
         BindableProperty.Create(nameof(WidthRequest), typeof(double), typeof(TMDropDown), 240.0, propertyChanged: OnWidthRequestChanged);
@@ -56,51 +99,117 @@ public partial class TMDropDown : ContentView
     public static readonly BindableProperty ItemsSourceProperty =
         BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMDropDown), null, propertyChanged: OnItemsSourceChanged);
 
-    public static readonly BindableProperty SelectedItemsProperty =
-        BindableProperty.Create(nameof(SelectedItems), typeof(List<object>), typeof(TMDropDown));
+    /// <summary>
+    /// Gets or sets the text for the title label in the control
+    /// </summary>
+    public static readonly BindableProperty TitleTextProperty =
+        BindableProperty.Create(nameof(TitleText), typeof(string), typeof(TMDropDown), null);
+
+    /// <summary>
+    /// Gets or sets the required boolean for the label in the control
+    /// </summary>
+    public static readonly BindableProperty IsRequiredProperty =
+        BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(TMDropDown), false);
+
+    public static readonly BindableProperty SelectedItemProperty =
+        BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(TMDropDown), null, propertyChanged: OnSelectedItemChanged);
+
+    public static readonly BindableProperty SelectionChangedCommandProperty =
+         BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(TMDropDown));
+
+    public new static readonly BindableProperty BackgroundColorProperty =
+     BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMDropDown), Colors.Transparent, BindingMode.Default, null, propertyChanged: OnBackgroundColorPropertyChanged);
+
+    public static readonly BindableProperty BorderColorProperty =
+    BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(TMDropDown), Colors.Transparent, BindingMode.Default, null, propertyChanged: OnBorderColorPropertyChanged);
+
+
+    public static readonly BindableProperty TextAndIconColorProperty =
+    BindableProperty.Create(nameof(TextAndIconColor), typeof(Color), typeof(TMDropDown), Colors.Transparent, BindingMode.Default, null, propertyChanged: OnTextAndIconColorPropertyChanged);
+
     #endregion
     #region Constructor
     public TMDropDown()
     {
-        SelectedItems = new List<object> { };
+        SelectedItem = new object { };
+        previousSelection = null;
         InitializeComponent();
-        var tapGestureRecognizer = new TapGestureRecognizer();
-        tapGestureRecognizer.Tapped += OnTapped;
-        ContentLayout.GestureRecognizers.Add(tapGestureRecognizer);
-        indicatorButton.GestureRecognizers.Add(tapGestureRecognizer);
+        this.SetDynamicResource(StyleProperty, "DefaultStyle");
         PopupService.Instance.Dismissed += OnPopupRemoved;
-        //Content = innerBorder;
     }
     #endregion
+
     #region Private Methods
+
+    private static void UpdateSelectedIndexBasedOnSelectedItem(TMDropDown dropDown)
+    {
+        var index = dropDown.items.Cast<object>().ToList().IndexOf(dropDown.SelectedItem);
+        if (index != dropDown.SelectedIndex)
+        {
+            dropDown.SelectedIndex = index;
+        }
+    }
+
+    private static void UpdateSelectedItemBasedOnSelectedIndex(TMDropDown dropDown)
+    {
+        var list = dropDown.items.Cast<object>().ToList();
+        if (list.Count > 0 && dropDown.SelectedIndex >= 0)
+        {
+            var selectedItem = list[dropDown.SelectedIndex];
+            if (selectedItem != dropDown.SelectedItem)
+            {
+                dropDown.SelectedItem = selectedItem;
+            }
+        }
+    }
+
+    private static void OnTextAndIconColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown)
+        {
+            dropDown.label.TextColor = (Color)newValue;
+        }
+    }
+
+    private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown && dropDown.ItemsSource != null)
+        {
+            UpdateSelectedIndexBasedOnSelectedItem(dropDown);
+        }
+    }
+
+    private static void OnBorderColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown)
+        {
+            dropDown.innerBorder.Stroke = (Color)newValue;
+        }
+    }
+
+    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMDropDown dropDown)
+        {
+            dropDown.innerBorder.BackgroundColor = (Color)newValue;
+        }
+    }
+
     private void OnSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        if (SelectedItems != null)
+        previousSelection = SelectedItem;
+
+        if (SelectedItem != null)
         {
-            SelectedItems.Clear();
-            SelectedItems.Add(e.SelectedItem);
+            SelectedItem = e.SelectedItem;
+            SelectedIndex = e.SelectedItemIndex;
+            RaiseSelectionChangedEvent(previousSelection, e.SelectedItemIndex);
             UpdateCellColor((ListView)sender);
         }
         label.Text = e.SelectedItem.ToString();
-        if (count > 0 && PopupService.Instance.PopupStack.Count > 0)
+        if (PopupService.Instance.PopupStack.Count > 0)
         {
-
             PopupService.Instance?.DismissAsync();
-            Close();
-        }
-        SelectedIndex = e.SelectedItemIndex;
-        count = 1;
-    }
-
-    private void OnTapped(object sender, EventArgs e)
-    {
-        isVisible = !isVisible;
-        if (isVisible)
-        {
-            Open();
-        }
-        else
-        {
             Close();
         }
     }
@@ -111,22 +220,25 @@ public partial class TMDropDown : ContentView
 
             indicatorButton.RotateTo(0, AnimationDuration)
         );
-        isVisible = false;
     }
 
-    bool created = false;
-    DropDownContents popup;
+
+    DropDownContents dropDownContents;
+    private bool _isLoading;
+
     private async void Open()
     {
-        if (!created)
+        if (!_isLoading)
         {
+            _isLoading = true;
             var locationFetcher = new LocationFetcher();
             var loc = locationFetcher.GetCoordinates(this);
             var height = Application.Current.MainPage.Window.Height;
-            popup = new DropDownContents(ContentLayout, Enums.ModalPosition.Bottom)
+            dropDownContents = new DropDownContents(innerBorder, Enums.ModalPosition.Bottom)
             {
                 ItemSource = this.ItemsSource,
                 SelectedIndex = this.SelectedIndex,
+                SelectedItem = this.SelectedItem,
                 Margin = margin,
                 DesiredHeight = desiredHeight,
                 WidthRequest = innerBorder.Width,
@@ -134,40 +246,48 @@ public partial class TMDropDown : ContentView
                 YPosition = loc.Y,
                 Height = height
             };
-            popup.Build();
+            dropDownContents.Build();
+            await Task.WhenAll(
+                indicatorButton.RotateTo(-180, AnimationDuration)
+            );
+
+            await PopupService.Instance?.PresentAsync(dropDownContents, true);
+            dropDownContents.dropDownListView.ScrollTo(dropDownContents.dropDownListView.SelectedItem, ScrollToPosition.End, true);
+            _isLoading = false;
         }
-
-#if WINDOWS || IOS
-        // FIXME: For windows and iOS the UI elements are populated every time it opens
-        // This is to fix the vertical position issue 
-        created = false;
-#endif
-        await Task.WhenAll(
-            indicatorButton.RotateTo(-180, AnimationDuration)
-        );
-
-        await PopupService.Instance?.PresentAsync(popup, true);
-        count = 1;
     }
 
     private void OnPopupRemoved(object sender, EventArgs e)
     {
         Close();
     }
+    private void RaiseSelectionChangedEvent(object previousSelection, int index)
+    {
+        DropDownSelectionChangedEventArgs args = new DropDownSelectionChangedEventArgs
+        {
+            PreviousSelection = previousSelection,
+            CurrentSelection = SelectedItem,
+            SelectedIndex = index
+        };
 
+        SelectionChanged?.Invoke(this, args);
+        SelectionChangedCommand?.Execute(args);
+    }
     private static void OnItemsSourceChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        var dropDown = (TMDropDown)bindable;
-        dropDown.items = newValue as IEnumerable;
-        dropDown.UpdateListViewItemsSource(dropDown.items);
-        dropDown.UpdateListBorderHeight(dropDown.items);
+        if (bindable is TMDropDown tmDropDown)
+        {
+            tmDropDown.items = newValue as IEnumerable;
+            tmDropDown.UpdateSelectedItemValue(tmDropDown);
+            tmDropDown.UpdateListBorderHeight(tmDropDown.items);
+        }
     }
 
     private static void OnSelectedIndexChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is TMDropDown dropDown && dropDown != null)
+        if (bindable is TMDropDown dropDown)
         {
-            dropDown.UpdateSelectedItem((int)newValue, dropDown.items);
+            dropDown.UpdateSelectedItemText(dropDown);
         }
     }
     private static void OnWidthRequestChanged(BindableObject bindable, object oldValue, object newValue)
@@ -178,19 +298,25 @@ public partial class TMDropDown : ContentView
         }
     }
 
-    private void UpdateSelectedItem(int selectedIndex, IEnumerable items)
+    private void UpdateSelectedItemText(TMDropDown dropDown)
     {
-        if (selectedIndex >= 0 && selectedIndex < items.Cast<object>().Count() && items != null)
+        if (dropDown.SelectedIndex >= 0 && dropDown.SelectedItem != null)
         {
-            label.Text = items.Cast<object>().ElementAt(selectedIndex).ToString();
+            label.Text = items.Cast<object>().ElementAt(dropDown.SelectedIndex).ToString();
+        }
+        else
+        {
+            label.Text = string.Empty;
         }
     }
 
-    private void UpdateListViewItemsSource(IEnumerable items)
+    private void UpdateSelectedItemValue(TMDropDown dropDown)
     {
-        if (items != null)
+        if (dropDown.items != null)
         {
-            UpdateSelectedItem(SelectedIndex, items);
+            UpdateSelectedIndexBasedOnSelectedItem(dropDown);
+            UpdateSelectedItemBasedOnSelectedIndex(dropDown);
+            UpdateSelectedItemText(dropDown);
         }
     }
     private void UpdateListBorderHeight(IEnumerable items)
@@ -203,29 +329,38 @@ public partial class TMDropDown : ContentView
             if (itemCount < 4)
             {
                 desiredHeight = itemCount * 56;
-                margin = new Thickness(0, ((itemCount - 1) * 56) - 28, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56) + 4, 10, 0);
 #if WINDOWS
-                margin = new Thickness(0, ((itemCount - 1) * 56) + 28, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56) + 30, 10, 0);
 #endif
             }
         }
     }
+
     private void UpdateCellColor(ListView list)
     {
         foreach (var item in list.TemplatedItems)
         {
             if (item is DropDownViewCell textCell)
             {
-                if (SelectedItems.Contains(textCell.BindingContext))
+                if (SelectedItem == textCell.BindingContext)
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale), true);
+                    textCell.UpdateHighlightBackgroundColor();
                 }
                 else
                 {
-                    textCell.UpdateBackgroundColor(ResourcesDictionary.ColorsDictionary(ColorsConstants.White), false);
+                    textCell.UpdateDefaultBackgroundColor();
                 }
             }
         }
     }
     #endregion
+
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        if (ItemsSource != null && ItemsSource.Cast<object>().Any())
+        {
+            Open();
+        }
+    }
 }

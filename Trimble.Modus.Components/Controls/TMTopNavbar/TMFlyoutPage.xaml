@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.TMFlyoutPage"
+            xmlns:modus="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components" x:DataType="modus:TMFlyoutPage"
+            x:Name="FlyoutPage">
+    <FlyoutPage.Flyout>
+        <modus:TMFlyoutMenu MenuItemsSource="{Binding ItemsSource}" x:Name="flyoutMenu" BindingContext="{x:Reference FlyoutPage}" />
+    </FlyoutPage.Flyout>
+</FlyoutPage>
+

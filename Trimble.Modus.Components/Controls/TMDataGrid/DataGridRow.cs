@@ -8,7 +8,7 @@ internal sealed class DataGridRow : Grid
     #region Fields
 
     private Color? _bgColor;
-    private readonly Color? _textColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
+    private readonly Color? _textColor = ResourcesDictionary.GetColor(ColorsConstants.AlternateTextColor);
     private List<int> SelectedIndexes = new List<int>();
 
     #endregion Fields
@@ -161,7 +161,7 @@ internal sealed class DataGridRow : Grid
 
         _bgColor = (DataGrid.SelectionMode != SelectionMode.None && SelectedIndexes.Contains(rowIndex))
                 ? DataGrid.ActiveRowColor
-                : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                : DataGrid.DefaultRowColor;
         foreach (var v in Children)
         {
             if (v is View view)

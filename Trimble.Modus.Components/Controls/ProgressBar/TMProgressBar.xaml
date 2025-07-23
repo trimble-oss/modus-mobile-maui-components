@@ -3,20 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Trimble.Modus.Components.TMProgressBar"
              xmlns:base="clr-namespace:Trimble.Modus.Components"
-             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
+             xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="progressBar">
   <ContentView.Resources>
     <ResourceDictionary>
-      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+      <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
   <VerticalStackLayout BindingContext="{x:Reference progressBar}"
                        Spacing="5">
-    <base:BaseProgressBar Progress="{Binding Progress}"
+    <base:BaseProgressBar x:Name="baseProgressBar"
+                          Progress="{Binding Progress}"
                           Size="{Binding Size}" />
     <Label x:Name="progressBarIndicatorText"
            Text="{Binding Text}"
-           IsVisible="{Binding Text,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+           IsVisible="{Binding Text,Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
            FontFamily="OpenSansBold"
            VerticalOptions="Center"
            HorizontalOptions="Start" />

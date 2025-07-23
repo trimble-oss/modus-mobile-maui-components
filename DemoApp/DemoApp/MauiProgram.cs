@@ -14,7 +14,11 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
-            .UseTrimbleModus()
+            .UseTrimbleModus(new ModusConfig()
+            {
+                DarkThemeStyles = new Resources.Styles.DarkThemeStyling(),
+                LightThemeStyles = new Resources.Styles.LightThemeStyling(),
+            })
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

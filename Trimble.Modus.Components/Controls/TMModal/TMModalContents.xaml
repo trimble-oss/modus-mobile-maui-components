@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Modus:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  x:ClassModifier="internal"
                  x:Class="Trimble.Modus.Components.Modal.TMModalContents"
-                 xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
                  xmlns:Modus="clr-namespace:Trimble.Modus.Components"
                  xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
                  xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
+                 xmlns:local="clr-namespace:Trimble.Modus.Components.Controls.TMModal"
                  Title="TMModalContents"
-                 BackgroundColor="{x:StaticResource Transparent}">
+                 BackgroundColor="{DynamicResource ModalDimmedBackgroundColor}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
+        <local:TMModalStyles/>
       </ResourceDictionary.MergedDictionaries>
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
@@ -24,7 +24,7 @@
   <Border x:Name="ParentContainer"
           StrokeThickness="0"
           Padding="3"
-          BackgroundColor="{x:StaticResource Transparent}"
+          BackgroundColor="{DynamicResource ModalShadowColor}"
           VerticalOptions="Center"
           HorizontalOptions="Center"
           StrokeShape="RoundRectangle 5">
@@ -33,15 +33,8 @@
             VerticalOptions="Center"
             HorizontalOptions="Fill"
             StrokeShape="RoundRectangle 4"
-            Stroke="{x:StaticResource Gray9}"
-            StrokeThickness="0"
-            BackgroundColor="{StaticResource White}">
-      <Border.Shadow>
-        <Shadow Brush="{x:StaticResource Gray9}"
-                Offset="0,0"
-                Opacity="0.2"
-                Radius="8" />
-      </Border.Shadow>
+            Stroke="{DynamicResource Secondary}"
+            StrokeThickness="0">
       <Grid RowSpacing="16">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
@@ -66,19 +59,19 @@
                  IsVisible="{Binding Title, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="Center"
                  FontFamily="OpenSansSemibold"
-                 FontSize="16"
-                 TextColor="{StaticResource Gray9}"
+                 FontSize="18"
                  Padding="0,0,8,0"
                  Grid.Column="1"
                  Grid.Row="0" />
-          <Image Source="{x:Static constants:ImageConstants.CloseButtonImage}"
+          <Image x:Name="CloseButton"
+                 Source="{DynamicResource AlertCloseIcon}"
                  Grid.Column="2"
                  Grid.Row="0"
                  VerticalOptions="Center"
                  HeightRequest="16"
                  WidthRequest="16"
                  Margin="2"
-                 BackgroundColor="{StaticResource Transparent}"
+                 BackgroundColor="{DynamicResource Transparent}"
                  HorizontalOptions="End">
             <Image.GestureRecognizers>
               <TapGestureRecognizer Tapped="CloseModal" />
@@ -96,7 +89,6 @@
                  IsVisible="{Binding Message,Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
                  VerticalOptions="StartAndExpand"
                  FontSize="14"
-                 TextColor="{x:StaticResource Gray9}"
                  LineBreakMode="WordWrap" />
         </StackLayout>
         <StackLayout x:Name="ButtonContainer"

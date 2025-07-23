@@ -1,9 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using Trimble.Modus.Components.Constant;
+﻿using System.Windows.Input;
 using Trimble.Modus.Components.Controls.BaseInput;
-using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -142,10 +138,13 @@ public partial class TMInput : BaseInput
         get => GetValue(LeftIconCommandParameterProperty);
         set => SetValue(LeftIconCommandParameterProperty, value);
     }
+
     #endregion
     public TMInput()
     {
         InitializeComponent();
+        this.inputBorderlessEntry.SetDynamicResource(Entry.TextColorProperty, "InputTextColor");
+        this.inputBorderlessEntry.SetDynamicResource(Entry.PlaceholderColorProperty, "InputPlaceholderColor");
     }
 
     protected override void RetrieveAndProcessChildElement()
@@ -156,8 +155,9 @@ public partial class TMInput : BaseInput
         InputBorder = (Border)GetTemplateChild("inputBorder");
         HelperIcon = (Image)GetTemplateChild("inputHelperIcon");
         HelperLabel = (Label)GetTemplateChild("inputHelperLabel");
-        HelperLayout = (HorizontalStackLayout)GetTemplateChild("inputHelperLayout");
-        InputLabel = (Label)GetTemplateChild("inputLabel");
+        HelperLayout = (Grid)GetTemplateChild("inputHelperLayout");
+        ControlLabel = (ControlLabel)GetTemplateChild("controlLabel");
+
     }
 
     internal override View GetCoreContent()

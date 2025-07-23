@@ -1,4 +1,5 @@
 ﻿using DemoApp.Views;
+using DemoApp.Views.TopNavbar;
 using Trimble.Modus.Components;
 
 namespace DemoApp;
@@ -9,5 +10,6 @@ public partial class App : Application
     {
         InitializeComponent();
         MainPage = new AppShell();
+
     }
 }

@@ -10,7 +10,7 @@ namespace Trimble.Modus.Components;
 public class PopupPage : ContentPage
 {
     #region Private fields
-    internal Components.Enums.ModalPosition Position;
+    public Components.Enums.ModalPosition Position;
     private readonly View _anchorView;
     private double _popupHeight = -1;
     private double _popupWidth = -1;
@@ -40,7 +40,7 @@ public class PopupPage : ContentPage
 
     public static readonly BindableProperty AnimationProperty = BindableProperty.Create(nameof(Animation), typeof(IPopupAnimation), typeof(PopupPage), new ScaleAnimation());
 
-    internal IPopupAnimation Animation
+    public IPopupAnimation Animation
     {
         get => (IPopupAnimation)GetValue(AnimationProperty);
         set => SetValue(AnimationProperty, value);
@@ -225,7 +225,7 @@ public class PopupPage : ContentPage
 
     internal async Task AppearingAnimation()
     {
-        if(_anchorView != null)
+        if (_anchorView != null)
         {
             Content.VerticalOptions = LayoutOptions.Start;
             Content.HorizontalOptions = LayoutOptions.Start;
@@ -306,9 +306,8 @@ public class PopupPage : ContentPage
 
         try
         {
-            _popupHeight = popupPage.Content.Height;
-            _popupWidth = popupPage.Content.Width;
-
+            _popupHeight = popupPage.Content.HeightRequest;
+            _popupWidth = popupPage.Content.WidthRequest;
             var locationFetcher = new Helpers.LocationFetcher();
             var loc = locationFetcher.GetCoordinates(_anchorView);
 
@@ -319,22 +318,24 @@ public class PopupPage : ContentPage
 
                 switch (Position)
                 {
-                    case Components.Enums.ModalPosition.Top:
+                    case Enums.ModalPosition.Top:
                         translationY = loc.Top - _popupHeight - loc.Height / 2;
-                        translationX = loc.Center.X - _popupWidth / 2;
+                        //https://github.com/trimble-oss/modus-mobile-maui-components/issues/415 - the change to fix android dropdown popup misalignment 
+                        translationX = loc.X;
                         break;
 
-                    case Components.Enums.ModalPosition.Bottom:
+                    case Enums.ModalPosition.Bottom:
                         translationY = loc.Bottom - _popupHeight + loc.Height / 2;
-                        translationX = loc.Center.X - _popupWidth / 2;
+                        //https://github.com/trimble-oss/modus-mobile-maui-components/issues/415 - the change to fix android dropdown popup misalignment 
+                        translationX = loc.X;
                         break;
 
-                    case Components.Enums.ModalPosition.Left:
+                    case Enums.ModalPosition.Left:
                         translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Left - _popupWidth;
                         break;
 
-                    case Components.Enums.ModalPosition.Right:
+                    case Enums.ModalPosition.Right:
                         translationY = loc.Y - _popupHeight / 2;
                         translationX = loc.Right;
                         break;

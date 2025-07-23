@@ -1,6 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Trimble.Modus.Components.Controls.BaseInput.BaseInput">
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
+             x:Class="Trimble.Modus.Components.Controls.BaseInput.BaseInput"
+             xmlns:Modus="clr-namespace:Trimble.Modus.Components"
+             xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
+
+  <ContentView.Resources>  
+      
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMInputStyles></local:TMInputStyles>
+      </ResourceDictionary.MergedDictionaries>
+      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
+    <ControlTemplate x:Key="InputTemplate">
+      <Grid x:Name="tmInputContainer"
+        RowDefinitions="auto,auto,auto"
+        RowSpacing="0"
+        Padding="0"
+        BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+        <Modus:ControlLabel x:Name="controlLabel"
+                        IsEnabled="{Binding IsEnabled}"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        TitleText="{Binding TitleText}"
+                        IsRequired="{Binding IsRequired}"
+                        IsVisible="{Binding TitleText, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"/>
+        <Border x:Name="inputBorder"
+            MinimumHeightRequest="48"
+            VerticalOptions="FillAndExpand"
+            Grid.Row="1"
+            Padding="0">
+          <Border.StrokeShape>
+            <RoundRectangle CornerRadius="4" />
+          </Border.StrokeShape>
+          <ContentPresenter VerticalOptions="FillAndExpand" />
+        </Border>
+        <Grid x:Name="inputHelperLayout"
+          Grid.Row="2"
+          HorizontalOptions="Start"
+          ColumnSpacing="5"
+          ColumnDefinitions="auto,*"
+          Margin="2"
+          IsVisible="false"
+          Padding="0,5,0,0">
+          <Image x:Name="inputHelperIcon"
+             Grid.Column="0"
+             WidthRequest="20"
+             HeightRequest="20" />
+          <Label  x:Name="inputHelperLabel"
+              Grid.Column="1" 
+              FontFamily="OpenSansRegular"
+              LineBreakMode="WordWrap" />
+        </Grid>
+      </Grid>
+    </ControlTemplate>
+  </ContentView.Resources>
+  
 </ContentView>
 

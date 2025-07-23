@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentView x:Name="self"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+             xmlns:style="clr-namespace:Trimble.Modus.Components.Controls.TMDataGrid;assembly=Trimble.Modus.Components"
              x:Class="Trimble.Modus.Components.DataGrid"
              x:DataType="local:DataGrid"
              CompressedLayout.IsHeadless="True">
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
+        <style:DataGridStyle />
       </ResourceDictionary.MergedDictionaries>
       <Style x:Key="DefaultHeaderStyle"
              TargetType="Label">
@@ -19,7 +19,7 @@
         <Setter Property="VerticalOptions"
                 Value="Center" />
         <Setter Property="TextColor"
-                Value="{x:StaticResource TrimbleGray}" />
+                Value="{x:DynamicResource DataGridHeaderTextColor}" />
         <Setter Property="LineBreakMode"
                 Value="WordWrap" />
         <Setter Property="Padding"
@@ -34,6 +34,8 @@
     </Grid.RowDefinitions>
     <Grid Grid.Row="0"
           x:Name="_headerView"
+          Padding="1"
+          ColumnSpacing="1"
           HeightRequest="48" />
     <CollectionView x:Name="_collectionView"
                     Grid.Row="1"

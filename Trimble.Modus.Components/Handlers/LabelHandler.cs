@@ -1,16 +1,18 @@
-﻿namespace Trimble.Modus.Components.Handlers;
+﻿using Microsoft.Maui.Handlers;
+
+namespace Trimble.Modus.Components.Handlers;
 
 internal partial class LabelHandler : Microsoft.Maui.Handlers.LabelHandler
 {
     public LabelHandler()
     {
-        Label.ControlsLabelMapper.AppendToMapping(
-          nameof(Label.LineBreakMode), UpdateMaxLines);
-
-        Label.ControlsLabelMapper.AppendToMapping(
-          nameof(Label.MaxLines), UpdateMaxLines);
+#if ANDROID
+        Mapper.AppendToMapping(nameof(Label.LineBreakMode), UpdateMaxLines);
+        Mapper.AppendToMapping(nameof(Label.MaxLines), UpdateMaxLines);
+#endif
     }
-    static void UpdateMaxLines(Microsoft.Maui.Handlers.LabelHandler handler, ILabel label)
+
+    private static void UpdateMaxLines(ILabelHandler handler, ILabel label)
     {
         var textView = handler.PlatformView;
         if (label is Label controlsLabel)

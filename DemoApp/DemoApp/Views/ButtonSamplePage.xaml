@@ -6,88 +6,15 @@
              x:Class="DemoApp.ButtonSamplePage"
              Title="ButtonSamplePage">
 
-  <ScrollView BackgroundColor="White">
-
+  <ScrollView>
     <StackLayout x:Name="layout"
                  Spacing="20"
-                 Padding="10">
-      <Label Text="Floating Buttons"></Label>
-      <StackLayout Orientation="Vertical"
-                   Spacing="10">
-        <modus:TMFloatingButton x:Name="floatingTextWithLeftIconButton"
-                               Text="Floating Button"
-                               IsDisabled="{Binding IsDisabled}"
-                               ButtonColor="Primary"
-                               LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
-                               Size="{Binding SelectedFontSize}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-
-        <modus:TMFloatingButton x:Name="floatingTextWithRightIconButton"
-                               Text="Floating Button"
-                               IsDisabled="{Binding IsDisabled}"
-                               ButtonColor="Primary"
-                               Size="{Binding SelectedFontSize}"
-                               ButtonStyle="Fill"
-                               RightIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-        <modus:TMFloatingButton x:Name="floatingIconButton"
-                               ButtonColor="Primary"
-                               IsDisabled="{Binding IsDisabled}"
-                               Size="{Binding SelectedFontSize}"
-                               LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-        <modus:TMFloatingButton x:Name="floatingButtonWithBothIcons"
-                               ButtonColor="Primary"
-                               ButtonStyle="Fill"
-                               IsDisabled="{Binding IsDisabled}"
-                               Size="{Binding SelectedFontSize}"
-                               LeftIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
-                               RightIconSource="{x:Static constants:ImageConstants.GalleryIcon}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-        <modus:TMFloatingButton x:Name="floatingTextWithSecondaryLeftIconButton"
-                               Text="Floating Button"
-                               IsDisabled="{Binding IsDisabled}"
-                               ButtonColor="Secondary"
-                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
-                               Size="{Binding SelectedFontSize}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-
-        <modus:TMFloatingButton x:Name="floatingTextWithSecondaryRightIconButton"
-                               Text="Floating Button"
-                               IsDisabled="{Binding IsDisabled}"
-                               ButtonColor="Secondary"
-                               Size="{Binding SelectedFontSize}"
-                               ButtonStyle="Fill"
-                               RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-        <modus:TMFloatingButton x:Name="floatingIconSecondaryButton"
-                               ButtonColor="Secondary"
-                               IsDisabled="{Binding IsDisabled}"
-                               Size="{Binding SelectedFontSize}"
-                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-        <modus:TMFloatingButton x:Name="floatingSecondaryButtonWithBothIcons"
-                               ButtonColor="Secondary"
-                               ButtonStyle="Fill"
-                               IsDisabled="{Binding IsDisabled}"
-                               Size="{Binding SelectedFontSize}"
-                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
-                               RightIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
-                               Command="{Binding ClickedCommand}"
-                               CommandParameter="Button5" />
-      </StackLayout>
-      <Label Text="Buttons with Images" />
+                 Padding="10,10">
+      <Label Text="Buttons with Text" />
       <StackLayout Orientation="Vertical"
                    Spacing="10">
         <modus:TMButton x:Name="primaryleftIconButton"
-                               Text="Primary"
+                               Text="Primary"                        
                                HorizontalOptions="{Binding FullWidthAlignment}"
                                ButtonColor="Primary"
                                LeftIconSource="{Binding LeftIconSource}"
@@ -134,6 +61,35 @@
                                  CommandParameter="Button5" />
         </StackLayout>
       </StackLayout>
+
+      <Label Text="Icon Only Buttons" />
+      <HorizontalStackLayout>
+        <modus:TMButton x:Name="primaryIconOnlyButton"
+                        ButtonColor="Primary"
+                        LeftIconSource="gallery_icon.png"
+                        IsDisabled="{Binding IsDisabled}"
+                        Size="{Binding SelectedFontSize}"
+                        ButtonStyle="{Binding SelectedButtonStyle}"/>
+        <modus:TMButton x:Name="secondaryIconOnlyButton"
+                        ButtonColor="Secondary"
+                        LeftIconSource="gallery_icon.png"
+                        Size="{Binding SelectedFontSize}"
+                        IsDisabled="{Binding IsDisabled}"
+                        ButtonStyle="{Binding SelectedButtonStyle}"/>
+          <modus:TMButton x:Name="tertiaryIconOnlyButton"
+                          ButtonColor="Tertiary"
+                          LeftIconSource="gallery_icon.png"
+                          Size="{Binding SelectedFontSize}"
+                          IsDisabled="{Binding IsDisabled}"
+                          ButtonStyle="{Binding SelectedButtonStyle}"/>
+          <modus:TMButton x:Name="dangerIconOnlyButton"
+                          LeftIconSource="gallery_icon.png"
+                          Size="{Binding SelectedFontSize}"
+                          IsDisabled="{Binding IsDisabled}"
+                          ButtonStyle="{Binding SelectedButtonStyle}"
+                          ButtonColor="Danger"/>
+      </HorizontalStackLayout>
+
       <StackLayout Orientation="Horizontal">
         <modus:TMRadioButtonGroup Orientation="Horizontal">
           <modus:TMRadioButton
@@ -195,43 +151,54 @@
                      SelectionChanged="Style_Changed" />
         </modus:TMRadioButtonGroup>
       </StackLayout>
-      <Grid ColumnSpacing="5">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0"
-               Text="IsDisabled"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <modus:TMSwitch Grid.Column="1"
-                x:Name="isDisabled"
-                Toggled="IsDisabled_Toggled" />
-        <Label Grid.Column="2"
-               Text="IsLoading"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <modus:TMSwitch Grid.Column="3"
-                x:Name="isLoading"
-                Toggled="isLoading_Toggled" />
-      </Grid>
-      <Grid ColumnSpacing="5">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+      <HorizontalStackLayout Spacing="8">
+        <modus:TMSwitch Text="Disable"
+                        x:Name="isDisabled"
+                        Toggled="IsDisabled_Toggled" />
 
-        <Label Grid.Column="0"
-               Text="IsFullWidth"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
-        <modus:TMSwitch Grid.Column="1"
-                x:Name="IsFullWidth"
-                Toggled="FullWidthToggled" />
-      </Grid>
+        <modus:TMSwitch Text="Show Loading"
+                        x:Name="isLoading"
+                        Toggled="isLoading_Toggled" />
+      </HorizontalStackLayout>
+
+      <HorizontalStackLayout Spacing="8">
+        <modus:TMSwitch Text="Take Full Width"
+                        x:Name="IsFullWidth"
+                        Toggled="FullWidthToggled" />
+      </HorizontalStackLayout>
+
+      <Label Text="Floating Buttons"></Label>
+      <StackLayout Orientation="Vertical"
+                   Spacing="10">
+        <modus:TMFloatingButton x:Name="primaryFloatingButton"
+                               Text="Primary FB"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonColor="Primary"
+                               LeftIconSource="{Binding LeftIconSource}"
+                               RightIconSource="{Binding RightIconSource}"
+                               Size="{Binding SelectedFontSize}"
+                               Command="{Binding ClickedCommand}"
+                               CommandParameter="Button5" />
+        
+        <modus:TMFloatingButton x:Name="secondaryFloatingButton"
+                               Text="Secondary FB"
+                               IsDisabled="{Binding IsDisabled}"
+                               ButtonColor="Secondary"
+                               LeftIconSource="{Binding LeftIconSource}"
+                               RightIconSource="{Binding RightIconSource}"
+                               Size="{Binding SelectedFontSize}"
+                               Command="{Binding ClickedCommand}"
+                               CommandParameter="Button5" />
+        
+        <modus:TMFloatingButton x:Name="iconOnlyFloatingButton"
+                               ButtonColor="Secondary"
+                               IsDisabled="{Binding IsDisabled}"
+                               Size="{Binding SelectedFontSize}"
+                               LeftIconSource="{x:Static constants:ImageConstants.DarkGalleryIcon}"
+                               Command="{Binding ClickedCommand}"
+                               CommandParameter="Button5" />        
+      </StackLayout>
     </StackLayout>
   </ScrollView>
 </ContentPage>

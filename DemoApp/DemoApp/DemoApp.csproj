@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -17,7 +17,7 @@
 		<!-- App Identifier -->
 		<ApplicationId>com.trimble.ModusMAUI</ApplicationId>
 		<ApplicationIdGuid>4ca86287-676e-49cb-9a5d-75d22c1b3771</ApplicationIdGuid>
-
+    <PackageVersion>1.0.0</PackageVersion>
 		<!-- Versions -->
 		<ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
 		<ApplicationVersion>3</ApplicationVersion>
@@ -30,16 +30,22 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
 	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
+	  <MtouchLink>SdkOnly</MtouchLink>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <CodesignKey>Mac Developer</CodesignKey>
+	  <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
 	  <MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 	<ItemGroup>
@@ -77,6 +83,7 @@
 	  <None Remove="Resources\Images\search_icon.svg" />
 	  <None Remove="Views\TabViewItems\" />
 	  <None Remove="Helpers\" />
+	  <None Remove="Views\TopNavbar\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,10 +94,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <Compile Update="Resources\Styles\DarkThemeColors.xaml.cs">
+	    <DependentUpon>DarkThemeColors.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Styles\LightThemeColors.xaml.cs">
+	    <DependentUpon>LightThemeColors.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\SegmentedControlSamplePage.xaml.cs">
 	    <DependentUpon>SegmentedControlSamplePage.xaml</DependentUpon>
 	  </Compile>
@@ -155,6 +164,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\DarkThemeColors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\DarkThemeStyling.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\LightThemeColors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\LightThemeStyling.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SliderSamplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -231,5 +252,9 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Helpers\" />
+	  <Folder Include="Views\TopNavbar\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Trimble.Modus.Components\Trimble.Modus.Components.csproj" />
 	</ItemGroup>
 </Project>

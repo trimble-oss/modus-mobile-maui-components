@@ -34,10 +34,46 @@ public partial class MessageView : ContentView
         defaultValue: MessageSize.Default,
         propertyChanged: OnCustomPropertyChanged);
 
+    public static new readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(
+        nameof(BackgroundColor),
+        typeof(Color),
+        typeof(MessageView),
+        Colors.Transparent,
+        propertyChanged: (bindable, _, newValue) => (bindable as MessageView).contentLayout.BackgroundColor = (Color)newValue);
+
+    public static readonly BindableProperty TextAndIconColorProperty = BindableProperty.Create(
+        nameof(TextAndIconColor),
+        typeof(Color),
+        typeof(MessageView),
+        defaultValue: ResourcesDictionary.GetColor(ColorsConstants.PrimaryLight),
+        propertyChanged: OnTextAndIconColorChanged);
+
+    public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
+        nameof(BorderColor),
+        typeof(Color),
+        typeof(MessageView),
+        propertyChanged: (bindable, _, newValue) => (bindable as MessageView).contentBorder.Stroke = (Color)newValue);
     #endregion
 
 
     #region Public Properties
+    internal Color BorderColor
+    {
+        get => (Color)GetValue(BorderColorProperty);
+        set => SetValue(BorderColorProperty, value);
+    }
+    internal Color TextAndIconColor
+    {
+        get => (Color)GetValue(TextAndIconColorProperty);
+        set => SetValue(TextAndIconColorProperty, value);
+    }
+
+    internal new Color BackgroundColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
+
     public string Message
     {
         get => (string)GetValue(MessageProperty);
@@ -67,7 +103,7 @@ public partial class MessageView : ContentView
     public MessageView()
     {
         InitializeComponent();
-        //Reload();
+        SetDynamicResource(StyleProperty, "Primary");
     }
 
     private void Reload()
@@ -75,15 +111,10 @@ public partial class MessageView : ContentView
         switch (Theme)
         {
             case MessageTheme.Primary:
-                contentLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                var textColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BlueLight);
-                titleLabel.TextColor = textColor;
-                contentBorder.Stroke = textColor;
+                SetDynamicResource(StyleProperty, "Primary");
                 break;
             default:
-                contentLayout.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                titleLabel.TextColor = Colors.Black;
-                contentBorder.Stroke = Colors.Black;
+                SetDynamicResource(StyleProperty, "Secondary");
                 break;
         }
         switch (MessageSize)
@@ -124,7 +155,7 @@ public partial class MessageView : ContentView
         leftIconImage.Behaviors.Clear();
         var behavior = new IconTintColorBehavior
         {
-            TintColor = titleLabel.TextColor
+            TintColor = TextAndIconColor
         };
         leftIconImage.Behaviors.Add(behavior);
 
@@ -136,5 +167,11 @@ public partial class MessageView : ContentView
             messageView.Reload();
     }
 
+    private static void OnTextAndIconColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var message = bindable as MessageView;
+        message.titleLabel.TextColor = (Color)newValue;
+        message.updateIconTint();
+    }
 }
 

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+                    x:Class="Trimble.Modus.Components.DropDownStyles">
+  <Style TargetType="local:TMDropDown"
+         x:Key="DefaultStyle">
+    <Setter Property="BackgroundColor"
+            Value="{DynamicResource DropDownBackgroundColor}" />
+    <Setter Property="BorderColor"
+            Value="{DynamicResource DropDownBorderColor}" />
+    <Setter Property="TextAndIconColor"
+            Value="{DynamicResource DropDownTextAndIconColor}" />
+  </Style>
+
+  <Style TargetType="local:DropDownContents"
+         x:Key="DefaulDropDownContentstStyle">
+    <Setter Property="BorderColor"
+            Value="{DynamicResource DropDownContentBorderColor}" />
+  </Style>
+</ResourceDictionary>

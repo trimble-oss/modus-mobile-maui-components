@@ -9,20 +9,38 @@ using Trimble.Modus.Components.Helpers;
 
 public partial class TMBadge : ContentView
 {
-    public static readonly BindableProperty BadgeTextProperty =
+    public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(TMBadge), "");
 
     public static readonly BindableProperty BadgeSizeProperty =
         BindableProperty.Create(nameof(BadgeSize), typeof(BadgeSize), typeof(TMBadge), BadgeSize.Medium, propertyChanged: OnSizeChanged);
 
-    public static readonly BindableProperty BadgeColorProperty =
+    public static readonly BindableProperty ColorProperty =
             BindableProperty.Create(nameof(Color), typeof(BadgeColor), typeof(TMBadge), BadgeColor.Primary, propertyChanged: OnBadgeColorChanged);
 
-    public static readonly BindableProperty BadgeShapeProperty =
+    public static readonly BindableProperty ShapeProperty =
         BindableProperty.Create(nameof(Shape), typeof(BadgeShape), typeof(TMBadge), BadgeShape.Rectangle, propertyChanged: OnBadgeShapePropertyChanged);
 
     public static readonly BindableProperty BadgeContentProperty =
-        BindableProperty.Create(nameof(BadgeContent),typeof(View),typeof(TMBadge),null,propertyChanged: OnContentPropertyChanged);
+        BindableProperty.Create(nameof(BadgeContent), typeof(View), typeof(TMBadge), null, propertyChanged: OnContentPropertyChanged);
+
+    public static readonly BindableProperty TextColorProperty =
+    BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMBadge), Colors.Black, propertyChanged: OnTextColorPropertyChanged);
+
+    public static new readonly BindableProperty BackgroundColorProperty =
+        BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(TMBadge), Colors.Black, propertyChanged: OnBackgroundColorPropertyChanged);
+
+    internal Color TextColor
+    {
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
+    }
+
+    internal new Color BackgroundColor
+    {
+        get => (Color)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
 
     public View BadgeContent
     {
@@ -32,8 +50,8 @@ public partial class TMBadge : ContentView
 
     public string Text
     {
-        get => (string)GetValue(BadgeTextProperty);
-        set => SetValue(BadgeTextProperty, value);
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
 
     public BadgeSize BadgeSize
@@ -44,13 +62,13 @@ public partial class TMBadge : ContentView
 
     public BadgeColor Color
     {
-        get => (BadgeColor)GetValue(BadgeColorProperty);
-        set => SetValue(BadgeColorProperty, value);
+        get => (BadgeColor)GetValue(ColorProperty);
+        set => SetValue(ColorProperty, value);
     }
     public BadgeShape Shape
     {
-        get => (BadgeShape)GetValue(BadgeShapeProperty);
-        set => SetValue(BadgeShapeProperty, value);
+        get => (BadgeShape)GetValue(ShapeProperty);
+        set => SetValue(ShapeProperty, value);
     }
 
     public TMBadge()
@@ -64,6 +82,33 @@ public partial class TMBadge : ContentView
         UpdateColor(tMBadge);
         UpdateShape(tMBadge);
         UpdateLabelOnSize(tMBadge);
+    }
+
+    private static void OnTextColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMBadge tMBadge)
+        {
+            tMBadge.OnTextColorChanged();
+        }
+    }
+    private static void OnBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMBadge tMBadge)
+        {
+            tMBadge.OnBackgroundColorChanged();
+        }
+    }
+    private void OnTextColorChanged()
+    {
+        if (this.label != null)
+        {
+            this.label.TextColor = this.TextColor;
+        }
+    }
+
+    private void OnBackgroundColorChanged()
+    {
+        frame.BackgroundColor = this.BackgroundColor;
     }
     private static void OnContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -145,32 +190,28 @@ public partial class TMBadge : ContentView
 
     private static void UpdateColor(TMBadge tmBadge)
     {
-        switch(tmBadge.Color)
+        switch (tmBadge.Color)
         {
             case BadgeColor.Secondary:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray7);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "SecondaryBadgeStyle");
                 break;
             case BadgeColor.Tertiary:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "TertiaryBadgeStyle");
                 break;
             case BadgeColor.Success:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Green);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "SuccessBadgeStyle");
                 break;
             case BadgeColor.Warning:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Yellow);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "WarningBadgeStyle");
                 break;
             case BadgeColor.Error:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Red);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.SetDynamicResource(TMBadge.StyleProperty, "ErrorBadgeStyle");
                 break;
             case BadgeColor.Primary:
             default:
-                tmBadge.frame.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
-                tmBadge.label.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+                tmBadge.SetDynamicResource(StyleProperty, "PrimaryBadgeStyle");
                 break;
         }
     }

@@ -1,4 +1,6 @@
 using DemoApp.Views;
+
+using DemoApp.Views.TopNavbar;
 using System.Collections.ObjectModel;
 
 namespace DemoApp
@@ -9,6 +11,7 @@ namespace DemoApp
         public MainPage()
         {
             InitializeComponent();
+            
             var items = new List<string>
             {
                 "Accordion",
@@ -34,7 +37,9 @@ namespace DemoApp
                 "Switch",
                 "TabbedPage",
                 "Toast",
-                "Message"
+                "Message",
+                "Alert",
+                "TopNavbar"
             };
             ControlNames = new ObservableCollection<string>(items.OrderBy(item => item));
             BindingContext = this;
@@ -116,6 +121,12 @@ namespace DemoApp
                         break;
                     case "Message":
                         Navigation.PushAsync(new MessageSamplePage());
+                        break;
+                    case "Alert":
+                        Navigation.PushAsync(new AlertSamplePage());
+                        break;
+                    case "TopNavbar":
+                        Application.Current.MainPage = new FlyoutPageSample();
                         break;
                     default:
                         Console.WriteLine("Default Case");

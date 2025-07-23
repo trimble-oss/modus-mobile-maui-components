@@ -1,51 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Trimble.Modus.Components.Styles.Colors">
-  <!--Blue-->
-  <Color x:Key="TrimbleBlueDark">#004f83</Color>
-  <Color x:Key="TrimbleBlue">#0063a3</Color>
-  <Color x:Key="Blue">#0063a3</Color>
-  <Color x:Key="BlueDark">#0E416C</Color>
-  <Color x:Key="BlueLight">#217cbb</Color>
-  <Color x:Key="HighlightBlue">#019aeb</Color>
-  <Color x:Key="BluePale">#DCEDF9</Color>
-
-  <!--Black-->
-  <Color x:Key="TrimbleGray">#252a2e</Color>
-  <Color x:Key="Gray10">#171c1e</Color>
-  <Color x:Key="Gray9">#353a40</Color>
-  <Color x:Key="Gray8">#464b52</Color>
-  <Color x:Key="Gray7">#585c65</Color>
-  <Color x:Key="Gray6">#6a6e79</Color>
-  <Color x:Key="Gray5">#7d808d</Color>
-  <Color x:Key="Gray4">#90939f</Color>
-  <Color x:Key="Gray3">#a3a6b1</Color>
-  <Color x:Key="Gray2">#b7b9c3</Color>
-  <Color x:Key="Gray1">#cbcdd6</Color>
-  <Color x:Key="Gray0">#e0e1e9</Color>
-  <Color x:Key="GrayLight">#f1f1f6</Color>
-  <Color x:Key="White">#FFFFFF</Color>
-
-  <!--Orange-->
-  <Color x:Key="YellowDark">#e49325</Color>
-  <Color x:Key="Yellow">#fbad26</Color>
-  <Color x:Key="YellowLight">#fec157</Color>
-  <Color x:Key="YellowPale">#fff5e4</Color>
-
-  <!--Red-->
-  <Color x:Key="RedDark">#AB1F26</Color>
-  <Color x:Key="Red">#da212c</Color>
-  <Color x:Key="RedLight">#e86363</Color>
-  <Color x:Key="RedPale">#FBD4D7</Color>
-
-  <!--Green-->
-  <Color x:Key="GreenDark">#006638</Color>
-  <Color x:Key="Green">#1E8A44</Color>
-  <Color x:Key="GreenLight">#4ea646</Color>
-  <Color x:Key="GreenPale">#E0ECCF</Color>
-
-  <!-- Transparent -->
-  <Color x:Key="Transparent">transparent</Color>
-
+  <!--Modal colors-->
+  <Color x:Key="ModalDimmedBackgroundColor">#80000000</Color>
+  <Color x:Key="ModalShadowColor">#4D363545</Color>
+  
 </ResourceDictionary>

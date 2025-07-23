@@ -1,7 +1,9 @@
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
+using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
+using Trimble.Modus.Components.Helpers;
 
 namespace Trimble.Modus.Components;
 
@@ -19,11 +21,17 @@ internal class BaseProgressBar : SKCanvasView
     // holds information about the dimensions, etc.
     private SKImageInfo _info;
 
-    public static readonly BindableProperty ProgressProperty = BindableProperty.Create(
-       nameof(Progress), typeof(float), typeof(BaseProgressBar), 0.0f, propertyChanged: OnBindablePropertyChanged);
+    public static readonly BindableProperty ProgressProperty =
+        BindableProperty.Create(nameof(Progress), typeof(float), typeof(BaseProgressBar), 0.0f, propertyChanged: OnBindablePropertyChanged);
 
-    public static readonly BindableProperty SizeProperty = BindableProperty.Create(
-   nameof(Size), typeof(ProgressBarSize), typeof(BaseProgressBar), ProgressBarSize.Default, propertyChanged: OnSizeChangedProperty);
+    public static readonly BindableProperty SizeProperty =
+        BindableProperty.Create(nameof(Size), typeof(ProgressBarSize), typeof(BaseProgressBar), ProgressBarSize.Default, propertyChanged: OnSizeChangedProperty);
+
+    public static readonly BindableProperty ProgressColorProperty =
+        BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(BaseProgressBar), ResourcesDictionary.GetColor(ColorsConstants.Primary), propertyChanged: OnProgressColorChangedProperty);
+
+    public static readonly BindableProperty BaseColorProperty =
+        BindableProperty.Create(nameof(BaseColor), typeof(Color), typeof(BaseProgressBar), ResourcesDictionary.GetColor(ColorsConstants.TertiaryDark), propertyChanged: OnBaseColorChangedProperty);
 
     public float Progress
     {
@@ -36,6 +44,17 @@ internal class BaseProgressBar : SKCanvasView
         get => (ProgressBarSize)GetValue(SizeProperty);
         set => SetValue(SizeProperty, value);
     }
+    public Color ProgressColor
+    {
+        get => (Color)GetValue(ProgressColorProperty);
+        set => SetValue(ProgressColorProperty, value);
+    }
+    public Color BaseColor
+    {
+        get => (Color)GetValue(BaseColorProperty);
+        set => SetValue(BaseColorProperty, value);
+    }
+
 
     public BaseProgressBar()
     {
@@ -50,7 +69,6 @@ internal class BaseProgressBar : SKCanvasView
         _canvas.Clear(); // clears the canvas for every frame
         _info = e.Info;
         _drawRect = new SKRect(0, 0, _info.Width, _info.Height);
-
         DrawBase();
         DrawProgress();
     }
@@ -67,7 +85,8 @@ internal class BaseProgressBar : SKCanvasView
         {
             Style = SKPaintStyle.Fill,
             IsAntialias = true,
-            Color = Helpers.ResourcesDictionary.ColorsDictionary(Constant.ColorsConstants.TrimbleBlue).ToSKColor()
+            Color = ProgressColor.ToSKColor(),
+            StrokeWidth = 2
         });
     }
     private void DrawBase()
@@ -78,10 +97,10 @@ internal class BaseProgressBar : SKCanvasView
 
         _canvas.DrawPath(basePath, new SKPaint
         {
-            Style = SKPaintStyle.StrokeAndFill,
+            Style = SKPaintStyle.Stroke,
             StrokeWidth = 5,
             IsStroke = true,
-            Color = Helpers.ResourcesDictionary.ColorsDictionary(Constant.ColorsConstants.Gray7).ToSKColor(),
+            Color = BaseColor.ToSKColor(),
             IsAntialias = true
         });
     }
@@ -100,5 +119,19 @@ internal class BaseProgressBar : SKCanvasView
         }
     }
 
+    private static void OnProgressColorChangedProperty(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseProgressBar progressBar)
+        {
+            progressBar.InvalidateSurface();
+        }
+    }
 
+    private static void OnBaseColorChangedProperty(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is BaseProgressBar progressBar)
+        {
+            progressBar.InvalidateSurface();
+        }
+    }
 }

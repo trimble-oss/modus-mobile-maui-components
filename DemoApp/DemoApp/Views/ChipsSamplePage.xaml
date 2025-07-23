@@ -9,23 +9,63 @@
   <VerticalStackLayout Spacing="10"
                        Padding="10">
 
-    <Label Text="Size" />
+    <Label Text="Chip Size" />
     <modus:TMRadioButtonGroup x:Name="RadioGroup"
                               Orientation="Horizontal"
                               SelectedIndex="0"
                               SelectedRadioButtonChangedCommand="{Binding SizeSelectionChangedCommand}">
-        <modus:TMRadioButton Text="Default" />
-        <modus:TMRadioButton Text="Small" />
+      <modus:TMRadioButton Text="Default" />
+      <modus:TMRadioButton Text="Small" />
+    </modus:TMRadioButtonGroup>
+    <Label Text="Chip State" />
+    <modus:TMRadioButtonGroup x:Name="ChipStateRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding StateSelectionChangedCommand}">
+      <modus:TMRadioButton Text="Default" />
+      <modus:TMRadioButton Text="Error" />
     </modus:TMRadioButtonGroup>
 
-    <Label Text="Input Type Chips" FontSize="Large"/>
+    <Label Text="IsEnabled" />
+    <modus:TMRadioButtonGroup x:Name="IsEnabledRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding EnableSelectionChangedCommand}">
+      <modus:TMRadioButton Text="True" />
+      <modus:TMRadioButton Text="False" />
+    </modus:TMRadioButtonGroup>
+
+    <Label Text="Style" />
+    <modus:TMRadioButtonGroup x:Name="StyleRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding StyleSelectionChangedCommand}">
+      <modus:TMRadioButton Text="Fill" />
+      <modus:TMRadioButton Text="Outline" />
+    </modus:TMRadioButtonGroup>
+
+    <Label Text="Type" />
+    <modus:TMRadioButtonGroup x:Name="TypeRadioGroup"
+                              Orientation="Horizontal"
+                              SelectedIndex="0"
+                              SelectedRadioButtonChangedCommand="{Binding TypeSelectionChangedCommand}">
+      <modus:TMRadioButton Text="Input" />
+      <modus:TMRadioButton Text="Filter" />
+    </modus:TMRadioButtonGroup>
+
+    <Label Text="Input Type Chips"
+           FontSize="Large" />
     <VerticalStackLayout Spacing="10">
-      <FlexLayout BindableLayout.ItemsSource="{Binding ChipsCollection}"  Wrap="Wrap">
+      <FlexLayout BindableLayout.ItemsSource="{Binding ChipsCollection}"
+                  Wrap="Wrap">
         <BindableLayout.ItemTemplate>
           <DataTemplate>
             <modus:TMChips BindingContext="{Binding}"
                            ChipSize="{Binding Path=BindingContext.ChipSize, Source={x:Reference Name=tmchipspage}}"
-                           ChipType="Input"
+                           ChipState="{Binding Path=BindingContext.ChipState, Source={x:Reference Name=tmchipspage}}"
+                           IsEnabled="{Binding Path=BindingContext.IsEnabled, Source={x:Reference Name=tmchipspage}}"
+                           ChipStyle="{Binding Path=BindingContext.ChipStyle, Source={x:Reference Name=tmchipspage}}"
+                           ChipType="{Binding Path=BindingContext.ChipType, Source={x:Reference Name=tmchipspage}}"
                            Title="{Binding Title}"
                            LeftIconSource="{Binding LeftIconSource}"
                            ClickedCommand="{Binding Path=BindingContext.ClickChipCommand, Source={x:Reference Name=tmchipspage}}"
@@ -34,55 +74,8 @@
         </BindableLayout.ItemTemplate>
       </FlexLayout>
 
-      <modus:TMButton Text="Add Chip" Command="{Binding AddChipCommand}"/>
+      <modus:TMButton Text="Add Chip"
+                      Command="{Binding AddChipCommand}" />
     </VerticalStackLayout>
-    <Label Text="Filter Type Chips" FontSize="Large"/>
-    
-    <Label Text="Cities (Style :Fill(Default))" FontSize="Body"/>
-    <FlexLayout Wrap="Wrap">
-      <modus:TMChips Title="Chennai"
-                     ChipSize="{Binding ChipSize}"
-                     ChipType="Filter"
-                     ClickedCommand="{Binding ClickChipCommand}"
-                     LeftIconSource="{Static constants:ImageConstants.AccountIcon}" />
-      <modus:TMChips Title="Paris"
-                     ChipSize="{Binding ChipSize}"
-                     ChipType="Filter"
-                     ClickedCommand="{Binding ClickChipCommand}"/>
-      <modus:TMChips Title="New York"
-                     ChipSize="{Binding ChipSize}"
-                     ChipType="Filter"
-                     ClickedCommand="{Binding ClickChipCommand}"/>
-      <modus:TMChips Title="Sydney"
-                     ChipSize="{Binding ChipSize}"
-                     ChipType="Filter"
-                     ClickedCommand="{Binding ClickChipCommand}"/>
-    </FlexLayout>
-
-    <Label Text="Fruits (Style :Outline)" FontSize="Body"/>
-    <FlexLayout Wrap="Wrap">
-      <modus:TMChips Title="Apple"
-                     ChipType="Filter"
-                     ChipSize="{Binding ChipSize}"
-                     ChipStyle="Outline"
-                     ClickedCommand="{Binding ClickChipCommand}"
-                     LeftIconSource="{Static constants:ImageConstants.AccountIcon}" />
-      <modus:TMChips Title="Mango"
-                     ChipType="Filter"
-                     ChipSize="{Binding ChipSize}"
-                     ChipStyle="Outline"
-                     ClickedCommand="{Binding ClickChipCommand}" />
-      <modus:TMChips Title="Orange"
-                     ChipType="Filter"
-                     ChipSize="{Binding ChipSize}"
-                     ChipStyle="Outline"
-                     ClickedCommand="{Binding ClickChipCommand}" />
-      <modus:TMChips Title="Bananas"
-                     ChipType="Filter"
-                     ChipStyle="Outline"
-                     ChipSize="{Binding ChipSize}"
-                     ClickedCommand="{Binding ClickChipCommand}"/>
-    </FlexLayout>
-
   </VerticalStackLayout>
 </ContentPage>

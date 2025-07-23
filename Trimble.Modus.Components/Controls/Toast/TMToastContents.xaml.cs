@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Behaviors;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Helpers;
@@ -16,27 +17,98 @@ public partial class TMToastContents : PopupPage
 
     #region Public Properties
 
-    public ImageSource LeftIconSource { get; set; }
-
     public string Message { get; set; }
 
     public string RightIconText { get; set; }
 
     public double ToastWidthRequest { get; set; }
 
-    public Color ToastBackground { get; set; }
-
-    public Color TextColor { get; set; }
-
     #endregion
+
+    public static readonly BindableProperty ToastBackgroundColorProperty =
+        BindableProperty.Create(nameof(ToastBackgroundColor), typeof(Color), typeof(TMToast), Colors.Black);
+
+    public static readonly BindableProperty TextColorProperty =
+        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TMToast), Colors.White);
+
+    public static readonly BindableProperty LeftIconTintColorProperty =
+        BindableProperty.Create(nameof(LeftIconTintColor), typeof(Color), typeof(TMToast), Colors.White,
+            propertyChanged: OnLeftIconTintColorChanged);
+
+    public static readonly BindableProperty RightIconTintColorProperty =
+    BindableProperty.Create(nameof(RightIconTintColor), typeof(Color), typeof(TMToast), Colors.White,
+        propertyChanged: OnRightIconTintColorChanged);
+
 
     internal TMToastContents(string message, string actionButtonText, ToastTheme theme, Action action, bool isDismissable)
     {
         InitializeComponent();
         SetTheme(theme.ToString());
+        SetDynamicResource(StyleProperty, theme.ToString());
         PopupData(message, actionButtonText, action, isDismissable);
         BindingContext = this;
         CloseAfterDelay();
+    }
+    public Color ToastBackgroundColor
+    {
+        get { return (Color)GetValue(ToastBackgroundColorProperty); }
+        set { SetValue(ToastBackgroundColorProperty, value); }
+    }
+    public Color TextColor
+    {
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
+    }
+    public Color LeftIconTintColor
+    {
+        get => (Color)GetValue(LeftIconTintColorProperty);
+        set => SetValue(LeftIconTintColorProperty, value);
+    }
+    public Color RightIconTintColor
+    {
+        get => (Color)GetValue(RightIconTintColorProperty);
+        set => SetValue(RightIconTintColorProperty, value);
+    }
+
+    private static void OnLeftIconTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMToastContents tmToastContent && DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            tmToastContent.UpdateIconColor();
+        }
+    }
+
+    private static void OnRightIconTintColorChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is TMToastContents tmToastContent && DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            tmToastContent.UpdateIconColor();
+        }
+    }
+
+    private void UpdateIconColor()
+    {
+        if (DeviceInfo.Platform != DevicePlatform.WinUI)
+        {
+            leftIconImage.Behaviors.Clear();
+            if (LeftIconTintColor != null)
+            {
+                var behavior = new IconTintColorBehavior
+                {
+                    TintColor = LeftIconTintColor
+                };
+                leftIconImage.Behaviors.Add(behavior);
+            }
+            closeButton.Behaviors.Clear();
+            if (RightIconTintColor != null)
+            {
+                var behavior = new IconTintColorBehavior
+                {
+                    TintColor = RightIconTintColor
+                };
+                closeButton.Behaviors.Add(behavior);
+            }
+        }
     }
 
     #region Private Methods
@@ -45,55 +117,42 @@ public partial class TMToastContents : PopupPage
         ToastTheme theme = (ToastTheme)Enum.Parse(typeof(ToastTheme), toastTheme);
         switch (theme)
         {
-            case ToastTheme.Dark:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleGray);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDarkThemeIcon);
+            case ToastTheme.Dark:               
+                leftIconImage.Source = ImageSource.FromFile(ImageConstants.WhiteInfoIcon);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
                 break;
 
             case ToastTheme.Primary:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlueCloseIcon);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.BlueInfoIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
+                closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastPrimaryCloseIcon");
+                leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastPrimaryInfoIcon");
                 break;
 
             case ToastTheme.Secondary:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray1);
-                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.SolidHelpIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
+                leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastSecondaryInfoIcon");
                 break;
 
             case ToastTheme.Danger:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.RedPale);
-                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.ToastDangerIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
+                leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastDangerIcon");
                 break;
 
             case ToastTheme.Warning:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.YellowPale);
-                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.WarningIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
+                leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastWarningIcon");
                 break;
 
             case ToastTheme.Success:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.GreenPale);
-                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.ValidIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastSuccessIcon");
+                closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
                 break;
-                
+
             default:
-                ToastBackground = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
-                closeButton.Source = ImageSource.FromFile(ImageConstants.ToastBlackCloseIcon);
-                LeftIconSource = ImageSource.FromFile(ImageConstants.GreyInfoIcon);
-                TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray9);
+                closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
+                leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastDefaultInfoIcon");
                 break;
         }
+        UpdateIconColor();
 
     }
     private void CloseButtonClicked(object sender, EventArgs e)
@@ -116,7 +175,7 @@ public partial class TMToastContents : PopupPage
         RightIconText = actionButtonText;
         actionButton.Text = RightIconText;
         actionButton.TextColor = TextColor;
-        actionButton.BackgroundColor = ToastBackground;
+        actionButton.BackgroundColor = ToastBackgroundColor;
 
         if (string.IsNullOrEmpty(RightIconText))
         {

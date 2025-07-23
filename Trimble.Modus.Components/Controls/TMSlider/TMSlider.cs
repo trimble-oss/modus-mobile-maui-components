@@ -5,7 +5,6 @@ using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Controls;
 using Trimble.Modus.Components.Controls.Slider;
 using Trimble.Modus.Components.Enums;
-using Trimble.Modus.Components.Helpers;
 using static System.Math;
 
 namespace Trimble.Modus.Components
@@ -79,7 +78,6 @@ namespace Trimble.Modus.Components
             ValueToolTipShape.RotateTo(180);
 
             // Configure the ValueLabel
-            ValueLabel.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray7);
             ValueBorder.Content = ValueLabel;
             ValueHolder.Children.Add(ValueBorder);
             ValueHolder.Children.Add(ValueToolTipShape);
@@ -229,11 +227,9 @@ namespace Trimble.Modus.Components
             LastStepContainer.BatchBegin();
             LastLabel.Text = MaximumValue.ToString();
 
-            Track.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray3);
             Track.StrokeThickness = 0;
-            TrackHighlight.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.TrimbleBlue);
             TrackHighlight.StrokeThickness = 0;
-            ValueLabel.TextColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+            ValueLabel.SetDynamicResource(Label.TextColorProperty, ColorsConstants.AlternateTextColor);
             var trackSize = 8;
             _thumbSize = 24;
             var thumbStrokeThickness = 3;
@@ -374,6 +370,23 @@ namespace Trimble.Modus.Components
                 Children.Remove(SliderTitle);
             }
             OnLayoutPropertyChanged();
+        }
+
+        protected override void OnThumbColorPropertyChanged(Color newValue)
+        {
+            RefreshThumbColor(ThumbIcon);
+        }
+        protected override void OnTrackBackgroundColorChanged(Color newValue)
+        {
+            Track.BackgroundColor = newValue;
+        }
+        protected override void OnTrackHighlightColorChanged(Color newValue)
+        {
+            TrackHighlight.BackgroundColor = newValue;
+        }
+        protected override void OnToolTipBackgroundColorChanged(Color newValue)
+        {
+            if (ValueLabel != null) ValueLabel.BackgroundColor = newValue;
         }
         #endregion
     }

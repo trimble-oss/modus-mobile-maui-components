@@ -4,5 +4,6 @@ internal class BorderlessEditor : Editor
 {
     public BorderlessEditor()
     {
+        BackgroundColor = Colors.Transparent;
     }
 }

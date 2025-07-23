@@ -12,9 +12,4 @@ public partial class SpinnerSamplePage : ContentPage
         InitializeComponent();
         BindingContext = spinnerSamplePageViewModel;
     }
-
-    private void SelectedRadioButtonChanged(object sender, Trimble.Modus.Components.TMRadioButtonEventArgs e)
-    {
-        spinnerSamplePageViewModel.SpinnerColor = ((string)e.Value == "Primary") ? SpinnerColor.Primary : SpinnerColor.Secondary;
-    }
 }

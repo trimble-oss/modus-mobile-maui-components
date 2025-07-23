@@ -4,42 +4,36 @@
                 ControlTemplate="{StaticResource InputTemplate}"
                 xmlns:base="clr-namespace:Trimble.Modus.Components.Controls.BaseInput"
                 xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters"
+                xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
                 x:Class="Trimble.Modus.Components.TMInput"
                 xmlns:controls="clr-namespace:Trimble.Modus.Components"
                 x:Name="singleInput">
 
-  <base:BaseInput.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="InputTemplateResourceDictionary.xaml" />
-      </ResourceDictionary.MergedDictionaries>
+  <base:BaseInput.Resources> 
       <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
       <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
-      <converters:AllTrueConverter x:Key="AllTrueConverter" />
-    </ResourceDictionary>
+      <converters:AllTrueConverter x:Key="AllTrueConverter" />   
   </base:BaseInput.Resources>
 
   <Grid ColumnDefinitions="auto,*,auto"
         ColumnSpacing="0"
         RowSpacing="0"
-        RowDefinitions="40"
+        RowDefinitions="48"
         Padding="0"
-        BindingContext="{x:Reference singleInput }" >
+        BindingContext="{x:Reference singleInput}">
     <ContentView x:Name="leftCustomView"
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
                  Grid.Column="0"
-                 Grid.Row="0"
-                 HeightRequest="40"
                  Content="{Binding LeftView}">
       <ContentView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding LeftIconCommand}" CommandParameter="{Binding LeftIconCommandParameter}" />
+        <TapGestureRecognizer Command="{Binding LeftIconCommand}"
+                              CommandParameter="{Binding LeftIconCommandParameter}" />
       </ContentView.GestureRecognizers>
     </ContentView>
     <controls:BorderlessEntry x:Name="inputBorderlessEntry"
                               FontFamily="OpenSansRegular"
-                              Grid.Row="0"
                               Grid.Column="1"
                               Focused="InputBorderlessEntry_Focused"
                               Unfocused="InputBorderlessEntry_Unfocused"
@@ -60,19 +54,18 @@
         <MultiBinding Converter="{StaticResource AllTrueConverter}">
           <Binding Path="IsEnabled" />
           <Binding Path="IsReadOnly"
-                  Converter="{StaticResource InverseBoolConverter}" />
+                   Converter="{StaticResource InverseBoolConverter}" />
         </MultiBinding>
       </controls:BorderlessEntry.IsEnabled>
     </controls:BorderlessEntry>
     <ContentView x:Name="rightCustomView"
                  VerticalOptions="Center"
                  HorizontalOptions="Center"
-                 Grid.Row="0"
                  Grid.Column="2"
-                 HeightRequest="40"
                  Content="{Binding RightView}">
       <ContentView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding RightIconCommand}" CommandParameter="{Binding RightIconCommandParameter}" />
+        <TapGestureRecognizer Command="{Binding RightIconCommand}"
+                              CommandParameter="{Binding RightIconCommandParameter}" />
       </ContentView.GestureRecognizers>
     </ContentView>
   </Grid>

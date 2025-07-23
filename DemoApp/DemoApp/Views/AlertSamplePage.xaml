@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.AlertSamplePage"
+             xmlns:modus="http://modus.trimble.com/components"
+             xmlns:viewmodels="clr-namespace:DemoApp.ViewModels"
+             x:DataType="viewmodels:AlertSamplePageViewModel"
+             Title="Alerts">
+    <VerticalStackLayout Padding="10">
+      <VerticalStackLayout x:Name="alertLayout"/>
+      <Label Text="Alert Type"
+             FontAttributes="Bold"
+             FontSize="Large"
+             Margin="5" />
+      <modus:TMRadioButtonGroup SelectedIndex="{Binding SelectedAlertType}">
+        <modus:TMRadioButton Text="Success" />
+        <modus:TMRadioButton Text="Error" />
+        <modus:TMRadioButton Text="Warning" />
+        <modus:TMRadioButton Text="Primary" />
+        <modus:TMRadioButton Text="Secondary" />
+        <modus:TMRadioButton Text="Dark" />
+      </modus:TMRadioButtonGroup>
+      <HorizontalStackLayout VerticalOptions="Center"
+                             Margin="5">
+        <Label Text="Hide Left Icon"
+                VerticalOptions="Center"
+                Margin="0,0,5,0" />
+        <Switch IsToggled="{Binding HideLeftIcon}"
+                VerticalOptions="Center" />
+      </HorizontalStackLayout>
+      <HorizontalStackLayout VerticalOptions="Center"
+                             Margin="5">
+        <Label Text="Show Button"
+                VerticalOptions="Center"
+                Margin="0,0,5,0" />
+        <Switch IsToggled="{Binding ShowButton}"
+                VerticalOptions="Center" />
+      </HorizontalStackLayout>
+      <HorizontalStackLayout VerticalOptions="Center"
+                             Margin="5">
+        <Label Text="Dismissable"
+                VerticalOptions="Center"
+                Margin="0,0,5,0" />
+        <Switch IsToggled="{Binding Dismissable}"
+                VerticalOptions="Center" />
+      </HorizontalStackLayout>
+      <Button Text="Show"
+              Margin="50, 10"
+              Command="{Binding ShowAlertCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

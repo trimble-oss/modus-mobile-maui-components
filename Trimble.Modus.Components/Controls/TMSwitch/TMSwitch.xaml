@@ -2,32 +2,48 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constants="clr-namespace:Trimble.Modus.Components.Constant"
-             xmlns:color="clr-namespace:Trimble.Modus.Components.Styles"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
              HorizontalOptions="Start"
              VerticalOptions="Center"
+             x:Name="tmSwitch"
              x:Class="Trimble.Modus.Components.TMSwitch">
   <ContentView.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <color:Colors />
+        <local:TMSwitchStyles />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </ContentView.Resources>
   <Grid x:Name="container"
-        ColumnDefinitions="auto,auto"
-        ColumnSpacing="5">
+        HorizontalOptions="StartAndExpand"
+        BindingContext="{x:Reference tmSwitch}"
+        ColumnDefinitions="*,auto,*">
     <Grid.GestureRecognizers>
       <TapGestureRecognizer Tapped="OnSwitchTapped" />
     </Grid.GestureRecognizers>
+    <Label x:Name="switchLeftText"
+           FontFamily="OpenSansRegular"
+           Grid.Column="0"
+           Padding="0,0,8,0"
+           Text="{Binding Text}"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
     <BoxView x:Name="border"
-               BackgroundColor="{StaticResource Transparent}"
-               HorizontalOptions="Start"
-               VerticalOptions="Center" />
+             Grid.Column="1"
+             BackgroundColor="{DynamicResource Transparent}"
+             HorizontalOptions="Start"
+             VerticalOptions="Center" />
     <BoxView x:Name="circle"
-               Color="{StaticResource White}"
-               BackgroundColor="{StaticResource Transparent}"
-               HorizontalOptions="Start"
-               VerticalOptions="Center" />
-    <Label x:Name="switchText" FontFamily="OpenSansRegular" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+             BackgroundColor="{DynamicResource Transparent}"
+             HorizontalOptions="Start"
+             Grid.Column="1"
+             VerticalOptions="Center" />
+    <Label x:Name="switchRightText"
+           FontFamily="OpenSansRegular"
+           Grid.Column="2"
+           Padding="8,0,0,0"
+           Text="{Binding Text}"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
   </Grid>
 </ContentView>

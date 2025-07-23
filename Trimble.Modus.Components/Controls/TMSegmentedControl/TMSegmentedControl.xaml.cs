@@ -1,9 +1,9 @@
+using Microsoft.Maui.Controls.Shapes;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Input;
-using Microsoft.Maui.Controls.Shapes;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Model;
 
@@ -97,14 +97,22 @@ public partial class TMSegmentedControl : ContentView
         set { SetValue(SelectedIndexChangedCommandProperty, value); }
     }
     #endregion
+
     #region Bindable properties
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(TMSegmentedControl), null, propertyChanged: OnItemSourceChanged, defaultBindingMode: BindingMode.TwoWay);
+
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(nameof(SelectedIndex), typeof(int), typeof(TMSegmentedControl), 0, BindingMode.TwoWay, propertyChanged: OnSelectedIndexChanged);
+
     public static readonly BindableProperty IsRoundedProperty = BindableProperty.Create(nameof(IsRounded), typeof(bool), typeof(TMSegmentedControl), false, propertyChanged: OnRoundedPropertyChanged);
+
     public static readonly BindableProperty ColorThemeProperty = BindableProperty.Create(nameof(ColorTheme), typeof(SegmentColorTheme), typeof(TMSegmentedControl), SegmentColorTheme.Primary, BindingMode.TwoWay, propertyChanged: OnColorThemeChanged);
+
     public static new readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(TMSegmentedControl), true, propertyChanged: OnEnabledStateChanged);
+
     public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(SegmentedControlSize), typeof(TMSegmentedControl), defaultValue: SegmentedControlSize.Small, BindingMode.TwoWay, propertyChanged: OnSizeChanged);
+
     public static readonly BindableProperty SelectedIndexChangedCommandProperty = BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(TMSegmentedControl));
+
     #endregion
 
     #region Property change handlers
@@ -241,6 +249,7 @@ public partial class TMSegmentedControl : ContentView
     }
 
     #endregion
+
     #region Private methods
     /// <summary>
     /// Populate Segment items in items source in the group

@@ -1,48 +1,40 @@
 namespace Trimble.Modus.Components.Constant;
+
 internal class ColorsConstants
 {
-    // Blue
-    public const string TrimbleBlueDark = "TrimbleBlueDark";
-    public const string TrimbleBlue = "TrimbleBlue";
-    public const string Blue = "Blue";
-    public const string BlueDark = "BlueDark";
-    public const string BlueLight = "BlueLight";
-    public const string HighlightBlue = "HighlightBlue";
-    public const string BluePale = "BluePale";
+    // Primary
+    public const string Primary = "Primary";
+    public const string PrimaryLight = "PrimaryLight";
+    public const string PrimaryDark = "PrimaryDark";
 
-    // Black
-    public const string TrimbleGray = "TrimbleGray";
-    public const string Gray10 = "Gray10";
-    public const string Gray9 = "Gray9";
-    public const string Gray8 = "Gray8";
-    public const string Gray7 = "Gray7";
-    public const string Gray6 = "Gray6";
-    public const string Gray5 = "Gray5";
-    public const string Gray4 = "Gray4";
-    public const string Gray3 = "Gray3";
-    public const string Gray2 = "Gray2";
-    public const string Gray1 = "Gray1";
-    public const string Gray0 = "Gray0";
-    public const string GrayLight = "GrayLight";
-    public const string White = "White";
+    // Text Colors
+    public const string DefaultTextColor = "DefaultTextColor";
+    public const string AlternateTextColor = "AlternateTextColor";
 
-    // Orange
-    public const string YellowDark = "YellowDark";
-    public const string Yellow = "Yellow";
-    public const string YellowLight = "YellowLight";
-    public const string YellowPale = "YellowPale";
+    // Danger
+    public const string Danger = "Danger";
+    public const string DangerLight = "DangerLight";
+    public const string DangerDark = "DangerDark";
+    
+    // Tertiary
+    public const string Tertiary = "Tertiary";
+    public const string TertiaryLight = "TertiaryLight";
+    public const string TertiaryDark = "TertiaryDark";
 
-    // Red
-    public const string RedDark = "RedDark";
-    public const string Red = "Red";
-    public const string RedLight = "RedLight";
-    public const string RedPale = "RedPale";
+    // Warning
+    public const string Warning = "Warning";
+    public const string WarningLight = "WarningLight";
+    public const string WarningDark = "WarningDark";
 
-    // Green
-    public const string GreenDark = "GreenDark";
-    public const string Green = "Green";
-    public const string GreenLight = "GreenLight";
-    public const string GreenPale = "GreenPale";
+    // Success
+    public const string Success = "Success";
+    public const string SuccessLight = "SuccessLight";
+    public const string SuccessDark = "SuccessDark";
+
+    // Secondary
+    public const string Secondary = "Secondary";
+    public const string SecondaryLight = "SecondaryLight";
+    public const string SecondaryDark = "SecondaryDark";
 
     // Transparent
     public const string Transparent = "Transparent";

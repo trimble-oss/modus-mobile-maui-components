@@ -2,24 +2,31 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="tmBadge"
+             xmlns:local="clr-namespace:Trimble.Modus.Components"
              VerticalOptions="Fill"
              x:Class="Trimble.Modus.Components.TMBadge">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <local:TMBadgeStyles></local:TMBadgeStyles>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </ContentView.Resources>
   <StackLayout BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start">
-
-
     <Border x:Name="frame"
+            BindingContext="{x:Reference tmBadge}"
             ZIndex="2"
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Stroke="Transparent">
-    <Label x:Name="label"
+      <Label x:Name="label"
            BindingContext="{x:Reference tmBadge}"
            Text="{Binding Text}"
            FontFamily="OpenSansBold"
            VerticalTextAlignment="Center"
            VerticalOptions="Center"
            HorizontalOptions="Center"/>
-  </Border>
+    </Border>
     <ContentView x:Name="content" IsVisible="false" ZIndex="1">
 
     </ContentView>

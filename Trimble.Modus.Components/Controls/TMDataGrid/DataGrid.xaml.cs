@@ -25,15 +25,10 @@ public partial class DataGrid
     private readonly Style _defaultHeaderStyle;
 
     /// <summary>
-    /// Selected Row color
-    /// </summary>
-    internal Color ActiveRowColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.BluePale);
-
-    /// <summary>
     /// Border color
     /// Default Value is Black
     /// </summary>
-    internal Color BorderColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.Gray2);
+    internal Color BorderColor = ResourcesDictionary.GetColor(ColorsConstants.TertiaryDark);
     /// <summary>
     /// Border thickness for header &amp; each cell
     /// </summary>
@@ -46,6 +41,7 @@ public partial class DataGrid
     {
         InitializeComponent();
         _defaultHeaderStyle = (Style)Resources["DefaultHeaderStyle"];
+        this.SetDynamicResource(StyleProperty, "DataGridStyle");
     }
 
     #endregion ctor
@@ -222,6 +218,9 @@ public partial class DataGrid
     public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(DataGrid), null, BindingMode.TwoWay);
     public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(DataGrid), null, BindingMode.TwoWay, propertyChanged: OnSelectedItemChanged, coerceValue: ValidateSelectionItemWithMode);
     public static readonly BindableProperty ColumnSortingInfoProperty = BindableProperty.Create(nameof(ColumnSortingInfo), typeof(DataGridSortInfo), typeof(DataGrid), null, BindingMode.TwoWay, ColumnSortingInfoValidator, OnColumnSortingInfoChanged);
+    public static readonly BindableProperty ActiveRowColorProperty = BindableProperty.Create(nameof(ActiveRowColor), typeof(Color), typeof(DataGrid), null, BindingMode.TwoWay, propertyChanged: (bindable, _, _) => (bindable as DataGrid).Reload());
+    public static readonly BindableProperty HeaderBackgroundColorProperty = BindableProperty.Create(nameof(HeaderBackgroundColor), typeof(Color), typeof(DataGrid), null, propertyChanged: (bindable, _, _) => (bindable as DataGrid).Reload());
+    public static readonly BindableProperty DefaultRowColorProperty = BindableProperty.Create(nameof(DefaultRowColor), typeof(Color), typeof(DataGrid), null, propertyChanged: (bindable, _, _) => (bindable as DataGrid).Reload());
     #endregion Bindable properties
 
     #region Property changed handlers
@@ -300,10 +299,8 @@ public partial class DataGrid
     {
         var dataGrid = (DataGrid)bindable;
         dataGrid.BorderThickness = (bool)newValue ? new(0.5) : new(0, 0, 0, 1);
-        dataGrid._headerView.Padding = new(0, 0, 0, 0);
-        dataGrid._headerView.ColumnSpacing = dataGrid.BorderThickness.HorizontalThickness;
-        dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight);
-        dataGrid._collectionView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : ResourcesDictionary.ColorsDictionary(ColorsConstants.White);
+        dataGrid._headerView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : dataGrid.HeaderBackgroundColor;
+        dataGrid._collectionView.BackgroundColor = (bool)newValue ? dataGrid.BorderColor : dataGrid.DefaultRowColor;
         dataGrid.Reload();
     }
     /// <summary>
@@ -389,6 +386,32 @@ public partial class DataGrid
     #endregion
 
     #region Properties
+    /// <summary>
+    /// Active row color based on theme
+    /// </summary>
+    internal Color DefaultRowColor
+    {
+        get => (Color)GetValue(DefaultRowColorProperty);
+        set => SetValue(DefaultRowColorProperty, value);
+    }
+
+    /// <summary>
+    /// Header Background color based on theme
+    /// </summary>
+    internal Color HeaderBackgroundColor
+    {
+        get => (Color)GetValue(HeaderBackgroundColorProperty);
+        set => SetValue(HeaderBackgroundColorProperty, value);
+    }
+    /// <summary>
+    /// Active row color based on theme
+    /// </summary>
+    internal Color ActiveRowColor
+    {
+        get => (Color)GetValue(ActiveRowColorProperty);
+        set => SetValue(ActiveRowColorProperty, value);
+    }
+
     /// <summary>
     /// Set if divider should be shown
     /// </summary>
@@ -625,9 +648,6 @@ public partial class DataGrid
         _headerView.ColumnDefinitions.Clear();
         ResetSortingOrders();
 
-        _headerView.Padding = new(BorderThickness.Left, BorderThickness.Top, BorderThickness.Right, 0);
-        _headerView.ColumnSpacing = BorderThickness.HorizontalThickness;
-
         if (Columns == null)
         {
             return;
@@ -656,7 +676,7 @@ public partial class DataGrid
         }
         foreach (var child in _headerView.Children.OfType<View>())
         {
-            child.BackgroundColor = ResourcesDictionary.ColorsDictionary(ColorsConstants.GrayLight);
+            child.BackgroundColor = HeaderBackgroundColor;
         }
     }
 
