@@ -27,7 +27,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Trimble.Modus.Components</PackageId>
     <Title>Trimble Modus</Title>
-    <Version>1.2.4</Version>
+    <Version>1.2.5</Version>
     <Authors>Trimble Inc</Authors>
     <Company>Trimble Inc</Company>
     <Product>Trimble.Modus.Components</Product>
@@ -64,12 +64,15 @@
     <None Include="LICENSE.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
     <None Include="Trimble.Modus.Components.targets" Pack="True" PackagePath="buildTransitive\" />
+    <None Include="Resources\Images\*.svg" Pack="True" PackagePath="buildTransitive\Resources\Images\"/>
   </ItemGroup>
-  <ItemGroup>
-    <MauiImage Include="Images\*.svg" />
+
+  <ItemGroup Condition="'$(Configuration)'=='Debug'">
+    <MauiImage Include="Resources\Images\*.svg" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
