@@ -1,6 +1,5 @@
 <Project>
   <ItemGroup>
-    <MauiImage Include="$(MSBuildThisFileDirectory)\Resources\Modus\*.svg">
-    </MauiImage>
+    <MauiImage Include="$(MSBuildThisFileDirectory)\Resources\Images\*.svg" />
   </ItemGroup>
 </Project>
