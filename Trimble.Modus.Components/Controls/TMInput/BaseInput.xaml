@@ -28,13 +28,13 @@
                         IsVisible="{Binding TitleText, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"/>
         <Border x:Name="inputBorder"
             MinimumHeightRequest="48"
-            VerticalOptions="FillAndExpand"
+            VerticalOptions="Fill"
             Grid.Row="1"
             Padding="0">
           <Border.StrokeShape>
             <RoundRectangle CornerRadius="4" />
           </Border.StrokeShape>
-          <ContentPresenter VerticalOptions="FillAndExpand" />
+          <ContentPresenter VerticalOptions="Fill" />
         </Border>
         <Grid x:Name="inputHelperLayout"
           Grid.Row="2"
