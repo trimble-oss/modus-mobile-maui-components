@@ -10,8 +10,6 @@
                 x:Name="singleInput">
 
   <base:BaseInput.Resources> 
-      <converters:ImageNullOrEmptyBoolConverter x:Key="ImageNullOrEmptyBoolConverter" />
-      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
       <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
       <converters:AllTrueConverter x:Key="AllTrueConverter" />   
   </base:BaseInput.Resources>
@@ -48,7 +46,7 @@
                               ReturnCommand="{Binding ReturnCommand}"
                               ReturnCommandParameter="{Binding ReturnCommandParameter}"
                               VerticalOptions="Center"
-                              HorizontalOptions="FillAndExpand">
+                              HorizontalOptions="Fill">
 
       <controls:BorderlessEntry.IsEnabled>
         <MultiBinding Converter="{StaticResource AllTrueConverter}">
