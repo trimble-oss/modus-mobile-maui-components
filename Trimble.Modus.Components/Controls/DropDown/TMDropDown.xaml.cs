@@ -206,7 +206,8 @@ public partial class TMDropDown : ContentView
             RaiseSelectionChangedEvent(previousSelection, e.SelectedItemIndex);
             UpdateCellColor((ListView)sender);
         }
-        label.Text = e.SelectedItem.ToString();
+        if(e.SelectedItem != null)
+            label.Text = e.SelectedItem.ToString();
         if (PopupService.Instance.PopupStack.Count > 0)
         {
             PopupService.Instance?.DismissAsync();
