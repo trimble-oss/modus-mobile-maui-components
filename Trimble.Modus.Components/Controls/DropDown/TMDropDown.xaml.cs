@@ -198,16 +198,19 @@ public partial class TMDropDown : ContentView
     private void OnSelected(object sender, SelectedItemChangedEventArgs e)
     {
         previousSelection = SelectedItem;
+        var listView = (ListView)sender;
+        var newItem = e.SelectedItem;
+        var newIndex = e.SelectedItemIndex;
 
-        if (SelectedItem != null)
-        {
-            SelectedItem = e.SelectedItem;
-            SelectedIndex = e.SelectedItemIndex;
-            RaiseSelectionChangedEvent(previousSelection, e.SelectedItemIndex);
-            UpdateCellColor((ListView)sender);
-        }
-        if(e.SelectedItem != null)
-            label.Text = e.SelectedItem.ToString();
+        // Always update (even if newItem is null – that represents clearing)
+        SelectedItem = newItem;
+        SelectedIndex = newIndex;
+
+        RaiseSelectionChangedEvent(previousSelection, newIndex);
+        UpdateCellColor(listView);
+
+        label.Text = newItem?.ToString() ?? string.Empty;
+
         if (PopupService.Instance.PopupStack.Count > 0)
         {
             PopupService.Instance?.DismissAsync();
