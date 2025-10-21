@@ -155,18 +155,20 @@ public partial class TMToastContents : PopupPage
         UpdateIconColor();
 
     }
+
+    bool isPopupClosed = false;
     private void CloseButtonClicked(object sender, EventArgs e)
-
-    {
+    {        
         PopupService.Instance.RemovePageAsync(this, true);
-
+        isPopupClosed = true;
     }
     public void CloseAfterDelay()
     {
         Task.Run(async () =>
         {
             await Task.Delay(DELAYTIME);
-            await PopupService.Instance.RemovePageAsync(this, true);
+            if (!isPopupClosed)
+                await PopupService.Instance.RemovePageAsync(this, true);
         });
     }
 

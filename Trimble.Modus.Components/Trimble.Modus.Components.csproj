@@ -27,7 +27,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Trimble.Modus.Components</PackageId>
     <Title>Trimble Modus</Title>
-    <Version>1.3.0.2</Version>
+    <Version>1.3.0.3</Version>
     <Authors>Trimble Inc</Authors>
     <Company>Trimble Inc</Company>
     <Product>Trimble.Modus.Components</Product>
