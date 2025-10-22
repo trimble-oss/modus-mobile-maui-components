@@ -156,18 +156,17 @@ public partial class TMToastContents : PopupPage
 
     }
 
-    bool isPopupClosed = false;
     private void CloseButtonClicked(object sender, EventArgs e)
-    {        
-        PopupService.Instance.RemovePageAsync(this, true);
-        isPopupClosed = true;
+    {
+        if (PopupService.Instance.PopupStack.Contains(this))
+            PopupService.Instance.RemovePageAsync(this, true);
     }
     public void CloseAfterDelay()
     {
         Task.Run(async () =>
         {
             await Task.Delay(DELAYTIME);
-            if (!isPopupClosed)
+            if (PopupService.Instance.PopupStack.Contains(this))
                 await PopupService.Instance.RemovePageAsync(this, true);
         });
     }
