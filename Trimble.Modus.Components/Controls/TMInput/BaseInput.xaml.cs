@@ -461,13 +461,13 @@ public partial class BaseInput : ContentView
             if (hasError)
             {
                 tmInput.HelperLayout.IsVisible = true;
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Error");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "ErrorInput");
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
             }
             else if (hasSuccess)
             {
                 tmInput.HelperLayout.IsVisible = true;
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Success");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "SuccessInput");
                 tmInput.HelperLabel.Text = tmInput.SuccessText;
             }
             else
@@ -480,7 +480,7 @@ public partial class BaseInput : ContentView
                 {
                     tmInput.HelperLayout.IsVisible = false;
                 }
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Primary");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "PrimaryInput");
                 tmInput.HelperLabel.Text = tmInput.HelperText;
             }
 
@@ -495,13 +495,13 @@ public partial class BaseInput : ContentView
             {
                 tmInput.HelperLayout.IsVisible = true;
                 tmInput.HelperLabel.Text = tmInput.ErrorText;
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Error");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "ErrorInput");
             }
             else if (tmInput.IsRequired && string.IsNullOrEmpty(tmInput.Text))
             {
                 tmInput.HelperLayout.IsVisible = true;
                 tmInput.HelperLabel.Text = "Field is Required";
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Error");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "ErrorInput");
 
             }
             else
@@ -510,12 +510,12 @@ public partial class BaseInput : ContentView
                 {
                     tmInput.HelperLayout.IsVisible = true;
                     tmInput.HelperLabel.Text = tmInput.HelperText;
-                    tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
+                    tmInput.SetDynamicResource(BaseInput.StyleProperty, "DefaultInput");
 
                 }
                 else
                 {
-                    tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
+                    tmInput.SetDynamicResource(BaseInput.StyleProperty, "DefaultInput");
                     tmInput.HelperLayout.IsVisible = false;
                 }
             }
@@ -541,13 +541,13 @@ public partial class BaseInput : ContentView
             if (tmInput.IsEnabled)
             {
                 tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = 1;
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "DefaultInput");
                 tmInput.GetCoreContent().SetDynamicResource(BackgroundColorProperty, ColorsConstants.Transparent);
                 SetBorderColor(tmInput);
             }
             else
             {
-                tmInput.SetDynamicResource(BaseInput.StyleProperty, "Default");
+                tmInput.SetDynamicResource(BaseInput.StyleProperty, "DefaultInput");
                 tmInput.InputBorder.StrokeThickness = 1;
                 tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = disabledOpacity;
             }
@@ -556,7 +556,7 @@ public partial class BaseInput : ContentView
 
     private static void SetReadOnlyStyles(BaseInput tmInput)
     {
-        tmInput.SetDynamicResource(BaseInput.StyleProperty, "ReadOnly");
+        tmInput.SetDynamicResource(BaseInput.StyleProperty, "ReadOnlyInput");
         tmInput.InputBorder.StrokeThickness = 0;
         tmInput.InputBorder.Opacity = tmInput.HelperLayout.Opacity = 1;
     }

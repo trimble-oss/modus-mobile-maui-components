@@ -212,4 +212,27 @@ public partial class TMInput : BaseInput
     }
 
     #endregion
+
+    protected override void OnParentSet()
+    {
+        base.OnParentSet();
+        if (Parent == null)
+            CleanupTemplateReferences();
+    }
+
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+        if (Handler == null)
+            CleanupTemplateReferences();
+    }
+
+    private void CleanupTemplateReferences()
+    {
+        InputBorder = null;
+        HelperLabel = null;
+        HelperIcon = null;
+        HelperLayout = null;
+        ControlLabel = null;
+    }
 }

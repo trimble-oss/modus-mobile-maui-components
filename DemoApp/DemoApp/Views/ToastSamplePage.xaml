@@ -34,12 +34,12 @@
       <Picker.ItemsSource>
         <x:Array Type="{x:Type theme:ToastTheme}">
           <theme:ToastTheme></theme:ToastTheme>
-          <theme:ToastTheme>Dark</theme:ToastTheme>
-          <theme:ToastTheme>Primary</theme:ToastTheme>
-          <theme:ToastTheme>Secondary</theme:ToastTheme>
-          <theme:ToastTheme>Danger</theme:ToastTheme>
-          <theme:ToastTheme>Warning</theme:ToastTheme>
-          <theme:ToastTheme>Success</theme:ToastTheme>
+          <theme:ToastTheme>DarkToast</theme:ToastTheme>
+          <theme:ToastTheme>PrimaryToast</theme:ToastTheme>
+          <theme:ToastTheme>SecondaryToast</theme:ToastTheme>
+          <theme:ToastTheme>DangerToast</theme:ToastTheme>
+          <theme:ToastTheme>WarningToast</theme:ToastTheme>
+          <theme:ToastTheme>SuccessToast</theme:ToastTheme>
         </x:Array>
       </Picker.ItemsSource>
 

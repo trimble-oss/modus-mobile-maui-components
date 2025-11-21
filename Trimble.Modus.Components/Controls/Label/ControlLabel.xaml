@@ -7,10 +7,8 @@
              x:Name="controlLabelView">
   <ContentView.Resources>
     <ResourceDictionary>
-      <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
-      <ResourceDictionary.MergedDictionaries>
-        <local:ControlLabelStyles />
-      </ResourceDictionary.MergedDictionaries>
+
+    <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
     </ResourceDictionary>
   </ContentView.Resources>
   <Grid x:Name="view"

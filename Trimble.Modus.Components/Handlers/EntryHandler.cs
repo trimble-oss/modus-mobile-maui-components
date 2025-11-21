@@ -8,12 +8,12 @@ namespace Trimble.Modus.Components.Handlers;
 
 internal partial class EntryHandler : Microsoft.Maui.Handlers.EntryHandler
 {
-    public EntryHandler()
+    static EntryHandler()
     {
         Mapper.AppendToMapping("TMBorderlessEntryCustomization", MapTMEntry);
     }
 
-    public void MapTMEntry(IEntryHandler entryHandler, IEntry entry)
+    public static void MapTMEntry(IEntryHandler entryHandler, IEntry entry)
     {
         if (entry is BorderlessEntry && entryHandler is EntryHandler)
         {

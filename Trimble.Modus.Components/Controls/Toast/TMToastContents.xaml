@@ -9,38 +9,31 @@
                  CloseWhenBackgroundIsClicked="False"
                  BackgroundInputTransparent="True">
 
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <local:TMToastStyles></local:TMToastStyles>
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </ContentPage.Resources>
+  
 
   <VerticalStackLayout x:Name="toastLayout"
                        HorizontalOptions="Fill"
                        VerticalOptions="End">
 
-    <Border  VerticalOptions="CenterAndExpand"
-             HorizontalOptions="FillAndExpand"
+    <Border  VerticalOptions="Center"
+             HorizontalOptions="Fill"
              BackgroundColor="{DynamicResource Transparent}">
       <Border.StrokeShape>
         <RoundRectangle CornerRadius="4" />
       </Border.StrokeShape>
 
-      <StackLayout x:Name="contentLayout"
+      <Grid x:Name="contentLayout"
                    VerticalOptions="Center"
                    BackgroundColor="{Binding ToastBackgroundColor}"
-                   HorizontalOptions="FillAndExpand"
-                   Orientation="Horizontal">
+                   HorizontalOptions="Fill" ColumnDefinitions="auto, *, auto, auto">
         <Image x:Name="leftIconImage"
                Margin="16,8,16,8"
                Source="{Binding LeftIconSource}"
                WidthRequest="16"
                HeightRequest="16"
                HorizontalOptions="Start"
-               VerticalOptions="CenterAndExpand" />
-        <Label x:Name="label"
+               VerticalOptions="Center" />
+        <Label x:Name="label" Grid.Column="1"
                FontFamily="OpenSansRegular"
                Text="{Binding Message}"
                LineBreakMode="TailTruncation"
@@ -50,11 +43,11 @@
                FontSize="14"
                TextColor="{Binding TextColor}"
                VerticalOptions="Center"
-               HorizontalOptions="FillAndExpand" />
+               HorizontalOptions="Fill" />
         <Button x:Name="actionButton"
                 HorizontalOptions="End"
                 VerticalOptions="Center"
-                FontSize="14"
+                FontSize="14" Grid.Column="2"
                 Clicked="CloseButtonClicked" />
         <ImageButton x:Name="closeButton"
                      MaximumHeightRequest="16"
@@ -65,9 +58,9 @@
                      Padding="{OnPlatform '0', iOS='16,16,0,16', WinUI='16'}"
                      HorizontalOptions="End"
                      VerticalOptions="Center"
-                     Clicked="CloseButtonClicked"
+                     Clicked="CloseButtonClicked" Grid.Column="3"
                      BackgroundColor="{DynamicResource Transparent}" />
-      </StackLayout>
+      </Grid>
 
     </Border>
   </VerticalStackLayout>

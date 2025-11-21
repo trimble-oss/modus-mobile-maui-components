@@ -2,11 +2,11 @@
 
 public enum ToastTheme
 {
-    Default,
-    Dark,
-    Primary,
-    Secondary,
-    Danger,
-    Warning,
-    Success
+    DefaultToast,
+    DarkToast,
+    PrimaryToast,
+    SecondaryToast,
+    DangerToast,
+    WarningToast,
+    SuccessToast
 }

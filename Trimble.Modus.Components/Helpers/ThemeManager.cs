@@ -1,4 +1,5 @@
 ﻿using Trimble.Modus.Components.Hosting;
+using Trimble.Modus.Components.Styles;
 
 namespace Trimble.Modus.Components.Helpers
 {
@@ -16,8 +17,13 @@ namespace Trimble.Modus.Components.Helpers
             UpdateColorsDictionary(appConfig);
             UpdateStylingDictionary(appConfig);
             UpdateTheme(Application.Current.RequestedTheme);
-
+            RegisterStyles();
             Application.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
+        }
+
+        public static void RegisterStyles()
+        {            
+            Application.Current.Resources.MergedDictionaries.Add(new ModusStyles()); 
         }
 
         private static void UpdateColorsDictionary(ModusConfig appConfig = null)

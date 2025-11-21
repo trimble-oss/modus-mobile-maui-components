@@ -5,14 +5,7 @@
                  xmlns:local="clr-namespace:Trimble.Modus.Components"
                  x:Class="Trimble.Modus.Components.DropDownContents"
                  BackgroundColor="{DynamicResource Transparent}"
-                 Title="DropDownPopupPage">
-  <Modus:PopupPage.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <local:DropDownStyles />
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </Modus:PopupPage.Resources>
+                 Title="DropDownPopupPage"> 
   <Border x:Name="border"
           VerticalOptions="Start"
           HorizontalOptions="Start"

@@ -66,7 +66,7 @@ public partial class ModalSamplePage : ContentPage
         catch (Exception ex)
         {
             TMToast tMToast = new(ex.Message);
-            tMToast.theme = ToastTheme.Danger;
+            tMToast.theme = ToastTheme.DangerToast;
             tMToast.Show();
         }
     }

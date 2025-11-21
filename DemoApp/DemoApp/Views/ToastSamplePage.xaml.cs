@@ -9,7 +9,7 @@ public partial class ToastSamplePage : ContentPage
     public ToastSamplePage()
     {
         InitializeComponent();
-        toastPicker.SelectedItem = ToastTheme.Default;
+        toastPicker.SelectedItem = ToastTheme.DefaultToast;
     }
 
     private void OnToastActionTapped(object sender, EventArgs e)
