@@ -9,16 +9,13 @@
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
   <ContentView.Resources>
     <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <local:DropDownStyles />
-      </ResourceDictionary.MergedDictionaries>
-      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
-    </ResourceDictionary>    
+    <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+    </ResourceDictionary>
   </ContentView.Resources>
   <VerticalStackLayout BindingContext="{x:Reference dropDown}">
     <local:ControlLabel TitleText="{Binding TitleText}"
                         IsRequired="{Binding IsRequired}"
-                        IsVisible="{Binding TitleText, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"/>
+                        IsVisible="{Binding TitleText, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"/>
     <Border x:Name="innerBorder"
             HorizontalOptions="Fill"
             StrokeThickness="2"
@@ -45,7 +42,7 @@
 
         <Image x:Name="indicatorButton"
                Source="{Static constants:ImageConstants.ChevronDownIconWhite}"
-               HorizontalOptions="EndAndExpand"
+               HorizontalOptions="End"
                VerticalOptions="Center"
                Grid.Column="1"
                HeightRequest="32"

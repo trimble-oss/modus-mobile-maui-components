@@ -11,7 +11,7 @@ namespace Trimble.Modus.Components
         #endregion
         #region Public Properties
         private Action? action = null;
-        public ToastTheme theme = ToastTheme.Default;
+        public ToastTheme theme = ToastTheme.DefaultToast;
         public bool isDismissable = true;
         #endregion
         public TMToast(string message, string actionButtonText = null, Action? action = null)

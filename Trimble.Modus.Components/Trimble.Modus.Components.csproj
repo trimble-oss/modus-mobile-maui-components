@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net9.0;net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
-      $(TargetFrameworks);net8.0-windows10.0.19041.0
+      $(TargetFrameworks);net9.0-windows10.0.19041.0
     </TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following
 		this: https://github.com/Samsung/Tizen.NET -->
@@ -27,7 +27,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>Trimble.Modus.Components</PackageId>
     <Title>Trimble Modus</Title>
-    <Version>1.3.0.3</Version>
+    <Version>1.4.0</Version>
     <Authors>Trimble Inc</Authors>
     <Company>Trimble Inc</Company>
     <Product>Trimble.Modus.Components</Product>
@@ -100,17 +100,11 @@
     <Compile Update="Controls\TMDataGrid\ColumnTypes\TextColumn.xaml.cs">
       <DependentUpon>TextColumn.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Controls\TMInput\TMInputStyles.xaml.cs">
-      <DependentUpon>TMInputStyles.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Controls\TMInput\TMInput.xaml.cs">
       <DependentUpon>TMInput.xaml</DependentUpon>
     </Compile>
     <Compile Update="Controls\TMModal\TMModalContents.xaml.cs">
       <DependentUpon>TMModalContents.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Controls\TMSwitch\TMSwitchStyles.xaml.cs">
-      <DependentUpon>TMSwitchStyles.xaml</DependentUpon>
     </Compile>
     <Compile Update="Handlers\TMFloatingButtonAndroidTouchHandler.cs">
       <ExcludeFromCurrentConfiguration>false</ExcludeFromCurrentConfiguration>
@@ -136,12 +130,6 @@
     <MauiXaml Update="Controls\Label\ControlLabel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
-    <MauiXaml Update="Controls\DropDown\DropDownStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Controls\Label\ControlLabelStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
     <MauiXaml Update="Controls\TMBadge\TMBadgeStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
@@ -149,9 +137,6 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMCheckBox\TMCheckBoxStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Controls\TMInput\TMInputStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Controls\TMInput\TMNumberInputStyles.xaml">
@@ -202,9 +187,6 @@
     <MauiXaml Update="Controls\TMSlider\TMSlider.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
-    <MauiXaml Update="Controls\TMSwitch\TMSwitchStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
     <MauiXaml Update="Controls\TMSwitch\TMSwitch.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
@@ -230,6 +212,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Styles\LightThemeColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Styles\ModusStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Styles\Styles.xaml">

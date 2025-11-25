@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Trimble.Modus.Components.Styles.ModusStyles"
+             xmlns:local="clr-namespace:Trimble.Modus.Components;assembly=Trimble.Modus.Components"
+             xmlns:toast="clr-namespace:Trimble.Modus.Components.Controls.Toast">
+
+  <!--TMInput Styles-->
+  <Style TargetType="local:TMInput"
+        x:Key="DefaultInput">
+    <Setter Property="HelperIconImage"
+           Value="{DynamicResource InputBlueInfoOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+           Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+           Value="{DynamicResource InputDefaultBorderColor}" />
+    <Setter Property="BackgroundColor"
+           Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+           Value="{DynamicResource InputDefaultHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+           Value="{DynamicResource InputDefaultHelperTextColor}" />
+  </Style>
+
+  <Style TargetType="local:TMInput"
+        x:Key="PrimaryInput">
+    <Setter Property="HelperIconImage"
+           Value="{DynamicResource InputBlueInfoOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+           Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+           Value="{DynamicResource InputPrimaryBorderColor}" />
+    <Setter Property="BackgroundColor"
+           Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+           Value="{DynamicResource InputPrimaryHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+           Value="{DynamicResource InputDefaultHelperTextColor}" />
+  </Style>
+
+  <Style TargetType="local:TMInput"
+        x:Key="SuccessInput">
+    <Setter Property="HelperIconImage"
+           Value="{DynamicResource InputSuccessOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+           Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+           Value="{DynamicResource InputSuccessBorderColor}" />
+    <Setter Property="BackgroundColor"
+           Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+           Value="{DynamicResource InputSuccessHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+           Value="{DynamicResource InputDefaultHelperTextColor}" />
+  </Style>
+
+  <Style TargetType="local:TMInput"
+        x:Key="ErrorInput">
+    <Setter Property="HelperIconImage"
+           Value="{DynamicResource InputErrorOutlineIcon}" />
+    <Setter Property="HeaderTextColor"
+           Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+           Value="{DynamicResource InputErrorBorderColor}" />
+    <Setter Property="BackgroundColor"
+           Value="{DynamicResource InputDefaultBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+           Value="{DynamicResource InputErrorHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+           Value="{DynamicResource InputDefaultHelperTextColor}" />
+  </Style>
+
+  <Style TargetType="local:TMInput"
+        x:Key="ReadOnlyInput">
+    <Setter Property="HelperIconImage"
+           Value="{DynamicResource DefaultCheckBoxImage}" />
+    <Setter Property="HeaderTextColor"
+           Value="{DynamicResource InputHeaderTextColor}" />
+    <Setter Property="BorderColor"
+           Value="{DynamicResource InputReadOnlyBorderColor}" />
+    <Setter Property="BackgroundColor"
+           Value="{DynamicResource InputReadOnlyBackgroundColor}" />
+    <Setter Property="HelperLayoutBackground"
+           Value="{DynamicResource InputReadOnlyHelperLayoutBackgroundColor}" />
+    <Setter Property="HelperTextColor"
+           Value="{DynamicResource InputDefaultHelperTextColor}" />
+  </Style>
+
+  <!--Control Label Styles-->
+  <Style TargetType="local:ControlLabel"
+       x:Key="DefaultControlLabelStyle">
+    <Setter Property="HeaderTextColor"
+          Value="{DynamicResource ControlLabelTextColor}" />
+  </Style>
+
+  <!--TMDropdown Styles-->
+  <Style TargetType="local:TMDropDown"
+       x:Key="DefaultStyle">
+    <Setter Property="BackgroundColor"
+          Value="{DynamicResource DropDownBackgroundColor}" />
+    <Setter Property="BorderColor"
+          Value="{DynamicResource DropDownBorderColor}" />
+    <Setter Property="TextAndIconColor"
+          Value="{DynamicResource DropDownTextAndIconColor}" />
+  </Style>
+
+  <Style TargetType="local:DropDownContents"
+       x:Key="DefaulDropDownContentstStyle">
+    <Setter Property="BorderColor"
+          Value="{DynamicResource DropDownContentBorderColor}" />
+  </Style>
+
+  <!--TMButton Styles-->
+  <Style TargetType="local:TMButton" x:Key="PrimaryFill">
+    <Setter Property="TextColor" Value="{DynamicResource PrimaryFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource PrimaryFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource PrimaryFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="SecondaryFill">
+    <Setter Property="TextColor" Value="{DynamicResource SecondaryFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource SecondaryFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource SecondaryFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="TertiaryFill">
+    <Setter Property="TextColor" Value="{DynamicResource TertiaryFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource TertiaryFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource TertiaryFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource TertiaryFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource TertiaryFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="DangerFill">
+    <Setter Property="TextColor" Value="{DynamicResource DangerFillButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource DangerFillIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource DangerFillButtonBackgroundColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DangerFillButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource DangerFillButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="PrimaryOutline">
+    <Setter Property="TextColor" Value="{DynamicResource PrimaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource PrimaryOutlineIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource PrimaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryOutlineButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryOutlineButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="SecondaryOutline">
+    <Setter Property="TextColor" Value="{DynamicResource SecondaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource SecondaryOutlineIconTintColor}"></Setter>
+    <Setter Property="BorderColor" Value="{DynamicResource SecondaryOutlineButtonTextColor}"></Setter>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryOutlineButtonBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryOutlineButtonSelectedBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <Style TargetType="local:TMButton" x:Key="Borderless">
+    <Setter Property="TextColor" Value="{DynamicResource BorderlessButtonTextColor}"></Setter>
+    <Setter Property="IconTintColor" Value="{DynamicResource BorderlessIconTintColor}"></Setter>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource BorderlessButtonBackgroundColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource BorderlessButtonBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource BorderlessButtonSelectedBackgroundColor}"/>
+              <Setter Property="BorderColor" Value="{DynamicResource BorderlessButtonSelectedBorderColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <!--TMSwitch Styles-->
+  <Style TargetType="local:TMSwitch" x:Key="SwitchStyle">
+    <Setter Property="TextColor" Value="{DynamicResource SwitchTextColor}"/>
+    <Setter Property="ThumbColor"
+          Value="{DynamicResource SwitchThumbColor}"/>
+    <Setter Property="VisualStateManager.VisualStateGroups">
+      <VisualStateGroupList>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="On">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SwitchOnBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Off">
+            <VisualState.Setters>
+              <Setter Property="BackgroundColor" Value="{DynamicResource SwitchOffBackgroundColor}"/>
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateGroupList>
+    </Setter>
+  </Style>
+
+  <!--TMToastStyles-->
+  <Style TargetType="toast:TMToastContents" x:Key="DefaultToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastDefaultBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastDefaultTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastDefaultLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastDefaultRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="toast:TMToastContents" x:Key="DarkToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastDarkBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastDarkTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastDarkLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastDarkRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="toast:TMToastContents" x:Key="PrimaryToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastPrimaryBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastPrimaryTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastPrimaryLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastPrimaryRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="toast:TMToastContents" x:Key="SecondaryToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastSecondaryBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastSecondaryTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastSecondaryLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastSecondaryRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="toast:TMToastContents" x:Key="DangerToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastDangerBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastDangerTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastDangerLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastDangerRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="toast:TMToastContents" x:Key="WarningToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastWarningBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastWarningTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastWarningLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastWarningRightIconTintColor}"/>
+  </Style>
+  <Style TargetType="toast:TMToastContents" x:Key="SuccessToast">
+    <Setter Property="ToastBackgroundColor" Value="{DynamicResource ToastSuccessBackgroundColor}"/>
+    <Setter Property="TextColor" Value="{DynamicResource ToastSuccessTextColor}"/>
+    <Setter Property="LeftIconTintColor" Value="{DynamicResource ToastSuccessLeftIconTintColor}"/>
+    <Setter Property="RightIconTintColor" Value="{DynamicResource ToastSuccessRightIconTintColor}"/>
+  </Style>
+</ResourceDictionary>

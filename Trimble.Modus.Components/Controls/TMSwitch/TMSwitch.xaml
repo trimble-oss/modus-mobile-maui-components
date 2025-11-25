@@ -5,13 +5,7 @@
              xmlns:local="clr-namespace:Trimble.Modus.Components"
              x:Name="tmSwitch"
              x:Class="Trimble.Modus.Components.TMSwitch">
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <local:TMSwitchStyles />
-      </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-  </ContentView.Resources>
+ 
   <Grid x:Name="container"
         HorizontalOptions="Fill"
         BindingContext="{x:Reference tmSwitch}"

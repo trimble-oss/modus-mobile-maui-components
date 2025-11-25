@@ -117,32 +117,32 @@ public partial class TMToastContents : PopupPage
         ToastTheme theme = (ToastTheme)Enum.Parse(typeof(ToastTheme), toastTheme);
         switch (theme)
         {
-            case ToastTheme.Dark:               
+            case ToastTheme.DarkToast:               
                 leftIconImage.Source = ImageSource.FromFile(ImageConstants.WhiteInfoIcon);
                 closeButton.Source = ImageSource.FromFile(ImageConstants.ToastWhiteCloseIcon);
                 break;
 
-            case ToastTheme.Primary:
+            case ToastTheme.PrimaryToast:
                 closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastPrimaryCloseIcon");
                 leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastPrimaryInfoIcon");
                 break;
 
-            case ToastTheme.Secondary:
+            case ToastTheme.SecondaryToast:
                 closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
                 leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastSecondaryInfoIcon");
                 break;
 
-            case ToastTheme.Danger:
+            case ToastTheme.DangerToast:
                 closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
                 leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastDangerIcon");
                 break;
 
-            case ToastTheme.Warning:
+            case ToastTheme.WarningToast:
                 closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
                 leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastWarningIcon");
                 break;
 
-            case ToastTheme.Success:
+            case ToastTheme.SuccessToast:
                 leftIconImage.SetDynamicResource(Image.SourceProperty, "ToastSuccessIcon");
                 closeButton.SetDynamicResource(ImageButton.SourceProperty, "ToastCloseIcon");
                 break;

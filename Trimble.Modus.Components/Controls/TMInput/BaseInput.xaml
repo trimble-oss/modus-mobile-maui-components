@@ -6,13 +6,9 @@
              xmlns:Modus="clr-namespace:Trimble.Modus.Components"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
 
-  <ContentView.Resources>  
-      
+  <ContentView.Resources>
     <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <local:TMInputStyles></local:TMInputStyles>
-      </ResourceDictionary.MergedDictionaries>
-      <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+        <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
     </ResourceDictionary>
     <ControlTemplate x:Key="InputTemplate">
       <Grid x:Name="tmInputContainer"
