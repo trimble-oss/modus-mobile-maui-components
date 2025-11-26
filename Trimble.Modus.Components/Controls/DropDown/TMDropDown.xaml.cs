@@ -4,7 +4,7 @@ using Trimble.Modus.Components.Helpers;
 using Trimble.Modus.Components.Popup.Services;
 
 namespace Trimble.Modus.Components;
-public partial class TMDropDown : ContentView, IDisposable
+public partial class TMDropDown : ContentView
 {
     #region Private fields
     private double desiredHeight;
@@ -136,6 +136,7 @@ public partial class TMDropDown : ContentView, IDisposable
         InitializeComponent();
         this.SetDynamicResource(StyleProperty, "DefaultStyle");
         PopupService.Instance.Dismissed += OnPopupRemoved;
+        this.Unloaded += OnUnloaded;
     }
     #endregion
 
@@ -383,8 +384,16 @@ public partial class TMDropDown : ContentView, IDisposable
     public void Dispose()
     {
         PopupService.Instance.Dismissed -= OnPopupRemoved;
+        this.Unloaded -= OnUnloaded;
         SelectionChanged = null;
         SelectionChangedCommand = null;
         ItemsSource = null;
+        dropDownContents = null;
+        previousSelection = null;
+    }
+
+    private void OnUnloaded(object sender, EventArgs e)
+    {
+        Dispose();
     }
 }
