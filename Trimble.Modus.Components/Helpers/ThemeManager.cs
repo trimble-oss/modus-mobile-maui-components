@@ -23,7 +23,8 @@ namespace Trimble.Modus.Components.Helpers
 
         public static void RegisterStyles()
         {            
-            Application.Current.Resources.MergedDictionaries.Add(new ModusStyles()); 
+            Application.Current.Resources.MergedDictionaries.Add(new ModusStyles());
+            Application.Current.Resources.MergedDictionaries.Add(new ConvertersDictionary());
         }
 
         private static void UpdateColorsDictionary(ModusConfig appConfig = null)
