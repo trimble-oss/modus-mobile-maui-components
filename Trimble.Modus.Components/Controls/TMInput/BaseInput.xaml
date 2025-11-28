@@ -7,9 +7,6 @@
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
 
   <ContentView.Resources>
-    <ResourceDictionary>
-        <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
-    </ResourceDictionary>
     <ControlTemplate x:Key="InputTemplate">
       <Grid x:Name="tmInputContainer"
         RowDefinitions="auto,auto,auto"

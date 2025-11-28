@@ -135,8 +135,6 @@ public partial class TMDropDown : ContentView
         previousSelection = null;
         InitializeComponent();
         this.SetDynamicResource(StyleProperty, "DefaultStyle");
-        PopupService.Instance.Dismissed += OnPopupRemoved;
-        this.Unloaded += OnUnloaded;
     }
     #endregion
 
@@ -368,7 +366,6 @@ public partial class TMDropDown : ContentView
             Open();
         }
     }
-
     protected override void OnParentSet()
     {
         base.OnParentSet();
@@ -383,17 +380,10 @@ public partial class TMDropDown : ContentView
 
     public void Dispose()
     {
-        PopupService.Instance.Dismissed -= OnPopupRemoved;
-        this.Unloaded -= OnUnloaded;
         SelectionChanged = null;
         SelectionChangedCommand = null;
         ItemsSource = null;
         dropDownContents = null;
         previousSelection = null;
-    }
-
-    private void OnUnloaded(object sender, EventArgs e)
-    {
-        Dispose();
     }
 }

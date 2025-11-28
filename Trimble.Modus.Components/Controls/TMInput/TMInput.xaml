@@ -9,11 +9,6 @@
                 xmlns:controls="clr-namespace:Trimble.Modus.Components"
                 x:Name="singleInput">
 
-  <base:BaseInput.Resources> 
-      <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
-      <converters:AllTrueConverter x:Key="AllTrueConverter" />   
-  </base:BaseInput.Resources>
-
   <Grid ColumnDefinitions="auto,*,auto"
         ColumnSpacing="0"
         RowSpacing="0"

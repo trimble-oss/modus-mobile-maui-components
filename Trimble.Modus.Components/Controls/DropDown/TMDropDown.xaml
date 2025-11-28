@@ -7,11 +7,6 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Trimble.Modus.Components.TMDropDown"
              xmlns:converters="clr-namespace:Trimble.Modus.Components.Converters">
-  <ContentView.Resources>
-    <ResourceDictionary>
-    <converters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
-    </ResourceDictionary>
-  </ContentView.Resources>
   <VerticalStackLayout BindingContext="{x:Reference dropDown}">
     <local:ControlLabel TitleText="{Binding TitleText}"
                         IsRequired="{Binding IsRequired}"
