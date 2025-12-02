@@ -384,7 +384,12 @@ public partial class TMDropDown : ContentView
         SelectionChanged = null;
         SelectionChangedCommand = null;
         ItemsSource = null;
-        dropDownContents = null;
+        if (dropDownContents != null)
+        {
+            dropDownContents.ChangeIndicatorWhenPopupRemove = null;
+            dropDownContents = null;
+        }
         previousSelection = null;
+        
     }
 }
