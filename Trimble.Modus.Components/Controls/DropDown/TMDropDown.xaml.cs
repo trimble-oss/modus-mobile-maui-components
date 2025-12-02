@@ -244,10 +244,11 @@ public partial class TMDropDown : ContentView
                 SelectedItem = this.SelectedItem,
                 Margin = margin,
                 DesiredHeight = desiredHeight,
-                WidthRequest = innerBorder.Width,
+                DesiredWidth = innerBorder.Width,
                 SelectedEventHandler = OnSelected,
                 YPosition = loc.Y,
-                Height = height
+                Height = height,
+                ChangeIndicatorWhenPopupRemove = OnPopupRemoved
             };
             dropDownContents.Build();
             await Task.WhenAll(
@@ -260,7 +261,7 @@ public partial class TMDropDown : ContentView
         }
     }
 
-    private void OnPopupRemoved(object sender, EventArgs e)
+    private void OnPopupRemoved()
     {
         Close();
     }
