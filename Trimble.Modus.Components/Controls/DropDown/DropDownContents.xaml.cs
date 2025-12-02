@@ -39,17 +39,18 @@ public partial class DropDownContents : PopupPage
     public Thickness Margin { get; set; }
     public IEnumerable ItemSource { get; set; }
     public double DesiredHeight { get; set; }
+    public double DesiredWidth { get; set; }
     public EventHandler<SelectedItemChangedEventArgs> SelectedEventHandler { get; set; }
     public int SelectedIndex { get; set; }
     public double YPosition { get; set; }
     public new double Height { get; set; }
-
+    public Action ChangeIndicatorWhenPopupRemove { get; set; }
     public void Build()
     {
         Animation = new RevealAnimation(DesiredHeight);
         border.Margin = Margin;
         border.HeightRequest = DesiredHeight;
-        border.WidthRequest = WidthRequest;
+        border.WidthRequest = DesiredWidth;
         listView.ItemsSource = ItemSource;
         if (SelectedIndex < 0)
         {
@@ -70,7 +71,11 @@ public partial class DropDownContents : PopupPage
 #endif
         }
     }
-
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        ChangeIndicatorWhenPopupRemove?.Invoke();
+    }
     private static void UpdateBackgroundColorOfCell(ListView listView)
     {
         if (listView.SelectedItem != null)

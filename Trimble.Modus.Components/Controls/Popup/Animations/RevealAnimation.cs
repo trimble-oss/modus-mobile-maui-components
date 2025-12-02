@@ -19,7 +19,7 @@ public class RevealAnimation : BaseAnimation
         if (HasBackgroundAnimation)
         {
             _defaultOpacity = page.Opacity;
-            page.HeightRequest = 0;
+            //page.HeightRequest = 0;
         }
         else if (content != null)
         {
