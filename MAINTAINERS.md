@@ -10,7 +10,7 @@ The project is maintained by the following individuals:
 |------|----------|------|
 | Ramaraj Thangapandi | [@rthanga1](https://github.com/rthanga1) | Lead Maintainer (Admin) |
 | Sofiya Kumar | [@Sofiya-kumar](https://github.com/Sofiya-kumar) | Maintainer |
-| Amose Sekar | [@amosekr](https://github.com/amosekr) | Maintainer |
+| Amose Kumar R | [@amosekr](https://github.com/amosekr) | Maintainer |
 
 - **Team Email**: [modus-mobile-contributors-ug@trimble.com](mailto:modus-mobile-contributors-ug@trimble.com)
 
