@@ -1,0 +1,30 @@
+# Global Owners
+# These owners will be the default owners for everything in the repo
+# Unless a later match takes precedence, these users will be requested for
+# review when someone opens a pull request.
+# rthanga1 has admin privileges
+
+*                           @rthanga1 @Sofiya-kumar @amosekr
+
+# Documentation
+*.md                        @rthanga1 @Sofiya-kumar @amosekr
+docs/                       @rthanga1 @Sofiya-kumar @amosekr
+
+# GitHub configuration
+/.github/                   @rthanga1
+
+# Build and CI/CD
+*.yml                       @rthanga1 @Sofiya-kumar @amosekr
+*.yaml                      @rthanga1 @Sofiya-kumar @amosekr
+*.csproj                    @rthanga1 @Sofiya-kumar @amosekr
+*.sln                       @rthanga1 @Sofiya-kumar @amosekr
+
+# Core Components
+/Trimble.Modus.Components/  @rthanga1 @Sofiya-kumar @amosekr
+
+# Demo Application  
+/DemoApp/                   @rthanga1 @Sofiya-kumar @amosekr
+
+# Security-related files
+SECURITY.md                 @rthanga1
+CODEOWNERS                  @rthanga1
