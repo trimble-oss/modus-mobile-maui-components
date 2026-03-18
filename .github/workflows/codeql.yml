@@ -12,7 +12,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     permissions:
       actions: read
@@ -30,14 +30,22 @@ jobs:
       with:
         persist-credentials: false
 
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Install MAUI workloads
+      run: dotnet workload install maui-android --ignore-failed-sources
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
       with:
         languages: ${{ matrix.language }}
         queries: +security-and-quality
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v4
+    - name: Build
+      run: dotnet build Trimble.Modus.Components.sln -f net9.0-android -c Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
