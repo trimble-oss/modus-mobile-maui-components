@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Behaviors;
+using System;
 using Trimble.Modus.Components.Constant;
 using Trimble.Modus.Components.Enums;
 using Trimble.Modus.Components.Popup.Services;
@@ -227,7 +228,7 @@ internal partial class TMModalContents
         var inputControl = new TMInput();
 
         inputConfigurationHandler?.Invoke(inputControl);
-
+        inputControl.SetDynamicResource(TMInput.HeaderTextColorProperty, "TMModalInputHeaderTextColor");
         ModalBodyContainer.Add(inputControl);
     }
 
