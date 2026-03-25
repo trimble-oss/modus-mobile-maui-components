@@ -493,6 +493,10 @@
                          Color="{StaticResource IconLight}" />
   <styles:ReferenceColor x:Key="InputDefaultHelperTextColor"
                         Color="{StaticResource DefaultTextColor}" />
+  <styles:ReferenceColor x:Key="TMModalInputHeaderTextColor"
+                       Color="{StaticResource DefaultTextColor}"/>
+
+
 
   <!--Primary-->
   <styles:ReferenceColor x:Key="InputPrimaryBorderColor"
