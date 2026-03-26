@@ -1,59 +1,44 @@
 # Code Scanning Setup Guide
 
-This document explains how to resolve code scanning configuration issues in this repository and maintain compliance with organizational policies.
+This document explains the CodeQL code scanning configuration for this repository.
 
 ## Current Configuration
 
-This repository has two CodeQL code scanning configurations:
+This repository uses a **custom CodeQL workflow** (`.github/workflows/codeql-analysis.yml`) that provides thorough analysis with the `security-and-quality` query suite.
 
-1. **Default Setup** (managed by GitHub) — Configured in **Settings > Code security > Code scanning**. This is GitHub's built-in scanning that runs automatically without a workflow file.
+### Workflow Details
 
-2. **Custom Workflow** (`.github/workflows/codeql.yml`) — A workflow file in the repository that provides more control over the scanning process, including the `security-and-quality` query suite.
+- **Triggers**: Pushes and pull requests to `develop`/`main`, monthly scheduled scan, manual dispatch
+- **Runner**: `ubuntu-latest`
+- **Build target**: `net9.0-android` (compatible with Ubuntu runners)
+- **Query suite**: `security-and-quality` (more thorough than default)
 
-## Known Issue: Stale Configuration Error
+## Previous Issue: Stale Configuration
 
-The custom CodeQL workflow (`codeql.yml`) was previously **manually disabled**, which causes the code scanning status page to show an error or stale configuration at:
+The original workflow file (`codeql.yml`) was **manually disabled** in GitHub Actions UI. A manually disabled workflow cannot be re-enabled through code changes alone — modifying the file content has no effect on the disabled state. This caused the code scanning status page to show a stale configuration error.
 
-> **Security** > **Code scanning** > **Tool status** > **CodeQL** > **Configurations**
+The fix was to rename the workflow file from `codeql.yml` to `codeql-analysis.yml`. GitHub Actions identifies workflows by their file path, so the renamed file is treated as a new (active) workflow.
 
-This happens because GitHub detects the workflow configuration but finds no recent scan results from it.
+## Managing Duplicate Scanning Configurations
 
-## How to Resolve
+If both the custom workflow and GitHub's **Default Setup** are active, you may see duplicate scan results. To avoid this:
 
-You have two options — choose **one**:
+1. Go to **Settings** > **Code security** > **Code scanning**
+2. Disable the **Default setup** since the custom workflow provides more thorough analysis
 
-### Option A: Use the Custom Workflow (Recommended)
+## Why a Custom Build Is Required
 
-The custom workflow provides more thorough analysis with the `security-and-quality` query suite.
+CodeQL's **Autobuild** step cannot build .NET MAUI projects because:
 
-1. Go to **Actions** > **CodeQL** (the workflow, not the default setup)
-2. Click **Enable workflow** to re-enable the disabled `codeql.yml`
-3. Optionally, trigger a manual run via **Run workflow** to verify it works
-4. Go to **Settings** > **Code security** > **Code scanning** and disable the **Default setup** to avoid duplicate scanning
-5. Verify the workflow completes successfully and results appear under **Security** > **Code scanning**
-
-### Option B: Use the Default Setup Only
-
-If you prefer the simpler GitHub-managed scanning:
-
-1. Verify the Default Setup is enabled in **Settings** > **Code security** > **Code scanning**
-2. **Delete** the file `.github/workflows/codeql.yml` from the repository to remove the stale configuration
-3. Commit and push the deletion
-4. The stale configuration error will clear after the next scheduled scan
-
-## Why Was the Workflow Failing?
-
-The original `codeql.yml` used CodeQL's **Autobuild** step, which could not build this .NET MAUI project because:
-
-- The .NET SDK was not set up in the workflow
-- MAUI workloads (required for building MAUI projects) were not installed
+- The .NET SDK is not set up in the runner by default
+- MAUI workloads (required for building MAUI projects) are not installed
 - Autobuild does not automatically install platform-specific workloads
 
-The updated workflow in this repository fixes these issues by:
+The custom workflow fixes these issues by:
 
 - Adding a `setup-dotnet` step for .NET 9
-- Installing the `maui-android` workload (compatible with Ubuntu runners)
-- Replacing the Autobuild step with an explicit `dotnet build` targeting `net9.0-android`
+- Installing the `android` and `maui-android` workloads
+- Replacing Autobuild with an explicit `dotnet build` targeting `net9.0-android`
 
 ## Verifying Code Scanning Compliance
 
