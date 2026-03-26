@@ -9,15 +9,21 @@ on:
     - cron: "0 0 1 * *"
   workflow_dispatch:
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
 
     strategy:
       fail-fast: false
@@ -36,7 +42,9 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Install MAUI workloads
-      run: dotnet workload install maui-android --ignore-failed-sources
+      run: |
+        dotnet workload install android --ignore-failed-sources
+        dotnet workload install maui-android --ignore-failed-sources
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
@@ -44,8 +52,11 @@ jobs:
         languages: ${{ matrix.language }}
         queries: +security-and-quality
 
+    - name: Restore dependencies
+      run: dotnet restore Trimble.Modus.Components.sln
+
     - name: Build
-      run: dotnet build Trimble.Modus.Components.sln -f net9.0-android -c Release
+      run: dotnet build Trimble.Modus.Components.sln -f net9.0-android -c Release --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
