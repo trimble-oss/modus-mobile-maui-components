@@ -53,7 +53,7 @@ jobs:
         queries: +security-and-quality
 
     - name: Build
-      run: dotnet build Trimble.Modus.Components.sln -f net9.0-android -c Release
+      run: dotnet build Trimble.Modus.Components/Trimble.Modus.Components.csproj /p:TargetFrameworks=net9.0-android -c Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
