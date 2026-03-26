@@ -52,11 +52,8 @@ jobs:
         languages: ${{ matrix.language }}
         queries: +security-and-quality
 
-    - name: Restore dependencies
-      run: dotnet restore Trimble.Modus.Components.sln
-
     - name: Build
-      run: dotnet build Trimble.Modus.Components.sln -f net9.0-android -c Release --no-restore
+      run: dotnet build Trimble.Modus.Components.sln -f net9.0-android -c Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
