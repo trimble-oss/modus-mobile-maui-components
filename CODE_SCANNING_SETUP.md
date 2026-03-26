@@ -4,7 +4,7 @@ This document explains the CodeQL code scanning configuration for this repositor
 
 ## Current Configuration
 
-This repository uses a **custom CodeQL workflow** (`.github/workflows/codeql-analysis.yml`) that provides thorough analysis with the `security-and-quality` query suite.
+This repository uses a **custom CodeQL workflow** (`.github/workflows/codeql.yml`) that provides thorough analysis with the `security-and-quality` query suite.
 
 ### Workflow Details
 
@@ -12,12 +12,6 @@ This repository uses a **custom CodeQL workflow** (`.github/workflows/codeql-ana
 - **Runner**: `ubuntu-latest`
 - **Build target**: `net9.0-android` (compatible with Ubuntu runners)
 - **Query suite**: `security-and-quality` (more thorough than default)
-
-## Previous Issue: Stale Configuration
-
-The original workflow file (`codeql.yml`) was **manually disabled** in GitHub Actions UI. A manually disabled workflow cannot be re-enabled through code changes alone — modifying the file content has no effect on the disabled state. This caused the code scanning status page to show a stale configuration error.
-
-The fix was to rename the workflow file from `codeql.yml` to `codeql-analysis.yml`. GitHub Actions identifies workflows by their file path, so the renamed file is treated as a new (active) workflow.
 
 ## Managing Duplicate Scanning Configurations
 
