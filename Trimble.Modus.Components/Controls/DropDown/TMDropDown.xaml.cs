@@ -256,7 +256,7 @@ public partial class TMDropDown : ContentView
             );
 
             await PopupService.Instance?.PresentAsync(dropDownContents, true);
-            dropDownContents.dropDownListView.ScrollTo(dropDownContents.dropDownListView.SelectedItem, ScrollToPosition.End, true);
+            dropDownContents.dropDownListView.ScrollTo(dropDownContents.dropDownListView.SelectedItem, ScrollToPosition.MakeVisible, false);
             _isLoading = false;
         }
     }
