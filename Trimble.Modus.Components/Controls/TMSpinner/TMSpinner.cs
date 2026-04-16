@@ -103,7 +103,6 @@ namespace Trimble.Modus.Components
         {
             if (bindable is TMSpinner tmSpinner)
             {
-                Console.WriteLine("Spinner Size Changed", (Size)newValue);
                 switch ((Size)newValue)
                 {
                     case Size.XSmall:

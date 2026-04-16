@@ -4,22 +4,39 @@ public static class ResourcesDictionary
 {
     public static Color GetColor(string styleKey)
     {
-        if (Application.Current.Resources.ContainsKey(styleKey))
+        if (Application.Current?.Resources is ResourceDictionary resources &&
+            resources.TryGetValue(styleKey, out var applicationResource) &&
+            applicationResource is Color applicationColor)
         {
-            return Application.Current.Resources[styleKey] as Color;
+            return applicationColor;
         }
-        else
+
+        if (Application.Current?.Resources is ResourceDictionary appResources)
         {
-            ResourceDictionary style = new Styles.LightThemeColors();
-            if (Application.Current.RequestedTheme == AppTheme.Dark)
+            var preferredType = Application.Current.RequestedTheme == AppTheme.Dark
+                ? typeof(Styles.DarkThemeColors)
+                : typeof(Styles.LightThemeColors);
+
+            foreach (var dictionary in appResources.MergedDictionaries)
             {
-                style = new Styles.DarkThemeColors();
+                if (dictionary.GetType() == preferredType &&
+                    dictionary.TryGetValue(styleKey, out var themeResource) &&
+                    themeResource is Color themeColor)
+                {
+                    return themeColor;
+                }
             }
-            if (style.ContainsKey(styleKey))
+
+            foreach (var dictionary in appResources.MergedDictionaries)
             {
-                return style[styleKey] as Color;
+                if (dictionary.TryGetValue(styleKey, out var mergedResource) &&
+                    mergedResource is Color mergedColor)
+                {
+                    return mergedColor;
+                }
             }
         }
+
         return Colors.Transparent;
     }
 }
