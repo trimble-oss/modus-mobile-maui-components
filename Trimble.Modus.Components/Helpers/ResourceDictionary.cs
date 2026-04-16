@@ -11,19 +11,32 @@ public static class ResourcesDictionary
             return applicationColor;
         }
 
-        ResourceDictionary style = new Styles.LightThemeColors();
-        if (Application.Current?.RequestedTheme == AppTheme.Dark)
+        if (Application.Current?.Resources is ResourceDictionary appResources)
         {
-            style = new Styles.DarkThemeColors();
+            var preferredType = Application.Current.RequestedTheme == AppTheme.Dark
+                ? typeof(Styles.DarkThemeColors)
+                : typeof(Styles.LightThemeColors);
+
+            foreach (var dictionary in appResources.MergedDictionaries)
+            {
+                if (dictionary.GetType() == preferredType &&
+                    dictionary.TryGetValue(styleKey, out var themeResource) &&
+                    themeResource is Color themeColor)
+                {
+                    return themeColor;
+                }
+            }
+
+            foreach (var dictionary in appResources.MergedDictionaries)
+            {
+                if (dictionary.TryGetValue(styleKey, out var mergedResource) &&
+                    mergedResource is Color mergedColor)
+                {
+                    return mergedColor;
+                }
+            }
         }
 
-        try
-        {
-            return style[styleKey] as Color ?? Colors.Transparent;
-        }
-        catch (KeyNotFoundException)
-        {
-            return Colors.Transparent;
-        }
+        return Colors.Transparent;
     }
 }
