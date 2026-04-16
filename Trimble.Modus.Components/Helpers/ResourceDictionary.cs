@@ -4,22 +4,26 @@ public static class ResourcesDictionary
 {
     public static Color GetColor(string styleKey)
     {
-        if (Application.Current.Resources.ContainsKey(styleKey))
+        if (Application.Current?.Resources is ResourceDictionary resources &&
+            resources.TryGetValue(styleKey, out var applicationResource) &&
+            applicationResource is Color applicationColor)
         {
-            return Application.Current.Resources[styleKey] as Color;
+            return applicationColor;
         }
-        else
+
+        ResourceDictionary style = new Styles.LightThemeColors();
+        if (Application.Current?.RequestedTheme == AppTheme.Dark)
         {
-            ResourceDictionary style = new Styles.LightThemeColors();
-            if (Application.Current.RequestedTheme == AppTheme.Dark)
-            {
-                style = new Styles.DarkThemeColors();
-            }
-            if (style.ContainsKey(styleKey))
-            {
-                return style[styleKey] as Color;
-            }
+            style = new Styles.DarkThemeColors();
         }
-        return Colors.Transparent;
+
+        try
+        {
+            return style[styleKey] as Color ?? Colors.Transparent;
+        }
+        catch (KeyNotFoundException)
+        {
+            return Colors.Transparent;
+        }
     }
 }

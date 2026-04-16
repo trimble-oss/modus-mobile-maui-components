@@ -201,7 +201,7 @@ public partial class TMDropDown : ContentView
         var newItem = e.SelectedItem;
         var newIndex = e.SelectedItemIndex;
 
-        // Always update (even if newItem is null – that represents clearing)
+        // Always update (even if newItem is null ï¿½ that represents clearing)
         SelectedItem = newItem;
         SelectedIndex = newIndex;
 
@@ -332,10 +332,10 @@ public partial class TMDropDown : ContentView
 
             if (itemCount < 4)
             {
-                desiredHeight = itemCount * 56;
-                margin = new Thickness(0, ((itemCount - 1) * 56) + 4, 10, 0);
+                desiredHeight = itemCount * 56.0;
+                margin = new Thickness(0, ((itemCount - 1) * 56.0) + 4.0, 10, 0);
 #if WINDOWS
-                margin = new Thickness(0, ((itemCount - 1) * 56) + 30, 10, 0);
+                margin = new Thickness(0, ((itemCount - 1) * 56.0) + 30.0, 10, 0);
 #endif
             }
         }
