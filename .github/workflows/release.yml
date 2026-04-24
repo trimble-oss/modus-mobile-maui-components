@@ -1,0 +1,135 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  release:
+    runs-on: macos-latest
+    name: Release
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+          include-prerelease: true
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '11'
+
+      - name: Install MAUI Workloads
+        run: |
+          dotnet workload install android --ignore-failed-sources
+          dotnet workload install maui-android --ignore-failed-sources
+          dotnet workload install maui-ios
+          dotnet workload install maccatalyst
+
+      - name: Compute new version
+        id: version
+        run: |
+          CSPROJ="Trimble.Modus.Components/Trimble.Modus.Components.csproj"
+          CURRENT=$(grep -oP '(?<=<Version>)[^<]+' "$CSPROJ")
+          echo "Current version: $CURRENT"
+
+          IFS='.' read -r -a PARTS <<< "$CURRENT"
+          MAJOR="${PARTS[0]:-0}"
+          MINOR="${PARTS[1]:-0}"
+          PATCH="${PARTS[2]:-0}"
+
+          BUMP="${{ github.event.inputs.version_bump }}"
+          if [ "$BUMP" = "major" ]; then
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+          elif [ "$BUMP" = "minor" ]; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+          else
+            PATCH=$((PATCH + 1))
+          fi
+
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          echo "New version: $NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update version in csproj
+        run: |
+          CSPROJ="Trimble.Modus.Components/Trimble.Modus.Components.csproj"
+          NEW_VERSION="${{ steps.version.outputs.new_version }}"
+          sed -i '' "s|<Version>[^<]*</Version>|<Version>${NEW_VERSION}</Version>|" "$CSPROJ"
+          echo "Updated csproj to version $NEW_VERSION"
+
+      - name: Restore Dependencies
+        run: dotnet restore Trimble.Modus.Components.sln
+
+      - name: Build
+        run: |
+          dotnet build Trimble.Modus.Components/Trimble.Modus.Components.csproj \
+            -c Release \
+            -f net9.0-android \
+            --no-restore
+
+      - name: Pack
+        run: |
+          dotnet pack Trimble.Modus.Components/Trimble.Modus.Components.csproj \
+            -c Release \
+            --no-build \
+            -o Trimble.Modus.Components/bin/Release/pack
+
+      - name: Publish to NuGet
+        run: |
+          NUPKG=$(find Trimble.Modus.Components/bin/Release/pack -name "*.nupkg" | head -n 1)
+          if [ -z "$NUPKG" ]; then
+            echo "Error: No .nupkg file found." >&2
+            exit 1
+          fi
+          echo "Publishing $NUPKG"
+          dotnet nuget push "$NUPKG" \
+            --api-key "${{ secrets.NUGET_API_KEY_FOR_MODUS }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      - name: Commit version bump, tag, and push
+        run: |
+          TAG="v${{ steps.version.outputs.new_version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Trimble.Modus.Components/Trimble.Modus.Components.csproj
+          git commit -m "chore: bump version to ${{ steps.version.outputs.new_version }}"
+          git tag "$TAG"
+          git push origin HEAD "$TAG"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v${{ steps.version.outputs.new_version }}"
+          gh release create "$TAG" \
+            --title "Release $TAG" \
+            --notes "Release $TAG" \
+            Trimble.Modus.Components/bin/Release/pack/*.nupkg
