@@ -429,8 +429,7 @@ namespace Trimble.Modus.Components.Controls
         /// <summary>
         /// Get the Pan shift value for thumb 
         /// </summary>
-        protected double GetPanShiftValue(View view) =>
-            DeviceInfo.Platform == DevicePlatform.Android ? view.TranslationX : _thumbPositionMap[view];
+        protected double GetPanShiftValue(View view) => _thumbPositionMap[view];
 
         /// <summary>
         /// Add gesture recognizer for thumb
