@@ -13,7 +13,11 @@ We release patches for security vulnerabilities in the following versions:
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, please report security vulnerabilities to the Trimble security team:
+Instead, please report security vulnerabilities using the official Trimble cybersecurity reporting form:
+
+- **Report Form**: [Trimble Cybersecurity Issue Reporting Form](https://www.trimble.com/en/our-commitment/responsible-business/data-privacy-and-security/report-cybersecurity-issues/form)
+
+You may also contact the repository maintainers directly:
 
 - **Email**: [trimble-oss-contrib-admins-ug@trimble.com](mailto:trimble-oss-contrib-admins-ug@trimble.com)
 - **Subject Line**: [SECURITY] Trimble Modus Mobile MAUI Components - [Brief description]
