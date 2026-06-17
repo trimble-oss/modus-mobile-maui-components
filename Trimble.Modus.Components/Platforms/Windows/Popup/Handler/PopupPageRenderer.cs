@@ -65,10 +65,10 @@ internal class PopupPageRenderer : ContentPanel
     private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         DeviceDisplay.Current.MainDisplayInfoChanged += OnDisplayInfoChanged;
-        if (CurrentElement != null && CurrentElement.BackgroundInputTransparent)
+        if (CurrentElement != null && CurrentElement.BackgroundInputTransparent && !CurrentElement.CloseWhenBackgroundIsClicked)
         {
             this.Background = null;
-        }
+        }        
         else
         {
             PointerPressed += OnBackgroundClick;
