@@ -41,7 +41,7 @@ namespace Trimble.Modus.Components
             {
                 throw new ArgumentNullException("Message is required");
             }
-            PopupService.Instance.PresentAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable, dismissDelay), false);
+            PopupService.Instance.PresentAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable, DismissDelay), false);
         }
         #endregion
     }
