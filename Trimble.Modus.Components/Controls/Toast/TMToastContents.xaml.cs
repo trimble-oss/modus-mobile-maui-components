@@ -11,7 +11,7 @@ public partial class TMToastContents : PopupPage
 {
     #region Private Properties
 
-    private const int DELAYTIME = 5000;
+    private readonly int _delayTime;
 
     #endregion
 
@@ -40,8 +40,9 @@ public partial class TMToastContents : PopupPage
         propertyChanged: OnRightIconTintColorChanged);
 
 
-    internal TMToastContents(string message, string actionButtonText, ToastTheme theme, Action action, bool isDismissable)
+    internal TMToastContents(string message, string actionButtonText, ToastTheme theme, Action action, bool isDismissable, int dismissDelay = 5000)
     {
+        _delayTime = dismissDelay;
         InitializeComponent();
         SetTheme(theme.ToString());
         SetDynamicResource(StyleProperty, theme.ToString());
@@ -165,7 +166,7 @@ public partial class TMToastContents : PopupPage
     {
         Task.Run(async () =>
         {
-            await Task.Delay(DELAYTIME);
+            await Task.Delay(_delayTime);
             if (PopupService.Instance.PopupStack.Contains(this))
                 await PopupService.Instance.RemovePageAsync(this, true);
         });
