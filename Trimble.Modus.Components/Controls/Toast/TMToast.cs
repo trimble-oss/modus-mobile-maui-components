@@ -14,7 +14,7 @@ namespace Trimble.Modus.Components
         public ToastTheme theme = ToastTheme.DefaultToast;
         public bool isDismissable = true;
         private int _dismissDelay = 5000;
-        public int dismissDelay
+        public int DismissDelay
         {
             get => _dismissDelay;
             set

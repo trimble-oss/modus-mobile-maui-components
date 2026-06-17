@@ -67,7 +67,7 @@ internal class PopupPageRenderer : ContentPanel
         DeviceDisplay.Current.MainDisplayInfoChanged += OnDisplayInfoChanged;
         if (CurrentElement != null && CurrentElement.BackgroundInputTransparent && !CurrentElement.CloseWhenBackgroundIsClicked)
         {
-            this.Background = null;
+            Background = null;
         }        
         else
         {
