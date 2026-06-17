@@ -13,7 +13,16 @@ namespace Trimble.Modus.Components
         private Action? action = null;
         public ToastTheme theme = ToastTheme.DefaultToast;
         public bool isDismissable = true;
-        public int dismissDelay = 5000;
+        private int _dismissDelay = 5000;
+        public int dismissDelay
+        {
+            get => _dismissDelay;
+            set
+            {
+                if (value > 0)                    
+                    _dismissDelay = value;
+            }
+        }
         #endregion
         public TMToast(string message, string actionButtonText = null, Action? action = null)
         {
