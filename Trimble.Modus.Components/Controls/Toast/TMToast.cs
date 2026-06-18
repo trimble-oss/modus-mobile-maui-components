@@ -13,6 +13,16 @@ namespace Trimble.Modus.Components
         private Action? action = null;
         public ToastTheme theme = ToastTheme.DefaultToast;
         public bool isDismissable = true;
+        private int _dismissDelay = 5000;
+        public int DismissDelay
+        {
+            get => _dismissDelay;
+            set
+            {
+                if (value > 0)                    
+                    _dismissDelay = value;
+            }
+        }
         #endregion
         public TMToast(string message, string actionButtonText = null, Action? action = null)
         {
@@ -31,7 +41,7 @@ namespace Trimble.Modus.Components
             {
                 throw new ArgumentNullException("Message is required");
             }
-            PopupService.Instance.PresentAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable), false);
+            PopupService.Instance.PresentAsync(new TMToastContents(message, actionButtonText, theme, action, isDismissable, DismissDelay), false);
         }
         #endregion
     }
