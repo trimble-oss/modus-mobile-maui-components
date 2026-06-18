@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net10.0;net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
-      $(TargetFrameworks);net9.0-windows10.0.19041.0
+      $(TargetFrameworks);net10.0-windows10.0.19041.0
     </TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following
 		this: https://github.com/Samsung/Tizen.NET -->
@@ -45,13 +45,13 @@
     <PackageReleaseNotes>Visit https://github.com/trimble-oss/modus-mobile-maui-components/releases</PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
     <CreatePackage>false</CreatePackage>
     <MtouchLink>None</MtouchLink>
     <MtouchUseLlvm>False</MtouchUseLlvm>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
     <MtouchLink>None</MtouchLink>
   </PropertyGroup>
 
@@ -71,8 +71,9 @@
     <MauiImage Include="Images\*.svg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="14.2.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.8" />
   </ItemGroup>
   <ItemGroup>
