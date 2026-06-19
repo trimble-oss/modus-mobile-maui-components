@@ -111,34 +111,18 @@ public static class AppBuilderExtensions
     }
     private static void SetHandlers(IMauiHandlersCollection handlers)
     {
-        {
-            handlers.AddHandler(typeof(BorderlessEntry), typeof(EntryHandler));
-
-            handlers.AddHandler(typeof(Label), typeof(LabelHandler));
-
-            handlers.AddHandler(typeof(TMSpinner), typeof(SpinnerHandler));
-
-            handlers.AddHandler(typeof(BorderlessEditor), typeof(EditorHandler));
-            handlers.AddHandler<BaseProgressBar, SKCanvasViewHandler>();
-
+        handlers.AddHandler(typeof(BorderlessEntry), typeof(EntryHandler));
+        handlers.AddHandler(typeof(Label), typeof(LabelHandler));
+        handlers.AddHandler(typeof(TMSpinner), typeof(SpinnerHandler));
+        handlers.AddHandler(typeof(BorderlessEditor), typeof(EditorHandler));
+        handlers.AddHandler<BaseProgressBar, SKCanvasViewHandler>();
 
 #if ANDROID
-            handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));
-            handlers.AddHandler(typeof(TMButton), typeof(TMButtonAndroidTouchHandler));
-            handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonAndroidTouchHandler));
+        handlers.AddHandler(typeof(PopupPage), typeof(PopupPageHandler));  
+#elif IOS
+        handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
+#elif WINDOWS
+        handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
 #endif
-#if IOS
-                handlers.AddHandler(typeof(PopupPage), typeof(Platforms.iOS.PopupPageHandler));
-                handlers.AddHandler(typeof(TMButton), typeof(TMButtoniOSTouchHandler));
-                handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtoniOSTouchHandler));
-#endif
-#if WINDOWS
-            handlers.AddHandler(typeof(PopupPage), typeof(Platforms.Windows.PopupPageHandler));
-            handlers.AddHandler(typeof(TMButton), typeof(TMButtonWindowsTouchHandler));
-            handlers.AddHandler(typeof(TMFloatingButton), typeof(TMFloatingButtonWindowsTouchHandler));
-#endif
-        }
-
-
     }
 }

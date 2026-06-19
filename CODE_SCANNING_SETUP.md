@@ -10,7 +10,7 @@ This repository uses a **custom CodeQL workflow** (`.github/workflows/codeql.yml
 
 - **Triggers**: Pushes and pull requests to `develop`/`main`, monthly scheduled scan, manual dispatch
 - **Runner**: `ubuntu-latest`
-- **Build target**: `net9.0-android` (compatible with Ubuntu runners)
+- **Build target**: `net10.0-android` (compatible with Ubuntu runners)
 - **Query suite**: `security-and-quality` (more thorough than default)
 
 ## Managing Duplicate Scanning Configurations
@@ -30,9 +30,9 @@ CodeQL's **Autobuild** step cannot build .NET MAUI projects because:
 
 The custom workflow fixes these issues by:
 
-- Adding a `setup-dotnet` step for .NET 9
+- Adding a `setup-dotnet` step for .NET 10
 - Installing the `android` and `maui-android` workloads
-- Replacing Autobuild with an explicit `dotnet build` targeting `net9.0-android`
+- Replacing Autobuild with an explicit `dotnet build` targeting `net10.0-android`
 
 ## Verifying Code Scanning Compliance
 
@@ -50,7 +50,7 @@ The custom CodeQL workflow requires:
 | Dependency | Purpose |
 |---|---|
 | `actions/checkout@v5` | Check out the repository code |
-| `actions/setup-dotnet@v4` | Install .NET 9 SDK |
+| `actions/setup-dotnet@v4` | Install .NET 10 SDK |
 | `github/codeql-action/init@v4` | Initialize CodeQL analysis |
 | `github/codeql-action/analyze@v4` | Run CodeQL analysis and upload results |
 
