@@ -12,7 +12,7 @@ public partial class TMButton : ContentView
     protected EventHandler _clicked;
     protected Border _buttonFrame;
     protected Label _buttonLabel;
-    private TapGestureRecognizer _tapGestureRecognizer;
+    private readonly TapGestureRecognizer _tapGestureRecognizer;
 
     #endregion
 
