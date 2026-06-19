@@ -12,6 +12,7 @@ public partial class TMButton : ContentView
     protected EventHandler _clicked;
     protected Border _buttonFrame;
     protected Label _buttonLabel;
+    private TapGestureRecognizer _tapGestureRecognizer;
 
     #endregion
 
@@ -189,6 +190,12 @@ public partial class TMButton : ContentView
         InitializeComponent();
         _buttonFrame = buttonFrame;
         _buttonLabel = buttonLabel;
+        _buttonLabel.InputTransparent = true;
+        leftIcon.InputTransparent = true;
+        rightIcon.InputTransparent = true;
+        _tapGestureRecognizer = new TapGestureRecognizer();
+        _tapGestureRecognizer.Tapped += OnTapped;
+        GestureRecognizers.Add(_tapGestureRecognizer);
         SetPadding(this);
         UpdateButtonStyle(this);
         OnTextChanged();
@@ -294,12 +301,13 @@ public partial class TMButton : ContentView
         if (disable)
         {
             button.Opacity = 0.5;
-            button.GestureRecognizers.Clear();
+            button.InputTransparent = true;
         }
         else
         {
             UpdateButtonStyle(button);
             button.Opacity = 1;
+            button.InputTransparent = false;
         }
     }
 
@@ -470,6 +478,15 @@ public partial class TMButton : ContentView
 
     #endregion
     #region Public Methods
+    private async void OnTapped(object sender, TappedEventArgs e)
+    {
+        if (!IsDisabled && !IsLoading)
+        {
+            RaisePressed();
+            await Task.Delay(50);
+            RaiseReleased();
+        }
+    }
 
     public void RaisePressed()
     {
