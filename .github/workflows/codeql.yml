@@ -47,7 +47,7 @@ jobs:
         dotnet workload install maui-android --ignore-failed-sources
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v4
+      uses: github/codeql-action/init@v4.37.4
       with:
         languages: ${{ matrix.language }}
         queries: +security-and-quality
@@ -56,6 +56,6 @@ jobs:
       run: dotnet build Trimble.Modus.Components/Trimble.Modus.Components.csproj /p:TargetFrameworks=net10.0-android -c Release
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v4
+      uses: github/codeql-action/analyze@v4.37.4
       with:
         category: "/language:${{matrix.language}}"
